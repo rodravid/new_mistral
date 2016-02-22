@@ -154,7 +154,8 @@ return [
         Vinci\App\Core\Providers\AppServiceProvider::class,
         Vinci\App\Core\Providers\AuthServiceProvider::class,
         Vinci\App\Core\Providers\EventServiceProvider::class,
-        Vinci\App\Website\Providers\WebsiteServiceProvider::class
+        Vinci\App\Website\Providers\WebsiteServiceProvider::class,
+        Vinci\App\Cms\Providers\CmsServiceProvider::class
 
     ],
 

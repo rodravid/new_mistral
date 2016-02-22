@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 class WebsiteServiceProvider extends ServiceProvider
 {
+    protected $namespace = 'Vinci\\App\\Website\Http\\Controllers';
 
     public function register()
     {
@@ -16,7 +17,7 @@ class WebsiteServiceProvider extends ServiceProvider
 
     protected function registerRoutes(Router $router)
     {
-        $router->group(['namespace' => 'Vinci\\App\\Website\Http\\Controllers'], function($route) {
+        $router->group(['namespace' => $this->namespace], function($route) {
             require __DIR__ . '/../Http/routes.php';
         });
     }
