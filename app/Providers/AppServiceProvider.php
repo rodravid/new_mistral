@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Vinci\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

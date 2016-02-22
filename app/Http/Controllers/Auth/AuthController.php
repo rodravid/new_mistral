@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Vinci\Http\Controllers\Auth;
 
-use App\User;
+use Vinci\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Vinci\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

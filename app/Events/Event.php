@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Vinci\Events;
 
 abstract class Event
 {
