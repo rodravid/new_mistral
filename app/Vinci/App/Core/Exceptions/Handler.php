@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Exceptions;
+namespace Vinci\App\Core\Exceptions;
 
 use Exception;
 use Illuminate\Validation\ValidationException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Http\Middleware;
+namespace Vinci\App\Core\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 

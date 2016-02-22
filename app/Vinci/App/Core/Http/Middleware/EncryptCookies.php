@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Http\Middleware;
+namespace Vinci\App\Core\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 
