@@ -11,11 +11,9 @@ class InfrastructureServiceProvider extends ServiceProvider
 
     public function register()
     {
-
-        $this->app->singleton(UserRepository::class, function() {
-           return new EloquentUserRepository;
+        $this->app->singleton(UserRepository::class, function($app) {
+           return new EloquentUserRepository($app);
         });
-
     }
 
 }

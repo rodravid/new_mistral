@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'website',
         'passwords' => 'users',
     ],
 
@@ -36,15 +36,16 @@ return [
     */
 
     'guards' => [
-        'web' => [
+
+        'website' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'customers',
         ],
 
-        'api' => [
-            'driver' => 'token',
+        'cms' => [
+            'driver' => 'session',
             'provider' => 'users',
-        ],
+        ]
     ],
 
     /*
@@ -65,15 +66,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => Vinci\User::class,
+
+        'customers' => [
+            'driver' => 'repository',
+            'class' => Vinci\Domain\User\UserRepository::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'repository',
+            'class' => Vinci\Domain\User\UserRepository::class,
+        ],
+
     ],
 
     /*

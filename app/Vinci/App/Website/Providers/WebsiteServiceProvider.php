@@ -7,12 +7,12 @@ use Illuminate\Support\ServiceProvider;
 
 class WebsiteServiceProvider extends ServiceProvider
 {
-    protected $namespace = 'Vinci\\App\\Website\Http\\Controllers';
+    protected $namespace = 'Vinci\\App\\Website\Http';
 
     public function register()
     {
         $this->registerRoutes($this->app['router']);
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'site');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'website');
     }
 
     protected function registerRoutes(Router $router)

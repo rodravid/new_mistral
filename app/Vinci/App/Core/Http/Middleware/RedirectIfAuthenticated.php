@@ -18,9 +18,18 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/');
+            return redirect($this->getRedirectPath($guard));
         }
 
         return $next($request);
+    }
+
+    protected function getRedirectPath($guard)
+    {
+        if ($guard == 'cms') {
+            return '/cms';
+        }
+
+        return '/minha-conta';
     }
 }

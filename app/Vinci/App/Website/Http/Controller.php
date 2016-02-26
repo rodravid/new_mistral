@@ -7,6 +7,6 @@ use Vinci\App\Core\Http\Controllers\Controller as BaseController;
 class Controller extends BaseController
 {
 
-    protected $viewNamespace = 'site';
+    protected $viewNamespace = 'website';
 
 }

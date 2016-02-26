@@ -2,7 +2,9 @@
 
 namespace Vinci\Domain\User;
 
-interface UserRepository
+use Vinci\App\Core\Contracts\RepositoryInterface;
+
+interface UserRepository extends RepositoryInterface
 {
 
 }

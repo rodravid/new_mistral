@@ -1,10 +1,10 @@
 <?php
 
-namespace Vinci\Http\Controllers\Auth;
+namespace Vinci\App\Core\Http\Controllers\Auth;
 
+use Vinci\App\Core\Http\Controllers\Controller;
 use Vinci\User;
 use Validator;
-use Vinci\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -37,7 +37,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest:' . $this->getGuard(), ['except' => 'logout']);
     }
 
     /**
@@ -52,21 +52,6 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
         ]);
     }
 }

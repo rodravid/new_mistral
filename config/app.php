@@ -154,8 +154,10 @@ return [
         Vinci\App\Core\Providers\AppServiceProvider::class,
         Vinci\App\Core\Providers\AuthServiceProvider::class,
         Vinci\App\Core\Providers\EventServiceProvider::class,
+        Vinci\Infrastructure\InfrastructureServiceProvider::class,
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
-        Vinci\App\Cms\Providers\CmsServiceProvider::class
+        Vinci\App\Cms\Providers\CmsServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
     ],
 
