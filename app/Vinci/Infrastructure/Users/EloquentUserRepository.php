@@ -4,11 +4,11 @@ namespace Vinci\Infrastructure\Users;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
-use Prettus\Repository\Eloquent\BaseRepository;
 use Vinci\Domain\User\User;
 use Vinci\Domain\User\UserRepository;
+use Vinci\Infrastructure\EloquentBaseRepository;
 
-class EloquentUserRepository extends BaseRepository implements
+class EloquentUserRepository extends EloquentBaseRepository implements
     UserRepository,
     UserProvider
 {
