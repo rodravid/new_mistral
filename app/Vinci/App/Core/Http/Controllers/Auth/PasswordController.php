@@ -2,7 +2,7 @@
 
 namespace Vinci\Http\Controllers\Auth;
 
-use Vinci\Http\Controllers\Controller;
+use Vinci\App\Core\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

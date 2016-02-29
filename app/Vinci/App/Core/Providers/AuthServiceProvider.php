@@ -5,6 +5,8 @@ namespace Vinci\App\Core\Providers;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Vinci\Domain\Auth\AuthService;
+use Vinci\Domain\User\UserRepository;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -32,4 +34,15 @@ class AuthServiceProvider extends ServiceProvider
         });
 
     }
+
+
+    public function register()
+    {
+
+        $this->app->singleton(AuthService::class, function($app) {
+            return new AuthService($app['auth'], $app->make(UserRepository::class));
+        });
+
+    }
+
 }

@@ -3,7 +3,7 @@
 namespace Vinci\App\Cms\Providers;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -11,18 +11,12 @@ class CmsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->registerRoutes($this->app['router']);
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
     }
 
-    protected function registerRoutes(Router $router)
+    public function map(Router $router)
     {
-        $config = [
-            'namespace' => $this->namespace,
-            'prefix'    => 'cms'
-        ];
-
-        $router->group($config, function($route) {
+        $router->group(['namespace' => $this->namespace, 'prefix' => 'cms', 'as' => 'cms.'], function ($route) {
             require __DIR__ . '/../Http/routes.php';
         });
     }

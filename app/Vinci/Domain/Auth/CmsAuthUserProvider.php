@@ -1,27 +1,11 @@
 <?php
 
-namespace Vinci\Infrastructure\Users;
+namespace Vinci\Domain\Auth;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\UserProvider;
-use Vinci\Domain\User\User;
-use Vinci\Domain\User\UserRepository;
-use Vinci\Infrastructure\EloquentBaseRepository;
 
-class EloquentUserRepository extends EloquentBaseRepository implements
-    UserRepository,
-    UserProvider
+class WebsiteAuthService extends AuthService
 {
-
-    public function model()
-    {
-        return User::class;
-    }
-
-    public function findByEmail($email)
-    {
-        return $this->findByField('email', $email)->first();
-    }
 
     /**
      * Retrieve a user by their unique identifier.
@@ -31,7 +15,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements
      */
     public function retrieveById($identifier)
     {
-        return $this->find($identifier);
+        // TODO: Implement retrieveById() method.
     }
 
     /**
@@ -43,10 +27,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements
      */
     public function retrieveByToken($identifier, $token)
     {
-        return $this->findWhere([
-            'id' => $identifier,
-            'remember_token' => $token
-        ])->first();
+        // TODO: Implement retrieveByToken() method.
     }
 
     /**
@@ -58,9 +39,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements
      */
     public function updateRememberToken(Authenticatable $user, $token)
     {
-        $this->update([
-            'remember_token' => $token
-        ], $user->getAuthIdentifier());
+        // TODO: Implement updateRememberToken() method.
     }
 
     /**
@@ -71,7 +50,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements
      */
     public function retrieveByCredentials(array $credentials)
     {
-        return $this->findByField('email', $credentials['email'])->first();
+        // TODO: Implement retrieveByCredentials() method.
     }
 
     /**
@@ -83,6 +62,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        return $this->app['hash']->check($credentials['password'], $user->getAuthPassword());
+        // TODO: Implement validateCredentials() method.
     }
+
 }

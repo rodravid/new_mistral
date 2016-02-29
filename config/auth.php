@@ -44,7 +44,7 @@ return [
 
         'cms' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'administrators',
         ]
     ],
 
@@ -69,12 +69,12 @@ return [
 
         'customers' => [
             'driver' => 'repository',
-            'class' => Vinci\Domain\User\UserRepository::class,
+            'class' => Vinci\Domain\User\Customer\CustomerRepository::class,
         ],
 
-        'users' => [
+        'administrators' => [
             'driver' => 'repository',
-            'class' => Vinci\Domain\User\UserRepository::class,
+            'class' => Vinci\Domain\User\Admin\AdminRepository::class,
         ],
 
     ],
@@ -99,8 +99,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'customers' => [
+            'provider' => 'customers',
             'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,

@@ -2,8 +2,8 @@
 
 namespace Vinci\App\Website\Providers;
 
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
-use Illuminate\Support\ServiceProvider;
 
 class WebsiteServiceProvider extends ServiceProvider
 {
@@ -11,13 +11,12 @@ class WebsiteServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->registerRoutes($this->app['router']);
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'website');
     }
 
-    protected function registerRoutes(Router $router)
+    public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace], function($route) {
+        $router->group(['namespace' => $this->namespace], function ($route) {
             require __DIR__ . '/../Http/routes.php';
         });
     }
