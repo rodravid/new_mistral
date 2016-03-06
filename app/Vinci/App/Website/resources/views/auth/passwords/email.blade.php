@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('website::layouts.master')
 
 <!-- Main Content -->
 @section('content')

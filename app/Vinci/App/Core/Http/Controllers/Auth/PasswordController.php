@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Http\Controllers\Auth;
+namespace Vinci\App\Core\Http\Controllers\Auth;
 
 use Vinci\App\Core\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;

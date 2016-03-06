@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
+        "predis/predis": "~1.0",
         "prettus/l5-repository": "^2.1",
         "prettus/laravel-validation": "^1.1",
         "robclancy/presenter": "1.3.*"
