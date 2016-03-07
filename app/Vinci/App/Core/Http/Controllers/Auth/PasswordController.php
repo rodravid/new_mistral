@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Core\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Vinci\App\Core\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -29,4 +30,16 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    protected function resetPassword($user, $password)
+    {
+        $password = bcrypt($password);
+
+        $user->profile()->update([
+            'password' => $password
+        ]);
+
+        Auth::guard($this->getGuard())->login($user);
+    }
+
 }

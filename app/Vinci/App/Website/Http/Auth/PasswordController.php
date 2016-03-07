@@ -9,4 +9,8 @@ class PasswordController extends BaseAuthController
 
     protected $linkRequestView = 'website::auth.passwords.email';
 
+    protected $resetView = 'website::auth.passwords.reset';
+
+    protected $redirectPath = '/minha-conta';
+
 }

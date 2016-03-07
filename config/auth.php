@@ -101,7 +101,7 @@ return [
     'passwords' => [
         'customers' => [
             'provider' => 'customers',
-            'email' => 'auth.emails.password',
+            'email' => 'website::auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,
         ],
