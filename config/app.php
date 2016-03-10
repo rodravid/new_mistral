@@ -158,6 +158,7 @@ return [
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
         Vinci\App\Cms\Providers\CmsServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        LaravelDoctrine\ORM\DoctrineServiceProvider::class,
 
     ],
 

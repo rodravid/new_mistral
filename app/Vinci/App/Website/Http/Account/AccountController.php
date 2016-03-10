@@ -2,21 +2,24 @@
 
 namespace Vinci\App\Website\Http\Account;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Vinci\App\Website\Http\Controller;
+use Vinci\Domain\Customers\Customer;
 use Vinci\Domain\User\Customer\CustomerService;
 
 class AccountController extends Controller
 {
-
     protected $customerService;
 
     protected $auth;
 
-    public function __construct(CustomerService $customerService, AuthManager $auth)
+    public function __construct(CustomerService $customerService, AuthManager $auth, EntityManagerInterface $em)
     {
+        parent::__construct($em);
+
         $this->customerService = $customerService;
         $this->auth = $auth->guard('website');
     }
@@ -30,7 +33,11 @@ class AccountController extends Controller
 
     public function create()
     {
-        return $this->view('account.create');
+        $repo = $this->entityManager->getRepository(Customer::class);
+
+        dd($repo->find(15));
+
+        //return $this->view('account.create');
     }
 
     public function edit()
