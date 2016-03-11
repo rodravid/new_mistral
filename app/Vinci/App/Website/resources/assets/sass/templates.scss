@@ -1,0 +1,391 @@
+.blue{
+	.title-menu{
+		color:#11b6f0;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #11b6f0;
+	}
+
+	.every-category{
+		background: #11b6f0;
+		h3{
+
+		}
+		span{
+			color:#11b6f0;
+		}
+	}
+
+	/**slider*/
+
+	
+	.title-slider{
+		color:#5d003b;
+	}
+	
+
+.descr-slider{
+	.bt-default{
+		background:#570036;
+	}
+	.arrow-link{
+		color:#5d003b;
+		background: #00b1ef;
+	}
+	}
+
+}
+
+.blue.bg-slider-principal{
+	background: #11b6f0;
+}
+
+.red{
+	.title-menu{
+		color:#e02d50;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #e02d50;
+	}
+
+	.every-category{
+		background: #e02d50;
+		h3{
+
+		}
+		span{
+			color:#e02d50;
+		}
+	}
+
+	.title-slider{
+		color:#5d003b;
+	}
+
+.descr-slider{
+	.bt-default{
+		background:#440028;
+	}
+	.arrow-link{
+		color:#4a002d;
+		background: #d40934;
+	}
+}
+}
+.red.bg-slider-principal{
+	background: #e02d50;
+}
+
+
+.green{
+	.title-menu{
+		color:#3cc811;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #3cc811;
+	}
+
+
+	.every-category{
+		background: #3cc811;
+		h3{
+
+		}
+		span{
+			color:#3cc811;
+		}
+	}
+
+	.title-slider{
+		color:#0b2f00;
+	}
+
+	.bg-slider-principal{
+		background: #e02d50;
+	}
+	.descr-slider{
+	.bt-default{
+		background:#0c2401;
+	}
+	.arrow-link{
+		color:#36060d;
+		background: #5f9c12;
+	}
+}
+
+}
+.green.bg-slider-principal{
+	background: #3cc811;
+}
+
+
+.purple{
+	.title-menu{
+		color:#791898;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #791898;
+	}
+
+	.title-slider{
+		color:#ff008a;
+	}
+
+	.every-category{
+		background: #791898;
+		h3{
+
+		}
+		span{
+			color:#791898;
+		}
+	}
+
+}
+
+.pink{
+	.title-menu{
+		color:#e411c3;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #e411c3;
+	}
+
+
+	.every-category{
+		background: #e411c3;
+		h3{
+
+		}
+		span{
+			color:#e411c3;
+		}
+	}
+
+	.title-slider{
+		color:#ff008a;
+	}
+
+}
+
+.darkblue{
+	.title-menu{
+		color:#3438db;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #3438db;
+	}
+
+
+	.every-category{
+		background: #3438db;
+		h3{
+
+		}
+		span{
+			color:#3438db;
+		}
+	}
+
+}
+
+.orange{
+	.title-menu{
+		color:#ffa311;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #ffa311;
+	}
+	.title-slider{
+		color:#5e057b;
+	}
+
+
+	.every-category{
+		background: #ffa311;
+		h3{
+
+		}
+		span{
+			color:#ffa311;
+		}
+	}
+
+}
+
+.black{
+	.title-menu{
+		color:#111111;
+	}
+
+	.featured-sub-menu{
+		border:1px solid #111111;
+	}
+
+
+	.every-category{
+		background: #111111;
+		h3{
+
+		}
+		span{
+			color:#111111;
+		}
+	}
+
+}
+
+
+.bt-default.bt-default-blue{
+	background:$blue;
+	
+	.arrow-link{
+		color:$blue;
+		background: $white;
+	}
+}
+
+
+
+/*card vinho*/
+
+.wine-card .bt-default {
+    width: 100%;
+    line-height: 26px;
+    text-align: center;
+    display: inline-block;
+    color:#fff;
+}
+
+.wine-card .arrow-link {
+    float: right;
+    padding:1px 0 0 0;
+    background:#fff;
+}
+
+.wine-card.red{
+	
+	border:1px solid $red;
+	.wine-price{
+		color:$red;
+	}
+
+	.bt-default{
+		background:$red;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$red;
+	}
+
+}
+
+.wine-card.purple{
+
+	border:1px solid $purple;
+
+	.wine-price{
+		color:$purple;
+	}
+
+	.bt-default{
+		color:#fff;
+		background:$purple;
+	}
+	.arrow-link{
+		color:$purple;
+	}
+
+}
+
+
+.wine-card.green{
+	
+	border:1px solid $green;
+	.wine-price{
+		color:$green;
+	}
+
+	.bt-default{
+		background:$green;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$green;
+	}
+
+}
+
+.wine-card.orange{
+	
+	border:1px solid $orange;
+	.wine-price{
+		color:$orange;
+	}
+
+	.bt-default{
+		background:$orange;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$orange;
+	}
+
+}
+
+.wine-card.pink{
+	
+	border:1px solid $pink;
+	.wine-price{
+		color:$pink;
+	}
+
+	.bt-default{
+		background:$pink;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$pink;
+	}
+
+}
+.wine-card.black{
+	
+	border:1px solid $black;
+	.wine-price{
+		color:$black;
+	}
+
+	.bt-default{
+		background:$black;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$black;
+	}
+
+}
+
+.wine-card.blue{
+	
+	border:1px solid $blue;
+	.wine-price{
+		color:$blue;
+	}
+
+	.bt-default{
+		background:$blue;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$blue;
+	}
+
+}

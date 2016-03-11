@@ -1,0 +1,9 @@
+/*Medias*/
+@media only screen and (max-width: 990px) {
+  .cols-products + .cols-products + .cols-products + .cols-products {
+    display: none; }
+
+  .featured-products {
+    text-align: center; } }
+
+/*# sourceMappingURL=media.css.map */
