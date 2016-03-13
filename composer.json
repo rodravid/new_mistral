@@ -11,8 +11,9 @@
         "prettus/l5-repository": "^2.1",
         "prettus/laravel-validation": "^1.1",
         "robclancy/presenter": "1.3.*",
-        "nanigans/single-table-inheritance": "0.6.*",
-        "laravel-doctrine/orm": "1.1.*"
+        "laravel-doctrine/orm": "1.1.*",
+        "laravel-doctrine/fluent": "^1.0",
+        "laravel-doctrine/acl": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

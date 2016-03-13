@@ -26,7 +26,7 @@ return [
             'meta'       => env('DOCTRINE_METADATA', 'annotations'),
             'connection' => env('DB_CONNECTION', 'mysql'),
             'namespaces' => [
-                'App'
+                'Vinci\Domain'
             ],
             'paths'      => [
                 base_path('app/Vinci/Domain')
@@ -110,7 +110,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'custom_types'              => [
-        'json' => LaravelDoctrine\ORM\Types\Json::class
+        'json' => LaravelDoctrine\ORM\Types\Json::class,
+        'datetime' => \Vinci\App\Core\Doctrine\CarbonType::class
     ],
     /*
     |--------------------------------------------------------------------------

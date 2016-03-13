@@ -7,8 +7,7 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Vinci\App\Website\Http\Controller;
-use Vinci\Domain\Customers\Customer;
-use Vinci\Domain\User\Customer\CustomerService;
+use Vinci\Domain\Customer\CustomerService;
 
 class AccountController extends Controller
 {
@@ -28,16 +27,14 @@ class AccountController extends Controller
     {
         $user = $this->auth->user();
 
+        dd($user);
+
         return $this->view('account.index', compact('user'));
     }
 
     public function create()
     {
-        $repo = $this->entityManager->getRepository(Customer::class);
-
-        dd($repo->find(15));
-
-        //return $this->view('account.create');
+        return $this->view('account.create');
     }
 
     public function edit()
@@ -53,7 +50,7 @@ class AccountController extends Controller
 
             $customer = $this->customerService->create($request->all());
 
-            $this->auth->guard('website')->login($customer);
+            $this->auth->login($customer);
 
             return redirect()->route('account.index');
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Domain\User\Customer;
+namespace Vinci\Domain\Customer;
 
 use Vinci\Domain\User\UserRepository;
 

@@ -38,6 +38,20 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">CPF</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="cpf" value="{{ old('cpf') }}">
+
+                                    @if ($errors->has('cpf'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('cpf') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Senha</label>
 

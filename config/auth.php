@@ -68,8 +68,8 @@ return [
     'providers' => [
 
         'customers' => [
-            'driver' => 'repository',
-            'class' => Vinci\Domain\User\Customer\CustomerRepository::class,
+            'driver' => 'doctrine',
+            'model' => Vinci\Domain\Customer\Customer::class,
         ],
 
         'administrators' => [

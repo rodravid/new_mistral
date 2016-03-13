@@ -2,9 +2,24 @@
 
 namespace Vinci\Domain\Core;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
-
-abstract class Model extends Eloquent
+abstract class Model
 {
+
+    public function __construct(array $attributes = [])
+    {
+        $this->fill($attributes);
+    }
+
+    protected function fill(array $attributes)
+    {
+        foreach ($attributes as $name => $value) {
+            $this->$name = $value;
+        }
+    }
+
+    public static function make(array $attributes = [])
+    {
+        return new static($attributes);
+    }
 
 }
