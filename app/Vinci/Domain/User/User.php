@@ -56,19 +56,4 @@ abstract class User extends Model implements Authenticatable
         return $this->email;
     }
 
-    protected $table = 'users';
-
-    protected $fillable = [
-        'name', 'email', 'remember_token'
-    ];
-
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    public function getAuthPassword()
-    {
-        return $this->profile->password;
-    }
-
 }
