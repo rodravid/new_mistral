@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Admin;
 
 use Doctrine\ORM\Mapping AS ORM;
+use LaravelDoctrine\ORM\Auth\Authenticatable;
 use Vinci\Domain\User\User;
 
 /**
@@ -12,8 +13,7 @@ use Vinci\Domain\User\User;
 class Admin extends User
 {
 
-    use \LaravelDoctrine\ORM\Auth\Authenticatable;
-
+    use Authenticatable;
 
     /**
      * @ORM\Column(type="string")
@@ -25,4 +25,13 @@ class Admin extends User
      */
     protected $email;
 
+    /**
+     * Get the e-mail address where password reset links are sent.
+     *
+     * @return string
+     */
+    public function getEmailForPasswordReset()
+    {
+        return $this->email;
+    }
 }

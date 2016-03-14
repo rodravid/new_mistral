@@ -46,7 +46,7 @@ class AccountController extends Controller
 
             $customer = $this->adminService->create($request->all());
 
-            $this->auth->guard('cms')->login($customer);
+            $this->auth->login($customer);
 
             return redirect()->route('cms.account.index');
 

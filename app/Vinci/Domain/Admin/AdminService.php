@@ -1,7 +1,8 @@
 <?php
 
-namespace Vinci\Domain\User\Admin;
+namespace Vinci\Domain\Admin\Admin;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Database\ConnectionInterface as Database;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 
@@ -11,15 +12,15 @@ class AdminService
 
     private $repository;
 
-    private $db;
+    private $entityManager;
 
     public function __construct(
         AdminRepository $repository,
-        Database $db
+        EntityManagerInterface $entityManager
     )
     {
         $this->repository = $repository;
-        $this->db = $db;
+        $this->entityManager = $entityManager;
     }
 
     public function create(array $attributes)

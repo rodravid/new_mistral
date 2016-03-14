@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -16,7 +17,7 @@ use Vinci\Domain\Core\Model;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"customer" = "Vinci\Domain\Customer\Customer", "admin" = "Vinci\Domain\Admin\Admin"})
  */
-abstract class User extends Model implements Authenticatable
+abstract class User extends Model implements Authenticatable, CanResetPassword
 {
 
     /**

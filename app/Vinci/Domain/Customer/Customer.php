@@ -41,4 +41,13 @@ class Customer extends User
         return $this->cpf;
     }
 
+    /**
+     * Get the e-mail address where password reset links are sent.
+     *
+     * @return string
+     */
+    public function getEmailForPasswordReset()
+    {
+        return $this->email;
+    }
 }
