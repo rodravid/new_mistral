@@ -1,3 +1,23 @@
+/*card vinho ******************************************/
+
+.wine-card .bt-default {
+	width: 100%;
+	line-height: 26px;
+	text-align: center;
+	display: inline-block;
+	color:#fff;
+	margin:15px 0 0 0;
+}
+
+.wine-card .arrow-link {
+	float: right;
+	padding:1px 0 0 0;
+	background:#fff;
+}
+/*card vinho ******************************************/
+
+/* Inicio templates BLUE **************BLUE****************BLUE***********/
+
 .blue{
 	.title-menu{
 		color:#11b6f0;
@@ -25,14 +45,62 @@
 	}
 	
 
-.descr-slider{
+	.descr-slider{
+		.bt-default{
+			background:#570036;
+		}
+		.arrow-link{
+			color:#5d003b;
+			background: #00b1ef;
+		}
+	}
+
+	/*card produto*/
+	.title-category{
+		color:$blue;
+	}
+
+	.wine-card{
+
+		border:1px solid $blue;
+		.wine-price{
+			color:$blue;
+		}
+
+		.bt-default{
+			background:$blue;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$blue;
+		}
+
+	}
+
+	.bt-default-full{
+		background: $blue;
+
+		.arrow-link{
+			color:$blue;
+
+		}
+	}
+
+}
+
+.wine-card.blue{
+	
+	border:1px solid $blue;
+	.wine-price{
+		color:$blue;
+	}
+
 	.bt-default{
-		background:#570036;
+		background:$blue;
 	}
 	.arrow-link{
-		color:#5d003b;
-		background: #00b1ef;
-	}
+		background:#fff;
+		color:$blue;
 	}
 
 }
@@ -40,6 +108,31 @@
 .blue.bg-slider-principal{
 	background: #11b6f0;
 }
+
+.bt-default.bt-default-blue{
+	background:$blue;
+	color:#fff;
+	.arrow-link{
+		color:$blue;
+		background: $white;
+	}
+}
+
+.bt-default-full.blue{
+	background: $blue;
+
+	.arrow-link{
+		color:$blue;
+
+	}
+}
+
+/* Fim templates BLUE ******************BLUE****************BLUE*******/
+
+
+
+/* Inicio templates RED ****************RED******************RED*******/
+
 
 .red{
 	.title-menu{
@@ -64,21 +157,88 @@
 		color:#5d003b;
 	}
 
-.descr-slider{
-	.bt-default{
-		background:#440028;
+	.descr-slider{
+		.bt-default{
+			background:#440028;
+		}
+		.arrow-link{
+			color:#4a002d;
+			background: #d40934;
+		}
 	}
-	.arrow-link{
-		color:#4a002d;
-		background: #d40934;
+	/*card produto*/
+	.title-category{
+		color:$red;
 	}
-}
+
+	.wine-card{
+
+		border:1px solid $red;
+		.wine-price{
+			color:$red;
+		}
+
+		.bt-default{
+			background:$red;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$red;
+		}
+
+	}
+
+	.bt-default-full{
+		background: $red;
+
+		.arrow-link{
+			color:$red;
+
+		}
+	}
+
+	.bt-default-full{
+		background: $red;
+
+		.arrow-link{
+			color:$red;
+
+		}
+	}
 }
 .red.bg-slider-principal{
 	background: #e02d50;
 }
 
+.wine-card.red{
+	
+	border:1px solid $red;
+	.wine-price{
+		color:$red;
+	}
 
+	.bt-default{
+		background:$red;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$red;
+	}
+
+}
+
+.bt-default-full.red{
+	background: $red;
+
+	.arrow-link{
+		color:$red;
+
+	}
+}
+/* Fim templates RED ******************RED****************RED*******/
+
+
+/* Inicio templates GREEN ****************GREEN******************GREEN*******/
 .green{
 	.title-menu{
 		color:#3cc811;
@@ -107,20 +267,80 @@
 		background: #e02d50;
 	}
 	.descr-slider{
-	.bt-default{
-		background:#0c2401;
+		.bt-default{
+			background:#0c2401;
+		}
+		.arrow-link{
+			color:#36060d;
+			background: #5f9c12;
+		}
 	}
-	.arrow-link{
-		color:#36060d;
-		background: #5f9c12;
+
+	/*card produto*/
+	.title-category{
+		color:$green;
 	}
-}
+
+	.wine-card {
+
+		border:1px solid $green;
+		.wine-price{
+			color:$green;
+		}
+
+		.bt-default{
+			background:$green;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$green;
+		}
+
+	}
+
+	.bt-default-full{
+		background: $green;
+
+		.arrow-link{
+			color:$green;
+
+		}
+	}
 
 }
 .green.bg-slider-principal{
 	background: #3cc811;
 }
 
+.wine-card.green{
+	
+	border:1px solid $green;
+	.wine-price{
+		color:$green;
+	}
+
+	.bt-default{
+		background:$green;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$green;
+	}
+
+}
+
+.bt-default-full.green{
+	background: $green;
+
+	.arrow-link{
+		color:$green;
+
+	}
+}
+
+/* Fim templates GREEN ******************GREEN****************GREEN*******/
+
+/* Inicio templates PURPLE ****************PURPLE******************PURPLE*******/
 
 .purple{
 	.title-menu{
@@ -145,8 +365,69 @@
 		}
 	}
 
+	/*card produto*/
+	.title-category{
+		color:$purple;
+	}
+
+	.wine-card{
+
+		border:1px solid $purple;
+
+		.wine-price{
+			color:$purple;
+		}
+
+		.bt-default{
+			color:#fff;
+			background:$purple;
+		}
+		.arrow-link{
+			color:$purple;
+		}
+
+	}
+
+	.bt-default-full{
+	background: $purple;
+
+	.arrow-link{
+		color:$purple;
+
+	}
 }
 
+}
+
+.wine-card.purple{
+
+	border:1px solid $purple;
+
+	.wine-price{
+		color:$purple;
+	}
+
+	.bt-default{
+		color:#fff;
+		background:$purple;
+	}
+	.arrow-link{
+		color:$purple;
+	}
+
+}
+
+.bt-default-full.purple{
+	background: $purple;
+
+	.arrow-link{
+		color:$purple;
+
+	}
+}
+/* Fim templates PURPLE ******************PURPLE****************PURPLE*******/
+
+/* Inicio templates PINK ******************PINK****************PINK*******/
 .pink{
 	.title-menu{
 		color:#e411c3;
@@ -171,8 +452,68 @@
 		color:#ff008a;
 	}
 
+	/*card produto*/
+	.title-category{
+		color:$pink;
+	}
+
+	.wine-card{
+
+		border:1px solid $pink;
+		.wine-price{
+			color:$pink;
+		}
+
+		.bt-default{
+			background:$pink;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$pink;
+		}
+
+	}
+
+	.wine-card.pink{
+
+		border:1px solid $pink;
+		.wine-price{
+			color:$pink;
+		}
+
+		.bt-default{
+			background:$pink;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$pink;
+		}
+
+	}
+
+	.bt-default-full{
+	background: $pink;
+
+	.arrow-link{
+		color:$pink;
+
+	}
 }
 
+}
+
+.bt-default-full.pink{
+	background: $pink;
+
+	.arrow-link{
+		color:$pink;
+
+	}
+}
+
+/* Fim templates PINK ******************PINK****************PINK*******/
+
+/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 .darkblue{
 	.title-menu{
 		color:#3438db;
@@ -193,8 +534,33 @@
 		}
 	}
 
+	/*card produto*/
+	.title-category{
+		color:$darkblue;
+	}
+
+	.bt-default-full{
+	background: $darkblue;
+
+	.arrow-link{
+		color:$darkblue;
+
+	}
 }
 
+}
+
+.bt-default-full.darkblue{
+	background: $darkblue;
+
+	.arrow-link{
+		color:$darkblue;
+
+	}
+}
+/* Fim templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
+
+/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 .orange{
 	.title-menu{
 		color:#ffa311;
@@ -218,8 +584,72 @@
 		}
 	}
 
+	/*card produto*/
+	.title-category{
+		color:$orange;
+	}
+
+	.wine-card{
+
+		border:1px solid $orange;
+		.wine-price{
+			color:$orange;
+		}
+
+		.bt-default{
+			background:$orange;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$orange;
+		}
+
+	}
+
+.bt-default-full{
+	background: $orange;
+
+	.arrow-link{
+		color:$orange;
+
+
+	}
 }
 
+
+}
+
+.bt-default-full.orange{
+	background: $orange;
+
+	.arrow-link{
+		color:$orange;
+
+
+	}
+}
+
+.wine-card.orange{
+	
+	border:1px solid $orange;
+	.wine-price{
+		color:$orange;
+	}
+
+	.bt-default{
+		background:$orange;
+	}
+	.arrow-link{
+		background:#fff;
+		color:$orange;
+	}
+
+}
+
+/* Fim templates ORANGE ******************ORANGE****************ORANGE*******/
+
+
+/* Inicio templates BLACK ******************BLACK****************BLACK*******/
 .black{
 	.title-menu{
 		color:#111111;
@@ -240,124 +670,53 @@
 		}
 	}
 
-}
+	/*card produto*/
+	.title-category{
+		color:$black;
+	}
 
+	.wine-card{
 
-.bt-default.bt-default-blue{
-	background:$blue;
-	
+		border:1px solid $black;
+		.wine-price{
+			color:$black;
+		}
+
+		.bt-default{
+			background:$black;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$black;
+		}
+
+	}
+
+	.bt-default-full{
+	background: $black;
+
 	.arrow-link{
-		color:$blue;
-		background: $white;
+		color:$black;
+
+
 	}
 }
 
 
-
-/*card vinho*/
-
-.wine-card .bt-default {
-    width: 100%;
-    line-height: 26px;
-    text-align: center;
-    display: inline-block;
-    color:#fff;
 }
 
-.wine-card .arrow-link {
-    float: right;
-    padding:1px 0 0 0;
-    background:#fff;
-}
+.bt-default-full.black{
+	background: $black;
 
-.wine-card.red{
-	
-	border:1px solid $red;
-	.wine-price{
-		color:$red;
-	}
-
-	.bt-default{
-		background:$red;
-	}
 	.arrow-link{
-		background:#fff;
-		color:$red;
-	}
+		color:$black;
 
+
+	}
 }
 
-.wine-card.purple{
-
-	border:1px solid $purple;
-
-	.wine-price{
-		color:$purple;
-	}
-
-	.bt-default{
-		color:#fff;
-		background:$purple;
-	}
-	.arrow-link{
-		color:$purple;
-	}
-
-}
-
-
-.wine-card.green{
-	
-	border:1px solid $green;
-	.wine-price{
-		color:$green;
-	}
-
-	.bt-default{
-		background:$green;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$green;
-	}
-
-}
-
-.wine-card.orange{
-	
-	border:1px solid $orange;
-	.wine-price{
-		color:$orange;
-	}
-
-	.bt-default{
-		background:$orange;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$orange;
-	}
-
-}
-
-.wine-card.pink{
-	
-	border:1px solid $pink;
-	.wine-price{
-		color:$pink;
-	}
-
-	.bt-default{
-		background:$pink;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$pink;
-	}
-
-}
 .wine-card.black{
-	
+
 	border:1px solid $black;
 	.wine-price{
 		color:$black;
@@ -373,19 +732,27 @@
 
 }
 
-.wine-card.blue{
-	
-	border:1px solid $blue;
-	.wine-price{
-		color:$blue;
-	}
+/* Fim templates BLACK ******************BLACK****************BLACK*******/
 
-	.bt-default{
-		background:$blue;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$blue;
-	}
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

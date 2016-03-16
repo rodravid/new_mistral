@@ -1,7 +1,7 @@
 <footer>
 
 	<div class="row">
-		<div class="row-footer">	
+		<div class="row-footer show-desktop">	
 			<ul class="list-links-clients">
 				<li><a class="link-light" href="javascript:void(0);">Sobre a vinci</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Revendedores</a></li>
@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 
-		<div class="row-footer">
+		<div class="row-footer show-desktop">
 			
 			<div class="wrap-links-footer">
 				<h4>Vinhos</h4>
@@ -57,7 +57,7 @@
 					</ul>
 				</div>
 
-				<div class="newsletter">
+				<div class="newsletter show-desktop">
 
 					<h4>Newsletter</h4>
 

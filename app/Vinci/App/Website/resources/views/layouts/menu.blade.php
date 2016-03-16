@@ -72,6 +72,7 @@
 				</div>
 
 				<nav class="menu-main">
+					<a class="logo-mobile sprite-icon" href="javascript:void(0);"></a>
 					<ul class="menu">
 
 						<li class="menu-item larger760 blue">
@@ -444,6 +445,70 @@
 							</div>
 						</li>
 
+					</ul>
+					<ul class="menu">
+						
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								login
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Meus pedidos
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Cadastro
+							</a>
+						</li>
+						
+					</ul>
+
+					<ul class="menu">
+						
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Sobre a vinci
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Revendedores
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								dúvidas frequentes
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Ajuda
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Fale conosco
+							</a>
+						</li>
+						
+					</ul>
+
+					<ul class="menu">
+						
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Sair
+							</a>
+						</li>
 					</ul>
 				</nav>
 			</div>

@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$screen-767".
-        on line 23 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
+        on line 24 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
 
-18: }
-19: .list-links-clients{
-20: 	li{
-21: 		float:left;
-22: 		margin:0 45px 0 0;
-23: 		@media #{$screen-767}{
-24: 			float:none;
-25: 			margin:0 0 10px 0;
-26: 		}
-27: 	}
-28: 	li+li+li{
+19: }
+20: .list-links-clients{
+21: 	li{
+22: 		float:left;
+23: 		margin:0 45px 0 0;
+24: 		@media #{$screen-767}{
+25: 			float:none;
+26: 			margin:0 0 10px 0;
+27: 		}
+28: 	}
+29: 	li+li+li{
 
 Backtrace:
-/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:23
+/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:24
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/interpolation.rb:100:in `_perform'
@@ -79,4 +79,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$screen-767\".\A         on line 23 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 18: }\A 19: .list-links-clients{\A 20: 	li{\A 21: 		float:left;\A 22: 		margin:0 45px 0 0;\A 23: 		@media #{$screen-767}{\A 24: 			float:none;\A 25: 			margin:0 0 10px 0;\A 26: 		}\A 27: 	}\A 28: 	li+li+li{"; }
+  content: "Error: Undefined variable: \"$screen-767\".\A         on line 24 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 19: }\A 20: .list-links-clients{\A 21: 	li{\A 22: 		float:left;\A 23: 		margin:0 45px 0 0;\A 24: 		@media #{$screen-767}{\A 25: 			float:none;\A 26: 			margin:0 0 10px 0;\A 27: 		}\A 28: 	}\A 29: 	li+li+li{"; }
