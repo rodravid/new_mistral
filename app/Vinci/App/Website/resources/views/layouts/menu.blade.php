@@ -1,4 +1,4 @@
-
+<!-- logged-in-user -->
 <header class="header-main">
 	<div class="row">
 		<input type="checkbox" id="control-nav" />
@@ -11,7 +11,25 @@
 
 		<div class="search">
 			<form action="">
-				<input class="input-search" type="text">
+				<div class="wrap-input-search">	
+					<input class="input-search" type="text">
+					<div class="results-suggestions">
+						<ul class="suggestions-list">
+							<li class="suggestions-item">
+								<a href="" class="suggestions-link">
+									Anjou <span>Cabernet</span> 2009
+									<p>Domain Chupin / Argentina</p>
+								</a>
+							</li>
+							<li class="suggestions-item">
+								<a href="" class="suggestions-link">
+									<span>Cabernet</span> Arquata rosso dellumbria 2004 
+									<p>Adanti / Austrália</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 				<input class="input-bt-search sprite-icon" type="submit" value="">
 			</form>
 		</div>
@@ -28,15 +46,25 @@
 						Meus pedidos
 					</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item nav-item-cadastro">
 					<a class="nav-link" href="javascript:void();">
 						Cadastro
 					</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item nav-item-login">
 					<a class="nav-link" href="javascript:void();">
 						Login
 					</a>
+				</li>
+				<li class="nav-item nav-item-user-logged">
+					<a class="nav-link" href="javascript:void();">
+						Seja bem vindo, Wellington!
+					</a>
+					<div class="drop-user">
+						<a href="">Meus dados</a>
+						<a href="">Favoritos</a>
+						<a href="">Sair</a>
+					</div>
 				</li>
 			</ul>
 		</nav>
@@ -446,7 +474,7 @@
 						</li>
 
 					</ul>
-					<ul class="menu">
+					<ul class="menu menu-logout-mobile">
 						
 						<li class="menu-item">
 							<a class="menu-link" href="#">
@@ -463,6 +491,28 @@
 						<li class="menu-item">
 							<a class="menu-link" href="#">
 								Cadastro
+							</a>
+						</li>
+						
+					</ul>
+
+					<ul class="menu menu-login-mobile">
+						
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Meus Pedidos
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Meus Dados
+							</a>
+						</li>
+
+						<li class="menu-item">
+							<a class="menu-link" href="#">
+								Favoritos
 							</a>
 						</li>
 						
@@ -505,6 +555,7 @@
 					<ul class="menu">
 						
 						<li class="menu-item">
+						<span class="name-log-mobile">Logado como Wellington</span>
 							<a class="menu-link" href="#">
 								Sair
 							</a>

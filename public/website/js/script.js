@@ -10,6 +10,15 @@ jQuery(document).ready(function ($) {
     $('.slick-dots').appendTo('.w960');
     // $('.slick-prev, .slick-next').appendTo('.setas-slider-principal');
 
+    $(".favorite").click(function(event) {
+        if ($(this).hasClass('clicado')){
+           $(this).removeClass('clicado');
+           $(this).removeClass('opacity1');
+       }else{
+           $(this).addClass('clicado');
+           $(this).addClass('opacity1');
+       }
+   });
    
 
 

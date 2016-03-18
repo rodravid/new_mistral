@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$blue".
-        on line 71 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss
+        on line 60 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates/templates.scss
 
-66: 	}
-67: 
-68: 	/*card produto*\/
-69: 
-70: 	.title-category {
-71: 		color:$blue;
-72: 	}
-73: 
-74: 	.wine-card {
-75: 		border:1px solid $blue;
-76: 
+55: 		}
+56: 	}
+57: 
+58: 	/*card produto*\/
+59: 	.title-category{
+60: 		color:$blue;
+61: 	}
+62: 
+63: 	.wine-card{
+64: 
+65: 		border:1px solid $blue;
 
 Backtrace:
-/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss:71
+/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates/templates.scss:60
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
@@ -73,4 +73,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blue\".\A         on line 71 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss\A \A 66: 	}\A 67: \A 68: 	/*card produto*/\A 69: \A 70: 	.title-category {\A 71: 		color:$blue;\A 72: 	}\A 73: \A 74: 	.wine-card {\A 75: 		border:1px solid $blue;\A 76: "; }
+  content: "Error: Undefined variable: \"$blue\".\A         on line 60 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates/templates.scss\A \A 55: 		}\A 56: 	}\A 57: \A 58: 	/*card produto*/\A 59: 	.title-category{\A 60: 		color:$blue;\A 61: 	}\A 62: \A 63: 	.wine-card{\A 64: \A 65: 		border:1px solid $blue;"; }

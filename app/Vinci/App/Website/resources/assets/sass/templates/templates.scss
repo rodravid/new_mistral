@@ -1,4 +1,5 @@
 /*card vinho ******************************************/
+
 .wine-card .bt-default {
 	width: 100%;
 	line-height: 26px;
@@ -17,130 +18,116 @@
 
 /* Inicio templates BLUE **************BLUE****************BLUE***********/
 
-.blue {
-
-	.favorite {
-		background-position:0 -40px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -40px;
-	}
-
-	.title-menu {
+.blue{
+	.title-menu{
 		color:#11b6f0;
 	}
 
-	.featured-sub-menu {
+	.featured-sub-menu{
 		border:1px solid #11b6f0;
 	}
 
-	.every-category {
+	.every-category{
 		background: #11b6f0;
+		h3{
 
-		h3 { }
-
-		span {
+		}
+		span{
 			color:#11b6f0;
 		}
-
 	}
 
 	/**slider*/
 
-	.title-slider {
+	
+	.title-slider{
 		color:#5d003b;
 	}
 	
-	.descr-slider {
 
-		.bt-default {
+	.descr-slider{
+		.bt-default{
 			background:#570036;
 		}
-
-		.arrow-link {
+		.arrow-link{
 			color:#5d003b;
 			background: #00b1ef;
 		}
-
 	}
 
 	/*card produto*/
-
-	.title-category {
+	.title-category{
 		color:$blue;
 	}
 
-	.wine-card {
-		border:1px solid $blue;
+	.wine-card{
 
-		.wine-price {
+		border:1px solid $blue;
+		.wine-price{
 			color:$blue;
 		}
 
-		.bt-default {
+		.bt-default{
 			background:$blue;
 		}
-
-		.arrow-link {
+		.arrow-link{
 			background:#fff;
 			color:$blue;
 		}
 
 	}
 
-	.bt-default-full {
+	.bt-default-full{
 		background: $blue;
 
-		.arrow-link {
+		.arrow-link{
 			color:$blue;
-		}
 
+		}
 	}
 
 }
 
-.wine-card.blue {
+.wine-card.blue{
+	
 	border:1px solid $blue;
-
-	.wine-price {
+	.wine-price{
 		color:$blue;
 	}
 
-	.bt-default {
+	.bt-default{
 		background:$blue;
 	}
-
-	.arrow-link {
+	.arrow-link{
 		background:#fff;
 		color:$blue;
 	}
 
 }
 
-.blue.bg-slider-principal {
+.blue.bg-slider-principal{
 	background: #11b6f0;
 }
 
-.bt-default.bt-default-blue {
+.bt-default.bt-default-blue{
 	background:$blue;
 	color:#fff;
-
-	.arrow-link {
+	.arrow-link{
 		color:$blue;
 		background: $white;
 	}
-
 }
 
-.bt-default-full.blue {
+.bt-default-full.blue{
 	background: $blue;
 
-	.arrow-link {
+	.arrow-link{
 		color:$blue;
-	}
 
+	}
 }
+
+
 
 /* Fim templates BLUE ******************BLUE****************BLUE*******/
 
@@ -150,15 +137,6 @@
 
 
 .red{
-
-	.favorite {
-		background-position:0 0;
-	}
-
-	.favorite.clicado {
-		background-position: -40px 0px;
-	}
-
 	.title-menu{
 		color:#e02d50;
 	}
@@ -264,15 +242,6 @@
 
 /* Inicio templates GREEN ****************GREEN******************GREEN*******/
 .green{
-
-	.favorite {
-		background-position:0 -80px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -80px;
-	}
-
 	.title-menu{
 		color:#3cc811;
 	}
@@ -376,15 +345,6 @@
 /* Inicio templates PURPLE ****************PURPLE******************PURPLE*******/
 
 .purple{
-
-	.favorite {
-		background-position:0 -120px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -120px;
-	}
-
 	.title-menu{
 		color:#791898;
 	}
@@ -471,16 +431,6 @@
 
 /* Inicio templates PINK ******************PINK****************PINK*******/
 .pink{
-
-	.favorite {
-		background-position:0 -160px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -160px;
-	}
-
-
 	.title-menu{
 		color:#e411c3;
 	}
@@ -567,15 +517,6 @@
 
 /* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 .darkblue{
-
-	.favorite {
-		background-position:0 -200px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -200px;
-	}
-
 	.title-menu{
 		color:#3438db;
 	}
@@ -609,23 +550,6 @@
 		}
 	}
 
-		.wine-card{
-
-		border:1px solid $darkblue;
-		.wine-price{
-			color:$darkblue;
-		}
-
-		.bt-default{
-			background:$darkblue;
-		}
-		.arrow-link{
-			background:#fff;
-			color:$darkblue;
-		}
-
-	}
-
 }
 
 .bt-default-full.darkblue{
@@ -636,36 +560,10 @@
 
 	}
 }
-
-.wine-card.darkblue{
-	
-	border:1px solid $darkblue;
-	.wine-price{
-		color:$darkblue;
-	}
-
-	.bt-default{
-		background:$darkblue;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$darkblue;
-	}
-
-}
 /* Fim templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 
 /* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 .orange{
-
-	.favorite {
-		background-position:0 -240px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -240px;
-	}
-
 	.title-menu{
 		color:#ffa311;
 	}
@@ -712,6 +610,9 @@
 
 	.bt-default-full{
 		background: $orange;
+		&:hover{
+			background: #fff;
+		}
 
 		.arrow-link{
 			color:$orange;
@@ -725,24 +626,14 @@
 
 .bt-default-full.orange{
 	background: $orange;
-	border:2px solid #fff;
-	transition: all .1s ease .05s;
-
 	&:hover{
 		background: #fff;
-		color:$orange;
-		border:2px solid $orange;
-		transition: all .1s ease .05s;
-		.arrow-link{
-			background: $orange;
-			color:#fff;
-			transition: all .1s ease .05s;
-		}
 	}
 
 	.arrow-link{
 		color:$orange;
-		transition: all .1s ease .05s;
+
+
 	}
 }
 
@@ -768,15 +659,6 @@
 
 /* Inicio templates BLACK ******************BLACK****************BLACK*******/
 .black{
-
-	.favorite {
-		background-position:0 -280px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -280px;
-	}
-
 	.title-menu{
 		color:#111111;
 	}

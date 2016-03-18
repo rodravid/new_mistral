@@ -17,6 +17,75 @@ footer{
 		text-transform:uppercase;
 	}
 }
+
+
+.featured-week{
+	border:1px solid #d6d6d6;
+	display:inline-block;
+	padding: 20px 0 0 20px;
+	margin: 0px 0 20px 0;
+	width:100%;
+}
+
+.title-featured-week {
+	float:left;
+	font:30px $robotobold;
+	color:$red;
+	width:17%;
+	text-transform:uppercase;
+	line-height:30px;
+	@media #{$screen-940}{
+		width:20%;
+	}
+	@media #{$screen-767}{
+		margin-bottom:25px;
+		float:none;
+		width:160px;
+	}
+}
+
+.list-featured-week{
+	float:left;
+	width: 82.5%;
+	@media #{$screen-940}{
+		width:79.5%;
+	}
+	@media #{$screen-767}{
+		width:100%;
+	}
+}
+
+.item-featured-week{
+	margin:0 0 20px 0;
+	width:32%;
+	padding-left:10%;
+	display: inline-table;
+	@media #{$screen-767}{
+		width:100%;
+		padding-left:0;
+	}
+}
+.link-featured-week{
+	font:15px $robotobold;
+	color:$black;
+	text-transform:uppercase;
+	transition: all .1s ease .05s;
+	&:hover{
+		color: $red;
+		transition: all .1s ease .05s;
+		span{
+			color: $red;
+			transition: all .1s ease .05s;
+		}
+	}
+	span{
+		font-family:$robotolight;
+		display:block;
+		text-transform:none;
+		transition: all .1s ease .05s;
+	}
+}
+
 .list-links-clients{
 	li{
 		float:left;
@@ -64,6 +133,11 @@ a.link-light{
 	font-size:15px;
 	text-transform:uppercase;
 	color:#000;
+	transition: all .1s ease .05s;
+	&:hover{
+		color: $blue;
+		transition: all .1s ease .05s;
+	}
 
 }
 
@@ -128,14 +202,14 @@ a.link-light{
 		font-size:15px;
 	}
 	li{
-	@media #{$screen-940}{
-		width:100%;
-		margin-bottom:20px;
+		@media #{$screen-940}{
+			width:100%;
+			margin-bottom:20px;
+		}
 	}
-}
-li+li{
-	margin-bottom:0;
-}
+	li+li{
+		margin-bottom:0;
+	}
 }
 
 .logo-footer{
@@ -169,11 +243,18 @@ li+li{
 	text-align:center;
 	padding:7px 0;
 	background:#1198e3;
-	border:0;
+	border:2px solid #1198e3;
 	font-family: 'roboto_condensedbold';
 	color:#fff;
 	font-size:16px;
 	margin-top: 10px;
+	cursor:pointer;
+	transition: all .1s ease .05s;
+	&:hover{
+		background: #fff;
+		color:#1198e3;
+		transition: all .1s ease .05s;
+	}
 }
 .error-newsletter{
 	font-size: 14px;
@@ -186,6 +267,11 @@ li+li{
 		font-size:13px;
 		a{
 			color:#000;
+			transition: all .1s ease .05s;
+			&:hover{
+				color: $blue;
+				transition: all .1s ease .05s;
+			}
 		}
 	}
 	li{

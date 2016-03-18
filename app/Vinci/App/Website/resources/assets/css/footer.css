@@ -1,41 +1,28 @@
 /*
-Error: Undefined variable: "$screen-767".
-        on line 24 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
+Error: Undefined variable: "$robotobold".
+        on line 32 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
 
-19: }
-20: .list-links-clients{
-21: 	li{
-22: 		float:left;
-23: 		margin:0 45px 0 0;
-24: 		@media #{$screen-767}{
-25: 			float:none;
-26: 			margin:0 0 10px 0;
-27: 		}
-28: 	}
-29: 	li+li+li{
+27: 	width:100%;
+28: }
+29: 
+30: .title-featured-week {
+31: 	float:left;
+32: 	font:30px $robotobold;
+33: 	color:$red;
+34: 	width:17%;
+35: 	text-transform:uppercase;
+36: 	line-height:30px;
+37: 	@media #{$screen-940}{
 
 Backtrace:
-/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:24
+/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:32
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/interpolation.rb:100:in `_perform'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `block in _perform'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `map'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:526:in `block in run_interp_no_strip'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:524:in `map'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:524:in `run_interp_no_strip'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:531:in `run_interp'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:499:in `visit_media'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block (2 levels) in visit_rule'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `map'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block in visit_rule'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:418:in `visit_rule'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
@@ -79,4 +66,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$screen-767\".\A         on line 24 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 19: }\A 20: .list-links-clients{\A 21: 	li{\A 22: 		float:left;\A 23: 		margin:0 45px 0 0;\A 24: 		@media #{$screen-767}{\A 25: 			float:none;\A 26: 			margin:0 0 10px 0;\A 27: 		}\A 28: 	}\A 29: 	li+li+li{"; }
+  content: "Error: Undefined variable: \"$robotobold\".\A         on line 32 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 27: 	width:100%;\A 28: }\A 29: \A 30: .title-featured-week {\A 31: 	float:left;\A 32: 	font:30px $robotobold;\A 33: 	color:$red;\A 34: 	width:17%;\A 35: 	text-transform:uppercase;\A 36: 	line-height:30px;\A 37: 	@media #{$screen-940}{"; }
