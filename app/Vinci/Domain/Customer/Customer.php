@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Customer;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use LaravelDoctrine\ORM\Auth\Authenticatable;
 use Vinci\Domain\User\User;
@@ -30,6 +31,17 @@ class Customer extends User
      */
     protected $email;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Order", mappedBy="customer")
+     */
+    protected $orders;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->orders = new ArrayCollection;
+    }
 
     public function setCpf($cpf)
     {
@@ -39,6 +51,11 @@ class Customer extends User
     public function getCpf()
     {
         return $this->cpf;
+    }
+
+    public function getOrders()
+    {
+        return $this->orders;
     }
 
     /**

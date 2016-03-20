@@ -10,7 +10,9 @@ class CarbonType extends DateTimeType
 {
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return Carbon::instance(parent::convertToPHPValue($value, $platform));
+        if (! is_null($value)) {
+            return Carbon::instance(parent::convertToPHPValue($value, $platform));
+        }
     }
 
 }

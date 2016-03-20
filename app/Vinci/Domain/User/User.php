@@ -32,6 +32,11 @@ abstract class User extends Model implements Authenticatable, CanResetPassword
      */
     protected $created_at;
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function setCreatedAt(Carbon $date)
     {
         $this->created_at = $date;
