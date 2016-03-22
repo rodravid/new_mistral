@@ -12,7 +12,7 @@ Error: Undefined variable: "$robotobold".
 34: 	width:17%;
 35: 	text-transform:uppercase;
 36: 	line-height:30px;
-37: 	@media #{$screen-940}{
+37: 	@media #{$screen-970}{
 
 Backtrace:
 /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:32
@@ -66,4 +66,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$robotobold\".\A         on line 32 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 27: 	width:100%;\A 28: }\A 29: \A 30: .title-featured-week {\A 31: 	float:left;\A 32: 	font:30px $robotobold;\A 33: 	color:$red;\A 34: 	width:17%;\A 35: 	text-transform:uppercase;\A 36: 	line-height:30px;\A 37: 	@media #{$screen-940}{"; }
+  content: "Error: Undefined variable: \"$robotobold\".\A         on line 32 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 27: 	width:100%;\A 28: }\A 29: \A 30: .title-featured-week {\A 31: 	float:left;\A 32: 	font:30px $robotobold;\A 33: 	color:$red;\A 34: 	width:17%;\A 35: 	text-transform:uppercase;\A 36: 	line-height:30px;\A 37: 	@media #{$screen-970}{"; }

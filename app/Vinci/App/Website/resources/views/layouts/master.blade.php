@@ -10,7 +10,7 @@
     @show
 </head>
 <body>
-    @include('website::layouts.menu')
+    
     @yield('content')
 
     @include('website::layouts.footer')

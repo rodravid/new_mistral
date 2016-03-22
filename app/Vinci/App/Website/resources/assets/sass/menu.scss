@@ -5,7 +5,7 @@
 	z-index: 99999;
 	width: 100%;
 	display: inline-block;
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		width:100%;
 	}
 }
@@ -29,7 +29,7 @@
 		display:inline-block;
 		color:$blue;
 	}
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		.menu-login-mobile{
 			display:inline-block !important;
 		}
@@ -68,7 +68,7 @@
 	background: #fff;
 	width: 100%;
 	z-index:9999999;
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		left: -230px;
 		width: 300px;
 	}
@@ -118,7 +118,7 @@
 
 .logo { 
 	float: left;
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		margin-left: 41px;
 	}
 }
@@ -137,7 +137,7 @@
 	display: inline-block;
 	margin-bottom: 9px;
 	display:none;
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		display:inline-block;
 	}
 }
@@ -145,7 +145,7 @@
 .search {
 	float:left;
 	padding-left:17px;
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		width: 67%;
 		margin-left: 10px;
 	}
@@ -161,7 +161,7 @@
 	float:left; 
 	position:relative;
 	width: 280px;
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		width:85%;
 	}
 	@media #{$screen-767}{
@@ -236,7 +236,7 @@
 .navbar {
 	float:left;
 	margin-left: 60px;
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		display:none;
 	}
 }
@@ -308,9 +308,9 @@
 			margin: 12px 10px 0 0px;
 	}
 
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		float:right;
-		margin: -16px 15px 0 9px;
+		margin: -50px 15px 0 9px;
 	}
 	@media #{$screen-767}{
 		margin: -95px 5px 0 9px;
@@ -334,7 +334,7 @@
 	background: #fff;
 	width: 420px;
 	box-shadow: 0 0 10px rgba(0,0,0,.5);
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		left: -230px;
 		width: 300px;
 	}
@@ -427,7 +427,7 @@
 	text-align: right;
 	float: right;
 
-	@media #{$screen-940}{
+	@media #{$screen-970}{
 		float: left;
 		margin-top: 15px;
 	}
@@ -533,7 +533,7 @@
 			float:left;
 
 
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				margin-top: 0px;
 				position: fixed;
 				top: 0;
@@ -555,14 +555,14 @@
 		}
 
 		.menu{
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				padding-bottom: 10px;
 			}
 		}
 
 		.menu+.menu{
 			display:none;
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				border-top: 1px solid #7f7f7f;
 				display:inline-block;
 				width: 100%;
@@ -574,7 +574,7 @@
 
 		.menu-item {
 			display:inline-block;
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				display:block;
 			}
 		}
@@ -593,7 +593,7 @@
 			-o-transition: all .3s ease .30s;
 			-ms-transition: all .3s ease .30s;
 			transition: all .3s ease .30s;
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				color:#000;
 				padding: 10px 0px 0 0px;
 			}
@@ -609,7 +609,7 @@
 			transition: all .3s ease .30s;
 			box-shadow: -2px -1px 2px 0px rgba(0, 0, 0, 0.2);
 
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.0);		
 			}
 		}
@@ -661,7 +661,7 @@
 			/* box-shadow: 0 0 5px rgba(0,0,0,.5); */
 			box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 			z-index:800;
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				display:none;
 			}
 		}
@@ -840,10 +840,10 @@
 		.control-nav {
 			display:none;
 			
-			@media #{$screen-940}{
+			@media #{$screen-970}{
 				position: absolute;
 				left: 15px;
-				top: 26px;
+				top: 2px;
 				display: block;
 				width: 25px;
 				padding: 5px 0;

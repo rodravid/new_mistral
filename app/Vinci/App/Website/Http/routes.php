@@ -26,4 +26,16 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
     });
 
+    $route->get('/busca', function(){
+        return view("website::search.index");
+    });
+
+    $route->get('/cadastro', function(){
+        return view("website::register.index");
+    });
+
+    $route->get('/categoria', function(){
+        return view("website::category.index");
+    });
+
 });

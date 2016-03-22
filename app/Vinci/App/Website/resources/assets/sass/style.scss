@@ -24,10 +24,28 @@ body {
 	margin: 90px auto 0;
 }
 
+.relative {
+	position: relative;
+}
+
+.row-header {
+	max-width: 963px;
+	margin:0 auto;
+	padding:0 10px;
+	@media #{$screen-767}{
+		padding:0 15px;
+	}
+}
+
 .row {
 	max-width: 963px;
 	margin:0 auto;
 	padding:0 10px;
+
+	@media #{$screen-970}{
+		max-width:700px;
+	}
+
 	@media #{$screen-767}{
 		padding:0 15px;
 	}
@@ -264,12 +282,24 @@ a.bt-default {
 	display: inline-table;
 	vertical-align: top;
 
+	@media #{$screen-970}{
+		width: 210px;
+	}
+
 	@media #{$screen-767}{
 		width:100%;
 		margin:15px 0 20px 0;
 	}
 
 }
+
+.cols-products+.cols-products+.cols-products {
+	@media #{$screen-970}{
+		margin-right: 0;
+	}
+}
+
+
 
 .cols-products+.cols-products+.cols-products+.cols-products {
 	margin-right:0;
@@ -335,6 +365,9 @@ a.bt-default {
 	a{
 		color:$black;
 	}
+}
+.wine-bottle {
+	max-width:100%;
 }
 
 .wine-intro {
@@ -450,11 +483,531 @@ a.bt-default {
 	}
 
 }
-.list-banners+.list-banners{
+.list-banners+.list-banners {
 	text-align:right;
 	@media #{$screen-767}{
 		text-align:center;
 	}
 }
 
+/* MENU INTERNAL **********************/
+.header-internal { 
+	padding:0 0 10px 0;
+	margin-bottom: 30px;
+}
+
+.breadcrumb {
+	width: 100%;
+	display: inline-block;
+	z-index: 10;
+	position: relative;
+	margin: 5px 0 0 0;
+	@media #{$screen-970}{
+		display:none;
+	}
+}
+.breadcrumb-item {
+	float: left;
+	color: #fff;
+	padding: 0 7px 0 0px;
+	margin: 0 3px 0 0px;
+
+	span{
+		margin-right: 5px;
+		font-size: 14px;
+	}
+}
+.breadcrumb-link {
+	color: #fff;
+}
+
+.internal-subtitle {
+	font: 32px $robotobold;
+	color:#000;
+	text-transform:uppercase;
+	letter-spacing: 1px;
+	margin: 0;
+	display: inline-block;
+
+	@media #{$screen-970}{
+		font: 25px "roboto_condensedbold";
+		margin-top: 15px;
+	}
+}
+
+.search-item {
+	font-size:25px;
+	color:#fff;
+	margin-top: -5px;
+}
+
+/* FIM MENU INTERNAL *********************/
+
+/* PG SEARCH*/
+.header-content-internal {
+	width:100%;
+	display:inline-block;
+	margin-bottom: 20px;
+}
+.container-total-products {
+	float:left;
+}
+.total-products {
+	font:25px $robotobold;
+	color:$black;
+}
+
+.display-filter {
+	float:right;
+	margin-left: 30px;
+
+	span {
+		margin-right:20px;
+		margin-top: 3px;
+		display: inline-block;
+	}
+
+	@media #{$screen-767} {
+		float: right;
+		width: 100%;
+		margin-top: 5px;
+	}
+
+	span{
+		@media #{$screen-767} {
+			display:none;
+		}
+	}
+	select{
+		@media #{$screen-767} {
+			width:100%;	
+		}
+
+	}
+
+}
+
+.select-widthfull{
+	@media #{$screen-767} {
+		width:100%;	
+	}
+}
+
+.search-column {
+	width:23.4%;
+	border:1px solid #d6d6d6;
+	padding:19px;
+	margin-right:20px;
+	float:left;
+	@media #{$screen-970}{
+		width: 29%;
+		margin-right:0;
+	}
+	@media #{$screen-767}{
+		position: fixed;
+		top: 0px;
+		z-index: 999999;
+		left: -5px;
+		padding: 20px 20px;
+		height: 100% !important;
+		overflow: auto;
+		min-height: auto;
+		background: #fff;
+		width: 250px;
+		border:none;
+	}
+}
+
+.filtro-mobile{
+	font:20px $robotobold;
+	color:$black;
+	width:100%;
+	border-bottom:1px solid #d6d6d6;
+	padding-bottom:10px;
+	margin-bottom:10px;
+
+	span{
+		border:2px solid #000;
+		float:right;
+		padding: 0px 7px;
+		font-size:15px;
+	}
+}
+
+.filter-search {
+	margin-bottom:30px;
+}
+.title-filter{
+	font:16px $robotobold;
+	color:$black;
+	text-transform:uppercase;
+}
+
+.filter-search{
+	display:inline-block;
+	width:100%;
+}
+
+.filter-search-item{
+	border-bottom:1px solid #fff;
+	display: inline-block;
+	width: 100%;
+	&:hover {
+		border-bottom:1px solid #06362b;
+	}
+}
+
+.subitem-filter-search li{
+	float:left;
+	text-align:left;
+	width:80%;
+	a {
+		color:#1d1d1d;
+		display:inline-block;
+		width:100%;
+	}
+
+}
+
+.subitem-filter-search li+li {
+	width:20%;
+	float:right;
+	text-align:right;
+}
+.see-more-filter,
+.see-less-filter{
+	cursor:pointer;
+	font-size: 15px;
+	color:$blue;
+	text-transform:uppercase;
+}
+
+.colum-description-wine {
+	float: left;
+	width: 340px;
+}
+
+.column-products-search-inline {
+	width:73.9%;
+	float:right;
+
+	@media #{$screen-970}{
+		width: 68%;
+	}
+
+	@media #{$screen-767}{
+		width: 100%;
+	}
+
+
+	.wine-card{
+		display:inline-block;
+	}
+	.other-wine-info{
+		width: 180px;
+		float: right;
+		text-align: right;
+
+		@media #{$screen-767}{
+			width: 76%;
+			float: left;
+			text-align: left;
+		}
+	}
+}
+
+.colum-description-wine{
+	float:left;
+	@media #{$screen-970}{
+		width: 42%;
+	}
+	@media #{$screen-767}{
+		width: 70%;
+	}
+}
+
+
+.bg-layer-filtro{
+	position: fixed;
+	z-index: 99999;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.8);
+	display: none;
+}
+
+.opacidade-coluna1{
+	display: block;
+	@media #{$screen-767}{
+		display: none;
+
+	}
+}
+
+.semopacidade-coluna1{
+	display: none;
+	@media #{$screen-767}{
+		display: block;
+	}
+}
+
+
+
+/* PG SEARCH*/
+
+
+/* PG CADASTRO*/
+
+.title-internal-15{
+	font:18px $robotobold;
+	color:$black;
+}
+
+
+
+.wrap-content-search{
+
+
+}
+
+.wrap-content-register {
+	@media #{$screen-970}{
+		max-width:700px;
+		margin:0 auto;
+	}
+}
+
+.col-register1,
+.col-register2{
+	width:280px;
+	float:left;
+	@media #{$screen-767}{
+		width:100%;
+	}
+}
+.col-register3{
+	width:280px;
+	float:right;
+	@media #{$screen-767}{
+		width:100%;
+	}
+
+}
+.col-register2{
+	margin:0 49px;
+
+	@media #{$screen-990}{
+		margin:0 30px;		
+	}
+
+	@media #{$screen-970}{
+		float: right;
+		margin-right: 0;
+	}
+}
+.list-form-register {
+	margin:30px 0 9px 0;
+	li {
+		margin-bottom: 25px;
+		display:inline-block;
+		width:100%;
+	}
+	.select-standard{
+		border:1px solid #000;
+		height: 35px;
+	}
+}
+
+.input-register{
+	border:1px solid #000;
+	font-size: 13.5px;
+	color: $black;
+	padding: 8px 10px;
+
+	&:focus {
+		border:1px solid $blue;
+	}
+}
+.error-field{
+	border:1px solid $red;
+}
+.error-field{
+	border:1px solid $red;
+}
+.half { width:50%; }
+.sixty { width:60%; }
+.two-fields { width:48%;}
+.two-fields+.two-fields {float:right;}
+.full { width:100%; }
+
+.title-form {
+	font: 18px $robotobold;
+	color:$blue;
+	text-transform:uppercase;
+	margin-bottom:30px;
+}
+
+.search-cep {
+	float:right;
+
+	p{
+		font-size:15px;
+		color:$black;
+		margin: -3px 0;
+	}
+	a {
+		font-size:15px;
+		color:$blue;
+	}
+}
+
+.wrap-content-bt {
+	width:100%;
+	display:inline-block;
+}
+
+.content-bt {
+	float:right;
+	width:280px;
+	@media #{$screen-767}{
+		width:100%;
+	}
+}
+
+/* PG CADASTRO*/
+
+
+/* PG CATEGORIA */
+
+.column-products-search-category {
+	width:73.9%;
+	float:right;
+
+	@media #{$screen-970}{
+		width:69.9%;
+	}
+
+	@media #{$screen-767}{
+		width:100%;
+	}
+	
+	.wine-card {
+		width: 218px;
+		display: inline-table;
+		margin-left: 12px;
+		@media #{$screen-970}{
+			margin-left: 17px;
+		}
+
+		@media #{$screen-767}{
+			width:100%;
+			margin-left: 0px;
+		}
+	}
+
+/* 	.wine-card:nth-child(3n) {
+		margin-right:0px;
+		} */
+
+
+	}
+
+	.category-description {
+		color:#fff;
+		width:70%;
+		margin-bottom: 20px;
+		@media #{$screen-767}{
+			display:none;
+		}
+	}
+
+
+	/* PG CATEGORIA*/
+
+
+	/* select */
+
+	.select-standard {
+		padding: 0;
+		outline: 0;
+		border: 1px solid #d6d6d6;
+		font-size:0.9em;
+		color:#000;
+		height:30px;
+		position:relative;
+		background-color:#f8f8f8;
+
+		/*Color White select*/
+		&.form-control-white,
+		&.form-control-white:after{
+			background-color:#fff;
+		}
+		&.form-control-blue,
+		&.form-control-blue:after{
+			background-color:$blue;
+		}
+		select {
+			width: 100%;
+			border: none;
+			margin: 0;
+			background-color: transparent;
+			-webkit-appearance: none;
+			outline: none;
+			padding:3px 35px 3px 15px;
+			height:100%;
+			font-size:14px;
+
+			&:focus {
+				border-color: #66afe9;
+				outline: 0;
+				-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+				box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+			}
+		}
+
+		/* Aqui imagem da seta */
+
+		&:before{
+			content: "";
+			background: url($imgPath + "seta-select.jpg") no-repeat center center;
+			width: 30px;
+			height: 26px;
+			z-index: 2;
+			pointer-events: none;
+			position: absolute;
+			right: 1px;
+			top: 0;
+			margin-top: 1px;
+		}
+
+		/*Aqui imagem do quadro branco que vai ficar sempre do lado direito abaixo da seta*/    
+		&:after {
+			content: "";
+			position: absolute;
+			background-color: #f8f8f8;
+			pointer-events: none;
+			width:35px;
+			height:100%;
+			right: 0;
+			top: 0;
+			z-index: 1;
+		}
+	}
+
+	/* Hack select*/
+	.ie-edge .select-standard select,
+	.ie-11 .select-standard select,
+	.ie-10 .select-standard select,
+	.ie-9 .select-standard select{
+		width:119%;
+	}
+	/* Hack select >> Remove default browser select*/
+	.ie-edge .select-standard,
+	.ie-11 .select-standard,
+	.ie-10 .select-standard,
+	.ie-9 .select-standard{
+		overflow-x:hidden;
+	}
 

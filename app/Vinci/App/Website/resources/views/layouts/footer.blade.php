@@ -150,6 +150,8 @@
 
 <script src="{{ asset('website/js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('website/js/slick.js') }}" type="text/javascript"></script>
+<script src="{{ asset('website/js/jquery.placeholder.js') }}" type="text/javascript"></script>
+<script src="{{ asset('website/js/masked-input.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('website/js/html5.js') }}" type="text/javascript"></script>
 <script src="{{ asset('website/js/script.js') }}" type="text/javascript"></script>
 

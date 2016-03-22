@@ -100,6 +100,15 @@
 
 }
 
+.header-internal.blue-bg{
+	background:$blue;
+
+
+	.internal-subtitle{
+		color:#5d003b;
+	}
+}
+
 .wine-card.blue {
 	border:1px solid $blue;
 
@@ -230,6 +239,11 @@
 		}
 	}
 }
+
+.header-internal.red-bg{
+	background:$red;
+}
+
 .red.bg-slider-principal{
 	background: #e02d50;
 }
@@ -341,6 +355,11 @@
 	}
 
 }
+
+.header-internal.green-bg{
+	background:$green;
+}
+
 .green.bg-slider-principal{
 	background: #3cc811;
 }
@@ -407,6 +426,19 @@
 		}
 	}
 
+
+
+
+	.descr-slider{
+		.bt-default{
+			background:#ff008a;
+		}
+		.arrow-link{
+			color:#ff008a;
+			background: #6f0791;
+		}
+	}
+
 	/*card produto*/
 	.title-category{
 		color:$purple;
@@ -439,6 +471,14 @@
 		}
 	}
 
+}
+
+.purple.bg-slider-principal {
+    background: $purple;
+}
+
+.header-internal.purple-bg{
+	background:$purple;
 }
 
 .wine-card.purple{
@@ -526,6 +566,7 @@
 
 	}
 
+
 	.wine-card.pink{
 
 		border:1px solid $pink;
@@ -553,6 +594,11 @@
 	}
 
 }
+
+	.header-internal.pink-bg{
+		background: $pink;
+	}
+
 
 .bt-default-full.pink{
 	background: $pink;
@@ -609,7 +655,7 @@
 		}
 	}
 
-		.wine-card{
+	.wine-card{
 
 		border:1px solid $darkblue;
 		.wine-price{
@@ -626,6 +672,10 @@
 
 	}
 
+}
+
+.header-internal.darkblue-bg{
+	background:$darkblue;
 }
 
 .bt-default-full.darkblue{
@@ -673,8 +723,21 @@
 	.featured-sub-menu{
 		border:1px solid #ffa311;
 	}
-	.title-slider{
-		color:#5e057b;
+	.title-slider {
+		color:#a0015f;
+	}
+	
+	.descr-slider {
+
+		.bt-default {
+			background:#a0015f;
+		}
+
+		.arrow-link {
+			color:#a0015f;
+			background: #ff5400;
+		}
+
 	}
 
 
@@ -722,6 +785,18 @@
 
 
 }
+
+.orange.bg-slider-principal {
+    background: #ff5400;
+}
+
+
+.header-internal.orange-bg{
+	background:$orange;
+}
+
+
+
 
 .bt-default-full.orange{
 	background: $orange;
@@ -830,6 +905,10 @@
 
 
 }
+.header-internal.black-bg{
+	background:$black;
+}
+
 
 .bt-default-full.black{
 	background: $black;
@@ -857,6 +936,31 @@
 	}
 
 }
+
+.bt-default-full.bt-color {
+	background: $colorbt;
+	border: 2px solid #fff;
+	transition: all .1s ease .05s;
+
+	&:hover{
+		background: #fff;
+		color:$colorbt;
+		border:2px solid $colorbt;
+		transition: all .1s ease .05s;
+		.arrow-link{
+			background: $colorbt;
+			color:#fff;
+			transition: all .1s ease .05s;
+		}
+	}
+}
+.bt-default-full.bt-color .arrow-link {
+	color: $colorbt;
+	transition: all .1s ease .05s;
+	font-size: 14px;
+}
+
+
 
 /* Fim templates BLACK ******************BLACK****************BLACK*******/
 

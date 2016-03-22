@@ -2,12 +2,13 @@
 
 
 @section('content')
+@include('website::layouts.menu')
 
 <div class="wrap-slider-principal">
 
 	<div class="slider slider-principal">
 
-		<div class="bg-slider-principal blue">
+		<div class="bg-slider-principal purple">
 			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/slider-blue.jpg') }}) 50% bottom no-repeat;">
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
@@ -39,7 +40,7 @@
 
 		</div>
 
-		<div class="bg-slider-principal green">
+		<div class="bg-slider-principal orange">
 
 			<div class="conteudo-slider-principal" style="background: url(https://mistral2015.s3.amazonaws.com/banners/img_108.jpg) 50% bottom no-repeat;">
 
@@ -96,7 +97,7 @@
 					<div class="thumb-wine">
 						<img class="label-wine" src="{{ asset('website/images/selo-pontos.png') }}" alt="Selo Vinho">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -127,7 +128,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -167,7 +168,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -198,7 +199,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -237,7 +238,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -268,7 +269,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -307,7 +308,7 @@
 					<div class="thumb-wine">
 						<img class="label-wine" src="{{ asset('website/images/selo-pontos.png') }}" alt="Selo Vinho">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -339,7 +340,7 @@
 					<div class="thumb-wine">
 						<img class="label-wine" src="{{ asset('website/images/selo-pontos.png') }}" alt="Selo Vinho">
 						<a href="javascript:void(0);">
-							<img src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">

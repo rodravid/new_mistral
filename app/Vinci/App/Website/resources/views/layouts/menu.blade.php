@@ -1,6 +1,6 @@
 <!-- logged-in-user -->
 <header class="header-main">
-	<div class="row">
+	<div class="row relative">
 		<input type="checkbox" id="control-nav" />
 		<label for="control-nav" class="control-nav"></label>
 		<label for="control-nav" class="control-nav-close"></label>
@@ -47,7 +47,7 @@
 					</a>
 				</li>
 				<li class="nav-item nav-item-cadastro">
-					<a class="nav-link" href="javascript:void();">
+					<a class="nav-link" href="/cadastro">
 						Cadastro
 					</a>
 				</li>
@@ -104,7 +104,7 @@
 					<ul class="menu">
 
 						<li class="menu-item larger760 blue">
-							<a class="menu-link" href="javascript:void(0);">
+							<a class="menu-link" href="/categoria">
 								Vinho por país
 							</a>
 							<div class="drop-menu">
