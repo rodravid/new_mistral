@@ -1,0 +1,97 @@
+/*Fontes*/
+$robotolight:'roboto_condensedlight';
+$robotoregular:'roboto_condensedregular';
+$robotolightitalic:'roboto_condensedlight_italic';
+$robotoregularitalic:'roboto_condenseditalic';
+$robotobolditalic:'roboto_condensedbold_italic';
+$robotobold:'roboto_condensedbold';
+
+@font-face {
+    font-family: 'roboto_condensedlight';
+    src: url( $fontsPath + 'robotocondensed-light-webfont.eot');
+    src: url( $fontsPath + 'robotocondensed-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url( $fontsPath + 'robotocondensed-light-webfont.woff2') format('woff2'),
+         url( $fontsPath + 'robotocondensed-light-webfont.woff') format('woff'),
+         url( $fontsPath + 'robotocondensed-light-webfont.ttf') format('truetype'),
+         url( $fontsPath + 'robotocondensed-light-webfont.svg#roboto_condensedlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'roboto_condensedregular';
+    src: url($fontsPath + 'robotocondensed-regular-webfont.eot');
+    src: url($fontsPath + 'robotocondensed-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontsPath + 'robotocondensed-regular-webfont.woff2') format('woff2'),
+         url($fontsPath + 'robotocondensed-regular-webfont.woff') format('woff'),
+         url($fontsPath + 'robotocondensed-regular-webfont.ttf') format('truetype'),
+         url($fontsPath + 'robotocondensed-regular-webfont.svg#roboto_condensedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'roboto_condensedlight_italic';
+    src: url($fontsPath + 'robotocondensed-lightitalic-webfont.eot');
+    src: url($fontsPath + 'robotocondensed-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontsPath + 'robotocondensed-lightitalic-webfont.woff2') format('woff2'),
+         url($fontsPath + 'robotocondensed-lightitalic-webfont.woff') format('woff'),
+         url($fontsPath + 'robotocondensed-lightitalic-webfont.ttf') format('truetype'),
+         url($fontsPath + 'robotocondensed-lightitalic-webfont.svg#roboto_condensedlight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'roboto_condenseditalic';
+    src: url($fontsPath + 'robotocondensed-italic-webfont.eot');
+    src: url($fontsPath + 'robotocondensed-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontsPath + 'robotocondensed-italic-webfont.woff2') format('woff2'),
+         url($fontsPath + 'robotocondensed-italic-webfont.woff') format('woff'),
+         url($fontsPath + 'robotocondensed-italic-webfont.ttf') format('truetype'),
+         url($fontsPath + 'robotocondensed-italic-webfont.svg#roboto_condenseditalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'roboto_condensedbold_italic';
+    src: url($fontsPath + 'robotocondensed-bolditalic-webfont.eot');
+    src: url($fontsPath + 'robotocondensed-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontsPath + 'robotocondensed-bolditalic-webfont.woff2') format('woff2'),
+         url($fontsPath + 'robotocondensed-bolditalic-webfont.woff') format('woff'),
+         url($fontsPath + 'robotocondensed-bolditalic-webfont.ttf') format('truetype'),
+         url($fontsPath + 'robotocondensed-bolditalic-webfont.svg#roboto_condensedbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'roboto_condensedbold';
+    src: url($fontsPath + 'robotocondensed-bold-webfont.eot');
+    src: url($fontsPath + 'robotocondensed-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url($fontsPath + 'robotocondensed-bold-webfont.woff2') format('woff2'),
+         url($fontsPath + 'robotocondensed-bold-webfont.woff') format('woff'),
+         url($fontsPath + 'robotocondensed-bold-webfont.ttf') format('truetype'),
+         url($fontsPath + 'robotocondensed-bold-webfont.svg#roboto_condensedbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

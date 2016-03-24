@@ -1,0 +1,32 @@
+/* ---------->>> GLOBAL > RESET <<<-----------*/
+  /* GLOBAL > RESET */
+  *, ul {padding:0;margin:0;}   
+  a{text-decoration:none;outline:none;cursor:pointer;}
+  a img {border:0;}
+  li {list-style-type:none}
+  *{box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;}
+  .center{text-align:center;}
+  h1,h2,h3,h4,h5,h6{margin:0;font-weight:normal;}
+  /*Focus inputs*/
+  input:focus {
+    outline: 0;
+  }
+  /*clearfix*/
+  .clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
+  .clearfix{display:inline-block;}
+  html[xmlns] .clearfix{display:block;}
+  * html .clearfix{height:1%;}
+  /* ---------->>> appearance Mobile <<<-----------*/
+    input{
+      appearance:none;
+      -moz-appearance:none; /* Firefox */
+      -webkit-appearance:none; /* Safari and Chrome */
+      -ms-appearance:none;
+      -o-appearance:none;
+    } 
+  /* ---------->>> FIM appearance Mobile <<<-----------*/
+/* ---------->>> End GLOBAL > RESET <<<-----------*/
