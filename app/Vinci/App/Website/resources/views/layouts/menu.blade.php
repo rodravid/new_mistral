@@ -52,7 +52,7 @@
 					</a>
 				</li>
 				<li class="nav-item nav-item-login">
-					<a class="nav-link" href="javascript:void();">
+					<a class="nav-link call-login" href="javascript:void();">
 						Login
 					</a>
 				</li>
@@ -477,7 +477,7 @@
 					<ul class="menu menu-logout-mobile">
 						
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link call-login" href="javascript:void(0)">
 								login
 							</a>
 						</li>
@@ -489,7 +489,7 @@
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/cadastro">
 								Cadastro
 							</a>
 						</li>
@@ -555,7 +555,7 @@
 					<ul class="menu">
 						
 						<li class="menu-item">
-						<span class="name-log-mobile">Logado como Wellington</span>
+							<span class="name-log-mobile">Logado como Wellington</span>
 							<a class="menu-link" href="#">
 								Sair
 							</a>
@@ -564,6 +564,56 @@
 				</nav>
 			</div>
 		</header>
+
+
+		<div class="modal-default modal-login">
+			<div class="content-modal">
+				<h2 class="title-modal-default">Acesse sua conta</h2>
+				<ul class="list-form-register">
+					<li>
+					<label for="">E-mail</label>
+						<input class="email input-register full" type="text" placeholder="E-mail">
+					</li>
+					<li>
+					<input class="senha input-register full" type="password" placeholder="Senha">
+					<a class="forgot-pass call-recovery" href="javascript:void(0);">Esqueceu a senha ?</a>
+					</li>
+
+				</ul>
+				<a class="bt-default-full blue" href="#">Entrar <span class="arrow-link">></span></a>
+			</div>
+			<div class="footer-modal">
+				<a href="/cadastro">
+					<span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
+					<span class="bt-arrow">></span>
+				</a>
+			</div>
+			<a href="javascript:void(0)" class="close">X</a>
+		</div>
+
+		<div class="modal-default modal-recovery">
+			<div class="content-modal">
+				<h2 class="title-modal-default">Recuperar senha</h2>
+				<ul class="list-form-register">
+					<li>
+						<label for="">E-mail</label>
+						<input class="email input-register full" type="text">
+					</li>
+
+				</ul>
+				<a class="bt-default-full blue" href="#">Enviar <span class="arrow-link">></span></a>
+			</div>
+			<div class="footer-modal">
+				<a href="/cadastro">
+					<span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
+					<span class="bt-arrow">></span>
+				</a>
+			</div>
+			<a href="javascript:void(0)" class="close">X</a>
+		</div>
+
+		<div class="overlay"></div>
+
 
 
 

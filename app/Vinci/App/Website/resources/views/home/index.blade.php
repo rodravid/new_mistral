@@ -8,8 +8,8 @@
 
 	<div class="slider slider-principal">
 
-		<div class="bg-slider-principal purple">
-			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/slider-blue.jpg') }}) 50% bottom no-repeat;">
+		<div class="bg-slider-principal blue">
+			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
 						<h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span> WINE SPECTATOR</h3>
@@ -19,12 +19,13 @@
 					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
 
 				</div>
+				<img class="seal-slider" src="{{ asset('website/images/selo-slider.png') }}" alt="">
 			</div>
 		</div>
 
-		<div class="bg-slider-principal red">
+		<div class="bg-slider-principal green">
 
-			<div class="conteudo-slider-principal red" style="background: url(https://mistral2015.s3.amazonaws.com/banners/img_108.jpg) 50% bottom no-repeat;">
+			<div class="conteudo-slider-principal red" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
 
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
@@ -35,6 +36,8 @@
 					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
 
 				</div>
+
+				<img class="seal-slider" src="{{ asset('website/images/selo-slider.png') }}" alt="">
 
 			</div>
 
@@ -42,7 +45,7 @@
 
 		<div class="bg-slider-principal orange">
 
-			<div class="conteudo-slider-principal" style="background: url(https://mistral2015.s3.amazonaws.com/banners/img_108.jpg) 50% bottom no-repeat;">
+			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
 
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
@@ -52,8 +55,11 @@
 					</a>
 					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
 				</div>
-
+				
+				<img class="seal-slider" src="{{ asset('website/images/selo-slider.png') }}" alt="">
 			</div>
+
+
 
 		</div>
 

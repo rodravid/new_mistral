@@ -151,6 +151,10 @@
 
 }
 
+.bg-product.blue {
+	background: $blue;
+}
+
 /* Fim templates BLUE ******************BLUE****************BLUE*******/
 
 
@@ -541,7 +545,17 @@
 	}
 
 	.title-slider{
-		color:#ff008a;
+		color:#00e667;
+	}
+
+		.descr-slider{
+		.bt-default{
+			background:#00e667;
+		}
+		.arrow-link{
+			color:#00e667;
+			background: #8a25d8;
+		}
 	}
 
 	/*card produto*/
@@ -567,6 +581,23 @@
 	}
 
 
+
+
+	.bt-default-full{
+		background: $pink;
+
+		.arrow-link{
+			color:$pink;
+
+		}
+	}
+
+}
+
+.pink.bg-slider-principal{
+	background: #8a25d8;
+}
+
 	.wine-card.pink{
 
 		border:1px solid $pink;
@@ -583,17 +614,6 @@
 		}
 
 	}
-
-	.bt-default-full{
-		background: $pink;
-
-		.arrow-link{
-			color:$pink;
-
-		}
-	}
-
-}
 
 	.header-internal.pink-bg{
 		background: $pink;
@@ -672,6 +692,24 @@
 
 	}
 
+		.title-slider{
+		color:#e929d9;
+	}
+
+		.descr-slider{
+		.bt-default{
+			background:#e929d9;
+		}
+		.arrow-link{
+			color:#e929d9;
+			background: #252ad8;
+		}
+	}
+
+}
+
+.darkblue.bg-slider-principal{
+	background: #252ad8;
 }
 
 .header-internal.darkblue-bg{
@@ -904,6 +942,10 @@
 	}
 
 
+}
+
+.black.bg-slider-principal {
+    background: $black;
 }
 .header-internal.black-bg{
 	background:$black;

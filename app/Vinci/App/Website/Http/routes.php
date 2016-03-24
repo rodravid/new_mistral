@@ -38,4 +38,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::category.index");
     });
 
+    $route->get('/produto', function(){
+        return view("website::product.index");
+    });
+
+    $route->get('/paginas', function(){
+        return view("website::list-page.index");
+    });
+
 });
