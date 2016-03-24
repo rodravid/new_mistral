@@ -3,11 +3,14 @@
 namespace Vinci\Infrastructure;
 
 use Illuminate\Support\ServiceProvider;
-use Vinci\Domain\User\Admin\AdminRepository;
-use Vinci\Domain\User\Customer\CustomerRepository;
+use Vinci\Domain\Admin\Admin\AdminRepository;
+use Vinci\Domain\Customer\Customer;
+use Vinci\Domain\Customer\CustomerRepository;
+use Vinci\Domain\Order\Order;
+use Vinci\Domain\Order\OrderRepository;
 use Vinci\Domain\User\UserRepository;
-use Vinci\Infrastructure\Users\EloquentAdminRepository;
-use Vinci\Infrastructure\Users\EloquentCustomerRepository;
+use Vinci\Infrastructure\Customers\DoctrineCustomerRepository;
+use Vinci\Infrastructure\Orders\DoctrineOrderRepository;
 use Vinci\Infrastructure\Users\EloquentUserRepository;
 
 class InfrastructureServiceProvider extends ServiceProvider
@@ -20,12 +23,26 @@ class InfrastructureServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(CustomerRepository::class, function($app) {
-            return new EloquentCustomerRepository($app);
+            return new DoctrineCustomerRepository(
+                $app['em'],
+                $app['em']->getClassMetaData(Customer::class)
+            );
         });
 
         $this->app->singleton(AdminRepository::class, function($app) {
-            return new EloquentAdminRepository($app);
+            return new DoctrineCustomerRepository(
+                $app['em'],
+                $app['em']->getClassMetaData(Customer::class)
+            );
         });
+
+        $this->app->singleton(OrderRepository::class, function($app) {
+            return new DoctrineOrderRepository(
+                $app['em'],
+                $app['em']->getClassMetaData(Order::class)
+            );
+        });
+
     }
 
 }

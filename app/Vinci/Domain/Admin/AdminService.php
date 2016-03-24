@@ -1,38 +1,39 @@
 <?php
 
-namespace Vinci\Domain\User\Customer;
+namespace Vinci\Domain\Admin\Admin;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Database\ConnectionInterface as Database;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 
-class CustomerService
+class AdminService
 {
     use ValidationTrait;
 
     private $repository;
 
-    private $db;
+    private $entityManager;
 
     public function __construct(
-        CustomerRepository $repository,
-        Database $db
+        AdminRepository $repository,
+        EntityManagerInterface $entityManager
     )
     {
         $this->repository = $repository;
-        $this->db = $db;
+        $this->entityManager = $entityManager;
     }
 
     public function create(array $attributes)
     {
-        $this->validate($attributes, $this->getRules());
+        $this->validate($attributes, $this->getRules(), $this->getMessages());
 
         return $this->db->transaction(function() use ($attributes) {
 
-            $customer = $this->createUserIfNotExists($attributes);
+            $admin = $this->createUserIfNotExists($attributes);
 
-            $this->repository->createProfile($attributes, $customer->id);
+            $this->repository->createProfile($attributes, $admin->id);
 
-            return $customer;
+            return $admin;
         });
     }
 
@@ -66,7 +67,7 @@ class CustomerService
     {
         $rules = [
             'name' => 'required',
-            'email' => 'required|unique_user:customer',
+            'email' => 'required|unique_user:admin',
             'password' => 'required'
         ];
 

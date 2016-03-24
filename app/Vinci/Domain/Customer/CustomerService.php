@@ -1,39 +1,41 @@
 <?php
 
-namespace Vinci\Domain\User\Admin;
+namespace Vinci\Domain\Customer;
 
-use Illuminate\Database\ConnectionInterface as Database;
+use Carbon\Carbon;
+use Doctrine\ORM\EntityManagerInterface;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 
-class AdminService
+class CustomerService
 {
     use ValidationTrait;
 
     private $repository;
 
-    private $db;
+    private $entityManager;
 
     public function __construct(
-        AdminRepository $repository,
-        Database $db
+        CustomerRepository $repository,
+        EntityManagerInterface $entityManager
     )
     {
         $this->repository = $repository;
-        $this->db = $db;
+        $this->entityManager = $entityManager;
     }
 
     public function create(array $attributes)
     {
-        $this->validate($attributes, $this->getRules(), $this->getMessages());
+        $this->validate($attributes, $this->getRules());
 
-        return $this->db->transaction(function() use ($attributes) {
+        $customer = Customer::make($attributes);
 
-            $admin = $this->createUserIfNotExists($attributes);
+        $customer->setPassword(bcrypt($attributes['password']));
+        $customer->setCreatedAt(Carbon::now());
 
-            $this->repository->createProfile($attributes, $admin->id);
+        $this->entityManager->persist($customer);
+        $this->entityManager->flush();
 
-            return $admin;
-        });
+        return $customer;
     }
 
     public function update(array $attributes, $customerId)
@@ -66,7 +68,8 @@ class AdminService
     {
         $rules = [
             'name' => 'required',
-            'email' => 'required|unique_user:admin',
+            'email' => 'required|unique:Vinci\Domain\Customer\Customer,email',
+            'cpf' => 'required|unique:Vinci\Domain\Customer\Customer,cpf',
             'password' => 'required'
         ];
 

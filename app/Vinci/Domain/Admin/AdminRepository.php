@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Domain\User\Admin;
+namespace Vinci\Domain\Admin\Admin;
 
 use Vinci\Domain\User\UserRepository;
 

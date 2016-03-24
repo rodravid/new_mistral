@@ -44,7 +44,7 @@ return [
 
         'cms' => [
             'driver' => 'session',
-            'provider' => 'administrators',
+            'provider' => 'admins',
         ]
     ],
 
@@ -61,20 +61,20 @@ return [
     | sources which represent each model / table. These sources may then
     | be assigned to any extra authentication guards you have defined.
     |
-    | Supported: "database", "eloquent"
+    | Supported: "database", "eloquent", "doctrine"
     |
     */
 
     'providers' => [
 
         'customers' => [
-            'driver' => 'repository',
-            'class' => Vinci\Domain\User\Customer\CustomerRepository::class,
+            'driver' => 'doctrine',
+            'model' => Vinci\Domain\Customer\Customer::class,
         ],
 
-        'administrators' => [
-            'driver' => 'repository',
-            'class' => Vinci\Domain\User\Admin\AdminRepository::class,
+        'admins' => [
+            'driver' => 'doctrine',
+            'model' => Vinci\Domain\Admin\Admin::class,
         ],
 
     ],
@@ -106,8 +106,8 @@ return [
             'expire' => 60,
         ],
 
-        'administrators' => [
-            'provider' => 'administrators',
+        'admins' => [
+            'provider' => 'admins',
             'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,

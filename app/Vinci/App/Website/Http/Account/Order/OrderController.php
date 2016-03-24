@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\App\Website\Http\Account;
+namespace Vinci\App\Website\Http\Account\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Auth\AuthManager;
@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\Customer\CustomerService;
+use Vinci\Domain\Order\OrderRepository;
 
-class AccountController extends Controller
+class OrderController extends Controller
 {
     protected $customerService;
 
@@ -23,13 +24,15 @@ class AccountController extends Controller
         $this->auth = $auth->guard('website');
     }
 
-    public function index()
+    public function index(OrderRepository $orderRepository)
     {
-        $user = $this->auth->user();
+        $customer = $this->auth->user();
 
-        dd($user);
+        //$orders = $customer->getOrders();
 
-        return $this->view('account.index', compact('user'));
+        $orders = $orderRepository->getAllCustomerOrders($customer->getId());
+
+        return $this->view('account.orders.index', compact('orders'));
     }
 
     public function create()

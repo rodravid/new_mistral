@@ -1,31 +1,35 @@
 <?php
 
-namespace Vinci\App\Cms\Http\Account;
+namespace Vinci\App\Website\Http\Order;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Vinci\App\Website\Http\Controller;
-use Vinci\Domain\User\Admin\AdminService;
+use Vinci\Domain\Customer\CustomerService;
 
-class AccountController extends Controller
+class OrderController extends Controller
 {
-
-    protected $adminService;
+    protected $customerService;
 
     protected $auth;
 
-    public function __construct(AdminService $adminService, AuthManager $auth)
+    public function __construct(CustomerService $customerService, AuthManager $auth, EntityManagerInterface $em)
     {
-        $this->adminService = $adminService;
-        $this->auth = $auth->guard('cms');
+        parent::__construct($em);
+
+        $this->customerService = $customerService;
+        $this->auth = $auth->guard('website');
     }
 
     public function index()
     {
         $user = $this->auth->user();
 
-        return $this->view('account.index', compact('user'));
+        dd($user);
+
+        return $this->view('account.orders.index', compact('user'));
     }
 
     public function create()
@@ -44,11 +48,11 @@ class AccountController extends Controller
     {
         try {
 
-            $customer = $this->adminService->create($request->all());
+            $customer = $this->customerService->create($request->all());
 
             $this->auth->login($customer);
 
-            return redirect()->route('cms.account.index');
+            return redirect()->route('account.index');
 
         } catch (ValidationException $e) {
 
@@ -60,9 +64,9 @@ class AccountController extends Controller
     {
         try {
 
-            $this->adminService->update($request->all(), $customerId);
+            $this->customerService->update($request->all(), $customerId);
 
-            return redirect()->route('cms.account.index');
+            return redirect()->route('account.index');
 
         } catch (ValidationException $e) {
 
