@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="header-internal blue-bg">
+<div class="header-internal template1-bg">
 	@include('website::layouts.menu')
 	<div class="row">
 

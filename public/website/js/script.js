@@ -21,6 +21,17 @@ jQuery(document).ready(function ($) {
    });
 
 
+    $(".favorite-product").click(function(event) {
+      if ($(this).hasClass('clicado')){
+       $(this).removeClass('clicado');
+       $(this).removeClass('opacity1');
+     }else{
+       $(this).addClass('clicado');
+       $(this).addClass('opacity1');
+     }
+   });
+
+
     $('.filter-search').each(function () {
       if ($(this).children('li').length > 5) {
         $(this).find("li:nth-child(1n+7)").css("display", "none");
@@ -39,6 +50,34 @@ jQuery(document).ready(function ($) {
         $(this).siblings(".filter-search li:nth-child(1n+7)").css("display", "inline-block");
         $(this).text('- veja menos').addClass('see-less-filter').removeClass('see-more-filter');
       }
+    });
+
+
+
+    $('.details-wine').each(function () {
+      if ($(this).children('li').length > 9) {
+        $(this).find("li:nth-child(1n+11)").css("display", "none");
+        $(this).find(".see-more-filter").show();
+      }
+      else {
+        $(this).find(".see-more-filter").hide();
+      }
+    });
+
+    $(".see-more-info").click(function (event) {
+      if ($(this).hasClass('see-less-info')) {
+        $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "none");
+        $(this).text('veja mais').addClass('see-more-info').removeClass('see-less-info');
+      } else {
+        $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "inline-block");
+        $(this).text('veja menos').addClass('see-less-info').removeClass('see-more-info');
+      }
+    });
+
+
+    $(".name-seals-description").click(function (event) {
+
+      $(this).siblings(".seals-description li div").slideToggle(200);
     });
 
 
