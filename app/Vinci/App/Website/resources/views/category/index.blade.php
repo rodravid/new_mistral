@@ -420,7 +420,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -451,7 +451,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -482,7 +482,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -513,7 +513,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -544,7 +544,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -575,7 +575,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">

@@ -9,7 +9,7 @@
 	<div class="slider slider-principal">
 
 		<div class="bg-slider-principal template1">
-			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
 						<h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span> WINE SPECTATOR</h3>
@@ -19,13 +19,13 @@
 					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
 
 				</div>
-				<img class="seal-slider" src="{{ asset('website/images/selo-slider.png') }}" alt="">
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
 			</div>
 		</div>
 
 		<div class="bg-slider-principal template3">
 
-			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
 
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
@@ -37,7 +37,7 @@
 
 				</div>
 
-				<img class="seal-slider" src="{{ asset('website/images/selo-slider.png') }}" alt="">
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
 
 			</div>
 
@@ -45,7 +45,7 @@
 
 		<div class="bg-slider-principal template4">
 
-			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
 
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
@@ -56,7 +56,7 @@
 					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
 				</div>
 				
-				<img class="seal-slider" src="{{ asset('website/images/selo-slider.png') }}" alt="">
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
 			</div>
 
 
@@ -74,10 +74,10 @@
 	<section class="wrap-banners">
 		<ul class="banners">
 			<li class="list-banners">
-				<img src="{{ asset('website/images/banner1.jpg') }}" alt="">	
+				<img src="{{ asset_web('images/banner1.jpg') }}" alt="">
 			</li>
 			<li class="list-banners">
-				<img src="{{ asset('website/images/banner2.jpg') }}" alt="">		
+				<img src="{{ asset_web('images/banner2.jpg') }}" alt="">
 			</li>
 		</ul>
 		
@@ -101,9 +101,9 @@
 				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
 				<div class="content-card-product">
 					<div class="thumb-wine">
-						<img class="label-wine" src="{{ asset('website/images/selo-pontos.png') }}" alt="Selo Vinho">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -134,7 +134,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -174,7 +174,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -205,7 +205,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -244,7 +244,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -275,7 +275,7 @@
 				<div class="content-card-product">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -312,9 +312,9 @@
 				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
 				<div class="content-card-product">
 					<div class="thumb-wine">
-						<img class="label-wine" src="{{ asset('website/images/selo-pontos.png') }}" alt="Selo Vinho">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">
@@ -344,9 +344,9 @@
 				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
 				<div class="content-card-product">
 					<div class="thumb-wine">
-						<img class="label-wine" src="{{ asset('website/images/selo-pontos.png') }}" alt="Selo Vinho">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="{{ asset('website/images/img-vinho.jpg') }}" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 					<div class="other-wine-info">

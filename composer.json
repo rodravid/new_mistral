@@ -31,7 +31,10 @@
         ],
         "psr-4": {
             "Vinci\\": "app/Vinci/"
-        }
+        },
+        "files": [
+            "app/Vinci/App/Core/helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [
