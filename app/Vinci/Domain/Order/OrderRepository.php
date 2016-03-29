@@ -7,6 +7,6 @@ use Vinci\App\Core\Contracts\RepositoryInterface;
 interface OrderRepository extends RepositoryInterface
 {
 
-    public function getAllCustomerOrders($customerId);
+    public function getByCustomer($customerId);
 
 }

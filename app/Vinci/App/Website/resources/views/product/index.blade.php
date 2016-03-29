@@ -194,8 +194,8 @@
 			<div class="content-img-product">
 				<img src="http://www.vinci.com.br/images/product/1647130_g.jpg" alt="">
 				<div class="wrap-seal-product">
-					<img src="{{ asset('website/images/selo-slider.png') }}" alt="Selo Vinho">
-					<img src="{{ asset('website/images/selo-slider.png') }}" alt="Selo Vinho">
+					<img src="{{ asset_web('images/selo-slider.png') }}" alt="Selo Vinho">
+					<img src="{{ asset_web('images/selo-slider.png') }}" alt="Selo Vinho">
 				</div>
 			</div>
 		</div>

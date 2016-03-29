@@ -30,7 +30,7 @@ class OrderController extends Controller
 
         //$orders = $customer->getOrders();
 
-        $orders = $orderRepository->getAllCustomerOrders($customer->getId());
+        $orders = $orderRepository->getByCustomer($customer->getId());
 
         return $this->view('account.orders.index', compact('orders'));
     }
