@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="header-internal blue-bg">
+<div class="header-internal template1-bg">
 	@include('website::layouts.menu')
 	<div class="row">
 
@@ -408,7 +408,7 @@
 
 		</div>
 
-		<div class="column-products-search-inline blue">
+		<div class="column-products-search-inline template1">
 			<div class="wine-card">
 				<span class="favorite"></span>
 

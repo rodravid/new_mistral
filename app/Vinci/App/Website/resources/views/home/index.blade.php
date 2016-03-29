@@ -8,7 +8,7 @@
 
 	<div class="slider slider-principal">
 
-		<div class="bg-slider-principal blue">
+		<div class="bg-slider-principal template1">
 			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
@@ -23,9 +23,9 @@
 			</div>
 		</div>
 
-		<div class="bg-slider-principal green">
+		<div class="bg-slider-principal template3">
 
-			<div class="conteudo-slider-principal red" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
+			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
 
 				<div class="descr-slider">
 					<a href="javascript:void(0);">
@@ -43,7 +43,7 @@
 
 		</div>
 
-		<div class="bg-slider-principal orange">
+		<div class="bg-slider-principal template4">
 
 			<div class="conteudo-slider-principal" style="background: url({{ asset('website/images/bg-slider.png') }}) no-repeat;">
 
@@ -86,7 +86,7 @@
 
 	<section class="featured-products">
 
-		<div class="cols-products red">
+		<div class="cols-products template8">
 			<h2 class="title-category">Compras Inteligentes</h2>
 			
 			<div class="wine-card">
@@ -158,7 +158,7 @@
 			
 		</div>
 
-		<div class="cols-products purple">
+		<div class="cols-products template6">
 			<h2 class="title-category">90 pontos ou +</h2>
 			
 			<div class="wine-card">
@@ -228,7 +228,7 @@
 			
 		</div>
 
-		<div class="cols-products orange">
+		<div class="cols-products template7">
 			<h2 class="title-category">Orgânicos e biodinâmicos</h2>
 			
 			<div class="wine-card">
@@ -297,7 +297,7 @@
 			
 		</div>
 
-		<div class="cols-products blue">
+		<div class="cols-products template1">
 			<h2 class="title-category">Vinhos para primavera</h2>
 			
 			<div class="wine-card">
@@ -368,7 +368,7 @@
 			
 		</div>
 
-		<a class="bt-default-full orange show-desktop" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
+		<a class="bt-default-full template7 show-desktop" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
 
 	</section>
 
