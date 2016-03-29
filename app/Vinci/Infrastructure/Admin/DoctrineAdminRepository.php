@@ -1,25 +1,19 @@
 <?php
 
-namespace Vinci\Infrastructure\Customers;
+namespace Vinci\Infrastructure\Admin;
 
-use Vinci\Domain\Customer\CustomerRepository;
-use Vinci\Infrastructure\Common\DoctrineBaseRepository;
+use Vinci\Domain\Admin\Admin;
+use Vinci\Domain\Admin\AdminRepository;
+use Vinci\Infrastructure\Users\DoctrineUserRepository;
 
-class DoctrineAdminRepository extends DoctrineBaseRepository implements CustomerRepository
+class DoctrineAdminRepository extends DoctrineUserRepository implements AdminRepository
 {
 
-    public function createProfile(array $attributes, $customerId)
+    public function create(array $data)
     {
-        // TODO: Implement createProfile() method.
+        $admin = Admin::make($data);
+        $this->_em->persist($admin);
+        $this->_em->flush();
     }
 
-    public function updateProfile(array $attributes, $customerId)
-    {
-        // TODO: Implement updateProfile() method.
-    }
-
-    public function findByEmail($email)
-    {
-        // TODO: Implement findByEmail() method.
-    }
 }

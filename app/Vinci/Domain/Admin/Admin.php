@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Admin;
 
 use Doctrine\ORM\Mapping AS ORM;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use LaravelDoctrine\ORM\Auth\Authenticatable;
 use Vinci\Domain\User\User;
 

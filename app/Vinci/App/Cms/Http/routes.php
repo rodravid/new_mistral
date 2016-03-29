@@ -8,7 +8,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
     $route->group(['middleware' => ['auth:cms']], function() use ($route) {
 
-        $route->get('/', 'Dashboard\\DashboardController@index');
+        $route->get('/', 'Dashboard\\DashboardController@index')->name('index');
 
         $route->group(['prefix' => 'minha-conta', 'as' => 'account.'], function() use ($route) {
 

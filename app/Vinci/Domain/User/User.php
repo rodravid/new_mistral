@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 use Doctrine\ORM\Mapping AS ORM;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -20,6 +21,8 @@ use Vinci\Domain\Core\Model;
 abstract class User extends Model implements Authenticatable, CanResetPassword
 {
 
+    use Timestamps;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -27,19 +30,9 @@ abstract class User extends Model implements Authenticatable, CanResetPassword
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $created_at;
-
     public function getId()
     {
         return $this->id;
-    }
-
-    public function setCreatedAt(Carbon $date)
-    {
-        $this->created_at = $date;
     }
 
     public function setName($name)
@@ -60,6 +53,11 @@ abstract class User extends Model implements Authenticatable, CanResetPassword
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = bcrypt($password);
     }
 
 }

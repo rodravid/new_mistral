@@ -10,7 +10,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $route->post('password/reset', 'Auth\PasswordController@reset');
 
-    $route->get('/', 'Home\HomeController@index');
+    $route->get('/', 'Home\HomeController@index')->name('index');
 
     $route->get('/account/create', 'Account\AccountController@create');
     $route->post('/account/save', 'Account\AccountController@store');

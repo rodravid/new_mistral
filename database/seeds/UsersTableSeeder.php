@@ -1,31 +1,24 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Vinci\Domain\User\Customer\CustomerRepository;
 
 class UsersTableSeeder extends Seeder
 {
+    private $adminRepository;
 
-    private $repository;
-
-    public function __construct(CustomerRepository $repository)
+    public function __construct(\Vinci\Domain\Admin\AdminRepository $adminRepository)
     {
-        $this->repository = $repository;
+        $this->adminRepository = $adminRepository;
     }
 
     public function run()
     {
 
-        $user = $this->repository->create([
+        $this->adminRepository->create([
             'name' => 'Felipe',
-            'email' => 'felipe.ralc@gmail.com'
+            'email' => 'felipe.ralc@gmail.com',
+            'password' => 'asdf123'
         ]);
-
-        $this->repository->createProfile([
-            'password' => bcrypt('asdf123'),
-            'type' => 'M',
-            'document' => '431.036.028-98'
-        ], $user->id);
 
     }
 }

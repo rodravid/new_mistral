@@ -13,7 +13,7 @@ abstract class Model
     protected function fill(array $attributes)
     {
         foreach ($attributes as $name => $value) {
-            $this->$name = $value;
+            call_user_func([$this, 'set' . ucfirst($name)], $value);
         }
     }
 

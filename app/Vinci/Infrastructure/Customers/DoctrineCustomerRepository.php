@@ -4,22 +4,13 @@ namespace Vinci\Infrastructure\Customers;
 
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
+use Vinci\Infrastructure\Users\DoctrineUserRepository;
 
-class DoctrineCustomerRepository extends DoctrineBaseRepository implements CustomerRepository
+class DoctrineCustomerRepository extends DoctrineUserRepository implements CustomerRepository
 {
 
-    public function createProfile(array $attributes, $customerId)
+    public function create(array $data)
     {
-        // TODO: Implement createProfile() method.
-    }
-
-    public function updateProfile(array $attributes, $customerId)
-    {
-        // TODO: Implement updateProfile() method.
-    }
-
-    public function findByEmail($email)
-    {
-        // TODO: Implement findByEmail() method.
+        // TODO: Implement create() method.
     }
 }
