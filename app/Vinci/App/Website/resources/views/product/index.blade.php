@@ -1,7 +1,7 @@
 @extends('website::layouts.master')
 
 @section('content')
-<div class="header-internal blue-bg">
+<div class="header-internal template1-bg">
 	@include('website::layouts.menu')
 	<div class="row">
 
@@ -32,161 +32,244 @@
 
 </div>
 
-<div class="bg-product blue"></div>
+<div class="bg-product template1"></div>
 
 <div class="row relative">
 
-	<article class="wrap-content-product">
+	<article class="wrap-content-product template1">
 		
 		<div class="col-product-one">
-			
-			<h1> Luca Malbec 2012</h1>
-			<span>Luca (Laura catena)</span>
+			<div class="height-bg-product">
+				<span class="favorite"></span>
 
-			<h2>O melhor vinho da Argentina entre todos os Top 100
-				da Wine Spectator 
-			</h2>
+				<h1 class="tit-product show-desktop"> ERRAZURIZ WILD FERMENTED PINOT NOIR 2010</h1>
+				<span class="tit-product-producer show-desktop">Luca (Laura catena)</span>
 
-		</div>
-		<div class="col-product-two">
-			<img src="http://www.vinci.com.br/images/product/1895130_g.jpg" alt="">
-		</div>
-		<div class="col-product-tree">
-			col-product-tree
+				<h2 class="tit-product-info show-desktop">O melhor vinho da Argentina entre todos os Top 100
+					da Wine Spectator 
+				</h2>
 
-		</div>
-		<div class="col-product-four">
-			<ul class="detalhes-vinho">
+			</div>
+
+
+			<ul class="details-wine show-desktop">
 
 				<li>
 					<ul>
-						<li><p class="item-info-vinho">Produtor</p></li>
-						<li><a href="/produtor/catena-zapata"><p class="info-vinho-verde">Catena Zapata</p></a></li>
+						<li><p class="item-info-wine">Produtor</p></li>
+						<li><a href="/produtor/catena-zapata"><p class="info-vinho-template">Catena Zapata</p></a></li>
 					</ul>
 				</li>
-				
-				<li>
-					<ul>
-						<li><p class="item-info-vinho">País</p></li>
-						<li><a href="/pais/argentina"><p class="info-vinho-verde">Argentina</p></a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<ul>
-						<li><p class="item-info-vinho">Região</p></li>
-						<li><a href="/regiao/mendoza"><p class="info-vinho-verde">Mendoza</p></a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<ul>
-						<li><p class="item-info-vinho">Safra</p></li>
-						<li><p class="info-vinho-preto">2013</p></li>
-					</ul>
-				</li>
-				
-				<li>
-					<ul>
-						<li><p class="item-info-vinho">Tipo</p></li>
-						<li><a href="/tipo-de-vinho/branco-seco"><p class="info-vinho-verde">Branco Seco</p></a></li>
-					</ul>
-				</li>
-				
-				<li>
-					<ul>
-						<li><p class="item-info-vinho">Uva</p></li>
-						<li><p class="info-vinho-preto">Chardonnay (100%)</p></li>
-					</ul>
-				</li>
-				
-				<li>
-					<ul>
-						<li><p class="item-info-vinho">Volume</p></li>
-						<li><p class="info-vinho-preto">750 ml</p></li>
-					</ul>
-				</li>
-				
-				<div class="mais-info-vinho">
 
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Teor alcólico</p></li>
-							<li><p class="info-vinho-preto">14%</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Temperatura de Serviço</p></li>
-							<li><p class="info-vinho-preto">9 a 11ºC</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Corpo</p></li>
-							<li><p class="info-vinho-preto">Encorpado</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Sugestão de decantação</p></li>
-							<li><p class="info-vinho-preto">Não</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Sugestão de guarda</p></li>
-							<li><p class="info-vinho-preto">de 5 até 10 anos</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Combinações</p></li>
-							<li><p class="info-vinho-preto">Peixes, frutos do mar e bacalhau.</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Validade</p></li>
-							<li><p class="info-vinho-preto">Válido por prazo indeterminado desde que conservado deitado em local fresco e escuro.</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Vinhedo</p></li>
-							<li><p class="info-vinho-preto">Adrianna, com altitude de  1480m. Colheita manual e rendimento limitado.</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Vinificação</p></li>
-							<li><p class="info-vinho-preto">Fermentação em barricas de carvalho francês, com leveduras selecionadas e temperatura controlada por 20 dias.</p></li>
-						</ul>
-					</li>
-					
-					<li>
-						<ul>
-							<li><p class="item-info-vinho">Maturação</p></li>
-							<li><p class="info-vinho-preto">Maturado 11 meses em barricas de carvalho francês, sendo 73% novas.</p>
-							</li>
-						</ul>
-					</li>
-				</div>
+				<li>
+					<ul>
+						<li><p class="item-info-wine">País</p></li>
+						<li><a href="/pais/argentina"><p class="info-vinho-template">Argentina</p></a></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Região</p></li>
+						<li><a href="/regiao/mendoza"><p class="info-vinho-template">Mendoza</p></a></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Safra</p></li>
+						<li><p class="">2013</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Tipo</p></li>
+						<li><a href="/tipo-de-vinho/branco-seco"><p class="info-vinho-template">Branco Seco</p></a></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Uva</p></li>
+						<li><p class="">Chardonnay (100%)</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Volume</p></li>
+						<li><p class="">750 ml</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Teor alcólico</p></li>
+						<li><p class="">14%</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Temperatura de Serviço</p></li>
+						<li><p class="">9 a 11ºC</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Corpo</p></li>
+						<li><p class="">Encorpado</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Sugestão de decantação</p></li>
+						<li><p class="">Não</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Sugestão de guarda</p></li>
+						<li><p class="">de 5 até 10 anos</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Combinações</p></li>
+						<li><p class="">Peixes, frutos do mar e bacalhau.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Validade</p></li>
+						<li><p class="">Válido por prazo indeterminado desde que conservado deitado em local fresco e escuro.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Vinhedo</p></li>
+						<li><p class="">Adrianna, com altitude de  1480m. Colheita manual e rendimento limitado.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Vinificação</p></li>
+						<li><p class="">Fermentação em barricas de carvalho francês, com leveduras selecionadas e temperatura controlada por 20 dias.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Maturação</p></li>
+						<li><p class="">Maturado 11 meses em barricas de carvalho francês, sendo 73% novas.</p>
+						</li>
+					</ul>
+				</li>
+
+				<a href="javascript:void(0);" class="see-more-info"> Veja mais</a>
+
 			</ul>
-			
+
 		</div>
-		<div class="col-product-five">
-			col-product-five
-			
+
+		<div class="col-product-two">
+			<div class="show-mobile">
+
+				<h1 class="tit-product"> ERRAZURIZ WILD FERMENTED PINOT NOIR 2010</h1>
+				<span class="tit-product-producer">Luca (Laura catena)</span>
+
+				<h2 class="tit-product-info">O melhor vinho da Argentina entre todos os Top 100
+					da Wine Spectator 
+				</h2>
+			</div>
+
+			<div class="content-img-product">
+				<img src="http://www.vinci.com.br/images/product/1647130_g.jpg" alt="">
+				<div class="wrap-seal-product">
+					<img src="{{ asset('website/images/selo-slider.png') }}" alt="Selo Vinho">
+					<img src="{{ asset('website/images/selo-slider.png') }}" alt="Selo Vinho">
+				</div>
+			</div>
 		</div>
+
+		<div class="col-product-tree">
+
+			<div class="wrap-price-units">
+
+				<div class="box-price-units">
+					<p class="old-price">De <span>R$ 86,01</span></p>
+					<h3 class="current-price">
+						R$ 72,26
+					</h3>
+
+					<div class="wrap-add">
+						<span>GARRAFA</span>
+
+						<div class="botoes-add">
+							<a id="remover-unidade" class="bt-remove" href="javascript:void(0);">-</a>
+							<input type="text" id="mudarUnidade" class="input-quantity" value="1">
+							<a id="add-unidade" href="javascript:void(0);" class="bt-add">+</a>
+						</div>
+					</div>
+
+					<div class="wrap-add">
+						<span>CAIXA <br> (12 garrafas)</span>
+
+						<div class="botoes-add">
+							<a id="remover-unidade" class="bt-remove" href="javascript:void(0);">-</a>
+							<input type="text" id="mudarUnidade" class="input-quantity" value="0">
+							<a id="add-unidade" href="javascript:void(0);" class="bt-add">+</a>
+						</div>
+					</div>
+				</div>
+
+				<a class="bt-default-full bt-big template4" href="#">Comprar <span class="arrow-link">></span></a>
+
+				<div class="content-term-delivery">
+					<a href="javascript:void(0);">
+						Prazo de entrega >
+					</a>
+				</div>
+			</div>
+
+
+
+			<ul class="seals-description">
+				<li>
+					<p class="name-seals-description">Wine spectator /top /100 /2012</p>
+					<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+				</li>
+				<li>
+					<p class="name-seals-description">Robert parker / 92 PTS / 2012</p>
+					<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+				</li>
+				<li>
+					<p class="name-seals-description">Wine spectator /top /100 /2012</p>
+					<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+				</li>
+			</ul>
+
+
+			<p class="item-info-wine uppercase">Descritivo</p>
+			<span>
+				Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina. Mostra muita classe, elegância e fantástica pureza, tendo recebido nada menos do que 92 pontos de Robert Parker, premiado com 93 pontos pela Wine Spectator na safra 2012 e escolhido como um dos "100 Melhores Vinhos do Mundo em 2014". Um vinho profundo e com muita alma, que enche a boca com camadas e mais camadas de fruta madura e finos taninos. Por este preço, é uma grande barganha.
+			</span>
+
+			
+
+
+
+		</div>
+
+
 
 	</article>
 

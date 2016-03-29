@@ -71,7 +71,7 @@
 
 		<div class="cart-header sprite-icon">
 			<div class="nav-cart-count sprite-icon">22</div>
-			<div class="drop-cart blue">
+			<div class="drop-cart template1">
 				<p class="your-cart">Você tem <span id="cartCount">2 produtos</span> no carrinho de compras</p>
 				<ul class="lista-add" id="cartItems">
 					<li>
@@ -103,7 +103,7 @@
 					<a class="logo-mobile sprite-icon" href="javascript:void(0);"></a>
 					<ul class="menu">
 
-						<li class="menu-item larger760 blue">
+						<li class="menu-item larger760 template1">
 							<a class="menu-link" href="/categoria">
 								Vinho por país
 							</a>
@@ -147,7 +147,7 @@
 							</div>
 						</li>
 
-						<li class="menu-item larger760 red">
+						<li class="menu-item larger760 template2">
 							<a class="menu-link" href="javascript:void(0);">
 								Ícones
 							</a>
@@ -194,7 +194,7 @@
 							</div>
 						</li>
 
-						<li class="menu-item larger760 green">
+						<li class="menu-item larger760 template3">
 							<a class="menu-link" href="javascript:void(0);">
 								Compras inteligentes
 							</a>
@@ -243,7 +243,7 @@
 							</div>
 						</li>
 
-						<li class="menu-item larger760-right purple">
+						<li class="menu-item larger760-right template4">
 							<a class="menu-link" href="javascript:void(0);">
 								90 pontos ou +
 							</a>
@@ -289,7 +289,7 @@
 							</div>
 						</li>
 
-						<li class="menu-item larger760-right pink">
+						<li class="menu-item larger760-right template5">
 							<a class="menu-link" href="javascript:void(0);">
 								Bons e baratos
 							</a>
@@ -335,7 +335,7 @@
 							</div>
 						</li>
 
-						<li class="menu-item larger760-right darkblue">
+						<li class="menu-item larger760-right template6">
 							<a class="menu-link" href="javascript:void(0);">
 								Presentes
 							</a>
@@ -381,7 +381,7 @@
 							</div>
 						</li>
 
-						<li class="menu-item larger760-right orange">
+						<li class="menu-item larger760-right template7">
 							<a class="menu-link" href="javascript:void(0);">
 								Acessórios
 							</a>
@@ -427,7 +427,7 @@
 							</div>
 						</li>
 
-						<li class="menu-item larger760-right black">
+						<li class="menu-item larger760-right template8">
 							<a class="menu-link" href="javascript:void(0);">
 								Especiais
 							</a>
@@ -580,7 +580,7 @@
 					</li>
 
 				</ul>
-				<a class="bt-default-full blue" href="#">Entrar <span class="arrow-link">></span></a>
+				<a class="bt-default-full template1" href="#">Entrar <span class="arrow-link">></span></a>
 			</div>
 			<div class="footer-modal">
 				<a href="/cadastro">
@@ -601,7 +601,7 @@
 					</li>
 
 				</ul>
-				<a class="bt-default-full blue" href="#">Enviar <span class="arrow-link">></span></a>
+				<a class="bt-default-full template1" href="#">Enviar <span class="arrow-link">></span></a>
 			</div>
 			<div class="footer-modal">
 				<a href="/cadastro">
