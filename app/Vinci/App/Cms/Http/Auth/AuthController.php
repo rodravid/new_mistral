@@ -9,8 +9,10 @@ class AuthController extends BaseAuthController
 
     protected $guard = 'cms';
 
+    protected $loginView = 'cms::auth.login';
+
     protected $redirectTo = '/cms';
 
-    protected $loginView = 'cms::auth.login';
+    protected $redirectAfterLogout = '/cms';
 
 }

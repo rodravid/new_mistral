@@ -2,11 +2,8 @@
 
 namespace Vinci\Domain\User;
 
-use Carbon\Carbon;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-
 use Doctrine\ORM\Mapping AS ORM;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Core\Model;
@@ -53,11 +50,6 @@ abstract class User extends Model implements Authenticatable, CanResetPassword
     public function getEmail()
     {
         return $this->email;
-    }
-
-    public function setPassword($password)
-    {
-        $this->password = bcrypt($password);
     }
 
 }
