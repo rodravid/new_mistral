@@ -154,6 +154,7 @@ return [
         LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         LaravelDoctrine\ORM\Auth\Passwords\PasswordResetServiceProvider::class,
+        LaravelDoctrine\ACL\AclServiceProvider::class,
         Vinci\App\Core\Providers\AppServiceProvider::class,
         Vinci\App\Core\Providers\EventServiceProvider::class,
         Vinci\Infrastructure\InfrastructureServiceProvider::class,

@@ -3,8 +3,13 @@
 namespace Vinci\Domain\User;
 
 use Doctrine\ORM\Mapping AS ORM;
+use LaravelDoctrine\ACL\Mappings as ACL;
+use LaravelDoctrine\ACL\Contracts\HasRoles as HasRolesContract;
+use LaravelDoctrine\ACL\Contracts\HasPermissions as HasPermissionContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use LaravelDoctrine\ACL\Permissions\HasPermissions;
+use LaravelDoctrine\ACL\Roles\HasRoles;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Core\Model;
 
@@ -15,10 +20,10 @@ use Vinci\Domain\Core\Model;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"customer" = "Vinci\Domain\Customer\Customer", "admin" = "Vinci\Domain\Admin\Admin"})
  */
-abstract class User extends Model implements Authenticatable, CanResetPassword
+abstract class User extends Model implements Authenticatable, CanResetPassword, HasRolesContract, HasPermissionContract
 {
 
-    use Timestamps;
+    use Timestamps, HasRoles, HasPermissions;
 
     /**
      * @ORM\Id
@@ -26,6 +31,17 @@ abstract class User extends Model implements Authenticatable, CanResetPassword
      * @ORM\Column(type="integer")
      */
     protected $id;
+
+    /**
+     * @ACL\HasRoles()
+     * @var \Doctrine\Common\Collections\ArrayCollection|\LaravelDoctrine\ACL\Contracts\Role[]
+     */
+    protected $roles;
+
+    /**
+     * @ACL\HasPermissions
+     */
+    public $permissions;
 
     public function getId()
     {
@@ -50,6 +66,16 @@ abstract class User extends Model implements Authenticatable, CanResetPassword
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function getPermissions()
+    {
+        return $this->permissions;
     }
 
 }
