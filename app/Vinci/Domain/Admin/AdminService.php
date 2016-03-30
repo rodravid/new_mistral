@@ -1,9 +1,8 @@
 <?php
 
-namespace Vinci\Domain\Admin\Admin;
+namespace Vinci\Domain\Admin;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Database\ConnectionInterface as Database;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 
 class AdminService

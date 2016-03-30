@@ -2,10 +2,9 @@
 
 $route->group(['middleware' => ['web']], function () use ($route) {
 
-    $route->get('login', 'Auth\AuthController@showLoginForm');
-    $route->post('login', 'Auth\AuthController@login');
-    $route->get('logout', 'Auth\AuthController@logout');
-
+    $route->get('login', 'Auth\\AuthController@showLoginForm')->name('login.show');
+    $route->post('login', 'Auth\\AuthController@login')->name('login');
+    $route->get('logout', 'Auth\\AuthController@logout')->name('logout');
     $route->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
     $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $route->post('password/reset', 'Auth\PasswordController@reset');

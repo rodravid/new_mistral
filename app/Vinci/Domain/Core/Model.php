@@ -22,4 +22,15 @@ abstract class Model
         return new static($attributes);
     }
 
+    public function __get($name)
+    {
+        $getter = 'get' . ucfirst($name);
+
+        if (method_exists($this, $getter)) {
+            return call_user_func([$this, $getter]);
+        }
+
+        throw new \RuntimeException("No getter found for {$name}");
+    }
+
 }

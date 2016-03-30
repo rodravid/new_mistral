@@ -34,4 +34,5 @@ class Admin extends User
     {
         return $this->email;
     }
+
 }

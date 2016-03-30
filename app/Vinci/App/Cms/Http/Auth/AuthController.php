@@ -13,6 +13,6 @@ class AuthController extends BaseAuthController
 
     protected $redirectTo = '/cms';
 
-    protected $redirectAfterLogout = '/cms';
+    protected $redirectAfterLogout = '/cms/login';
 
 }

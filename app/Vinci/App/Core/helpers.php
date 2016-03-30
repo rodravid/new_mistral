@@ -7,3 +7,8 @@ function asset_web($path, $secure = null) {
 function asset_cms($path, $secure = null) {
     return asset("assets/cms/{$path}", $secure);
 }
+
+function cmsUser()
+{
+    return auth('cms')->user();
+}

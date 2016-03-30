@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'roles' => [
-        'entity' => Vinci\Domain\ACL\Role::class,
+        'entity' => Vinci\Domain\ACL\Role\Role::class,
     ],
 
     /*

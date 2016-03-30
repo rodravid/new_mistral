@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Domain\ACL;
+namespace Vinci\Domain\ACL\Role;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,6 +26,17 @@ class Role implements RoleContract
     protected $name;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\ACL\Module\Module", inversedBy="roles")
+     * @ORM\JoinTable(name="roles_modules")
+     */
+    protected $modules;
+
+    public function __construct()
+    {
+        $this->modules = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -39,6 +50,11 @@ class Role implements RoleContract
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getModules()
+    {
+        return $this->modules;
     }
 
     /**

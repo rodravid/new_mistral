@@ -6,7 +6,7 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Vinci\App\Website\Http\Controller;
-use Vinci\Domain\User\Admin\AdminService;
+use Vinci\Domain\Admin\AdminService;
 
 class AccountController extends Controller
 {
