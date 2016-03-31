@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="/assets/imagens/icons/favicon.ico" type="image/x-icon">
     <title>Índice de páginas « Linx</title>
     <script type="text/javascript" src="assets/js/jquery-1.9.1.min.js"></script>
-  </head>
+</head>
 <body>
-<style>
-    body,html{width: 100%;height:100%;}
-    body{overflow-y:hidden;}
-    * {margin:0 auto;padding:0;text-decoration: none;font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-    box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
+    <style>
+        body,html{width: 100%;height:100%;}
+        body{overflow-y:hidden;}
+        * {margin:0 auto;padding:0;text-decoration: none;font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+        box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        -ms-box-sizing:border-box;
+        -o-box-sizing:border-box;
     }
     ul {overflow:hidden; }
     ul li {list-style: none;float:left;width:38%;font-size:13px;text-align: left;position: relative}
@@ -50,36 +50,47 @@
 </style>
 <div class="logo"><p>Vinci</p></div>
 
-    <ul class="head">
-    	<li>Nome da página</li>
+<ul class="head">
+   <li>Nome da página</li>
 <!--         <li>Status</li>
-        <li>Comentários</li>  -->
-    </ul>
+    <li>Comentários</li>  -->
+</ul>
 <ul>
 	<!-- Links Pages -->
     <li class="linha">
-             <ul>
-                  <li><a href="/" target="_blank">Home</a></li>
-                  <li></li>
-                  <li></li>
-            </ul>
-            <ul>
-                  <li><a href="/categoria" target="_blank">Categoria</a></li>
-                  <li></li>
-                  <li></li>
-            </ul>
-            <ul>
-                  <li><a href="/busca" target="_blank">Resultado de Busca</a></li>
-                  <li></li>
-                  <li></li>
-            </ul>
+       <ul>
+          <li><a href="/" target="_blank">Home</a></li>
+          <li></li>
+          <li></li>
+      </ul>
+      <ul>
+          <li><a href="/categoria" target="_blank">Categoria</a></li>
+          <li></li>
+          <li></li>
+      </ul>
+      <ul>
+          <li><a href="/busca" target="_blank">Resultado de Busca</a></li>
+          <li></li>
+          <li></li>
+      </ul>
 
+      <ul>
+          <li><a href="/cadastro" target="_blank">Cadastro</a></li>
+          <li></li>
+          <li></li>
+      </ul>
+
+      <ul>
+      <li><a href="/produto" target="_blank">Produto</a></li>
+          <li></li>
+          <li></li>
+      </ul>
             <ul>
-                  <li><a href="/cadastro" target="_blank">Cadastro</a></li>
-                  <li></li>
-                  <li></li>
-            </ul> 
-    </li>
+      <li><a href="/carrinho" target="_blank">Carrinho</a></li>
+          <li></li>
+          <li></li>
+      </ul> 
+  </li>
 </ul>
 
 <!--     <div class="icon-github">
@@ -87,36 +98,36 @@
             <img src="#" title="Ir para o Repositório no Github" alt="Imagem Icon Github">
         </a>
     </div> -->
-<script type="text/javascript">
-$(document).ready(function() {
-    $(".v100").each(function() {
-        if( $(this).text() == '100%' ){
-            $(this).addClass('concluido');
-            $(this).parent("ul").addClass('ok');
-        } 
-    });  
- $(".linha ul").each(function() {
-        if( $(this).is(":first-child") && $(this).find("a").attr("href")=="") {
-            $(this).find("a").removeAttr("href", "");
-        }
-       
-});
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".v100").each(function() {
+                if( $(this).text() == '100%' ){
+                    $(this).addClass('concluido');
+                    $(this).parent("ul").addClass('ok');
+                } 
+            });  
+            $(".linha ul").each(function() {
+                if( $(this).is(":first-child") && $(this).find("a").attr("href")=="") {
+                    $(this).find("a").removeAttr("href", "");
+                }
+
+            });
 //  $(".linha ul").each(function() {
 //         if($(this).is(":first-child") && !$(this).hasClass("ok")) {
 //             $(this).find("a").removeAttr("href", "");
 //         }
-       
-// });
-           $(window).scroll(function() {
 
-        if ($(window).scrollTop() <= 95) {
-            
-            $(".head").css('position','relative');
-        } else {
-            
-            $(".head").css('position','fixed').css('top','0');
-        }
-    });
+// });
+$(window).scroll(function() {
+
+    if ($(window).scrollTop() <= 95) {
+
+        $(".head").css('position','relative');
+    } else {
+
+        $(".head").css('position','fixed').css('top','0');
+    }
+});
 });
 </script>
 </body>

@@ -187,7 +187,7 @@
 			</div>
 
 			<div class="wrap-content-bt">
-				<div class="content-bt">
+				<div class="content-bt-big">
 					<a class="bt-default-full bt-color" href="#">Criar conta <span class="arrow-link">></span></a>
 				</div>
 			</div>

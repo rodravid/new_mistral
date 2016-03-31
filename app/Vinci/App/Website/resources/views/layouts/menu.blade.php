@@ -13,7 +13,9 @@
 			<form action="">
 				<div class="wrap-input-search">	
 					<input class="input-search" type="text">
+
 					<div class="results-suggestions">
+					<span class="bt-close-suggestions sprite-icon"></span>
 						<ul class="suggestions-list">
 							<li class="suggestions-item">
 								<a href="" class="suggestions-link">

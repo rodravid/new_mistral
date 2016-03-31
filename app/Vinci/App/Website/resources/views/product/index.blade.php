@@ -36,11 +36,11 @@
 
 <div class="row relative">
 
-	<article class="wrap-content-product template1">
+	<section class="wrap-content-product template1">
 		
 		<div class="col-product-one">
 			<div class="height-bg-product">
-				<span class="favorite"></span>
+				<span class="favorite-product"></span>
 
 				<h1 class="tit-product show-desktop"> ERRAZURIZ WILD FERMENTED PINOT NOIR 2010</h1>
 				<span class="tit-product-producer show-desktop">Luca (Laura catena)</span>
@@ -182,7 +182,7 @@
 
 		<div class="col-product-two">
 			<div class="show-mobile">
-
+				<span class="favorite-product"></span>
 				<h1 class="tit-product"> ERRAZURIZ WILD FERMENTED PINOT NOIR 2010</h1>
 				<span class="tit-product-producer">Luca (Laura catena)</span>
 
@@ -201,6 +201,8 @@
 		</div>
 
 		<div class="col-product-tree">
+
+
 
 			<div class="wrap-price-units">
 
@@ -233,45 +235,325 @@
 
 				<a class="bt-default-full bt-big template4" href="#">Comprar <span class="arrow-link">></span></a>
 
-				<div class="content-term-delivery">
+				<div class="content-term-delivery show-desktop">
 					<a href="javascript:void(0);">
 						Prazo de entrega >
 					</a>
 				</div>
 			</div>
 
+			<ul class="details-wine show-mobile">
 
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Produtor</p></li>
+						<li><a href="/produtor/catena-zapata"><p class="info-vinho-template">Catena Zapata</p></a></li>
+					</ul>
+				</li>
 
-			<ul class="seals-description">
 				<li>
-					<p class="name-seals-description">Wine spectator /top /100 /2012</p>
-					<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+					<ul>
+						<li><p class="item-info-wine">País</p></li>
+						<li><a href="/pais/argentina"><p class="info-vinho-template">Argentina</p></a></li>
+					</ul>
 				</li>
+
 				<li>
-					<p class="name-seals-description">Robert parker / 92 PTS / 2012</p>
-					<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+					<ul>
+						<li><p class="item-info-wine">Região</p></li>
+						<li><a href="/regiao/mendoza"><p class="info-vinho-template">Mendoza</p></a></li>
+					</ul>
 				</li>
+
 				<li>
-					<p class="name-seals-description">Wine spectator /top /100 /2012</p>
-					<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+					<ul>
+						<li><p class="item-info-wine">Safra</p></li>
+						<li><p class="">2013</p></li>
+					</ul>
 				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Tipo</p></li>
+						<li><a href="/tipo-de-vinho/branco-seco"><p class="info-vinho-template">Branco Seco</p></a></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Uva</p></li>
+						<li><p class="">Chardonnay (100%)</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Volume</p></li>
+						<li><p class="">750 ml</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Teor alcólico</p></li>
+						<li><p class="">14%</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Temperatura de Serviço</p></li>
+						<li><p class="">9 a 11ºC</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Corpo</p></li>
+						<li><p class="">Encorpado</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Sugestão de decantação</p></li>
+						<li><p class="">Não</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Sugestão de guarda</p></li>
+						<li><p class="">de 5 até 10 anos</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Combinações</p></li>
+						<li><p class="">Peixes, frutos do mar e bacalhau.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Validade</p></li>
+						<li><p class="">Válido por prazo indeterminado desde que conservado deitado em local fresco e escuro.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Vinhedo</p></li>
+						<li><p class="">Adrianna, com altitude de  1480m. Colheita manual e rendimento limitado.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Vinificação</p></li>
+						<li><p class="">Fermentação em barricas de carvalho francês, com leveduras selecionadas e temperatura controlada por 20 dias.</p></li>
+					</ul>
+				</li>
+
+				<li>
+					<ul>
+						<li><p class="item-info-wine">Maturação</p></li>
+						<li><p class="">Maturado 11 meses em barricas de carvalho francês, sendo 73% novas.</p>
+						</li>
+					</ul>
+				</li>
+
+				<a href="javascript:void(0);" class="see-more-info"> Veja mais</a>
+
 			</ul>
 
 
-			<p class="item-info-wine uppercase">Descritivo</p>
-			<span>
-				Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina. Mostra muita classe, elegância e fantástica pureza, tendo recebido nada menos do que 92 pontos de Robert Parker, premiado com 93 pontos pela Wine Spectator na safra 2012 e escolhido como um dos "100 Melhores Vinhos do Mundo em 2014". Um vinho profundo e com muita alma, que enche a boca com camadas e mais camadas de fruta madura e finos taninos. Por este preço, é uma grande barganha.
-			</span>
-
-			
+			<div class="flex-col-product-tree">
 
 
+				<div class="invert-mobile1">
+					<ul class="seals-description">
+						<li>
+							<p class="name-seals-description">Wine spectator /top /100 /2012</p>
+							<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+						</li>
+						<li>
+							<p class="name-seals-description">Robert parker / 92 PTS / 2012</p>
+							<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+						</li>
+						<li>
+							<p class="name-seals-description">Wine spectator /top /100 /2012</p>
+							<div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, possimus? Similique ipsa quas, minus commodi ullam provident dolorum? Sint eum deleniti repellat omnis, cupiditate in deserunt fugiat hic dolorem a!</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="invert-mobile2 show-mobile">
+					<p class="item-info-wine uppercase description-toogle">Descritivo</p>
+					<span>
+						Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina. Mostra muita classe, elegância e fantástica pureza, tendo recebido nada menos do que 92 pontos de Robert Parker, premiado com 93 pontos pela Wine Spectator na safra 2012 e escolhido como um dos "100 Melhores Vinhos do Mundo em 2014". Um vinho profundo e com muita alma, que enche a boca com camadas e mais camadas de fruta madura e finos taninos. Por este preço, é uma grande barganha.
+					</span>
+				</div>
+
+
+			</div>
 
 		</div>
 
 
 
-	</article>
+	</section>
+
+	<section class="also-recommend featured-products">
+
+	<h2 class="title-category">Também recomendamos</h2>
+
+		<div class="cols-products">
+			
+			<div class="wine-card bg-template template2">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+		</div>
+
+				<div class="cols-products">
+			
+			<div class="wine-card bg-template template4">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+		</div>
+
+				<div class="cols-products">
+			
+			<div class="wine-card bg-template template7">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+		</div>
+
+				<div class="cols-products">
+			
+			<div class="wine-card bg-template template1">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+		</div>
+
+	</section>
 
 </div>
 

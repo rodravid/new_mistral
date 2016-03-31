@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b2e947bf490fd288d258fba944a7f7d2",
+    "hash": "f94da9bd42dd1b21446878cc02e4518e",
     "content-hash": "5141cc9001ebc069e39745ea23ca1866",
     "packages": [
         {
@@ -1304,16 +1304,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.24",
+            "version": "v5.2.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "396297a5fd3c70c2fc1af68f09ee574a2380175c"
+                "reference": "ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/396297a5fd3c70c2fc1af68f09ee574a2380175c",
-                "reference": "396297a5fd3c70c2fc1af68f09ee574a2380175c",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a",
+                "reference": "ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a",
                 "shasum": ""
             },
             "require": {
@@ -1428,7 +1428,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-03-22 13:45:19"
+            "time": "2016-03-29 13:32:58"
         },
         {
             "name": "league/flysystem",
@@ -2915,16 +2915,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v2.8.3",
+            "version": "v2.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "f783dc7c00f5988c4483f959b7464a1565dd24a7"
+                "reference": "e848750ceffdc4af374844c338c299627a98196a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/f783dc7c00f5988c4483f959b7464a1565dd24a7",
-                "reference": "f783dc7c00f5988c4483f959b7464a1565dd24a7",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/e848750ceffdc4af374844c338c299627a98196a",
+                "reference": "e848750ceffdc4af374844c338c299627a98196a",
                 "shasum": ""
             },
             "require": {
@@ -2975,7 +2975,7 @@
             ],
             "description": "Symfony Serializer Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-27 05:14:19"
+            "time": "2016-03-07 14:04:32"
         },
         {
             "name": "symfony/translation",

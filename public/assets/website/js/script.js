@@ -22,12 +22,10 @@ jQuery(document).ready(function ($) {
 
 
     $(".favorite-product").click(function(event) {
-      if ($(this).hasClass('clicado')){
-       $(this).removeClass('clicado');
-       $(this).removeClass('opacity1');
+      if ($(this).hasClass('click-fav')){
+       $(this).removeClass('click-fav');
      }else{
-       $(this).addClass('clicado');
-       $(this).addClass('opacity1');
+       $(this).addClass('click-fav');
      }
    });
 
@@ -67,10 +65,10 @@ jQuery(document).ready(function ($) {
     $(".see-more-info").click(function (event) {
       if ($(this).hasClass('see-less-info')) {
         $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "none");
-        $(this).text('veja mais').addClass('see-more-info').removeClass('see-less-info');
+        $(this).text('Veja mais').addClass('see-more-info').removeClass('see-less-info');
       } else {
         $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "inline-block");
-        $(this).text('veja menos').addClass('see-less-info').removeClass('see-more-info');
+        $(this).text('Veja menos').addClass('see-less-info').removeClass('see-more-info');
       }
     });
 
@@ -78,6 +76,13 @@ jQuery(document).ready(function ($) {
     $(".name-seals-description").click(function (event) {
 
       $(this).siblings(".seals-description li div").slideToggle(200);
+    });
+
+
+
+    $(".description-toogle").click(function (event) {
+      $(this).toggleClass('open');
+      $(this).siblings(".invert-mobile2 span").slideToggle(200);
     });
 
 

@@ -173,7 +173,7 @@
 	background: none;
 	border: 1px solid #fff;
 	width: 100%;
-	padding: 4.8px 10px;
+	padding: 4.8px 30px 4.8px 10px;
 	float:left;
 	color:#fff;
 	font-size:15px;
@@ -189,6 +189,16 @@
 	left: 0;
 	top: 31px;
 	z-index:999;
+}
+
+.bt-close-suggestions {
+	height: 13px;
+	background-position: -72px -82px;
+	position: absolute;
+	cursor: pointer;
+	right: 9px;
+	top: -20px;
+	width: 13px;
 }
 
 .suggestions-list {
@@ -305,7 +315,7 @@
 	position:relative;
 
 	@media #{$screen-990}{
-			margin: 12px 10px 0 0px;
+		margin: 12px 10px 0 0px;
 	}
 
 	@media #{$screen-970}{
@@ -313,7 +323,7 @@
 		margin: -50px 15px 0 9px;
 	}
 	@media #{$screen-767}{
-		margin: -95px 5px 0 9px;
+		margin: -95px 0px 0 9px;
 	}
 }
 
