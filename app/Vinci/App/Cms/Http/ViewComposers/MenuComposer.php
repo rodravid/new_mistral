@@ -17,7 +17,7 @@ class MenuComposer
 
     public function compose(View $view)
     {
-        $modules = $this->moduleRepository->findModulesForAdminUser(cmsUser());
+        $modules = $this->moduleRepository->findModulesForUser(cmsUser());
 
         $view->with('modules', $modules);
     }

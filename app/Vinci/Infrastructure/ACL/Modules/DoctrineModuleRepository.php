@@ -2,23 +2,30 @@
 
 namespace Vinci\Infrastructure\ACL\Modules;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use LaravelDoctrine\ACL\Contracts\HasRoles;
 use Vinci\Domain\ACL\Module\ModuleRepository;
-use Vinci\Domain\Admin\Admin;
-use Vinci\Infrastructure\Common\DoctrineBaseRepository;
+use Vinci\Infrastructure\Common\DoctrineNestedTreeRepository;
 
-class DoctrineModuleRepository extends DoctrineBaseRepository implements ModuleRepository
+class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements ModuleRepository
 {
 
-    public function findModulesForAdminUser(Admin $user)
+    public function findModulesForUser(HasRoles $user)
     {
-        $query = $this->_em->createQuery("SELECT m FROM \Vinci\Domain\ACL\Module\Module m JOIN m.roles r WHERE r.id IN (:ids)");
+        if ($user->getRoles()->count()) {
 
-        $ids = $user->getRoles()->map(function($role) {
-            return $role->getId();
-        });
+            $query = $this->_em->createQuery("SELECT m, ch FROM \Vinci\Domain\ACL\Module\Module m LEFT JOIN m.children ch JOIN m.roles r WHERE r.id IN (:ids)");
 
-        $query->setParameter('ids', $ids);
+            $ids = $user->getRoles()->map(function($role) {
+                return $role->getId();
+            });
 
-        return $query->getResult();
+            $query->setParameter('ids', $ids);
+
+            return $query->getResult();
+        }
+
+        return new ArrayCollection;
     }
+
 }

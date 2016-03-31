@@ -2,11 +2,12 @@
 
 namespace Vinci\Domain\ACL\Module;
 
-use Vinci\Domain\Admin\Admin;
+
+use LaravelDoctrine\ACL\Contracts\HasRoles;
 
 interface ModuleRepository
 {
 
-    public function findModulesForAdminUser(Admin $user);
+    public function findModulesForUser(HasRoles $user);
 
 }
