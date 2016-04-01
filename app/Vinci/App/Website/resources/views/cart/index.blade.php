@@ -390,7 +390,7 @@
 </div>
 
 
-
+@include('website::layouts.footer')
 
 
 @stop

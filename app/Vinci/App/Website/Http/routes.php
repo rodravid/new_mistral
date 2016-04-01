@@ -57,7 +57,11 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     });
 
     $route->get('/entrega', function(){
-        return view("website::entrega.index");
+        return view("website::delivery.index");
+    });
+
+    $route->get('/pagamento', function(){
+        return view("website::payment.index");
     });
 
 });

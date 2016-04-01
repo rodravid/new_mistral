@@ -407,7 +407,7 @@
 
 	<section class="also-recommend featured-products">
 
-	<h2 class="title-category">Também recomendamos</h2>
+		<h2 class="title-category">Também recomendamos</h2>
 
 		<div class="cols-products">
 			
@@ -445,7 +445,7 @@
 
 		</div>
 
-				<div class="cols-products">
+		<div class="cols-products">
 			
 			<div class="wine-card bg-template template4">
 				<span class="favorite"></span>
@@ -481,7 +481,7 @@
 
 		</div>
 
-				<div class="cols-products">
+		<div class="cols-products">
 			
 			<div class="wine-card bg-template template7">
 				<span class="favorite"></span>
@@ -517,7 +517,7 @@
 
 		</div>
 
-				<div class="cols-products">
+		<div class="cols-products">
 			
 			<div class="wine-card bg-template template1">
 				<span class="favorite"></span>
@@ -554,7 +554,9 @@
 		</div>
 
 	</section>
-
+	@include('website::layouts.partials.featuredweek')
 </div>
+
+@include('website::layouts.footer')
 
 @stop

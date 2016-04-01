@@ -371,7 +371,9 @@
 		<a class="bt-default-full template7 show-desktop" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
 
 	</section>
-
+	@include('website::layouts.partials.featuredweek')
 </div>
+
+@include('website::layouts.footer')
 
 @stop

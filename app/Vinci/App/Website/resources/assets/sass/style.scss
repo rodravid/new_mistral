@@ -19,6 +19,11 @@ body {
 		display:none !important;
 	}
 }
+.hide-mobile {
+	@media #{$screen-767} {
+		display:none !important;
+	}
+}
 .show-mobile {
 	display:none !important;
 	@media #{$screen-767} {
@@ -550,6 +555,29 @@ a.bt-default {
 .header-internal { 
 	padding:0 0 10px 0;
 	margin-bottom: 30px;
+	display:inline-block;
+	width:100%;
+}
+
+.header-internal.header-checkout {
+	padding:0;
+}
+
+.header-checkout {
+	.logo {
+		margin-left: 0;
+	}
+
+	@media #{$screen-767} {
+
+		.wrap-content-bt.mbottom20 {
+			margin-bottom: 0;
+		}
+
+		.internal-subtitle {
+			font-size:30px;
+		}
+	}
 }
 
 .breadcrumb {
@@ -1820,9 +1848,246 @@ a.bt-default {
 	}
 
 
-
-
 	/* PG CARRINHO */
+
+
+	/* PG ENTREGA */
+	
+	.nav-status {
+		margin-left: 50px;
+
+		@media #{$screen-767} { 
+			margin-left: 0px;
+			float: none;
+			margin-top: 30px;
+		}
+	}
+
+	.list-status {
+
+		margin-top:11px;
+
+		li {
+			display: inline-block;
+			width: 220px;
+			text-align: center;
+			position:relative;
+			padding-bottom: 13px;
+
+			@media #{$screen-970} { 
+				width:160px;
+			}
+			@media #{$screen-767} { 
+				width:100%;
+				text-align: left;
+			}
+
+			span {
+				color:#fff;
+				text-transform:uppercase;
+				font: 20px $robotobold;
+			}
+		}
+
+	}
+
+	.current-status {
+		border-bottom: 5px solid #fd571d;
+	}
+
+	.cup-status {
+		position:absolute;
+		right: 20px;
+		top: -28px;
+		@media #{$screen-970} {
+			right: 0px; 
+		}
+		@media #{$screen-767} {
+			right: 40px; 
+		}
+	}
+
+	.adress {
+		width:300px;
+		display:inline-table;
+		border:1px solid #adbfc6;
+		padding:20px;
+		margin: 0 12px 20px 0;
+		position:relative;
+
+		@media #{$screen-970} { 
+			margin: 0 60px 20px 0;
+			width: 45%;
+
+		}
+
+		@media #{$screen-767} { 
+			width:100%;
+			margin: 0 0px 30px 0;
+		}
+
+		h4 {
+			font:18px $robotobold;
+		}
+
+		p {
+			font-size:15px;
+		}
+	}
+	@media #{$screen-970} { 
+		.adress:nth-child(3n+2) {
+			margin: 0 0px 30px 0;
+		} 
+	}
+
+	.content-adress {
+		min-height:150px;
+		border-bottom:1px solid #000;
+		margin-bottom:15px;
+	}
+
+	.bt-edit {
+		border:2px solid $blue;
+		padding: 3px 10px;
+		font: 16px $robotobold;
+		position:absolute;
+		right:10px;
+		top:10px;
+		color:$blue;
+	}
+
+
+	/* PG ENTREGA */
+
+	/*PG PAGAMENTO*/
+	.title-internal-blue {
+		font:20px $robotobold;
+		color:$blue;
+		text-transform:uppercase;
+	}
+
+	.section-payment {
+		border: 1px solid #adbfc6;
+		padding: 20px 20px 0px 20px;
+		margin-bottom: 30px;
+		width:100%;
+		display:inline-block;
+	}
+	.to-deliver {
+		padding-bottom:20px;
+	}
+
+	.row-request {
+		display:inline-block;
+		width:100%;
+		padding-bottom:10px;
+		@media #{$screen-767} { 
+			position:relative;
+		}
+	}
+	.row-request+.row-request {
+		border-top:1px solid #adbfc6;
+		padding-top:20px;
+		margin-bottom:15px;
+
+		.bt-request {
+			top:20px;
+		}
+	}
+
+	.col-request {
+		float:left;
+		width:850px;
+		@media #{$screen-970} { 
+			width: 570px;
+		}
+
+		@media #{$screen-767} { 
+			width:100%;
+		}
+	}
+
+	.qtd-request {
+		float:left;
+		width:100px;
+
+
+	}
+
+	.name-product-request {
+		float:left;
+		width:650px;
+
+		@media #{$screen-970} { 
+			width: 350px;
+		}
+
+		@media #{$screen-767} { 
+			width:100%;
+		}
+	}
+
+	.price-request {
+		float:left;
+
+		@media #{$screen-970} { 
+			width: 110px;
+		}
+
+		@media #{$screen-767} { 
+			width: 100%;
+			text-align: right;
+			float: none;
+			display: inline-block;
+		}
+	}
+
+	.bt-arrow-payment {
+		border: 2px solid #11b6f0;
+		padding: 3px 10px;
+		font: 16px "roboto_condensedbold";
+		right: 10px;
+		top: 10px;
+		color: $blue;
+	}
+
+
+
+	.bt-request {
+		float:right;
+
+		@media #{$screen-767} { 
+			top: 0px;
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	.info-request {
+		font-size:18px;
+	}
+
+	.price-final {
+		margin-right: 40px;
+		width:110px;
+
+		@media #{$screen-970} { 
+			margin-right: 97px;
+		}
+
+		@media #{$screen-767} { 
+			margin-right: 0px;
+			text-align: right;
+		}
+	}
+
+	.wrap-payment {
+		.col-register2 {
+			margin: 0 29px;
+		}
+	}
+
+	/*PG PAGAMENTO*/
 
 	/* select */
 

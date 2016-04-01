@@ -42,7 +42,7 @@
 							<input class="senha input-register half" type="password" placeholder="Confirmar senha *">
 						</li>
 					</ul>
-					<h2 class="title-form">Dados Pessoais*</h2>
+					<h2 class="title-form">Dados Pessoais *</h2>
 					<ul class="list-form-register">
 						<li>
 							<input class="name-complete input-register full" type="text" placeholder="Nome completo *">
@@ -97,7 +97,7 @@
 							</div>
 						</li>
 						<li>
-							<input class="adress input-register full" type="text" placeholder="Endereço">
+							<input class="input-register full" type="text" placeholder="Endereço">
 						</li>
 						<li>
 							<input class="number input-register two-fields" type="text" placeholder="n°">
@@ -158,7 +158,7 @@
 						</li>
 
 						<li>
-							<input class="adress input-register full" type="text" placeholder="Referência para entrega">
+							<input class="input-register full" type="text" placeholder="Referência para entrega">
 						</li>
 					</ul>
 
@@ -198,7 +198,7 @@
 
 </div>
 
-
+@include('website::layouts.footer')
 
 
 
