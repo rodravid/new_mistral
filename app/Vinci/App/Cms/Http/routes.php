@@ -9,17 +9,21 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $route->post('password/reset', 'Auth\PasswordController@reset');
 
-    $route->group(['middleware' => ['auth:cms']], function() use ($route) {
+    $route->group(['middleware' => ['auth:cms','acl']], function() use ($route) {
 
-        $route->get('/', 'Dashboard\\DashboardController@index')->name('index');
+        $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard');
 
         $route->get('profile', 'Account\\AccountController@index')->name('profile');
 
-        $route->group(['prefix' => 'minha-conta', 'as' => 'account.'], function() use ($route) {
 
+        $route->group(['prefix' => 'users', 'as' => 'users.'], function() use ($route) {
+            $route->get('/', 'User\\UserController@index')->name('list');
+            $route->get('/create', 'User\\UserController@create')->name('create');
+        });
+
+        $route->group(['prefix' => 'minha-conta', 'as' => 'account.'], function() use ($route) {
             $route->get('/', 'Account\\AccountController@index')->name('index');
             $route->get('/editar', 'Account\\AccountController@edit')->name('edit');
-
         });
 
     });

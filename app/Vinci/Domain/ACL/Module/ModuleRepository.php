@@ -8,6 +8,8 @@ use LaravelDoctrine\ACL\Contracts\HasRoles;
 interface ModuleRepository
 {
 
-    public function findModulesForUser(HasRoles $user);
+    public function getModulesForUser(HasRoles $user);
+
+    public function findByName($name);
 
 }

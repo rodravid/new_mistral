@@ -2,10 +2,13 @@
 
 namespace Vinci\Domain\User;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use LaravelDoctrine\ACL\Contracts\HasPermissions as HasPermissionsContract;
 use LaravelDoctrine\ACL\Mappings as ACL;
 use LaravelDoctrine\ACL\Contracts\HasRoles as HasRolesContract;
-use LaravelDoctrine\ACL\Contracts\HasPermissions as HasPermissionContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use LaravelDoctrine\ACL\Permissions\HasPermissions;
@@ -20,10 +23,10 @@ use Vinci\Domain\Core\Model;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"customer" = "Vinci\Domain\Customer\Customer", "admin" = "Vinci\Domain\Admin\Admin"})
  */
-abstract class User extends Model implements Authenticatable, CanResetPassword, HasRolesContract, HasPermissionContract
+abstract class User extends Model implements Authenticatable, AuthorizableContract, CanResetPassword, HasRolesContract, HasPermissionsContract
 {
 
-    use Timestamps, HasRoles, HasPermissions;
+    use Timestamps, HasRoles, HasPermissions, Authorizable;
 
     /**
      * @ORM\Id
@@ -37,11 +40,6 @@ abstract class User extends Model implements Authenticatable, CanResetPassword, 
      * @var \Doctrine\Common\Collections\ArrayCollection|\LaravelDoctrine\ACL\Contracts\Role[]
      */
     protected $roles;
-
-    /**
-     * @ACL\HasPermissions
-     */
-    public $permissions;
 
     public function getId()
     {
@@ -73,9 +71,38 @@ abstract class User extends Model implements Authenticatable, CanResetPassword, 
         return $this->roles;
     }
 
+    /**
+     * @param string $permission
+     *
+     * @return bool
+     */
+    public function hasPermissionTo($permission)
+    {
+        foreach ($this->getPermissions() as $per) {
+            if ($per->getName() == $permission) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return ArrayCollection|Permission[]
+     */
     public function getPermissions()
     {
-        return $this->permissions;
+        $permissions = new ArrayCollection;
+
+        foreach ($this->roles as $role) {
+            foreach ($role->getPermissions() as $permission) {
+                if (! $permissions->contains($permission)) {
+                    $permissions->add($permission);
+                }
+            }
+        }
+
+        return $permissions;
     }
 
 }

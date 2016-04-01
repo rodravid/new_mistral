@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\User\User;
 
 /**
  * @Gedmo\Tree(type="nested")
@@ -27,6 +28,21 @@ class Module
      * @ORM\Column(type="string")
      */
     protected $title;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $url;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $icon;
 
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\ACL\Role\Role", mappedBy="modules")
@@ -84,12 +100,34 @@ class Module
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
     public function getTitle()
     {
         return $this->title;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
     public function getRoot()
@@ -97,7 +135,7 @@ class Module
         return $this->root;
     }
 
-    public function setParent(Category $parent = null)
+    public function setParent(Module $parent = null)
     {
         $this->parent = $parent;
     }
@@ -107,9 +145,31 @@ class Module
         return $this->parent;
     }
 
+    public function setChildrens($childs)
+    {
+        $this->children = $childs;
+    }
+
     public function getChildrens()
     {
         return $this->children;
+    }
+
+    public function canBeManagedBy(User $user)
+    {
+        foreach ($user->getRoles() as $role) {
+
+            if ($this->roles->contains($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasChildrens()
+    {
+        return $this->children->count() > 0;
     }
 
 }

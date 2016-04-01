@@ -2,7 +2,6 @@
 
 namespace Vinci\Infrastructure\ACL\Modules;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use LaravelDoctrine\ACL\Contracts\HasRoles;
 use Vinci\Domain\ACL\Module\ModuleRepository;
 use Vinci\Infrastructure\Common\DoctrineNestedTreeRepository;
@@ -10,22 +9,29 @@ use Vinci\Infrastructure\Common\DoctrineNestedTreeRepository;
 class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements ModuleRepository
 {
 
-    public function findModulesForUser(HasRoles $user)
+    public function getModulesForUser(HasRoles $user)
     {
-        if ($user->getRoles()->count()) {
+        $query = $this->_em
+            ->createQueryBuilder()
+            ->select('node')
+            ->from('Vinci\Domain\ACL\Module\Module', 'node')
+            ->join('node.roles', 'r')
+            ->orderBy('node.root, node.lft', 'ASC')
+            ->where('r.id in (:ids)')
+            ->getQuery();
 
-            $query = $this->_em->createQuery("SELECT m, ch FROM \Vinci\Domain\ACL\Module\Module m LEFT JOIN m.children ch JOIN m.roles r WHERE r.id IN (:ids)");
+        $ids = $user->getRoles()->map(function($role) {
+            return $role->getId();
+        });
 
-            $ids = $user->getRoles()->map(function($role) {
-                return $role->getId();
-            });
+        $query->setParameter('ids', $ids);
 
-            $query->setParameter('ids', $ids);
+        return $query->getArrayResult();
+    }
 
-            return $query->getResult();
-        }
-
-        return new ArrayCollection;
+    public function findByName($name)
+    {
+        return $this->findOneBy(['name' => $name]);
     }
 
 }

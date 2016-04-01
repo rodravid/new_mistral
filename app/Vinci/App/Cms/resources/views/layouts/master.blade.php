@@ -53,7 +53,7 @@
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{ url()->route('cms.index') }}" class="site_title">
+                    <a href="/cms" class="site_title">
                         <img src="{{ asset_cms('images/logo-vinci.png') }}" class="img-responsive center" style="padding: 20px 10px 0 0;">
                     </a>
                 </div>

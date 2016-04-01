@@ -157,6 +157,7 @@ return [
         LaravelDoctrine\ACL\AclServiceProvider::class,
         Vinci\App\Core\Providers\AppServiceProvider::class,
         Vinci\App\Core\Providers\EventServiceProvider::class,
+        Vinci\Domain\DomainServiceProvider::class,
         Vinci\Infrastructure\InfrastructureServiceProvider::class,
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
         Vinci\App\Cms\Providers\CmsServiceProvider::class,

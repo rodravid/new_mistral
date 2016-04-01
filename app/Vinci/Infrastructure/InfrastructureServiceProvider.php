@@ -18,7 +18,7 @@ class InfrastructureServiceProvider extends ServiceProvider
 
         $this->registerRepository(
             'Vinci\Domain\Customer\CustomerRepository',
-            'Vinci\Infrastructure\Customer\DoctrineCustomerRepository',
+            'Vinci\Infrastructure\Customers\DoctrineCustomerRepository',
             'Vinci\Domain\Customer\Customer'
         );
 

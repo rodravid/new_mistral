@@ -4,13 +4,14 @@ namespace Vinci\Domain\ACL\Role;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use LaravelDoctrine\ACL\Contracts\Permission;
+use LaravelDoctrine\ACL\Mappings as ACL;
 use LaravelDoctrine\ACL\Contracts\Role as RoleContract;
+use Vinci\Domain\ACL\Contracts\HasModules;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity
  */
-class Role implements RoleContract
+class Role implements RoleContract, HasModules
 {
 
     /**
@@ -30,6 +31,11 @@ class Role implements RoleContract
      * @ORM\JoinTable(name="roles_modules")
      */
     protected $modules;
+
+    /**
+     * @ACL\HasPermissions
+     */
+    public $permissions;
 
     public function __construct()
     {
@@ -57,21 +63,20 @@ class Role implements RoleContract
         return $this->modules;
     }
 
-    /**
-     * @param string $permission
-     *
-     * @return bool
-     */
     public function hasPermissionTo($permission)
     {
-        // TODO: Implement hasPermissionTo() method.
+        foreach ($this->permissions as $permission) {
+            if ($permission->getName() == $permission) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    /**
-     * @return ArrayCollection|Permission[]
-     */
     public function getPermissions()
     {
-        // TODO: Implement getPermissions() method.
+        return $this->permissions;
     }
+
 }
