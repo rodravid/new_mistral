@@ -19,7 +19,8 @@
 
         <!-- Custom styling plus plugins -->
         <link href="{{ asset_cms('css/custom.css') }}" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{{ asset_cms('css/maps/jquery-jvectormap-2.0.3.css') }}"/>
+        <link href="{{ asset_cms('js/datatables/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <link href="{{ asset_cms('css/maps/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
         <link href="{{ asset_cms('css/icheck/flat/green.css') }}" rel="stylesheet"/>
         <link href="{{ asset_cms('css/floatexamples.css') }}" rel="stylesheet" type="text/css"/>
 
@@ -96,7 +97,11 @@
 
         @include('cms::layouts.partials.nav_top')
 
-        @yield('content')
+        <div class="right_col" role="main">
+            @yield('content')
+
+            @include('cms::layouts.partials.footer')
+        </div>
 
     </div>
 
@@ -379,6 +384,27 @@
     </script>
     <script>
         NProgress.done();
+    </script>
+
+    <!-- Datatables -->
+    <script src="{{ asset_cms('js/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset_cms('js/datatables/tools/js/dataTables.tableTools.js') }}"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('input.tableflat').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+        });
+
+        $(document).ready(function () {
+            var oTable = $('#example').dataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/cms/users/datatable"
+            });
+        });
     </script>
 
 @show

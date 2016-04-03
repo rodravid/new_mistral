@@ -6,13 +6,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\User\User;
 
 /**
  * @Gedmo\Tree(type="nested")
  * @ORM\Entity
  */
-class Module
+class Module extends Model
 {
 
     use Timestamps;
@@ -30,7 +31,7 @@ class Module
     protected $title;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $url;
 
@@ -40,7 +41,7 @@ class Module
     protected $name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $icon;
 
@@ -128,6 +129,16 @@ class Module
     public function getName()
     {
         return $this->name;
+    }
+
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+    }
+
+    public function getIcon()
+    {
+        return $this->icon;
     }
 
     public function getRoot()

@@ -16,7 +16,7 @@ class MenuComposer
 
     public function compose(View $view)
     {
-        $modules = $this->ACLService->buildModulesTreeHtml(cmsUser(), $this->getOptions());
+        $modules = $this->ACLService->buildModulesTreeHtmlForUser(cmsUser(), $this->getOptions());
 
         $view->with('modules', $modules);
     }

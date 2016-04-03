@@ -14,6 +14,8 @@ class DoctrineAdminRepository extends DoctrineUserRepository implements AdminRep
         $admin = Admin::make($data);
         $this->_em->persist($admin);
         $this->_em->flush();
+        return $admin;
     }
+
 
 }

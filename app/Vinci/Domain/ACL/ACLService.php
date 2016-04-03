@@ -15,18 +15,27 @@ class ACLService
         $this->moduleRepository = $moduleRepository;
     }
 
-    public function buildModulesTreeHtml(User $user, array $options = [])
+    public function buildModulesTreeHtmlForUser(User $user, array $options = [])
     {
-        $modules = $this->moduleRepository->getModulesForUser($user);
+        $modules = $this->getModulesForUser($user);
 
         $tree = $this->moduleRepository->buildTree($modules, $options);
 
         return $tree;
     }
 
+    protected function getModulesForUser(User $user)
+    {
+        if ($user->isSuperAdmin()) {
+            return $this->moduleRepository->getAll();
+        }
+
+        return $this->moduleRepository->getFromRoles($user->getRoles());
+    }
+
     public function userCanExecuteAction(User $user, $action)
     {
-        if ($user->hasRoleByName('super-admin')) {
+        if ($user->isSuperAdmin()) {
             return true;
         }
 

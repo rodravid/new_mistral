@@ -19,6 +19,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         $route->group(['prefix' => 'users', 'as' => 'users.'], function() use ($route) {
             $route->get('/', 'User\\UserController@index')->name('list');
             $route->get('/create', 'User\\UserController@create')->name('create');
+            $route->get('/datatable', 'User\\UserController@datatable')->name('datatable');
         });
 
         $route->group(['prefix' => 'minha-conta', 'as' => 'account.'], function() use ($route) {

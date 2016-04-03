@@ -6,13 +6,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\ACL\Mappings as ACL;
 use LaravelDoctrine\ACL\Contracts\Role as RoleContract;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\Contracts\HasModules;
+use Vinci\Domain\ACL\Module\Module;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  */
-class Role implements RoleContract, HasModules
+class Role extends Model implements RoleContract, HasModules
 {
+
+    use Timestamps;
+
+    const SUPER_ADMIN = 'super-admin';
 
     /**
      * @ORM\Id
@@ -22,9 +29,14 @@ class Role implements RoleContract, HasModules
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     protected $name;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $description;
 
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\ACL\Module\Module", inversedBy="roles")
@@ -39,23 +51,42 @@ class Role implements RoleContract, HasModules
 
     public function __construct()
     {
-        $this->modules = new ArrayCollection();
+        $this->modules = new ArrayCollection;
+        $this->permissions = new ArrayCollection;
     }
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
     public function getName()
     {
         return $this->name;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function assignModule(Module $module)
+    {
+        if (! $this->modules->contains($module)) {
+            $this->modules->add($module);
+        }
     }
 
     public function getModules()

@@ -2,13 +2,14 @@
 
 namespace Vinci\Domain\ACL\Module;
 
-
-use LaravelDoctrine\ACL\Contracts\HasRoles;
+use Doctrine\Common\Collections\ArrayCollection;
 
 interface ModuleRepository
 {
 
-    public function getModulesForUser(HasRoles $user);
+    public function getAll();
+
+    public function getFromRoles(ArrayCollection $roles);
 
     public function findByName($name);
 

@@ -2,14 +2,26 @@
 
 namespace Vinci\Infrastructure\ACL\Modules;
 
-use LaravelDoctrine\ACL\Contracts\HasRoles;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vinci\Domain\ACL\Module\ModuleRepository;
 use Vinci\Infrastructure\Common\DoctrineNestedTreeRepository;
 
 class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements ModuleRepository
 {
 
-    public function getModulesForUser(HasRoles $user)
+    public function getAll()
+    {
+        $query = $this->_em
+            ->createQueryBuilder()
+            ->select('node')
+            ->from('Vinci\Domain\ACL\Module\Module', 'node')
+            ->orderBy('node.root, node.lft', 'ASC')
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
+
+    public function getFromRoles(ArrayCollection $roles)
     {
         $query = $this->_em
             ->createQueryBuilder()
@@ -20,7 +32,7 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
             ->where('r.id in (:ids)')
             ->getQuery();
 
-        $ids = $user->getRoles()->map(function($role) {
+        $ids = $roles->map(function($role) {
             return $role->getId();
         });
 

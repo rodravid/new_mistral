@@ -14,6 +14,7 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use LaravelDoctrine\ACL\Permissions\HasPermissions;
 use LaravelDoctrine\ACL\Roles\HasRoles;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -40,6 +41,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
      * @var \Doctrine\Common\Collections\ArrayCollection|\LaravelDoctrine\ACL\Contracts\Role[]
      */
     protected $roles;
+
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection;
+    }
 
     public function getId()
     {
@@ -71,11 +77,13 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         return $this->roles;
     }
 
-    /**
-     * @param string $permission
-     *
-     * @return bool
-     */
+    public function assignRole(Role $role)
+    {
+        if (! $this->roles->contains($role)) {
+            $this->roles->add($role);
+        }
+    }
+
     public function hasPermissionTo($permission)
     {
         foreach ($this->getPermissions() as $per) {
@@ -87,9 +95,6 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         return false;
     }
 
-    /**
-     * @return ArrayCollection|Permission[]
-     */
     public function getPermissions()
     {
         $permissions = new ArrayCollection;
@@ -103,6 +108,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         }
 
         return $permissions;
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->hasRoleByName(Role::SUPER_ADMIN);
     }
 
 }
