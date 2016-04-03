@@ -19,7 +19,6 @@
 
         <!-- Custom styling plus plugins -->
         <link href="{{ asset_cms('css/custom.css') }}" rel="stylesheet">
-        <link href="{{ asset_cms('js/datatables/jquery.dataTables.min.css') }}" rel="stylesheet">
         <link href="{{ asset_cms('css/maps/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
         <link href="{{ asset_cms('css/icheck/flat/green.css') }}" rel="stylesheet"/>
         <link href="{{ asset_cms('css/floatexamples.css') }}" rel="stylesheet" type="text/css"/>
