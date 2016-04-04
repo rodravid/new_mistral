@@ -64,4 +64,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::payment.index");
     });
 
+        $route->get('/confirmacao', function(){
+        return view("website::confirmation.index");
+    });
+
 });

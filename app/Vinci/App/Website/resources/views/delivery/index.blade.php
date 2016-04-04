@@ -70,6 +70,45 @@
 			<p>R$ 10,00</p>
 			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
 		</div>
+
+				<div class="adress">
+			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
+			<div class="content-adress mbottom20">
+				<h4 class="uppercase">casa</h4>
+				<p>Rua bahia, 1126, Higienópolis</p>
+				<p>São Paulo - SP</p>
+				<p>CEP 04412-300</p>
+			</div>
+			<h4>Frete</h4>
+			<p>R$ 10,00</p>
+			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
+		</div>
+
+				<div class="adress">
+			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
+			<div class="content-adress mbottom20">
+				<h4 class="uppercase">casa</h4>
+				<p>Rua bahia, 1126, Higienópolis</p>
+				<p>São Paulo - SP</p>
+				<p>CEP 04412-300</p>
+			</div>
+			<h4>Frete</h4>
+			<p>R$ 10,00</p>
+			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
+		</div>
+
+						<div class="adress">
+			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
+			<div class="content-adress mbottom20">
+				<h4 class="uppercase">casa</h4>
+				<p>Rua bahia, 1126, Higienópolis</p>
+				<p>São Paulo - SP</p>
+				<p>CEP 04412-300</p>
+			</div>
+			<h4>Frete</h4>
+			<p>R$ 10,00</p>
+			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
+		</div>
 		
 		<div class="wrap-content-bt mbottom20">
 			<div class="content-bt-middle show-mobile">

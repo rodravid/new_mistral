@@ -580,6 +580,25 @@ a.bt-default {
 	}
 }
 
+.header-internal.header-checkout-confirmation {
+	padding:0;
+}
+
+.header-checkout-confirmation {
+
+
+	@media #{$screen-767} {
+
+		.wrap-content-bt.mbottom20 {
+			margin-bottom: 0;
+		}
+
+		.internal-subtitle {
+			font-size:30px;
+		}
+	}
+}
+
 .breadcrumb {
 	width: 100%;
 	display: inline-block;
@@ -852,10 +871,7 @@ a.bt-default {
 	color:$black;
 }
 
-
-
 .wrap-content-search{
-
 
 }
 
@@ -900,11 +916,18 @@ a.bt-default {
 		margin-bottom: 25px;
 		display:inline-block;
 		width:100%;
+		position:relative;
 	}
 	.select-standard{
 		border:1px solid #000;
 		height: 35px;
 	}
+}
+
+.label-above {
+	position: absolute;
+	top: -25px;
+	left:0;
 }
 
 .input-register{
@@ -924,6 +947,15 @@ a.bt-default {
 	border:1px solid $red;
 }
 .half { width:50%; }
+.width120 {
+	width: 120px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom:-6px;
+	@media #{$screen-767} {
+		width:110px;
+	}
+}
 .sixty { width:60%; }
 .two-fields { width:48%;}
 .two-fields+.two-fields {float:right;}
@@ -1900,7 +1932,7 @@ a.bt-default {
 		right: 20px;
 		top: -28px;
 		@media #{$screen-970} {
-			right: 0px; 
+			right: -5px; 
 		}
 		@media #{$screen-767} {
 			right: 40px; 
@@ -1935,7 +1967,7 @@ a.bt-default {
 		}
 	}
 	@media #{$screen-970} { 
-		.adress:nth-child(3n+2) {
+		.adress:nth-child(2n+2) {
 			margin: 0 0px 30px 0;
 		} 
 	}
@@ -1966,7 +1998,8 @@ a.bt-default {
 		text-transform:uppercase;
 	}
 
-	.section-payment {
+	.section-payment,
+	.section-confirmation {
 		border: 1px solid #adbfc6;
 		padding: 20px 20px 0px 20px;
 		margin-bottom: 30px;
@@ -2084,10 +2117,123 @@ a.bt-default {
 	.wrap-payment {
 		.col-register2 {
 			margin: 0 29px;
+			@media #{$screen-767} { 
+				margin: 0;
+			}
+		}
+
+		.col-register3 {
+			@media #{$screen-970} { 
+				width: 308px;
+				float: right;
+				margin-left: 20px;
+			}
+			@media #{$screen-767} { 
+				width:100%;
+				margin-left: 0;
+			}
+		}
+
+		.list-form-register {
+			li {
+				margin-bottom: 35px;
+			}
+		}
+	}
+
+	.img-cod-seg {
+		margin-left: 10px;
+	}
+
+	.card-validity {
+		margin-top: 24px;
+		display: inline-block;
+		@media #{$screen-970} {
+			margin-top: -20px;
 		}
 	}
 
 	/*PG PAGAMENTO*/
+
+	.content-order,
+	.status-order {
+		@media #{$screen-767} {
+			width:100%;
+		}
+	}
+	.content-order {
+		@media #{$screen-767} {
+			margin-bottom:25px;
+		}
+	}
+	.order {
+		padding-bottom:20px;
+	}
+	.txt-order {
+		font-size:18px;
+	}
+	.num-order {
+		font: 30px $robotobold;
+	}
+
+
+	.title-internal-confirmation {
+		font:20px $robotobold;
+		color:#fd571d;
+	}
+
+	.section-confirmation {
+
+		.price-request {
+			float:right;
+			width:100px;
+			text-align:right;
+		}
+		.price-final {
+			margin-right:7px;
+			text-align:right;
+		}
+
+		.col-request {
+			float: left;
+			width: 895px;
+			@media #{$screen-970} {
+				width: 653px;
+			}
+			@media #{$screen-767} {
+				width: 100%;
+			}
+		}
+	}
+
+	.purchase-data {
+		padding-bottom:20px;
+	}
+	.info-card-payment {
+		width: 88%;
+		float: left;
+		margin-left: 30px;
+		@media #{$screen-970} {
+			width:100%;
+			margin-left: 0;
+			margin-top:20px;
+		}
+	}
+	.amount-paid {
+		border-bottom:1px solid #adbfc6;
+		padding-bottom:15px;
+		margin-bottom: 15px;
+		font-size:15px;
+	}
+	.card-used {
+		font-size:15px;
+		span{ 
+			display:block;
+		}
+	}
+
+
+
 
 	/* select */
 

@@ -97,9 +97,14 @@
     <li></li>
   </ul> 
   <ul>
-  <li><a href="/pagamento" target="_blank">Pagamento</a></li>
+    <li><a href="/pagamento" target="_blank">Pagamento</a></li>
     <li>V2</li>
     <li>80%</li>
+  </ul> 
+  <ul>
+  <li><a href="/confirmacao" target="_blank">Confirmação</a></li>
+    <li>V2</li>
+    <li></li>
   </ul> 
 </li>
 </ul>

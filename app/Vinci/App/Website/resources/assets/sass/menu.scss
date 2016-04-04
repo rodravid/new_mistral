@@ -100,7 +100,10 @@
 	transition: all .1s ease .10s;
 	position: absolute;
 }
-
+.nav-item-user-logged .nav-link {
+	background: #fff;
+	color:$blue;
+}
 .nav-item-user-logged:hover .nav-link:before,
 .nav-item-user-logged:hover .nav-link{
 	background: #fff;
