@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Cms\Http\ViewComposers;
 
+use Illuminate\Routing\Route;
 use Illuminate\View\View;
 use Vinci\Domain\ACL\ACLService;
 
@@ -9,9 +10,12 @@ class MenuComposer
 {
     private $ACLService;
 
-    public function __construct(ACLService $ACLService)
+    private $route;
+
+    public function __construct(ACLService $ACLService, Route $route)
     {
         $this->ACLService = $ACLService;
+        $this->route = $route;
     }
 
     public function compose(View $view)
@@ -35,13 +39,20 @@ class MenuComposer
                     return '</ul>';
                 }
             },
-            'childOpen' => '<li>',
+            'childOpen' => function($module) {
+
+                if (preg_match('/' . $module['name'] . '/', $this->route->getName())) {
+                    return '<li class="active">';
+                }
+
+                return '<li>';
+            },
             'childClose' => '</li>',
             'nodeDecorator' => function($node) {
 
                 $hasChildrens = count($node['__children']) > 0 ? true : false;
 
-                $href = $hasChildrens ? '' : 'href="' . $node['url'] . '"';
+                $href = $hasChildrens ? 'href="javascript:void(0);"' : 'href="' . $node['url'] . '"';
 
                 $chevron = $hasChildrens ? ' <i class="fa fa-angle-left pull-right"></i>' : '';
 

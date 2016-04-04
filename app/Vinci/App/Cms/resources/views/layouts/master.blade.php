@@ -32,6 +32,8 @@
         <link rel="stylesheet" href="{{ asset_cms('plugins/daterangepicker/daterangepicker-bs3.css') }}">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/datatables/dataTables.bootstrap.css') }}">
 
     @show
 
@@ -146,10 +148,16 @@
     <script src="{{ asset_cms('plugins/fastclick/fastclick.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset_cms('dist/js/app.min.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset_cms('dist/js/pages/dashboard.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset_cms('dist/js/demo.js') }}"></script>
+
+    <script>
+
+        (function(){
+            var $activeItem = $('#mainMenu').find('li.active');
+            $activeItem.parents('li').addClass('active');
+            $activeItem.parents('ul.treeview-menu').addClass('menu-open').slideDown();
+        })();
+
+    </script>
 
 @show
 </body>
