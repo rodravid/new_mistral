@@ -2,7 +2,6 @@
 
 namespace Vinci\Domain\ACL;
 
-use Vinci\Domain\ACL\Exceptions\ModuleNotFoundException;
 use Vinci\Domain\ACL\Module\ModuleRepository;
 use Vinci\Domain\User\User;
 
@@ -39,15 +38,20 @@ class ACLService
             return true;
         }
 
-        $moduleName = $this->parseModuleName($action);
-
-        $module = $this->moduleRepository->findByName($moduleName);
+        $module = $this->findModuleByAction($action);
 
         if ($module) {
             return $module->canBeManagedBy($user) && $user->can($action);
         }
 
         return false;
+    }
+
+    protected function findModuleByAction($action)
+    {
+        $moduleName = $this->parseModuleName($action);
+
+        return $this->moduleRepository->findByName($moduleName);
     }
 
     protected function parseModuleName($action)

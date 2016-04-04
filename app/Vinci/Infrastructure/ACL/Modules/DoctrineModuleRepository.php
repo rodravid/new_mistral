@@ -2,7 +2,7 @@
 
 namespace Vinci\Infrastructure\ACL\Modules;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Vinci\Domain\ACL\Module\ModuleRepository;
 use Vinci\Infrastructure\Common\DoctrineNestedTreeRepository;
 
@@ -21,7 +21,7 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
         return $query->getArrayResult();
     }
 
-    public function getFromRoles(ArrayCollection $roles)
+    public function getFromRoles(Collection $roles)
     {
         $query = $this->_em
             ->createQueryBuilder()
@@ -43,7 +43,18 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
 
     public function findByName($name)
     {
-        return $this->findOneBy(['name' => $name]);
+        $query = $this->_em
+            ->createQueryBuilder()
+            ->select('m', 'r', 'p')
+            ->from('Vinci\Domain\ACL\Module\Module', 'm')
+            ->join('m.roles', 'r')
+            ->join('r.permissions', 'p')
+            ->where('m.name = :name')
+            ->getQuery();
+
+        $query->setParameter('name', $name);
+
+        return $query->getOneOrNullResult();
     }
 
 }

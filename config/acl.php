@@ -22,7 +22,7 @@ return [
     */
     'permissions' => [
         'driver' => 'doctrine',
-        'entity' => LaravelDoctrine\ACL\Permissions\Permission::class,
+        'entity' => Vinci\Domain\ACL\Permission\Permission::class,
         'list'   => [],
     ],
 

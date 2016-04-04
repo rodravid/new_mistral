@@ -9,6 +9,7 @@ use LaravelDoctrine\ACL\Contracts\Role as RoleContract;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\Contracts\HasModules;
 use Vinci\Domain\ACL\Module\Module;
+use Vinci\Domain\ACL\Permission\Permission;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -80,6 +81,13 @@ class Role extends Model implements RoleContract, HasModules
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function assignPermission(Permission $permission)
+    {
+        if (! $this->permissions->contains($permission)) {
+            $this->permissions->add($permission);
+        }
     }
 
     public function assignModule(Module $module)
