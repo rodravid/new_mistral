@@ -195,7 +195,7 @@
                     ajax: $table.data('url'),
                     searchDelay: 500,
                     columnDefs: [
-                        { orderable: false, targets: -1 }
+                        {orderable: false, width: '92px', targets: -1 },
                     ]
                 });
 

@@ -15,8 +15,9 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">
-                        <table class="table table-bordered table-striped" data-url="/cms/users/datatable">
-                            <thead>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped" data-url="/cms/users/datatable">
+                                <thead>
                                 <tr>
                                     <th>#ID</th>
                                     <th>Nome</th>
@@ -24,8 +25,9 @@
                                     <th>Criado em</th>
                                     <th>Ações</th>
                                 </tr>
-                            </thead>
-                        </table>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

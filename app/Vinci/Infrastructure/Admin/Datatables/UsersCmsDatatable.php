@@ -83,8 +83,10 @@ class UsersCmsDatatable extends AbstractDatatables
 
     protected function getActionsLinks($entity)
     {
-        return '<a href="/cms/users/edit/' . $entity->getId() . '">Editar</a>
-                <a href="/cms/users/delete/' . $entity->getId() . '">Excluir</a>';
+        return '<div class="btn-group btn-group-xs">
+                    <a href="/cms/users/edit/' . $entity->getId() . '" class="btn btn-default" data-editable><i class="fa fa-edit"></i> Editar</a>
+                    <a href="/cms/users/delete/' . $entity->getId() . '" class="btn btn-danger" data-deletable><i class="fa fa-trash"></i> Excluir</a>
+                </div>';
     }
 
 }
