@@ -1,8 +1,20 @@
-<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-    <div class="menu_section">
-        <h3>&nbsp;</h3>
-        <ul class="nav side-menu">
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="Foto perfil">
+            </div>
+            <div class="pull-left info" style="margin-top: 10px;">
+                <p>{{ cmsUser()->name }}</p>
+            </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MENU</li>
             {!! $modules !!}
         </ul>
-    </div>
-</div>
+    </section>
+    <!-- /.sidebar -->
+</aside>

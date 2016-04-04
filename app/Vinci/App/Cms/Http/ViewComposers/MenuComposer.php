@@ -27,7 +27,7 @@ class MenuComposer
             'decorate' => true,
             'rootOpen' => function($tree) {
                 if ($tree[0]['lvl'] > 0) {
-                    return '<ul class="nav child_menu">';
+                    return '<ul class="treeview-menu">';
                 }
             },
             'rootClose' => function($tree) {
@@ -43,9 +43,9 @@ class MenuComposer
 
                 $href = $hasChildrens ? '' : 'href="' . $node['url'] . '"';
 
-                $chevron = $hasChildrens ? ' <span class="fa fa-chevron-down"></span>' : '';
+                $chevron = $hasChildrens ? ' <i class="fa fa-angle-left pull-right"></i>' : '';
 
-                return '<a ' . $href . '><i class="' . $node['icon'] . '"></i> ' . $node['title'] . $chevron . '</a>';
+                return '<a ' . $href . '><i class="' . $node['icon'] . '"></i> <span>' . $node['title'] . '</span>' . $chevron . '</a>';
             }
         ];
     }

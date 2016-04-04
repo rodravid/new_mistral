@@ -1,413 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <title>@yield('title', 'CMS - Vinci vinhos')</title>
+    <title>@yield('title', 'CMS - Vinci')</title>
 
     @section('styles')
 
-        <!-- Bootstrap core CSS -->
-        <link href="{{ asset_cms('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset_cms('fonts/css/font-awesome.min.css') }}" rel="stylesheet">
-        <link href="{{ asset_cms('css/animate.min.css') }}" rel="stylesheet">
-
-        <!-- Custom styling plus plugins -->
-        <link href="{{ asset_cms('css/custom.css') }}" rel="stylesheet">
-        <link href="{{ asset_cms('css/maps/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
-        <link href="{{ asset_cms('css/icheck/flat/green.css') }}" rel="stylesheet"/>
-        <link href="{{ asset_cms('css/floatexamples.css') }}" rel="stylesheet" type="text/css"/>
-
-    @show
-
-    @section('header_scripts')
-
-        <script src="{{ asset_cms('js/jquery.min.js') }}"></script>
-        <script src="{{ asset_cms('js/nprogress.js') }}"></script>
-
-        <!--[if lt IE 9]>
-        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-        <![endif]-->
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="{{ asset_cms('bootstrap/css/bootstrap.min.css') }}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset_cms('dist/css/AdminLTE.min.css') }}">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/iCheck/flat/blue.css') }}">
+        <!-- Morris chart -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/morris/morris.css') }}">
+        <!-- jvectormap -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/datepicker/datepicker3.css') }}">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/daterangepicker/daterangepicker-bs3.css') }}">
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
     @show
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-<body class="nav-md">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="/cms" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><img src="{{ asset_cms('dist/img/logo-vinci.png') }}"></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><img src="{{ asset_cms('dist/img/logo-vinci.png') }}"></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
 
-<div class="container body">
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{ cmsUser()->name }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
-    <div class="main_container">
-
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="/cms" class="site_title">
-                        <img src="{{ asset_cms('images/logo-vinci.png') }}" class="img-responsive center" style="padding: 20px 10px 0 0;">
-                    </a>
-                </div>
-                <div class="clearfix"></div>
-
-                <!-- menu prile quick info -->
-                <div class="profile">
-                    <div class="profile_pic">
-                        <img src="{{ asset_cms('images/img.jpg') }}" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Bem vindo(a),</span>
-                        <h2>{{ cmsUser()->name }}</h2>
-                    </div>
-                </div>
-                <!-- /menu prile quick info -->
-                <br/>
-
-                @include('cms::layouts.partials.menu')
-
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a href="{{ url()->route('cms.logout') }}" data-toggle="tooltip" data-placement="top" title="Sair">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
-
+                                <p>
+                                    {{ cmsUser()->name }} - Programador
+                                    <small>Membro desde {{ cmsUser()->getCreatedAt()->format('M/Y') }}</small>
+                                </p>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="{{ url()->route('cms.profile') }}" class="btn btn-default btn-flat">Perfil</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{ url()->route('cms.logout') }}" class="btn btn-default btn-flat">Sair</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
+    </header>
 
-        @include('cms::layouts.partials.nav_top')
+    <!-- Left side column. contains the logo and sidebar -->
+    @include('cms::layouts.partials.menu')
 
-        <div class="right_col" role="main">
-            @yield('content')
-
-            @include('cms::layouts.partials.footer')
-        </div>
-
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        @yield('content')
     </div>
+    <!-- /.content-wrapper -->
+
+    @include('cms::layouts.partials.footer')
 
 </div>
-
-<div id="custom_notifications" class="custom-notifications dsp_none">
-    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-    </ul>
-    <div class="clearfix"></div>
-    <div id="notif-group" class="tabbed_notifications"></div>
-</div>
+<!-- ./wrapper -->
 
 @section('scripts')
 
-    <script src="{{ asset_cms('js/bootstrap.min.js') }}"></script>
-
-    <!-- gauge js -->
-    <script type="text/javascript" src="{{ asset_cms('js/gauge/gauge.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/gauge/gauge_demo.js') }}"></script>
-    <!-- bootstrap progress js -->
-    <script src="{{ asset_cms('js/progressbar/bootstrap-progressbar.min.js') }}"></script>
-    <script src="{{ asset_cms('js/nicescroll/jquery.nicescroll.min.js') }}"></script>
-    <!-- icheck -->
-    <script src="{{ asset_cms('js/icheck/icheck.min.js') }}"></script>
+    <!-- jQuery 2.2.0 -->
+    <script src="{{ asset_cms('plugins/jQuery/jQuery-2.2.0.min.js') }}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="{{ asset_cms('bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- Morris.js charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{{ asset_cms('plugins/morris/morris.min.js') }}"></script>
+    <!-- Sparkline -->
+    <script src="{{ asset_cms('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+    <!-- jvectormap -->
+    <script src="{{ asset_cms('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
+    <script src="{{ asset_cms('plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{ asset_cms('plugins/knob/jquery.knob.js') }}"></script>
     <!-- daterangepicker -->
-    <script type="text/javascript" src="{{ asset_cms('js/moment/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/datepicker/daterangepicker.js') }}"></script>
-    <!-- chart js -->
-    <script src="{{ asset_cms('js/chartjs/chart.min.js') }}"></script>
-
-    <script src="{{ asset_cms('js/custom.js') }}"></script>
-
-    <!-- flot js -->
-    <!--[if lte IE 8]>
-    <script type="text/javascript" src="{{ asset_cms('js/excanvas.min.js') }}"></script><![endif]-->
-    <script type="text/javascript" src="{{ asset_cms('js/flot/jquery.flot.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/jquery.flot.pie.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/jquery.flot.orderBars.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/jquery.flot.time.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/date.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/jquery.flot.spline.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/jquery.flot.stack.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/curvedLines.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/flot/jquery.flot.resize.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            // [17, 74, 6, 39, 20, 85, 7]
-            //[82, 23, 66, 9, 99, 6, 2]
-            var data1 = [
-                [gd(2012, 1, 1), 17],
-                [gd(2012, 1, 2), 74],
-                [gd(2012, 1, 3), 6],
-                [gd(2012, 1, 4), 39],
-                [gd(2012, 1, 5), 20],
-                [gd(2012, 1, 6), 85],
-                [gd(2012, 1, 7), 7]
-            ];
-
-            var data2 = [
-                [gd(2012, 1, 1), 82],
-                [gd(2012, 1, 2), 23],
-                [gd(2012, 1, 3), 66],
-                [gd(2012, 1, 4), 9],
-                [gd(2012, 1, 5), 119],
-                [gd(2012, 1, 6), 6],
-                [gd(2012, 1, 7), 9]
-            ];
-            $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-                data1, data2
-            ], {
-                series: {
-                    lines: {
-                        show: false,
-                        fill: true
-                    },
-                    splines: {
-                        show: true,
-                        tension: 0.4,
-                        lineWidth: 1,
-                        fill: 0.4
-                    },
-                    points: {
-                        radius: 0,
-                        show: true
-                    },
-                    shadowSize: 2
-                },
-                grid: {
-                    verticalLines: true,
-                    hoverable: true,
-                    clickable: true,
-                    tickColor: "#d5d5d5",
-                    borderWidth: 1,
-                    color: '#fff'
-                },
-                colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-                xaxis: {
-                    tickColor: "rgba(51, 51, 51, 0.06)",
-                    mode: "time",
-                    tickSize: [1, "day"],
-                    //tickLength: 10,
-                    axisLabel: "Date",
-                    axisLabelUseCanvas: true,
-                    axisLabelFontSizePixels: 12,
-                    axisLabelFontFamily: 'Verdana, Arial',
-                    axisLabelPadding: 10
-                    //mode: "time", timeformat: "%m/%d/%y", minTickSize: [1, "day"]
-                },
-                yaxis: {
-                    ticks: 8,
-                    tickColor: "rgba(51, 51, 51, 0.06)",
-                },
-                tooltip: false
-            });
-
-            function gd(year, month, day) {
-                return new Date(year, month - 1, day).getTime();
-            }
-        });
-    </script>
-
-    <!-- worldmap -->
-    <script type="text/javascript" src="{{ asset_cms('js/maps/jquery-jvectormap-2.0.3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/maps/gdp-data.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <script type="text/javascript" src="{{ asset_cms('js/maps/jquery-jvectormap-us-aea-en.js') }}"></script>
-    <!-- pace -->
-    <script src="{{ asset_cms('js/pace/pace.min.js') }}"></script>
-    <script>
-        $(function () {
-            $('#world-map-gdp').vectorMap({
-                map: 'world_mill_en',
-                backgroundColor: 'transparent',
-                zoomOnScroll: false,
-                series: {
-                    regions: [{
-                        values: gdpData,
-                        scale: ['#E6F2F0', '#149B7E'],
-                        normalizeFunction: 'polynomial'
-                    }]
-                },
-                onRegionTipShow: function (e, el, code) {
-                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-                }
-            });
-        });
-    </script>
-    <!-- skycons -->
-    <script src="{{ asset_cms('js/skycons/skycons.min.js') }}"></script>
-    <script>
-        var icons = new Skycons({
-                    "color": "#73879C"
-                }),
-                list = [
-                    "clear-day", "clear-night", "partly-cloudy-day",
-                    "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-                    "fog"
-                ],
-                i;
-
-        for (i = list.length; i--;)
-            icons.set(list[i], list[i]);
-
-        icons.play();
-    </script>
-
-    <!-- dashbord linegraph -->
-    <script>
-        Chart.defaults.global.legend = {
-            enabled: false
-        };
-
-        var data = {
-            labels: [
-                "Symbian",
-                "Blackberry",
-                "Other",
-                "Android",
-                "IOS"
-            ],
-            datasets: [{
-                data: [15, 20, 30, 10, 30],
-                backgroundColor: [
-                    "#BDC3C7",
-                    "#9B59B6",
-                    "#455C73",
-                    "#26B99A",
-                    "#3498DB"
-                ],
-                hoverBackgroundColor: [
-                    "#CFD4D8",
-                    "#B370CF",
-                    "#34495E",
-                    "#36CAAB",
-                    "#49A9EA"
-                ]
-
-            }]
-        };
-
-        var canvasDoughnut = new Chart(document.getElementById("canvas1"), {
-            type: 'doughnut',
-            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-            data: data
-        });
-    </script>
-    <!-- /dashbord linegraph -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="{{ asset_cms('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- datepicker -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var cb = function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
-            }
-
-            var optionSet1 = {
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
-                minDate: '01/01/2012',
-                maxDate: '12/31/2015',
-                dateLimit: {
-                    days: 60
-                },
-                showDropdowns: true,
-                showWeekNumbers: true,
-                timePicker: false,
-                timePickerIncrement: 1,
-                timePicker12Hour: true,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                opens: 'left',
-                buttonClasses: ['btn btn-default'],
-                applyClass: 'btn-small btn-primary',
-                cancelClass: 'btn-small',
-                format: 'MM/DD/YYYY',
-                separator: ' to ',
-                locale: {
-                    applyLabel: 'Submit',
-                    cancelLabel: 'Clear',
-                    fromLabel: 'From',
-                    toLabel: 'To',
-                    customRangeLabel: 'Custom',
-                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                    firstDay: 1
-                }
-            };
-            $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-            $('#reportrange').daterangepicker(optionSet1, cb);
-            $('#reportrange').on('show.daterangepicker', function () {
-                console.log("show event fired");
-            });
-            $('#reportrange').on('hide.daterangepicker', function () {
-                console.log("hide event fired");
-            });
-            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-            });
-            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
-                console.log("cancel event fired");
-            });
-            $('#options1').click(function () {
-                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-            });
-            $('#options2').click(function () {
-                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-            });
-            $('#destroy').click(function () {
-                $('#reportrange').data('daterangepicker').remove();
-            });
-        });
-    </script>
-    <script>
-        NProgress.done();
-    </script>
-
-    <!-- Datatables -->
-    <script src="{{ asset_cms('js/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset_cms('js/datatables/tools/js/dataTables.tableTools.js') }}"></script>
-    <script>
-
-        $(document).ready(function () {
-            $('input.tableflat').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass: 'iradio_flat-green'
-            });
-        });
-
-        $(document).ready(function () {
-            var oTable = $('#example').dataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": "/cms/users/datatable"
-            });
-        });
-    </script>
+    <script src="{{ asset_cms('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+    <!-- Slimscroll -->
+    <script src="{{ asset_cms('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset_cms('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset_cms('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset_cms('plugins/fastclick/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset_cms('dist/js/app.min.js') }}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ asset_cms('dist/js/pages/dashboard.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset_cms('dist/js/demo.js') }}"></script>
 
 @show
-
 </body>
 </html>
-

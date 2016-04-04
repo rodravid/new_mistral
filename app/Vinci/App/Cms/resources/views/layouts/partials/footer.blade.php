@@ -1,6 +1,6 @@
-<footer>
-    <div class="copyright-info">
-        <p class="pull-right">Vinci &copy; {{ date('Y') }} - Powered by <a href="https://www.webeleven.com.br" target="_blank">Webeleven</a></p>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 2.3.3
     </div>
-    <div class="clearfix"></div>
+    <strong>Copyright &copy; {{ date('Y') }} <a href="https://www.webeleven.com" target="_blank">Webeleven</a></strong>
 </footer>
