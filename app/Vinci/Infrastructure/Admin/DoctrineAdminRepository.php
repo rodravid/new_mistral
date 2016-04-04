@@ -17,5 +17,4 @@ class DoctrineAdminRepository extends DoctrineUserRepository implements AdminRep
         return $admin;
     }
 
-
 }

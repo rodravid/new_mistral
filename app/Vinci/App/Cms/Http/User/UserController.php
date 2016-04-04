@@ -6,15 +6,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Vinci\App\Cms\Http\Controller;
+use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Domain\Admin\AdminService;
 
 class UserController extends Controller
 {
 
+    use DatatablesResponse;
+
     protected $adminService;
 
     private $adminRepository;
+
+    protected $datatable = 'Vinci\Infrastructure\Admin\Datatables\UsersCmsDatatable';
 
     public function __construct(EntityManagerInterface $em, AdminService $adminService, AdminRepository $adminRepository)
     {
@@ -65,34 +70,6 @@ class UserController extends Controller
 
             $this->throwValidationException($request, $e->validator);
         }
-    }
-
-    public function datatable()
-    {
-        $users = $this->adminRepository->paginateAll();
-
-        $output = [
-            "sEcho" => '',
-            "iTotalRecords" => $users->total(),
-            "iTotalDisplayRecords" => $users->count(),
-            "aaData" => []
-        ];
-
-        foreach ($users as $user) {
-
-            $output['aaData'][] = [
-                '',
-                $user->getId(),
-                $user->getName(),
-                $user->getEmail(),
-                $user->getCreatedAt()->format('d/m/Y H:i:s'),
-                'Editar'
-            ];
-
-        }
-
-        return $output;
-
     }
 
 }

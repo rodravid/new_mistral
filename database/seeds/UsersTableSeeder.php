@@ -59,6 +59,48 @@ class UsersTableSeeder extends Seeder
             'password' => '123'
         ]);
 
+        $user2 = $this->adminRepository->create([
+            'name' => 'Teste',
+            'email' => 'teste2@teste.com',
+            'password' => '123'
+        ]);
+
+        $user3 = $this->adminRepository->create([
+            'name' => 'Teste',
+            'email' => 'teste3@teste.com',
+            'password' => '123'
+        ]);
+
+        $user4 = $this->adminRepository->create([
+            'name' => 'Teste',
+            'email' => 'teste4@teste.com',
+            'password' => '123'
+        ]);
+
+        $user5 = $this->adminRepository->create([
+            'name' => 'Teste',
+            'email' => 'teste5@teste.com',
+            'password' => '123'
+        ]);
+
+        $user6 = $this->adminRepository->create([
+            'name' => 'Teste',
+            'email' => 'teste6@teste.com',
+            'password' => '123'
+        ]);
+
+        $user7 = $this->adminRepository->create([
+            'name' => 'Teste',
+            'email' => 'teste7@teste.com',
+            'password' => '123'
+        ]);
+
+        $user8 = $this->adminRepository->create([
+            'name' => 'Teste',
+            'email' => 'teste8@teste.com',
+            'password' => '123'
+        ]);
+
         $superAdminRole = Role::make([
             'name' => 'super-admin',
             'description' => 'Super admin'
@@ -89,6 +131,13 @@ class UsersTableSeeder extends Seeder
         $this->em->persist($admin2);
         $this->em->persist($admin3);
         $this->em->persist($user1);
+        $this->em->persist($user2);
+        $this->em->persist($user3);
+        $this->em->persist($user4);
+        $this->em->persist($user5);
+        $this->em->persist($user6);
+        $this->em->persist($user7);
+        $this->em->persist($user8);
 
         $this->em->flush();
 
