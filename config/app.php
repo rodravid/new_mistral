@@ -161,7 +161,8 @@ return [
         Vinci\Infrastructure\InfrastructureServiceProvider::class,
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
         Vinci\App\Cms\Providers\CmsServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
 
     ],
 
