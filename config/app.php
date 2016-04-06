@@ -162,7 +162,9 @@ return [
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
         Vinci\App\Cms\Providers\CmsServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class
 
     ],
 
@@ -209,6 +211,9 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
+        'Flash'     => Laracasts\Flash\Flash::class
 
     ],
 

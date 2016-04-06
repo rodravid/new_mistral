@@ -102,13 +102,13 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $superAdminRole = Role::make([
-            'name' => 'super-admin',
-            'description' => 'Super admin'
+            'title' => 'Super admin',
+            'name' => 'super-admin'
         ]);
 
         $adminRole = Role::make([
-            'name' => 'admin',
-            'description' => 'Admin'
+            'title' => 'Admin',
+            'name' => 'admin'
         ]);
 
         $adminRole->assignPermission($this->em->getReference(Permission::class, 1));

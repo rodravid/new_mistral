@@ -3,7 +3,9 @@
 namespace Vinci\Domain\Admin;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Validation\ValidationTrait;
+use Vinci\Domain\Validation\ValidationException;
 
 class AdminService
 {
@@ -13,68 +15,49 @@ class AdminService
 
     private $entityManager;
 
+    private $validator;
+
     public function __construct(
         AdminRepository $repository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        AdminValidator $validator
     )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->validator = $validator;
     }
 
-    public function create(array $attributes)
+    public function create(array $adminData)
     {
-        $this->validate($attributes, $this->getRules(), $this->getMessages());
-
-        return $this->db->transaction(function() use ($attributes) {
-
-            $admin = $this->createUserIfNotExists($attributes);
-
-            $this->repository->createProfile($attributes, $admin->id);
-
-            return $admin;
-        });
-    }
-
-    public function update(array $attributes, $customerId)
-    {
-        $this->validate($attributes, $this->getRules($customerId));
-
-        $this->db->transaction(function() use ($attributes, $customerId) {
-
-            $this->repository->update($attributes, $customerId);
-            $this->repository->updateProfile($attributes, $customerId);
-
-        });
-
-    }
-
-    protected function createUserIfNotExists(array $attributes)
-    {
-        $customer = $this->repository
-            ->skipCriteria()
-            ->findByEmail($attributes['email']);
-
-        if (empty($customer)) {
-            $customer = $this->repository->create($attributes);
+        if ($this->validator->fails($adminData)) {
+            throw new ValidationException('Não foi possível criar o usuário', $this->validator->messages());
         }
 
-        return $customer;
+        $admin = Admin::make($adminData);
+
+        $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
+
+        $this->repository->save($admin);
+
+        return $admin;
     }
 
-    protected function getRules($ignoreId = null)
+    public function update(array $adminData, $id)
     {
-        $rules = [
-            'name' => 'required',
-            'email' => 'required|unique_user:admin',
-            'password' => 'required'
-        ];
-
-        if (! empty($ignoreId)) {
-            $rules['email'] .= ",{$ignoreId}";
+        if ($this->validator->fails($adminData, $id)) {
+            throw new ValidationException('Não foi possível criar o usuário', $this->validator->messages());
         }
 
-        return $rules;
+        $admin = $this->repository->find($id);
+
+        $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
+
+        $admin->fill($adminData);
+
+        $this->repository->save($admin);
+
+        return $admin;
     }
 
 }

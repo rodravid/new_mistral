@@ -35,6 +35,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\ACL\Role\RoleRepository',
+            'Vinci\Infrastructure\ACL\Roles\DoctrineRoleRepository',
+            'Vinci\Domain\ACL\Role\Role'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\ACL\Module\ModuleRepository',
             'Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository',
             'Vinci\Domain\ACL\Module\Module'

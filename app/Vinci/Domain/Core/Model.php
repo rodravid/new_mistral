@@ -5,10 +5,16 @@ namespace Vinci\Domain\Core;
 abstract class Model
 {
 
-    protected function fill(array $attributes)
+    public function fill(array $attributes)
     {
         foreach ($attributes as $name => $value) {
-            call_user_func([$this, 'set' . ucfirst($name)], $value);
+
+            $setter = 'set' . ucfirst($name);
+
+            if (method_exists($this, $setter)) {
+                call_user_func([$this, $setter], $value);
+            }
+
         }
     }
 
@@ -30,6 +36,11 @@ abstract class Model
         }
 
         throw new \RuntimeException("No getter found for {$name}");
+    }
+
+    public function getFormValue($name)
+    {
+        return $this->$name;
     }
 
 }

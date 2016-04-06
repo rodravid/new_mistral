@@ -4,6 +4,7 @@ namespace Vinci\Domain\User;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use LaravelDoctrine\ACL\Contracts\HasPermissions as HasPermissionsContract;
@@ -13,6 +14,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use LaravelDoctrine\ACL\Permissions\HasPermissions;
 use LaravelDoctrine\ACL\Roles\HasRoles;
+use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Model;
@@ -23,11 +25,12 @@ use Vinci\Domain\Core\Model;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"customer" = "Vinci\Domain\Customer\Customer", "admin" = "Vinci\Domain\Admin\Admin"})
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 abstract class User extends Model implements Authenticatable, AuthorizableContract, CanResetPassword, HasRolesContract, HasPermissionsContract
 {
 
-    use Timestamps, HasRoles, HasPermissions, Authorizable;
+    use Timestamps, SoftDeletes, HasRoles, HasPermissions, Authorizable;
 
     /**
      * @ORM\Id
@@ -79,9 +82,8 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
 
     public function assignRole(Role $role)
     {
-        if (! $this->roles->contains($role)) {
-            $this->roles->add($role);
-        }
+        $this->roles->clear();
+        $this->roles->add($role);
     }
 
     public function hasPermissionTo($permission)

@@ -30,12 +30,17 @@ class Role extends Model implements RoleContract, HasModules
     protected $id;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $title;
+
+    /**
      * @ORM\Column(type="string", unique=true)
      */
     protected $name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $description;
 
@@ -59,6 +64,17 @@ class Role extends Model implements RoleContract, HasModules
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     public function setName($name)

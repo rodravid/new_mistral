@@ -74,19 +74,11 @@ class UsersCmsDatatable extends AbstractDatatables
                 $user->getName(),
                 $user->getEmail(),
                 $user->getCreatedAt()->format('d/m/Y H:i:s'),
-                $this->getActionsLinks($user)
+                $this->getActionsColumn($user, ['destroy_url' => route('cms.users.destroy', $user->getId())])
             ];
         }
 
         return $users;
-    }
-
-    protected function getActionsLinks($entity)
-    {
-        return '<div class="btn-group btn-group-xs">
-                    <a href="/cms/users/edit/' . $entity->getId() . '" class="btn btn-default" data-editable><i class="fa fa-edit"></i> Editar</a>
-                    <a href="/cms/users/delete/' . $entity->getId() . '" class="btn btn-danger" data-deletable><i class="fa fa-trash"></i> Excluir</a>
-                </div>';
     }
 
 }

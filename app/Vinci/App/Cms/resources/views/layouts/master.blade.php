@@ -13,13 +13,10 @@
         <link rel="stylesheet" href="{{ asset_cms('bootstrap/css/bootstrap.min.css') }}">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- Animate -->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="{{ asset_cms('dist/css/AdminLTE.min.css') }}">
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
         <!-- iCheck -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/iCheck/flat/blue.css') }}">
         <!-- Morris chart -->
@@ -34,6 +31,15 @@
         <link rel="stylesheet" href="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
         <!-- DataTables -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/datatables/dataTables.bootstrap.css') }}">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/select2/select2.min.css') }}">
+        <!-- Sweet alert -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/sweetalert/dist/sweetalert.css') }}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset_cms('dist/css/AdminLTE.min.css') }}">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
 
     @show
 
@@ -115,7 +121,7 @@
     <!-- jQuery 2.2.0 -->
     <script src="{{ asset_cms('plugins/jQuery/jQuery-2.2.0.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{ asset_cms('plugins/jQueryUI/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
@@ -146,18 +152,26 @@
     <script src="{{ asset_cms('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset_cms('plugins/fastclick/fastclick.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset_cms('plugins/bootstrap-notify/dist/bootstrap-notify.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset_cms('plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset_cms('dist/js/app.min.js') }}"></script>
 
     <script>
 
-        (function(){
+        (function() {
             var $activeItem = $('#mainMenu').find('li.active');
             $activeItem.parents('li').addClass('active');
             $activeItem.parents('ul.treeview-menu').addClass('menu-open').slideDown();
-        })();
+        }());
 
         $(function () {
+
+            $(".select2").select2();
 
             $.extend( true, $.fn.dataTable.defaults, {
                 "language": {
@@ -201,9 +215,69 @@
 
             });
 
+            $('body').delegate('[data-form-link]', 'click', function(e) {
+
+                var $self = $(this);
+
+                function submitForm()
+                {
+                    var method = $self.data('method');
+                    var action = $self.data('action');
+                    var $form = $('<form method="POST" action="' + action + '"><input type="hidden" name="_method" value="' + method + '"></form>');
+                    $form.submit();
+                    return true;
+                }
+
+                var confirmTitle = $self.data('confirm-title');
+                var confirmText = $self.data('confirm-text');
+
+                if (typeof confirmTitle !== typeof undefined && confirmTitle !== false) {
+
+                    swal({
+                        title: confirmTitle,
+                        text: confirmText,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Sim",
+                        cancelButtonText: "Não",
+                        closeOnConfirm: false
+                    }, function() {
+
+                        submitForm();
+
+                    });
+
+                } else {
+                    submitForm();
+                }
+
+                e.preventDefault();
+            });
+
         });
 
     </script>
+
+    @if (Session::has('flash_notification.message'))
+        <script>
+            $.notify({
+                message: '{{ Session::get('flash_notification.message') }}'
+            },{
+                type: '{{ Session::get('flash_notification.level') }}'
+            });
+        </script>
+    @endif
+
+    @if($errors->has())
+        <script>
+            $.notify({
+                message: ' {{ $errors->first() }}'
+            },{
+                type: 'error'
+            });
+        </script>
+    @endif
 
 @show
 </body>
