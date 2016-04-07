@@ -4,10 +4,22 @@ namespace Vinci\Infrastructure\Common;
 
 use Doctrine\ORM\EntityRepository;
 use LaravelDoctrine\ORM\Pagination\Paginatable;
+use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineBaseRepository extends EntityRepository
 {
     use Paginatable;
+
+    public function findOrFail($id)
+    {
+        $entity = $this->find($id);
+
+        if (! $entity) {
+            throw new EntityNotFoundException('Entity not found.');
+        }
+
+        return $entity;
+    }
 
     public function save($entity)
     {

@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = $this->adminRepository->find($id);
+        $user = $this->adminRepository->findOrFail($id);
         $roles = $this->roleRepository->getAll();
 
         return $this->view('users.edit')
@@ -65,9 +65,18 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
+        $user = $this->adminRepository->find(1);
+
+        $this->adminService->savePhoto($request->file('photo'), $user);
+
+        dd('teste');
+
         try {
 
             $user = $this->adminService->create($request->all());
+
+            $this->adminService->savePhoto($request->file('photo'), $user);
 
             Flash::success("Usuário {$user->getName()} criado com sucesso!");
 

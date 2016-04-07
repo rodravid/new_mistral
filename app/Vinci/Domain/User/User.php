@@ -45,6 +45,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
      */
     protected $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\User\Photo", mappedBy="user")
+     */
+    protected $photos;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection;

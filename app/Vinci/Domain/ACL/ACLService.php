@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\ACL;
 
+use Vinci\Domain\ACL\Module\Module;
 use Vinci\Domain\ACL\Module\ModuleRepository;
 use Vinci\Domain\User\User;
 
@@ -9,9 +10,21 @@ class ACLService
 {
     protected $moduleRepository;
 
+    protected $currentModule;
+
     public function __construct(ModuleRepository $moduleRepository)
     {
         $this->moduleRepository = $moduleRepository;
+    }
+
+    public function setCurrentModule(Module $module)
+    {
+        $this->currentModule = $module;
+    }
+
+    public function getCurrentModule()
+    {
+        return $this->currentModule;
     }
 
     public function buildModulesTreeHtmlForUser(User $user, array $options = [])
@@ -34,24 +47,31 @@ class ACLService
 
     public function userCanExecuteAction(User $user, $action)
     {
+        $permission = $this->parsePermissionName($action);
+
         if ($user->isSuperAdmin()) {
             return true;
         }
 
-        $module = $this->findModuleByAction($action);
-
-        if ($module) {
-            return $module->canBeManagedBy($user) && $user->can($action);
+        if ($this->currentModule) {
+            return $this->currentModule->canBeManagedBy($user) && $user->can($permission);
         }
 
         return false;
     }
 
-    protected function findModuleByAction($action)
+    public function findModuleByAction($action)
     {
-        $moduleName = $this->parseModuleName($action);
+        $permission = $this->parsePermissionName($action);
+
+        $moduleName = $this->parseModuleName($permission);
 
         return $this->moduleRepository->findByName($moduleName);
+    }
+
+    protected function parsePermissionName($action)
+    {
+        return explode('#', $action)[0];
     }
 
     protected function parseModuleName($action)

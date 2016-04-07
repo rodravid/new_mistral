@@ -9,7 +9,7 @@ class DoctrineUserRepository extends DoctrineBaseRepository
 
     public function findByEmail($email)
     {
-
+        return $this->findOneBy(['email' => $email]);
     }
 
 }

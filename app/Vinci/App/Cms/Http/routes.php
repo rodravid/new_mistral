@@ -13,21 +13,18 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
         $route->get('profile', 'Account\\AccountController@index')->name('profile');
 
-        $route->group(['middleware' => ['acl']], function() use ($route) {
+        $route->group(['middleware' => ['cms','acl']], function() use ($route) {
 
             $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard');
 
-
             $route->group(['prefix' => 'users', 'as' => 'users.'], function () use ($route) {
-
                 $route->get('/', 'User\\UserController@index')->name('list');
                 $route->get('/create', 'User\\UserController@create')->name('create');
                 $route->post('/', 'User\\UserController@store')->name('store');
                 $route->get('/{user}/edit', 'User\\UserController@edit')->name('edit');
                 $route->delete('/{user}/delete', 'User\\UserController@destroy')->name('destroy');
                 $route->put('/{user}', 'User\\UserController@update')->name('update');
-                $route->get('/datatable', 'User\\UserController@datatable')->name('datatable');
-
+                $route->get('datatable', 'User\\UserController@datatable')->name('list#datatable');
             });
 
             $route->group(['prefix' => 'minha-conta', 'as' => 'account.'], function () use ($route) {

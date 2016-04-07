@@ -4,6 +4,7 @@ namespace Vinci\App\Cms\Http\Middleware;
 
 use Closure;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\View;
 use Vinci\Domain\ACL\ACLService;
 
 class Cms
@@ -20,6 +21,13 @@ class Cms
 
     public function handle($request, Closure $next, $guard = null)
     {
+        $module = $this->ACLService->findModuleByAction($this->route->getName());
+
+        if ($module) {
+            $this->ACLService->setCurrentModule($module);
+            View::share('currentModule', $module);
+        }
+
         return $next($request);
     }
 

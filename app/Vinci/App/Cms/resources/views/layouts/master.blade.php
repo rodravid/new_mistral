@@ -207,7 +207,7 @@
                     processing: true,
                     serverSide: true,
                     ajax: $table.data('url'),
-                    searchDelay: 500,
+                    searchDelay: 600,
                     columnDefs: [
                         {orderable: false, width: '92px', targets: -1 },
                     ]

@@ -32,4 +32,12 @@
         </div>
     </div>
 
+    <div class="col-lg-12">
+        <div class="form-group has-feedback">
+            <label for="txtUserPasswordConfirmation">Foto</label>
+            {!! Form::file('photo', ['id' => 'txtUserPhoto']) !!}
+            <span class="glyphicon glyphicon-picture form-control-feedback"></span>
+        </div>
+    </div>
+
 </div>
