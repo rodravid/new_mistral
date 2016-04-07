@@ -52,4 +52,20 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::list-page.index");
     });
 
+    $route->get('/carrinho', function(){
+        return view("website::cart.index");
+    });
+
+    $route->get('/entrega', function(){
+        return view("website::delivery.index");
+    });
+
+    $route->get('/pagamento', function(){
+        return view("website::payment.index");
+    });
+
+        $route->get('/confirmacao', function(){
+        return view("website::confirmation.index");
+    });
+
 });

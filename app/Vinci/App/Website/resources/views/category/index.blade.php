@@ -438,7 +438,7 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
-						<div class="wine-card">
+			<div class="wine-card">
 				<span class="favorite"></span>
 				
 				<h3 class="title-card-wine">
@@ -469,7 +469,7 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
-						<div class="wine-card">
+			<div class="wine-card">
 				<span class="favorite"></span>
 				
 				<h3 class="title-card-wine">
@@ -500,7 +500,7 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
-						<div class="wine-card">
+			<div class="wine-card">
 				<span class="favorite"></span>
 				
 				<h3 class="title-card-wine">
@@ -531,7 +531,7 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
-						<div class="wine-card">
+			<div class="wine-card">
 				<span class="favorite"></span>
 				
 				<h3 class="title-card-wine">
@@ -562,7 +562,7 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
-						<div class="wine-card">
+			<div class="wine-card">
 				<span class="favorite"></span>
 				
 				<h3 class="title-card-wine">
@@ -592,11 +592,6 @@
 				
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
-
-
-
-
-
 
 
 
@@ -606,11 +601,12 @@
 
 
 	</article>
-
+	@include('website::layouts.partials.featuredweek')
 </div>
 
 <div class="bg-layer-filtro"></div>
 
 
+@include('website::layouts.footer')
 
 @stop

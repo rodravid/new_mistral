@@ -2,25 +2,6 @@
 
 	<div class="row">
 		
-		<section class="featured-week">
-			<h4 class="title-featured-week">
-				Destaques da semana
-			</h4>
-
-			<ul class="list-featured-week">
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Errazuriz Estate Series Pinot Noir 2013<span>Errazuriz</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Caminos Cabernet Sauvignon / Merlot 2013<span>Errazuriz</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">La Posta Blanco 2013 <span>La Posta</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Errazuriz Estate Series Pinot Noir 2013<span>Errazuriz</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Caminos Cabernet Sauvignon / Merlot 2013<span>Errazuriz</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Caminos Cabernet Sauvignon<span>La Posta</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Errazuriz Estate Series Pinot Noir 2013<span>Errazuriz</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Caminos Cabernet Sauvignon / Merlot 2013<span>Errazuriz</span></a></li>
-				<li class="item-featured-week"><a class="link-featured-week" href="javascript:void(0);">Caminos Cabernet Sauvignon<span>La Posta</span></a></li>
-			</ul>
-		</section>
-
-
 		<div class="row-footer show-desktop">	
 			<ul class="list-links-clients">
 				<li><a class="link-light" href="javascript:void(0);">Sobre a vinci</a></li>
@@ -140,23 +121,8 @@
 		
 	</div>
 
-
-
 </footer>
 
-@section('scripts')
-<!-- JavaScripts -->
 
-
-<script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
-<script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
-<script src="{{ asset_web('js/masked-input.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset_web('js/html5.js') }}" type="text/javascript"></script>
-<script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
-
-
-
-@show
 </body>
 </html>

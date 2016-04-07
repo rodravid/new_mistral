@@ -86,7 +86,7 @@
 
 	<section class="featured-products">
 
-		<div class="cols-products template8">
+		<div class="cols-products template3">
 			<h2 class="title-category">Compras Inteligentes</h2>
 			
 			<div class="wine-card">
@@ -158,7 +158,7 @@
 			
 		</div>
 
-		<div class="cols-products template6">
+		<div class="cols-products template1">
 			<h2 class="title-category">90 pontos ou +</h2>
 			
 			<div class="wine-card">
@@ -297,7 +297,7 @@
 			
 		</div>
 
-		<div class="cols-products template1">
+		<div class="cols-products template5">
 			<h2 class="title-category">Vinhos para primavera</h2>
 			
 			<div class="wine-card">
@@ -371,7 +371,9 @@
 		<a class="bt-default-full template7 show-desktop" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
 
 	</section>
-
+	@include('website::layouts.partials.featuredweek')
 </div>
+
+@include('website::layouts.footer')
 
 @stop
