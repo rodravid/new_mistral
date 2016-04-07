@@ -2188,6 +2188,9 @@ a.bt-default {
 			float:right;
 			width:100px;
 			text-align:right;
+			@media #{$screen-767} {
+				width:100%;
+			}
 		}
 		.price-final {
 			margin-right:7px;
