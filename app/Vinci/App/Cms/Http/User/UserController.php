@@ -70,7 +70,7 @@ class UserController extends Controller
 
         $this->adminService->savePhoto($request->file('photo'), $user);
 
-        dd('teste');
+        dd('foi');
 
         try {
 

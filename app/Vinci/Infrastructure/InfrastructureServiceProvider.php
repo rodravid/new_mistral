@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure;
 
 use Illuminate\Support\ServiceProvider;
+use Vinci\Infrastructure\Storage\StorageService;
 
 class InfrastructureServiceProvider extends ServiceProvider
 {
@@ -45,6 +46,10 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository',
             'Vinci\Domain\ACL\Module\Module'
         );
+
+        $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
+            return new StorageService($this->app['filesystem'], $this->app['config']);
+        });
 
     }
 

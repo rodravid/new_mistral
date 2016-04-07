@@ -31,7 +31,8 @@ class DomainServiceProvider extends ServiceProvider
             return new AdminService(
                 $this->app['Vinci\Domain\Admin\AdminRepository'],
                 $this->app['em'],
-                new AdminValidator($this->app['validator'])
+                new AdminValidator($this->app['validator']),
+                $this->app['Vinci\Infrastructure\Storage\StorageService']
             );
         });
 

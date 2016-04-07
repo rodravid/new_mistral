@@ -18,6 +18,7 @@ use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Photo\Photo;
 
 /**
  * @ORM\Entity
@@ -46,13 +47,23 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     protected $roles;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\User\Photo", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Photo\Photo")
+     * @ORM\JoinTable(name="users_photos",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="photo_id", referencedColumnName="id", unique=true)}
+     *     )
      */
     protected $photos;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Vinci\Domain\Photo\Photo")
+     */
+    protected $profile_photo;
 
     public function __construct()
     {
         $this->roles = new ArrayCollection;
+        $this->photos = new ArrayCollection;
     }
 
     public function getId()
@@ -91,6 +102,18 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         $this->roles->add($role);
     }
 
+    public function addPhoto(Photo $photo)
+    {
+        if (! $this->photos->contains($photo)) {
+            $this->photos->add($photo);
+        }
+    }
+
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
     public function hasPermissionTo($permission)
     {
         foreach ($this->getPermissions() as $per) {
@@ -120,6 +143,16 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     public function isSuperAdmin()
     {
         return $this->hasRoleByName(Role::SUPER_ADMIN);
+    }
+
+    public function setProfilePhoto(Photo $photo)
+    {
+        $this->profile_photo = $photo;
+    }
+
+    public function getProfilePhoto()
+    {
+        return $this->profile_photo;
     }
 
 }

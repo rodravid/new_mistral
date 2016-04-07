@@ -3,26 +3,15 @@
 namespace Vinci\Domain\Photo;
 
 use Doctrine\ORM\Mapping AS ORM;
-use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Illuminate\Http\UploadedFile;
+use Vinci\Domain\File\File;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="photos")
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"user_photo" = "Vinci\Domain\User\Photo", "default" = "Vinci\Domain\Photo\Photo"})
  */
-class Photo
+class Photo extends File
 {
-
-    use Timestamps;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -40,19 +29,91 @@ class Photo
     protected $height;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @return mixed
      */
-    protected $size;
+    public function getCaption()
+    {
+        return $this->caption;
+    }
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @param mixed $caption
      */
-    protected $extension;
+    public function setCaption($caption)
+    {
+        $this->caption = $caption;
+    }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\User\User", inversedBy="photos")
+     * @return mixed
      */
-    protected $user;
+    public function getWidth()
+    {
+        return $this->width;
+    }
 
+    /**
+     * @param mixed $width
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * @param mixed $height
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
+    public static function makeFromUpload(UploadedFile $file)
+    {
+        $dimensions = getimagesize($file);
+
+        $photo = static::make([
+            'caption' => $file->getClientOriginalName(),
+            'extension' => $file->getClientOriginalExtension(),
+            'size' => $file->getSize(),
+            'width' => $dimensions[0],
+            'height' => $dimensions[1]
+        ]);
+
+        return $photo;
+    }
+
+    public function getType()
+    {
+        return 'photo';
+    }
+
+    public function getUploadDir()
+    {
+        return 'photos';
+    }
+
+    public function getSmallPath()
+    {
+        return $this->path . '_small';
+    }
+
+    public function getMediumPath()
+    {
+        return $this->path . '_medium';
+    }
+
+    public function getLargerPath()
+    {
+        return $this->path . '_larger';
+    }
 
 }
