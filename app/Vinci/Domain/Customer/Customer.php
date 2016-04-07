@@ -4,7 +4,7 @@ namespace Vinci\Domain\Customer;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
-use LaravelDoctrine\ORM\Auth\Authenticatable;
+use Vinci\Domain\Auth\Authenticatable;
 use Vinci\Domain\User\User;
 
 /**
@@ -27,7 +27,7 @@ class Customer extends User
     protected $name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     protected $email;
 

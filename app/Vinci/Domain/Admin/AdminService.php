@@ -1,10 +1,13 @@
 <?php
 
-namespace Vinci\Domain\Admin\Admin;
+namespace Vinci\Domain\Admin;
 
+use Closure;
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Database\ConnectionInterface as Database;
+use Illuminate\Http\UploadedFile;
+use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Validation\ValidationTrait;
+use Vinci\Domain\Validation\ValidationException;
 
 class AdminService
 {
@@ -14,68 +17,65 @@ class AdminService
 
     private $entityManager;
 
+    private $validator;
+
     public function __construct(
         AdminRepository $repository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        AdminValidator $validator
     )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->validator = $validator;
     }
 
-    public function create(array $attributes)
+    public function create(array $adminData)
     {
-        $this->validate($attributes, $this->getRules(), $this->getMessages());
+        if ($this->validator->fails($adminData)) {
+            throw new ValidationException('Não foi possível criar o usuário', $this->validator->messages());
+        }
 
-        return $this->db->transaction(function() use ($attributes) {
+        return $this->saveAdmin($adminData, function($data) {
+            return Admin::make($data);
+        });
+    }
 
-            $admin = $this->createUserIfNotExists($attributes);
+    public function update(array $adminData, $id)
+    {
+        if ($this->validator->fails($adminData, $id)) {
+            throw new ValidationException('Não foi possível atualizar o usuário', $this->validator->messages());
+        }
 
-            $this->repository->createProfile($attributes, $admin->id);
+        return $this->saveAdmin($adminData, function($data) use ($id) {
+
+            if (empty($data['password'])) {
+                unset($data['password']);
+            }
+
+            $admin = $this->repository->find($id);
+            $admin->fill($data);
 
             return $admin;
         });
     }
 
-    public function update(array $attributes, $customerId)
+    public function savePhoto(UploadedFile $photo, Admin $user)
     {
-        $this->validate($attributes, $this->getRules($customerId));
 
-        $this->db->transaction(function() use ($attributes, $customerId) {
 
-            $this->repository->update($attributes, $customerId);
-            $this->repository->updateProfile($attributes, $customerId);
-
-        });
 
     }
 
-    protected function createUserIfNotExists(array $attributes)
+    protected function saveAdmin($adminData, Closure $method)
     {
-        $customer = $this->repository
-            ->skipCriteria()
-            ->findByEmail($attributes['email']);
+        $admin = $method($adminData);
 
-        if (empty($customer)) {
-            $customer = $this->repository->create($attributes);
-        }
+        $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
 
-        return $customer;
-    }
+        $this->repository->save($admin);
 
-    protected function getRules($ignoreId = null)
-    {
-        $rules = [
-            'name' => 'required',
-            'email' => 'required|unique_user:admin',
-            'password' => 'required'
-        ];
-
-        if (! empty($ignoreId)) {
-            $rules['email'] .= ",{$ignoreId}";
-        }
-
-        return $rules;
+        return $admin;
     }
 
 }

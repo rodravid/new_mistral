@@ -102,14 +102,14 @@ return [
         'customers' => [
             'provider' => 'customers',
             'email' => 'website::auth.emails.password',
-            'table' => 'password_resets',
+            'table' => 'customers_password_resets',
             'expire' => 60,
         ],
 
         'admins' => [
             'provider' => 'admins',
-            'email' => 'auth.emails.password',
-            'table' => 'password_resets',
+            'email' => 'cms::auth.emails.password',
+            'table' => 'admins_password_resets',
             'expire' => 60,
         ],
     ],
