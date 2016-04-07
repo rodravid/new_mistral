@@ -15,6 +15,10 @@
 }
 /*card vinho ******************************************/
 
+/*Cores ******************************************/
+.orange {color:$orange;}
+.blue {color:$blue;}
+
 /* Inicio templates BLUE **************BLUE****************BLUE***********/
 
 .template1 {
@@ -116,9 +120,9 @@
 	background:$blue;
 
 
-	.internal-subtitle{
+/* 	.internal-subtitle{
 		color:#5d003b;
-	}
+	} */
 }
 
 .wine-card.template1 {
@@ -165,6 +169,11 @@
 
 .bg-product.template1 {
 	background: $blue;
+}
+
+.bg-template.template1 {
+	border:0;
+	background:#e5f7fd;
 }
 
 /* Fim templates BLUE ******************BLUE****************BLUE*******/
@@ -293,6 +302,11 @@
 		color:$red;
 
 	}
+}
+
+.bg-template.template2 {
+	border:0;
+	background:#fce8ec;
 }
 /* Fim templates RED ******************RED****************RED*******/
 
@@ -527,6 +541,11 @@
 		color:$purple;
 
 	}
+}
+
+.bg-template.template4 {
+	border:0;
+	background:#efe6f2;
 }
 /* Fim templates PURPLE ******************PURPLE****************PURPLE*******/
 
@@ -893,6 +912,11 @@
 
 }
 
+.template7.bg-template {
+    border: 0;
+    background: #fff5e5;
+}
+
 /* Fim templates ORANGE ******************ORANGE****************ORANGE*******/
 
 
@@ -996,35 +1020,35 @@
 
 }
 
-.bt-default-full.bt-color {
-	background: $colorbt;
-	border: 2px solid #fff;
-	transition: all .1s ease .05s;
 
-	&:hover{
-		background: #fff;
-		color:$colorbt;
-		border:2px solid $colorbt;
-		transition: all .1s ease .05s;
-		.arrow-link{
-			background: $colorbt;
-			color:#fff;
-			transition: all .1s ease .05s;
-		}
-	}
-}
-.bt-default-full.bt-color .arrow-link {
-	color: $colorbt;
-	transition: all .1s ease .05s;
-	font-size: 14px;
-}
 
 
 
 /* Fim templates BLACK ******************BLACK****************BLACK*******/
 
 
+.bt-default-full.bt-color {
+	background: #ff5400;
+	border: 2px solid #fff;
+	transition: all .1s ease .05s;
 
+	&:hover{
+		background: #fff;
+		color:#ff5400;
+		border:2px solid #ff5400;
+		transition: all .1s ease .05s;
+		.arrow-link{
+			background: #ff5400;
+			color:#fff;
+			transition: all .1s ease .05s;
+		}
+	}
+}
+.bt-default-full.bt-color .arrow-link {
+	color: #ff5400;
+	transition: all .1s ease .05s;
+	font-size: 14px;
+}
 
 
 

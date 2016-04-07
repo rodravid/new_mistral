@@ -674,11 +674,11 @@
 
 
 	</article>
-
+@include('website::layouts.partials.featuredweek')
 </div>
 
 <div class="bg-layer-filtro"></div>
 
-
+@include('website::layouts.footer')
 
 @stop
