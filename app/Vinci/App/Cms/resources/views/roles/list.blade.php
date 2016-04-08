@@ -18,7 +18,7 @@
                             <div class="col-xs-12">
                                 <div class="panel">
                                     <div class="btn-group">
-                                        <a href="{{ route('cms.users.create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Novo usuário</a>
+                                        <a href="{{ route('cms.roles.create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Novo grupo</a>
                                     </div>
                                 </div>
                             </div>
@@ -30,8 +30,8 @@
                                         <thead>
                                         <tr>
                                             <th>#ID</th>
-                                            <th>Nome</th>
-                                            <th>E-mail</th>
+                                            <th>Título</th>
+                                            <th>Descrição</th>
                                             <th>Criado em</th>
                                             <th>Ações</th>
                                         </tr>

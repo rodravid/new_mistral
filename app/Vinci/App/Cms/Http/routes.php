@@ -27,6 +27,16 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 $route->get('datatable', 'User\\UserController@datatable')->name('list#datatable');
             });
 
+            $route->group(['prefix' => 'roles', 'as' => 'roles.'], function () use ($route) {
+                $route->get('/', 'Role\\RoleController@index')->name('list');
+                $route->get('/create', 'Role\\RoleController@create')->name('create');
+                $route->post('/', 'Role\\RoleController@store')->name('store');
+                $route->get('/{role}/edit', 'Role\\RoleController@edit')->name('edit');
+                $route->delete('/{role}/delete', 'Role\\RoleController@destroy')->name('destroy');
+                $route->put('/{role}', 'Role\\RoleController@update')->name('update');
+                $route->get('datatable', 'Role\\RoleController@datatable')->name('list#datatable');
+            });
+
             $route->group(['prefix' => 'minha-conta', 'as' => 'account.'], function () use ($route) {
                 $route->get('/', 'Account\\AccountController@index')->name('index');
                 $route->get('/editar', 'Account\\AccountController@edit')->name('edit');

@@ -2,6 +2,8 @@
 
 namespace Vinci\Domain\Core;
 
+use Illuminate\Support\Str;
+
 abstract class Model
 {
 
@@ -9,7 +11,7 @@ abstract class Model
     {
         foreach ($attributes as $name => $value) {
 
-            $setter = 'set' . ucfirst($name);
+            $setter = 'set' . ucfirst(Str::camel($name));
 
             if (method_exists($this, $setter)) {
                 call_user_func([$this, $setter], $value);

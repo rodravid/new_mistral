@@ -4,17 +4,21 @@ namespace Vinci\Domain\ACL;
 
 use Vinci\Domain\ACL\Module\Module;
 use Vinci\Domain\ACL\Module\ModuleRepository;
+use Vinci\Domain\ACL\Permission\PermissionRepository;
 use Vinci\Domain\User\User;
 
 class ACLService
 {
     protected $moduleRepository;
 
+    protected $permissionRepository;
+
     protected $currentModule;
 
-    public function __construct(ModuleRepository $moduleRepository)
+    public function __construct(ModuleRepository $moduleRepository, PermissionRepository $permissionRepository)
     {
         $this->moduleRepository = $moduleRepository;
+        $this->permissionRepository = $permissionRepository;
     }
 
     public function setCurrentModule(Module $module)
@@ -78,6 +82,19 @@ class ACLService
     {
         $segments = explode('.', $action);
         return $segments[1];
+    }
+
+    public function getAllPermissionsGroupedByModule()
+    {
+        $permissions = $this->permissionRepository->getAll();
+
+        $groupedPermissions = [];
+
+        foreach ($permissions as $permission) {
+            $groupedPermissions[$permission->extractModuleName()][] = $permission;
+        }
+
+        return $groupedPermissions;
     }
 
 }

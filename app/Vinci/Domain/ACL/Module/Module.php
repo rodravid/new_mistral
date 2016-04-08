@@ -31,14 +31,19 @@ class Module extends Model
     protected $title;
 
     /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    protected $name;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     protected $url;
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    protected $name;
+    protected $datatable_url;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -119,6 +124,16 @@ class Module extends Model
     public function getUrl()
     {
         return $this->url;
+    }
+
+    public function setDatatableUrl($url)
+    {
+        $this->datatable_url = $url;
+    }
+
+    public function getDatatableUrl()
+    {
+        return $this->datatable_url;
     }
 
     public function setName($name)

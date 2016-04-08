@@ -134,4 +134,9 @@ class Role extends Model implements RoleContract, HasModules
         return $this->permissions;
     }
 
+    public function isSuperAdmin()
+    {
+        return $this->getName() == static::SUPER_ADMIN;
+    }
+
 }

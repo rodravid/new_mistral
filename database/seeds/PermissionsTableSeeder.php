@@ -19,18 +19,28 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
 
-        $permission1 = Permission::make([
-            'name' => 'cms.dashboard',
-            'description' => 'Ver dashboard'
-        ]);
+        $permissions = [
+            ['name' => 'cms.dashboard', 'description' => 'Ver dashboard'],
 
-        $permission2 = Permission::make([
-            'name' => 'cms.users.list',
-            'description' => 'Listar usuários'
-        ]);
+            ['name' => 'cms.users.list', 'description' => 'Listar usuários'],
+            ['name' => 'cms.users.create', 'description' => 'Criar usuários'],
+            ['name' => 'cms.users.edit', 'description' => 'Editar usuários'],
+            ['name' => 'cms.users.destroy', 'description' => 'Excluir usuários'],
 
-        $this->em->persist($permission1);
-        $this->em->persist($permission2);
+            ['name' => 'cms.groups.list', 'description' => 'Listar grupos'],
+            ['name' => 'cms.groups.create', 'description' => 'Criar grupos'],
+            ['name' => 'cms.groups.edit', 'description' => 'Editar grupos'],
+            ['name' => 'cms.groups.destroy', 'description' => 'Excluir grupos'],
+        ];
+
+        foreach ($permissions as $permission) {
+            $this->em->persist(
+                Permission::make([
+                    'name' => $permission['name'],
+                    'description' => $permission['description']
+                ])
+            );
+        }
 
         $this->em->flush();
 

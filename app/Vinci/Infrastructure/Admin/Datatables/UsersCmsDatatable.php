@@ -2,7 +2,6 @@
 
 namespace Vinci\Infrastructure\Admin\Datatables;
 
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -16,7 +15,14 @@ class UsersCmsDatatable extends AbstractDatatables
         $this->adminRepository = $adminRepository;
     }
 
-    public function getData($perPage, $start, array $order = null, array $search = null)
+    protected $sortMapping = [
+        0 => 'o.id',
+        1 => 'o.name',
+        2 => 'o.email',
+        3 => 'o.createdAt',
+    ];
+
+    public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->adminRepository->createQueryBuilder('o')
             ->select('o')
@@ -36,49 +42,23 @@ class UsersCmsDatatable extends AbstractDatatables
             $qb->setParameter('search', '%' . $search['value'] . '%');
         }
 
-        $dir = $order['dir'];
+        $this->applyOrder($order, $qb);
 
-        switch ($order['column']) {
-
-            case 0:
-                $qb->orderBy('o.id', $dir);
-
-                break;
-
-            case 1:
-                $qb->orderBy('o.name', $dir);
-                break;
-
-            case 2:
-                $qb->orderBy('o.email', $dir);
-                break;
-
-            case 3:
-                $qb->orderBy('o.createdAt', $dir);
-                break;
-        }
-
-        $paginator = new Paginator($qb->getQuery());
-
-        $data = $this->parseDataForDatatable($paginator->getIterator());
-
-        return $this->makeDatatablesOutput($paginator->count(), $data);
+        return $this->makePaginator($qb->getQuery());
     }
 
-    protected function parseDataForDatatable($data)
+    public function parseSingleReult($user)
     {
-        $users = [];
-        foreach ($data as $user) {
-            $users[] = [
-                $user->getId(),
-                $user->getName(),
-                $user->getEmail(),
-                $user->getCreatedAt()->format('d/m/Y H:i:s'),
-                $this->getActionsColumn($user, ['destroy_url' => route('cms.users.destroy', $user->getId())])
-            ];
-        }
-
-        return $users;
+        return [
+            $user->getId(),
+            $user->getName(),
+            $user->getEmail(),
+            $user->getCreatedAt()->format('d/m/Y H:i:s'),
+            $this->buildActionsColumn([
+                'edit_url' => route('cms.users.edit', $user->getId()),
+                'destroy_url' => route('cms.users.destroy', $user->getId())
+            ])
+        ];
     }
 
 }

@@ -36,13 +36,15 @@ class ModulesTableSeeder extends Seeder
             'title' => 'Usuários',
             'name' => 'users',
             'url' => '/cms/users',
+            'datatable_url' => '/cms/users/datatable',
             'icon' => 'fa fa-user'
         ]);
 
         $groupsModule = Module::make([
             'title' => 'Grupos',
-            'name' => 'groups',
-            'url' => '/cms/groups',
+            'name' => 'roles',
+            'url' => '/cms/roles',
+            'datatable_url' => '/cms/roles/datatable',
             'icon' => 'fa fa-users'
         ]);
 

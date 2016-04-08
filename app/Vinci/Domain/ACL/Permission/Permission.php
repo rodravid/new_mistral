@@ -62,4 +62,9 @@ class Permission extends Model implements PermissionContract
         $this->description = $description;
     }
 
+    public function extractModuleName()
+    {
+        return explode('.', $this->name)[1];
+    }
+
 }
