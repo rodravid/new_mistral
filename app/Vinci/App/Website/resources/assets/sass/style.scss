@@ -2153,6 +2153,63 @@ a.bt-default {
 		}
 	}
 
+	.flags-card {
+		width:100%;
+		display:inline-block;
+		margin-bottom:30px;
+	}
+	.flags-list {
+		display:inline-block;
+		margin-right:40px;
+		text-align:center;
+		width:70px;
+		@media #{$screen-767} {
+			margin-right:5px;
+			width:60px;
+		}
+	}
+
+	.flags {
+		width:70px;
+		height:38px;
+		display:inline-block;
+		margin-bottom:5px;
+		background: url($imgPath + "bandeira-cartoes.png") no-repeat;
+		@media #{$screen-767} {
+			width:50px;
+			height:28px;
+		}
+	}
+	.flags.visa {
+		background-position:-2px 0;
+
+		@media #{$screen-767} {
+			background-position: 5px 3px;
+			background-size: 230px;
+		}
+	}
+	.flags.master {
+		background-position:-103px 0;	
+		@media #{$screen-767} {
+			background-position: -62px 3px;
+			background-size: 230px;
+		}
+	}
+	.flags.american {
+		background-position:-202px 0;
+		@media #{$screen-767} {
+			background-position: -129px 3px;
+			background-size: 236px;
+		}
+	}
+	.flags.diners {
+		background-position:-302px 0;
+		@media #{$screen-767} {
+			background-position: -197px 3px;
+			background-size: 236px;
+		}
+	}
+
 	/*PG PAGAMENTO*/
 
 	.content-order,

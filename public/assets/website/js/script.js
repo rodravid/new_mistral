@@ -148,7 +148,39 @@ jQuery(document).ready(function ($) {
     });
 
 
-  });
+
+       $(".visa").click(function () { //when click on flip radio button
+        $('.visa:radio[name=flag-card]').prop('checked', true);
+        $('.master:radio[name=flag-card]').prop('checked', false);
+        $('.american:radio[name=flag-card]').prop('checked', false);
+        $('.diners:radio[name=flag-card]').prop('checked', false);
+      });
+
+              $(".master").click(function () { //when click on flip radio button
+                $('.master:radio[name=flag-card]').prop('checked', true);
+                $('.visa:radio[name=flag-card]').prop('checked', false);
+                $('.american:radio[name=flag-card]').prop('checked', false);
+                $('.diners:radio[name=flag-card]').prop('checked', false);
+              });
+
+                            $(".american").click(function () { //when click on flip radio button
+                              $('.american:radio[name=flag-card]').prop('checked', true);
+                              $('.visa:radio[name=flag-card]').prop('checked', false);
+                              $('.master:radio[name=flag-card]').prop('checked', false);
+                              $('.diners:radio[name=flag-card]').prop('checked', false);
+                            });
+
+
+                                                        $(".diners").click(function () { //when click on flip radio button
+                              $('.diners:radio[name=flag-card]').prop('checked', true);
+                              $('.visa:radio[name=flag-card]').prop('checked', false);
+                              $('.master:radio[name=flag-card]').prop('checked', false);
+                              $('.american:radio[name=flag-card]').prop('checked', false);
+                            });
+
+
+
+                          });
 
 
 /*Detect IE add Class*/

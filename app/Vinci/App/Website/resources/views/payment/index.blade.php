@@ -106,7 +106,7 @@
 
 			<div class="row-request">
 				<div class="info-request float-left">
-				Frete
+					Frete
 				</div>
 				<div class="price-final float-right">
 					<span class="title-internal-15">R$ 10,26</span>
@@ -142,6 +142,24 @@
 
 		<article class="form-payment section-payment">
 			<form action="">
+				<ul class="flags-card">
+					<li class="flags-list">
+						<div for="flags-card" id="" class="flags visa"></div>
+						<input type="radio" name="flag-card" value="" class="visa">
+					</li>
+					<li class="flags-list">
+						<div class="flags master"></div>
+						<input type="radio" name="flag-card" value="" class="master">
+					</li>
+					<li class="flags-list">
+						<div class="flags american"></div>
+						<input type="radio" name="flag-card" value="" class="american">
+					</li>
+					<li class="flags-list">
+						<div class="flags diners"></div>
+						<input type="radio" name="flag-card" value="" class="diners">
+					</li>
+				</ul>
 				<div class="col-register1">
 
 					<div class="user-data">
