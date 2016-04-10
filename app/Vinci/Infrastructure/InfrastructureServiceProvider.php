@@ -3,6 +3,8 @@
 namespace Vinci\Infrastructure;
 
 use Illuminate\Support\ServiceProvider;
+use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository;
+use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepositoryCached;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class InfrastructureServiceProvider extends ServiceProvider
@@ -43,13 +45,13 @@ class InfrastructureServiceProvider extends ServiceProvider
 
         $this->registerRepository(
             'Vinci\Domain\ACL\Permission\PermissionRepository',
-            'Vinci\Infrastructure\ACL\Permissions\DoctrinePermissionRepository',
+            'Vinci\Infrastructure\ACL\Permissions\DoctrinePermissionRepositoryCached',
             'Vinci\Domain\ACL\Permission\Permission'
         );
 
         $this->registerRepository(
             'Vinci\Domain\ACL\Module\ModuleRepository',
-            'Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository',
+            'Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepositoryCached',
             'Vinci\Domain\ACL\Module\Module'
         );
 

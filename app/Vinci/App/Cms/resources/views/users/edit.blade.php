@@ -13,7 +13,7 @@
     <section class="content">
         <div class="row">
 
-            {!! Form::model($user, ['route' => ['cms.users.update', $user->getId()], 'method' => 'PUT', 'files' => true]) !!}
+            {!! Form::model($user, ['route' => ['cms.users.edit#update', $user->getId()], 'method' => 'PUT', 'files' => true]) !!}
 
                 <div class="col-xs-12 col-lg-9">
                     <div class="box box-primary">

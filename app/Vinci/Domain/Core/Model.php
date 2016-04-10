@@ -2,9 +2,10 @@
 
 namespace Vinci\Domain\Core;
 
+use ArrayAccess;
 use Illuminate\Support\Str;
 
-abstract class Model
+abstract class Model implements ArrayAccess
 {
 
     public function fill(array $attributes)
@@ -37,12 +38,32 @@ abstract class Model
             return call_user_func([$this, $getter]);
         }
 
-        throw new \RuntimeException("No getter found for {$name}");
+        return $this->$name;
     }
 
     public function getFormValue($name)
     {
         return $this->$name;
+    }
+
+    public function offsetExists($offset)
+    {
+        return isset($this->$offset);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->$offset;
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        $this->$offset = $value;
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->$offset);
     }
 
 }

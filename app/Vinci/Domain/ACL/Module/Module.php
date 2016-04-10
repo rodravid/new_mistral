@@ -59,19 +59,19 @@ class Module extends Model
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
      */
-    private $lft;
+    protected $lft;
 
     /**
      * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer")
      */
-    private $lvl;
+    protected $lvl;
 
     /**
      * @Gedmo\TreeRight
      * @ORM\Column(name="rgt", type="integer")
      */
-    private $rgt;
+    protected $rgt;
 
     /**
      * @Gedmo\TreeRoot
@@ -193,9 +193,38 @@ class Module extends Model
         return false;
     }
 
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
     public function hasChildrens()
     {
         return $this->children->count() > 0;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLft()
+    {
+        return $this->lft;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRgt()
+    {
+        return $this->rgt;
     }
 
 }

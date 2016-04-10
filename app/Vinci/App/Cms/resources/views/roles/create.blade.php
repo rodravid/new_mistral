@@ -13,7 +13,7 @@
     <section class="content">
         <div class="row">
 
-            {!! Form::open(['route' => 'cms.users.store', 'method' => 'post', 'files' => true]) !!}
+            {!! Form::open(['route' => 'cms.roles.create#store', 'method' => 'post', 'files' => true]) !!}
 
                 <div class="col-xs-12 col-lg-9">
                     <div class="box box-primary">
@@ -23,22 +23,25 @@
 
                         <div class="box-body">
                             @include('cms::roles.form')
-
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label for="txtUserEmail">Permissões</label>
 
                                     <div class="row">
-                                        @foreach($groupedPermissions as $name => $permissionGroup)
+                                        @foreach($groupedPermissions as $permissionGroup)
                                             <div class="col-xs-6 col-sm-4 col-md-3">
                                                 <div class="checkbox">
-                                                    <label><input type="checkbox" data-checkall><b>{{ $name }}</b></label>
+                                                    <label><input type="checkbox" name="modules[]" value="{{ $permissionGroup['module']->getId() }}" data-checkall><b>{{ $permissionGroup['module']->getTitle() }}</b></label>
                                                 </div>
                                                 <div class="form-group">
-                                                    @foreach($permissionGroup as $permission)
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" name="permissions[]">{{ $permission->getDescription() }}</label>
-                                                        </div>
+                                                    @foreach($permissionGroup['permissions'] as $permission)
+                                                        @if($permission->canBeListed())
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="permissions[]" value="{{ $permission->getId() }}">{{ $permission->getDescription() }}</label>
+                                                            </div>
+                                                        @else
+                                                            <input type="hidden" name="permissions[]" value="{{ $permission->getId() }}">
+                                                        @endif
                                                     @endforeach
                                                 </div>
                                             </div>

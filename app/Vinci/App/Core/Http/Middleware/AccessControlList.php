@@ -21,7 +21,7 @@ class AccessControlList
 
     public function handle($request, Closure $next)
     {
-        if (! $this->ACLService->userCanExecuteAction(cmsUser(), $this->route->getName())) {
+        if (! $this->ACLService->userCanAccessRoute(cmsUser(), $this->route->getName())) {
             abort(404);
         }
 

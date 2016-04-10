@@ -20,20 +20,20 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->group(['prefix' => 'users', 'as' => 'users.'], function () use ($route) {
                 $route->get('/', 'User\\UserController@index')->name('list');
                 $route->get('/create', 'User\\UserController@create')->name('create');
-                $route->post('/', 'User\\UserController@store')->name('store');
+                $route->post('/', 'User\\UserController@store')->name('create#store');
                 $route->get('/{user}/edit', 'User\\UserController@edit')->name('edit');
                 $route->delete('/{user}/delete', 'User\\UserController@destroy')->name('destroy');
-                $route->put('/{user}', 'User\\UserController@update')->name('update');
+                $route->put('/{user}', 'User\\UserController@update')->name('edit#update');
                 $route->get('datatable', 'User\\UserController@datatable')->name('list#datatable');
             });
 
             $route->group(['prefix' => 'roles', 'as' => 'roles.'], function () use ($route) {
                 $route->get('/', 'Role\\RoleController@index')->name('list');
                 $route->get('/create', 'Role\\RoleController@create')->name('create');
-                $route->post('/', 'Role\\RoleController@store')->name('store');
+                $route->post('/', 'Role\\RoleController@store')->name('create#store');
                 $route->get('/{role}/edit', 'Role\\RoleController@edit')->name('edit');
                 $route->delete('/{role}/delete', 'Role\\RoleController@destroy')->name('destroy');
-                $route->put('/{role}', 'Role\\RoleController@update')->name('update');
+                $route->put('/{role}', 'Role\\RoleController@update')->name('edit#update');
                 $route->get('datatable', 'Role\\RoleController@datatable')->name('list#datatable');
             });
 

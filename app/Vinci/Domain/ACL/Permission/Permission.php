@@ -64,7 +64,29 @@ class Permission extends Model implements PermissionContract
 
     public function extractModuleName()
     {
-        return explode('.', $this->name)[1];
+        return $this->getSegments(1);
+    }
+
+    public function extractActionName()
+    {
+        $segments = $this->getSegments();
+        return end($segments);
+    }
+
+    public function canBeListed()
+    {
+        return $this->extractActionName() != 'list';
+    }
+
+    public function getSegments($offset = null)
+    {
+        $segments =  explode('.', $this->name);
+
+        if(isset($segments[$offset])) {
+            return $segments[$offset];
+        }
+
+        return $segments;
     }
 
 }

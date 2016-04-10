@@ -10,8 +10,7 @@ use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\Domain\ACL\ACLService;
-use Vinci\Domain\Admin\AdminRepository;
-use Vinci\Domain\Admin\AdminService;
+use Vinci\Domain\ACL\Role\RoleRepository;
 use Vinci\Domain\Validation\ValidationException;
 
 class RoleController extends Controller
@@ -19,9 +18,7 @@ class RoleController extends Controller
 
     use DatatablesResponse;
 
-    protected $adminService;
-
-    protected $adminRepository;
+    protected $repository;
 
     protected $datatable = 'Vinci\Infrastructure\ACL\Roles\Datatables\RolesCmsDatatable';
 
@@ -29,15 +26,13 @@ class RoleController extends Controller
 
     public function __construct(
         EntityManagerInterface $em,
-        AdminService $adminService,
-        AdminRepository $adminRepository,
+        RoleRepository $repository,
         ACLService $aclService
     )
     {
         parent::__construct($em);
 
-        $this->adminService = $adminService;
-        $this->adminRepository = $adminRepository;
+        $this->repository = $repository;
         $this->aclService = $aclService;
     }
 
@@ -55,30 +50,21 @@ class RoleController extends Controller
 
     public function edit($id)
     {
-        $user = $this->adminRepository->findOrFail($id);
+        $role = $this->repository->findOrFail($id);
+        $groupedPermissions = $this->aclService->getAllPermissionsGroupedByModule();
 
-        return $this->view('roles.edit')
-            ->withUser($user);
+        return $this->view('roles.edit', compact('role', 'groupedPermissions'));
     }
 
     public function store(Request $request)
     {
-
-        $user = $this->adminRepository->find(1);
-
-        $this->adminService->savePhoto($request->file('photo'), $user);
-
-        dd('foi');
-
         try {
 
-            $user = $this->adminService->create($request->all());
+            $role = $this->aclService->createRole($request->all());
 
-            $this->adminService->savePhoto($request->file('photo'), $user);
+            Flash::success("Grupo {$role->getTitle()} criado com sucesso!");
 
-            Flash::success("Usuário {$user->getName()} criado com sucesso!");
-
-            return Redirect::route('cms.roles.edit', $user->getId());
+            return Redirect::route('cms.roles.edit', $role->getId());
 
         } catch (ValidationException $e) {
 

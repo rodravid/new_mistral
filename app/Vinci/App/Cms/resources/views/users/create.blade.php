@@ -13,7 +13,7 @@
     <section class="content">
         <div class="row">
 
-            {!! Form::open(['route' => 'cms.users.store', 'method' => 'post', 'files' => true]) !!}
+            {!! Form::open(['route' => 'cms.users.create#store', 'method' => 'post', 'files' => true]) !!}
 
                 <div class="col-xs-12 col-lg-9">
                     <div class="box box-primary">

@@ -23,6 +23,7 @@ class DomainServiceProvider extends ServiceProvider
 
         $this->app->singleton('Vinci\Domain\ACL\ACLService', function() {
             return new ACLService(
+                $this->app['em'],
                 $this->app->make('Vinci\Domain\ACL\Module\ModuleRepository'),
                 $this->app->make('Vinci\Domain\ACL\Permission\PermissionRepository')
             );

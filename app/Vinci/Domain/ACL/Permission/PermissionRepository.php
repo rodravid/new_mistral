@@ -8,4 +8,6 @@ interface PermissionRepository
 
     public function getAll();
 
+    public function findByName($name);
+
 }

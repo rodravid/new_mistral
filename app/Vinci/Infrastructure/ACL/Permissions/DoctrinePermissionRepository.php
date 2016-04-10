@@ -13,4 +13,8 @@ class DoctrinePermissionRepository extends DoctrineBaseRepository implements Per
         return $this->createQueryBuilder('o')->getQuery()->getResult();
     }
 
+    public function findByName($name)
+    {
+        return $this->findBy(['name' => $name]);
+    }
 }
