@@ -1,4 +1,4 @@
-@extends('cms::layouts.module')
+@extends('cms::roles.module')
 
 @section('breadcrumb')
     <ol class="breadcrumb">
@@ -23,32 +23,6 @@
 
                         <div class="box-body">
                             @include('cms::roles.form')
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <label for="txtUserEmail">Permissões</label>
-
-                                    <div class="row">
-                                        @foreach($groupedPermissions as $permissionGroup)
-                                            <div class="col-xs-6 col-sm-4 col-md-3">
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" name="modules[]" value="{{ $permissionGroup['module']->getId() }}" data-checkall><b>{{ $permissionGroup['module']->getTitle() }}</b></label>
-                                                </div>
-                                                <div class="form-group">
-                                                    @foreach($permissionGroup['permissions'] as $permission)
-                                                        @if($permission->canBeListed())
-                                                            <div class="checkbox">
-                                                                <label><input type="checkbox" name="permissions[]" value="{{ $permission->getId() }}">{{ $permission->getDescription() }}</label>
-                                                            </div>
-                                                        @else
-                                                            <input type="hidden" name="permissions[]" value="{{ $permission->getId() }}">
-                                                        @endif
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>

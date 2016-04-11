@@ -60,7 +60,11 @@ class RoleController extends Controller
     {
         try {
 
-            $role = $this->aclService->createRole($request->all());
+            $data = $request->all();
+            $data['modules'] = $request->get('modules', []);
+            $data['permissions'] = $request->get('permissions', []);
+
+            $role = $this->aclService->createRole($data);
 
             Flash::success("Grupo {$role->getTitle()} criado com sucesso!");
 
@@ -78,13 +82,17 @@ class RoleController extends Controller
         }
     }
 
-    public function update(Request $request, $customerId)
+    public function update(Request $request, $roleId)
     {
         try {
 
-            $user = $this->adminService->update($request->all(), $customerId);
+            $data = $request->all();
+            $data['modules'] = $request->get('modules', []);
+            $data['permissions'] = $request->get('permissions', []);
 
-            Flash::success("Usuário {$user->getName()} atualizado com sucesso!");
+            $user = $this->aclService->updateRole($data, $roleId);
+
+            Flash::success("Grupo {$user->getName()} atualizado com sucesso!");
 
             return Redirect::route('cms.roles.edit', $user->getId());
 
@@ -101,15 +109,15 @@ class RoleController extends Controller
 
     }
 
-    public function destroy($userId)
+    public function destroy($roleId)
     {
-        $user = $this->adminRepository->find($userId);
+        $role = $this->repository->find($roleId);
 
         try {
 
-            $this->adminRepository->delete($user);
+            $this->repository->delete($role);
 
-            Flash::success("Usuário {$user->getName()} excluído com sucesso!");
+            Flash::success("Grupo {$role->getName()} excluído com sucesso!");
 
             return Redirect::route('cms.roles.list');
 

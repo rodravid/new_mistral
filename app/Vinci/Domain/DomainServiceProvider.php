@@ -25,6 +25,7 @@ class DomainServiceProvider extends ServiceProvider
             return new ACLService(
                 $this->app['em'],
                 $this->app->make('Vinci\Domain\ACL\Module\ModuleRepository'),
+                $this->app->make('Vinci\Domain\ACL\Role\RoleRepository'),
                 $this->app->make('Vinci\Domain\ACL\Permission\PermissionRepository')
             );
         });

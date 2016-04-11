@@ -8,6 +8,7 @@ use Vinci\Domain\ACL\Module\ModuleRepository;
 use Vinci\Domain\ACL\Permission\Permission;
 use Vinci\Domain\ACL\Permission\PermissionRepository;
 use Vinci\Domain\ACL\Role\Role;
+use Vinci\Domain\ACL\Role\RoleRepository;
 use Vinci\Domain\User\User;
 
 class ACLService
@@ -20,10 +21,18 @@ class ACLService
 
     protected $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager, ModuleRepository $moduleRepository, PermissionRepository $permissionRepository)
+    protected $roleRepository;
+
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ModuleRepository $moduleRepository,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository
+    )
     {
         $this->entityManager = $entityManager;
         $this->moduleRepository = $moduleRepository;
+        $this->roleRepository = $roleRepository;
         $this->permissionRepository = $permissionRepository;
     }
 
@@ -112,23 +121,36 @@ class ACLService
             'description' => $attributes['description']
         ]);
 
-        if (isset($attributes['modules'])) {
-            foreach($attributes['modules'] as $module) {
-                $role->assignModule($this->entityManager->getReference(Module::class, $module));
-            }
+        $this->assingModulesAndPermissions($role, $attributes['modules'], $attributes['permissions']);
 
-            if (isset($attributes['permissions'])) {
-                foreach($attributes['permissions'] as $permission) {
-                    $role->assignPermission($this->entityManager->getReference(Permission::class, $permission));
-                }
-            }
-
-        }
-
-        $this->entityManager->persist($role);
-        $this->entityManager->flush();
+        $this->roleRepository->save($role);
 
         return $role;
+    }
+
+    public function updateRole(array $attributes, $id)
+    {
+        $role = $this->roleRepository->find($id);
+
+        $role->getModules()->clear();
+        $role->getPermissions()->clear();
+
+        $this->assingModulesAndPermissions($role, $attributes['modules'], $attributes['permissions']);
+
+        $this->roleRepository->save($role);
+
+        return $role;
+    }
+
+    protected function assingModulesAndPermissions(Role $role, array $modules = [], array $permissions = [])
+    {
+        foreach($modules as $module) {
+            $role->assignModule($this->entityManager->getReference(Module::class, $module));
+        }
+
+        foreach($permissions as $permission) {
+            $role->assignPermission($this->entityManager->getReference(Permission::class, $permission));
+        }
     }
 
 }
