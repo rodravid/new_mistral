@@ -11,7 +11,8 @@ use Vinci\Domain\Core\Model;
  * @ORM\Table(name="files")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"photo" = "Vinci\Domain\Photo\Photo", "file" = "Vinci\Domain\File\File"})
+ * @ORM\DiscriminatorMap({FileType::IMAGE = "Vinci\Domain\Image\Image", FileType::FILE = "Vinci\Domain\File\File"})
+ * @ORM\HasLifecycleCallbacks
  */
 class File extends Model
 {
@@ -33,6 +34,11 @@ class File extends Model
     /**
      * @ORM\Column(type="string", nullable=true)
      */
+    protected $mime;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     protected $extension;
 
     /**
@@ -40,9 +46,22 @@ class File extends Model
      */
     protected $path;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $name;
+
+    protected $upload_dir;
+
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setSize($size)
+    {
+        $this->size = $size;
+        return $this;
     }
 
     public function getSize()
@@ -50,9 +69,15 @@ class File extends Model
         return $this->size;
     }
 
-    public function setSize($size)
+    public function setMime($mime)
     {
-        $this->size = $size;
+        $this->mime = $mime;
+        return $this;
+    }
+
+    public function getMime()
+    {
+        return $this->mime;
     }
 
     public function getExtension()
@@ -63,16 +88,13 @@ class File extends Model
     public function setExtension($extension)
     {
         $this->extension = $extension;
-    }
-
-    public function getUploadDir()
-    {
-        return 'files';
+        return $this;
     }
 
     public function setPath($path)
     {
         $this->path = $path;
+        return $this;
     }
 
     public function getPath()
@@ -80,24 +102,61 @@ class File extends Model
         return $this->path;
     }
 
-    public function getUploadPath()
+    public function setName($name)
     {
-        return $this->getFullPath();
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
     public function getType()
     {
-        return 'file';
+        return FileType::FILE;
     }
 
-    public function getFullPath()
+    public function setUploadDir($dir)
     {
-        return $this->getUploadDir() . '/' . $this->getPath() . '.' . $this->getExtension();
+        $this->upload_dir = $dir;
+        return $this;
+    }
+
+    public function getUploadPathName()
+    {
+        return $this->getPathName();
+    }
+
+    public function getPathName()
+    {
+        return $this->getPath() . '/' . $this->getFullName();
+    }
+
+    public function getFullName()
+    {
+        return $this->getName() . '.' . $this->getExtension();
     }
 
     public function getWebPath()
     {
-        return $this->getFullPath();
+        return $this->getPathName();
+    }
+
+    public function generateUniqueName()
+    {
+        return $this->name = md5(uniqid());
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function checkImageNameOnPrePersist()
+    {
+        if (empty($this->getName())) {
+            $this->generateUniqueName();
+        }
     }
 
 }

@@ -17,7 +17,9 @@
         "gedmo/doctrine-extensions": "2.4.*",
         "laravelcollective/html": "5.2.*",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "laracasts/flash": "^2.0"
+        "laracasts/flash": "^2.0",
+        "intervention/image": "^2.3",
+        "prettus/laravel-validation": "1.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

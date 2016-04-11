@@ -74,7 +74,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">{{ cmsUser()->name }}</span>
+                            <span class="hidden-xs">{{ $loggedUser->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -82,8 +82,8 @@
                                 <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ cmsUser()->name }} - Programador
-                                    <small>Membro desde {{ cmsUser()->getCreatedAt()->format('M/Y') }}</small>
+                                    {{ $loggedUser->name }} {{ $loggedUser->office }}
+                                    <small>Membro desde {{ $loggedUser->getCreatedAt()->format('M/Y') }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->

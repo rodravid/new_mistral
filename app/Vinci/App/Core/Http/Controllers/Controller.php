@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Core\Http\Controllers;
 
+use App;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -16,9 +17,9 @@ class Controller extends BaseController
 
     protected $entityManager;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct()
     {
-        $this->entityManager = $em;
+        $this->entityManager = App::make('em');
     }
 
     protected function view($view = null, $data = [], $mergeData = [])

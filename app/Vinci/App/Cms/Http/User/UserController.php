@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\Role\RoleRepository;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Domain\Admin\AdminService;
-use Vinci\Domain\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -76,7 +76,9 @@ class UserController extends Controller
 
             $user = $this->adminService->create($request->all());
 
-            $this->adminService->savePhoto($request->file('photo'), $user);
+            if ($request->hasFile('photo')) {
+                $this->adminService->savePhoto($request->file('photo'), $user);
+            }
 
             Flash::success("Usuário {$user->getName()} criado com sucesso!");
 

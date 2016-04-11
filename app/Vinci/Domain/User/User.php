@@ -18,7 +18,7 @@ use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Model;
-use Vinci\Domain\Photo\Photo;
+use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\Entity
@@ -47,7 +47,7 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     protected $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Photo\Photo")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Image\Image")
      * @ORM\JoinTable(name="users_photos",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="photo_id", referencedColumnName="id", unique=true)}
@@ -56,7 +56,7 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     protected $photos;
 
     /**
-     * @ORM\OneToOne(targetEntity="Vinci\Domain\Photo\Photo")
+     * @ORM\OneToOne(targetEntity="Vinci\Domain\Image\Image")
      */
     protected $profile_photo;
 
@@ -145,7 +145,7 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         return $this->hasRoleByName(Role::SUPER_ADMIN);
     }
 
-    public function setProfilePhoto(Photo $photo)
+    public function setProfilePhoto(Image $photo)
     {
         $this->profile_photo = $photo;
     }
@@ -153,6 +153,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     public function getProfilePhoto()
     {
         return $this->profile_photo;
+    }
+
+    public function getPhotosUploadPath()
+    {
+        return 'users/' . $this->getId() . '/photos';
     }
 
 }

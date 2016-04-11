@@ -5,7 +5,7 @@ namespace Vinci\Infrastructure\Storage;
 use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Config\Repository as Config;
 use Vinci\Domain\File\FileInterface;
-use Vinci\Domain\Photo\Photo;
+use Vinci\Domain\Image\Image;
 
 class StorageService
 {
@@ -27,9 +27,21 @@ class StorageService
         return $this->disk = $this->get($name);
     }
 
-    public function storePhoto(Photo $photo, $contents)
+    public function storeImage(Image $image)
     {
-        return $this->disk()->put($photo->getUploadPath(), $contents);
+        $uploadedImage = $image->getUploadedFile();
+
+        if (empty($image->getName())) {
+            $image->generateUniqueName();
+        }
+
+        $this->disk()->put($image->getUploadPathName(), file_get_contents($uploadedImage));
+
+        if ($image->hasSmall()) {
+            $this->disk()->put($image->getSmall()->getUploadPathName(), file_get_contents($uploadedImage));
+        }
+
+        return $image->getPathName();
     }
 
     protected function getDefaultDisk()

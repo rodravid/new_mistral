@@ -26,6 +26,11 @@ class Admin extends User
     protected $email;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $office;
+
+    /**
      * Get the e-mail address where password reset links are sent.
      *
      * @return string
@@ -33,6 +38,17 @@ class Admin extends User
     public function getEmailForPasswordReset()
     {
         return $this->email;
+    }
+
+    public function setOffice($office)
+    {
+        $this->office = $office;
+        return $this;
+    }
+
+    public function getOffice()
+    {
+        return $this->office;
     }
 
 }

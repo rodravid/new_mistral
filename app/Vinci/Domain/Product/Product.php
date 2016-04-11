@@ -44,7 +44,7 @@ class Product extends Model
     protected $status;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Photo\Photo")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Image\Image")
      * @ORM\JoinTable(name="products_photos",
      *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="photo_id", referencedColumnName="id", unique=true)}
