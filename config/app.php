@@ -217,4 +217,6 @@ return [
 
     ],
 
+    'storage_web_path' => env('STORAGE_WEB_PATH', '/storage'),
+
 ];

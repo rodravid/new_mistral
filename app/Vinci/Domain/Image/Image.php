@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Image;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Illuminate\Http\UploadedFile;
 use Vinci\Domain\File\File;
@@ -29,51 +30,27 @@ class Image extends File
     protected $height;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="parent", cascade={"persist", "remove"})
      */
-    protected $small_path;
+    protected $versions;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
-    protected $small_width;
+    protected $version_type;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Image", inversedBy="versions", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
-    protected $small_height;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $medium_path;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $medium_width;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $medium_height;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $large_path;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $large_width;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $large_height;
+    protected $parent;
 
     protected $uploaded_file;
+
+    public function __construct()
+    {
+        $this->versions = new ArrayCollection;
+    }
 
     /**
      * @return mixed
@@ -123,7 +100,7 @@ class Image extends File
         $this->height = $height;
     }
 
-    public static function makeFromUpload(UploadedFile $file)
+    public static function makeFromUpload(UploadedFile $file, $path = null, $copyOriginal = true)
     {
         $dimensions = getimagesize($file);
 
@@ -136,6 +113,16 @@ class Image extends File
             'height' => $dimensions[1],
             'uploaded_file' => $file
         ]);
+
+        if(! empty($path)) {
+            $image->setPath($path);
+        }
+
+        $image->generateUniqueName();
+
+        if($copyOriginal) {
+            $image->addVersion(ImageVersions::ORIGINAL, clone $image);
+        }
 
         return $image;
     }
@@ -150,153 +137,6 @@ class Image extends File
         return 'photos';
     }
 
-    public function setSmall(Image $small)
-    {
-        $this->setSmallPath($this->getPath() . '/small')
-             ->setSmallWidth($small->getWidth())
-             ->setSmallHeight($small->getHeight());
-    }
-
-    public function getSmall()
-    {
-        $small = clone $this;
-        $small->setPath($this->getSmallPath());
-        $small->setWidth($this->getSmallWidth());
-        $small->setHeight($this->getSmallHeight());
-        return $small;
-    }
-
-    public function setMedium(Image $medium)
-    {
-        $this->setMediumPath($this->getPath() . '/medium')
-            ->setMediumWidth($medium->getWidth())
-            ->setMediumHeight($medium->getHeight());
-    }
-
-    public function getMedium()
-    {
-        $medium = clone $this;
-        $medium->setPath($this->getMediumPath());
-        $medium->setWidth($this->getMediumWidth());
-        $medium->setHeight($this->getMediumHeight());
-        return $medium;
-    }
-
-    public function setLarge(Image $large)
-    {
-        $this->setMediumPath($this->getPath() . '/large')
-            ->setMediumWidth($large->getWidth())
-            ->setMediumHeight($large->getHeight());
-    }
-
-    public function getLarge()
-    {
-        $large = clone $this;
-        $large->setPath($this->getLargePath());
-        $large->setWidth($this->getLargeWidth());
-        $large->setHeight($this->getLargeHeight());
-        return $large;
-    }
-
-    public function setSmallPath($small_path)
-    {
-        $this->small_path = $small_path;
-        return $this;
-    }
-
-    public function getSmallPath()
-    {
-        return $this->small_path;
-    }
-
-    public function setSmallWidth($width)
-    {
-        $this->small_width = $width;
-        return $this;
-    }
-
-    public function getSmallWidth()
-    {
-        return $this->small_width;
-    }
-
-    public function setSmallHeight($height)
-    {
-        $this->small_height = $height;
-        return $this;
-    }
-
-    public function getSmallHeight()
-    {
-        return $this->small_height;
-    }
-
-    public function setMediumPath($medium_path)
-    {
-        $this->medium_path = $medium_path;
-        return $this;
-    }
-
-    public function getMediumPath()
-    {
-        return $this->medium_path;
-    }
-
-    public function setMediumWidth($width)
-    {
-        $this->medium_width = $width;
-        return $this;
-    }
-
-    public function getMediumWidth()
-    {
-        return $this->medium_width;
-    }
-
-    public function setMediumHeight($height)
-    {
-        $this->medium_height = $height;
-        return $this;
-    }
-
-    public function getMediumHeight()
-    {
-        return $this->medium_height;
-    }
-
-    public function setLargePath($large_path)
-    {
-        $this->large_path = $large_path;
-        return $this;
-    }
-
-    public function getLargePath()
-    {
-        return $this->large_path;
-    }
-
-    public function setLargeWidth($width)
-    {
-        $this->large_width = $width;
-        return $this;
-    }
-
-    public function getLargeWidth()
-    {
-        return $this->large_width;
-    }
-
-    public function setLargeHeight($height)
-    {
-        $this->large_height = $height;
-        return $this;
-    }
-
-    public function getLargeHeight()
-    {
-        return $this->large_height;
-    }
-
     public function setUploadedFile(UploadedFile $file)
     {
         $this->uploaded_file = $file;
@@ -306,6 +146,67 @@ class Image extends File
     public function getUploadedFile()
     {
         return $this->uploaded_file;
+    }
+
+    public function setVersionType($version)
+    {
+        $this->version_type = $version;
+        return $this;
+    }
+
+    public function getVersionType()
+    {
+        return $this->version_type;
+    }
+
+    public function setParent(Image $image)
+    {
+        $this->parent = $image;
+        return $this;
+    }
+
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    public function getVersions()
+    {
+        return $this->versions;
+    }
+
+    public function hasVersions()
+    {
+        return !! $this->versions->count();
+    }
+
+    public function getVersion($name)
+    {
+        foreach ($this->versions as $image) {
+            if($image->getVersionType() == $name) {
+                return $image;
+            }
+        }
+    }
+
+    public function hasVersion($name)
+    {
+        return !! $this->getVersion($name);
+    }
+
+    public function addVersion($version, Image $image)
+    {
+        $image->setParent($this);
+        $image->setVersionType($version);
+        $image->setPath($this->getPath() . '/' . $version);
+        $image->setName($this->getName());
+        $this->versions->set($version, $image);
+    }
+
+    public function __clone()
+    {
+        $this->versions = new ArrayCollection;
+        $this->parent = null;
     }
 
 }

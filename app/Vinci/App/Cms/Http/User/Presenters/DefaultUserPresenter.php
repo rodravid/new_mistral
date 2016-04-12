@@ -19,4 +19,18 @@ class DefaultUserPresenter extends Presenter
         return $this->getCreatedAt()->formatLocalized("%b/%Y");
     }
 
+    public function presentProfilePhoto()
+    {
+        if ($this->hasProfilePhoto()) {
+            return $this->getProfilePhoto()->getWebPath();
+        }
+
+        return $this->getDefaultProfilePhoto();
+    }
+
+    protected function getDefaultProfilePhoto()
+    {
+        return asset_cms('dist/img/user2-160x160.jpg');
+    }
+
 }

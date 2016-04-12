@@ -7,12 +7,7 @@ use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Core\Model;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="files")
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({FileType::IMAGE = "Vinci\Domain\Image\Image", FileType::FILE = "Vinci\Domain\File\File"})
- * @ORM\HasLifecycleCallbacks
+ * @ORM\MappedSuperclass
  */
 class File extends Model
 {
@@ -141,22 +136,12 @@ class File extends Model
 
     public function getWebPath()
     {
-        return $this->getPathName();
+        return config('app.storage_web_path') . '/' . $this->getPathName();
     }
 
     public function generateUniqueName()
     {
         return $this->name = md5(uniqid());
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function checkImageNameOnPrePersist()
-    {
-        if (empty($this->getName())) {
-            $this->generateUniqueName();
-        }
     }
 
 }

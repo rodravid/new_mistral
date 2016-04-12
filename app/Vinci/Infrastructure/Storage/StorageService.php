@@ -4,6 +4,7 @@ namespace Vinci\Infrastructure\Storage;
 
 use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Config\Repository as Config;
+use RuntimeException;
 use Vinci\Domain\File\FileInterface;
 use Vinci\Domain\Image\Image;
 
@@ -32,16 +33,35 @@ class StorageService
         $uploadedImage = $image->getUploadedFile();
 
         if (empty($image->getName())) {
-            $image->generateUniqueName();
+            throw new RuntimeException('The image name cannot be empty.');
         }
 
         $this->disk()->put($image->getUploadPathName(), file_get_contents($uploadedImage));
 
-        if ($image->hasSmall()) {
-            $this->disk()->put($image->getSmall()->getUploadPathName(), file_get_contents($uploadedImage));
+        if ($image->hasVersions()) {
+
+            foreach ($image->getVersions() as $version) {
+                $this->storeImage($version);
+            }
+
         }
 
-        return $image->getPathName();
+        return $image;
+    }
+
+    public function deleteImage(Image $image)
+    {
+        $this->disk()->delete($image->getUploadPathName());
+
+        if ($image->hasVersions()) {
+
+            foreach ($image->getVersions() as $version) {
+                $this->deleteImage($version);
+            }
+
+        }
+
+        return $image;
     }
 
     protected function getDefaultDisk()

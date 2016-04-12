@@ -25,6 +25,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 $route->delete('/{user}/delete', 'User\\UserController@destroy')->name('destroy');
                 $route->put('/{user}', 'User\\UserController@update')->name('edit#update');
                 $route->get('datatable', 'User\\UserController@datatable')->name('list#datatable');
+                $route->delete('/{user}/photo/{photo}/delete', 'User\\UserController@removePhoto')->name('edit#remove-photo');
             });
 
             $route->group(['prefix' => 'roles', 'as' => 'roles.'], function () use ($route) {

@@ -56,7 +56,13 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
-            'Vinci\Domain\Newsletter',
+            'Vinci\Domain\Image\ImageRepository',
+            'Vinci\Infrastructure\Image\DoctrineImageRepository',
+            'Vinci\Domain\Image\Image'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Newsletter\NewsletterRepository',
             'Vinci\Infrastructure\Newsletter\DoctrineNewsletterRepository',
             'Vinci\Domain\Newsletter\Newsletter'
         );

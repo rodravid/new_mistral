@@ -9,6 +9,8 @@ use Illuminate\Http\UploadedFile;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\Image;
+use Vinci\Domain\Image\ImageRepository;
+use Vinci\Domain\Image\ImageVersions;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class AdminService
@@ -23,17 +25,21 @@ class AdminService
 
     private $storage;
 
+    private $imageRepository;
+
     public function __construct(
         AdminRepository $repository,
         EntityManagerInterface $entityManager,
         AdminValidator $validator,
-        StorageService $storage
+        StorageService $storage,
+        ImageRepository $imageRepository
     )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
         $this->validator = $validator;
         $this->storage = $storage;
+        $this->imageRepository = $imageRepository;
     }
 
     public function create(array $adminData)
@@ -69,48 +75,48 @@ class AdminService
 
     public function savePhoto(UploadedFile $uploadedPhoto, Admin $user)
     {
-        //$this->entityManager->getConnection()->beginTransaction();
+        $this->entityManager->getConnection()->beginTransaction();
 
-        //dd($uploadedPhoto);
+        try {
 
-        //try {
-
-            $photo = Image::makeFromUpload($uploadedPhoto);
-            $photoMobile = Image::makeFromUpload($uploadedPhoto);
-
-            $photo->setPath($user->getPhotosUploadPath());
-            $photo->setSmall($photoMobile);
-
-            $this->entityManager->persist($photo);
-            $this->entityManager->flush();
+            $photo = Image::makeFromUpload($uploadedPhoto, $user->getPhotosUploadPath());
 
             $this->storage->storeImage($photo);
 
-            dd($photo->getSmall()->getPathName());
-
-            dd($photo->getUploadPathName());
-
-            //$photoMobile->setPath($photoDesktop->getPath() . '_small');
-
-            $photoDesktop->setSmall($photoMobile);
-
-            $photoDesktop->setPath("users/{$user->getId()}/photo");
+            $photo = $this->imageRepository->save($photo);
 
             $user->addPhoto($photo);
-            $user->setProfilePhoto($photo);
 
-            $this->entityManager->persist($photo);
+            $this->repository->save($user);
+
+            $this->entityManager->getConnection()->commit();
+
+            return $photo;
+
+        } catch (Exception $e) {
+
+            $this->entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+    }
+
+    public function removePhoto(Image $photo, Admin $user)
+    {
+        $user->removePhoto($photo);
+
+        try {
+
+            $this->storage->deleteImage($photo);
+
+            $this->entityManager->remove($photo);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $this->storage->storePhoto($photoDesktop);
-            $this->storage->storePhoto($photoMobile);
+        } catch (\Exception $e) {
 
-        //} catch (Exception $e) {
+            dd($e->getMessage());
 
-            $this->entityManager->getConnection()->rollBack();
-        //    throw $e;
-        //}
+        }
     }
 
     protected function saveAdmin($adminData, Closure $method)
@@ -118,6 +124,12 @@ class AdminService
         $admin = $method($adminData);
 
         $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
+
+        if (! empty($photo = $adminData['photo'])) {
+            $photo = $this->savePhoto($photo, $admin);
+
+            $admin->setProfilePhoto($photo);
+        }
 
         $this->repository->save($admin);
 

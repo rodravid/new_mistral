@@ -56,7 +56,7 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     protected $photos;
 
     /**
-     * @ORM\OneToOne(targetEntity="Vinci\Domain\Image\Image")
+     * @ORM\OneToOne(targetEntity="Vinci\Domain\Image\Image", fetch="EAGER")
      */
     protected $profile_photo;
 
@@ -102,11 +102,25 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         $this->roles->add($role);
     }
 
-    public function addPhoto(Photo $photo)
+    public function addPhoto(Image $photo)
     {
         if (! $this->photos->contains($photo)) {
             $this->photos->add($photo);
         }
+    }
+
+    public function removePhoto(Image $photo)
+    {
+        if ($this->getProfilePhoto() == $photo) {
+            $this->removeProfilePhoto();
+        }
+
+        $this->photos->removeElement($photo);
+    }
+
+    public function removeProfilePhoto()
+    {
+        $this->profile_photo = null;
     }
 
     public function getPhotos()
@@ -153,6 +167,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     public function getProfilePhoto()
     {
         return $this->profile_photo;
+    }
+
+    public function hasProfilePhoto()
+    {
+        return ! empty($this->profile_photo);
     }
 
     public function getPhotosUploadPath()
