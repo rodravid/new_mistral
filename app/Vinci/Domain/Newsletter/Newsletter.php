@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Newsletter;
 
 use Doctrine\ORM\Mapping as ORM;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -11,6 +12,7 @@ use Vinci\Domain\Core\Model;
  */
 class Newsletter extends Model
 {
+    use Timestamps;
 
     /**
      * @ORM\Id

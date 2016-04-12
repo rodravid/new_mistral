@@ -17,6 +17,18 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
             $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard');
 
+            /**
+             * Newsletter
+             */
+            $route->group(['prefix' => 'newsletter', 'as' => 'newsletter.'], function () use ($route) {
+                $route->get('/', 'Newsletter\\NewsletterController@index')->name('list');
+                $route->get('datatable', 'Newsletter\\NewsletterController@datatable')->name('list#datatable');
+                $route->get('export', 'Newsletter\\NewsletterController@export')->name('export');
+            });
+
+            /**
+             * Users
+             */
             $route->group(['prefix' => 'users', 'as' => 'users.'], function () use ($route) {
                 $route->get('/', 'User\\UserController@index')->name('list');
                 $route->get('/create', 'User\\UserController@create')->name('create');
@@ -28,6 +40,9 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 $route->delete('/{user}/photo/{photo}/delete', 'User\\UserController@removePhoto')->name('edit#remove-photo');
             });
 
+            /**
+             * Groups
+             */
             $route->group(['prefix' => 'roles', 'as' => 'roles.'], function () use ($route) {
                 $route->get('/', 'Role\\RoleController@index')->name('list');
                 $route->get('/create', 'Role\\RoleController@create')->name('create');

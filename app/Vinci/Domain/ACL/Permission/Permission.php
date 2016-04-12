@@ -50,6 +50,7 @@ class Permission extends Model implements PermissionContract
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getDescription()

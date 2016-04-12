@@ -21,13 +21,15 @@ class UsersCmsDatatable extends AbstractDatatables
         1 => 'p.id',
         2 => 'o.name',
         3 => 'o.email',
-        4 => 'o.createdAt',
+        4 => 'r.title',
+        5 => 'o.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->adminRepository->createQueryBuilder('o')
-            ->select('o', 'p')
+            ->select('o', 'r', 'p')
+            ->join('o.roles', 'r')
             ->leftJoin('o.profile_photo', 'p')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
@@ -38,7 +40,8 @@ class UsersCmsDatatable extends AbstractDatatables
 
             $qb->orWhere($qb->expr()->orX(
                 $qb->expr()->like('o.name', ':search'),
-                $qb->expr()->like('o.email', ':search')
+                $qb->expr()->like('o.email', ':search'),
+                $qb->expr()->like('r.title', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
@@ -60,6 +63,7 @@ class UsersCmsDatatable extends AbstractDatatables
             '<img src="' . $presenter->profile_photo . '" style="width: 50px;" />',
             $user->getName(),
             $user->getEmail(),
+            $presenter->group_name,
             $user->getCreatedAt()->format('d/m/Y H:i:s'),
             $this->buildActionsColumn([
                 'edit_url' => route('cms.users.edit', $user->getId()),

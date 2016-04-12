@@ -62,9 +62,9 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
         return $query->getOneOrNullResult();
     }
 
-    public function findByPermission(Permission $permission)
+    public function findByPermissionName($name)
     {
-        return $this->findByName($permission->extractModuleName());
+        return $this->findByName($name);
     }
 
     public function buildTree(array $modules, array $options = [])

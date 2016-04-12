@@ -88,9 +88,9 @@ class ACLService
     {
         $permissionName = $this->normalizePermissionName($permissionName);
 
-        $permission = $this->permissionRepository->findByName($permissionName);
+        $moduleName = Permission::make()->setName($permissionName)->extractModuleName();
 
-        return $this->moduleRepository->findByPermission($permission);
+        return $this->moduleRepository->findByName($moduleName);
     }
 
     protected function normalizePermissionName($name)

@@ -124,7 +124,7 @@ class ModulesTableSeeder extends Seeder
             ]),
 
             $deadline = Module::make([
-                'title' => 'Prazo de entrega',
+                'title' => 'Prazo de entrega padrão',
                 'name' => 'deadline',
                 'url' => '/cms/deadline',
                 'datatable_url' => '/cms/deadline/datatable',

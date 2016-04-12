@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\ACL\Role\RoleRepository;
-use Vinci\Domain\Validation\ValidationException;
 
 class RoleController extends Controller
 {

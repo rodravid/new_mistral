@@ -18,7 +18,7 @@
                             <div class="col-xs-12">
                                 <div class="panel">
                                     <div class="btn-group">
-                                        <a href="{{ route('cms.users.create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Novo usuário</a>
+                                        <a href="{{ route('cms.newsletter.export') }}" class="btn btn-success"><span class="glyphicon glyphicon-export"></span> Exportar para excel</a>
                                     </div>
                                 </div>
                             </div>
@@ -30,12 +30,9 @@
                                         <thead>
                                         <tr>
                                             <th>#ID</th>
-                                            <th>Foto</th>
                                             <th>Nome</th>
                                             <th>E-mail</th>
-                                            <th>Grupo</th>
                                             <th>Criado em</th>
-                                            <th>Ações</th>
                                         </tr>
                                         </thead>
                                     </table>

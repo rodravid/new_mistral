@@ -28,6 +28,11 @@ class DefaultUserPresenter extends Presenter
         return $this->getDefaultProfilePhoto();
     }
 
+    public function presentGroupName()
+    {
+        return $this->getRoles()->first()->getTitle();
+    }
+
     protected function getDefaultProfilePhoto()
     {
         return asset_cms('dist/img/profile-no-photo.png');

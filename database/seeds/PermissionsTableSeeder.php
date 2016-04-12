@@ -31,6 +31,8 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'cms.roles.create', 'description' => 'Criar grupos'],
             ['name' => 'cms.roles.edit', 'description' => 'Editar grupos'],
             ['name' => 'cms.roles.destroy', 'description' => 'Excluir grupos'],
+
+            ['name' => 'cms.newsletter.list', 'description' => 'Listar newsletter'],
         ];
 
         foreach ($permissions as $permission) {

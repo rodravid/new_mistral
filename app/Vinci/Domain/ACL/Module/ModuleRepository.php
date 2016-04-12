@@ -3,7 +3,6 @@
 namespace Vinci\Domain\ACL\Module;
 
 use Doctrine\Common\Collections\Collection;
-use Vinci\Domain\ACL\Permission\Permission;
 
 interface ModuleRepository
 {
@@ -14,6 +13,6 @@ interface ModuleRepository
 
     public function findByName($name);
 
-    public function findByPermission(Permission $permission);
+    public function findByPermissionName($name);
 
 }
