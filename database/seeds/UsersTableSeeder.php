@@ -140,6 +140,7 @@ class UsersTableSeeder extends Seeder
         $this->em->persist($user8);
 
         $this->em->flush();
+        $this->em->clear();
 
     }
 }

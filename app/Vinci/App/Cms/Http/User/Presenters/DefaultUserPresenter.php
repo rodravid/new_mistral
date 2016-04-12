@@ -30,7 +30,7 @@ class DefaultUserPresenter extends Presenter
 
     protected function getDefaultProfilePhoto()
     {
-        return asset_cms('dist/img/user2-160x160.jpg');
+        return asset_cms('dist/img/profile-no-photo.png');
     }
 
 }

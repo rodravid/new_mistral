@@ -19,44 +19,172 @@ class ModulesTableSeeder extends Seeder
     public function run()
     {
 
-        $dashBoardModule = Module::make([
-            'title' => 'Dashboard',
-            'name' => 'dashboard',
-            'url' => '/cms',
-            'icon' => 'fa fa-tachometer'
-        ]);
+        $modules = [
+            $dashBoard = Module::make([
+                'title' => 'Dashboard',
+                'name' => 'dashboard',
+                'url' => '/cms',
+                'icon' => 'fa fa-tachometer'
+            ]),
 
-        $administrationModule = Module::make([
-            'title' => 'Administração',
-            'name' => 'administration',
-            'icon' => 'fa fa-cog'
-        ]);
+            $orders = Module::make([
+                'title' => 'Pedidos',
+                'name' => 'orders',
+                'url' => '/cms/orders',
+                'datatable_url' => '/cms/orders/datatable',
+                'icon' => 'fa fa-shopping-bag'
+            ]),
 
-        $usersModule = Module::make([
-            'title' => 'Usuários',
-            'name' => 'users',
-            'url' => '/cms/users',
-            'datatable_url' => '/cms/users/datatable',
-            'icon' => 'fa fa-user'
-        ]);
+            $customers = Module::make([
+                'title' => 'Clientes',
+                'name' => 'customers',
+                'url' => '/cms/customers',
+                'datatable_url' => '/cms/customers/datatable',
+                'icon' => 'fa fa-users'
+            ]),
 
-        $groupsModule = Module::make([
-            'title' => 'Grupos',
-            'name' => 'roles',
-            'url' => '/cms/roles',
-            'datatable_url' => '/cms/roles/datatable',
-            'icon' => 'fa fa-users'
-        ]);
+            $catalog = Module::make([
+                'title' => 'Catálogo',
+                'name' => 'catalog',
+                'icon' => 'fa fa-tags'
+            ]),
 
-        $usersModule->setParent($administrationModule);
-        $groupsModule->setParent($administrationModule);
+            $products = Module::make([
+                'title' => 'Produtos',
+                'name' => 'products',
+                'url' => '/cms/products',
+                'datatable_url' => '/cms/products/datatable',
+                'icon' => 'fa fa-cubes'
+            ])
+                ->setParent($catalog),
 
-        $this->em->persist($dashBoardModule);
-        $this->em->persist($administrationModule);
-        $this->em->persist($usersModule);
-        $this->em->persist($groupsModule);
+            $wines = Module::make([
+                'title' => 'Vinhos',
+                'name' => 'wines',
+                'url' => '/cms/wines',
+                'datatable_url' => '/cms/wines/datatable',
+                'icon' => 'fa fa-glass'
+            ])
+                ->setParent($catalog),
+
+            $promotions = Module::make([
+                'title' => 'Promoções',
+                'name' => 'promotions',
+                'icon' => 'fa fa-bullhorn'
+            ]),
+
+            $discountPromotion = Module::make([
+                'title' => 'De/Por',
+                'name' => 'discount-promotion',
+                'url' => '/cms/discount-promotion',
+                'datatable_url' => '/cms/discount-promotion/datatable',
+                'icon' => 'fa fa-money'
+            ])
+                ->setParent($promotions),
+
+            $freightPromotion = Module::make([
+                'title' => 'Frete promocional',
+                'name' => 'freight-promotion',
+                'url' => '/cms/freight-promotion',
+                'datatable_url' => '/cms/freight-promotion/datatable',
+                'icon' => 'fa fa-truck'
+            ])
+                ->setParent($promotions),
+
+            $clearanceSale = Module::make([
+                'title' => 'Ponta de estoque',
+                'name' => 'clearance-sale',
+                'url' => '/cms/clearance-sale',
+                'datatable_url' => '/cms/clearance-sale/datatable',
+                'icon' => 'fa fa-clock-o'
+            ])
+                ->setParent($promotions),
+
+            $kits = Module::make([
+                'title' => 'Kits',
+                'name' => 'kits',
+                'url' => '/cms/kits',
+                'datatable_url' => '/cms/kits/datatable',
+                'icon' => 'fa fa-shopping-basket'
+            ])
+                ->setParent($catalog),
+
+            $dollar = Module::make([
+                'title' => 'Cotação do Dólar',
+                'name' => 'dollar',
+                'url' => '/cms/dollar',
+                'datatable_url' => '/cms/dollar/datatable',
+                'icon' => 'fa fa-money'
+            ]),
+
+            $delivery = Module::make([
+                'title' => 'Entrega',
+                'name' => 'delivery',
+                'icon' => 'fa fa-truck'
+            ]),
+
+            $deadline = Module::make([
+                'title' => 'Prazo de entrega',
+                'name' => 'deadline',
+                'url' => '/cms/deadline',
+                'datatable_url' => '/cms/deadline/datatable',
+                'icon' => 'fa fa-clock-o'
+            ])
+                ->setParent($delivery),
+
+            $deliveryTracks = Module::make([
+                'title' => 'Faixas de CEP',
+                'name' => 'delivery-tracks',
+                'url' => '/cms/delivery-tracks',
+                'datatable_url' => '/cms/delivery-tracks/datatable',
+                'icon' => 'fa fa-list'
+            ])
+                ->setParent($delivery),
+
+            $banners = Module::make([
+                'title' => 'Banners',
+                'name' => 'banners',
+                'icon' => 'fa fa-photo'
+            ]),
+
+            $newsletter = Module::make([
+                'title' => 'Newsletter',
+                'name' => 'newsletter',
+                'url' => '/cms/newsletter',
+                'datatable_url' => '/cms/newsletter/datatable',
+                'icon' => 'fa fa-newspaper-o'
+            ]),
+
+            $administration = Module::make([
+                'title' => 'Administração',
+                'name' => 'administration',
+                'icon' => 'fa fa-cog'
+            ]),
+
+            $users = Module::make([
+                'title' => 'Usuários',
+                'name' => 'users',
+                'url' => '/cms/users',
+                'datatable_url' => '/cms/users/datatable',
+                'icon' => 'fa fa-user'
+            ])
+                ->setParent($administration),
+
+            $groups = Module::make([
+                'title' => 'Grupos',
+                'name' => 'roles',
+                'url' => '/cms/roles',
+                'datatable_url' => '/cms/roles/datatable',
+                'icon' => 'fa fa-users'
+            ])
+                ->setParent($administration)
+
+        ];
+
+        foreach ($modules as $module) {
+            $this->em->persist($module);
+        }
 
         $this->em->flush();
-
     }
 }

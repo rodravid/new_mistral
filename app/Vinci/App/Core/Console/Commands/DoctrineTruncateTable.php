@@ -12,7 +12,7 @@ class DoctrineTruncateTable extends Command
      *
      * @var string
      */
-    protected $signature = 'doctrine:schema:truncate';
+    protected $signature = 'doctrine:schema:truncate {--seed}';
 
     /**
      * The console command description.
@@ -61,6 +61,10 @@ class DoctrineTruncateTable extends Command
         $conn->executeQuery('SET FOREIGN_KEY_CHECKS = 1;');
 
         $this->info('Done!');
+
+        if ($this->option('seed')) {
+            $this->call('db:seed');
+        }
 
     }
 

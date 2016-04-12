@@ -164,6 +164,7 @@ class Module extends Model
     public function setParent(Module $parent = null)
     {
         $this->parent = $parent;
+        return $this;
     }
 
     public function getParent()

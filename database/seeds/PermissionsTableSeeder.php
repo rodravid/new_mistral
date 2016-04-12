@@ -43,6 +43,7 @@ class PermissionsTableSeeder extends Seeder
         }
 
         $this->em->flush();
+        $this->em->clear();
 
     }
 }
