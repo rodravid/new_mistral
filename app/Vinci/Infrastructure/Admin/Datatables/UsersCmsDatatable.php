@@ -18,15 +18,17 @@ class UsersCmsDatatable extends AbstractDatatables
 
     protected $sortMapping = [
         0 => 'o.id',
-        1 => 'o.name',
-        2 => 'o.email',
-        3 => 'o.createdAt',
+        1 => 'p.id',
+        2 => 'o.name',
+        3 => 'o.email',
+        4 => 'o.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->adminRepository->createQueryBuilder('o')
-            ->select('o')
+            ->select('o', 'p')
+            ->leftJoin('o.profile_photo', 'p')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
