@@ -30,6 +30,7 @@
                                         <thead>
                                         <tr>
                                             <th>#ID</th>
+                                            <th>Foto</th>
                                             <th>Nome</th>
                                             <th>E-mail</th>
                                             <th>Criado em</th>

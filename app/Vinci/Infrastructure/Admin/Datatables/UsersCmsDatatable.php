@@ -2,6 +2,7 @@
 
 namespace Vinci\Infrastructure\Admin\Datatables;
 
+use Vinci\App\Cms\Http\User\Presenters\DefaultUserPresenter;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -49,8 +50,12 @@ class UsersCmsDatatable extends AbstractDatatables
 
     public function parseSingleReult($user)
     {
+
+        $presenter = new DefaultUserPresenter($user);
+
         return [
             $user->getId(),
+            '<img src="' . $presenter->profile_photo . '" style="width: 50px;" />',
             $user->getName(),
             $user->getEmail(),
             $user->getCreatedAt()->format('d/m/Y H:i:s'),
