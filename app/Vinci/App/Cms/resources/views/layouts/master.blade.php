@@ -67,7 +67,7 @@
         <!-- Logo -->
         <a href="/cms" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><img src="{{ asset_cms('dist/img/logo-vinci.png') }}"></span>
+            <span class="logo-mini"><img src="{{ asset_cms('dist/img/logo-v.png') }}"></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><img src="{{ asset_cms('dist/img/logo-vinci.png') }}"></span>
         </a>
@@ -81,7 +81,10 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     @if(isset($currentDollar))
-                        <li><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Cotação: <b>{{ $currentDollar->amount }}</b></span></a></li>
+                        <li><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
+                    @endif
+                    @if(isset($currentDeadline))
+                        <li><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-times-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
                     @endif
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">

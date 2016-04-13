@@ -73,6 +73,12 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Dollar\Dollar'
         );
 
+        $this->registerRepository(
+            'Vinci\Domain\Deadline\DeadlineRepository',
+            'Vinci\Infrastructure\Deadline\DoctrineDeadlineRepository',
+            'Vinci\Domain\Deadline\Deadline'
+        );
+
         $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
             return new StorageService($this->app['filesystem'], $this->app['config']);
         });

@@ -3,19 +3,24 @@
 namespace Vinci\App\Cms\Http\ViewComposers;
 
 use Illuminate\View\View;
+use Vinci\App\Cms\Http\Deadline\Presenters\DeadlinePresenter;
 use Vinci\App\Cms\Http\Dollar\Presenters\DollarPresenter;
 use Vinci\App\Core\Services\Presenter\Presenter;
+use Vinci\Domain\Deadline\DeadlineRepository;
 use Vinci\Domain\Dollar\DollarRepository;
 
 class TopNavComposer
 {
     private $dollarRepository;
 
+    private $deadlineRepository;
+
     private $presenter;
 
-    public function __construct(DollarRepository $dollarRepository, Presenter $presenter)
+    public function __construct(DollarRepository $dollarRepository, DeadlineRepository $deadlineRepository, Presenter $presenter)
     {
         $this->dollarRepository = $dollarRepository;
+        $this->deadlineRepository = $deadlineRepository;
         $this->presenter = $presenter;
     }
 
@@ -27,6 +32,14 @@ class TopNavComposer
             $dollar = $this->presenter->model($dollar, DollarPresenter::class);
             $view->with('currentDollar', $dollar);
         }
+
+        $deadline = $this->deadlineRepository->getLast();
+
+        if ($deadline) {
+            $deadline = $this->presenter->model($deadline, DeadlinePresenter::class);
+            $view->with('currentDeadline', $deadline);
+        }
+
     }
 
 }

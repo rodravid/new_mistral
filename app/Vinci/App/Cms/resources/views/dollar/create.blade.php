@@ -3,7 +3,7 @@
 @section('breadcrumb')
     <ol class="breadcrumb">
         <li><a href="/cms"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{ $currentModule->getUrl() }}"><i class="fa fa-user"></i> {{ $currentModule->getTitle() }}</a></li>
+        <li><a href="{{ $currentModule->getUrl() }}"><i class="{{ $currentModule->getIcon() }}"></i> {{ $currentModule->getTitle() }}</a></li>
         <li class="active"><i class="fa fa-plus"></i> Nova cotação do dólar</li>
     </ol>
 @endsection

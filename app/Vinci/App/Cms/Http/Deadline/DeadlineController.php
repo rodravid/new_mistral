@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\App\Cms\Http\Dollar;
+namespace Vinci\App\Cms\Http\Deadline;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Flash;
@@ -9,17 +9,17 @@ use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
-use Vinci\Domain\Dollar\DollarRepository;
-use Vinci\Domain\Dollar\DollarService;
+use Vinci\Domain\Deadline\DeadlineRepository;
+use Vinci\Domain\Deadline\DeadlineService;
 
-class DollarController extends Controller
+class DeadlineController extends Controller
 {
 
     use DatatablesResponse;
 
     protected $repository;
 
-    protected $datatable = 'Vinci\Infrastructure\Dollar\Datatables\DollarCmsDatatable';
+    protected $datatable = 'Vinci\Infrastructure\Deadline\Datatables\DeadlineCmsDatatable';
 
     protected $aclService;
 
@@ -27,8 +27,8 @@ class DollarController extends Controller
 
     public function __construct(
         EntityManagerInterface $em,
-        DollarRepository $repository,
-        DollarService $service
+        DeadlineRepository $repository,
+        DeadlineService $service
     )
     {
         parent::__construct($em);
@@ -39,12 +39,12 @@ class DollarController extends Controller
 
     public function index()
     {
-        return $this->view('dollar.list');
+        return $this->view('deadline.list');
     }
 
     public function create()
     {
-        return $this->view('dollar.create');
+        return $this->view('deadline.create');
     }
 
     public function store(Request $request)
@@ -56,9 +56,9 @@ class DollarController extends Controller
 
             $this->service->create($data);
 
-            Flash::success("Nova cotação do dólar definida com sucesso!");
+            Flash::success("Novo prazo de entrega definido com sucesso!");
 
-            return Redirect::route('cms.dollar.list');
+            return Redirect::route('cms.deadline.list');
 
         } catch (ValidationException $e) {
 
