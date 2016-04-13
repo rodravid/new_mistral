@@ -47,6 +47,28 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             });
 
             /**
+             * Highlight
+             */
+
+            $route->group(['prefix' => 'highlights'], function () use ($route) {
+
+                /**
+                 * Home main slider
+                 */
+                $route->group(['prefix' => 'home-main-slider', 'as' => 'home-main-slider.'], function () use ($route) {
+                    $route->get('/', 'Highlight\\HighlightController@index')->name('list');
+                    $route->get('/create', 'Highlight\\HighlightController@create')->name('create');
+                    $route->post('/', 'Highlight\\HighlightController@store')->name('create#store');
+                    $route->get('/{user}/edit', 'Highlight\\HighlightController@edit')->name('edit');
+                    $route->delete('/{user}/delete', 'Highlight\\HighlightController@destroy')->name('destroy');
+                    $route->put('/{user}', 'Highlight\\HighlightController@update')->name('edit#update');
+                    $route->delete('/{user}/photo/{photo}/delete', 'Highlight\\HighlightController@removePhoto')->name('edit#remove-photo');
+                    $route->get('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
+                });
+
+            });
+
+            /**
              * Users
              */
             $route->group(['prefix' => 'users', 'as' => 'users.'], function () use ($route) {

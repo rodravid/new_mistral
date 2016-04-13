@@ -172,6 +172,11 @@ class Module extends Model
         return $this->parent;
     }
 
+    public function hasParent()
+    {
+        return $this->parent instanceof static;
+    }
+
     public function setChildrens($childs)
     {
         $this->children = $childs;

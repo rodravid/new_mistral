@@ -141,11 +141,20 @@ class ModulesTableSeeder extends Seeder
             ])
                 ->setParent($delivery),
 
-            $banners = Module::make([
-                'title' => 'Banners',
-                'name' => 'banners',
-                'icon' => 'fa fa-photo'
+            $highlights = Module::make([
+                'title' => 'Destaques',
+                'name' => 'highlights',
+                'icon' => 'fa fa-star'
             ]),
+
+            $homeMainSlider = Module::make([
+                'title' => 'Slider principal home',
+                'name' => 'home-main-slider',
+                'url' => '/cms/highlights/home-main-slider',
+                'datatable_url' => '/cms/highlights/datatable',
+                'icon' => 'fa fa-photo'
+            ])
+                ->setParent($highlights),
 
             $newsletter = Module::make([
                 'title' => 'Newsletter',
