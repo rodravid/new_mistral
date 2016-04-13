@@ -10,7 +10,6 @@ use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Image\ImageRepository;
-use Vinci\Domain\Image\ImageVersions;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class AdminService
