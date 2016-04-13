@@ -9,6 +9,6 @@ interface DollarRepository
 
     public function create(array $attributes);
 
-    public function getLastValue();
+    public function getLast();
 
 }

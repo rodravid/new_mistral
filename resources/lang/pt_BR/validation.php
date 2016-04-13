@@ -109,6 +109,8 @@ return [
     'attributes' => [
         'name' => 'Nome',
         'email' => 'E-mail',
+        'description' => 'Descrição',
+        'amount' => 'Valor',
         'password' => 'Senha',
         'password_confirmation' => 'Confirmação de Senha',
         'roles' => 'Grupo'

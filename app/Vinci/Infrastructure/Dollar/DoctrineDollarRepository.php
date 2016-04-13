@@ -22,8 +22,12 @@ class DoctrineDollarRepository extends DoctrineBaseRepository implements DollarR
         return $this->createQueryBuilder('o')->getQuery()->getResult();
     }
 
-    public function getLastValue()
+    public function getLast()
     {
-        // TODO: Implement getLastValue() method.
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.id', 'desc')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

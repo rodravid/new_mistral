@@ -30,12 +30,10 @@
                                         <thead>
                                         <tr>
                                             <th>#ID</th>
-                                            <th><i class="fa fa-picture-o"></i> Foto</th>
-                                            <th><i class="fa fa-pencil"></i> Nome</th>
-                                            <th><i class="fa fa-envelope"></i> E-mail</th>
-                                            <th><i class="fa fa-users"></i> Grupo</th>
+                                            <th><i class="fa fa-file-text-o"></i> Descrição</th>
+                                            <th><i class="fa fa-money"></i> Valor</th>
+                                            <th><i class="fa fa-user"></i> Usuário</th>
                                             <th><i class="fa fa-calendar"></i> Criado em</th>
-                                            <th>Ações</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -64,13 +62,10 @@
                 serverSide: true,
                 ajax: $table.data('url'),
                 searchDelay: 600,
+                order: [[ 0, "desc" ]],
                 columnDefs: [
-
-                    {orderable: false, width: '92px', targets: -1 },
-                    {className: 'hcenter vcenter', width: '20px', targets: [0] },
-                    {className: 'hcenter vcenter', width: '50px', targets: 1 },
-                    {className: 'vcenter', width: '200px', targets: 2 },
-                    {className: 'vcenter', targets: [3,4,5,6] }
+                    {className: 'hcenter vcenter', width: '20px', targets: 0 },
+                    {className: 'vcenter', targets: [3,4] }
                 ]
             });
 

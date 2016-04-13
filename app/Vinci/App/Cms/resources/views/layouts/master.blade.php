@@ -80,6 +80,9 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+                    @if(isset($currentDollar))
+                        <li><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Cotação: <b>{{ $currentDollar->amount }}</b></span></a></li>
+                    @endif
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -160,6 +163,10 @@
     <!-- DataTables -->
     <script src="{{ asset_cms('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset_cms('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    <!-- InputMask -->
+    <script src="{{ asset_cms('plugins/input-mask/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset_cms('plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+    <script src="{{ asset_cms('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset_cms('plugins/fastclick/fastclick.js') }}"></script>
     <!-- FastClick -->
@@ -182,6 +189,10 @@
         $(function () {
 
             $(".select2").select2();
+
+            $("[data-mask]").inputmask();
+
+            $("[data-real-mask]").inputmask('€ 999.999.999,99', { numericInput: true });
 
             $.extend( true, $.fn.dataTable.defaults, {
                 "language": {

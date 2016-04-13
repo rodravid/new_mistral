@@ -18,17 +18,17 @@ class DollarCmsDatatable extends AbstractDatatables
 
     protected $sortMapping = [
         0 => 'o.id',
-        1 => 'o.name',
-        2 => 'o.email',
-        3 => 'o.accept_promotions',
-        4 => 'o.accept_events',
-        5 => 'o.createdAt',
+        1 => 'o.description',
+        2 => 'o.amount',
+        3 => 'u.name',
+        4 => 'o.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->repository->createQueryBuilder('o')
-            ->select('o')
+            ->select('o', 'u')
+            ->join('o.user', 'u')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
@@ -37,8 +37,9 @@ class DollarCmsDatatable extends AbstractDatatables
             $qb->where($qb->expr()->eq('o.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('o.name', ':search'),
-                $qb->expr()->like('o.email', ':search')
+                $qb->expr()->like('o.description', ':search'),
+                $qb->expr()->like('o.amount', ':search'),
+                $qb->expr()->like('u.name', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
@@ -55,11 +56,10 @@ class DollarCmsDatatable extends AbstractDatatables
         $presenter = new DollarPresenter($dollar);
 
         return [
-            $presenter->getId(),
-            $presenter->getName(),
-            $presenter->getEmail(),
-            $presenter->accept_promotions,
-            $presenter->accept_events,
+            $presenter->id,
+            $presenter->description,
+            $presenter->amount,
+            $presenter->user_name,
             $presenter->created_at
         ];
     }
