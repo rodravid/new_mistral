@@ -3,9 +3,7 @@
 namespace Vinci\Infrastructure\ACL\Modules;
 
 use Doctrine\Common\Collections\Collection;
-use Vinci\Domain\ACL\Module\Module;
 use Vinci\Domain\ACL\Module\ModuleRepository;
-use Vinci\Domain\ACL\Permission\Permission;
 use Vinci\Infrastructure\Common\DoctrineNestedTreeRepository;
 
 class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements ModuleRepository
@@ -15,11 +13,11 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
     {
         $query = $this->_em
             ->createQueryBuilder()
-            ->select('node', 'r', 'p')
-            ->from('Vinci\Domain\ACL\Module\Module', 'node')
-            ->leftJoin('node.roles', 'r')
+            ->select('module', 'r', 'p')
+            ->from('Vinci\Domain\ACL\Module\Module', 'module')
+            ->leftJoin('module.roles', 'r')
             ->leftJoin('r.permissions', 'p')
-            ->orderBy('node.root, node.lft', 'ASC')
+            ->orderBy('module.root, module.lft', 'ASC')
             ->getQuery();
 
         return $query->getResult();
@@ -29,11 +27,11 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
     {
         $query = $this->_em
             ->createQueryBuilder()
-            ->select('node', 'r', 'p')
-            ->from('Vinci\Domain\ACL\Module\Module', 'node')
-            ->join('node.roles', 'r')
+            ->select('module', 'r', 'p')
+            ->from('Vinci\Domain\ACL\Module\Module', 'module')
+            ->join('module.roles', 'r')
             ->join('r.permissions', 'p')
-            ->orderBy('node.root, node.lft', 'ASC')
+            ->orderBy('module.root, module.lft', 'ASC')
             ->where('r.id in (:ids)')
             ->getQuery();
 

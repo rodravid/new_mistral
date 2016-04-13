@@ -44,12 +44,7 @@ class AdminService
 
     public function create(array $adminData)
     {
-
         $this->validator->with($adminData)->passesOrFail();
-
-        if ($this->validator->fails($adminData)) {
-            throw new ValidationException('Não foi possível criar o usuário', $this->validator->messages());
-        }
 
         return $this->saveAdmin($adminData, function($data) {
             return Admin::make($data);
