@@ -9,7 +9,7 @@ abstract class AbstractDatatables
 
     public abstract function getResultPaginator($perPage, $start, array $order = null, array $search = null);
 
-    public abstract function parseSingleReult($result);
+    public abstract function parseSingleResult($result);
 
     public function getData($perPage, $start, array $order = null, array $search = null)
     {
@@ -18,7 +18,7 @@ abstract class AbstractDatatables
         $data = [];
 
         foreach ($paginator->getIterator() as $result) {
-            $data[] = $this->parseSingleReult($result);
+            $data[] = $this->parseSingleResult($result);
         }
 
         return $this->makeDatatablesOutput($paginator->count(), $data);

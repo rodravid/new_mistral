@@ -2,10 +2,11 @@
 
 namespace Vinci\App\Cms\Http\Newsletter;
 
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Excel;
-use Illuminate\Http\Request;
 use Vinci\App\Cms\Http\Controller;
+use Vinci\App\Cms\Http\Newsletter\Presenters\NewsletterPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\Domain\Newsletter\NewsletterRepository;
 
@@ -35,12 +36,16 @@ class NewsletterController extends Controller
         return $this->view('newsletter.list');
     }
 
-    public function export(Request $request)
+    public function export()
     {
-        Excel::create('novo_tempo_pedidos_' . Carbon::now()->format('d-m-Y'), function($excel) use ($report, $startDate, $endDate) {
+        $newsletter = $this->repository->getAll();
 
-            $excel->sheet('Lista de Pedidos', function($sheet) use ($report, $startDate, $endDate) {
-                $sheet->loadView('cms.relatorios.pedidos.excel', compact('report', 'startDate', 'endDate'));
+        $newsletter = $this->presenter->collection($newsletter, NewsletterPresenter::class);
+
+        Excel::create('Vinci_Newsletter_' . Carbon::now()->format('d-m-Y'), function($excel) use ($newsletter) {
+
+            $excel->sheet('Newsletter', function($sheet) use ($newsletter) {
+                $sheet->loadView('cms::newsletter.excel', ['result' => $newsletter]);
             });
 
         })->export('xls');

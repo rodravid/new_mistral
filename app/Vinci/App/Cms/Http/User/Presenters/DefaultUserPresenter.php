@@ -2,9 +2,9 @@
 
 namespace Vinci\App\Cms\Http\User\Presenters;
 
-use Robbo\Presenter\Presenter;
+use Vinci\App\Core\Services\Presenter\AbstractPresenter;
 
-class DefaultUserPresenter extends Presenter
+class DefaultUserPresenter extends AbstractPresenter
 {
 
     public function presentOffice()

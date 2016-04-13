@@ -32,14 +32,14 @@ class Newsletter extends Model
     protected $email;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default" = false})
      */
     protected $accept_promotions = false;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default" = false})
      */
-    protected $accep_events = false;
+    protected $accept_events = false;
 
     public function getId()
     {
@@ -79,15 +79,15 @@ class Newsletter extends Model
         return $this->accept_promotions;
     }
 
-    public function setAccepEvents($accep_events)
+    public function setAcceptEvents($accept_events)
     {
-        $this->accep_events = $accep_events;
+        $this->accept_events = $accept_events;
         return $this;
     }
 
-    public function getAccepEvents()
+    public function getAcceptEvents()
     {
-        return $this->accep_events;
+        return $this->accept_events;
     }
 
 }

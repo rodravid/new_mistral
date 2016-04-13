@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use DebugBar\Bridge\DoctrineCollector;
 use Doctrine\DBAL\Logging\DebugStack;
 use Illuminate\Support\ServiceProvider;
+use Vinci\App\Core\Services\Presenter\Presenter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->configureLocale();
+
+        $this->app->singleton(Presenter::class, function($app) {
+            return new Presenter($app);
+        });
+
     }
 
     protected function configureDebugBarDoctrineCollector()

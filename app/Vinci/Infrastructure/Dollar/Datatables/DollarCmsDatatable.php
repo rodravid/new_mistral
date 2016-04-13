@@ -1,18 +1,17 @@
 <?php
 
-namespace Vinci\Infrastructure\Newsletter\Datatables;
+namespace Vinci\Infrastructure\Dollar\Datatables;
 
-use Vinci\App\Cms\Http\Newsletter\Presenters\NewsletterPresenter;
-use Vinci\App\Cms\Http\User\Presenters\DefaultUserPresenter;
-use Vinci\Domain\Newsletter\NewsletterRepository;
+use Vinci\App\Cms\Http\Dollar\Presenters\DollarPresenter;
+use Vinci\Domain\Dollar\DollarRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
-class NewsletterCmsDatatable extends AbstractDatatables
+class DollarCmsDatatable extends AbstractDatatables
 {
 
     protected $repository;
 
-    public function __construct(NewsletterRepository $repository)
+    public function __construct(DollarRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -51,10 +50,9 @@ class NewsletterCmsDatatable extends AbstractDatatables
         return $this->makePaginator($qb->getQuery());
     }
 
-    public function parseSingleResult($newsletter)
+    public function parseSingleResult($dollar)
     {
-
-        $presenter = new NewsletterPresenter($newsletter);
+        $presenter = new DollarPresenter($dollar);
 
         return [
             $presenter->getId(),

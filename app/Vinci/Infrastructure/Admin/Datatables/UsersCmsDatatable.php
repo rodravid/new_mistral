@@ -53,7 +53,7 @@ class UsersCmsDatatable extends AbstractDatatables
         return $this->makePaginator($qb->getQuery());
     }
 
-    public function parseSingleReult($user)
+    public function parseSingleResult($user)
     {
 
         $presenter = new DefaultUserPresenter($user);
@@ -64,7 +64,7 @@ class UsersCmsDatatable extends AbstractDatatables
             $user->getName(),
             $user->getEmail(),
             $presenter->group_name,
-            $user->getCreatedAt()->format('d/m/Y H:i:s'),
+            $presenter->created_at,
             $this->buildActionsColumn([
                 'edit_url' => route('cms.users.edit', $user->getId()),
                 'destroy_url' => route('cms.users.destroy', $user->getId())

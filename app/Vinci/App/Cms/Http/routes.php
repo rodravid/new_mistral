@@ -18,6 +18,26 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard');
 
             /**
+             * Dollar
+             */
+            $route->group(['prefix' => 'dollar', 'as' => 'dollar.'], function () use ($route) {
+                $route->get('/', 'Dollar\\DollarController@index')->name('list');
+                $route->get('/create', 'Dollar\\DollarController@create')->name('create');
+                $route->post('/', 'Dollar\\DollarController@store')->name('create#store');
+                $route->get('datatable', 'Dollar\\DollarController@datatable')->name('list#datatable');
+            });
+
+            /**
+             * Deadline
+             */
+            $route->group(['prefix' => 'deadline', 'as' => 'deadline.'], function () use ($route) {
+                $route->get('/', 'Deadline\\DeadlineController@index')->name('list');
+                $route->get('/create', 'Deadline\\DeadlineController@create')->name('create');
+                $route->post('/', 'Deadline\\DeadlineController@store')->name('create#store');
+                $route->get('datatable', 'Deadline\\DeadlineController@datatable')->name('list#datatable');
+            });
+
+            /**
              * Newsletter
              */
             $route->group(['prefix' => 'newsletter', 'as' => 'newsletter.'], function () use ($route) {

@@ -48,7 +48,7 @@ class RolesCmsDatatable extends AbstractDatatables
         return $this->makePaginator($qb->getQuery());
     }
 
-    public function parseSingleReult($role)
+    public function parseSingleResult($role)
     {
         $result = [
             $role->getId(),

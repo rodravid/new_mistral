@@ -17,4 +17,8 @@ class DoctrineNewsletterRepository extends DoctrineBaseRepository implements New
         return $news;
     }
 
+    public function getAll()
+    {
+        return $this->createQueryBuilder('o')->getQuery()->getResult();
+    }
 }

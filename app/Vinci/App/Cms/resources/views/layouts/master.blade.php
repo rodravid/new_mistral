@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <title>@yield('title', 'CMS - Vinci')</title>
+    <title>@yield('title', 'CMS Vinci' . (isset($currentModule) ? ' - ' . $currentModule->getTitle() : ''))</title>
 
     @section('styles')
 
@@ -40,6 +40,16 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
+
+        <style>
+            td.vcenter {
+                vertical-align: middle !important;
+            }
+
+            td.hcenter {
+                text-align: center !important;
+            }
+        </style>
 
     @show
 
@@ -199,7 +209,7 @@
                 }
             });
 
-            $.each($('.table[data-url]'), function(i, table) {
+            $.each($('.table[data-table-default]'), function(i, table) {
 
                 var $table = $(table);
 

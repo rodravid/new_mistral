@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Vinci\App\Core\Services\Presenter\Presenter;
 
 class Controller extends BaseController
 {
@@ -17,9 +18,15 @@ class Controller extends BaseController
 
     protected $entityManager;
 
-    public function __construct()
+    /**
+     * @var Presenter
+     */
+    protected $presenter;
+
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->entityManager = App::make('em');
+        $this->entityManager = $em;
+        $this->presenter = App::make(Presenter::class);
     }
 
     protected function view($view = null, $data = [], $mergeData = [])
