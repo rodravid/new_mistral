@@ -23,3 +23,8 @@ function html_select_array($data, $key = 'id', $value = 'title')
 
     return $result;
 }
+
+function uniqueHash()
+{
+    return md5(uniqid(rand()));
+}

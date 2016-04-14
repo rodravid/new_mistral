@@ -59,10 +59,10 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/', 'Highlight\\HighlightController@index')->name('list');
                     $route->get('/create', 'Highlight\\HighlightController@create')->name('create');
                     $route->post('/', 'Highlight\\HighlightController@store')->name('create#store');
-                    $route->get('/{user}/edit', 'Highlight\\HighlightController@edit')->name('edit');
-                    $route->delete('/{user}/delete', 'Highlight\\HighlightController@destroy')->name('destroy');
-                    $route->put('/{user}', 'Highlight\\HighlightController@update')->name('edit#update');
-                    $route->delete('/{user}/photo/{photo}/delete', 'Highlight\\HighlightController@removePhoto')->name('edit#remove-photo');
+                    $route->get('/{highlight}/edit', 'Highlight\\HighlightController@edit')->name('edit');
+                    $route->delete('/{highlight}/delete', 'Highlight\\HighlightController@destroy')->name('destroy');
+                    $route->put('/{highlight}', 'Highlight\\HighlightController@update')->name('edit#update');
+                    $route->delete('/{highlight}/photo/{photo}/delete', 'Highlight\\HighlightController@removeImage')->name('edit#remove-image');
                     $route->get('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
                 });
 

@@ -10,40 +10,41 @@ use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
-use Vinci\Domain\ACL\Role\RoleRepository;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Highlight\HighlightRepository;
 use Vinci\Domain\Highlight\HighlightService;
 use Vinci\Domain\Image\ImageRepository;
+use Vinci\Infrastructure\Highlight\Datatables\HighlightCmsDatatable;
 
 class HighlightController extends Controller
 {
 
     use DatatablesResponse;
 
-    protected $adminService;
+    protected $service;
 
-    protected $adminRepository;
+    protected $repository;
 
-    protected $datatable = 'Vinci\Infrastructure\Highlight\Datatables\HighlightCmsDatatable';
-
-    protected $roleRepository;
+    protected $datatable = HighlightCmsDatatable::class;
 
     protected $imageRepository;
 
+    protected $aclService;
+
     public function __construct(
         EntityManagerInterface $em,
-        HighlightService $adminService,
-        HighlightRepository $adminRepository,
-        RoleRepository $roleRepository,
-        ImageRepository $imageRepository
+        HighlightService $service,
+        HighlightRepository $repository,
+        ImageRepository $imageRepository,
+        ACLService $aclService
     )
     {
         parent::__construct($em);
 
-        $this->adminService = $adminService;
-        $this->adminRepository = $adminRepository;
-        $this->roleRepository = $roleRepository;
+        $this->service = $service;
+        $this->repository = $repository;
         $this->imageRepository = $imageRepository;
+        $this->aclService = $aclService;
     }
 
     public function index()
@@ -53,19 +54,15 @@ class HighlightController extends Controller
 
     public function create()
     {
-        $roles = $this->getRolesSelectArray();
-
-        return $this->view('highlights.create')->withRoles($roles);
+        return $this->view('highlights.create');
     }
 
     public function edit($id)
     {
-        $user = $this->adminRepository->findOrFail($id);
-        $roles = $this->roleRepository->getAll();
+        $highlight = $this->repository->findOrFail($id);
 
         return $this->view('highlights.edit')
-            ->withHighlights($user)
-            ->withRoles($roles);
+            ->withHighlight($highlight);
     }
 
     public function store(Request $request)
@@ -73,13 +70,15 @@ class HighlightController extends Controller
         try {
 
             $data = $request->all();
-            $data['photo'] = $request->file('photo');
+            $data['image_desktop'] = $request->file('image_desktop');
+            $data['image_mobile'] = $request->file('image_mobile');
+            $data['user'] = cmsUser();
 
-            $user = $this->adminService->create($data);
+            $highlight = $this->service->create($data);
 
-            Flash::success("Usuário {$user->getName()} criado com sucesso!");
+            Flash::success("Destaque {$highlight->getTitle()} criado com sucesso!");
 
-            return Redirect::route('cms.highlights.edit', $user->getId());
+            return Redirect::route($this->getEditRouteName(), $highlight->getId());
 
         } catch (ValidationException $e) {
 
@@ -93,18 +92,20 @@ class HighlightController extends Controller
         }
     }
 
-    public function update(Request $request, $customerId)
+    public function update(Request $request, $id)
     {
         try {
 
             $data = $request->all();
-            $data['photo'] = $request->file('photo');
+            $data['image_desktop'] = $request->file('image_desktop');
+            $data['image_mobile'] = $request->file('image_mobile');
+            $data['user'] = cmsUser();
 
-            $user = $this->adminService->update($data, $customerId);
+            $highlight = $this->service->update($data, $id);
 
-            Flash::success("Usuário {$user->getName()} atualizado com sucesso!");
+            Flash::success("Destaque {$highlight->getTitle()} atualizado com sucesso!");
 
-            return Redirect::route('cms.highlights.edit', $user->getId());
+            return Redirect::route($this->getEditRouteName(), $highlight->getId());
 
         } catch (ValidationException $e) {
 
@@ -119,17 +120,17 @@ class HighlightController extends Controller
 
     }
 
-    public function destroy($userId)
+    public function destroy($id)
     {
-        $user = $this->adminRepository->find($userId);
+        $highlight = $this->repository->find($id);
 
         try {
 
-            $this->adminRepository->delete($user);
+            $this->repository->delete($highlight);
 
-            Flash::success("Usuário {$user->getName()} excluído com sucesso!");
+            Flash::success("Destaque {$highlight->getTitle()} excluído com sucesso!");
 
-            return Redirect::route('cms.highlights.list');
+            return Redirect::route($this->getListRouteName());
 
         } catch (Exception $e) {
 
@@ -138,18 +139,18 @@ class HighlightController extends Controller
         }
     }
 
-    public function removePhoto($userId, $photoId)
+    public function removeImage($highlightId, $imageId)
     {
         try {
 
-            $user = $this->adminRepository->find($userId);
-            $photo = $this->imageRepository->find($photoId);
+            $highlight = $this->repository->find($highlightId);
+            $image = $this->imageRepository->find($imageId);
 
-            $this->adminService->removePhoto($photo, $user);
+            $this->service->removeImage($image, $highlight);
 
-            Flash::success("Foto excluída com sucesso!");
+            Flash::success("Imagem excluída com sucesso!");
 
-            return Redirect::route('cms.highlights.edit', [$userId]);
+            return Redirect::route($this->getEditRouteName(), [$highlightId]);
 
         } catch (Exception $e) {
 
@@ -158,10 +159,14 @@ class HighlightController extends Controller
         }
     }
 
-    protected function getRolesSelectArray()
+    protected function getEditRouteName()
     {
-        $roles = $this->roleRepository->getAll();
-        return html_select_array($roles);
+        return 'cms.' . $this->aclService->getCurrentModuleName() . '.edit';
+    }
+
+    protected function getListRouteName()
+    {
+        return 'cms.' . $this->aclService->getCurrentModuleName() . '.list';
     }
 
 }

@@ -153,7 +153,7 @@ class ModulesTableSeeder extends Seeder
                 'url' => '/cms/highlights/home-main-slider',
                 'datatable_url' => '/cms/highlights/home-main-slider/datatable',
                 'icon' => 'fa fa-photo',
-                'create_button_text' => 'Novo banner'
+                'create_button_text' => 'Novo destaque'
             ])
                 ->setParent($highlights),
 

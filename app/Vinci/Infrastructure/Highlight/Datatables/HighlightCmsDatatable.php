@@ -28,24 +28,23 @@ class HighlightCmsDatatable extends AbstractDatatables
         4 => 'n.createdAt',
         5 => 'n.startsAt',
         6 => 'n.expirationAt',
+        7 => 'n.status',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->repository->getBySortableGroupsQueryBuilder()
             ->join('n.user', 'u')
-            ->leftJoin('n.image', 'i')
+            ->leftJoin('n.images', 'i')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
         if (! empty($search['value'])) {
 
-            $qb->where($qb->expr()->eq('o.id', ':id'));
+            $qb->where($qb->expr()->eq('n.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('o.name', ':search'),
-                $qb->expr()->like('o.email', ':search'),
-                $qb->expr()->like('r.title', ':search')
+                $qb->expr()->like('n.title', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
@@ -65,7 +64,7 @@ class HighlightCmsDatatable extends AbstractDatatables
         return [
             $highlight->getId(),
             $highlight->position,
-            '<img src="" style="width: 50px;" />',
+            '<img src="' . $presenter->getImage('desktop') . '" style="width: 50px;" />',
             $highlight->getTitle(),
             $presenter->created_at,
             $presenter->starts_at,

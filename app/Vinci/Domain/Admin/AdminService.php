@@ -98,19 +98,10 @@ class AdminService
     {
         $user->removePhoto($photo);
 
-        try {
+        $this->repository->save($user);
+        $this->imageRepository->save($photo);
 
-            $this->storage->deleteImage($photo);
-
-            $this->entityManager->remove($photo);
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-
-        } catch (\Exception $e) {
-
-            dd($e->getMessage());
-
-        }
+        $this->storage->deleteImage($photo);
     }
 
     protected function saveAdmin($adminData, Closure $method)

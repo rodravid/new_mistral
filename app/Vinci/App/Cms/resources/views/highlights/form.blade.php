@@ -42,7 +42,7 @@
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtHighlightUrl">Link de destino</label>
+            <label for="txtHighlightUrl">URL</label>
             {!! Form::text('url', null, ['id' => 'txtHighlightUrl', 'class' => 'form-control', 'placeholder' => 'Digite o link de destino']) !!}
             <span class="glyphicon glyphicon-link form-control-feedback"></span>
         </div>
@@ -51,7 +51,7 @@
     <div class="col-lg-12">
         <div class="form-group">
             <label for="txtHighlightSubtitle">Target</label>
-            {!! Form::select('target', [], null, ['id' => 'txtHighlightTarget', 'class' => 'form-control']) !!}
+            {!! Form::select('target', ['_self' => 'Mesma janela', '_blank' => 'Nova janela'], null, ['id' => 'txtHighlightTarget', 'class' => 'form-control']) !!}
         </div>
     </div>
 

@@ -40,7 +40,7 @@ class Image extends File
     protected $version_type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Image", inversedBy="versions", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Image", inversedBy="versions", cascade={"persist"})
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     protected $parent;
@@ -182,8 +182,12 @@ class Image extends File
         $this->parent = null;
     }
 
-    public static function makeFromUpload(UploadedFile $file, $path = null, $copyOriginal = true)
+    public static function makeFromUpload(UploadedFile $file = null, $path = null, $copyOriginal = true, Image $defaultImage = null)
     {
+        if (empty($file)) {
+            return $defaultImage;
+        }
+
         $dimensions = getimagesize($file);
 
         $image = static::make([
@@ -194,7 +198,7 @@ class Image extends File
             'width' => $dimensions[0],
             'height' => $dimensions[1],
             'uploaded_file' => $file,
-            'version_type' => ImageVersions::CURRENT
+            'version_type' => ImageVersion::CURRENT
         ]);
 
         if(! empty($path)) {
@@ -204,10 +208,15 @@ class Image extends File
         $image->generateUniqueName();
 
         if ($copyOriginal) {
-            $image->addVersion(ImageVersions::ORIGINAL, clone $image);
+            $image->addVersion(ImageVersion::ORIGINAL, clone $image);
         }
 
         return $image;
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Highlight\HighlightImage", mappedBy="image", cascade={"remove"})
+     */
+    protected $highlights;
 
 }

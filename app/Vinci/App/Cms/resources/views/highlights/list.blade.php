@@ -28,6 +28,7 @@
                 searchDelay: 600,
                 order: [[ 1, "asc" ]],
                 columnDefs: [
+                    {orderable: false, targets: 2 },
                     {orderable: false, width: '92px', targets: -1 },
                     {className: 'hcenter vcenter', width: '20px', targets: 0 },
                     {className: 'hcenter vcenter', width: '70px', targets: 1 },

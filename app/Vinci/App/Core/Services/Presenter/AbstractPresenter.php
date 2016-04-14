@@ -57,7 +57,14 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
 
     public function presentStatus()
     {
-        return $this->getStatus();
+        switch ($this->getStatus()) {
+            case 0:
+                return 'Rascunho';
+            break;
+            case 1:
+                return 'Publicado';
+            break;
+        }
     }
 
     public function presentUserName()

@@ -2,12 +2,14 @@
 
 namespace Vinci\Domain\Highlight;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Common\Relationships\HasOneAdminUser;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\Entity(repositoryClass="Vinci\Infrastructure\Highlight\DoctrineHighlightRepository")
@@ -41,12 +43,6 @@ class Highlight extends Model
     protected $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Image\Image")
-     * @ORM\JoinColumn(name="image_id", nullable=true)
-     */
-    protected $image;
-
-    /**
      * @ORM\Column(type="string", nullable=true)
      */
     protected $url;
@@ -65,8 +61,17 @@ class Highlight extends Model
     /**
      * @ORM\Column(type="smallint", options={"default" = 0})
      */
-    protected $status;
+    protected $status = 0;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Highlight\HighlightImage", mappedBy="highlight", cascade={"persist", "remove"})
+     */
+    protected $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection;
+    }
 
     public function getId()
     {
@@ -150,15 +155,41 @@ class Highlight extends Model
         return $this;
     }
 
-    public function setImage($image)
+    public function getImagesUploadPath()
     {
-        $this->image = $image;
-        return $this;
+        return 'highlights/' . $this->getId() . '/images';
     }
 
-    public function getImage()
+    public function addImage(Image $image, $version)
     {
-        return $this->image;
+        $highlightImage = new HighlightImage;
+        $highlightImage->setImage($image);
+        $highlightImage->setHighlight($this);
+        $highlightImage->setImageVersion($version);
+        $this->images->set($version, $highlightImage);
+    }
+
+    public function removeImage(Image $image)
+    {
+        foreach ($this->images as $img) {
+            if ($image == $img->getImage()) {
+                $this->images->removeElement($img);
+            }
+        }
+    }
+
+    public function getImage($version)
+    {
+        foreach ($this->images as $relation) {
+            if ($relation->getImageVersion() == $version) {
+                return $relation->getImage();
+            }
+        }
+    }
+
+    public function hasImage($version)
+    {
+        return !! $this->getImage($version);
     }
 
 }

@@ -144,4 +144,9 @@ class File extends Model
         return $this->name = md5(uniqid());
     }
 
+    public function __toString()
+    {
+        return $this->getWebPath();
+    }
+
 }

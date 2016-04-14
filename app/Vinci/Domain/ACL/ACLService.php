@@ -46,6 +46,11 @@ class ACLService
         return $this->currentModule;
     }
 
+    public function getCurrentModuleName()
+    {
+        return $this->currentModule->getName();
+    }
+
     public function buildModulesTreeHtmlForUser(User $user, array $options = [])
     {
         $modules = $this->getModulesForUser($user);

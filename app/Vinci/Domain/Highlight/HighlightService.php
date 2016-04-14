@@ -6,10 +6,10 @@ use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Http\UploadedFile;
-use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Image\ImageRepository;
+use Vinci\Domain\Image\ImageVersion;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class HighlightService
@@ -41,51 +41,42 @@ class HighlightService
         $this->imageRepository = $imageRepository;
     }
 
-    public function create(array $adminData)
+    public function create(array $data)
     {
-        $this->validator->with($adminData)->passesOrFail();
+        $this->validator->with($data)->passesOrFail();
 
-        return $this->saveHighlight($adminData, function($data) {
+        return $this->saveHighlight($data, function($data) {
             return Highlight::make($data);
         });
     }
 
-    public function update(array $adminData, $id)
+    public function update(array $data, $id)
     {
-        $this->validator->with($adminData)->setId($id)->passesOrFail();
+        $this->validator->with($data)->setId($id)->passesOrFail();
 
-        return $this->saveHighlight($adminData, function($data) use ($id) {
+        return $this->saveHighlight($data, function($data) use ($id) {
 
-            if (empty($data['password'])) {
-                unset($data['password']);
-            }
+            $highlight = $this->repository->find($id);
+            $highlight->fill($data);
 
-            $admin = $this->repository->find($id);
-            $admin->fill($data);
-
-            return $admin;
+            return $highlight;
         });
     }
 
-    public function savePhoto(UploadedFile $uploadedPhoto, Highlight $user)
+    public function storeImage(Highlight $highlight, UploadedFile $image)
     {
         $this->entityManager->getConnection()->beginTransaction();
 
         try {
 
-            $photo = Image::makeFromUpload($uploadedPhoto, $user->getPhotosUploadPath());
+            $image = Image::makeFromUpload($image, $highlight->getImagesUploadPath());
 
-            $this->storage->storeImage($photo);
-
-            $photo = $this->imageRepository->save($photo);
-
-            $user->addPhoto($photo);
-
-            $this->repository->save($user);
+            $this->storage->storeImage($image);
+            $this->imageRepository->save($image);
 
             $this->entityManager->getConnection()->commit();
 
-            return $photo;
+            return $image;
 
         } catch (Exception $e) {
 
@@ -94,40 +85,35 @@ class HighlightService
         }
     }
 
-    public function removePhoto(Image $photo, Highlight $user)
+    public function removeImage(Image $image, Highlight $highlight)
     {
-        $user->removePhoto($photo);
+        $highlight->removeImage($image);
+        $this->storage->deleteImage($image);
 
-        try {
-
-            $this->storage->deleteImage($photo);
-
-            $this->entityManager->remove($photo);
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-
-        } catch (\Exception $e) {
-
-            dd($e->getMessage());
-
-        }
+        $this->entityManager->persist($highlight);
+        $this->entityManager->remove($image);
+        $this->entityManager->flush();
     }
 
-    protected function saveHighlight($adminData, Closure $method)
+    protected function saveHighlight($data, Closure $method)
     {
-        $admin = $method($adminData);
+        $highlight = $method($data);
 
-        $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
+        $this->repository->save($highlight);
 
-        if (! empty($photo = $adminData['photo'])) {
-            $photo = $this->savePhoto($photo, $admin);
-
-            $admin->setProfilePhoto($photo);
+        if (! empty($imageDesktop = $data['image_desktop'])) {
+            $image = $this->storeImage($highlight, $imageDesktop);
+            $highlight->addImage($image, ImageVersion::DESKTOP);
         }
 
-        $this->repository->save($admin);
+        if (! empty($imageMobile = $data['image_mobile'])) {
+            $image = $this->storeImage($highlight, $imageMobile);
+            $highlight->addImage($image, ImageVersion::MOBILE);
+        }
 
-        return $admin;
+        $this->repository->save($highlight);
+
+        return $highlight;
     }
 
 }

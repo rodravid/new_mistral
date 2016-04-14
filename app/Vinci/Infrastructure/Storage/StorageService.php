@@ -36,7 +36,9 @@ class StorageService
             throw new RuntimeException('The image name cannot be empty.');
         }
 
-        $this->disk()->put($image->getUploadPathName(), file_get_contents($uploadedImage));
+        if (! empty($uploadedImage)) {
+            $this->disk()->put($image->getUploadPathName(), file_get_contents($uploadedImage));
+        }
 
         if ($image->hasVersions()) {
 

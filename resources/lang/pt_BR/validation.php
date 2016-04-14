@@ -109,7 +109,10 @@ return [
     'attributes' => [
         'name' => 'Nome',
         'email' => 'E-mail',
-        'description' => 'Descrição',
+        'title' => 'Título',
+        'subtitle' => 'Subtítulo',
+        'description' => 'URL',
+        'url' => 'Descrição',
         'amount' => 'Valor',
         'password' => 'Senha',
         'password_confirmation' => 'Confirmação de Senha',
