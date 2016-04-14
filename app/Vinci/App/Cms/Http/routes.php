@@ -47,7 +47,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             });
 
             /**
-             * Highlight
+             * Highlights
              */
 
             $route->group(['prefix' => 'highlights'], function () use ($route) {

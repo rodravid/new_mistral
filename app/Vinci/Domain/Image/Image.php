@@ -100,33 +100,6 @@ class Image extends File
         $this->height = $height;
     }
 
-    public static function makeFromUpload(UploadedFile $file, $path = null, $copyOriginal = true)
-    {
-        $dimensions = getimagesize($file);
-
-        $image = static::make([
-            'caption' => $file->getClientOriginalName(),
-            'extension' => $file->getClientOriginalExtension(),
-            'mime' => $file->getClientMimeType(),
-            'size' => $file->getSize(),
-            'width' => $dimensions[0],
-            'height' => $dimensions[1],
-            'uploaded_file' => $file
-        ]);
-
-        if(! empty($path)) {
-            $image->setPath($path);
-        }
-
-        $image->generateUniqueName();
-
-        if($copyOriginal) {
-            $image->addVersion(ImageVersions::ORIGINAL, clone $image);
-        }
-
-        return $image;
-    }
-
     public function getType()
     {
         return 'photo';
@@ -207,6 +180,34 @@ class Image extends File
     {
         $this->versions = new ArrayCollection;
         $this->parent = null;
+    }
+
+    public static function makeFromUpload(UploadedFile $file, $path = null, $copyOriginal = true)
+    {
+        $dimensions = getimagesize($file);
+
+        $image = static::make([
+            'caption' => $file->getClientOriginalName(),
+            'extension' => $file->getClientOriginalExtension(),
+            'mime' => $file->getClientMimeType(),
+            'size' => $file->getSize(),
+            'width' => $dimensions[0],
+            'height' => $dimensions[1],
+            'uploaded_file' => $file,
+            'version_type' => ImageVersions::CURRENT
+        ]);
+
+        if(! empty($path)) {
+            $image->setPath($path);
+        }
+
+        $image->generateUniqueName();
+
+        if ($copyOriginal) {
+            $image->addVersion(ImageVersions::ORIGINAL, clone $image);
+        }
+
+        return $image;
     }
 
 }

@@ -197,6 +197,8 @@
 
             $("[data-real-mask]").inputmask('€ 999.999.999,99', { numericInput: true });
 
+            $('.html-editor').wysihtml5();
+
             $.extend( true, $.fn.dataTable.defaults, {
                 "language": {
                     "sEmptyTable": "Nenhum registro encontrado",

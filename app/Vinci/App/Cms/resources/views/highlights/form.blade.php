@@ -2,49 +2,56 @@
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtUserName">Nome</label>
-            {!! Form::text('name', null, ['id' => 'txtUserName', 'class' => 'form-control', 'placeholder' => 'Digite o nome']) !!}
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <label for="txtHighlightTitle">Título</label>
+            {!! Form::text('title', null, ['id' => 'txtHighlightTitle', 'class' => 'form-control', 'placeholder' => 'Digite o título']) !!}
+            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtUserEmail">E-mail</label>
-            {!! Form::text('email', null, ['id' => 'txtUserEmail', 'class' => 'form-control', 'placeholder' => 'Digite o e-mail']) !!}
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <label for="txtHighlightSubtitle">Subtítulo</label>
+            {!! Form::text('subtitle', null, ['id' => 'txtHighlightSubtitle', 'class' => 'form-control', 'placeholder' => 'Digite o subtítulo']) !!}
+            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtUserEmail">Cargo</label>
-            {!! Form::text('office', null, ['id' => 'txtUserOffice', 'class' => 'form-control', 'placeholder' => 'Digite o cargo']) !!}
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <label for="txtHighlightDescription">Descrição</label>
+            {!! Form::textarea('description', null, ['id' => 'txtHighlightDescription', 'class' => 'form-control html-editor', 'placeholder' => 'Digite a descrição']) !!}
+            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtUserPassword">Senha</label>
-            {!! Form::password('password', ['id' => 'txtUserPassword', 'class' => 'form-control', 'placeholder' => 'Digite a senha']) !!}
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label for="txtUserPasswordConfirmation">Confirmação da senha</label>
-            {!! Form::password('password_confirmation', ['id' => 'txtUserPasswordConfirmation', 'class' => 'form-control', 'placeholder' => 'Digite a senha novamente']) !!}
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label for="txtUserPasswordConfirmation">Foto</label>
-            {!! Form::file('photo', ['id' => 'txtUserPhoto']) !!}
+            <label for="txtHighlightPasswordConfirmation">Banner versão desktop</label>
+            {!! Form::file('image_desktop', ['id' => 'txtHighlightImageDesktop']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="form-group has-feedback">
+            <label for="txtHighlightPasswordConfirmation">Banner versão mobile</label>
+            {!! Form::file('image_mobile', ['id' => 'txtHighlightImageMobile']) !!}
+            <span class="glyphicon glyphicon-picture form-control-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="form-group has-feedback">
+            <label for="txtHighlightUrl">Link de destino</label>
+            {!! Form::text('url', null, ['id' => 'txtHighlightUrl', 'class' => 'form-control', 'placeholder' => 'Digite o link de destino']) !!}
+            <span class="glyphicon glyphicon-link form-control-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="form-group">
+            <label for="txtHighlightSubtitle">Target</label>
+            {!! Form::select('target', [], null, ['id' => 'txtHighlightTarget', 'class' => 'form-control']) !!}
         </div>
     </div>
 

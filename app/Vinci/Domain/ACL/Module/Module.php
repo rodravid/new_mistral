@@ -51,6 +51,11 @@ class Module extends Model
     protected $icon;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $create_button_text;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\ACL\Role\Role", mappedBy="modules")
      */
     protected $roles;
@@ -231,6 +236,17 @@ class Module extends Model
     public function getRgt()
     {
         return $this->rgt;
+    }
+
+    public function setCreateButtonText($create_button_text)
+    {
+        $this->create_button_text = $create_button_text;
+        return $this;
+    }
+
+    public function getCreateButtonText()
+    {
+        return $this->create_button_text;
     }
 
 }

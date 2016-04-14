@@ -4,17 +4,17 @@ namespace Vinci\Infrastructure\Highlight;
 
 use Vinci\Domain\Highlight\Highlight;
 use Vinci\Domain\Highlight\HighlightRepository;
-use Vinci\Infrastructure\Users\DoctrineUserRepository;
+use Vinci\Infrastructure\Common\DoctrineSortableRepository;
 
-class DoctrineHighlightRepository extends DoctrineUserRepository implements HighlightRepository
+class DoctrineHighlightRepository extends DoctrineSortableRepository implements HighlightRepository
 {
 
     public function create(array $data)
     {
-        $admin = Highlight::make($data);
-        $this->_em->persist($admin);
+        $highlight = Highlight::make($data);
+        $this->_em->persist($highlight);
         $this->_em->flush();
-        return $admin;
+        return $highlight;
     }
 
 }

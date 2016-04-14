@@ -45,6 +45,21 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         return $this->toDefaultDateTime($this->getUpdatedAt());
     }
 
+    public function presentStartsAt()
+    {
+        return $this->toDefaultDateTime($this->getStartsAt());
+    }
+
+    public function presentExpirationAt()
+    {
+        return $this->toDefaultDateTime($this->getExpirationAt());
+    }
+
+    public function presentStatus()
+    {
+        return $this->getStatus();
+    }
+
     public function presentUserName()
     {
         if ($user = $this->getUser()) {

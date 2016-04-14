@@ -10,29 +10,31 @@ use Vinci\Infrastructure\Datatables\AbstractDatatables;
 class HighlightCmsDatatable extends AbstractDatatables
 {
 
-    protected $adminRepository;
+    protected $repository;
 
     protected $ACLService;
 
-    public function __construct(HighlightRepository $adminRepository, ACLService $ACLService)
+    public function __construct(HighlightRepository $repository, ACLService $ACLService)
     {
-        $this->adminRepository = $adminRepository;
+        $this->repository = $repository;
         $this->ACLService = $ACLService;
     }
 
     protected $sortMapping = [
-        0 => 'o.id',
-        1 => 'p.id',
-        2 => 'o.name',
-        3 => 'o.email',
-        4 => 'r.title',
-        5 => 'o.createdAt',
+        0 => 'n.id',
+        1 => 'n.position',
+        2 => 'i.id',
+        3 => 'n.title',
+        4 => 'n.createdAt',
+        5 => 'n.startsAt',
+        6 => 'n.expirationAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
-        $qb = $this->adminRepository->createQueryBuilder('o')
-            ->select('o')
+        $qb = $this->repository->getBySortableGroupsQueryBuilder()
+            ->join('n.user', 'u')
+            ->leftJoin('n.image', 'i')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
@@ -62,14 +64,16 @@ class HighlightCmsDatatable extends AbstractDatatables
 
         return [
             $highlight->getId(),
-            '<img src="' . $presenter->profile_photo . '" style="width: 50px;" />',
-            $highlight->getName(),
-            $highlight->getEmail(),
-            $presenter->group_name,
+            $highlight->position,
+            '<img src="" style="width: 50px;" />',
+            $highlight->getTitle(),
             $presenter->created_at,
+            $presenter->starts_at,
+            $presenter->expiration_at,
+            $presenter->status,
             $this->buildActionsColumn([
-                'edit_url' => route('cms.users.edit', $highlight->getId()),
-                'destroy_url' => route('cms.users.destroy', $highlight->getId())
+                'edit_url' => route('cms.home-main-slider.edit', $highlight->getId()),
+                'destroy_url' => route('cms.home-main-slider.destroy', $highlight->getId())
             ])
         ];
     }
