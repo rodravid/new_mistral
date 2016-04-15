@@ -22,10 +22,10 @@ use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="users", indexes={@ORM\Index(name="user_type_idx", columns={"type"})})
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"customer" = "Vinci\Domain\Customer\Customer", "admin" = "Vinci\Domain\Admin\Admin"})
+ * @ORM\DiscriminatorColumn(name="type", type="smallint")
+ * @ORM\DiscriminatorMap({UserType::CUSTOMER = "Vinci\Domain\Customer\Customer", UserType::ADMIN = "Vinci\Domain\Admin\Admin"})
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 abstract class User extends Model implements Authenticatable, AuthorizableContract, CanResetPassword, HasRolesContract, HasPermissionsContract
