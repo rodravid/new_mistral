@@ -2,7 +2,6 @@
 
 namespace Vinci\Domain\Highlight;
 
-use Carbon\Carbon;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
