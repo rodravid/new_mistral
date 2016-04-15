@@ -124,6 +124,9 @@ body {
 
 .wrap-slider-principal {
 	margin-top: -106px;
+	@media #{$screen-767} {
+		margin-top: -116px;
+	}
 }
 
 .slider-principal {
@@ -147,6 +150,17 @@ body {
 	a.bt-default {
 		display:inline-block;
 		margin:15px 0 0 0;
+		padding: 2px 40px 2px 17px;
+		position:relative;
+
+		.arrow-link {
+			height: 30px;
+			top: -2px;
+			right: -2px;
+			line-height: 21px;
+			width: 30px;
+			position:absolute;
+		}
 	}
 
 }
@@ -436,6 +450,11 @@ a.bt-default {
 	margin:5px 0 0 0;
 	line-height: 13px;
 }
+.info-details-wine {
+	font:13px $robotolight;
+	margin:2px 0 0 0;
+	line-height: 13px;
+}
 
 .content-card-product {
 	width:100%;
@@ -483,26 +502,7 @@ a.bt-default {
 
 .wine-price { font:27px $robotobold; }
 
-.bt-default-full {
-	width: 100%;
-	line-height: 26px;
-	text-align: center;
-	display: inline-block;
-	color: #fff;
-	font-family: roboto_condensedbold;
-	font-size: 16px;
-	text-transform:uppercase;
-	padding: 2px 2px 2px 16px;
-	letter-spacing: 0.6px;
 
-	.arrow-link {
-		padding:1px 0 0 0;
-		float:right;
-		background:#fff;
-		font-size:11px;
-	}
-
-}
 
 .wrap-banners {
 	width:100%;
@@ -561,12 +561,15 @@ a.bt-default {
 
 .header-internal.header-checkout {
 	padding:0;
+@media #{$screen-970} {
+		
+	.logo,.logo-vinci{	margin-left:0px;}
+ }
+
 }
 
 .header-checkout {
-	.logo {
-		margin-left: 0;
-	}
+
 
 	@media #{$screen-767} {
 
@@ -796,6 +799,15 @@ a.bt-default {
 .column-products-search-inline {
 	width:73.9%;
 	float:right;
+	
+	.title-card-wine {
+		position:relative;
+	}
+
+	.favorite {
+		right: -30px;
+		top: 0px;
+	}
 
 	@media #{$screen-970} {
 		width: 68%;
@@ -803,6 +815,10 @@ a.bt-default {
 
 	@media #{$screen-767} {
 		width: 100%;
+	}
+
+	.wine-intro {
+		margin-bottom:10px;
 	}
 
 
@@ -920,7 +936,7 @@ a.bt-default {
 	}
 	.select-standard{
 		border:1px solid #000;
-		height: 35px;
+		height: 38px;
 	}
 }
 
@@ -931,10 +947,11 @@ a.bt-default {
 }
 
 .input-register{
-	border:1px solid #000;
-	font-size: 13.5px;
-	color: $black;
+	border: 1px solid #000;
+	font-size: 15px;
+	color: #111;
 	padding: 8px 10px;
+	font-family: "roboto_condensedlight";
 
 	&:focus {
 		border:1px solid $blue;
@@ -1272,6 +1289,9 @@ a.bt-default {
 
 	.height-bg-product {
 		min-height:300px;
+		@media #{$screen-970} {
+			min-height:321px;
+		}
 	}
 
 	.wrap-price-units {
@@ -1358,6 +1378,7 @@ a.bt-default {
 		height:30px;
 		text-align:center;
 		font-size: 15px;
+		font-family:$robotolight;
 	}
 
 	.botoes-add {
@@ -1375,27 +1396,7 @@ a.bt-default {
 		float: right;
 	}
 
-	.bt-big {
-		font-size: 20px;
-		line-height: 39px;
 
-		.arrow-link {
-			height: 40px;
-			font-size: 18px;
-			width: 37px;
-		}
-	}
-
-	.bt-middle {
-		font-size: 16px;
-		line-height: 39px;
-
-		.arrow-link {
-			height: 40px;
-			font-size: 18px;
-			width: 37px;
-		}
-	}
 
 	.wrap-content-product {
 		margin-top:-30px;
@@ -1424,6 +1425,7 @@ a.bt-default {
 		margin-top: 37px;
 		@media #{$screen-970} { 
 			font-size:25px;
+			line-height:24px;
 		}
 		@media #{$screen-767} {
 			width:auto;
@@ -1438,6 +1440,9 @@ a.bt-default {
 		img {
 			display:block;
 			margin-bottom: 10px;
+			@media #{$screen-970} {
+				width:70px;
+			}
 		}
 	}
 
@@ -1557,6 +1562,9 @@ a.bt-default {
 		width: 100%;
 		display: inline-block;
 		margin: 40px 0 10px 0;
+		@media #{$screen-970} {
+			margin: 60px 0 10px 0;
+		}
 		@media #{$screen-767} {  
 			margin: 15px 0 10px 0;
 		}
@@ -1784,7 +1792,7 @@ a.bt-default {
 
 		li{
 			width: 100%;
-			padding: 10px 0px 10px 20px;
+			padding: 20px 0px 20px 20px;
 			display: inline-block;
 			overflow: visible !important;
 
@@ -1801,7 +1809,7 @@ a.bt-default {
 			span{
 				display: inline-block;
 				margin-top: 5px;
-				font-size: 16px;
+				font-size: 15px;
 			}
 
 			.container-info-compra{
@@ -1817,6 +1825,7 @@ a.bt-default {
 					font-size: 15px;
 					text-align: center;
 					margin-left: 10px;
+					font: 15px $robotolight;
 				}
 				input[type="submit"]{
 					border: 0;
@@ -1833,6 +1842,10 @@ a.bt-default {
 		li+li {
 			border-top: 1px solid #c1c1c1;
 		}
+	}
+
+	.price-cart {
+		font:20px $robotolight;
 	}
 
 	.container-info-remover {
@@ -1986,8 +1999,21 @@ a.bt-default {
 		right:10px;
 		top:10px;
 		color:$blue;
+		    transition: all .1s ease .05s;
+
+		&:hover {
+			color:#fff;
+			background:$blue;
+			transition: all .1s ease .05s;
+		}
 	}
 
+	.mright-ajust {
+		margin-right:12px;
+		@media #{$screen-970} {
+				margin-right:8px;
+		 }
+	}
 
 	/* PG ENTREGA */
 
@@ -2082,6 +2108,13 @@ a.bt-default {
 		right: 10px;
 		top: 10px;
 		color: $blue;
+		transition: all .1s ease .05s;
+
+		&:hover {
+			background: $blue;
+			color: #fff;
+			transition: all .1s ease .05s;
+		}
 	}
 
 
@@ -2164,8 +2197,8 @@ a.bt-default {
 		text-align:center;
 		width:70px;
 		@media #{$screen-767} {
-			margin-right:5px;
-			width:60px;
+			margin-right:0px;
+			width:55px;
 		}
 	}
 
@@ -2307,6 +2340,14 @@ a.bt-default {
 		position:relative;
 		background-color:#f8f8f8;
 
+		&:focus {
+			border-color: $blue;
+			outline: 0;
+		}
+		&:hover {
+			border-color: $blue;
+		}
+
 		/*Color White select*/
 		&.form-control-white,
 		&.form-control-white:after{
@@ -2325,57 +2366,58 @@ a.bt-default {
 			outline: none;
 			padding:3px 35px 3px 15px;
 			height:100%;
-			font-size:14px;
+			font-size: 15px;
+			font-family: "roboto_condensedlight";
 
 			&:focus {
-				border-color: #66afe9;
+				border-color: $blue;
 				outline: 0;
-				-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-				box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-			}
-		}
+/* 				-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); */
+}
+}
 
-		/* Aqui imagem da seta */
+/* Aqui imagem da seta */
 
-		&:before{
-			content: "";
-			background: url($imgPath + "seta-select.jpg") no-repeat center center;
-			width: 30px;
-			height: 26px;
-			z-index: 2;
-			pointer-events: none;
-			position: absolute;
-			right: 1px;
-			top: 0;
-			margin-top: 1px;
-		}
+&:before{
+	content: "";
+	background: url($imgPath + "seta-select.jpg") no-repeat center center;
+	width: 30px;
+	height: 26px;
+	z-index: 2;
+	pointer-events: none;
+	position: absolute;
+	right: 1px;
+	top: 0;
+	margin-top: 1px;
+}
 
-		/*Aqui imagem do quadro branco que vai ficar sempre do lado direito abaixo da seta*/    
-		&:after {
-			content: "";
-			position: absolute;
-			background-color: #f8f8f8;
-			pointer-events: none;
-			width:35px;
-			height:100%;
-			right: 0;
-			top: 0;
-			z-index: 1;
-		}
-	}
+/*Aqui imagem do quadro branco que vai ficar sempre do lado direito abaixo da seta*/    
+&:after {
+	content: "";
+	position: absolute;
+	background-color: #f8f8f8;
+	pointer-events: none;
+	width:35px;
+	height:100%;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+}
 
-	/* Hack select*/
-	.ie-edge .select-standard select,
-	.ie-11 .select-standard select,
-	.ie-10 .select-standard select,
-	.ie-9 .select-standard select{
-		width:119%;
-	}
-	/* Hack select >> Remove default browser select*/
-	.ie-edge .select-standard,
-	.ie-11 .select-standard,
-	.ie-10 .select-standard,
-	.ie-9 .select-standard{
-		overflow-x:hidden;
-	}
+/* Hack select*/
+.ie-edge .select-standard select,
+.ie-11 .select-standard select,
+.ie-10 .select-standard select,
+.ie-9 .select-standard select{
+	width:119%;
+}
+/* Hack select >> Remove default browser select*/
+.ie-edge .select-standard,
+.ie-11 .select-standard,
+.ie-10 .select-standard,
+.ie-9 .select-standard{
+	overflow-x:hidden;
+}
 
