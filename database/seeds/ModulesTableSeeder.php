@@ -32,7 +32,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'orders',
                 'url' => '/cms/orders',
                 'datatable_url' => '/cms/orders/datatable',
-                'icon' => 'fa fa-shopping-bag'
+                'icon' => 'fa fa-shopping-bag',
+                'create_button_text' => 'Novo pedido',
+                'editing_text' => 'Editando pedido'
             ]),
 
             $customers = Module::make([
@@ -40,7 +42,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'customers',
                 'url' => '/cms/customers',
                 'datatable_url' => '/cms/customers/datatable',
-                'icon' => 'fa fa-users'
+                'icon' => 'fa fa-users',
+                'create_button_text' => 'Novo cliente',
+                'editing_text' => 'Editando cliente'
             ]),
 
             $catalog = Module::make([
@@ -54,7 +58,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'products',
                 'url' => '/cms/products',
                 'datatable_url' => '/cms/products/datatable',
-                'icon' => 'fa fa-cubes'
+                'icon' => 'fa fa-cubes',
+                'create_button_text' => 'Novo produto',
+                'editing_text' => 'Editando produto'
             ])
                 ->setParent($catalog),
 
@@ -63,7 +69,75 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'wines',
                 'url' => '/cms/wines',
                 'datatable_url' => '/cms/wines/datatable',
-                'icon' => 'fa fa-glass'
+                'icon' => 'fa fa-glass',
+                'create_button_text' => 'Novo vinho',
+                'editing_text' => 'Editando vinho'
+            ])
+                ->setParent($catalog),
+
+            $kits = Module::make([
+                'title' => 'Kits',
+                'name' => 'kits',
+                'url' => '/cms/kits',
+                'datatable_url' => '/cms/kits/datatable',
+                'icon' => 'fa fa-shopping-basket',
+                'create_button_text' => 'Novo kit',
+                'editing_text' => 'Editando kit'
+            ])
+                ->setParent($catalog),
+
+            $grapes = Module::make([
+                'title' => 'Uvas',
+                'name' => 'grapes',
+                'url' => '/cms/grapes',
+                'datatable_url' => '/cms/grapes/datatable',
+                'icon' => 'fa fa-pagelines',
+                'create_button_text' => 'Nova uva',
+                'editing_text' => 'Editando uva'
+            ])
+                ->setParent($catalog),
+
+            $productType = Module::make([
+                'title' => 'Tipos de produtos',
+                'name' => 'product-type',
+                'url' => '/cms/product-type',
+                'datatable_url' => '/cms/product-type/datatable',
+                'icon' => 'fa fa-tags',
+                'create_button_text' => 'Novo tipo de produto',
+                'editing_text' => 'Editando tipo de produto'
+            ])
+                ->setParent($catalog),
+
+            $countries = Module::make([
+                'title' => 'Países',
+                'name' => 'countries',
+                'url' => '/cms/countries',
+                'datatable_url' => '/cms/countries/datatable',
+                'icon' => 'fa fa-flag',
+                'create_button_text' => 'Novo país',
+                'editing_text' => 'Editando país'
+            ])
+                ->setParent($catalog),
+
+            $regions = Module::make([
+                'title' => 'Regiões',
+                'name' => 'regions',
+                'url' => '/cms/regions',
+                'datatable_url' => '/cms/regions/datatable',
+                'icon' => 'fa fa-map-marker',
+                'create_button_text' => 'Nova região',
+                'editing_text' => 'Editando região'
+            ])
+                ->setParent($catalog),
+
+            $producers = Module::make([
+                'title' => 'Produtores',
+                'name' => 'producers',
+                'url' => '/cms/producers',
+                'datatable_url' => '/cms/producers/datatable',
+                'icon' => 'fa fa-users',
+                'create_button_text' => 'Novo produtor',
+                'editing_text' => 'Editando produtor'
             ])
                 ->setParent($catalog),
 
@@ -78,7 +152,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'discount-promotion',
                 'url' => '/cms/discount-promotion',
                 'datatable_url' => '/cms/discount-promotion/datatable',
-                'icon' => 'fa fa-money'
+                'icon' => 'fa fa-money',
+                'create_button_text' => 'Nova promoção',
+                'editing_text' => 'Editando promoção'
             ])
                 ->setParent($promotions),
 
@@ -87,7 +163,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'freight-promotion',
                 'url' => '/cms/freight-promotion',
                 'datatable_url' => '/cms/freight-promotion/datatable',
-                'icon' => 'fa fa-truck'
+                'icon' => 'fa fa-truck',
+                'create_button_text' => 'Nova promoção',
+                'editing_text' => 'Editando promoção'
             ])
                 ->setParent($promotions),
 
@@ -96,25 +174,19 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'clearance-sale',
                 'url' => '/cms/clearance-sale',
                 'datatable_url' => '/cms/clearance-sale/datatable',
-                'icon' => 'fa fa-clock-o'
+                'icon' => 'fa fa-clock-o',
+                'create_button_text' => 'Nova promoção',
+                'editing_text' => 'Editando promoção'
             ])
                 ->setParent($promotions),
-
-            $kits = Module::make([
-                'title' => 'Kits',
-                'name' => 'kits',
-                'url' => '/cms/kits',
-                'datatable_url' => '/cms/kits/datatable',
-                'icon' => 'fa fa-shopping-basket'
-            ])
-                ->setParent($catalog),
 
             $dollar = Module::make([
                 'title' => 'Cotação do Dólar',
                 'name' => 'dollar',
                 'url' => '/cms/dollar',
                 'datatable_url' => '/cms/dollar/datatable',
-                'icon' => 'fa fa-money'
+                'icon' => 'fa fa-money',
+                'create_button_text' => 'Nova cotação',
             ]),
 
             $delivery = Module::make([
@@ -128,7 +200,8 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'deadline',
                 'url' => '/cms/deadline',
                 'datatable_url' => '/cms/deadline/datatable',
-                'icon' => 'fa fa-clock-o'
+                'icon' => 'fa fa-clock-o',
+                'create_button_text' => 'Novo prazo de entrega'
             ])
                 ->setParent($delivery),
 
@@ -137,7 +210,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'delivery-tracks',
                 'url' => '/cms/delivery-tracks',
                 'datatable_url' => '/cms/delivery-tracks/datatable',
-                'icon' => 'fa fa-list'
+                'icon' => 'fa fa-list',
+                'create_button_text' => 'Nova faixa de cep',
+                'editing_text' => 'Editando faixa de cep'
             ])
                 ->setParent($delivery),
 
@@ -153,7 +228,8 @@ class ModulesTableSeeder extends Seeder
                 'url' => '/cms/highlights/home-main-slider',
                 'datatable_url' => '/cms/highlights/home-main-slider/datatable',
                 'icon' => 'fa fa-photo',
-                'create_button_text' => 'Novo destaque'
+                'create_button_text' => 'Novo destaque',
+                'editing_text' => 'Editando destaque'
             ])
                 ->setParent($highlights),
 
@@ -162,7 +238,7 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'newsletter',
                 'url' => '/cms/newsletter',
                 'datatable_url' => '/cms/newsletter/datatable',
-                'icon' => 'fa fa-newspaper-o'
+                'icon' => 'fa fa-newspaper-o',
             ]),
 
             $administration = Module::make([
@@ -176,7 +252,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'users',
                 'url' => '/cms/users',
                 'datatable_url' => '/cms/users/datatable',
-                'icon' => 'fa fa-user'
+                'icon' => 'fa fa-user',
+                'create_button_text' => 'Novo usuário',
+                'editing_text' => 'Editando usuário'
             ])
                 ->setParent($administration),
 
@@ -185,7 +263,9 @@ class ModulesTableSeeder extends Seeder
                 'name' => 'roles',
                 'url' => '/cms/roles',
                 'datatable_url' => '/cms/roles/datatable',
-                'icon' => 'fa fa-users'
+                'icon' => 'fa fa-users',
+                'create_button_text' => 'Novo grupo',
+                'editing_text' => 'Editando grupo'
             ])
                 ->setParent($administration)
 

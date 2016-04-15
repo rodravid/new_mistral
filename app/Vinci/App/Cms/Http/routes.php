@@ -18,6 +18,76 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard');
 
             /**
+             * Countries
+             */
+            $route->group(['prefix' => 'countries', 'as' => 'countries.'], function () use ($route) {
+                $route->get('/', 'Country\\CountryController@index')->name('list');
+                $route->get('/create', 'Country\\CountryController@create')->name('create');
+                $route->post('/', 'Country\\CountryController@store')->name('create#store');
+                $route->get('/{country}/edit', 'Country\\CountryController@edit')->name('edit');
+                $route->delete('/{country}/delete', 'Country\\CountryController@destroy')->name('destroy');
+                $route->put('/{country}', 'Country\\CountryController@update')->name('edit#update');
+                $route->delete('/{country}/image/{image}/delete', 'Country\\CountryController@removeImage')->name('edit#remove-image');
+                $route->get('datatable', 'Country\\CountryController@datatable')->name('list#datatable');
+            });
+
+            /**
+             * Regions
+             */
+            $route->group(['prefix' => 'regions', 'as' => 'regions.'], function () use ($route) {
+                $route->get('/', 'Region\\RegionController@index')->name('list');
+                $route->get('/create', 'Region\\RegionController@create')->name('create');
+                $route->post('/', 'Region\\RegionController@store')->name('create#store');
+                $route->get('/{region}/edit', 'Region\\RegionController@edit')->name('edit');
+                $route->delete('/{region}/delete', 'Region\\RegionController@destroy')->name('destroy');
+                $route->put('/{region}', 'Region\\RegionController@update')->name('edit#update');
+                $route->delete('/{region}/image/{image}/delete', 'Region\\RegionController@removeImage')->name('edit#remove-image');
+                $route->get('datatable', 'Region\\RegionController@datatable')->name('list#datatable');
+            });
+
+            /**
+             * Producers
+             */
+            $route->group(['prefix' => 'producers', 'as' => 'producers.'], function () use ($route) {
+                $route->get('/', 'Producer\\ProducerController@index')->name('list');
+                $route->get('/create', 'Producer\\ProducerController@create')->name('create');
+                $route->post('/', 'Producer\\ProducerController@store')->name('create#store');
+                $route->get('/{producer}/edit', 'Producer\\ProducerController@edit')->name('edit');
+                $route->delete('/{producer}/delete', 'Producer\\ProducerController@destroy')->name('destroy');
+                $route->put('/{producer}', 'Producer\\ProducerController@update')->name('edit#update');
+                $route->delete('/{producer}/image/{image}/delete', 'Producer\\ProducerController@removeImage')->name('edit#remove-image');
+                $route->get('datatable', 'Producer\\ProducerController@datatable')->name('list#datatable');
+            });
+
+            /**
+             * Grapes
+             */
+            $route->group(['prefix' => 'grapes', 'as' => 'grapes.'], function () use ($route) {
+                $route->get('/', 'Grape\\GrapeController@index')->name('list');
+                $route->get('/create', 'Grape\\GrapeController@create')->name('create');
+                $route->post('/', 'Grape\\GrapeController@store')->name('create#store');
+                $route->get('/{grape}/edit', 'Grape\\GrapeController@edit')->name('edit');
+                $route->delete('/{grape}/delete', 'Grape\\GrapeController@destroy')->name('destroy');
+                $route->put('/{grape}', 'Grape\\GrapeController@update')->name('edit#update');
+                $route->delete('/{grape}/image/{image}/delete', 'Grape\\GrapeController@removeImage')->name('edit#remove-image');
+                $route->get('datatable', 'Grape\\GrapeController@datatable')->name('list#datatable');
+            });
+
+            /**
+             * Product type
+             */
+            $route->group(['prefix' => 'product-type', 'as' => 'product-type.'], function () use ($route) {
+                $route->get('/', 'ProductType\\ProductTypeController@index')->name('list');
+                $route->get('/create', 'ProductType\\ProductTypeController@create')->name('create');
+                $route->post('/', 'ProductType\\ProductTypeController@store')->name('create#store');
+                $route->get('/{productType}/edit', 'ProductType\\ProductTypeController@edit')->name('edit');
+                $route->delete('/{productType}/delete', 'ProductType\\ProductTypeController@destroy')->name('destroy');
+                $route->put('/{productType}', 'ProductType\\ProductTypeController@update')->name('edit#update');
+                $route->delete('/{productType}/image/{image}/delete', 'ProductType\\ProductTypeController@removeImage')->name('edit#remove-image');
+                $route->get('datatable', 'ProductType\\ProductTypeController@datatable')->name('list#datatable');
+            });
+
+            /**
              * Dollar
              */
             $route->group(['prefix' => 'dollar', 'as' => 'dollar.'], function () use ($route) {

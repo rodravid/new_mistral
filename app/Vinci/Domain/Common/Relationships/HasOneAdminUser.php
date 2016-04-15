@@ -10,6 +10,7 @@ trait HasOneAdminUser
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Admin\Admin")
+     * @ORM\JoinColumn(name="user_id", nullable=true)
      */
     protected $user;
 

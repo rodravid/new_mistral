@@ -10,8 +10,8 @@
         <a href="javascript:void(0);" class="btn btn-danger btn-xs"
            data-form-link
            data-confirm-title="Confirmação de exclusão"
-           data-confirm-text="Deseja realmente excluir essa foto?"
+           data-confirm-text="Deseja realmente excluir essa imagem?"
            data-method="DELETE"
-           data-action="{{ $delete_url }}"><i class="fa fa-trash"></i> Remover foto</a>
+           data-action="{{ $delete_url }}"><i class="fa fa-trash"></i> Remover imagem</a>
     </div>
 </div>

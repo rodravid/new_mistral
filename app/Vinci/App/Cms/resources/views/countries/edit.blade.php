@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li><a href="/cms"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{ $currentModule->getUrl() }}"><i class="{{ $currentModule->getIcon() }}"></i> {{ $currentModule->getTitle() }}</a></li>
-        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $highlight->getId() }}</li>
+        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $country->getId() }}</li>
     </ol>
 @endsection
 
@@ -13,15 +13,15 @@
     <section class="content">
         <div class="row">
 
-            {!! Form::model($highlight, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $highlight->getId()], 'method' => 'PUT', 'files' => true]) !!}
+            {!! Form::model($country, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $country->getId()], 'method' => 'PUT', 'files' => true]) !!}
 
             <div class="col-xs-12 col-lg-9">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $highlight->getId() }}</h3>
+                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $country->getId() }}</h3>
                     </div>
 
-                    {!! Form::hidden('id', $highlight->getId()) !!}
+                    {!! Form::hidden('id', $country->getId()) !!}
 
                     <div class="box-body">
                         @include('cms::highlights.form')
@@ -30,25 +30,25 @@
             </div>
 
             <div class="col-xs-12 col-lg-3">
-                @include('cms::layouts.partials.publication.edit.default', ['model' => $highlight])
+                @include('cms::layouts.partials.publication.edit.default', ['model' => $country])
             </div>
 
-            @if ($highlight->hasImage('desktop'))
+            @if ($country->hasImage('desktop'))
                 <div class="col-xs-12 col-lg-3">
                     @include('cms::layouts.partials.image.default', [
                     'box_title' => 'Imagem desktop',
-                    'image' => $highlight->getImage('desktop'),
-                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('desktop')->getId()])
+                    'image' => $country->getImage('desktop'),
+                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('desktop')->getId()])
                     ])
                 </div>
             @endif
 
-            @if ($highlight->hasImage('mobile'))
+            @if ($country->hasImage('mobile'))
                 <div class="col-xs-12 col-lg-3">
                     @include('cms::layouts.partials.image.default', [
                     'box_title' => 'Imagem mobile',
-                    'image' => $highlight->getImage('mobile'),
-                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('mobile')->getId()])
+                    'image' => $country->getImage('mobile'),
+                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('mobile')->getId()])
                     ])
                 </div>
             @endif

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Domain\Highlight;
+namespace Vinci\Domain\Country;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,7 +13,7 @@ use Vinci\Domain\Image\ImageRepository;
 use Vinci\Domain\Image\ImageVersion;
 use Vinci\Infrastructure\Storage\StorageService;
 
-class HighlightService
+class CountryService
 {
     use ValidationTrait;
 
@@ -31,8 +31,8 @@ class HighlightService
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        HighlightRepository $repository,
-        HighlightValidator $validator,
+        CountryRepository $repository,
+        CountryValidator $validator,
         StorageService $storage,
         ImageRepository $imageRepository,
         ACLService $aclService
@@ -50,13 +50,13 @@ class HighlightService
     {
         $this->validator->with($data)->passesOrFail();
 
-        return $this->saveHighlight($data, function($data) {
+        return $this->saveCountry($data, function($data) {
 
-            $highlight = new Highlight;
-            $highlight->setScheduleFieldsFromArray($data);
-            $highlight->fill($data);
+            $country = new Country;
+            $country->setScheduleFieldsFromArray($data);
+            $country->fill($data);
 
-            return $highlight;
+            return $country;
 
         });
     }
@@ -65,23 +65,23 @@ class HighlightService
     {
         $this->validator->with($data)->setId($id)->passesOrFail();
 
-        return $this->saveHighlight($data, function($data) use ($id) {
+        return $this->saveCountry($data, function($data) use ($id) {
 
-            $highlight = $this->repository->find($id);
-            $highlight->setScheduleFieldsFromArray($data);
-            $highlight->fill($data);
+            $country = $this->repository->find($id);
+            $country->setScheduleFieldsFromArray($data);
+            $country->fill($data);
 
-            return $highlight;
+            return $country;
         });
     }
 
-    public function storeImage(Highlight $highlight, UploadedFile $image)
+    public function storeImage(Country $country, UploadedFile $image)
     {
         $this->entityManager->getConnection()->beginTransaction();
 
         try {
 
-            $image = Image::makeFromUpload($image, $highlight->getImagesUploadPath());
+            $image = Image::makeFromUpload($image, $country->getImagesUploadPath());
 
             $this->storage->storeImage($image);
 
@@ -98,37 +98,37 @@ class HighlightService
         }
     }
 
-    public function removeImage(Image $image, Highlight $highlight)
+    public function removeImage(Image $image, Country $country)
     {
-        $highlight->removeImage($image);
+        $country->removeImage($image);
         $this->storage->deleteImage($image);
 
-        $this->entityManager->persist($highlight);
+        $this->entityManager->persist($country);
         $this->entityManager->remove($image);
         $this->entityManager->flush();
     }
 
-    protected function saveHighlight($data, Closure $method)
+    protected function saveCountry($data, Closure $method)
     {
-        $highlight = $method($data);
+        $country = $method($data);
 
-        $highlight->setType($this->aclService->getCurrentModuleName());
+        $country->setType($this->aclService->getCurrentModuleName());
 
-        $this->repository->save($highlight);
+        $this->repository->save($country);
 
         if (! empty($imageDesktop = $data['image_desktop'])) {
-            $image = $this->storeImage($highlight, $imageDesktop);
-            $highlight->addImage($image, ImageVersion::DESKTOP);
+            $image = $this->storeImage($country, $imageDesktop);
+            $country->addImage($image, ImageVersion::DESKTOP);
         }
 
         if (! empty($imageMobile = $data['image_mobile'])) {
-            $image = $this->storeImage($highlight, $imageMobile);
-            $highlight->addImage($image, ImageVersion::MOBILE);
+            $image = $this->storeImage($country, $imageMobile);
+            $country->addImage($image, ImageVersion::MOBILE);
         }
 
-        $this->repository->save($highlight);
+        $this->repository->save($country);
 
-        return $highlight;
+        return $country;
     }
 
 }

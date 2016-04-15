@@ -39,6 +39,10 @@ class HighlightCmsDatatable extends AbstractDatatables
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
+        $qb->where($qb->expr()->eq('n.type', ':type'));
+
+        $qb->setParameter('type', $this->ACLService->getCurrentModuleName());
+
         if (! empty($search['value'])) {
 
             $qb->where($qb->expr()->eq('n.id', ':id'));
@@ -71,8 +75,8 @@ class HighlightCmsDatatable extends AbstractDatatables
             $presenter->expiration_at,
             $presenter->status_html,
             $this->buildActionsColumn([
-                'edit_url' => route('cms.home-main-slider.edit', $highlight->getId()),
-                'destroy_url' => route('cms.home-main-slider.destroy', $highlight->getId())
+                'edit_url' => route('cms.' . $this->ACLService->getCurrentModuleName() . '.edit', $highlight->getId()),
+                'destroy_url' => route('cms.' . $this->ACLService->getCurrentModuleName() . '.destroy', $highlight->getId())
             ])
         ];
     }

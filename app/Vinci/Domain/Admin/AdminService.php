@@ -79,10 +79,6 @@ class AdminService
 
             $photo = $this->imageRepository->save($photo);
 
-            $user->addPhoto($photo);
-
-            $this->repository->save($user);
-
             $this->entityManager->getConnection()->commit();
 
             return $photo;
@@ -110,13 +106,14 @@ class AdminService
 
         $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
 
+        $this->repository->save($admin);
+
         if (! empty($photo = $adminData['photo'])) {
             $photo = $this->savePhoto($photo, $admin);
-
+            $admin->addPhoto($photo);
             $admin->setProfilePhoto($photo);
+            $this->repository->save($admin);
         }
-
-        $this->repository->save($admin);
 
         return $admin;
     }

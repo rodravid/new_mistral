@@ -8,6 +8,8 @@ use Vinci\Domain\Admin\AdminService;
 use Vinci\Domain\Admin\AdminValidator;
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Domain\Customer\CustomerService;
+use Vinci\Domain\Highlight\HighlightService;
+use Vinci\Domain\Highlight\HighlightValidator;
 
 class DomainServiceProvider extends ServiceProvider
 {
@@ -37,6 +39,17 @@ class DomainServiceProvider extends ServiceProvider
                 new AdminValidator($this->app['validator']),
                 $this->app['Vinci\Infrastructure\Storage\StorageService'],
                 $this->app['Vinci\Domain\Image\ImageRepository']
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\Highlight\HighlightService', function() {
+            return new HighlightService(
+                $this->app['em'],
+                $this->app['Vinci\Domain\Highlight\HighlightRepository'],
+                new HighlightValidator($this->app['validator']),
+                $this->app['Vinci\Infrastructure\Storage\StorageService'],
+                $this->app['Vinci\Domain\Image\ImageRepository'],
+                $this->app['Vinci\Domain\ACL\ACLService']
             );
         });
 

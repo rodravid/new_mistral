@@ -56,6 +56,11 @@ class Module extends Model
     protected $create_button_text;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $editing_text;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\ACL\Role\Role", mappedBy="modules")
      */
     protected $roles;
@@ -213,26 +218,17 @@ class Module extends Model
     {
         return $this->children->count() > 0;
     }
-
-    /**
-     * @return mixed
-     */
+    
     public function getLft()
     {
         return $this->lft;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLvl()
     {
         return $this->lvl;
     }
 
-    /**
-     * @return mixed
-     */
     public function getRgt()
     {
         return $this->rgt;
@@ -247,6 +243,17 @@ class Module extends Model
     public function getCreateButtonText()
     {
         return $this->create_button_text;
+    }
+
+    public function getEditingText()
+    {
+        return $this->editing_text;
+    }
+
+    public function setEditingText($editing_text)
+    {
+        $this->editing_text = $editing_text;
+        return $this;
     }
 
 }

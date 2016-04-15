@@ -53,6 +53,11 @@ class Highlight extends Model
     protected $target;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $type;
+
+    /**
      * @Gedmo\SortablePosition
      * @ORM\Column(type="integer", options={"default" = 0})
      */
@@ -190,6 +195,17 @@ class Highlight extends Model
     public function hasImage($version)
     {
         return !! $this->getImage($version);
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
     }
 
 }

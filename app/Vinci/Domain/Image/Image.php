@@ -219,4 +219,9 @@ class Image extends File
      */
     protected $highlights;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Highlight\HighlightImage", mappedBy="image", cascade={"remove"})
+     */
+    protected $countries;
+
 }
