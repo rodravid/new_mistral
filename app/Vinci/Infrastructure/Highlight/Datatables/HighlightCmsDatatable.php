@@ -64,7 +64,7 @@ class HighlightCmsDatatable extends AbstractDatatables
         return [
             $highlight->getId(),
             $highlight->position,
-            '<img src="' . $presenter->getImage('desktop') . '" style="width: 50px;" />',
+            $presenter->image_html,
             $highlight->getTitle(),
             $presenter->created_at,
             $presenter->starts_at,

@@ -80,6 +80,7 @@ class HighlightService
             $image = Image::makeFromUpload($image, $highlight->getImagesUploadPath());
 
             $this->storage->storeImage($image);
+
             $this->imageRepository->save($image);
 
             $this->entityManager->getConnection()->commit();

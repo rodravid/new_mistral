@@ -26,6 +26,14 @@
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
+            <label for="txtHighlightPosition">Ordem <small>(Para mover para o início digite <span class="text-info">0</span> ou para o final digite <span class="text-info">-1</span>)</small></label>
+            {!! Form::text('position', null, ['id' => 'txtHighlightPosition', 'class' => 'form-control', 'placeholder' => 'Digite a ordem do destaque']) !!}
+            <span class="fa fa-list-ol form-control-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="form-group has-feedback">
             <label for="txtHighlightPasswordConfirmation">Banner versão desktop</label>
             {!! Form::file('image_desktop', ['id' => 'txtHighlightImageDesktop']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
@@ -50,7 +58,7 @@
 
     <div class="col-lg-12">
         <div class="form-group">
-            <label for="txtHighlightSubtitle">Target</label>
+            <label for="txtHighlightTarget">Target</label>
             {!! Form::select('target', ['_self' => 'Mesma janela', '_blank' => 'Nova janela'], null, ['id' => 'txtHighlightTarget', 'class' => 'form-control']) !!}
         </div>
     </div>

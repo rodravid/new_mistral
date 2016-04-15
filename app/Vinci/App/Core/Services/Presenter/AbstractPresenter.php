@@ -20,7 +20,7 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         }
     }
 
-    protected function presentAmount()
+    public function presentAmount()
     {
         return $this->toRealCurrency($this->getAmount());
     }
@@ -52,7 +52,11 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
 
     public function presentExpirationAt()
     {
-        return $this->toDefaultDateTime($this->getExpirationAt());
+        $date = $this->toDefaultDateTime($this->getExpirationAt());
+
+        if (! $date) {
+            return 'Nunca expira';
+        }
     }
 
     public function presentStatus()

@@ -54,9 +54,9 @@ class Highlight extends Model
 
     /**
      * @Gedmo\SortablePosition
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default" = 0})
      */
-    protected $position;
+    protected $position = 0;
 
     /**
      * @ORM\Column(type="smallint", options={"default" = 0})
@@ -118,7 +118,7 @@ class Highlight extends Model
 
     public function setPosition($position)
     {
-        $this->position = $position;
+        $this->position = intval($position);
         return $this;
     }
 
