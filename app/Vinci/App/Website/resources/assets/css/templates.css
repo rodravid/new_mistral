@@ -2,7 +2,7 @@
 Error: Undefined variable: "$orange".
         on line 124 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss
 
-119: 	}
+119: }
 120: 
 121: 
 122: 
@@ -62,4 +62,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$orange\".\A         on line 124 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss\A \A 119: 	}\A 120: \A 121: \A 122: \A 123: /*Cores ******************************************/\A 124: .orange {color:$orange;}\A 125: .blue {color:$blue;}\A 126: \A 127: /* Inicio templates BLUE **************BLUE****************BLUE***********/\A 128: \A 129: .template1 {"; }
+  content: "Error: Undefined variable: \"$orange\".\A         on line 124 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss\A \A 119: }\A 120: \A 121: \A 122: \A 123: /*Cores ******************************************/\A 124: .orange {color:$orange;}\A 125: .blue {color:$blue;}\A 126: \A 127: /* Inicio templates BLUE **************BLUE****************BLUE***********/\A 128: \A 129: .template1 {"; }

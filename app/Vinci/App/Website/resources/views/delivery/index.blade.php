@@ -38,7 +38,7 @@
 
 	<div class="wrap-content-bt mbottom20">
 		<span class="title-internal-15 float-left">Escolha o endereço de entrega</span>
-		<div class="content-bt-middle hide-mobile">
+		<div class="content-bt-middle mright-ajust hide-mobile">
 			<a class="bt-default-full bt-color" href="#">Novo endereço <span class="arrow-link">&gt;</span></a>
 		</div>
 	</div>

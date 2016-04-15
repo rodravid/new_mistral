@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$screen-970".
-        on line 8 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/menu.scss
+        on line 10 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/menu.scss
 
-3: 	top: 0;
-4: 	padding: 25px 0 0 0;
 5: 	z-index: 99999;
 6: 	width: 100%;
 7: 	display: inline-block;
-8: 	@media #{$screen-970}{
-9: 		width:100%;
-10: 	}
-11: }
-12: 
-13: .logged-in-user{
+8: 
+9: 
+10: 	@media #{$screen-970}{
+11: 		width:100%;
+12: 	}
+13: 
+14: 	@media #{$screen-767} {
+15: 		.row {
 
 Backtrace:
-/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/menu.scss:8
+/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/menu.scss:10
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/interpolation.rb:100:in `_perform'
@@ -68,4 +68,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$screen-970\".\A         on line 8 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/menu.scss\A \A 3: 	top: 0;\A 4: 	padding: 25px 0 0 0;\A 5: 	z-index: 99999;\A 6: 	width: 100%;\A 7: 	display: inline-block;\A 8: 	@media #{$screen-970}{\A 9: 		width:100%;\A 10: 	}\A 11: }\A 12: \A 13: .logged-in-user{"; }
+  content: "Error: Undefined variable: \"$screen-970\".\A         on line 10 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/menu.scss\A \A 5: 	z-index: 99999;\A 6: 	width: 100%;\A 7: 	display: inline-block;\A 8: \A 9: \A 10: 	@media #{$screen-970}{\A 11: 		width:100%;\A 12: 	}\A 13: \A 14: 	@media #{$screen-767} {\A 15: 		.row {"; }

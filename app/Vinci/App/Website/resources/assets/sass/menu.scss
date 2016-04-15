@@ -5,8 +5,16 @@
 	z-index: 99999;
 	width: 100%;
 	display: inline-block;
+
+
 	@media #{$screen-970}{
 		width:100%;
+	}
+
+	@media #{$screen-767} {
+		.row {
+			padding:0;
+		}
 	}
 }
 
@@ -131,6 +139,9 @@
 	height:32px;
 	float:left;
 	text-indent: -5000px;
+	@media #{$screen-767}{
+		margin-left: 16px;
+	 }
 }
 .logo-mobile{
 	width: 100px;
@@ -153,10 +164,11 @@
 		margin-left: 10px;
 	}
 	@media #{$screen-767}{
-		width:95%;
+		width:100%;
 		padding-left:0;
 		margin:10px 0 0 0;
 		position:relative;
+		background:#fff;
 	}
 }
 
@@ -168,7 +180,7 @@
 		width:85%;
 	}
 	@media #{$screen-767}{
-		width:93%;
+		width:80%;
 	}
 }
 
@@ -181,6 +193,10 @@
 	color:#fff;
 	font-size:15px;
 	font-family:$robotolight;
+	@media #{$screen-767}{
+		color:$blue; 
+		padding: 10.8px 30px 10.8px 17px;
+	}
 }
 
 .results-suggestions {
@@ -241,8 +257,11 @@
 	width: 19px;
 	margin-left: 15px;
 	@media #{$screen-767}{
-		position:absolute;
-		right:-16px;
+		/* position:absolute; */
+		background-position: -209px -122px;
+		margin-left: 0px;
+		margin-right: 25px;
+		float:right;
 	}
 }
 
@@ -310,30 +329,30 @@
 }
 
 .ie9 {
-.nav-link:before{
-	content: "";
-	position: absolute;
-	z-index: -1;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: none;
-	-webkit-transform: scaleY(0);
-	transform: scaleY(0);
-	-webkit-transform-origin: 50% 100%;
-	transform-origin: 50% 100%;
-	-webkit-transition-property: transform;
-	transition-property: transform;
-	-webkit-transition-duration: 0.3s;
-	transition-duration: 0.3s;
-	-webkit-transition-timing-function: ease-out;
-	transition-timing-function: ease-out;
-}
+	.nav-link:before{
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: none;
+		-webkit-transform: scaleY(0);
+		transform: scaleY(0);
+		-webkit-transform-origin: 50% 100%;
+		transform-origin: 50% 100%;
+		-webkit-transition-property: transform;
+		transition-property: transform;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
 
-.nav-link:hover {
-    color: #fff;
-}
+	.nav-link:hover {
+		color: #fff;
+	}
 }
 
 .cart-header {
@@ -353,7 +372,8 @@
 		margin: -50px 15px 0 9px;
 	}
 	@media #{$screen-767}{
-		margin: -95px 0px 0 9px;
+		margin: -105px 0px 0 9px;
+		background-position: -135px -110px; 
 	}
 }
 
@@ -437,8 +457,8 @@
 	-ms-transition: all .3s ease .30s;
 	transition: all .3s ease .30s;
 	@media #{$screen-767}{
-			visibility: hidden;
-	overflow: hidden;
+		visibility: hidden;
+		overflow: hidden;
 	}
 }
 
