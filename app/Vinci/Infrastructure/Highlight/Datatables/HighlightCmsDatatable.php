@@ -69,7 +69,7 @@ class HighlightCmsDatatable extends AbstractDatatables
             $presenter->created_at,
             $presenter->starts_at,
             $presenter->expiration_at,
-            $presenter->status,
+            $presenter->status_html,
             $this->buildActionsColumn([
                 'edit_url' => route('cms.home-main-slider.edit', $highlight->getId()),
                 'destroy_url' => route('cms.home-main-slider.destroy', $highlight->getId())

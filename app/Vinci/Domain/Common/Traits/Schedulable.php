@@ -48,7 +48,7 @@ trait Schedulable
      * @param Carbon $expirationAt
      * @return $this
      */
-    public function setExpirationAt(Carbon $expirationAt)
+    public function setExpirationAt(Carbon $expirationAt = null)
     {
         $this->expirationAt = $expirationAt;
         return $this;

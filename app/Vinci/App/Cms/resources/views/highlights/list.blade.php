@@ -34,7 +34,7 @@
                     {className: 'hcenter vcenter', width: '70px', targets: 1 },
                     {className: 'hcenter vcenter', width: '70px', targets: 2 },
                     {className: 'vcenter', width: '200px', targets: 2 },
-                    {className: 'vcenter', targets: [3,4,5,6] }
+                    {className: 'vcenter', targets: [3,4,5,6,7,8] }
                 ]
             });
 

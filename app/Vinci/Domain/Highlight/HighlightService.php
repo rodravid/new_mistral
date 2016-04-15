@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Highlight;
 
+use Carbon\Carbon;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -55,6 +56,18 @@ class HighlightService
         $this->validator->with($data)->setId($id)->passesOrFail();
 
         return $this->saveHighlight($data, function($data) use ($id) {
+
+            if (! $data['startsAt'] instanceof Carbon) {
+                $data['startsAt'] = Carbon::createFromFormat('d/m/Y H:i', $data['startsAt']);
+            }
+
+            if (empty($data['expirationAt'])) {
+                $data['expirationAt'] = null;
+            } else {
+                if (! $data['expirationAt'] instanceof Carbon) {
+                    $data['expirationAt'] = Carbon::createFromFormat('d/m/Y H:i', $data['expirationAt']);
+                }
+            }
 
             $highlight = $this->repository->find($id);
             $highlight->fill($data);

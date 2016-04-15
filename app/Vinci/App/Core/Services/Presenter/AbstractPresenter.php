@@ -67,6 +67,11 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         }
     }
 
+    public function presentStatusHtml()
+    {
+        return present_status_html($this->getStatus());
+    }
+
     public function presentUserName()
     {
         if ($user = $this->getUser()) {

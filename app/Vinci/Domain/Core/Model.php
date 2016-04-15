@@ -66,4 +66,9 @@ abstract class Model implements ArrayAccess
         unset($this->$offset);
     }
 
+    public function hasProperty($name)
+    {
+        return property_exists($this, $name);
+    }
+
 }
