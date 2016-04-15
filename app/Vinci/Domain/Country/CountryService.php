@@ -116,19 +116,24 @@ class CountryService
 
         $this->repository->save($country);
 
-        if (! empty($imageDesktop = $data['image_desktop'])) {
-            $image = $this->storeImage($country, $imageDesktop);
-            $country->addImage($image, ImageVersion::DESKTOP);
-        }
-
-        if (! empty($imageMobile = $data['image_mobile'])) {
-            $image = $this->storeImage($country, $imageMobile);
-            $country->addImage($image, ImageVersion::MOBILE);
-        }
+        $this->saveImages($data, $country);
 
         $this->repository->save($country);
 
         return $country;
+    }
+
+    protected function saveImages($data, Country $country)
+    {
+        if (! empty($imageDesktop = $data['image_map'])) {
+            $image = $this->storeImage($country, $imageDesktop);
+            $country->addImage($image, ImageVersion::MAP);
+        }
+
+        if (! empty($imageMobile = $data['image_banner'])) {
+            $image = $this->storeImage($country, $imageMobile);
+            $country->addImage($image, ImageVersion::BANNER);
+        }
     }
 
 }

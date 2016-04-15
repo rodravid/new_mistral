@@ -57,6 +57,8 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         if (! $date) {
             return 'Nunca expira';
         }
+
+        return $date;
     }
 
     public function presentStatus()

@@ -12,6 +12,7 @@ use Vinci\Domain\Core\Model;
 class CountryImage extends Model
 {
     /**
+     * @ORM\Id
      * @ORM\Column(type="string", name="image_version")
      */
     protected $imageVersion;

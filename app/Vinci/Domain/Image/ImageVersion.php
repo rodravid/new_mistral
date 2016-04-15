@@ -12,5 +12,7 @@ interface ImageVersion
     const DESKTOP = 'desktop';
     const MOBILE = 'mobile';
     const CURRENT = 'current';
+    const MAP = 'map';
+    const BANNER = 'banner';
 
 }

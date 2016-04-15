@@ -16,45 +16,53 @@
             {!! Form::model($country, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $country->getId()], 'method' => 'PUT', 'files' => true]) !!}
 
             <div class="col-xs-12 col-lg-9">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $country->getId() }}</h3>
-                    </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $country->getId() }}</h3>
+                            </div>
 
-                    {!! Form::hidden('id', $country->getId()) !!}
+                            {!! Form::hidden('id', $country->getId()) !!}
 
-                    <div class="box-body">
-                        @include('cms::highlights.form')
+                            <div class="box-body">
+                                @include('cms::highlights.form')
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-xs-12 col-lg-3">
-                @include('cms::layouts.partials.publication.edit.default', ['model' => $country])
+                <div class="row">
+                    <div class="col-xs-12">
+                        @include('cms::layouts.partials.publication.edit.default', ['model' => $country])
+                    </div>
+
+                    @if ($country->hasImage('mobile'))
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Imagem mobile',
+                            'image' => $country->getImage('mobile'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('mobile')->getId()])
+                            ])
+                        </div>
+                    @endif
+
+                    @if ($country->hasImage('desktop'))
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Imagem desktop',
+                            'image' => $country->getImage('desktop'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('desktop')->getId()])
+                            ])
+                        </div>
+                    @endif
+
+                </div>
             </div>
 
-            @if ($country->hasImage('desktop'))
-                <div class="col-xs-12 col-lg-3">
-                    @include('cms::layouts.partials.image.default', [
-                    'box_title' => 'Imagem desktop',
-                    'image' => $country->getImage('desktop'),
-                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('desktop')->getId()])
-                    ])
-                </div>
-            @endif
-
-            @if ($country->hasImage('mobile'))
-                <div class="col-xs-12 col-lg-3">
-                    @include('cms::layouts.partials.image.default', [
-                    'box_title' => 'Imagem mobile',
-                    'image' => $country->getImage('mobile'),
-                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('mobile')->getId()])
-                    ])
-                </div>
-            @endif
-
             {!! Form::close() !!}
-
         </div>
     </section>
 

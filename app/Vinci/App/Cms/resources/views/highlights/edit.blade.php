@@ -16,45 +16,53 @@
             {!! Form::model($highlight, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $highlight->getId()], 'method' => 'PUT', 'files' => true]) !!}
 
             <div class="col-xs-12 col-lg-9">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $highlight->getId() }}</h3>
-                    </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $highlight->getId() }}</h3>
+                            </div>
 
-                    {!! Form::hidden('id', $highlight->getId()) !!}
+                            {!! Form::hidden('id', $highlight->getId()) !!}
 
-                    <div class="box-body">
-                        @include('cms::highlights.form')
+                            <div class="box-body">
+                                @include('cms::highlights.form')
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-xs-12 col-lg-3">
-                @include('cms::layouts.partials.publication.edit.default', ['model' => $highlight])
+                <div class="row">
+                    <div class="col-xs-12">
+                        @include('cms::layouts.partials.publication.edit.default', ['model' => $highlight])
+                    </div>
+
+                    @if ($highlight->hasImage('mobile'))
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Imagem mobile',
+                            'image' => $highlight->getImage('mobile'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('mobile')->getId()])
+                            ])
+                        </div>
+                    @endif
+
+                    @if ($highlight->hasImage('desktop'))
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Imagem desktop',
+                            'image' => $highlight->getImage('desktop'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('desktop')->getId()])
+                            ])
+                        </div>
+                    @endif
+
+                </div>
             </div>
 
-            @if ($highlight->hasImage('desktop'))
-                <div class="col-xs-12 col-lg-3">
-                    @include('cms::layouts.partials.image.default', [
-                    'box_title' => 'Imagem desktop',
-                    'image' => $highlight->getImage('desktop'),
-                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('desktop')->getId()])
-                    ])
-                </div>
-            @endif
-
-            @if ($highlight->hasImage('mobile'))
-                <div class="col-xs-12 col-lg-3">
-                    @include('cms::layouts.partials.image.default', [
-                    'box_title' => 'Imagem mobile',
-                    'image' => $highlight->getImage('mobile'),
-                    'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('mobile')->getId()])
-                    ])
-                </div>
-            @endif
-
             {!! Form::close() !!}
-
         </div>
     </section>
 

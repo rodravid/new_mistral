@@ -14,7 +14,7 @@ class Country extends BaseTaxonomy
 {
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Country\CountryImage", mappedBy="country", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Country\CountryImage", mappedBy="country", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
      */
     protected $images;
 
@@ -29,6 +29,7 @@ class Country extends BaseTaxonomy
         $countryImage->setImage($image);
         $countryImage->setCountry($this);
         $countryImage->setImageVersion($version);
+        $this->images->remove($version);
         $this->images->set($version, $countryImage);
     }
 

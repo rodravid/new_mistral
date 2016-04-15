@@ -118,6 +118,17 @@ abstract class BaseTaxonomy
         return $this;
     }
 
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function setImages(ArrayCollection $images)
+    {
+        $this->images = $images;
+        return $this;
+    }
+
     public function removeImage(Image $image)
     {
         foreach ($this->images as $img) {

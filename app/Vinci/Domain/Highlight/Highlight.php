@@ -69,7 +69,7 @@ class Highlight extends Model
     protected $status = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Highlight\HighlightImage", mappedBy="highlight", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Highlight\HighlightImage", mappedBy="highlight", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
      */
     protected $images;
 
@@ -160,6 +160,17 @@ class Highlight extends Model
         return $this;
     }
 
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function setImages(ArrayCollection $images)
+    {
+        $this->images = $images;
+        return $this;
+    }
+
     public function getImagesUploadPath()
     {
         return 'highlights/' . $this->getId() . '/images';
@@ -171,6 +182,7 @@ class Highlight extends Model
         $highlightImage->setImage($image);
         $highlightImage->setHighlight($this);
         $highlightImage->setImageVersion($version);
+        $this->images->remove($version);
         $this->images->set($version, $highlightImage);
     }
 
