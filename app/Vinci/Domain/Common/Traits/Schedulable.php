@@ -54,4 +54,26 @@ trait Schedulable
         return $this;
     }
 
+    public function setStartsAtFromFormat($startsAt, $format = 'd/m/Y H:i')
+    {
+        return $this->setDateFromFormat('startsAt', $startsAt, $format);
+    }
+
+    public function setExpirationAtFromFormat($expirationAt, $format = 'd/m/Y H:i')
+    {
+        return $this->setDateFromFormat('expirationAt', $expirationAt, $format);
+    }
+
+    public function setScheduleFieldsFromArray(array &$data, $unset = true)
+    {
+        $this->setStartsAtFromFormat($data['startsAt']);
+        $this->setExpirationAtFromFormat($data['expirationAt']);
+
+        if ($unset) {
+            unset($data['startsAt'], $data['expirationAt']);
+        }
+
+        return $this;
+    }
+
 }

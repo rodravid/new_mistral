@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Core;
 
 use ArrayAccess;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 abstract class Model implements ArrayAccess
@@ -69,6 +70,19 @@ abstract class Model implements ArrayAccess
     public function hasProperty($name)
     {
         return property_exists($this, $name);
+    }
+
+    public function setDateFromFormat($field, $date, $format)
+    {
+        if (empty($date)) {
+            $this->{$field} = null;
+            return $this;
+        }
+
+        if (! $date instanceof Carbon) {
+            $this->{$field} = Carbon::createFromFormat($format, $date);
+            return $this;
+        }
     }
 
 }

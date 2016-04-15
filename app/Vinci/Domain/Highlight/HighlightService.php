@@ -47,7 +47,13 @@ class HighlightService
         $this->validator->with($data)->passesOrFail();
 
         return $this->saveHighlight($data, function($data) {
-            return Highlight::make($data);
+
+            $highlight = new Highlight;
+            $highlight->setScheduleFieldsFromArray($data);
+            $highlight->fill($data);
+
+            return $highlight;
+
         });
     }
 
@@ -57,19 +63,8 @@ class HighlightService
 
         return $this->saveHighlight($data, function($data) use ($id) {
 
-            if (! $data['startsAt'] instanceof Carbon) {
-                $data['startsAt'] = Carbon::createFromFormat('d/m/Y H:i', $data['startsAt']);
-            }
-
-            if (empty($data['expirationAt'])) {
-                $data['expirationAt'] = null;
-            } else {
-                if (! $data['expirationAt'] instanceof Carbon) {
-                    $data['expirationAt'] = Carbon::createFromFormat('d/m/Y H:i', $data['expirationAt']);
-                }
-            }
-
             $highlight = $this->repository->find($id);
+            $highlight->setScheduleFieldsFromArray($data);
             $highlight->fill($data);
 
             return $highlight;

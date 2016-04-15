@@ -16,6 +16,7 @@ class HighlightValidator extends LaravelValidator
     protected $messages = [
         'startsAt.required' => 'É necessário selecionar a data de inicío da publicação.',
         'startsAt.date_format' => 'Data de início da publicação inválida.',
+        'expirationAt.date_format' => 'Data de expiração inválida.',
     ];
 
 }
