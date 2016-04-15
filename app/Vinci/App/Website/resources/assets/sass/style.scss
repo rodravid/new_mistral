@@ -436,6 +436,11 @@ a.bt-default {
 	margin:5px 0 0 0;
 	line-height: 13px;
 }
+.info-details-wine {
+	font:13px $robotolight;
+	margin:2px 0 0 0;
+	line-height: 13px;
+}
 
 .content-card-product {
 	width:100%;
@@ -483,26 +488,7 @@ a.bt-default {
 
 .wine-price { font:27px $robotobold; }
 
-.bt-default-full {
-	width: 100%;
-	line-height: 26px;
-	text-align: center;
-	display: inline-block;
-	color: #fff;
-	font-family: roboto_condensedbold;
-	font-size: 16px;
-	text-transform:uppercase;
-	padding: 2px 2px 2px 16px;
-	letter-spacing: 0.6px;
 
-	.arrow-link {
-		padding:1px 0 0 0;
-		float:right;
-		background:#fff;
-		font-size:11px;
-	}
-
-}
 
 .wrap-banners {
 	width:100%;
@@ -796,6 +782,15 @@ a.bt-default {
 .column-products-search-inline {
 	width:73.9%;
 	float:right;
+	
+	.title-card-wine {
+		position:relative;
+	}
+
+	.favorite {
+		right: -30px;
+		top: 0px;
+	}
 
 	@media #{$screen-970} {
 		width: 68%;
@@ -803,6 +798,10 @@ a.bt-default {
 
 	@media #{$screen-767} {
 		width: 100%;
+	}
+
+	.wine-intro {
+		margin-bottom:10px;
 	}
 
 
@@ -931,10 +930,11 @@ a.bt-default {
 }
 
 .input-register{
-	border:1px solid #000;
-	font-size: 13.5px;
-	color: $black;
+	border: 1px solid #000;
+	font-size: 15px;
+	color: #111;
 	padding: 8px 10px;
+	font-family: "roboto_condensedlight";
 
 	&:focus {
 		border:1px solid $blue;
@@ -1375,27 +1375,7 @@ a.bt-default {
 		float: right;
 	}
 
-	.bt-big {
-		font-size: 20px;
-		line-height: 39px;
 
-		.arrow-link {
-			height: 40px;
-			font-size: 18px;
-			width: 37px;
-		}
-	}
-
-	.bt-middle {
-		font-size: 16px;
-		line-height: 39px;
-
-		.arrow-link {
-			height: 40px;
-			font-size: 18px;
-			width: 37px;
-		}
-	}
 
 	.wrap-content-product {
 		margin-top:-30px;
@@ -1438,6 +1418,9 @@ a.bt-default {
 		img {
 			display:block;
 			margin-bottom: 10px;
+			@media #{$screen-970} {
+				width:70px;
+			}
 		}
 	}
 
@@ -1557,6 +1540,9 @@ a.bt-default {
 		width: 100%;
 		display: inline-block;
 		margin: 40px 0 10px 0;
+		@media #{$screen-970} {
+			margin: 60px 0 10px 0;
+		}
 		@media #{$screen-767} {  
 			margin: 15px 0 10px 0;
 		}
@@ -1784,7 +1770,7 @@ a.bt-default {
 
 		li{
 			width: 100%;
-			padding: 10px 0px 10px 20px;
+			padding: 20px 0px 20px 20px;
 			display: inline-block;
 			overflow: visible !important;
 
@@ -1801,7 +1787,7 @@ a.bt-default {
 			span{
 				display: inline-block;
 				margin-top: 5px;
-				font-size: 16px;
+				font-size: 15px;
 			}
 
 			.container-info-compra{
@@ -2164,8 +2150,8 @@ a.bt-default {
 		text-align:center;
 		width:70px;
 		@media #{$screen-767} {
-			margin-right:5px;
-			width:60px;
+			margin-right:0px;
+			width:55px;
 		}
 	}
 
@@ -2307,6 +2293,14 @@ a.bt-default {
 		position:relative;
 		background-color:#f8f8f8;
 
+		&:focus {
+			border-color: $blue;
+			outline: 0;
+		}
+		&:hover {
+			border-color: $blue;
+		}
+
 		/*Color White select*/
 		&.form-control-white,
 		&.form-control-white:after{
@@ -2325,10 +2319,11 @@ a.bt-default {
 			outline: none;
 			padding:3px 35px 3px 15px;
 			height:100%;
-			font-size:14px;
+			font-size: 15px;
+			font-family: "roboto_condensedlight";
 
 			&:focus {
-				border-color: #66afe9;
+				border-color: $blue;
 				outline: 0;
 				-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 				box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);

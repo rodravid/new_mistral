@@ -15,7 +15,7 @@
 					<input class="input-search" type="text">
 
 					<div class="results-suggestions">
-					<span class="bt-close-suggestions sprite-icon"></span>
+						<span class="bt-close-suggestions sprite-icon"></span>
 						<ul class="suggestions-list">
 							<li class="suggestions-item">
 								<a href="" class="suggestions-link">
@@ -70,8 +70,14 @@
 				</li>
 			</ul>
 		</nav>
+		
+		<a href="/carrinho">
+			<div class="cart-header sprite-icon show-mobile">
+				<div class="nav-cart-count sprite-icon">22</div>
+			</div>
+		</a>
 
-		<div class="cart-header sprite-icon">
+		<div class="cart-header sprite-icon show-desktop">
 			<div class="nav-cart-count sprite-icon">22</div>
 			<div class="drop-cart template1">
 				<p class="your-cart">Você tem <span id="cartCount">2 produtos</span> no carrinho de compras</p>
@@ -136,14 +142,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 							</div>
@@ -158,14 +167,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -173,14 +185,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -205,14 +220,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -220,14 +238,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -254,14 +275,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -269,14 +293,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -300,14 +327,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -315,14 +345,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -346,14 +379,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -361,14 +397,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -392,14 +431,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -407,14 +449,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -438,14 +483,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -453,14 +501,17 @@
 									<div class="featured-wrap">
 										<h2 class="title-menu">Argentina</h2>
 										<div class="featured-sub-menu">
-											<h3>
-												Cune Crianza 2011 <span>CVNE</span> 
-											</h3>
-											<p>Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-
-											<a href="#">Saiba Mais ></a>
+											<a class="link-featured-sub-menu" href="/produto">
+												<h3>
+													Cune Crianza 2011 <span>CVNE</span> 
+												</h3>
+												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
+												
+												<span class="featured-sub-more">Saiba Mais > </span>
+											</a>
 										</div>
-										<a href="#" class="float-right">Todos os vinhos ></a>
+
+										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
 									</div>
 								</div>
 
@@ -573,12 +624,12 @@
 				<h2 class="title-modal-default">Acesse sua conta</h2>
 				<ul class="list-form-register">
 					<li>
-					<label for="">E-mail</label>
+						<label for="">E-mail</label>
 						<input class="email input-register full" type="text" placeholder="E-mail">
 					</li>
 					<li>
-					<input class="senha input-register full" type="password" placeholder="Senha">
-					<a class="forgot-pass call-recovery" href="javascript:void(0);">Esqueceu a senha ?</a>
+						<input class="senha input-register full" type="password" placeholder="Senha">
+						<a class="forgot-pass call-recovery" href="javascript:void(0);">Esqueceu a senha ?</a>
 					</li>
 
 				</ul>

@@ -1,19 +1,124 @@
 /*card vinho ******************************************/
 .wine-card .bt-default {
 	width: 100%;
-	line-height: 26px;
+	line-height: 22px;
 	text-align: center;
 	display: inline-block;
-	color:#fff;
-	margin:15px 0 0 0;
+	color: #fff;
+	margin: 15px 0 0 0;
+	border: 2px solid #fff;
+	transition: all .1s ease .05s;
+	position: relative;
+	padding-right: 35px;
 }
 
 .wine-card .arrow-link {
 	float: right;
-	padding:1px 0 0 0;
+	padding:0 0 0 2px;
 	background:#fff;
+	line-height: 25px;
+	transition: all 50ms ease;
+	position:absolute;
+	right: -2px;
+	top: -2px;
+	height: 30px;
+	width: 30px;
+}
+
+.bt-default-full {
+	width: 100%;
+	line-height: 24px;
+	text-align: center;
+	display: inline-block;
+	color: #fff;
+	font-family: roboto_condensedbold;
+	font-size: 16px;
+	text-transform:uppercase;
+	padding: 2px 2px 2px 16px;
+	letter-spacing: 0.6px;
+	position:relative;
+	padding-right: 45px;
+
+	.arrow-link {
+		padding: 0 0 0 2px;
+		background: #fff;
+		line-height: 28px;
+		position: absolute;
+		right: -2px;
+		top: -2px;
+		height: 32px;
+		width: 32px;
+		font-size: 11px;
+	}
+
 }
 /*card vinho ******************************************/
+
+	.bt-big {
+		font-size: 20px;
+		line-height: 31px;
+		
+
+		.arrow-link {
+			height: 39px;
+			font-size: 18px;
+			width: 40px;
+			line-height: 35px;
+		}
+	}
+
+	.bt-middle {
+		font-size: 16px;
+		line-height: 31px;
+
+		.arrow-link {
+			height: 39px;
+			font-size: 18px;
+			width: 40px;
+			line-height: 35px;
+		}
+	}
+
+		.bt-normal {
+		font-size: 16px;
+		line-height: 31px;
+		
+
+		.arrow-link {
+			height: 39px;
+			font-size: 18px;
+			width: 40px;
+			line-height: 35px;
+		}
+	}
+
+
+		.bt-default-full.bt-color {
+		background: #ff5400;
+		border: 2px solid #ff5400;
+		transition: all .1s ease .05s;
+		padding-right: 45px;
+
+		&:hover{
+			background: #fff;
+			color:#ff5400;
+			border:2px solid #ff5400;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: #ff5400;
+				color:#fff;
+				transition: all .1s ease .05s;
+			}
+		}
+	}
+	.bt-default-full.bt-color .arrow-link {
+		color: #ff5400;
+		transition: all .1s ease .05s;
+		font-size: 14px;
+		border: 2px solid #ff5400;
+	}
+
+
 
 /*Cores ******************************************/
 .orange {color:$orange;}
@@ -22,6 +127,24 @@
 /* Inicio templates BLUE **************BLUE****************BLUE***********/
 
 .template1 {
+
+	.list-sub-menu li a:hover{
+		color:$blue;
+	}
+
+	.link-featured-sub-menu:hover {
+		background:$blue;
+		transition: all 50ms ease;
+
+		h3,p,span{
+			color:#fff;
+		}
+
+	}
+
+	.featured-sub-link:hover {
+		color:$blue;
+	}
 
 	.favorite {
 		background-position:0 -40px;
@@ -71,165 +194,359 @@
 
 	/*card produto*/
 
-	.title-category {
-		color:$blue;
-	}
-
-	.wine-card {
-		border:1px solid $blue;
-
-		.wine-price {
-			color:$blue;
-		}
-
+/* 	.wine-card:hover {
 		.bt-default {
-			background:$blue;
-		}
-
-		.arrow-link {
 			background:#fff;
+			border:2px solid $blue;
+			color:$blue;
+			transition: all .1s ease .05s;
+			.arrow-link {
+				background: $blue;
+				color: #fff;
+				transition: all .1s ease .05s;
+			}
+		}
+		} */
+
+		.title-category {
+			color:$blue;
+		}
+
+		.wine-card {
+			border:1px solid $blue;
+
+			.wine-price {
+				color:$blue;
+			}
+
+			.bt-default {
+				background:$blue;
+				border: 2px solid $blue;
+			}
+
+			.arrow-link {
+				background:#fff;
+				color:$blue;
+				border: 2px solid $blue;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $blue;
+					color:$blue;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $blue;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+		}
+
+		.bt-default-full {
+			background: $blue;
+
+			.arrow-link {
+				color:$blue;
+			}
+
+		}
+
+		.tit-product-info {
+			color:#5e057b;
+		}
+
+		.current-price {
+			color:$blue;
+		}
+
+		.info-vinho-template {
 			color:$blue;
 		}
 
 	}
 
-	.bt-default-full {
-		background: $blue;
-
-		.arrow-link {
-			color:$blue;
-		}
-
-	}
-
-	.tit-product-info {
-		color:#5e057b;
-	}
-
-	.current-price {
-		color:$blue;
-	}
-
-	.info-vinho-template {
-		color:$blue;
-	}
-
-}
-
-.header-internal.template1-bg{
-	background:$blue;
+	.header-internal.template1-bg{
+		background:$blue;
 
 
 /* 	.internal-subtitle{
 		color:#5d003b;
-	} */
-}
-
-.wine-card.template1 {
-	border:1px solid $blue;
-
-	.wine-price {
-		color:$blue;
+		} */
 	}
 
-	.bt-default {
-		background:$blue;
-	}
+	.wine-card.template1 {
 
-	.arrow-link {
-		background:#fff;
-		color:$blue;
-	}
-
-}
-
-.template1.bg-slider-principal {
-	background: #11b6f0;
-}
-
-.bt-default.bt-default-blue {
-	background:$blue;
-	color:#fff;
-
-	.arrow-link {
-		color:$blue;
-		background: $white;
-	}
-
-}
-
-.bt-default-full.template1 {
-	background: $blue;
-
-	.arrow-link {
-		color:$blue;
-	}
-
-}
-
-.bg-product.template1 {
-	background: $blue;
-}
-
-.bg-template.template1 {
-	border:0;
-	background:#e5f7fd;
-}
-
-/* Fim templates BLUE ******************BLUE****************BLUE*******/
-
-
-
-/* Inicio templates RED ****************RED******************RED*******/
-
-
-.template2{
-
-	.favorite {
-		background-position:0 0;
-	}
-
-	.favorite.clicado {
-		background-position: -40px 0px;
-	}
-
-	.title-menu{
-		color:#e02d50;
-	}
-
-	.featured-sub-menu{
-		border:1px solid #e02d50;
-	}
-
-	.every-category{
-		background: #e02d50;
-		h3{
-
+		border:1px solid $blue;
+		.wine-price{
+			color:$blue;
 		}
-		span{
-			color:#e02d50;
-		}
-	}
 
-	.title-slider{
-		color:#5d003b;
-	}
-
-	.descr-slider{
 		.bt-default{
-			background:#440028;
+			background:$blue;
+			border: 2px solid $blue;
 		}
 		.arrow-link{
-			color:#4a002d;
-			background: #d40934;
+			background:#fff;
+			color:$blue;
+			border: 2px solid $blue;
 		}
-	}
-	/*card produto*/
-	.title-category{
-		color:$red;
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $blue;
+				color:$blue;
+			}
+			.arrow-link{
+				background:$blue;
+				color:#fff;
+				border: 2px solid $blue;
+			}
+		}
+
 	}
 
-	.wine-card{
+	.template1.bg-slider-principal {
+		background: #11b6f0;
+	}
+
+	.bt-default.bt-default-blue {
+		background: #11b6f0;
+		color: #fff;
+		border: 2px solid #11b6f0;
+		position: relative;
+		padding-right: 38px;
+		text-align: center;
+		line-height: 24px;
+		&:hover{
+			background:#fff;
+			color:$blue;
+			border:2px solid $blue;
+
+			.arrow-link {
+				color:#fff;
+				background: $blue;
+			}
+		}
+
+		.arrow-link {
+color: $blue;
+    background: #fff;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    line-height: 20px;
+    border: 2px solid $blue;
+    height: 32px;
+    width: 30px;
+		}
+
+	}
+
+	.bt-default-full.template1 {
+		background: $blue;
+		border:2px solid $blue;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$blue;
+			border:2px solid $blue;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $blue;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $blue;
+			}
+		}
+
+		.arrow-link{
+			color:$blue;
+			transition: all .1s ease .05s;
+			border: 2px solid $blue;
+		}
+	}
+
+	.bg-product.template1 {
+		background: $blue;
+	}
+
+	.bg-template.template1 {
+		border:0;
+		background:#e5f7fd;
+	}
+
+	/* Fim templates BLUE ******************BLUE****************BLUE*******/
+
+
+
+	/* Inicio templates RED ****************RED******************RED*******/
+
+
+	.template2{
+
+		.list-sub-menu li a:hover{
+			color:$red;
+		}
+
+
+
+		.featured-sub-link:hover {
+			color:$blue;
+		}
+
+		.link-featured-sub-menu:hover {
+			background:$red;
+			transition: all 50ms ease;
+
+			h3,p,span{
+				color:#fff;
+			}
+
+		}
+
+		.featured-sub-link:hover {
+			color:$red;
+		}
+
+		.list-sub-menu li a:hover{
+			color:$red;
+		}
+
+		.favorite {
+			background-position:0 0;
+		}
+
+		.favorite.clicado {
+			background-position: -40px 0px;
+		}
+
+		.title-menu{
+			color:#e02d50;
+		}
+
+		.featured-sub-menu{
+			border:1px solid $red;
+		}
+
+		.every-category{
+			background: $red;
+			border:2px solid $red;
+
+			&:hover {
+				background: #fff;
+				transition: all 50ms ease;
+
+				h3 {
+					color:$red;
+				}
+				span {
+					color:#fff;
+					background:$red;
+					right: 2px;
+					bottom:2px;
+
+				}
+			}
+			h3{
+
+			}
+			span{
+				color:$red;
+			}
+		}
+
+		.title-slider{
+			color:#5d003b;
+		}
+
+		.descr-slider{
+			.bt-default{
+				background:#440028;
+			}
+			.arrow-link{
+				color:#4a002d;
+				background: #d40934;
+			}
+		}
+		/*card produto*/
+
+		.title-category{
+			color:$red;
+		}
+
+		.wine-card{
+
+			border:1px solid $red;
+			.wine-price{
+				color:$red;
+			}
+
+			.bt-default{
+				background:$red;
+				border:2px solid $red;
+			}
+			.arrow-link{
+				background:#fff;
+				color:$red;
+				border: 2px solid $red;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $red;
+					color:$red;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $red;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+
+		}
+
+		.bt-default-full{
+			background: $red;
+
+			.arrow-link{
+				color:$red;
+
+			}
+		}
+
+		.bt-default-full{
+			background: $red;
+
+			.arrow-link{
+				color:$red;
+
+			}
+		}
+
+
+		.info-vinho-template {
+			color:$red;
+		}
+	}
+
+	.header-internal.template2-bg {
+		background:$red;
+	}
+
+	.template2.bg-slider-principal {
+		background: #e02d50;
+	}
+
+	.wine-card.template2 {
 
 		border:1px solid $red;
 		.wine-price{
@@ -238,132 +555,213 @@
 
 		.bt-default{
 			background:$red;
+			border: 2px solid $red;
 		}
 		.arrow-link{
 			background:#fff;
 			color:$red;
+			border: 2px solid $red;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $red;
+				color:$red;
+			}
+			.arrow-link{
+				background:$red;
+				color:#fff;
+				border: 2px solid $red;
+			}
 		}
 
 	}
 
-	.bt-default-full{
+	.bt-default-full.template2 {
 		background: $red;
+		border:2px solid $red;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$red;
+			border:2px solid $red;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $red;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $red;
+			}
+		}
 
 		.arrow-link{
 			color:$red;
-
+			transition: all .1s ease .05s;
+			border: 2px solid $red;
 		}
 	}
 
-	.bt-default-full{
-		background: $red;
+	.bg-template.template2 {
+		border:0;
+		background:#fce8ec;
+	}
+	/* Fim templates RED ******************RED****************RED*******/
 
-		.arrow-link{
-			color:$red;
+
+	/* Inicio templates GREEN ****************GREEN******************GREEN*******/
+	.template3{
+
+		.featured-sub-link:hover {
+			color:$green;
+		}
+
+		.link-featured-sub-menu:hover {
+			background:$green;
+			transition: all 50ms ease;
+
+			h3,p,span{
+				color:#fff;
+			}
 
 		}
-	}
 
+		.every-category{
+			background: $green;
+			border:2px solid $green;
 
-	.info-vinho-template {
-		color:$red;
-	}
-}
+			&:hover {
+				background: #fff;
+				transition: all 50ms ease;
 
-.header-internal.template2-bg{
-	background:$red;
-}
+				h3 {
+					color:$green;
+				}
+				span {
+					color:#fff;
+					background:$green;
+					right: 2px;
+					bottom:2px;
 
-.template2.bg-slider-principal{
-	background: #e02d50;
-}
+				}
+			}
+			h3{
 
-.wine-card.template2{
-	
-	border:1px solid $red;
-	.wine-price{
-		color:$red;
-	}
-
-	.bt-default{
-		background:$red;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$red;
-	}
-
-}
-
-.bt-default-full.template2{
-	background: $red;
-
-	.arrow-link{
-		color:$red;
-
-	}
-}
-
-.bg-template.template2 {
-	border:0;
-	background:#fce8ec;
-}
-/* Fim templates RED ******************RED****************RED*******/
-
-
-/* Inicio templates GREEN ****************GREEN******************GREEN*******/
-.template3{
-
-	.favorite {
-		background-position:0 -80px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -80px;
-	}
-
-	.title-menu{
-		color:#3cc811;
-	}
-
-	.featured-sub-menu{
-		border:1px solid #3cc811;
-	}
-
-
-	.every-category{
-		background: #3cc811;
-		h3{
-
+			}
+			span{
+				color:$green;
+			}
 		}
-		span{
+
+		.list-sub-menu li a:hover{
+			color:$green;
+		}
+
+		.favorite {
+			background-position:0 -80px;
+		}
+
+		.favorite.clicado {
+			background-position: -40px -80px;
+		}
+
+		.title-menu{
 			color:#3cc811;
 		}
-	}
 
-	.title-slider{
-		color:#0b2f00;
-	}
-
-	.bg-slider-principal{
-		background: #e02d50;
-	}
-	.descr-slider{
-		.bt-default{
-			background:#0c2401;
+		.featured-sub-menu{
+			border:1px solid #3cc811;
 		}
-		.arrow-link{
-			color:#36060d;
-			background: #5f9c12;
+
+
+		.every-category{
+			background: #3cc811;
+			h3{
+
+			}
+			span{
+				color:#3cc811;
+			}
 		}
+
+		.title-slider{
+			color:#0b2f00;
+		}
+
+		.bg-slider-principal{
+			background: #e02d50;
+		}
+		.descr-slider{
+			.bt-default{
+				background:#0c2401;
+			}
+			.arrow-link{
+				color:#36060d;
+				background: #5f9c12;
+			}
+		}
+
+		/*card produto*/
+
+
+		.title-category{
+			color:$green;
+		}
+
+		.wine-card {
+
+			border:1px solid $green;
+			.wine-price{
+				color:$green;
+			}
+
+			.bt-default{
+				background:$green;
+				border: 2px solid $green;
+			}
+			.arrow-link{
+				background:#fff;
+				color:$green;
+				border: 2px solid $green;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $green;
+					color:$green;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $green;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+		}
+
+		.bt-default-full{
+			background: $green;
+
+			.arrow-link{
+				color:$green;
+
+			}
+		}
+
 	}
 
-	/*card produto*/
-	.title-category{
-		color:$green;
+	.header-internal.template3-bg{
+		background:$green;
 	}
 
-	.wine-card {
+	.template3.bg-slider-principal{
+		background: #3cc811;
+	}
+
+	.wine-card.template3 {
 
 		border:1px solid $green;
 		.wine-price{
@@ -372,346 +770,694 @@
 
 		.bt-default{
 			background:$green;
+			border: 2px solid $green;
 		}
 		.arrow-link{
 			background:#fff;
 			color:$green;
+			border: 2px solid $green;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $green;
+				color:$green;
+			}
+			.arrow-link{
+				background:$green;
+				color:#fff;
+				border: 2px solid $green;
+			}
 		}
 
 	}
 
-	.bt-default-full{
+	.template3.bg-template {
+		border: 0;
+		background: #9fef9f;
+	}
+
+	.bt-default-full.template3 {
 		background: $green;
+		border:2px solid $green;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$green;
+			border:2px solid $green;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $green;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $green;
+			}
+		}
 
 		.arrow-link{
 			color:$green;
-
+			transition: all .1s ease .05s;
+			border: 2px solid $green;
 		}
 	}
 
-}
+	/* Fim templates GREEN ******************GREEN****************GREEN*******/
 
-.header-internal.template3-bg{
-	background:$green;
-}
+	/* Inicio templates PURPLE ****************PURPLE******************PURPLE*******/
 
-.template3.bg-slider-principal{
-	background: #3cc811;
-}
+	.template4 {
 
-.wine-card.template3{
-	
-	border:1px solid $green;
-	.wine-price{
-		color:$green;
-	}
+		.list-sub-menu li a:hover{
+			color:$purple;
+		}
 
-	.bt-default{
-		background:$green;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$green;
-	}
+		.featured-sub-link:hover {
+			color:$purple;
+		}
 
-}
+		.link-featured-sub-menu:hover {
+			background:$purple;
+			transition: all 50ms ease;
 
-.bt-default-full.template3{
-	background: $green;
-
-	.arrow-link{
-		color:$green;
-
-	}
-}
-
-/* Fim templates GREEN ******************GREEN****************GREEN*******/
-
-/* Inicio templates PURPLE ****************PURPLE******************PURPLE*******/
-
-.template4{
-
-	.favorite {
-		background-position:0 -120px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -120px;
-	}
-
-	.title-menu{
-		color:#791898;
-	}
-
-	.featured-sub-menu{
-		border:1px solid #791898;
-	}
-
-	.title-slider{
-		color:#ff008a;
-	}
-
-	.every-category{
-		background: #791898;
-		h3{
+			h3,p,span{
+				color:#fff;
+			}
 
 		}
-		span{
+
+		.every-category{
+			background: $purple;
+			border:2px solid $purple;
+
+			&:hover {
+				background: #fff;
+				transition: all 50ms ease;
+
+				h3 {
+					color:$purple;
+				}
+				span {
+					color:#fff;
+					background:$purple;
+					right: 2px;
+					bottom:2px;
+
+				}
+			}
+			h3{
+
+			}
+			span{
+				color:$purple;
+			}
+		}
+
+
+		.favorite {
+			background-position:0 -120px;
+		}
+
+		.favorite.clicado {
+			background-position: -40px -120px;
+		}
+
+		.title-menu{
 			color:#791898;
 		}
-	}
 
-
-
-
-	.descr-slider{
-		.bt-default{
-			background:#ff008a;
+		.featured-sub-menu{
+			border:1px solid #791898;
 		}
-		.arrow-link{
+
+		.title-slider{
 			color:#ff008a;
-			background: #6f0791;
 		}
-	}
 
-	/*card produto*/
-	.title-category{
-		color:$purple;
-	}
+		.every-category{
+			background: #791898;
+			h3{
 
-	.wine-card{
+			}
+			span{
+				color:#791898;
+			}
+		}
 
-		border:1px solid $purple;
 
-		.wine-price{
+
+
+		.descr-slider{
+			.bt-default{
+				background:#ff008a;
+			}
+			.arrow-link{
+				color:#ff008a;
+				background: #6f0791;
+			}
+		}
+
+		/*card produto*/
+
+
+		.title-category{
 			color:$purple;
 		}
 
-		.bt-default{
-			color:#fff;
-			background:$purple;
+		.wine-card{
+
+			border:1px solid $purple;
+
+			.wine-price{
+				color:$purple;
+			}
+
+			.bt-default{
+				color:#fff;
+				background:$purple;
+				border:2px solid $purple;
+			}
+			.arrow-link{
+				color:$purple;
+				border: 2px solid $purple;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $purple;
+					color:$purple;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $purple;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
 		}
-		.arrow-link{
-			color:$purple;
+
+		.bt-default-full{
+			background: $purple;
+
+			.arrow-link{
+				color:$purple;
+
+			}
 		}
 
 	}
 
-	.bt-default-full{
+	.template4.bg-slider-principal {
 		background: $purple;
-
-		.arrow-link{
-			color:$purple;
-
-		}
 	}
 
-}
-
-.template4.bg-slider-principal {
-	background: $purple;
-}
-
-.header-internal.template4-bg{
-	background:$purple;
-}
-
-.wine-card.template4{
-
-	border:1px solid $purple;
-
-	.wine-price{
-		color:$purple;
-	}
-
-	.bt-default{
-		color:#fff;
+	.header-internal.template4-bg{
 		background:$purple;
 	}
-	.arrow-link{
-		color:$purple;
-	}
 
-}
+	.wine-card.template4 {
 
-.bt-default-full.template4{
-	background: $purple;
-
-	.arrow-link{
-		color:$purple;
-
-	}
-}
-
-.bg-template.template4 {
-	border:0;
-	background:#efe6f2;
-}
-/* Fim templates PURPLE ******************PURPLE****************PURPLE*******/
-
-/* Inicio templates PINK ******************PINK****************PINK*******/
-.template5{
-
-	.favorite {
-		background-position:0 -160px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -160px;
-	}
-
-
-	.title-menu{
-		color:#e411c3;
-	}
-
-	.featured-sub-menu{
-		border:1px solid #e411c3;
-	}
-
-
-	.every-category{
-		background: #e411c3;
-		h3{
-
-		}
-		span{
-			color:#e411c3;
-		}
-	}
-
-	.title-slider{
-		color:#00e667;
-	}
-
-	.descr-slider{
-		.bt-default{
-			background:#00e667;
-		}
-		.arrow-link{
-			color:#00e667;
-			background: #8a25d8;
-		}
-	}
-
-	/*card produto*/
-	.title-category{
-		color:$pink;
-	}
-
-	.wine-card{
-
-		border:1px solid $pink;
+		border:1px solid $purple;
 		.wine-price{
-			color:$pink;
+			color:$purple;
 		}
 
 		.bt-default{
-			background:$pink;
+			background:$purple;
+			border: 2px solid $purple;
 		}
 		.arrow-link{
 			background:#fff;
-			color:$pink;
+			color:$purple;
+			border: 2px solid $purple;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $purple;
+				color:$purple;
+			}
+			.arrow-link{
+				background:$purple;
+				color:#fff;
+				border: 2px solid $purple;
+			}
 		}
 
 	}
 
+	.bt-default-full.template4 {
+		background: $purple;
+		border:2px solid $purple;
+		transition: all .1s ease .05s;
 
-
-
-	.bt-default-full{
-		background: $pink;
+		&:hover{
+			background: #fff;
+			color:$purple;
+			border:2px solid $purple;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $purple;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $purple;
+			}
+		}
 
 		.arrow-link{
+			color:$purple;
+			transition: all .1s ease .05s;
+			border: 2px solid $purple;
+		}
+	}
+
+	.bg-template.template4 {
+		border:0;
+		background:#efe6f2;
+	}
+	/* Fim templates PURPLE ******************PURPLE****************PURPLE*******/
+
+	/* Inicio templates PINK ******************PINK****************PINK*******/
+	.template5 {
+
+		.featured-sub-link:hover {
 			color:$pink;
+		}
+
+		.link-featured-sub-menu:hover {
+			background:$pink;
+			transition: all 50ms ease;
+
+			h3,p,span{
+				color:#fff;
+			}
 
 		}
-	}
 
-}
+		.every-category{
+			background: $pink;
+			border:2px solid $pink;
 
-.template5.bg-slider-principal{
-	background: #8a25d8;
-}
+			&:hover {
+				background: #fff;
+				transition: all 50ms ease;
 
-.wine-card.template5{
+				h3 {
+					color:$pink;
+				}
+				span {
+					color:#fff;
+					background:$pink;
+					right: 2px;
+					bottom:2px;
+				}
+			}
+			h3{
 
-	border:1px solid $pink;
-	.wine-price{
-		color:$pink;
-	}
+			}
+			span{
+				color:$pink;
+			}
+		}
 
-	.bt-default{
-		background:$pink;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$pink;
-	}
+		.list-sub-menu li a:hover{
+			color:$pink;
+		}
 
-}
+		.favorite {
+			background-position:0 -160px;
+		}
 
-.header-internal.template5-bg{
-	background: $pink;
-}
-
-
-.bt-default-full.template5{
-	background: $pink;
-
-	.arrow-link{
-		color:$pink;
-
-	}
-}
-
-/* Fim templates PINK ******************PINK****************PINK*******/
-
-/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
-.template6{
-
-	.favorite {
-		background-position:0 -200px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -200px;
-	}
-
-	.title-menu{
-		color:#3438db;
-	}
-
-	.featured-sub-menu{
-		border:1px solid #3438db;
-	}
+		.favorite.clicado {
+			background-position: -40px -160px;
+		}
 
 
-	.every-category{
-		background: #3438db;
-		h3{
+		.title-menu{
+			color:#e411c3;
+		}
+
+		.featured-sub-menu{
+			border:1px solid #e411c3;
+		}
+
+
+		.every-category{
+			background: #e411c3;
+			h3{
+
+			}
+			span{
+				color:#e411c3;
+			}
+		}
+
+		.title-slider{
+			color:#00e667;
+		}
+
+		.descr-slider{
+			.bt-default{
+				background:#00e667;
+			}
+			.arrow-link{
+				color:#00e667;
+				background: #8a25d8;
+			}
+		}
+
+		/*card produto*/
+
+/* 		.wine-card:hover {
+			.bt-default {
+				background:#fff;
+				border:2px solid $pink;
+				color:$pink;
+				transition: all .1s ease .05s;
+				.arrow-link {
+					background: $pink;
+					color: #fff;
+					transition: all .1s ease .05s;
+				}
+			}
+			} */
+			.title-category{
+				color:$pink;
+			}
+
+			.wine-card{
+
+				border:1px solid $pink;
+				.wine-price{
+					color:$pink;
+				}
+
+				.bt-default{
+					background:$pink;
+					border: 2px solid $pink;
+				}
+				.arrow-link{
+					background:#fff;
+					color:$pink;
+					border: 2px solid $pink;
+				}
+
+				&:hover {
+					.bt-default {
+						background:#fff;
+						border:2px solid $pink;
+						color:$pink;
+						transition: all .1s ease .05s;
+						.arrow-link {
+							background: $pink;
+							color: #fff;
+							transition: all .1s ease .05s;
+						}
+					}
+				}
+
+			}
+
+
+
+
+			.bt-default-full{
+				background: $pink;
+
+				.arrow-link{
+					color:$pink;
+
+				}
+			}
 
 		}
-		span{
-			color:#3438db;
+
+		.template5.bg-slider-principal{
+			background: #8a25d8;
 		}
+
+		.wine-card.template5 {
+
+			border:1px solid $pink;
+			.wine-price{
+				color:$pink;
+			}
+
+			.bt-default{
+				background:$pink;
+				border: 2px solid $pink;
+			}
+			.arrow-link{
+				background:#fff;
+				color:$pink;
+				border: 2px solid $pink;
+			}
+
+			&:hover {
+				.bt-default{
+					background:#fff;
+					border: 2px solid $pink;
+					color:$pink;
+				}
+				.arrow-link{
+					background:$pink;
+					color:#fff;
+					border: 2px solid $pink;
+				}
+			}
+
+		}
+
+		.template5.bg-template {
+			border: 0;
+			background: #d9bcf7;
+		}
+
+		.header-internal.template5-bg{
+			background: $pink;
+		}
+
+
+		.bt-default-full.template5 {
+			background: $pink;
+			border:2px solid $pink;
+			transition: all .1s ease .05s;
+
+			&:hover{
+				background: #fff;
+				color:$pink;
+				border:2px solid $pink;
+				transition: all .1s ease .05s;
+				.arrow-link{
+					background: $pink;
+					color:#fff;
+					transition: all .1s ease .05s;
+					border: 2px solid $pink;
+				}
+			}
+
+			.arrow-link{
+				color:$pink;
+				transition: all .1s ease .05s;
+				border: 2px solid $pink;
+			}
+		}
+
+
+		/* Fim templates PINK ******************PINK****************PINK*******/
+
+		/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
+		.template6 {
+
+			.list-sub-menu li a:hover{
+				color:$darkblue;
+			}
+
+			.featured-sub-link:hover {
+				color:$darkblue;
+			}
+
+			.link-featured-sub-menu:hover {
+				background:$darkblue;
+				transition: all 50ms ease;
+
+				h3,p,span{
+					color:#fff;
+				}
+
+			}
+
+			.every-category{
+				background: $darkblue;
+				border:2px solid $darkblue;
+
+				&:hover {
+					background: #fff;
+					transition: all 50ms ease;
+
+					h3 {
+						color:$darkblue;
+					}
+					span {
+						color:#fff;
+						background:$darkblue;
+						right: 2px;
+						bottom:2px;
+
+					}
+				}
+				h3{
+
+				}
+				span{
+					color:$darkblue;
+				}
+			}
+
+			.favorite {
+				background-position:0 -200px;
+			}
+
+			.favorite.clicado {
+				background-position: -40px -200px;
+			}
+
+			.title-menu{
+				color:#3438db;
+			}
+
+			.featured-sub-menu{
+				border:1px solid #3438db;
+			}
+
+
+			.every-category{
+				background: #3438db;
+				h3{
+
+				}
+				span{
+					color:#3438db;
+				}
+			}
+
+			/*card produto*/
+
+/* 		.wine-card:hover {
+			.bt-default {
+				background:#fff;
+				border:2px solid $darkblue;
+				color:$darkblue;
+				transition: all .1s ease .05s;
+				.arrow-link {
+					background: $darkblue;
+					color: #fff;
+					transition: all .1s ease .05s;
+				}
+			}
+		}
+		*/
+		.title-category{
+			color:$darkblue;
+		}
+
+		.bt-default-full{
+			background: $darkblue;
+
+			.arrow-link{
+				color:$darkblue;
+
+			}
+		}
+
+		.wine-card{
+
+			border:1px solid $darkblue;
+			.wine-price{
+				color:$darkblue;
+			}
+
+			.bt-default{
+				background:$darkblue;
+				border:2px solid $darkblue;
+			}
+			.arrow-link{
+				background:#fff;
+				color:$darkblue;
+				border: 2px solid $darkblue;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $darkblue;
+					color:$darkblue;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $darkblue;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+		}
+
+		.title-slider{
+			color:#e929d9;
+		}
+
+		.descr-slider{
+			.bt-default{
+				background:#e929d9;
+			}
+			.arrow-link{
+				color:#e929d9;
+				background: #252ad8;
+			}
+		}
+
 	}
 
-	/*card produto*/
-	.title-category{
-		color:$darkblue;
+	.template6.bg-slider-principal{
+		background: #252ad8;
 	}
 
-	.bt-default-full{
+	.header-internal.template6-bg{
+		background:$darkblue;
+	}
+
+	.bt-default-full.template6 {
 		background: $darkblue;
+		border:2px solid $darkblue;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$darkblue;
+			border:2px solid $darkblue;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $darkblue;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $darkblue;
+			}
+		}
 
 		.arrow-link{
 			color:$darkblue;
-
+			transition: all .1s ease .05s;
+			border: 2px solid $darkblue;
 		}
 	}
 
-	.wine-card{
+
+	.wine-card.template6 {
 
 		border:1px solid $darkblue;
 		.wine-price{
@@ -720,117 +1466,219 @@
 
 		.bt-default{
 			background:$darkblue;
+			border: 2px solid $darkblue;
 		}
 		.arrow-link{
 			background:#fff;
 			color:$darkblue;
+			border: 2px solid $darkblue;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $darkblue;
+				color:$darkblue;
+			}
+			.arrow-link{
+				background:$darkblue;
+				color:#fff;
+				border: 2px solid $darkblue;
+			}
 		}
 
 	}
 
-	.title-slider{
-		color:#e929d9;
+	.template6.bg-template {
+		border: 0;
+		background: #5e6dc7;
 	}
+	/* Fim templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 
-	.descr-slider{
-		.bt-default{
-			background:#e929d9;
-		}
-		.arrow-link{
-			color:#e929d9;
-			background: #252ad8;
-		}
-	}
+	/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
+	.template7 {
 
-}
-
-.template6.bg-slider-principal{
-	background: #252ad8;
-}
-
-.header-internal.template6-bg{
-	background:$darkblue;
-}
-
-.bt-default-full.template6{
-	background: $darkblue;
-
-	.arrow-link{
-		color:$darkblue;
-
-	}
-}
-
-.wine-card.template6{
-	
-	border:1px solid $darkblue;
-	.wine-price{
-		color:$darkblue;
-	}
-
-	.bt-default{
-		background:$darkblue;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$darkblue;
-	}
-
-}
-/* Fim templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
-
-/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
-.template7{
-
-	.favorite {
-		background-position:0 -240px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -240px;
-	}
-
-	.title-menu{
-		color:#ffa311;
-	}
-
-	.featured-sub-menu{
-		border:1px solid #ffa311;
-	}
-	.title-slider {
-		color:#a0015f;
-	}
-	
-	.descr-slider {
-
-		.bt-default {
-			background:#a0015f;
+		.list-sub-menu li a:hover{
+			color:$orange;
 		}
 
-		.arrow-link {
-			color:#a0015f;
-			background: #ff5400;
+		.featured-sub-link:hover {
+			color:$orange;
 		}
 
-	}
+		.link-featured-sub-menu:hover {
+			background:$orange;
+			transition: all 50ms ease;
 
-
-	.every-category{
-		background: #ffa311;
-		h3{
+			h3,p,span{
+				color:#fff;
+			}
 
 		}
-		span{
+
+		.every-category{
+			background: $orange;
+			border:2px solid $orange;
+
+			&:hover {
+				background: #fff;
+				transition: all 50ms ease;
+
+				h3 {
+					color:$orange;
+				}
+				span {
+					color:#fff;
+					background:$orange;
+					right: 2px;
+					bottom:2px;
+
+				}
+			}
+			h3{
+
+			}
+			span{
+				color:$orange;
+			}
+		}
+
+		.favorite {
+			background-position:0 -240px;
+		}
+
+		.favorite.clicado {
+			background-position: -40px -240px;
+		}
+
+		.title-menu{
 			color:#ffa311;
 		}
+
+		.featured-sub-menu{
+			border:1px solid #ffa311;
+		}
+		.title-slider {
+			color:#a0015f;
+		}
+
+		.descr-slider {
+
+			.bt-default {
+				background:#a0015f;
+			}
+
+			.arrow-link {
+				color:#a0015f;
+				background: #ff5400;
+			}
+
+		}
+
+
+		.every-category{
+			background: #ffa311;
+			h3{
+
+			}
+			span{
+				color:#ffa311;
+			}
+		}
+
+		/*card produto*/
+
+
+
+		.title-category{
+			color:$orange;
+		}
+
+		.wine-card{
+
+			border:1px solid $orange;
+			.wine-price{
+				color:$orange;
+			}
+
+			.bt-default{
+				background:$orange;
+				border: 2px solid $orange;
+			}
+			.arrow-link{
+				background:#fff;
+				color:$orange;
+				border: 2px solid $orange;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $orange;
+					color:$orange;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $orange;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+		}
+
+		.bt-default-full{
+			background: $orange;
+
+			.arrow-link{
+				color:$orange;
+
+
+			}
+		}
+
+
 	}
 
-	/*card produto*/
-	.title-category{
-		color:$orange;
+	.template7.bg-slider-principal {
+		background: #ff5400;
 	}
 
-	.wine-card{
+
+	.header-internal.template7-bg{
+		background:$orange;
+	}
+
+
+
+
+	.bt-default-full.template7{
+		background: $orange;
+		border:2px solid $orange;
+		transition: all .1s ease .05s;
+
+
+		&:hover{
+			background: #fff;
+			color:$orange;
+			border:2px solid $orange;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $orange;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid #ffa311;
+			}
+		}
+
+		.arrow-link{
+			color:$orange;
+			transition: all .1s ease .05s;
+			border: 2px solid $orange;
+		}
+	}
+
+	.wine-card.template7 {
 
 		border:1px solid $orange;
 		.wine-price{
@@ -839,123 +1687,201 @@
 
 		.bt-default{
 			background:$orange;
+			border: 2px solid $orange;
 		}
 		.arrow-link{
 			background:#fff;
 			color:$orange;
+			border: 2px solid $orange;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $orange;
+				color:$orange;
+			}
+			.arrow-link{
+				background:$orange;
+				color:#fff;
+				border: 2px solid $orange;
+			}
 		}
 
 	}
 
-	.bt-default-full{
-		background: $orange;
+	.template7.bg-template {
+		border: 0;
+		background: #fff5e5;
+	}
 
-		.arrow-link{
-			color:$orange;
+	/* Fim templates ORANGE ******************ORANGE****************ORANGE*******/
 
+
+	/* Inicio templates BLACK ******************BLACK****************BLACK*******/
+	.template8 {
+
+		.list-sub-menu li a:hover{
+			color:$black;
+		}
+
+		.featured-sub-link:hover {
+			color:$black;
+		}
+
+		.link-featured-sub-menu:hover {
+			background:$black;
+			transition: all 50ms ease;
+
+			h3,p,span{
+				color:#fff;
+			}
 
 		}
-	}
 
+		.every-category{
+			background: $black;
+			border:2px solid $black;
 
-}
+			&:hover {
+				background: #fff;
+				transition: all 50ms ease;
 
-.template7.bg-slider-principal {
-	background: #ff5400;
-}
+				h3 {
+					color:$black;
+				}
+				span {
+					color:#fff;
+					background:$black;
+					right: 2px;
+					bottom:2px;
 
+				}
+			}
+			h3{
 
-.header-internal.template7-bg{
-	background:$orange;
-}
-
-
-
-
-.bt-default-full.template7{
-	background: $orange;
-	border:2px solid #fff;
-	transition: all .1s ease .05s;
-
-	&:hover{
-		background: #fff;
-		color:$orange;
-		border:2px solid $orange;
-		transition: all .1s ease .05s;
-		.arrow-link{
-			background: $orange;
-			color:#fff;
-			transition: all .1s ease .05s;
+			}
+			span{
+				color:$black;
+			}
 		}
-	}
 
-	.arrow-link{
-		color:$orange;
-		transition: all .1s ease .05s;
-	}
-}
-
-.wine-card.template7{
-	
-	border:1px solid $orange;
-	.wine-price{
-		color:$orange;
-	}
-
-	.bt-default{
-		background:$orange;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$orange;
-	}
-
-}
-
-.template7.bg-template {
-    border: 0;
-    background: #fff5e5;
-}
-
-/* Fim templates ORANGE ******************ORANGE****************ORANGE*******/
-
-
-/* Inicio templates BLACK ******************BLACK****************BLACK*******/
-.template8{
-
-	.favorite {
-		background-position:0 -280px;
-	}
-
-	.favorite.clicado {
-		background-position: -40px -280px;
-	}
-
-	.title-menu{
-		color:#111111;
-	}
-
-	.featured-sub-menu{
-		border:1px solid #111111;
-	}
-
-
-	.every-category{
-		background: #111111;
-		h3{
-
+		.favorite {
+			background-position:0 -280px;
 		}
-		span{
+
+		.favorite.clicado {
+			background-position: -40px -280px;
+		}
+
+		.title-menu{
 			color:#111111;
 		}
+
+		.featured-sub-menu{
+			border:1px solid #111111;
+		}
+
+
+		.every-category{
+			background: #111111;
+			h3{
+
+			}
+			span{
+				color:#111111;
+			}
+		}
+
+		/*card produto*/
+		
+
+
+		.title-category{
+			color:$black;
+		}
+
+		.wine-card{
+
+			border:1px solid $black;
+			.wine-price{
+				color:$black;
+			}
+
+			.bt-default{
+				background:$black;
+				border: 2px solid $black;
+			}
+			.arrow-link{
+				background:#fff;
+				color:$black;
+				border: 2px solid $black;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $black;
+					color:$black;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $black;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+		}
+
+		.bt-default-full{
+			background: $black;
+
+			.arrow-link{
+				color:$black;
+
+
+			}
+		}
+
+
 	}
 
-	/*card produto*/
-	.title-category{
-		color:$black;
+	.template8.bg-slider-principal {
+		background: $black;
+	}
+	.header-internal.template8-bg{
+		background:$black;
 	}
 
-	.wine-card{
+
+	.bt-default-full.template8 {
+		background: $black;
+		border:2px solid $black;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$black;
+			border:2px solid $black;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $black;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $black;
+			}
+		}
+
+		.arrow-link{
+			color:$purple;
+			transition: all .1s ease .05s;
+			border: 2px solid $purple;
+		}
+	}
+
+
+	.wine-card.template8 {
 
 		border:1px solid $black;
 		.wine-price{
@@ -964,91 +1890,42 @@
 
 		.bt-default{
 			background:$black;
+			border: 2px solid $black;
 		}
 		.arrow-link{
 			background:#fff;
 			color:$black;
+			border: 2px solid $black;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $black;
+				color:$black;
+			}
+			.arrow-link{
+				background:$black;
+				color:#fff;
+				border: 2px solid $black;
+			}
 		}
 
 	}
 
-	.bt-default-full{
-		background: $black;
-
-		.arrow-link{
-			color:$black;
-
-
-		}
+	.template8.bg-template {
+		border: 0;
+		background: #ededed;
 	}
 
 
-}
-
-.template8.bg-slider-principal {
-	background: $black;
-}
-.header-internal.template8-bg{
-	background:$black;
-}
-
-
-.bt-default-full.template8{
-	background: $black;
-
-	.arrow-link{
-		color:$black;
-
-
-	}
-}
-
-.wine-card.template8{
-
-	border:1px solid $black;
-	.wine-price{
-		color:$black;
-	}
-
-	.bt-default{
-		background:$black;
-	}
-	.arrow-link{
-		background:#fff;
-		color:$black;
-	}
-
-}
 
 
 
+	/* Fim templates BLACK ******************BLACK****************BLACK*******/
 
 
-/* Fim templates BLACK ******************BLACK****************BLACK*******/
 
-
-.bt-default-full.bt-color {
-	background: #ff5400;
-	border: 2px solid #fff;
-	transition: all .1s ease .05s;
-
-	&:hover{
-		background: #fff;
-		color:#ff5400;
-		border:2px solid #ff5400;
-		transition: all .1s ease .05s;
-		.arrow-link{
-			background: #ff5400;
-			color:#fff;
-			transition: all .1s ease .05s;
-		}
-	}
-}
-.bt-default-full.bt-color .arrow-link {
-	color: #ff5400;
-	transition: all .1s ease .05s;
-	font-size: 14px;
-}
 
 
 
