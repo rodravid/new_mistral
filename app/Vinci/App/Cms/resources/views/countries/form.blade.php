@@ -1,71 +1,67 @@
 <div class="row">
 
-    <div class="col-lg-12">
-        <div class="row">
-            <div class="col-xs-2 col-sm-1">
-                <div class="form-group">
-                    <label for="txtHighlightPosition">Ordem</label>
-                    {!! Form::text('position', null, ['id' => 'txtHighlightPosition', 'class' => 'form-control span']) !!}
-                </div>
-            </div>
-            <div class="col-xs-10 col-sm-11">
-                <div class="form-group has-feedback">
-                    <label for="txtHighlightTitle">Título</label>
-                    {!! Form::text('title', null, ['id' => 'txtHighlightTitle', 'class' => 'form-control', 'placeholder' => 'Digite o título']) !!}
-                    <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
-                </div>
+    <div class="col-xs-12">
+        <div class="form-group has-feedback">
+            <label for="txtCountryName">Nome</label>
+            {!! Form::text('name', null, ['id' => 'txtCountryName', 'class' => 'form-control', 'placeholder' => 'Digite o nome']) !!}
+            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="form-group">
+            <div class="checkbox">
+                <input type="hidden" name="visibleSite" value="0">
+                <label for="ckbCountryVisibleSite"> {!! Form::checkbox('visibleSite', 1, null, ['id' => 'ckbCountryVisibleSite', 'class' => '']) !!} Visível no site ?</label>
             </div>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtHighlightSubtitle">Subtítulo</label>
-            {!! Form::text('subtitle', null, ['id' => 'txtHighlightSubtitle', 'class' => 'form-control', 'placeholder' => 'Digite o subtítulo']) !!}
+            <label for="txtCountryDescription">Descrição</label>
+            {!! Form::textarea('description', null, ['id' => 'txtCountryDescription', 'class' => 'form-control html-editor', 'placeholder' => 'Digite a descrição']) !!}
             <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtHighlightDescription">Descrição</label>
-            {!! Form::textarea('description', null, ['id' => 'txtHighlightDescription', 'class' => 'form-control html-editor', 'placeholder' => 'Digite a descrição']) !!}
+            <label for="txtCountrySeoTitle">Título SEO</label>
+            {!! Form::text('seoTitle', null, ['id' => 'txtCountryName', 'class' => 'form-control', 'placeholder' => 'Digite o título para SEO']) !!}
             <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtHighlightPasswordConfirmation">Banner versão desktop</label>
-            {!! Form::file('image_desktop', ['id' => 'txtHighlightImageDesktop']) !!}
+            <label for="txtCountrySeoDescription">Descrição SEO</label>
+            {!! Form::textarea('seoDescription', null, ['id' => 'txtCountrySeoDescription', 'class' => 'form-control', 'rows' => 4, 'placeholder' => 'Digite a descrição para SEO']) !!}
+            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="form-group has-feedback">
+            <label for="txtCountryImageMap">Imagem do mapa</label>
+            {!! Form::file('image_map', ['id' => 'txtCountryImageMap']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtHighlightPasswordConfirmation">Banner versão mobile</label>
-            {!! Form::file('image_mobile', ['id' => 'txtHighlightImageMobile']) !!}
+            <label for="txtCountryImageBanner">Imagem do banner</label>
+            {!! Form::file('image_banner', ['id' => 'txtCountryImageBanner']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
         </div>
     </div>
 
-    <div class="col-lg-12">
-        <div class="row">
-            <div class="col-xs-7 col-sm-10">
-                <div class="form-group has-feedback">
-                    <label for="txtHighlightUrl">URL</label>
-                    {!! Form::text('url', null, ['id' => 'txtHighlightUrl', 'class' => 'form-control', 'placeholder' => 'Digite o link de destino']) !!}
-                    <span class="glyphicon glyphicon-link form-control-feedback"></span>
-                </div>
-            </div>
-
-            <div class="col-xs-5 col-sm-2">
-                <div class="form-group">
-                    <label for="txtHighlightTarget">Target</label>
-                    {!! Form::select('target', ['_self' => 'Mesma janela', '_blank' => 'Nova janela'], null, ['id' => 'txtHighlightTarget', 'class' => 'form-control']) !!}
-                </div>
-            </div>
+    <div class="col-xs-12">
+        <div class="form-group has-feedback">
+            <label for="txtCountrySlug">URL amigável</label>
+            {!! Form::text('slug', null, ['id' => 'txtCountrySlug', 'class' => 'form-control', 'placeholder' => 'URL amigável']) !!}
+            <span class="glyphicon glyphicon-link form-control-feedback"></span>
         </div>
     </div>
 

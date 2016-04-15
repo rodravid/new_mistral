@@ -6,7 +6,6 @@ use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Http\UploadedFile;
-use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Image\ImageRepository;
@@ -27,15 +26,12 @@ class CountryService
 
     private $imageRepository;
 
-    private $aclService;
-
     public function __construct(
         EntityManagerInterface $entityManager,
         CountryRepository $repository,
         CountryValidator $validator,
         StorageService $storage,
-        ImageRepository $imageRepository,
-        ACLService $aclService
+        ImageRepository $imageRepository
     )
     {
         $this->entityManager = $entityManager;
@@ -43,7 +39,6 @@ class CountryService
         $this->validator = $validator;
         $this->storage = $storage;
         $this->imageRepository = $imageRepository;
-        $this->aclService = $aclService;
     }
 
     public function create(array $data)
@@ -51,13 +46,9 @@ class CountryService
         $this->validator->with($data)->passesOrFail();
 
         return $this->saveCountry($data, function($data) {
-
             $country = new Country;
-            $country->setScheduleFieldsFromArray($data);
             $country->fill($data);
-
             return $country;
-
         });
     }
 
@@ -68,7 +59,6 @@ class CountryService
         return $this->saveCountry($data, function($data) use ($id) {
 
             $country = $this->repository->find($id);
-            $country->setScheduleFieldsFromArray($data);
             $country->fill($data);
 
             return $country;
@@ -110,17 +100,28 @@ class CountryService
 
     protected function saveCountry($data, Closure $method)
     {
-        $country = $method($data);
+        try {
 
-        $country->setType($this->aclService->getCurrentModuleName());
+            $this->entityManager->beginTransaction();
 
-        $this->repository->save($country);
+            $country = $method($data);
 
-        $this->saveImages($data, $country);
+            $this->repository->save($country);
 
-        $this->repository->save($country);
+            $this->saveImages($data, $country);
 
-        return $country;
+            $this->repository->save($country);
+
+            $this->entityManager->commit();
+
+            return $country;
+
+        } catch (Exception $e) {
+
+            $this->entityManager->rollback();
+
+            throw $e;
+        }
     }
 
     protected function saveImages($data, Country $country)

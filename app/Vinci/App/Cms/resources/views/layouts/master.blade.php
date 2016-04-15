@@ -18,7 +18,7 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- iCheck -->
-        <link rel="stylesheet" href="{{ asset_cms('plugins/iCheck/flat/blue.css') }}">
+        <link rel="stylesheet" href="{{ asset_cms('plugins/iCheck/all.css') }}">
         <!-- Morris chart -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/morris/morris.css') }}">
         <!-- jvectormap -->
@@ -176,8 +176,10 @@
     <script src="{{ asset_cms('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset_cms('plugins/fastclick/fastclick.js') }}"></script>
-    <!-- FastClick -->
+    <!-- Notify -->
     <script src="{{ asset_cms('plugins/bootstrap-notify/dist/bootstrap-notify.min.js') }}"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="{{ asset_cms('plugins/iCheck/icheck.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
     <!-- Select2 -->
@@ -199,7 +201,10 @@
 
             $("[data-mask]").inputmask();
 
-            $("[data-real-mask]").inputmask('€ 999.999.999,99', { numericInput: true });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
 
             $('.html-editor').wysihtml5();
 

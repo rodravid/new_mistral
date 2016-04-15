@@ -9,7 +9,7 @@ class CountryPresenter extends AbstractPresenter
 
     public function presentImageHtml()
     {
-        if ($this->hasImage('desktop')) {
+        if ($this->hasImage('map')) {
             return '<img src="' . $this->getImage('map') . '" style="width: 50px;" />';
         }
 

@@ -5,6 +5,7 @@ namespace Vinci\Domain\Core;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Common\Relationships\HasOneAdminUser;
 use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Common\Traits\Timestampable;
@@ -12,11 +13,12 @@ use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\MappedSuperclass
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-abstract class BaseTaxonomy
+abstract class BaseTaxonomy extends Model
 {
 
-    use Timestampable, SEOable, HasOneAdminUser;
+    use Timestampable, SoftDeletes, SEOable, HasOneAdminUser;
 
     /**
      * @ORM\Id

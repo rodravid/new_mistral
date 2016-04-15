@@ -85,4 +85,9 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         }
     }
 
+    public function presentVisibleSite()
+    {
+        return $this->toAffirmative($this->getVisibleSite());
+    }
+
 }

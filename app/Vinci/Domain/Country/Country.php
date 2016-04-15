@@ -5,6 +5,7 @@ namespace Vinci\Domain\Country;
 use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Core\BaseTaxonomy;
+use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\Entity(repositoryClass="Vinci\Infrastructure\Country\DoctrineCountryRepository")

@@ -22,7 +22,7 @@
                     </div>
 
                         <div class="box-body">
-                            @include('cms::highlights.form')
+                            @include('cms::countries.form')
                         </div>
 
                     </div>

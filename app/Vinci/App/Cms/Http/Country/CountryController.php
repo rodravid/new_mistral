@@ -70,8 +70,8 @@ class CountryController extends Controller
         try {
 
             $data = $request->all();
-            $data['image_desktop'] = $request->file('image_desktop');
-            $data['image_mobile'] = $request->file('image_mobile');
+            $data['image_map'] = $request->file('image_map');
+            $data['image_banner'] = $request->file('image_banner');
             $data['user'] = cmsUser();
 
             $country = $this->service->create($data);
@@ -97,8 +97,8 @@ class CountryController extends Controller
         try {
 
             $data = $request->all();
-            $data['image_desktop'] = $request->file('image_desktop');
-            $data['image_mobile'] = $request->file('image_mobile');
+            $data['image_map'] = $request->file('image_map');
+            $data['image_banner'] = $request->file('image_banner');
             $data['user'] = cmsUser();
 
             $country = $this->service->update($data, $id);

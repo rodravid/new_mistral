@@ -26,7 +26,7 @@
                             {!! Form::hidden('id', $country->getId()) !!}
 
                             <div class="box-body">
-                                @include('cms::highlights.form')
+                                @include('cms::countries.form')
                             </div>
                         </div>
                     </div>
@@ -39,22 +39,22 @@
                         @include('cms::layouts.partials.publication.edit.default', ['model' => $country])
                     </div>
 
-                    @if ($country->hasImage('mobile'))
+                    @if ($country->hasImage('map'))
                         <div class="col-xs-12">
                             @include('cms::layouts.partials.image.default', [
-                            'box_title' => 'Imagem mobile',
-                            'image' => $country->getImage('mobile'),
-                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('mobile')->getId()])
+                            'box_title' => 'Mapa',
+                            'image' => $country->getImage('map'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('map')->getId()])
                             ])
                         </div>
                     @endif
 
-                    @if ($country->hasImage('desktop'))
+                    @if ($country->hasImage('banner'))
                         <div class="col-xs-12">
                             @include('cms::layouts.partials.image.default', [
-                            'box_title' => 'Imagem desktop',
-                            'image' => $country->getImage('desktop'),
-                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('desktop')->getId()])
+                            'box_title' => 'Banner',
+                            'image' => $country->getImage('banner'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$country->getId(), $country->getImage('banner')->getId()])
                             ])
                         </div>
                     @endif

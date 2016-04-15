@@ -62,8 +62,8 @@ class CountryCmsDatatable extends AbstractDatatables
             $presenter->visible_site,
             $presenter->status_html,
             $this->buildActionsColumn([
-                'edit_url' => route('cms.home-main-slider.edit', $country->getId()),
-                'destroy_url' => route('cms.home-main-slider.destroy', $country->getId())
+                'edit_url' => route('cms.countries.edit', $country->getId()),
+                'destroy_url' => route('cms.countries.destroy', $country->getId())
             ])
         ];
     }
