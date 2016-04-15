@@ -5,7 +5,7 @@
             <div class="col-xs-2 col-sm-1">
                 <div class="form-group">
                     <label for="txtHighlightPosition">Ordem</label>
-                    {!! Form::text('position', null, ['id' => 'txtHighlightPosition', 'class' => 'form-control span', 'placeholder' => 'Digite a ordem do destaque']) !!}
+                    {!! Form::text('position', null, ['id' => 'txtHighlightPosition', 'class' => 'form-control span']) !!}
                 </div>
             </div>
             <div class="col-xs-10 col-sm-11">
@@ -51,17 +51,21 @@
     </div>
 
     <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label for="txtHighlightUrl">URL</label>
-            {!! Form::text('url', null, ['id' => 'txtHighlightUrl', 'class' => 'form-control', 'placeholder' => 'Digite o link de destino']) !!}
-            <span class="glyphicon glyphicon-link form-control-feedback"></span>
-        </div>
-    </div>
+        <div class="row">
+            <div class="col-xs-7 col-sm-10">
+                <div class="form-group has-feedback">
+                    <label for="txtHighlightUrl">URL</label>
+                    {!! Form::text('url', null, ['id' => 'txtHighlightUrl', 'class' => 'form-control', 'placeholder' => 'Digite o link de destino']) !!}
+                    <span class="glyphicon glyphicon-link form-control-feedback"></span>
+                </div>
+            </div>
 
-    <div class="col-lg-12">
-        <div class="form-group">
-            <label for="txtHighlightTarget">Target</label>
-            {!! Form::select('target', ['_self' => 'Mesma janela', '_blank' => 'Nova janela'], null, ['id' => 'txtHighlightTarget', 'class' => 'form-control']) !!}
+            <div class="col-xs-5 col-sm-2">
+                <div class="form-group">
+                    <label for="txtHighlightTarget">Target</label>
+                    {!! Form::select('target', ['_self' => 'Mesma janela', '_blank' => 'Nova janela'], null, ['id' => 'txtHighlightTarget', 'class' => 'form-control']) !!}
+                </div>
+            </div>
         </div>
     </div>
 
