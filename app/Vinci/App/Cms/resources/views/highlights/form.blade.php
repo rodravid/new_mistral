@@ -1,10 +1,20 @@
 <div class="row">
 
     <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label for="txtHighlightTitle">Título</label>
-            {!! Form::text('title', null, ['id' => 'txtHighlightTitle', 'class' => 'form-control', 'placeholder' => 'Digite o título']) !!}
-            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+        <div class="row">
+            <div class="col-xs-2 col-sm-1">
+                <div class="form-group">
+                    <label for="txtHighlightPosition">Ordem</label>
+                    {!! Form::text('position', null, ['id' => 'txtHighlightPosition', 'class' => 'form-control span', 'placeholder' => 'Digite a ordem do destaque']) !!}
+                </div>
+            </div>
+            <div class="col-xs-10 col-sm-11">
+                <div class="form-group has-feedback">
+                    <label for="txtHighlightTitle">Título</label>
+                    {!! Form::text('title', null, ['id' => 'txtHighlightTitle', 'class' => 'form-control', 'placeholder' => 'Digite o título']) !!}
+                    <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -21,14 +31,6 @@
             <label for="txtHighlightDescription">Descrição</label>
             {!! Form::textarea('description', null, ['id' => 'txtHighlightDescription', 'class' => 'form-control html-editor', 'placeholder' => 'Digite a descrição']) !!}
             <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
-        </div>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label for="txtHighlightPosition">Ordem <small>(Para mover para o início digite <span class="text-info">0</span> ou para o final digite <span class="text-info">-1</span>)</small></label>
-            {!! Form::text('position', null, ['id' => 'txtHighlightPosition', 'class' => 'form-control', 'placeholder' => 'Digite a ordem do destaque']) !!}
-            <span class="fa fa-list-ol form-control-feedback"></span>
         </div>
     </div>
 
