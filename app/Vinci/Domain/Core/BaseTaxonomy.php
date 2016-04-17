@@ -40,7 +40,7 @@ abstract class BaseTaxonomy extends Model implements Sluggable
 
     /**
      * @Gedmo\Slug(fields={"name"}, unique=true, updatable=false)
-     * @ORM\Column(length=255, nullable=true, unique=true)
+     * @ORM\Column(length=255, nullable=true)
      */
     protected $slug;
 

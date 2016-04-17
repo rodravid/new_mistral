@@ -9,7 +9,7 @@ use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\Entity(repositoryClass="Vinci\Infrastructure\Country\DoctrineCountryRepository")
- * @ORM\Table(name="countries")
+ * @ORM\Table(name="countries", indexes={@ORM\Index(name="slug_idx", columns={"slug"})})
  */
 class Country extends BaseTaxonomy
 {

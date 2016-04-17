@@ -5,11 +5,11 @@ namespace Vinci\Domain;
 use Illuminate\Support\ServiceProvider;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Admin\AdminService;
-use Vinci\Domain\Admin\AdminValidator;
+use Vinci\Domain\Country\CountryService;
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Domain\Customer\CustomerService;
 use Vinci\Domain\Highlight\HighlightService;
-use Vinci\Domain\Highlight\HighlightValidator;
+use Vinci\Domain\Region\RegionService;
 
 class DomainServiceProvider extends ServiceProvider
 {
@@ -36,7 +36,7 @@ class DomainServiceProvider extends ServiceProvider
             return new AdminService(
                 $this->app['Vinci\Domain\Admin\AdminRepository'],
                 $this->app['em'],
-                new AdminValidator($this->app['validator']),
+                $this->app->make('Vinci\Domain\Admin\AdminValidator'),
                 $this->app['Vinci\Infrastructure\Storage\StorageService'],
                 $this->app['Vinci\Domain\Image\ImageRepository']
             );
@@ -46,10 +46,30 @@ class DomainServiceProvider extends ServiceProvider
             return new HighlightService(
                 $this->app['em'],
                 $this->app['Vinci\Domain\Highlight\HighlightRepository'],
-                new HighlightValidator($this->app['validator']),
+                $this->app->make('Vinci\Domain\Highlight\HighlightValidator'),
                 $this->app['Vinci\Infrastructure\Storage\StorageService'],
                 $this->app['Vinci\Domain\Image\ImageRepository'],
                 $this->app['Vinci\Domain\ACL\ACLService']
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\Country\CountryService', function() {
+            return new CountryService(
+                $this->app['em'],
+                $this->app['Vinci\Domain\Country\CountryRepository'],
+                $this->app->make('Vinci\Domain\Country\CountryValidator'),
+                $this->app['Vinci\Infrastructure\Storage\StorageService'],
+                $this->app['Vinci\Domain\Image\ImageRepository']
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\Region\RegionService', function() {
+            return new RegionService(
+                $this->app['em'],
+                $this->app['Vinci\Domain\Region\RegionRepository'],
+                $this->app->make('Vinci\Domain\Region\RegionValidator'),
+                $this->app['Vinci\Infrastructure\Storage\StorageService'],
+                $this->app['Vinci\Domain\Image\ImageRepository']
             );
         });
 

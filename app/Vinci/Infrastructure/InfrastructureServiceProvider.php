@@ -91,6 +91,30 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Country\Country'
         );
 
+        $this->registerRepository(
+            'Vinci\Domain\Region\RegionRepository',
+            'Vinci\Infrastructure\Region\DoctrineRegionRepository',
+            'Vinci\Domain\Region\Region'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Producer\ProducerRepository',
+            'Vinci\Infrastructure\Producer\DoctrineProducerRepository',
+            'Vinci\Domain\Producer\Producer'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Grape\GrapeRepository',
+            'Vinci\Infrastructure\Grape\DoctrineGrapeRepository',
+            'Vinci\Domain\Grape\Grape'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\ProductType\ProductTypeRepository',
+            'Vinci\Infrastructure\ProductType\DoctrineProductTypeRepository',
+            'Vinci\Domain\ProductType\ProductType'
+        );
+
         $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
             return new StorageService($this->app['filesystem'], $this->app['config']);
         });
