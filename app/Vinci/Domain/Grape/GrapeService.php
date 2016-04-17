@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Domain\Producer;
+namespace Vinci\Domain\Grape;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +12,7 @@ use Vinci\Domain\Image\ImageRepository;
 use Vinci\Domain\Image\ImageVersion;
 use Vinci\Infrastructure\Storage\StorageService;
 
-class ProducerService
+class GrapeService
 {
     use ValidationTrait;
 
@@ -28,8 +28,8 @@ class ProducerService
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        ProducerRepository $repository,
-        ProducerValidator $validator,
+        GrapeRepository $repository,
+        GrapeValidator $validator,
         StorageService $storage,
         ImageRepository $imageRepository
     )
@@ -45,10 +45,10 @@ class ProducerService
     {
         $this->validator->with($data)->passesOrFail();
 
-        return $this->saveProducer($data, function($data) {
-            $producer = new Producer;
-            $producer->fill($data);
-            return $producer;
+        return $this->saveGrape($data, function($data) {
+            $grape = new Grape;
+            $grape->fill($data);
+            return $grape;
         });
     }
 
@@ -56,22 +56,22 @@ class ProducerService
     {
         $this->validator->with($data)->setId($id)->passesOrFail();
 
-        return $this->saveProducer($data, function($data) use ($id) {
+        return $this->saveGrape($data, function($data) use ($id) {
 
-            $producer = $this->repository->find($id);
-            $producer->fill($data);
+            $grape = $this->repository->find($id);
+            $grape->fill($data);
 
-            return $producer;
+            return $grape;
         });
     }
 
-    public function storeImage(Producer $producer, UploadedFile $image)
+    public function storeImage(Grape $grape, UploadedFile $image)
     {
         $this->entityManager->getConnection()->beginTransaction();
 
         try {
 
-            $image = Image::makeFromUpload($image, $producer->getImagesUploadPath());
+            $image = Image::makeFromUpload($image, $grape->getImagesUploadPath());
 
             $this->storage->storeImage($image);
 
@@ -88,33 +88,33 @@ class ProducerService
         }
     }
 
-    public function removeImage(Image $image, Producer $producer)
+    public function removeImage(Image $image, Grape $grape)
     {
-        $producer->removeImage($image);
+        $grape->removeImage($image);
         $this->storage->deleteImage($image);
 
-        $this->entityManager->persist($producer);
+        $this->entityManager->persist($grape);
         $this->entityManager->remove($image);
         $this->entityManager->flush();
     }
 
-    protected function saveProducer($data, Closure $method)
+    protected function saveGrape($data, Closure $method)
     {
         try {
 
             $this->entityManager->beginTransaction();
 
-            $producer = $method($data);
+            $grape = $method($data);
 
-            $this->repository->save($producer);
+            $this->repository->save($grape);
 
-            $this->saveImages($data, $producer);
+            $this->saveImages($data, $grape);
 
-            $this->repository->save($producer);
+            $this->repository->save($grape);
 
             $this->entityManager->commit();
 
-            return $producer;
+            return $grape;
 
         } catch (Exception $e) {
 
@@ -124,16 +124,16 @@ class ProducerService
         }
     }
 
-    protected function saveImages($data, Producer $producer)
+    protected function saveImages($data, Grape $grape)
     {
-        if (! empty($imageDesktop = $data['image_logo'])) {
-            $image = $this->storeImage($producer, $imageDesktop);
-            $producer->addImage($image, ImageVersion::LOGO);
+        if (! empty($imageDesktop = $data['picture'])) {
+            $image = $this->storeImage($grape, $imageDesktop);
+            $grape->addImage($image, ImageVersion::PICTURE);
         }
 
-        if (! empty($imageMobile = $data['image_logo_mobile'])) {
-            $image = $this->storeImage($producer, $imageMobile);
-            $producer->addImage($image, ImageVersion::LOGO_MOBILE);
+        if (! empty($imageMobile = $data['picture_mobile'])) {
+            $image = $this->storeImage($grape, $imageMobile);
+            $grape->addImage($image, ImageVersion::PICTURE_MOBILE);
         }
     }
 

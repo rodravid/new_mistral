@@ -14,5 +14,9 @@ interface ImageVersion
     const CURRENT = 'current';
     const MAP = 'map';
     const BANNER = 'banner';
+    const LOGO = 'logo';
+    const LOGO_MOBILE = 'logo_mobile';
+    const PICTURE = 'picture';
+    const PICTURE_MOBILE = 'picture_mobile';
 
 }

@@ -2,8 +2,8 @@
 
     <div class="col-xs-12">
         <div class="form-group has-feedback">
-            <label for="txtCountryName">Nome</label>
-            {!! Form::text('name', null, ['id' => 'txtCountryName', 'class' => 'form-control', 'placeholder' => 'Digite o nome']) !!}
+            <label for="txtProducerName">Nome</label>
+            {!! Form::text('name', null, ['id' => 'txtProducerName', 'class' => 'form-control', 'placeholder' => 'Digite o nome']) !!}
             <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
@@ -12,55 +12,55 @@
         <div class="form-group">
             <div class="checkbox">
                 <input type="hidden" name="visibleSite" value="0">
-                <label for="ckbCountryVisibleSite"> {!! Form::checkbox('visibleSite', 1, null, ['id' => 'ckbCountryVisibleSite', 'class' => '']) !!} Visível no site ?</label>
+                <label for="ckbProducerVisibleSite"> {!! Form::checkbox('visibleSite', 1, null, ['id' => 'ckbProducerVisibleSite', 'class' => '']) !!} Visível no site ?</label>
             </div>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtCountryDescription">Descrição</label>
-            {!! Form::textarea('description', null, ['id' => 'txtCountryDescription', 'class' => 'form-control html-editor', 'placeholder' => 'Digite a descrição']) !!}
+            <label for="txtProducerDescription">Descrição</label>
+            {!! Form::textarea('description', null, ['id' => 'txtProducerDescription', 'class' => 'form-control html-editor', 'placeholder' => 'Digite a descrição']) !!}
             <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtCountrySeoTitle">Título SEO</label>
-            {!! Form::text('seoTitle', null, ['id' => 'txtCountryName', 'class' => 'form-control', 'placeholder' => 'Digite o título para SEO']) !!}
+            <label for="txtProducerSeoTitle">Título SEO</label>
+            {!! Form::text('seoTitle', null, ['id' => 'txtProducerName', 'class' => 'form-control', 'placeholder' => 'Digite o título para SEO']) !!}
             <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtCountrySeoDescription">Descrição SEO</label>
-            {!! Form::textarea('seoDescription', null, ['id' => 'txtCountrySeoDescription', 'class' => 'form-control', 'rows' => 4, 'placeholder' => 'Digite a descrição para SEO']) !!}
+            <label for="txtProducerSeoDescription">Descrição SEO</label>
+            {!! Form::textarea('seoDescription', null, ['id' => 'txtProducerSeoDescription', 'class' => 'form-control', 'rows' => 4, 'placeholder' => 'Digite a descrição para SEO']) !!}
             <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtCountryImageMap">Imagem do mapa</label>
-            {!! Form::file('image_map', ['id' => 'txtCountryImageMap']) !!}
+            <label for="txtProducerImageMap">Logo</label>
+            {!! Form::file('image_logo', ['id' => 'txtProducerImageMap']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtCountryImageBanner">Imagem do banner</label>
-            {!! Form::file('image_banner', ['id' => 'txtCountryImageBanner']) !!}
+            <label for="txtProducerImageBanner">Logo mobile</label>
+            {!! Form::file('image_logo_mobile', ['id' => 'txtProducerImageBanner']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
         </div>
     </div>
 
     <div class="col-xs-12">
         <div class="form-group has-feedback">
-            <label for="txtCountrySlug">URL amigável</label>
-            {!! Form::text('slug', null, ['id' => 'txtCountrySlug', 'class' => 'form-control', 'placeholder' => 'URL amigável']) !!}
+            <label for="txtProducerSlug">URL amigável</label>
+            {!! Form::text('slug', null, ['id' => 'txtProducerSlug', 'class' => 'form-control', 'placeholder' => 'URL amigável']) !!}
             <span class="glyphicon glyphicon-link form-control-feedback"></span>
         </div>
     </div>

@@ -9,8 +9,8 @@ class ProducerPresenter extends AbstractPresenter
 
     public function presentImageHtml()
     {
-        if ($this->hasImage('map')) {
-            return '<img src="' . $this->getImage('map') . '" style="width: 50px;" />';
+        if ($this->hasImage('logo')) {
+            return '<img src="' . $this->getImage('logo') . '" style="width: 50px;" />';
         }
 
         return '--';

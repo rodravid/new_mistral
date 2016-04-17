@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\App\Cms\Http\Producer;
+namespace Vinci\App\Cms\Http\Grape;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -11,12 +11,12 @@ use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\ACLService;
-use Vinci\Domain\Producer\ProducerRepository;
-use Vinci\Domain\Producer\ProducerService;
+use Vinci\Domain\Grape\GrapeRepository;
+use Vinci\Domain\Grape\GrapeService;
 use Vinci\Domain\Image\ImageRepository;
-use Vinci\Infrastructure\Producer\Datatables\ProducerCmsDatatable;
+use Vinci\Infrastructure\Grape\Datatables\GrapeCmsDatatable;
 
-class ProducerController extends Controller
+class GrapeController extends Controller
 {
 
     use DatatablesResponse;
@@ -25,7 +25,7 @@ class ProducerController extends Controller
 
     protected $repository;
 
-    protected $datatable = ProducerCmsDatatable::class;
+    protected $datatable = GrapeCmsDatatable::class;
 
     protected $imageRepository;
 
@@ -33,8 +33,8 @@ class ProducerController extends Controller
 
     public function __construct(
         EntityManagerInterface $em,
-        ProducerService $service,
-        ProducerRepository $repository,
+        GrapeService $service,
+        GrapeRepository $repository,
         ImageRepository $imageRepository,
         ACLService $aclService
     )
@@ -49,20 +49,20 @@ class ProducerController extends Controller
 
     public function index()
     {
-        return $this->view('producers.list');
+        return $this->view('grapes.list');
     }
 
     public function create()
     {
-        return $this->view('producers.create');
+        return $this->view('grapes.create');
     }
 
     public function edit($id)
     {
-        $producer = $this->repository->findOrFail($id);
+        $grape = $this->repository->findOrFail($id);
 
-        return $this->view('producers.edit')
-            ->withProducer($producer);
+        return $this->view('grapes.edit')
+            ->withGrape($grape);
     }
 
     public function store(Request $request)
@@ -70,15 +70,15 @@ class ProducerController extends Controller
         try {
 
             $data = $request->all();
-            $data['image_logo'] = $request->file('image_logo');
-            $data['image_logo_mobile'] = $request->file('image_logo_mobile');
+            $data['picture'] = $request->file('picture');
+            $data['picture_mobile'] = $request->file('picture_mobile');
             $data['user'] = cmsUser();
 
-            $producer = $this->service->create($data);
+            $grape = $this->service->create($data);
 
-            Flash::success("Produtor {$producer->getName()} criado com sucesso!");
+            Flash::success("Uva {$grape->getName()} criada com sucesso!");
 
-            return Redirect::route($this->getEditRouteName(), $producer->getId());
+            return Redirect::route($this->getEditRouteName(), $grape->getId());
 
         } catch (ValidationException $e) {
 
@@ -97,15 +97,15 @@ class ProducerController extends Controller
         try {
 
             $data = $request->all();
-            $data['image_logo'] = $request->file('image_logo');
-            $data['image_logo_mobile'] = $request->file('image_logo_mobile');
+            $data['picture'] = $request->file('picture');
+            $data['picture_mobile'] = $request->file('picture_mobile');
             $data['user'] = cmsUser();
 
-            $producer = $this->service->update($data, $id);
+            $grape = $this->service->update($data, $id);
 
-            Flash::success("Produtor {$producer->getName()} atualizado com sucesso!");
+            Flash::success("Uva {$grape->getName()} atualizada com sucesso!");
 
-            return Redirect::route($this->getEditRouteName(), $producer->getId());
+            return Redirect::route($this->getEditRouteName(), $grape->getId());
 
         } catch (ValidationException $e) {
 
@@ -122,13 +122,13 @@ class ProducerController extends Controller
 
     public function destroy($id)
     {
-        $producer = $this->repository->find($id);
+        $grape = $this->repository->find($id);
 
         try {
 
-            $this->repository->delete($producer);
+            $this->repository->delete($grape);
 
-            Flash::success("Produtor {$producer->getName()} excluído com sucesso!");
+            Flash::success("Uva {$grape->getName()} excluída com sucesso!");
 
             return Redirect::route($this->getListRouteName());
 
@@ -139,18 +139,18 @@ class ProducerController extends Controller
         }
     }
 
-    public function removeImage($producerId, $imageId)
+    public function removeImage($grapeId, $imageId)
     {
         try {
 
-            $producer = $this->repository->find($producerId);
+            $grape = $this->repository->find($grapeId);
             $image = $this->imageRepository->find($imageId);
 
-            $this->service->removeImage($image, $producer);
+            $this->service->removeImage($image, $grape);
 
             Flash::success("Imagem excluída com sucesso!");
 
-            return Redirect::route($this->getEditRouteName(), [$producerId]);
+            return Redirect::route($this->getEditRouteName(), [$grapeId]);
 
         } catch (Exception $e) {
 

@@ -2,7 +2,7 @@
 
 @section('module.content.thead')
     <th>#ID</th>
-    <th><i class="fa fa-picture-o"></i> Logo</th>
+    <th><i class="fa fa-picture-o"></i> Imagem</th>
     <th><i class="fa fa-pencil"></i> Nome</th>
     <th><i class="fa fa-calendar"></i> Criado em</th>
     <th><i class="fa fa-eye"></i> Visível no site</th>
