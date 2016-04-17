@@ -30,7 +30,7 @@
         @else
             <button type="submit" class="btn btn-success btn-block" name="status" value="1"><i class="fa fa-check"></i> Salvar e publicar</button>
             @if(isset($hasDraft))
-                <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Rascunho</button>
+                <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Salvar como rascunho</button>
             @endif
         @endif
     </div>
@@ -38,7 +38,7 @@
         <div class="box-footer">
             <button type="submit" class="btn btn-success btn-block" name="status" value="1"><i class="fa fa-check"></i> Salvar e publicar</button>
             @if(isset($hasDraft) && $hasDraft)
-                <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Rascunho</button>
+                <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Salvar como rascunho</button>
             @endif
         </div>
     @endif
