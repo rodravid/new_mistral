@@ -239,4 +239,8 @@ class Image extends File
      */
     protected $grapes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\ProductType\ProductTypeImage", mappedBy="image", cascade={"remove"})
+     */
+    protected $product_type;
 }
