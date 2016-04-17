@@ -229,4 +229,9 @@ class Image extends File
      */
     protected $regions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Producer\ProducerImage", mappedBy="image", cascade={"remove"})
+     */
+    protected $producers;
+
 }
