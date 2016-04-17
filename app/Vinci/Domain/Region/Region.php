@@ -2,11 +2,13 @@
 
 namespace Vinci\Domain\Region;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Core\BaseTaxonomy;
 use Vinci\Domain\Country\Country;
 use Vinci\Domain\Image\Image;
+use Vinci\Domain\Producer\Producer;
 
 /**
  * @ORM\Entity(repositoryClass="Vinci\Infrastructure\Region\DoctrineRegionRepository")
@@ -24,6 +26,18 @@ class Region extends BaseTaxonomy
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Country\Country", inversedBy="regions")
      */
     protected $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Producer\Producer", mappedBy="region")
+     */
+    protected $producers;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->producers = new ArrayCollection;
+    }
 
     public function getImagesUploadPath()
     {
@@ -54,6 +68,13 @@ class Region extends BaseTaxonomy
     public function belongsToCountry(Country $country)
     {
         return $this->country == $country;
+    }
+
+    public function addProducer(Producer $producer)
+    {
+        if ($this->producers->contains($producer)) {
+            $this->producers->add($producer);
+        }
     }
 
 }

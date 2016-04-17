@@ -14,6 +14,7 @@ use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Producer\ProducerRepository;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Image\ImageRepository;
+use Vinci\Domain\Region\RegionRepository;
 use Vinci\Infrastructure\Producer\Datatables\ProducerCmsDatatable;
 
 class ProducerController extends Controller
@@ -31,10 +32,13 @@ class ProducerController extends Controller
 
     protected $aclService;
 
+    protected $regionRepository;
+
     public function __construct(
         EntityManagerInterface $em,
         ProducerService $service,
         ProducerRepository $repository,
+        RegionRepository $regionRepository,
         ImageRepository $imageRepository,
         ACLService $aclService
     )
@@ -45,6 +49,7 @@ class ProducerController extends Controller
         $this->repository = $repository;
         $this->imageRepository = $imageRepository;
         $this->aclService = $aclService;
+        $this->regionRepository = $regionRepository;
     }
 
     public function index()
@@ -54,15 +59,20 @@ class ProducerController extends Controller
 
     public function create()
     {
-        return $this->view('producers.create');
+        $regions = $this->getRegionsSelectArray();
+
+        return $this->view('producers.create')
+            ->withRegions($regions);
     }
 
     public function edit($id)
     {
         $producer = $this->repository->findOrFail($id);
+        $regions = $this->regionRepository->getAll();
 
         return $this->view('producers.edit')
-            ->withProducer($producer);
+            ->withProducer($producer)
+            ->withRegions($regions);
     }
 
     public function store(Request $request)
@@ -157,6 +167,12 @@ class ProducerController extends Controller
             Flash::error($e->getMessage());
             return Redirect::back();
         }
+    }
+
+    protected function getRegionsSelectArray()
+    {
+        $regions = $this->regionRepository->getAll();
+        return html_select_array($regions, 'id', 'name');
     }
 
 }

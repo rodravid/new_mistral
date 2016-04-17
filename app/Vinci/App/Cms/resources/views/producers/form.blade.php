@@ -26,6 +26,24 @@
     </div>
 
     <div class="col-lg-12">
+        <div class="form-group">
+            <label for="selectRegionCountry">Região</label>
+
+            @if(isset($producer))
+                <select name="region_id" id="selectRegionCountry" class="form-control select2">
+                    <option value="">Selecione a região</option>
+                    @foreach($regions as $region)
+                        <option value="{{ $region->getId() }}" @if(old('region_id') == $region->getId() || $producer->belongsToRegion($region)) selected @endif>{{ $region->getName() }}</option>
+                    @endforeach
+                </select>
+            @else
+                {!! Form::select('region_id', ['' => 'Selecione a região'] + $regions, null, ['id' => 'selectRegionCountry', 'class' => 'form-control select2']) !!}
+            @endif
+
+        </div>
+    </div>
+
+    <div class="col-lg-12">
         <div class="form-group has-feedback">
             <label for="txtProducerSeoTitle">Título SEO</label>
             {!! Form::text('seoTitle', null, ['id' => 'txtProducerName', 'class' => 'form-control', 'placeholder' => 'Digite o título para SEO']) !!}

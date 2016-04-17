@@ -22,8 +22,7 @@ class RegionCmsDatatable extends AbstractDatatables
         3 => 'c.name',
         4 => 'o.createdAt',
         5 => 'o.visibleSite',
-        6 => 'o.status',
-        7 => 'o.status'
+        6 => 'o.status'
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -40,7 +39,8 @@ class RegionCmsDatatable extends AbstractDatatables
             $qb->where($qb->expr()->eq('o.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('o.name', ':search')
+                $qb->expr()->like('o.name', ':search'),
+                $qb->expr()->like('c.name', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);

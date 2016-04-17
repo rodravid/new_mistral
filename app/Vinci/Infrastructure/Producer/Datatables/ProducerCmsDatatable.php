@@ -19,9 +19,10 @@ class ProducerCmsDatatable extends AbstractDatatables
     protected $sortMapping = [
         0 => 'o.id',
         2 => 'o.name',
-        3 => 'o.createdAt',
-        4 => 'o.visibleSite',
-        5 => 'o.status'
+        3 => 'r.name',
+        4 => 'o.createdAt',
+        5 => 'o.visibleSite',
+        6 => 'o.status'
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -29,6 +30,7 @@ class ProducerCmsDatatable extends AbstractDatatables
         $qb = $this->repository->createQueryBuilder('o')
             ->leftJoin('o.user', 'u')
             ->leftJoin('o.images', 'i')
+            ->leftJoin('o.region', 'r')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
@@ -37,7 +39,8 @@ class ProducerCmsDatatable extends AbstractDatatables
             $qb->where($qb->expr()->eq('o.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('o.name', ':search')
+                $qb->expr()->like('o.name', ':search'),
+                $qb->expr()->like('r.name', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
@@ -57,7 +60,8 @@ class ProducerCmsDatatable extends AbstractDatatables
         return [
             $presenter->getId(),
             $presenter->image_html,
-            $presenter->getName(),
+            $presenter->name,
+            $presenter->region_link,
             $presenter->created_at,
             $presenter->visible_site,
             $presenter->status_html,

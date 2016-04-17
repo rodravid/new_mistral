@@ -16,4 +16,18 @@ class ProducerPresenter extends AbstractPresenter
         return '--';
     }
 
+    public function presentRegionName()
+    {
+        if ($region = $this->getRegion()) {
+            return $region->getName();
+        }
+    }
+
+    public function presentRegionLink()
+    {
+        if ($region = $this->getRegion()) {
+            return '<a href="' . route('cms.regions.edit', $region->getId()) . '">' . $region->getName() . '</a>';
+        }
+    }
+
 }

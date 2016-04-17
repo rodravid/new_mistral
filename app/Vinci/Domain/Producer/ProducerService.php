@@ -10,6 +10,7 @@ use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Image\ImageRepository;
 use Vinci\Domain\Image\ImageVersion;
+use Vinci\Domain\Region\Region;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class ProducerService
@@ -105,6 +106,8 @@ class ProducerService
             $this->entityManager->beginTransaction();
 
             $producer = $method($data);
+
+            $producer->setRegion($this->entityManager->getReference(Region::class, $data['region_id']));
 
             $this->repository->save($producer);
 
