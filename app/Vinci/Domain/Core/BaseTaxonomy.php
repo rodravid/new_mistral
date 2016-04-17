@@ -5,6 +5,7 @@ namespace Vinci\Domain\Core;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Sluggable\Sluggable;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Common\Relationships\HasOneAdminUser;
 use Vinci\Domain\Common\Traits\SEOable;
@@ -15,7 +16,7 @@ use Vinci\Domain\Image\Image;
  * @ORM\MappedSuperclass
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-abstract class BaseTaxonomy extends Model
+abstract class BaseTaxonomy extends Model implements Sluggable
 {
 
     use Timestampable, SoftDeletes, SEOable, HasOneAdminUser;
@@ -39,7 +40,7 @@ abstract class BaseTaxonomy extends Model
 
     /**
      * @Gedmo\Slug(fields={"name"}, unique=true, updatable=false)
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(length=255, nullable=true, unique=true)
      */
     protected $slug;
 
@@ -105,7 +106,7 @@ abstract class BaseTaxonomy extends Model
 
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        $this->slug = ! empty($slug) ? $slug : null;
         return $this;
     }
 
