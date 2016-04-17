@@ -4,9 +4,9 @@ namespace Vinci\Infrastructure\ProductType;
 
 use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\ProductType\ProductTypeRepository;
-use Vinci\Infrastructure\Common\DoctrineSortableRepository;
+use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
-class DoctrineProductTypeRepository extends DoctrineSortableRepository implements ProductTypeRepository
+class DoctrineProductTypeRepository extends DoctrineBaseRepository implements ProductTypeRepository
 {
 
     public function find($id)

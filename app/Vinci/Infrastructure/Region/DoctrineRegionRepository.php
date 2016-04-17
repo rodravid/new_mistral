@@ -4,9 +4,9 @@ namespace Vinci\Infrastructure\Region;
 
 use Vinci\Domain\Region\Region;
 use Vinci\Domain\Region\RegionRepository;
-use Vinci\Infrastructure\Common\DoctrineSortableRepository;
+use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
-class DoctrineRegionRepository extends DoctrineSortableRepository implements RegionRepository
+class DoctrineRegionRepository extends DoctrineBaseRepository implements RegionRepository
 {
 
     public function find($id)
@@ -26,6 +26,17 @@ class DoctrineRegionRepository extends DoctrineSortableRepository implements Reg
         $this->_em->persist($country);
         $this->_em->flush();
         return $country;
+    }
+
+    public function getAll()
+    {
+        $query = $this->_em
+            ->createQueryBuilder()
+            ->select('region')
+            ->from('Vinci\Domain\Region\Region', 'region')
+            ->getQuery();
+
+        return $query->getResult();
     }
 
 }

@@ -9,10 +9,11 @@ class RegionValidator extends LaravelValidator
 
     protected $rules = [
         'name' => 'required',
+        'country' => 'required'
     ];
 
     protected $messages = [
-
+        'country.required' => 'Você deve selecionar um país.'
     ];
 
 }

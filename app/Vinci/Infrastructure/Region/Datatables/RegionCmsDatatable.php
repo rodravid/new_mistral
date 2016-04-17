@@ -19,9 +19,11 @@ class RegionCmsDatatable extends AbstractDatatables
     protected $sortMapping = [
         0 => 'o.id',
         2 => 'o.name',
-        3 => 'o.createdAt',
-        4 => 'o.visibleSite',
-        5 => 'o.status'
+        3 => 'c.name',
+        4 => 'o.createdAt',
+        5 => 'o.visibleSite',
+        6 => 'o.status',
+        7 => 'o.status'
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -29,6 +31,7 @@ class RegionCmsDatatable extends AbstractDatatables
         $qb = $this->repository->createQueryBuilder('o')
             ->leftJoin('o.user', 'u')
             ->leftJoin('o.images', 'i')
+            ->leftJoin('o.country', 'c')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
@@ -57,7 +60,8 @@ class RegionCmsDatatable extends AbstractDatatables
         return [
             $presenter->getId(),
             $presenter->image_html,
-            $presenter->getName(),
+            $presenter->name,
+            $presenter->country_link,
             $presenter->created_at,
             $presenter->visible_site,
             $presenter->status_html,

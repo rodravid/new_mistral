@@ -4,6 +4,7 @@
     <th>#ID</th>
     <th><i class="fa fa-picture-o"></i> Mapa</th>
     <th><i class="fa fa-pencil"></i> Nome</th>
+    <th><i class="fa fa-flag"></i> País</th>
     <th><i class="fa fa-calendar"></i> Criado em</th>
     <th><i class="fa fa-eye"></i> Visível no site</th>
     <th><i class="fa fa-edit"></i> Status</th>
@@ -30,7 +31,7 @@
                     {className: 'hcenter vcenter', width: '70px', targets: 1 },
                     {className: 'vcenter', width: '200px', targets: 2 },
                     {className: 'hcenter vcenter', targets: 0 },
-                    {className: 'vcenter', targets: [0,2,3,4,5,6] }
+                    {className: 'vcenter', targets: [0,2,3,4,5,6,7] }
                 ]
             });
 

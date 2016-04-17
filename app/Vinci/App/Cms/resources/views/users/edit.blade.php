@@ -28,7 +28,7 @@
                         @include('cms::users.form')
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Grupo</label>
+                            <label for="selectUserRoles">Grupo</label>
                             <select name="roles" id="selectUserRoles" class="form-control select2">
                                 <option value="">Selecione o grupo</option>
                                 @foreach($roles as $role)

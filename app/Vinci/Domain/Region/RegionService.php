@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Http\UploadedFile;
 use Vinci\Domain\Core\Validation\ValidationTrait;
+use Vinci\Domain\Country\Country;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Image\ImageRepository;
 use Vinci\Domain\Image\ImageVersion;
@@ -105,6 +106,8 @@ class RegionService
             $this->entityManager->beginTransaction();
 
             $region = $method($data);
+
+            $region->setCountry($this->entityManager->getReference(Country::class, $data['country']));
 
             $this->repository->save($region);
 

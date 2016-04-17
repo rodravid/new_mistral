@@ -11,6 +11,7 @@ use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\ACLService;
+use Vinci\Domain\Country\CountryRepository;
 use Vinci\Domain\Region\RegionRepository;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Image\ImageRepository;
@@ -25,18 +26,18 @@ class RegionController extends Controller
 
     protected $repository;
 
+    protected $countryRepository;
+
     protected $datatable = RegionCmsDatatable::class;
 
     protected $imageRepository;
-
-    protected $aclService;
 
     public function __construct(
         EntityManagerInterface $em,
         RegionService $service,
         RegionRepository $repository,
-        ImageRepository $imageRepository,
-        ACLService $aclService
+        CountryRepository $countryRepository,
+        ImageRepository $imageRepository
     )
     {
         parent::__construct($em);
@@ -44,7 +45,7 @@ class RegionController extends Controller
         $this->service = $service;
         $this->repository = $repository;
         $this->imageRepository = $imageRepository;
-        $this->aclService = $aclService;
+        $this->countryRepository = $countryRepository;
     }
 
     public function index()
@@ -54,15 +55,20 @@ class RegionController extends Controller
 
     public function create()
     {
-        return $this->view('regions.create');
+        $countries = $this->getCountriesSelectArray();
+
+        return $this->view('regions.create')
+            ->withCountries($countries);
     }
 
     public function edit($id)
     {
         $region = $this->repository->findOrFail($id);
+        $countries = $this->countryRepository->getAll();
 
         return $this->view('regions.edit')
-            ->withRegion($region);
+            ->withRegion($region)
+            ->withCountries($countries);
     }
 
     public function store(Request $request)
@@ -157,6 +163,12 @@ class RegionController extends Controller
             Flash::error($e->getMessage());
             return Redirect::back();
         }
+    }
+
+    protected function getCountriesSelectArray()
+    {
+        $countries = $this->countryRepository->getAll();
+        return html_select_array($countries, 'id', 'name');
     }
 
 }

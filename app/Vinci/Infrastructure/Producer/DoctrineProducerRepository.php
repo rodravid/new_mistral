@@ -4,9 +4,9 @@ namespace Vinci\Infrastructure\Producer;
 
 use Vinci\Domain\Producer\Producer;
 use Vinci\Domain\Producer\ProducerRepository;
-use Vinci\Infrastructure\Common\DoctrineSortableRepository;
+use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
-class DoctrineProducerRepository extends DoctrineSortableRepository implements ProducerRepository
+class DoctrineProducerRepository extends DoctrineBaseRepository implements ProducerRepository
 {
 
     public function find($id)

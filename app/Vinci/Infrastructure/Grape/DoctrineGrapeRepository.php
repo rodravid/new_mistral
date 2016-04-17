@@ -4,9 +4,9 @@ namespace Vinci\Infrastructure\Grape;
 
 use Vinci\Domain\Grape\Grape;
 use Vinci\Domain\Grape\GrapeRepository;
-use Vinci\Infrastructure\Common\DoctrineSortableRepository;
+use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
-class DoctrineGrapeRepository extends DoctrineSortableRepository implements GrapeRepository
+class DoctrineGrapeRepository extends DoctrineBaseRepository implements GrapeRepository
 {
 
     public function find($id)

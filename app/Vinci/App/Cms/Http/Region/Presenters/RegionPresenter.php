@@ -16,4 +16,18 @@ class RegionPresenter extends AbstractPresenter
         return '--';
     }
 
+    public function presentCountryName()
+    {
+        if ($country = $this->getCountry()) {
+            return $country->getName();
+        }
+    }
+
+    public function presentCountryLink()
+    {
+        if ($country = $this->getCountry()) {
+            return '<a href="' . route('cms.countries.edit', $country->getId()) . '">' . $country->getName() . '</a>';
+        }
+    }
+
 }

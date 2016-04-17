@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Country;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Core\BaseTaxonomy;
@@ -19,6 +20,11 @@ class Country extends BaseTaxonomy
      */
     protected $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Region\Region", mappedBy="country")
+     */
+    protected $regions;
+
     public function getImagesUploadPath()
     {
         return 'countries/' . $this->getId() . '/images';
@@ -32,6 +38,17 @@ class Country extends BaseTaxonomy
         $countryImage->setImageVersion($version);
         $this->images->remove($version);
         $this->images->set($version, $countryImage);
+    }
+
+    public function getRegions()
+    {
+        return $this->regions;
+    }
+
+    public function setRegions(ArrayCollection $regions)
+    {
+        $this->regions = $regions;
+        return $this;
     }
 
 }

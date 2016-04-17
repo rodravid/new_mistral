@@ -26,6 +26,24 @@
     </div>
 
     <div class="col-lg-12">
+        <div class="form-group">
+            <label for="selectRegionCountry">País</label>
+
+            @if(isset($region))
+                <select name="country" id="selectRegionCountry" class="form-control select2">
+                    <option value="">Selecione o país</option>
+                    @foreach($countries as $country)
+                        <option value="{{ $country->getId() }}" @if(old('country') == $country->getId() || $region->belongsToCountry($country)) selected @endif>{{ $country->getName() }}</option>
+                    @endforeach
+                </select>
+            @else
+                {!! Form::select('country', ['' => 'Selecione o país'] + $countries, null, ['id' => 'selectRegionCountry', 'class' => 'form-control select2']) !!}
+            @endif
+
+        </div>
+    </div>
+
+    <div class="col-lg-12">
         <div class="form-group has-feedback">
             <label for="txtCountrySeoTitle">Título SEO</label>
             {!! Form::text('seoTitle', null, ['id' => 'txtCountryName', 'class' => 'form-control', 'placeholder' => 'Digite o título para SEO']) !!}
@@ -41,7 +59,7 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="form-group has-feedback">
             <label for="txtCountryImageMap">Imagem do mapa</label>
             {!! Form::file('image_map', ['id' => 'txtCountryImageMap']) !!}
@@ -49,7 +67,7 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="form-group has-feedback">
             <label for="txtCountryImageBanner">Imagem do banner</label>
             {!! Form::file('image_banner', ['id' => 'txtCountryImageBanner']) !!}
@@ -64,5 +82,7 @@
             <span class="glyphicon glyphicon-link form-control-feedback"></span>
         </div>
     </div>
+
+
 
 </div>

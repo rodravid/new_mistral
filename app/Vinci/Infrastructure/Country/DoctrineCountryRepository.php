@@ -4,9 +4,9 @@ namespace Vinci\Infrastructure\Country;
 
 use Vinci\Domain\Country\Country;
 use Vinci\Domain\Country\CountryRepository;
-use Vinci\Infrastructure\Common\DoctrineSortableRepository;
+use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
-class DoctrineCountryRepository extends DoctrineSortableRepository implements CountryRepository
+class DoctrineCountryRepository extends DoctrineBaseRepository implements CountryRepository
 {
 
     public function find($id)
@@ -26,6 +26,17 @@ class DoctrineCountryRepository extends DoctrineSortableRepository implements Co
         $this->_em->persist($country);
         $this->_em->flush();
         return $country;
+    }
+
+    public function getAll()
+    {
+        $query = $this->_em
+            ->createQueryBuilder()
+            ->select('country')
+            ->from('Vinci\Domain\Country\Country', 'country')
+            ->getQuery();
+
+        return $query->getResult();
     }
 
 }
