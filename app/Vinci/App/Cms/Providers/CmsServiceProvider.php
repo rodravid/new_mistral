@@ -31,6 +31,7 @@ class CmsServiceProvider extends ServiceProvider
     protected function registerComposers()
     {
         $this->app['view']->composer('cms::layouts.partials.menu', 'Vinci\App\Cms\Http\ViewComposers\MenuComposer');
+        $this->app['view']->composer('cms::layouts.master', 'Vinci\App\Cms\Http\ViewComposers\TopNavComposer');
     }
 
 }

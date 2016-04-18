@@ -2,7 +2,8 @@
 
 namespace Vinci\Infrastructure\Admin\Datatables;
 
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Vinci\App\Cms\Http\User\Presenters\DefaultUserPresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,15 +12,28 @@ class UsersCmsDatatable extends AbstractDatatables
 
     protected $adminRepository;
 
-    public function __construct(AdminRepository $adminRepository)
+    public function __construct(ACLService $aclService, AdminRepository $adminRepository)
     {
+        parent::__construct($aclService);
+
         $this->adminRepository = $adminRepository;
     }
 
-    public function getData($perPage, $start, array $order = null, array $search = null)
+    protected $sortMapping = [
+        0 => 'o.id',
+        1 => 'p.id',
+        2 => 'o.name',
+        3 => 'o.email',
+        4 => 'r.title',
+        5 => 'o.createdAt',
+    ];
+
+    public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->adminRepository->createQueryBuilder('o')
-            ->select('o')
+            ->select('o', 'r', 'p')
+            ->join('o.roles', 'r')
+            ->leftJoin('o.profile_photo', 'p')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
@@ -29,56 +43,33 @@ class UsersCmsDatatable extends AbstractDatatables
 
             $qb->orWhere($qb->expr()->orX(
                 $qb->expr()->like('o.name', ':search'),
-                $qb->expr()->like('o.email', ':search')
+                $qb->expr()->like('o.email', ':search'),
+                $qb->expr()->like('r.title', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
             $qb->setParameter('search', '%' . $search['value'] . '%');
         }
 
-        $dir = $order['dir'];
+        $this->applyOrder($order, $qb);
 
-        switch ($order['column']) {
-
-            case 0:
-                $qb->orderBy('o.id', $dir);
-
-                break;
-
-            case 1:
-                $qb->orderBy('o.name', $dir);
-                break;
-
-            case 2:
-                $qb->orderBy('o.email', $dir);
-                break;
-
-            case 3:
-                $qb->orderBy('o.createdAt', $dir);
-                break;
-        }
-
-        $paginator = new Paginator($qb->getQuery());
-
-        $data = $this->parseDataForDatatable($paginator->getIterator());
-
-        return $this->makeDatatablesOutput($paginator->count(), $data);
+        return $this->makePaginator($qb->getQuery());
     }
 
-    protected function parseDataForDatatable($data)
+    public function parseSingleResult($user)
     {
-        $users = [];
-        foreach ($data as $user) {
-            $users[] = [
-                $user->getId(),
-                $user->getName(),
-                $user->getEmail(),
-                $user->getCreatedAt()->format('d/m/Y H:i:s'),
-                $this->getActionsColumn($user, ['destroy_url' => route('cms.users.destroy', $user->getId())])
-            ];
-        }
 
-        return $users;
+        $presenter = new DefaultUserPresenter($user);
+
+        return [
+            $user->getId(),
+            '<img src="' . $presenter->profile_photo . '" style="width: 50px;" />',
+            $user->getName(),
+            $user->getEmail(),
+            $presenter->group_name,
+            $presenter->created_at,
+            $this->buildActionsColumn($user)
+        ];
     }
 
 }

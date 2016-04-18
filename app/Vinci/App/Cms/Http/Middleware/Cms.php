@@ -21,7 +21,7 @@ class Cms
 
     public function handle($request, Closure $next, $guard = null)
     {
-        $module = $this->ACLService->findModuleByAction($this->route->getName());
+        $module = $this->ACLService->findModuleByPermissionName($this->route->getName());
 
         if ($module) {
             $this->ACLService->setCurrentModule($module);

@@ -4,7 +4,6 @@ use Doctrine\ORM\EntityManager;
 use Illuminate\Database\Seeder;
 use Vinci\Domain\ACL\Module\Module;
 use Vinci\Domain\ACL\Module\ModuleRepository;
-use Vinci\Domain\ACL\Permission\Permission;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Domain\Customer\CustomerRepository;
@@ -59,48 +58,6 @@ class UsersTableSeeder extends Seeder
             'password' => '123'
         ]);
 
-        $user2 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste2@teste.com',
-            'password' => '123'
-        ]);
-
-        $user3 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste3@teste.com',
-            'password' => '123'
-        ]);
-
-        $user4 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste4@teste.com',
-            'password' => '123'
-        ]);
-
-        $user5 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste5@teste.com',
-            'password' => '123'
-        ]);
-
-        $user6 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste6@teste.com',
-            'password' => '123'
-        ]);
-
-        $user7 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste7@teste.com',
-            'password' => '123'
-        ]);
-
-        $user8 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste8@teste.com',
-            'password' => '123'
-        ]);
-
         $superAdminRole = Role::make([
             'title' => 'Super admin',
             'name' => 'super-admin'
@@ -111,13 +68,11 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin'
         ]);
 
-        $adminRole->assignPermission($this->em->getReference(Permission::class, 1));
-        $adminRole->assignPermission($this->em->getReference(Permission::class, 2));
-
         $adminRole->assignModule($this->em->getReference(Module::class, 1));
-        $adminRole->assignModule($this->em->getReference(Module::class, 2));
-        $adminRole->assignModule($this->em->getReference(Module::class, 3));
         $adminRole->assignModule($this->em->getReference(Module::class, 4));
+        $adminRole->assignModule($this->em->getReference(Module::class, 10));
+        $adminRole->assignModule($this->em->getReference(Module::class, 11));
+        $adminRole->assignModule($this->em->getReference(Module::class, 12));
 
         $admin1->assignRole($superAdminRole);
         $admin2->assignRole($superAdminRole);
@@ -131,15 +86,9 @@ class UsersTableSeeder extends Seeder
         $this->em->persist($admin2);
         $this->em->persist($admin3);
         $this->em->persist($user1);
-        $this->em->persist($user2);
-        $this->em->persist($user3);
-        $this->em->persist($user4);
-        $this->em->persist($user5);
-        $this->em->persist($user6);
-        $this->em->persist($user7);
-        $this->em->persist($user8);
 
         $this->em->flush();
+        $this->em->clear();
 
     }
 }

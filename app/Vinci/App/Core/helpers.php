@@ -23,3 +23,21 @@ function html_select_array($data, $key = 'id', $value = 'title')
 
     return $result;
 }
+
+function uniqueHash()
+{
+    return md5(uniqid(rand()));
+}
+
+function present_status_html($status)
+{
+    switch($status) {
+        case 0:
+            return '<i class="fa fa-edit"></i><span class="text-info"> Rascunho</span>';
+            break;
+
+        case 1:
+            return '<i class="fa fa-check"></i><span class="text-success"> Publicado</span>';
+        break;
+    }
+}

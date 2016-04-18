@@ -2,8 +2,8 @@
 
 namespace Vinci\Domain\Product;
 
-use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -18,6 +18,8 @@ use Vinci\Domain\Core\Model;
  */
 class Product extends Model
 {
+
+    use Timestamps;
 
     /**
      * @ORM\Id
@@ -42,19 +44,13 @@ class Product extends Model
     protected $status;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Image\Image")
+     * @ORM\JoinTable(name="products_photos",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="photo_id", referencedColumnName="id", unique=true)}
+     *     )
      */
-    protected $created_at;
-
-    public function setCreatedAt(Carbon $date)
-    {
-        $this->created_at = $date;
-    }
-
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
+    protected $photos;
 
     public function getId()
     {

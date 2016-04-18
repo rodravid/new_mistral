@@ -39,7 +39,7 @@ return [
     'filled'               => 'The :attribute field is required.',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',
-    'integer'              => 'The :attribute must be an integer.',
+    'integer'              => 'O campo :attribute deve conter um número inteiro.',
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
@@ -109,9 +109,15 @@ return [
     'attributes' => [
         'name' => 'Nome',
         'email' => 'E-mail',
+        'title' => 'Título',
+        'subtitle' => 'Subtítulo',
+        'description' => 'Descrição',
+        'url' => 'URL',
+        'amount' => 'Valor',
         'password' => 'Senha',
         'password_confirmation' => 'Confirmação de Senha',
-        'roles' => 'Grupo'
+        'roles' => 'Grupo',
+        'position' => 'Ordem'
     ],
 
 ];

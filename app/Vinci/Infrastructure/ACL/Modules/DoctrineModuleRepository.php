@@ -13,22 +13,25 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
     {
         $query = $this->_em
             ->createQueryBuilder()
-            ->select('node')
-            ->from('Vinci\Domain\ACL\Module\Module', 'node')
-            ->orderBy('node.root, node.lft', 'ASC')
+            ->select('module', 'r', 'p')
+            ->from('Vinci\Domain\ACL\Module\Module', 'module')
+            ->leftJoin('module.roles', 'r')
+            ->leftJoin('r.permissions', 'p')
+            ->orderBy('module.root, module.lft', 'ASC')
             ->getQuery();
 
-        return $query->getArrayResult();
+        return $query->getResult();
     }
 
     public function getFromRoles(Collection $roles)
     {
         $query = $this->_em
             ->createQueryBuilder()
-            ->select('node')
-            ->from('Vinci\Domain\ACL\Module\Module', 'node')
-            ->join('node.roles', 'r')
-            ->orderBy('node.root, node.lft', 'ASC')
+            ->select('module', 'r', 'p')
+            ->from('Vinci\Domain\ACL\Module\Module', 'module')
+            ->join('module.roles', 'r')
+            ->join('r.permissions', 'p')
+            ->orderBy('module.root, module.lft', 'ASC')
             ->where('r.id in (:ids)')
             ->getQuery();
 
@@ -38,7 +41,7 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
 
         $query->setParameter('ids', $ids);
 
-        return $query->getArrayResult();
+        return $query->getResult();
     }
 
     public function findByName($name)
@@ -55,6 +58,41 @@ class DoctrineModuleRepository extends DoctrineNestedTreeRepository implements M
         $query->setParameter('name', $name);
 
         return $query->getOneOrNullResult();
+    }
+
+    public function findByPermissionName($name)
+    {
+        return $this->findByName($name);
+    }
+
+    public function buildTree(array $modules, array $options = [])
+    {
+        $normalized = [];
+
+        foreach ($modules as $module) {
+            $normalized[] = $this->normalizeModule($module);
+        }
+
+        return parent::buildTree($normalized, $options);
+    }
+
+    protected function normalizeModule($module)
+    {
+        if (is_array($module)) {
+            return $module;
+        }
+
+        return [
+            'id' => $module->getId(),
+            'name' => $module->getName(),
+            'title' => $module->getTitle(),
+            'url' => $module->getUrl(),
+            'icon' => $module->getIcon(),
+            'lvl' => $module->getLvl(),
+            'lft' => $module->getLft(),
+            'rgt' => $module->getRgt()
+        ];
+
     }
 
 }

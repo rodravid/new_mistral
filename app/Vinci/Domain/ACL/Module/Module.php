@@ -31,11 +31,6 @@ class Module extends Model
     protected $title;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $url;
-
-    /**
      * @ORM\Column(type="string", unique=true)
      */
     protected $name;
@@ -43,7 +38,27 @@ class Module extends Model
     /**
      * @ORM\Column(type="string", nullable=true)
      */
+    protected $url;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $datatable_url;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     protected $icon;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $create_button_text;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $editing_text;
 
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\ACL\Role\Role", mappedBy="modules")
@@ -54,19 +69,19 @@ class Module extends Model
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
      */
-    private $lft;
+    protected $lft;
 
     /**
      * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer")
      */
-    private $lvl;
+    protected $lvl;
 
     /**
      * @Gedmo\TreeRight
      * @ORM\Column(name="rgt", type="integer")
      */
-    private $rgt;
+    protected $rgt;
 
     /**
      * @Gedmo\TreeRoot
@@ -121,6 +136,16 @@ class Module extends Model
         return $this->url;
     }
 
+    public function setDatatableUrl($url)
+    {
+        $this->datatable_url = $url;
+    }
+
+    public function getDatatableUrl()
+    {
+        return $this->datatable_url;
+    }
+
     public function setName($name)
     {
         $this->name = $name;
@@ -149,11 +174,17 @@ class Module extends Model
     public function setParent(Module $parent = null)
     {
         $this->parent = $parent;
+        return $this;
     }
 
     public function getParent()
     {
         return $this->parent;
+    }
+
+    public function hasParent()
+    {
+        return $this->parent instanceof static;
     }
 
     public function setChildrens($childs)
@@ -178,9 +209,51 @@ class Module extends Model
         return false;
     }
 
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
     public function hasChildrens()
     {
         return $this->children->count() > 0;
+    }
+    
+    public function getLft()
+    {
+        return $this->lft;
+    }
+
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    public function getRgt()
+    {
+        return $this->rgt;
+    }
+
+    public function setCreateButtonText($create_button_text)
+    {
+        $this->create_button_text = $create_button_text;
+        return $this;
+    }
+
+    public function getCreateButtonText()
+    {
+        return $this->create_button_text;
+    }
+
+    public function getEditingText()
+    {
+        return $this->editing_text;
+    }
+
+    public function setEditingText($editing_text)
+    {
+        $this->editing_text = $editing_text;
+        return $this;
     }
 
 }

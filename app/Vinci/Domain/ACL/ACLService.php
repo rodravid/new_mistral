@@ -2,19 +2,38 @@
 
 namespace Vinci\Domain\ACL;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Vinci\Domain\ACL\Module\Module;
 use Vinci\Domain\ACL\Module\ModuleRepository;
+use Vinci\Domain\ACL\Permission\Permission;
+use Vinci\Domain\ACL\Permission\PermissionRepository;
+use Vinci\Domain\ACL\Role\Role;
+use Vinci\Domain\ACL\Role\RoleRepository;
 use Vinci\Domain\User\User;
 
 class ACLService
 {
     protected $moduleRepository;
 
+    protected $permissionRepository;
+
     protected $currentModule;
 
-    public function __construct(ModuleRepository $moduleRepository)
+    protected $entityManager;
+
+    protected $roleRepository;
+
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ModuleRepository $moduleRepository,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository
+    )
     {
+        $this->entityManager = $entityManager;
         $this->moduleRepository = $moduleRepository;
+        $this->roleRepository = $roleRepository;
+        $this->permissionRepository = $permissionRepository;
     }
 
     public function setCurrentModule(Module $module)
@@ -27,13 +46,21 @@ class ACLService
         return $this->currentModule;
     }
 
+    public function getCurrentModuleName()
+    {
+        return $this->currentModule->getName();
+    }
+
+    public function getCurrentModuleId()
+    {
+        return $this->currentModule->getId();
+    }
+
     public function buildModulesTreeHtmlForUser(User $user, array $options = [])
     {
         $modules = $this->getModulesForUser($user);
 
-        $tree = $this->moduleRepository->buildTree($modules, $options);
-
-        return $tree;
+        return $this->moduleRepository->buildTree($modules, $options);
     }
 
     protected function getModulesForUser(User $user)
@@ -45,39 +72,108 @@ class ACLService
         return $this->moduleRepository->getFromRoles($user->getRoles());
     }
 
-    public function userCanExecuteAction(User $user, $action)
+    public function userCanAccessRoute(User $user, $routeName)
     {
-        $permission = $this->parsePermissionName($action);
-
         if ($user->isSuperAdmin()) {
             return true;
         }
 
-        if ($this->currentModule) {
-            return $this->currentModule->canBeManagedBy($user) && $user->can($permission);
+        $permissionName = $this->normalizePermissionName($routeName);
+
+        $permission = $this->permissionRepository->findByName($permissionName);
+
+        if ($this->currentModule && $this->currentModule->canBeManagedBy($user)) {
+
+            if ($permission->extractActionName() == 'list') {
+                return true;
+            }
+
+            return $user->hasPermissionTo($permissionName);
         }
 
         return false;
     }
 
-    public function findModuleByAction($action)
+    public function findModuleByPermissionName($permissionName)
     {
-        $permission = $this->parsePermissionName($action);
+        $permissionName = $this->normalizePermissionName($permissionName);
 
-        $moduleName = $this->parseModuleName($permission);
+        $moduleName = Permission::make()->setName($permissionName)->extractModuleName();
 
         return $this->moduleRepository->findByName($moduleName);
     }
 
-    protected function parsePermissionName($action)
+    protected function normalizePermissionName($name)
     {
-        return explode('#', $action)[0];
+        return explode('#', $name)[0];
     }
 
-    protected function parseModuleName($action)
+    public function getAllPermissionsGroupedByModule()
     {
-        $segments = explode('.', $action);
-        return $segments[1];
+        $permissions = $this->permissionRepository->getAll();
+
+        $groupedPermissions = [];
+
+        foreach ($permissions as $permission) {
+            $module = $this->moduleRepository->findByName($permission->extractModuleName());
+
+            $groupedPermissions[$module->getName()]['module'] = $module;
+            $groupedPermissions[$module->getName()]['permissions'][] = $permission;
+        }
+
+        return $groupedPermissions;
+    }
+
+    public function createRole(array $attributes)
+    {
+        $role = Role::make([
+            'title' => $attributes['title'],
+            'description' => $attributes['description']
+        ]);
+
+        $this->assingModulesAndPermissions($role, $attributes['modules'], $attributes['permissions']);
+
+        $this->roleRepository->save($role);
+
+        return $role;
+    }
+
+    public function updateRole(array $attributes, $id)
+    {
+        $role = $this->roleRepository->find($id);
+
+        $role->getModules()->clear();
+        $role->getPermissions()->clear();
+
+        $this->assignPermissions($role, $attributes['permissions']);
+
+        $this->assingModules($role, $attributes['modules']);
+
+        $this->roleRepository->save($role);
+
+        return $role;
+    }
+
+    protected function assignPermissions($role, $permissions = [])
+    {
+        foreach($permissions as $permission) {
+            $role->assignPermission($this->entityManager->getReference(Permission::class, $permission));
+        }
+    }
+
+    protected function assingModules(Role $role, array $modules = [])
+    {
+        foreach($modules as $moduleId) {
+
+            $module = $this->moduleRepository->find($moduleId);
+
+            $role->assignModule($module);
+
+            if ($module->hasParent()) {
+                $this->assingModules($role, [$module->getParent()->getId()]);
+            }
+
+        }
     }
 
 }

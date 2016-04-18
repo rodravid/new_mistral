@@ -3,7 +3,7 @@
 @section('breadcrumb')
     <ol class="breadcrumb">
         <li><a href="/cms"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{ route('cms.users.list') }}"><i class="fa fa-user"></i> Usuários</a></li>
+        <li><a href="{{ $currentModule->getUrl() }}"><i class="{{ $currentModule->getIcon() }}"></i> {{ $currentModule->getTitle() }}</a></li>
         <li class="active"><i class="fa fa-plus"></i> Novo usuário</li>
     </ol>
 @endsection
@@ -13,7 +13,7 @@
     <section class="content">
         <div class="row">
 
-            {!! Form::open(['route' => 'cms.users.store', 'method' => 'post', 'files' => true]) !!}
+            {!! Form::open(['route' => 'cms.users.create#store', 'method' => 'post', 'files' => true]) !!}
 
                 <div class="col-xs-12 col-lg-9">
                     <div class="box box-primary">

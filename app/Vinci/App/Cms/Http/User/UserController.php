@@ -9,10 +9,11 @@ use Illuminate\Http\Request;
 use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\Role\RoleRepository;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Domain\Admin\AdminService;
-use Vinci\Domain\Validation\ValidationException;
+use Vinci\Domain\Image\ImageRepository;
 
 class UserController extends Controller
 {
@@ -27,11 +28,14 @@ class UserController extends Controller
 
     protected $roleRepository;
 
+    protected $imageRepository;
+
     public function __construct(
         EntityManagerInterface $em,
         AdminService $adminService,
         AdminRepository $adminRepository,
-        RoleRepository $roleRepository
+        RoleRepository $roleRepository,
+        ImageRepository $imageRepository
     )
     {
         parent::__construct($em);
@@ -39,6 +43,7 @@ class UserController extends Controller
         $this->adminService = $adminService;
         $this->adminRepository = $adminRepository;
         $this->roleRepository = $roleRepository;
+        $this->imageRepository = $imageRepository;
     }
 
     public function index()
@@ -65,18 +70,12 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-
-        $user = $this->adminRepository->find(1);
-
-        $this->adminService->savePhoto($request->file('photo'), $user);
-
-        dd('teste');
-
         try {
 
-            $user = $this->adminService->create($request->all());
+            $data = $request->all();
+            $data['photo'] = $request->file('photo');
 
-            $this->adminService->savePhoto($request->file('photo'), $user);
+            $user = $this->adminService->create($data);
 
             Flash::success("Usuário {$user->getName()} criado com sucesso!");
 
@@ -98,7 +97,10 @@ class UserController extends Controller
     {
         try {
 
-            $user = $this->adminService->update($request->all(), $customerId);
+            $data = $request->all();
+            $data['photo'] = $request->file('photo');
+
+            $user = $this->adminService->update($data, $customerId);
 
             Flash::success("Usuário {$user->getName()} atualizado com sucesso!");
 
@@ -128,6 +130,26 @@ class UserController extends Controller
             Flash::success("Usuário {$user->getName()} excluído com sucesso!");
 
             return Redirect::route('cms.users.list');
+
+        } catch (Exception $e) {
+
+            Flash::error($e->getMessage());
+            return Redirect::back();
+        }
+    }
+
+    public function removePhoto($userId, $photoId)
+    {
+        try {
+
+            $user = $this->adminRepository->find($userId);
+            $photo = $this->imageRepository->find($photoId);
+
+            $this->adminService->removePhoto($photo, $user);
+
+            Flash::success("Foto excluída com sucesso!");
+
+            return Redirect::route('cms.users.edit', [$userId]);
 
         } catch (Exception $e) {
 

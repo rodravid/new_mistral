@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="Foto perfil">
+                <img src="{{ $loggedUser->profile_photo }}" class="img-circle" alt="Foto perfil">
             </div>
             <div class="pull-left info" style="margin-top: 10px;">
                 <p>{{ cmsUser()->name }}</p>

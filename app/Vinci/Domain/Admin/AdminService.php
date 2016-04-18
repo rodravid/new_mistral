@@ -4,10 +4,13 @@ namespace Vinci\Domain\Admin;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Validation\ValidationTrait;
-use Vinci\Domain\Validation\ValidationException;
+use Vinci\Domain\Image\Image;
+use Vinci\Domain\Image\ImageRepository;
+use Vinci\Infrastructure\Storage\StorageService;
 
 class AdminService
 {
@@ -19,22 +22,28 @@ class AdminService
 
     private $validator;
 
+    private $storage;
+
+    private $imageRepository;
+
     public function __construct(
         AdminRepository $repository,
         EntityManagerInterface $entityManager,
-        AdminValidator $validator
+        AdminValidator $validator,
+        StorageService $storage,
+        ImageRepository $imageRepository
     )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
         $this->validator = $validator;
+        $this->storage = $storage;
+        $this->imageRepository = $imageRepository;
     }
 
     public function create(array $adminData)
     {
-        if ($this->validator->fails($adminData)) {
-            throw new ValidationException('Não foi possível criar o usuário', $this->validator->messages());
-        }
+        $this->validator->with($adminData)->passesOrFail();
 
         return $this->saveAdmin($adminData, function($data) {
             return Admin::make($data);
@@ -43,9 +52,7 @@ class AdminService
 
     public function update(array $adminData, $id)
     {
-        if ($this->validator->fails($adminData, $id)) {
-            throw new ValidationException('Não foi possível atualizar o usuário', $this->validator->messages());
-        }
+        $this->validator->with($adminData)->setId($id)->passesOrFail();
 
         return $this->saveAdmin($adminData, function($data) use ($id) {
 
@@ -60,11 +67,37 @@ class AdminService
         });
     }
 
-    public function savePhoto(UploadedFile $photo, Admin $user)
+    public function savePhoto(UploadedFile $uploadedPhoto, Admin $user)
     {
+        $this->entityManager->getConnection()->beginTransaction();
 
+        try {
 
+            $photo = Image::makeFromUpload($uploadedPhoto, $user->getPhotosUploadPath());
 
+            $this->storage->storeImage($photo);
+
+            $photo = $this->imageRepository->save($photo);
+
+            $this->entityManager->getConnection()->commit();
+
+            return $photo;
+
+        } catch (Exception $e) {
+
+            $this->entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+    }
+
+    public function removePhoto(Image $photo, Admin $user)
+    {
+        $user->removePhoto($photo);
+
+        $this->repository->save($user);
+        $this->imageRepository->save($photo);
+
+        $this->storage->deleteImage($photo);
     }
 
     protected function saveAdmin($adminData, Closure $method)
@@ -74,6 +107,13 @@ class AdminService
         $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
 
         $this->repository->save($admin);
+
+        if (! empty($photo = $adminData['photo'])) {
+            $photo = $this->savePhoto($photo, $admin);
+            $admin->addPhoto($photo);
+            $admin->setProfilePhoto($photo);
+            $this->repository->save($admin);
+        }
 
         return $admin;
     }

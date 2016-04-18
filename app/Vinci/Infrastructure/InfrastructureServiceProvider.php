@@ -3,6 +3,9 @@
 namespace Vinci\Infrastructure;
 
 use Illuminate\Support\ServiceProvider;
+use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository;
+use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepositoryCached;
+use Vinci\Infrastructure\Storage\StorageService;
 
 class InfrastructureServiceProvider extends ServiceProvider
 {
@@ -41,10 +44,80 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\ACL\Permission\PermissionRepository',
+            'Vinci\Infrastructure\ACL\Permissions\DoctrinePermissionRepositoryCached',
+            'Vinci\Domain\ACL\Permission\Permission'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\ACL\Module\ModuleRepository',
-            'Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository',
+            'Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepositoryCached',
             'Vinci\Domain\ACL\Module\Module'
         );
+
+        $this->registerRepository(
+            'Vinci\Domain\Image\ImageRepository',
+            'Vinci\Infrastructure\Image\DoctrineImageRepository',
+            'Vinci\Domain\Image\Image'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Newsletter\NewsletterRepository',
+            'Vinci\Infrastructure\Newsletter\DoctrineNewsletterRepository',
+            'Vinci\Domain\Newsletter\Newsletter'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Dollar\DollarRepository',
+            'Vinci\Infrastructure\Dollar\DoctrineDollarRepository',
+            'Vinci\Domain\Dollar\Dollar'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Deadline\DeadlineRepository',
+            'Vinci\Infrastructure\Deadline\DoctrineDeadlineRepository',
+            'Vinci\Domain\Deadline\Deadline'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Highlight\HighlightRepository',
+            'Vinci\Infrastructure\Highlight\DoctrineHighlightRepository',
+            'Vinci\Domain\Highlight\Highlight'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Country\CountryRepository',
+            'Vinci\Infrastructure\Country\DoctrineCountryRepository',
+            'Vinci\Domain\Country\Country'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Region\RegionRepository',
+            'Vinci\Infrastructure\Region\DoctrineRegionRepository',
+            'Vinci\Domain\Region\Region'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Producer\ProducerRepository',
+            'Vinci\Infrastructure\Producer\DoctrineProducerRepository',
+            'Vinci\Domain\Producer\Producer'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Grape\GrapeRepository',
+            'Vinci\Infrastructure\Grape\DoctrineGrapeRepository',
+            'Vinci\Domain\Grape\Grape'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\ProductType\ProductTypeRepository',
+            'Vinci\Infrastructure\ProductType\DoctrineProductTypeRepository',
+            'Vinci\Domain\ProductType\ProductType'
+        );
+
+        $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
+            return new StorageService($this->app['filesystem'], $this->app['config']);
+        });
 
     }
 

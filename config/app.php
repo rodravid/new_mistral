@@ -157,14 +157,15 @@ return [
         LaravelDoctrine\ACL\AclServiceProvider::class,
         Vinci\App\Core\Providers\AppServiceProvider::class,
         Vinci\App\Core\Providers\EventServiceProvider::class,
-        Vinci\Domain\DomainServiceProvider::class,
         Vinci\Infrastructure\InfrastructureServiceProvider::class,
+        Vinci\Domain\DomainServiceProvider::class,
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
         Vinci\App\Cms\Providers\CmsServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class
+        Laracasts\Flash\FlashServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class
 
     ],
 
@@ -213,8 +214,11 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
-        'Flash'     => Laracasts\Flash\Flash::class
+        'Flash'     => Laracasts\Flash\Flash::class,
+        'Excel'     => Maatwebsite\Excel\Facades\Excel::class
 
     ],
+
+    'storage_web_path' => env('STORAGE_WEB_PATH', '/storage'),
 
 ];

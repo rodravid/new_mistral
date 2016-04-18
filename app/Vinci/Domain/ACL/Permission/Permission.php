@@ -28,28 +28,20 @@ class Permission extends Model implements PermissionContract
      */
     protected $description;
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getDescription()
@@ -60,6 +52,33 @@ class Permission extends Model implements PermissionContract
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    public function extractModuleName()
+    {
+        return $this->getSegments(1);
+    }
+
+    public function extractActionName()
+    {
+        $segments = $this->getSegments();
+        return end($segments);
+    }
+
+    public function canBeListed()
+    {
+        return $this->extractActionName() != 'list';
+    }
+
+    public function getSegments($offset = null)
+    {
+        $segments =  explode('.', $this->name);
+
+        if(isset($segments[$offset])) {
+            return $segments[$offset];
+        }
+
+        return $segments;
     }
 
 }

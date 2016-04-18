@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <title>@yield('title', 'CMS - Vinci')</title>
+    <title>@yield('title', 'CMS Vinci' . (isset($currentModule) ? ' - ' . $currentModule->getTitle() : ''))</title>
 
     @section('styles')
 
@@ -18,13 +18,15 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- iCheck -->
-        <link rel="stylesheet" href="{{ asset_cms('plugins/iCheck/flat/blue.css') }}">
+        <link rel="stylesheet" href="{{ asset_cms('plugins/iCheck/all.css') }}">
         <!-- Morris chart -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/morris/morris.css') }}">
         <!-- jvectormap -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
         <!-- Date Picker -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/datepicker/datepicker3.css') }}">
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/datepicker/bootstrap-datetimepicker.min.css') }}">
         <!-- Daterange picker -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/daterangepicker/daterangepicker-bs3.css') }}">
         <!-- bootstrap wysihtml5 - text editor -->
@@ -40,6 +42,16 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
+
+        <style>
+            td.vcenter {
+                vertical-align: middle !important;
+            }
+
+            td.hcenter {
+                text-align: center !important;
+            }
+        </style>
 
     @show
 
@@ -57,7 +69,7 @@
         <!-- Logo -->
         <a href="/cms" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><img src="{{ asset_cms('dist/img/logo-vinci.png') }}"></span>
+            <span class="logo-mini"><img src="{{ asset_cms('dist/img/logo-v.png') }}"></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><img src="{{ asset_cms('dist/img/logo-vinci.png') }}"></span>
         </a>
@@ -70,29 +82,35 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+                    @if(isset($currentDollar) && $loggedUser->hasPermissionToModuleByName('dollar'))
+                        <li><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
+                    @endif
+                    @if(isset($currentDeadline) && $loggedUser->hasPermissionToModuleByName('deadline'))
+                        <li><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-check-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
+                    @endif
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">{{ cmsUser()->name }}</span>
+                            <img src="{{ $loggedUser->profile_photo }}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{ $loggedUser->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="{{ asset_cms('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                                <img src="{{ $loggedUser->profile_photo }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ cmsUser()->name }} - Programador
-                                    <small>Membro desde {{ cmsUser()->getCreatedAt()->format('M/Y') }}</small>
+                                    {{ $loggedUser->name }} {{ $loggedUser->office }}
+                                    <small>Membro desde {{ $loggedUser->getCreatedAt()->format('M/Y') }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ url()->route('cms.profile') }}" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="{{ route('cms.profile') }}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ url()->route('cms.logout') }}" class="btn btn-default btn-flat">Sair</a>
+                                    <a href="{{ route('cms.logout') }}" class="btn btn-default btn-flat">Sair</a>
                                 </div>
                             </li>
                         </ul>
@@ -143,6 +161,8 @@
     <script src="{{ asset_cms('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- datepicker -->
     <script src="{{ asset_cms('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset_cms('plugins/datepicker/bootstrap-datetimepicker.js') }}"></script>
+    <script src="{{ asset_cms('plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js') }}"></script>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
     <!-- Slimscroll -->
@@ -150,10 +170,16 @@
     <!-- DataTables -->
     <script src="{{ asset_cms('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset_cms('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    <!-- InputMask -->
+    <script src="{{ asset_cms('plugins/input-mask/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset_cms('plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+    <script src="{{ asset_cms('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset_cms('plugins/fastclick/fastclick.js') }}"></script>
-    <!-- FastClick -->
+    <!-- Notify -->
     <script src="{{ asset_cms('plugins/bootstrap-notify/dist/bootstrap-notify.min.js') }}"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="{{ asset_cms('plugins/iCheck/icheck.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
     <!-- Select2 -->
@@ -172,6 +198,15 @@
         $(function () {
 
             $(".select2").select2();
+
+            $("[data-mask]").inputmask();
+
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+            $('.html-editor').wysihtml5();
 
             $.extend( true, $.fn.dataTable.defaults, {
                 "language": {
@@ -199,7 +234,7 @@
                 }
             });
 
-            $.each($('.table[data-url]'), function(i, table) {
+            $.each($('.table[data-table-default]'), function(i, table) {
 
                 var $table = $(table);
 
@@ -254,6 +289,82 @@
 
                 e.preventDefault();
             });
+
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            if ($('#txtStartsAtPicker').length > 0) {
+
+                $("#clearDate").click(function () {
+                    $('#endText').html('<strong>Nunca expira!</strong>');
+                    $(this).parent().find('input').val('');
+                    $(this).parents('.publishing-fields').first().slideUp(500);
+                });
+
+                function setStartsAtText() {
+                    var publishingDate = $('#txtStartsAtPicker').data("DateTimePicker").getDate();
+                    var currentDate = new Date();
+                    var startDate = moment(publishingDate);
+
+                    if (publishingDate <= currentDate) {
+                        $('#startText').html('Publicar <strong>imediatamente</strong>');
+                    } else {
+                        $('#startText').html('Publicar em <strong>' + startDate.format('DD/MM/YYYY HH:mm') + '</strong>');
+                    }
+                }
+
+                function setExpirationAtText() {
+                    var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
+                    var endDate = moment(finishingDate);
+                    $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
+                }
+
+                $('#txtStartsAtPicker').datetimepicker({
+                    language: 'pt-BR',
+                    format: 'DD/MM/YYYY HH:mm',
+                    pick12HourFormat: false
+                }).bind('dp.change', function () {
+                    setStartsAtText();
+                });
+
+                setStartsAtText();
+
+                $('#txtExpirationAtPicker').datetimepicker({
+                    language: 'pt-BR',
+                    format: 'DD/MM/YYYY HH:mm',
+                    pick12HourFormat: false
+                }).bind('dp.change', function () {
+                    setExpirationAtText();
+                });
+
+                (function () {
+                    var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
+
+                    if ($('#txtExpirationAtPicker').data('has-expiration')) {
+                        var endDate = moment(finishingDate);
+                        $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
+                    } else {
+                        $('#endText').html('<strong>Nunca expira!</strong>');
+                    }
+                }());
+
+                $('#txtStartsAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
+                $('#txtExpirationAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
+
+                $('.publishing-action').click(function () {
+                    var fields = $(this).siblings('.publishing-fields');
+                    if (fields.is(':hidden'))
+                        fields.stop().slideDown(500);
+                    else
+                        fields.stop().slideUp(500);
+                });
+
+            }
 
         });
 

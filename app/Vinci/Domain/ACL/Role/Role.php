@@ -4,6 +4,7 @@ namespace Vinci\Domain\ACL\Role;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\ACL\Mappings as ACL;
 use LaravelDoctrine\ACL\Contracts\Role as RoleContract;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
@@ -35,6 +36,7 @@ class Role extends Model implements RoleContract, HasModules
     protected $title;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string", unique=true)
      */
     protected $name;
@@ -132,6 +134,11 @@ class Role extends Model implements RoleContract, HasModules
     public function getPermissions()
     {
         return $this->permissions;
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->getName() == static::SUPER_ADMIN;
     }
 
 }
