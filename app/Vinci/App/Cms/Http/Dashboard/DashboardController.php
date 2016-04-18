@@ -9,6 +9,10 @@ class DashboardController extends Controller
 
     public function index()
     {
+        if (! $this->user->hasPermissionTo('cms.dashboard.show')) {
+            return $this->view('dashboard.default');
+        }
+
         return $this->view('dashboard.index');
     }
 

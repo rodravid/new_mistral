@@ -13,9 +13,9 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
         $route->get('profile', 'Account\\AccountController@index')->name('profile');
 
-        $route->group(['middleware' => ['cms','acl']], function() use ($route) {
+        $route->get('/', ['middleware' => ['cms'], 'uses' => 'Dashboard\\DashboardController@index'])->name('dashboard.show');
 
-            $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard');
+        $route->group(['middleware' => ['cms','acl']], function() use ($route) {
 
             /**
              * Countries
