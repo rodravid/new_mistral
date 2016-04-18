@@ -130,6 +130,10 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
 
     public function hasPermissionTo($permission)
     {
+        if ($this->isSuperAdmin()) {
+            return true;
+        }
+
         foreach ($this->getPermissions() as $per) {
             if ($per->getName() == $permission) {
                 return true;

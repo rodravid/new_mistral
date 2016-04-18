@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Admin\Datatables;
 
 use Vinci\App\Cms\Http\User\Presenters\DefaultUserPresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Admin\AdminRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class UsersCmsDatatable extends AbstractDatatables
 
     protected $adminRepository;
 
-    public function __construct(AdminRepository $adminRepository)
+    public function __construct(ACLService $aclService, AdminRepository $adminRepository)
     {
+        parent::__construct($aclService);
+
         $this->adminRepository = $adminRepository;
     }
 
@@ -65,10 +68,7 @@ class UsersCmsDatatable extends AbstractDatatables
             $user->getEmail(),
             $presenter->group_name,
             $presenter->created_at,
-            $this->buildActionsColumn([
-                'edit_url' => route('cms.users.edit', $user->getId()),
-                'destroy_url' => route('cms.users.destroy', $user->getId())
-            ])
+            $this->buildActionsColumn($user)
         ];
     }
 

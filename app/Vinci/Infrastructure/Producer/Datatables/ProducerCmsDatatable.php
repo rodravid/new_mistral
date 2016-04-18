@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Producer\Datatables;
 
 use Vinci\App\Cms\Http\Producer\Presenters\ProducerPresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Producer\ProducerRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class ProducerCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(ProducerRepository $repository)
+    public function __construct(ACLService $aclsService, ProducerRepository $repository)
     {
+        parent::__construct($aclsService);
+
         $this->repository = $repository;
     }
 
@@ -65,10 +68,7 @@ class ProducerCmsDatatable extends AbstractDatatables
             $presenter->created_at,
             $presenter->visible_site,
             $presenter->status_html,
-            $this->buildActionsColumn([
-                'edit_url' => route('cms.producers.edit', $producer->getId()),
-                'destroy_url' => route('cms.producers.destroy', $producer->getId())
-            ])
+            $this->buildActionsColumn($producer)
         ];
     }
 

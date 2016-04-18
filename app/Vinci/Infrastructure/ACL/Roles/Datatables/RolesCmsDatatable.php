@@ -2,6 +2,7 @@
 
 namespace Vinci\Infrastructure\ACL\Roles\Datatables;
 
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\ACL\Role\RoleRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -10,8 +11,10 @@ class RolesCmsDatatable extends AbstractDatatables
 
     protected $roleRepository;
 
-    public function __construct(RoleRepository $roleRepository)
+    public function __construct(ACLService $aclService, RoleRepository $roleRepository)
     {
+        parent::__construct($aclService);
+
         $this->roleRepository = $roleRepository;
     }
 
@@ -63,15 +66,11 @@ class RolesCmsDatatable extends AbstractDatatables
 
         } else {
 
-            $result[] = $this->buildActionsColumn([
-                'edit_url' => route('cms.roles.edit', $role->getId()),
-                'destroy_url' => route('cms.roles.destroy', $role->getId())
-            ]);
+            $result[] = $this->buildActionsColumn($role);
 
         }
 
         return $result;
-
     }
 
 }

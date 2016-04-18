@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Deadline\Datatables;
 
 use Vinci\App\Cms\Http\Deadline\Presenters\DeadlinePresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Deadline\DeadlineRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class DeadlineCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(DeadlineRepository $repository)
+    public function __construct(ACLService $aclService, DeadlineRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
     }
 

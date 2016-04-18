@@ -12,12 +12,11 @@ class HighlightCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    protected $ACLService;
-
-    public function __construct(HighlightRepository $repository, ACLService $ACLService)
+    public function __construct(ACLService $aclService, HighlightRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
-        $this->ACLService = $ACLService;
     }
 
     protected $sortMapping = [
@@ -74,10 +73,7 @@ class HighlightCmsDatatable extends AbstractDatatables
             $presenter->starts_at,
             $presenter->expiration_at,
             $presenter->status_html,
-            $this->buildActionsColumn([
-                'edit_url' => route('cms.' . $this->ACLService->getCurrentModuleName() . '.edit', $highlight->getId()),
-                'destroy_url' => route('cms.' . $this->ACLService->getCurrentModuleName() . '.destroy', $highlight->getId())
-            ])
+            $this->buildActionsColumn($highlight)
         ];
     }
 

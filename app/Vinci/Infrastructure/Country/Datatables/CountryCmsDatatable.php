@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Country\Datatables;
 
 use Vinci\App\Cms\Http\Country\Presenters\CountryPresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Country\CountryRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class CountryCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(CountryRepository $repository)
+    public function __construct(ACLService $aclService, CountryRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
     }
 
@@ -61,10 +64,7 @@ class CountryCmsDatatable extends AbstractDatatables
             $presenter->created_at,
             $presenter->visible_site,
             $presenter->status_html,
-            $this->buildActionsColumn([
-                'edit_url' => route('cms.countries.edit', $country->getId()),
-                'destroy_url' => route('cms.countries.destroy', $country->getId())
-            ])
+            $this->buildActionsColumn($country)
         ];
     }
 

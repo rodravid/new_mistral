@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Grape\Datatables;
 
 use Vinci\App\Cms\Http\Grape\Presenters\GrapePresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Grape\GrapeRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class GrapeCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(GrapeRepository $repository)
+    public function __construct(ACLService $aclService, GrapeRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
     }
 
@@ -61,10 +64,7 @@ class GrapeCmsDatatable extends AbstractDatatables
             $presenter->created_at,
             $presenter->visible_site,
             $presenter->status_html,
-            $this->buildActionsColumn([
-                'edit_url' => route('cms.grapes.edit', $grape->getId()),
-                'destroy_url' => route('cms.grapes.destroy', $grape->getId())
-            ])
+            $this->buildActionsColumn($grape)
         ];
     }
 

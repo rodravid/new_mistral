@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\ProductType\Datatables;
 
 use Vinci\App\Cms\Http\ProductType\Presenters\ProductTypePresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\ProductType\ProductTypeRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class ProductTypeCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(ProductTypeRepository $repository)
+    public function __construct(ACLService $aclService, ProductTypeRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
     }
 
@@ -61,10 +64,7 @@ class ProductTypeCmsDatatable extends AbstractDatatables
             $presenter->created_at,
             $presenter->visible_site,
             $presenter->status_html,
-            $this->buildActionsColumn([
-                'edit_url' => route('cms.product-type.edit', $productType->getId()),
-                'destroy_url' => route('cms.product-type.destroy', $productType->getId())
-            ])
+            $this->buildActionsColumn($productType)
         ];
     }
 

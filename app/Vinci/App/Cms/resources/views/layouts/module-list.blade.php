@@ -17,15 +17,19 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="panel">
-                                    <div class="btn-group">
-                                        <a href="{{ route('cms.' . $currentModule->getName() . '.create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> {{ $currentModule->getCreateButtonText() }}</a>
+
+                        @if($loggedUser->hasPermissionTo('cms.' . $currentModule->getName() . '.create'))
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel">
+                                        <div class="btn-group">
+                                            <a href="{{ route('cms.' . $currentModule->getName() . '.create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> {{ $currentModule->getCreateButtonText() }}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
+
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="table-responsive">

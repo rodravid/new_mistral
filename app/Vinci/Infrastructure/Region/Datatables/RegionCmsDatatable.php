@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Region\Datatables;
 
 use Vinci\App\Cms\Http\Region\Presenters\RegionPresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Region\RegionRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class RegionCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(RegionRepository $repository)
+    public function __construct(ACLService $aclService, RegionRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
     }
 
@@ -65,10 +68,7 @@ class RegionCmsDatatable extends AbstractDatatables
             $presenter->created_at,
             $presenter->visible_site,
             $presenter->status_html,
-            $this->buildActionsColumn([
-                'edit_url' => route('cms.regions.edit', $region->getId()),
-                'destroy_url' => route('cms.regions.destroy', $region->getId())
-            ])
+            $this->buildActionsColumn($region)
         ];
     }
 

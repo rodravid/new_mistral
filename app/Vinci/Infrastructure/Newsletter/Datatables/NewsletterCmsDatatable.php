@@ -3,7 +3,7 @@
 namespace Vinci\Infrastructure\Newsletter\Datatables;
 
 use Vinci\App\Cms\Http\Newsletter\Presenters\NewsletterPresenter;
-use Vinci\App\Cms\Http\User\Presenters\DefaultUserPresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Newsletter\NewsletterRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -12,8 +12,10 @@ class NewsletterCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(NewsletterRepository $repository)
+    public function __construct(ACLService $aclService, NewsletterRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
     }
 

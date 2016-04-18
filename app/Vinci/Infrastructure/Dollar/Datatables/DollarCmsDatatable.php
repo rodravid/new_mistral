@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Dollar\Datatables;
 
 use Vinci\App\Cms\Http\Dollar\Presenters\DollarPresenter;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Dollar\DollarRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -11,8 +12,10 @@ class DollarCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(DollarRepository $repository)
+    public function __construct(ACLService $aclService, DollarRepository $repository)
     {
+        parent::__construct($aclService);
+
         $this->repository = $repository;
     }
 
