@@ -17,7 +17,9 @@
     </div>
 
     <div class="col-xs-12">
-        <label for="txtUserEmail">Permissões</label>
+        <div class="checkbox">
+            <label for="toggleAllPermissions"><input type="checkbox" id="toggleAllPermissions">Permissões</label>
+        </div>
 
         <div class="row">
             @foreach($groupedPermissions as $permissionGroup)

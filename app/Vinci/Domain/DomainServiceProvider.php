@@ -19,12 +19,6 @@ class DomainServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton(CustomerService::class, function($app) {
-            return new CustomerService(
-                $app[CustomerRepository::class],
-                $app['em']
-            );
-        });
 
         $this->app->singleton('Vinci\Domain\ACL\ACLService', function() {
             return new ACLService(
@@ -32,6 +26,14 @@ class DomainServiceProvider extends ServiceProvider
                 $this->app->make('Vinci\Domain\ACL\Module\ModuleRepository'),
                 $this->app->make('Vinci\Domain\ACL\Role\RoleRepository'),
                 $this->app->make('Vinci\Domain\ACL\Permission\PermissionRepository')
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\Customer\CustomerService', function() {
+            return new CustomerService(
+                $this->app['em'],
+                $this->app['Vinci\Domain\Customer\CustomerRepository'],
+                $this->app->make('Vinci\Domain\Customer\CustomerValidator')
             );
         });
 

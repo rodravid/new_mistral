@@ -2,82 +2,59 @@
 
 namespace Vinci\Domain\Customer;
 
-use Carbon\Carbon;
+use Closure;
 use Doctrine\ORM\EntityManagerInterface;
-use Vinci\Domain\Core\Validation\ValidationTrait;
 
 class CustomerService
 {
-    use ValidationTrait;
-
     private $repository;
 
     private $entityManager;
 
+    private $validator;
+
     public function __construct(
+        EntityManagerInterface $entityManager,
         CustomerRepository $repository,
-        EntityManagerInterface $entityManager
+        CustomerValidator $validator
     )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->validator = $validator;
     }
 
-    public function create(array $attributes)
+    public function create(array $data)
     {
-        $this->validate($attributes, $this->getRules());
+        $this->validator->with($data)->passesOrFail();
 
-        $customer = Customer::make($attributes);
-
-        $customer->setPassword(bcrypt($attributes['password']));
-        $customer->setCreatedAt(Carbon::now());
-
-        $this->entityManager->persist($customer);
-        $this->entityManager->flush();
-
-        return $customer;
-    }
-
-    public function update(array $attributes, $customerId)
-    {
-        $this->validate($attributes, $this->getRules($customerId));
-
-        $this->db->transaction(function() use ($attributes, $customerId) {
-
-            $this->repository->update($attributes, $customerId);
-            $this->repository->updateProfile($attributes, $customerId);
-
+        return $this->saveCustomer($data, function($data) {
+            return Customer::make($data);
         });
-
     }
 
-    protected function createUserIfNotExists(array $attributes)
+    public function update(array $data, $id)
     {
-        $customer = $this->repository
-            ->skipCriteria()
-            ->findByEmail($attributes['email']);
+        $this->validator->with($data)->setId($id)->passesOrFail();
 
-        if (empty($customer)) {
-            $customer = $this->repository->create($attributes);
-        }
+        return $this->saveCustomer($data, function($data) use ($id) {
 
+            if (empty($data['password'])) {
+                unset($data['password']);
+            }
+
+            $customer = $this->repository->find($id);
+            $customer->fill($data);
+
+            return $customer;
+        });
+    }
+
+    protected function saveCustomer($data, Closure $method)
+    {
+        $customer = $method($data);
+        $this->repository->save($customer);
         return $customer;
-    }
-
-    protected function getRules($ignoreId = null)
-    {
-        $rules = [
-            'name' => 'required',
-            'email' => 'required|unique:Vinci\Domain\Customer\Customer,email',
-            'cpf' => 'required|unique:Vinci\Domain\Customer\Customer,cpf',
-            'password' => 'required'
-        ];
-
-        if (! empty($ignoreId)) {
-            $rules['email'] .= ",{$ignoreId}";
-        }
-
-        return $rules;
     }
 
 }

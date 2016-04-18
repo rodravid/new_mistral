@@ -30,6 +30,18 @@
 
         });
 
+        $('#toggleAllPermissions').bind('change', function() {
+
+            var $self = $(this);
+
+            if ($self.is(':checked')) {
+                $('.select-container').find('input[type="checkbox"]').prop('checked', true);
+            } else {
+                $('.select-container').find('input[type="checkbox"]').prop('checked', false);
+            }
+
+        });
+
     </script>
 
 @endsection
