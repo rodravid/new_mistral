@@ -3,7 +3,7 @@
 namespace Vinci\App\Core\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Auth;
-use Vinci\App\Core\Http\Controllers\Controller;
+use Vinci\App\Cms\Http\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Doctrine\ORM\EntityManagerInterface;
 

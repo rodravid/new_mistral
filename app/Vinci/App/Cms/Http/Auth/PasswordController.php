@@ -17,4 +17,9 @@ class PasswordController extends BaseAuthController
 
     protected $redirectPath = '/cms/login';
 
+    public function help()
+    {
+        return $this->view('cms::auth.passwords.help');
+    }
+
 }

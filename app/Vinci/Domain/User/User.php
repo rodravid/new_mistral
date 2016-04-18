@@ -143,6 +143,23 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         return false;
     }
 
+    public function hasPermissionToModuleByName($moduleName)
+    {
+        if ($this->isSuperAdmin()) {
+            return true;
+        }
+
+        foreach ($this->roles as $role) {
+            foreach ($role->getModules() as $module) {
+                if ($module->getName() == $moduleName) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public function getPermissions()
     {
         $permissions = new ArrayCollection;

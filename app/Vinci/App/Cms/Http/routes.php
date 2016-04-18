@@ -11,9 +11,13 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
     $route->group(['middleware' => ['auth:cms']], function() use ($route) {
 
-        $route->get('profile', 'Account\\AccountController@index')->name('profile');
+        $route->group(['middleware' => ['cms']], function() use ($route) {
 
-        $route->get('/', ['middleware' => ['cms'], 'uses' => 'Dashboard\\DashboardController@index'])->name('dashboard.show');
+            $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard.show');
+            $route->get('profile', 'Account\\AccountController@index')->name('profile');
+            $route->get('password/help', 'Auth\PasswordController@help')->name('password.help');
+
+        });
 
         $route->group(['middleware' => ['cms','acl']], function() use ($route) {
 
