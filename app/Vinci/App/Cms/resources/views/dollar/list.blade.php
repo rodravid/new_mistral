@@ -6,7 +6,7 @@
         <th><i class="fa fa-file-text-o"></i> Descrição</th>
         <th><i class="fa fa-money"></i> Valor</th>
         <th><i class="fa fa-user"></i> Usuário</th>
-        <th><i class="fa fa-calendar"></i> Criado em</th>
+        <th><i class="fa fa-calendar"></i> Definido em</th>
     </tr>
 @endsection
 
