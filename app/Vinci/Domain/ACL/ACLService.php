@@ -145,21 +145,34 @@ class ACLService
         $role->getModules()->clear();
         $role->getPermissions()->clear();
 
-        $this->assingModulesAndPermissions($role, $attributes['modules'], $attributes['permissions']);
+        $this->assignPermissions($role, $attributes['permissions']);
+
+        $this->assingModules($role, $attributes['modules']);
 
         $this->roleRepository->save($role);
 
         return $role;
     }
 
-    protected function assingModulesAndPermissions(Role $role, array $modules = [], array $permissions = [])
+    protected function assignPermissions($role, $permissions = [])
     {
-        foreach($modules as $module) {
-            $role->assignModule($this->entityManager->getReference(Module::class, $module));
-        }
-
         foreach($permissions as $permission) {
             $role->assignPermission($this->entityManager->getReference(Permission::class, $permission));
+        }
+    }
+
+    protected function assingModules(Role $role, array $modules = [])
+    {
+        foreach($modules as $moduleId) {
+
+            $module = $this->moduleRepository->find($moduleId);
+
+            $role->assignModule($module);
+
+            if ($module->hasParent()) {
+                $this->assingModules($role, [$module->getParent()->getId()]);
+            }
+
         }
     }
 

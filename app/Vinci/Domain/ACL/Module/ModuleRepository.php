@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 
 interface ModuleRepository
 {
+    public function find($id);
 
     public function getAll();
 

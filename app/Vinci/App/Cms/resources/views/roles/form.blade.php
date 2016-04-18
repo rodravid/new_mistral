@@ -31,8 +31,6 @@
                                 <div class="checkbox">
                                     <label><input type="checkbox" name="permissions[]" value="{{ $permission->getId() }}" @if(isset($role) && $role->getPermissions()->contains($permission)) checked @endif>{{ $permission->getDescription() }}</label>
                                 </div>
-                            @else
-                                <input type="hidden" name="permissions[]" value="{{ $permission->getId() }}">
                             @endif
                         @endforeach
                     </div>

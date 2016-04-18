@@ -51,4 +51,15 @@ class DoctrineModuleRepositoryCached extends DoctrineModuleRepository implements
         });
     }
 
+    public function find($id)
+    {
+        return $this->cache('by_id' . $id, function() use($id) {
+            foreach ($this->getAll() as $module) {
+                if ($module->getId() == $id) {
+                    return $module;
+                }
+            }
+        });
+    }
+
 }
