@@ -430,7 +430,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -466,7 +467,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -502,7 +504,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -538,7 +541,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26

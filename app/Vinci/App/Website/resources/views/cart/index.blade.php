@@ -8,6 +8,16 @@
 
 		<h1 class="internal-subtitle">Meu Carrinho</h1>
 
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
+			</li>
+
+			<li class="breadcrumb-item">
+				<span>Carrinho</span>
+			</li>
+		</ul>
+
 	</div>
 </div>
 
@@ -58,7 +68,7 @@
 				<div class="col-product-cart">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="http://10.10.10.149:8085/assets/website/images/img-vinho.jpg" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 
@@ -114,7 +124,7 @@
 				<div class="col-product-cart">
 					<div class="thumb-wine">
 						<a href="javascript:void(0);">
-							<img class="wine-bottle" src="http://10.10.10.149:8085/assets/website/images/img-vinho.jpg" alt="Vinho">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
 						</a>
 					</div>
 
@@ -165,11 +175,21 @@
 
 
 		<ul class="valor-total-carrinho float-right">
+
+			<li>
+				<article class="wrap-compra-dados-venda">
+					<span>Desconto</span>
+					<div class="container-info-compra">
+						<p class="price-cart" id="pgCartSubtotal">R$ 27,50</p>
+					</div>
+				</article>
+			</li>
+
 			<li>
 				<article class="wrap-compra-dados-venda">
 					<span>Subtotal</span>
 					<div class="container-info-compra">
-						<p class="preco-menu" id="pgCartSubtotal">R$ 7112,26</p>
+						<p class="price-cart" id="pgCartSubtotal">R$ 7112,26</p>
 					</div>
 				</article>
 			</li>

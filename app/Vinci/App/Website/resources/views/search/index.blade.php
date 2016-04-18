@@ -410,7 +410,7 @@
 
 		<div class="column-products-search-inline template1">
 			<div class="wine-card">
-				<span class="favorite"></span>
+				
 
 				<div class="thumb-wine">
 					<a href="javascript:void(0);">
@@ -424,10 +424,12 @@
 							Kaiken terroir series Corte 2012
 							<span>Kaiken</span>
 						</a>
+						<span class="favorite"></span>
 					</h3>
 					<a href="javascript:void(0);">
 						<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
-						<span class="wine-intro">Tinto Pinot Noir Chile</span>
+						<p class="info-details-wine">Tinto Pinot</p>
+						<p class="info-details-wine">Noir Chile</p>
 					</a>
 				</div>
 				
@@ -447,7 +449,6 @@
 			</div>
 
 			<div class="wine-card">
-				<span class="favorite"></span>
 
 				<div class="thumb-wine">
 					<a href="javascript:void(0);">
@@ -461,10 +462,12 @@
 							Kaiken terroir series Corte 2012
 							<span>Kaiken</span>
 						</a>
+						<span class="favorite"></span>
 					</h3>
 					<a href="javascript:void(0);">
 						<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
-						<span class="wine-intro">Tinto Pinot Noir Chile</span>
+						<p class="info-details-wine">Tinto Pinot</p>
+						<p class="info-details-wine">Noir Chile</p>
 					</a>
 				</div>
 				
@@ -484,7 +487,6 @@
 			</div>
 
 			<div class="wine-card">
-				<span class="favorite"></span>
 
 				<div class="thumb-wine">
 					<a href="javascript:void(0);">
@@ -498,10 +500,12 @@
 							Kaiken terroir series Corte 2012
 							<span>Kaiken</span>
 						</a>
+						<span class="favorite"></span>
 					</h3>
 					<a href="javascript:void(0);">
 						<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
-						<span class="wine-intro">Tinto Pinot Noir Chile</span>
+						<p class="info-details-wine">Tinto Pinot</p>
+						<p class="info-details-wine">Noir Chile</p>
 					</a>
 				</div>
 				
@@ -521,7 +525,6 @@
 			</div>
 
 			<div class="wine-card">
-				<span class="favorite"></span>
 
 				<div class="thumb-wine">
 					<a href="javascript:void(0);">
@@ -535,10 +538,12 @@
 							Kaiken terroir series Corte 2012
 							<span>Kaiken</span>
 						</a>
+						<span class="favorite"></span>
 					</h3>
 					<a href="javascript:void(0);">
 						<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
-						<span class="wine-intro">Tinto Pinot Noir Chile</span>
+						<p class="info-details-wine">Tinto Pinot</p>
+						<p class="info-details-wine">Noir Chile</p>
 					</a>
 				</div>
 				
@@ -558,7 +563,6 @@
 			</div>
 
 			<div class="wine-card">
-				<span class="favorite"></span>
 
 				<div class="thumb-wine">
 					<a href="javascript:void(0);">
@@ -572,10 +576,12 @@
 							Kaiken terroir series Corte 2012
 							<span>Kaiken</span>
 						</a>
+						<span class="favorite"></span>
 					</h3>
 					<a href="javascript:void(0);">
 						<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
-						<span class="wine-intro">Tinto Pinot Noir Chile</span>
+						<p class="info-details-wine">Tinto Pinot</p>
+						<p class="info-details-wine">Noir Chile</p>
 					</a>
 				</div>
 				
@@ -595,7 +601,6 @@
 			</div>
 
 			<div class="wine-card">
-				<span class="favorite"></span>
 
 				<div class="thumb-wine">
 					<a href="javascript:void(0);">
@@ -609,10 +614,12 @@
 							Kaiken terroir series Corte 2012
 							<span>Kaiken</span>
 						</a>
+						<span class="favorite"></span>
 					</h3>
 					<a href="javascript:void(0);">
 						<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
-						<span class="wine-intro">Tinto Pinot Noir Chile</span>
+						<p class="info-details-wine">Tinto Pinot</p>
+						<p class="info-details-wine">Noir Chile</p>
 					</a>
 				</div>
 				
@@ -632,7 +639,6 @@
 			</div>
 
 			<div class="wine-card">
-				<span class="favorite"></span>
 
 				<div class="thumb-wine">
 					<a href="javascript:void(0);">
@@ -646,10 +652,12 @@
 							Kaiken terroir series Corte 2012
 							<span>Kaiken</span>
 						</a>
+						<span class="favorite"></span>
 					</h3>
 					<a href="javascript:void(0);">
 						<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
-						<span class="wine-intro">Tinto Pinot Noir Chile</span>
+						<p class="info-details-wine">Tinto Pinot</p>
+						<p class="info-details-wine">Noir Chile</p>
 					</a>
 				</div>
 				
@@ -668,13 +676,13 @@
 				
 			</div>
 
-			<a class="bt-default-full blue" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
+			<a class="bt-default-full template1" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
 		</div>
 
 
 
 	</article>
-@include('website::layouts.partials.featuredweek')
+	@include('website::layouts.partials.featuredweek')
 </div>
 
 <div class="bg-layer-filtro"></div>

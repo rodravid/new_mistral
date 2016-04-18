@@ -85,6 +85,9 @@ footer{
 			transition: all .1s ease .05s;
 		}
 	}
+	p {
+		line-height:19px;
+	}
 	span{
 		font-family:$robotolight;
 		display:block;
@@ -240,10 +243,12 @@ a.link-light{
 }
 .input-newsletter{
 	border:1px solid #000;
-	padding: 9.5px 5px;
+	padding: 6.5px 5px;
 	width:100%;
 	margin-top:10px;
 	text-transform:uppercase; 
+	font-size: 15px;
+	font-family: "roboto_condensedlight";
 }
 .bt-newsletter{
 	width:100%;

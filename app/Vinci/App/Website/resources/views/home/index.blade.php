@@ -108,7 +108,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -139,7 +140,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -153,7 +155,7 @@
 			</div>
 
 
-			<a class="show-mobile bt-default-full" href="#">Carregar mais vinhos <span class="arrow-link">v</span></a>
+			<a class="show-mobile template3 bt-default-full" href="#">Carregar mais vinhos <span class="arrow-link">v</span></a>
 
 			
 		</div>
@@ -179,7 +181,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -210,7 +213,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -224,7 +228,7 @@
 			</div>
 
 			
-			<a class="show-mobile bt-default-full" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
+			<a class="show-mobile template1 bt-default-full" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
 			
 		</div>
 
@@ -249,7 +253,10 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+								<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -280,7 +287,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -293,7 +301,7 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
-			<a class="show-mobile bt-default-full" href="#">Carregar mais vinhos <span class="arrow-link">v</span></a>
+			<a class="show-mobile template7 bt-default-full" href="#">Carregar mais vinhos <span class="arrow-link">v</span></a>
 			
 		</div>
 
@@ -319,7 +327,8 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -351,7 +360,10 @@
 					</div>
 					<div class="other-wine-info">
 						<a href="javascript:void(0);">
-							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+								<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
 								R$ 72,26
@@ -364,7 +376,7 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
-			<a class="show-mobile bt-default-full" href="#">Carregar mais vinhos <span class="arrow-link">v</span></a>
+			<a class="show-mobile template5 bt-default-full" href="#">Carregar mais vinhos <span class="arrow-link">v</span></a>
 			
 		</div>
 
