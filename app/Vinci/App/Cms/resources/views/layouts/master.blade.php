@@ -107,7 +107,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ route('cms.users.edit', [$loggedUser->getId()]) }}" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="{{ route('cms.profile') }}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ route('cms.logout') }}" class="btn btn-default btn-flat">Sair</a>

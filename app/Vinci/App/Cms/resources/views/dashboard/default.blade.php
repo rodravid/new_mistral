@@ -14,7 +14,7 @@
                             regularmente e usando uma senha forte. Para obter mais informações sobre
                             senhas fortes <a href="{{ route('cms.password.help') }}">clique aqui</a>.
                         </p>
-                        <p><a class="btn btn-primary btn-lg" href="{{ route('cms.users.edit', [$loggedUser->getId()]) }}" role="button">Editar meus dados &raquo;</a></p>
+                        <p><a class="btn btn-primary btn-lg" href="{{ route('cms.profile') }}" role="button">Editar meus dados &raquo;</a></p>
                     </div>
                 </div>
             </div>

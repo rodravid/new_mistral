@@ -78,7 +78,7 @@
                                 </li>
                             </ul>
                             <p></p>
-                            <p><a class="btn btn-primary btn-sm" href="{{ route('cms.users.edit', [$loggedUser->getId()]) }}" role="button">Editar meus dados &raquo;</a></p>
+                            <p><a class="btn btn-primary btn-sm" href="{{ route('cms.profile') }}" role="button">Editar meus dados &raquo;</a></p>
                         </div>
                     </div>
                 </div>
