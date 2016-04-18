@@ -44,11 +44,13 @@
         @if($model->hasProperty('status'))
             <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Savar como rascunho</button>
         @endif
-        <a href="javascript:void(0);" class="btn btn-danger btn-block"
-           data-form-link
-           data-confirm-title="Confirmação de exclusão"
-           data-confirm-text="Deseja realmente excluir esse registro?"
-           data-method="DELETE"
-           data-action="/{{ Route::current()->getPrefix() }}/{{ $model->getId() }}/delete"><i class="fa fa-trash"></i> Excluir</a>
+        @if($loggedUser->hasPermissionTo('cms.' . $currentModule->getName() . '.destroy'))
+            <a href="javascript:void(0);" class="btn btn-danger btn-block"
+               data-form-link
+               data-confirm-title="Confirmação de exclusão"
+               data-confirm-text="Deseja realmente excluir esse registro?"
+               data-method="DELETE"
+               data-action="/{{ Route::current()->getPrefix() }}/{{ $model->getId() }}/delete"><i class="fa fa-trash"></i> Excluir</a>
+        @endif
     </div>
 </div>

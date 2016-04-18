@@ -33,6 +33,44 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'cms.roles.destroy', 'description' => 'Excluir grupos'],
 
             ['name' => 'cms.newsletter.list', 'description' => 'Listar newsletter'],
+            ['name' => 'cms.newsletter.export', 'description' => 'Exportar newsletter'],
+
+            ['name' => 'cms.deadline.list', 'description' => 'Listar datas de enterga'],
+            ['name' => 'cms.deadline.create', 'description' => 'Definir nova data de entrega'],
+
+            ['name' => 'cms.dollar.list', 'description' => 'Listar cotações do dólar'],
+            ['name' => 'cms.dollar.create', 'description' => 'Definir nova cotação'],
+
+            ['name' => 'cms.home-main-slider.list', 'description' => 'Listar destaques'],
+            ['name' => 'cms.home-main-slider.create', 'description' => 'Criar novo destaque'],
+            ['name' => 'cms.home-main-slider.edit', 'description' => 'Editar destaque'],
+            ['name' => 'cms.home-main-slider.destroy', 'description' => 'Excluir destaque'],
+
+            ['name' => 'cms.countries.list', 'description' => 'Listar países'],
+            ['name' => 'cms.countries.create', 'description' => 'Cadastrar países'],
+            ['name' => 'cms.countries.edit', 'description' => 'Editar países'],
+            ['name' => 'cms.countries.destroy', 'description' => 'Excluir países'],
+
+            ['name' => 'cms.regions.list', 'description' => 'Listar regiões'],
+            ['name' => 'cms.regions.create', 'description' => 'Cadastrar regiões'],
+            ['name' => 'cms.regions.edit', 'description' => 'Editar regiões'],
+            ['name' => 'cms.regions.destroy', 'description' => 'Excluir regiões'],
+
+            ['name' => 'cms.producers.list', 'description' => 'Listar produtores'],
+            ['name' => 'cms.producers.create', 'description' => 'Cadastrar produtores'],
+            ['name' => 'cms.producers.edit', 'description' => 'Editar produtores'],
+            ['name' => 'cms.producers.destroy', 'description' => 'Excluir produtores'],
+
+            ['name' => 'cms.grapes.list', 'description' => 'Listar uvas'],
+            ['name' => 'cms.grapes.create', 'description' => 'Cadastrar uvas'],
+            ['name' => 'cms.grapes.edit', 'description' => 'Editar uvas'],
+            ['name' => 'cms.grapes.destroy', 'description' => 'Excluir uvas'],
+
+            ['name' => 'cms.product-type.list', 'description' => 'Listar tipos de produtos'],
+            ['name' => 'cms.product-type.create', 'description' => 'Cadastrar novo tipo de produto'],
+            ['name' => 'cms.product-type.edit', 'description' => 'Editar tipos de produtos'],
+            ['name' => 'cms.product-type.destroy', 'description' => 'Excluir tipos de produtos'],
+
         ];
 
         foreach ($permissions as $permission) {

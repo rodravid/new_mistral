@@ -40,7 +40,7 @@ class HighlightCmsDatatable extends AbstractDatatables
 
         $qb->where($qb->expr()->eq('n.type', ':type'));
 
-        $qb->setParameter('type', $this->ACLService->getCurrentModuleName());
+        $qb->setParameter('type', $this->aclService->getCurrentModuleName());
 
         if (! empty($search['value'])) {
 

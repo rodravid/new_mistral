@@ -14,15 +14,19 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="panel">
-                                    <div class="btn-group">
-                                        <a href="{{ route('cms.newsletter.export') }}" class="btn btn-success"><span class="glyphicon glyphicon-export"></span> Exportar para excel</a>
+
+                        @if ($loggedUser->hasPermissionTo('cms.newsletter.export'))
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel">
+                                        <div class="btn-group">
+                                            <a href="{{ route('cms.newsletter.export') }}" class="btn btn-success"><span class="glyphicon glyphicon-export"></span> Exportar para excel</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
+
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="table-responsive">
