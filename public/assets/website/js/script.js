@@ -50,6 +50,18 @@ jQuery(document).ready(function ($) {
       }
     });
 
+    $(".ver-mais-det-vinhos").click(function (event) {
+      $(".mais-info-vinho").slideDown();
+      $(".ver-mais-det-vinhos").hide();
+      $(".ver-menos-det-vinhos").show();
+    });
+
+    $(".ver-menos-det-vinhos").click(function (event) {
+      $(".mais-info-vinho").slideUp();
+      $(".ver-menos-det-vinhos").hide();
+      $(".ver-mais-det-vinhos").show();
+    });
+
 
 
     $('.details-wine').each(function () {

@@ -631,7 +631,7 @@
 				<h2 class="title-modal-default">Acesse sua conta</h2>
 				<ul class="list-form-register">
 					<li>
-						<label for="">E-mail</label>
+						<!-- <label for="">E-mail</label> -->
 						<input class="email input-register full" type="text" placeholder="E-mail">
 					</li>
 					<li>
