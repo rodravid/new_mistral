@@ -184,14 +184,16 @@
 					<h2 class="title-form">Contatos</h2>
 					<ul class="list-form-register">
 						<li>
-							<input class="phone input-register full" type="text" placeholder="Telefone de contato *">
-						</li>
-						<li>
 							<input class="cel input-register full" type="text" placeholder="Telefone celular">
 						</li>
-						<li>
+							<li>
 							<input class="phone2 input-register full" type="text" placeholder="Telefone comercial">
 						</li>
+						<li>
+							<input class="cel input-register full" type="text" placeholder="Telefone de contato *">
+						</li>
+
+					
 					</ul>
 
 				</div>

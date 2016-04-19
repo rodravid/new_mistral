@@ -58,6 +58,7 @@
 						Login
 					</a>
 				</li>
+
 				<li class="nav-item nav-item-user-logged">
 					<a class="nav-link" href="javascript:void();">
 						Seja bem vindo, Wellington!
@@ -529,9 +530,15 @@
 					</ul>
 					<ul class="menu menu-logout-mobile">
 						
-						<li class="menu-item">
+						<li class="menu-item hide-mobile">
 							<a class="menu-link call-login" href="javascript:void(0)">
 								login
+							</a>
+						</li>
+
+						<li class="menu-item  show-mobile">
+							<a class="menu-link" href="/login">
+								Login
 							</a>
 						</li>
 
@@ -633,13 +640,15 @@
 					</li>
 
 				</ul>
-				<a class="bt-default-full template1" href="#">Entrar <span class="arrow-link">></span></a>
+				<a class="bt-default-full bt-middle template1" href="#">Entrar <span class="arrow-link">></span></a>
 			</div>
 			<div class="footer-modal">
-				<a href="/cadastro">
-					<span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
-					<span class="bt-arrow">></span>
-				</a>
+				<div class="center-content-bt">
+					<a href="/cadastro">
+						<span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
+						<span class="bt-arrow">></span>
+					</a>
+				</div>
 			</div>
 			<a href="javascript:void(0)" class="close">X</a>
 		</div>
@@ -654,13 +663,15 @@
 					</li>
 
 				</ul>
-				<a class="bt-default-full template1" href="#">Enviar <span class="arrow-link">></span></a>
+				<a class="bt-default-full bt-middle template1" href="#">Enviar <span class="arrow-link">></span></a>
 			</div>
 			<div class="footer-modal">
-				<a href="/cadastro">
-					<span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
-					<span class="bt-arrow">></span>
-				</a>
+				<div class="center-content-bt">
+					<a href="/cadastro">
+						<span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
+						<span class="bt-arrow">></span>
+					</a>
+				</div>
 			</div>
 			<a href="javascript:void(0)" class="close">X</a>
 		</div>
