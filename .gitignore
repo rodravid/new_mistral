@@ -1,10 +1,12 @@
 /vendor
 /node_modules
 /public/storage
+/storage/proxies
 Homestead.yaml
 Homestead.json
 .env
 .idea
 dump.rdb
+_ide_helper.php
+=======
 .DS_Store
-.DS_Store?

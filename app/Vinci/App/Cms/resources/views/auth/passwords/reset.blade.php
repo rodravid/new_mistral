@@ -1,70 +1,60 @@
-@extends('layouts.app')
+@extends('cms::layouts.login')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-                        {!! csrf_field() !!}
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1><strong>Vinci CMS</strong> - Alteração de senha</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>Alterar senha</h3>
+                            <p>Digite seu e-mail e sua nova senha:</p>
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            @if ($errors->has())
+                                <span class="help-block text-danger"><strong>{{ $errors->first() }}</strong></span>
+                            @endif
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ $email or old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-lock"></i>
                         </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form role="form" action="{{ url('/cms/password/reset') }}" method="post" class="login-form">
+                            {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
+                            <input type="hidden" name="token" value="{{ $token }}">
 
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="form-group">
+                                <label class="sr-only" for="form-username">E-mail</label>
+                                <input type="text" name="email" placeholder="E-mail..." value="{{ old('email') }}" class="form-username form-control" id="form-username">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-refresh"></i>Reset Password
-                                </button>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-username">Senha</label>
+                                <input type="password" name="password" placeholder="Senha..." class="form-username form-control" id="form-username">
                             </div>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-username">Confirme a senha</label>
+                                <input type="password" name="password_confirmation" placeholder="Confirme a senha..." class="form-username form-control" id="form-username">
+                            </div>
+                            <button type="submit" class="btn">ALTERAR SENHA</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 @endsection

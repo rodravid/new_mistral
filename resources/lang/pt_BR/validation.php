@@ -28,18 +28,18 @@ return [
         'array'   => 'The :attribute must have between :min and :max items.',
     ],
     'boolean'              => 'The :attribute field must be true or false.',
-    'confirmed'            => 'The :attribute confirmation does not match.',
+    'confirmed'            => 'A confirmação do campo :attribute não confere.',
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
     'digits'               => 'The :attribute must be :digits digits.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
-    'email'                => 'The :attribute must be a valid email address.',
+    'email'                => 'O campo :attribute deve conter um endereço de e-mail válido.',
     'exists'               => 'The selected :attribute is invalid.',
     'filled'               => 'The :attribute field is required.',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',
-    'integer'              => 'The :attribute must be an integer.',
+    'integer'              => 'O campo :attribute deve conter um número inteiro.',
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
@@ -50,10 +50,10 @@ return [
     ],
     'mimes'                => 'The :attribute must be a file of type: :values.',
     'min'                  => [
-        'numeric' => 'The :attribute must be at least :min.',
-        'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
-        'array'   => 'The :attribute must have at least :min items.',
+        'numeric' => 'O campo :attribute deve ser maior ou igual :min.',
+        'file'    => 'O campo :attribute deve conter um arquivo de no mínimo :min kilobytes.',
+        'string'  => 'O campo :attribute deve conter no mínimo :min caracteres.',
+        'array'   => 'O campo :attribute deve conter no mínimo :min itens.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
@@ -90,8 +90,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'roles' => [
+            'required' => 'Você deve selecionar um grupo para o usuário.',
         ],
     ],
 
@@ -109,8 +109,15 @@ return [
     'attributes' => [
         'name' => 'Nome',
         'email' => 'E-mail',
+        'title' => 'Título',
+        'subtitle' => 'Subtítulo',
+        'description' => 'Descrição',
+        'url' => 'URL',
+        'amount' => 'Valor',
         'password' => 'Senha',
-        'password_confirmation' => 'Confirmação de Senha'
+        'password_confirmation' => 'Confirmação de Senha',
+        'roles' => 'Grupo',
+        'position' => 'Ordem'
     ],
 
 ];

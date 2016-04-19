@@ -1,10 +1,16 @@
 <?php
 
-namespace Vinci\Domain\Admin\Admin;
+namespace Vinci\Domain\Admin;
 
+use Closure;
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Database\ConnectionInterface as Database;
+use Exception;
+use Illuminate\Http\UploadedFile;
+use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Validation\ValidationTrait;
+use Vinci\Domain\Image\Image;
+use Vinci\Domain\Image\ImageRepository;
+use Vinci\Infrastructure\Storage\StorageService;
 
 class AdminService
 {
@@ -14,68 +20,102 @@ class AdminService
 
     private $entityManager;
 
+    private $validator;
+
+    private $storage;
+
+    private $imageRepository;
+
     public function __construct(
         AdminRepository $repository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        AdminValidator $validator,
+        StorageService $storage,
+        ImageRepository $imageRepository
     )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
+        $this->validator = $validator;
+        $this->storage = $storage;
+        $this->imageRepository = $imageRepository;
     }
 
-    public function create(array $attributes)
+    public function create(array $adminData)
     {
-        $this->validate($attributes, $this->getRules(), $this->getMessages());
+        $this->validator->with($adminData)->passesOrFail();
 
-        return $this->db->transaction(function() use ($attributes) {
+        return $this->saveAdmin($adminData, function($data) {
+            return Admin::make($data);
+        });
+    }
 
-            $admin = $this->createUserIfNotExists($attributes);
+    public function update(array $adminData, $id)
+    {
+        $this->validator->with($adminData)->setId($id)->passesOrFail();
 
-            $this->repository->createProfile($attributes, $admin->id);
+        return $this->saveAdmin($adminData, function($data) use ($id) {
+
+            if (empty($data['password'])) {
+                unset($data['password']);
+            }
+
+            $admin = $this->repository->find($id);
+            $admin->fill($data);
 
             return $admin;
         });
     }
 
-    public function update(array $attributes, $customerId)
+    public function savePhoto(UploadedFile $uploadedPhoto, Admin $user)
     {
-        $this->validate($attributes, $this->getRules($customerId));
+        $this->entityManager->getConnection()->beginTransaction();
 
-        $this->db->transaction(function() use ($attributes, $customerId) {
+        try {
 
-            $this->repository->update($attributes, $customerId);
-            $this->repository->updateProfile($attributes, $customerId);
+            $photo = Image::makeFromUpload($uploadedPhoto, $user->getPhotosUploadPath());
 
-        });
+            $this->storage->storeImage($photo);
 
+            $photo = $this->imageRepository->save($photo);
+
+            $this->entityManager->getConnection()->commit();
+
+            return $photo;
+
+        } catch (Exception $e) {
+
+            $this->entityManager->getConnection()->rollBack();
+            throw $e;
+        }
     }
 
-    protected function createUserIfNotExists(array $attributes)
+    public function removePhoto(Image $photo, Admin $user)
     {
-        $customer = $this->repository
-            ->skipCriteria()
-            ->findByEmail($attributes['email']);
+        $user->removePhoto($photo);
 
-        if (empty($customer)) {
-            $customer = $this->repository->create($attributes);
-        }
+        $this->repository->save($user);
+        $this->imageRepository->save($photo);
 
-        return $customer;
+        $this->storage->deleteImage($photo);
     }
 
-    protected function getRules($ignoreId = null)
+    protected function saveAdmin($adminData, Closure $method)
     {
-        $rules = [
-            'name' => 'required',
-            'email' => 'required|unique_user:admin',
-            'password' => 'required'
-        ];
+        $admin = $method($adminData);
 
-        if (! empty($ignoreId)) {
-            $rules['email'] .= ",{$ignoreId}";
+        $admin->assignRole($this->entityManager->getReference(Role::class, $adminData['roles']));
+
+        $this->repository->save($admin);
+
+        if (! empty($photo = $adminData['photo'])) {
+            $photo = $this->savePhoto($photo, $admin);
+            $admin->addPhoto($photo);
+            $admin->setProfilePhoto($photo);
+            $this->repository->save($admin);
         }
 
-        return $rules;
+        return $admin;
     }
 
 }

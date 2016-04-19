@@ -2,15 +2,14 @@
 
 $route->group(['middleware' => ['web']], function () use ($route) {
 
-    $route->get('login', 'Auth\AuthController@showLoginForm');
-    $route->post('login', 'Auth\AuthController@login');
-    $route->get('logout', 'Auth\AuthController@logout');
-
+    $route->get('login', 'Auth\\AuthController@showLoginForm')->name('login.show');
+    $route->post('login', 'Auth\\AuthController@login')->name('login');
+    $route->get('logout', 'Auth\\AuthController@logout')->name('logout');
     $route->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
     $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $route->post('password/reset', 'Auth\PasswordController@reset');
 
-    $route->get('/', 'Home\HomeController@index');
+    $route->get('/', 'Home\HomeController@index')->name('index');
 
     $route->get('/account/create', 'Account\AccountController@create');
     $route->post('/account/save', 'Account\AccountController@store');

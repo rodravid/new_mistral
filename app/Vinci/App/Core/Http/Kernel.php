@@ -48,5 +48,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Vinci\App\Core\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'cms' =>  \Vinci\App\Cms\Http\Middleware\Cms::class,
+        'acl' =>  \Vinci\App\Core\Http\Middleware\AccessControlList::class,
     ];
 }

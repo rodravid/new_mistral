@@ -4,7 +4,7 @@ namespace Vinci\Domain\Customer;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
-use LaravelDoctrine\ORM\Auth\Authenticatable;
+use Vinci\Domain\Auth\Authenticatable;
 use Vinci\Domain\User\User;
 
 /**
@@ -27,7 +27,7 @@ class Customer extends User
     protected $name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     protected $email;
 
@@ -36,9 +36,9 @@ class Customer extends User
      */
     protected $orders;
 
-    public function __construct(array $attributes = [])
+    public function __construct()
     {
-        parent::__construct($attributes);
+        parent::__construct();
 
         $this->orders = new ArrayCollection;
     }
@@ -58,11 +58,6 @@ class Customer extends User
         return $this->orders;
     }
 
-    /**
-     * Get the e-mail address where password reset links are sent.
-     *
-     * @return string
-     */
     public function getEmailForPasswordReset()
     {
         return $this->email;

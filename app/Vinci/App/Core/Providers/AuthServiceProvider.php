@@ -29,19 +29,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        Auth::provider('repository', function($app, array $config) {
-            return $app->make($config['class']);
-        });
 
     }
 
 
     public function register()
     {
-
-        $this->app->singleton(AuthService::class, function($app) {
-            return new AuthService($app['auth'], $app->make(UserRepository::class));
-        });
 
     }
 
