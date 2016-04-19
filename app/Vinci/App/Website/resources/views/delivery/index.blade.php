@@ -48,7 +48,7 @@
 		<div class="adress">
 			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
 			<div class="content-adress mbottom20">
-				<h4 class="uppercase">casa</h4>
+				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
@@ -61,7 +61,7 @@
 		<div class="adress">
 			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
 			<div class="content-adress mbottom20">
-				<h4 class="uppercase">casa</h4>
+				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
@@ -71,10 +71,10 @@
 			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
 		</div>
 
-				<div class="adress">
+		<div class="adress">
 			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
 			<div class="content-adress mbottom20">
-				<h4 class="uppercase">casa</h4>
+				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
@@ -84,10 +84,10 @@
 			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
 		</div>
 
-				<div class="adress">
+		<div class="adress">
 			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
 			<div class="content-adress mbottom20">
-				<h4 class="uppercase">casa</h4>
+				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
@@ -97,10 +97,10 @@
 			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
 		</div>
 
-						<div class="adress">
+		<div class="adress">
 			<a href="javascript:void(0);" class="bt-edit" title="Editar Endereço"> > </a>
 			<div class="content-adress mbottom20">
-				<h4 class="uppercase">casa</h4>
+				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
@@ -110,8 +110,8 @@
 			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
 		</div>
 		
-		<div class="wrap-content-bt mbottom20">
-			<div class="content-bt-middle show-mobile">
+		<div class="wrap-content-bt mbottom20 show-mobile">
+			<div class="content-bt-middle">
 				<a class="bt-default-full bt-color" href="#">Novo endereço <span class="arrow-link">&gt;</span></a>
 			</div>
 		</div>

@@ -161,8 +161,8 @@
 			</div>
 		</article>
 
-		<div class="wrap-content-bt mbottom20">
-			<div class="content-bt-middle show-mobile">
+		<div class="wrap-content-bt mbottom20 show-mobile">
+			<div class="content-bt-middle ">
 				<a class="bt-default-full bt-big bt-color" href="#">Continuar comprando <span class="arrow-link">&gt;</span></a>
 			</div>
 		</div>

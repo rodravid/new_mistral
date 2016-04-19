@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$orange".
-        on line 124 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss
+        on line 128 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss
 
-119: }
-120: 
-121: 
-122: 
-123: /*Cores ******************************************\/
-124: .orange {color:$orange;}
-125: .blue {color:$blue;}
+123: 		text-decoration: underline;
+124: 	}
+125: }
 126: 
-127: /* Inicio templates BLUE **************BLUE****************BLUE***********\/
-128: 
-129: .template1 {
+127: /*Cores ******************************************\/
+128: .orange {color:$orange;}
+129: .blue {color:$blue;}
+130: 
+131: /* Inicio templates BLUE **************BLUE****************BLUE***********\/
+132: 
+133: .template1 {
 
 Backtrace:
-/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss:124
+/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss:128
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
@@ -62,4 +62,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$orange\".\A         on line 124 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss\A \A 119: }\A 120: \A 121: \A 122: \A 123: /*Cores ******************************************/\A 124: .orange {color:$orange;}\A 125: .blue {color:$blue;}\A 126: \A 127: /* Inicio templates BLUE **************BLUE****************BLUE***********/\A 128: \A 129: .template1 {"; }
+  content: "Error: Undefined variable: \"$orange\".\A         on line 128 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss\A \A 123: 		text-decoration: underline;\A 124: 	}\A 125: }\A 126: \A 127: /*Cores ******************************************/\A 128: .orange {color:$orange;}\A 129: .blue {color:$blue;}\A 130: \A 131: /* Inicio templates BLUE **************BLUE****************BLUE***********/\A 132: \A 133: .template1 {"; }
