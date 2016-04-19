@@ -193,6 +193,11 @@
 	color:#fff;
 	font-size:15px;
 	font-family:$robotolight;
+	appearance:none;
+	-moz-appearance:none; /* Firefox */
+	-webkit-appearance:none; /* Safari and Chrome */
+	-ms-appearance:none;
+	-o-appearance:none;
 	@media #{$screen-767}{
 		color:$blue; 
 		padding: 10.8px 30px 10.8px 17px;

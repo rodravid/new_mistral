@@ -110,8 +110,8 @@
 			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
 		</div>
 		
-		<div class="wrap-content-bt mbottom20">
-			<div class="content-bt-middle show-mobile">
+		<div class="wrap-content-bt mbottom20 show-mobile">
+			<div class="content-bt-middle">
 				<a class="bt-default-full bt-color" href="#">Novo endereço <span class="arrow-link">&gt;</span></a>
 			</div>
 		</div>

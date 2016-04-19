@@ -268,7 +268,7 @@
 	</article>
 
 
-	<div class="wrap-content-bt">
+	<div class="wrap-content-bt remove-mbttom20">
 		<div class="content-bt-big">
 			<a class="bt-default-full bt-middle bt-color" href="#">Pagar <span class="arrow-link">&gt;</span></a>
 		</div>

@@ -118,7 +118,11 @@
 	border: 2px solid #ff5400;
 }
 
-
+.info-vinho-template {
+	&:hover {
+		text-decoration: underline;
+	}
+}
 
 /*Cores ******************************************/
 .orange {color:$orange;}

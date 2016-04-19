@@ -30,55 +30,10 @@
 
 <div class="row">
 
-	<header class="header-content-internal">
-
-		<div class="container-total-products">
-			<span class="total-products">350 produtos</span>
-		</div>
-
-		<div class="display-filter">
-			<span>Ordernar por</span>
-			<div class="select-standard form-control-white float-right select-widthfull">
-				<select name="" id="">
-					<option value="">Relevância</option>
-					<option value="">Menor preço</option>
-					<option value="">Maior preço</option>
-					<option value="">Ordem Alfabética (A-Z)</option>
-					<option value="">Ordem Alfabética (Z-A)</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="display-filter show-desktop">
-			<span>Itens por página</span>
-			<div class="select-standard form-control-white float-right select-widthfull">
-				<select name="" id="">
-					<option value="">15</option>
-					<option value="">30</option>
-					<option value="">45</option>
-				</select>
-			</div>
-		</div>
-
-	</header>
 
 	<article class="wrap-content-search">
 
-		<a class="filtro-mobile show-mobile" href="javascript:void(0);">Filtro<span>></span></a>
 
-		<ul class="filter-search show-mobile">
-			<li class="filter-search-item">
-				<ul class="subitem-filter-search">
-					<li>
-						<a href="javascript:void(0);">Cabernet</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">X</a>
-					</li>
-				</ul>
-			</li>
-
-		</ul>
 
 		<div class="search-column opacidade-coluna1">
 
@@ -409,6 +364,86 @@
 		</div>
 
 		<div class="column-products-search-inline template1">
+
+
+
+			<header class="header-content-internal">
+
+				<span class="total-products show-mobile">1- 15 de 350 produtos</span>
+
+
+				<div class="display-filter float-right">
+					<span>Ordernar por</span>
+					<div class="select-standard form-control-white float-right select-widthfull">
+						<select name="" id="">
+							<option value="">Relevância</option>
+							<option value="">Menor preço</option>
+							<option value="">Maior preço</option>
+							<option value="">Ordem Alfabética (A-Z)</option>
+							<option value="">Ordem Alfabética (Z-A)</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="display-filter float-left">
+					<span>Itens por página</span>
+					<div class="select-standard form-control-white float-right select-widthfull">
+						<select name="" id="">
+							<option value="">15</option>
+							<option value="">30</option>
+							<option value="">45</option>
+						</select>
+					</div>
+				</div>
+
+				<a class="filtro-mobile show-mobile" href="javascript:void(0);">Filtro<span>></span></a>
+
+				<ul class="filter-search show-mobile">
+					<li class="filter-search-item">
+						<ul class="subitem-filter-search">
+							<li>
+								<a href="javascript:void(0);">Cabernet</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);">X</a>
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+
+				<div class="wrap-pagination">
+
+					<div class="container-total-products">
+						<span class="total-products show-desktop">1 - 15 de 350 produtos</span>
+					</div>
+
+					<ul class="pagination">
+						<li>
+							<a href="javascript:void(0);" class="selected">1</a>
+						</li>
+						<li>
+							<a href="">2</a>
+						</li>
+						<li>
+							<a href="">3</a>
+						</li>
+						<li>
+							<a href="">4</a>
+						</li>
+						<li>
+							<a href="">5</a>
+						</li>
+						<li>
+							<a href="">></a>
+						</li>
+					</ul>
+
+				</div>
+
+			</header>
+
+
 			<div class="wine-card">
 				
 
@@ -676,7 +711,34 @@
 				
 			</div>
 
-			<a class="bt-default-full template1" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
+							<div class="wrap-pagination">
+
+					<div class="container-total-products">
+						<span class="total-products show-desktop">1 - 15 de 350 produtos</span>
+					</div>
+
+					<ul class="pagination">
+						<li>
+							<a href="javascript:void(0);" class="selected">1</a>
+						</li>
+						<li>
+							<a href="">2</a>
+						</li>
+						<li>
+							<a href="">3</a>
+						</li>
+						<li>
+							<a href="">4</a>
+						</li>
+						<li>
+							<a href="">5</a>
+						</li>
+						<li>
+							<a href="">></a>
+						</li>
+					</ul>
+
+				</div>
 		</div>
 
 
