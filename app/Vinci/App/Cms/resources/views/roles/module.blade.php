@@ -16,6 +16,8 @@
                 $childrens.prop('checked', false);
             }
 
+            checkIfSelected();
+
         });
 
         $('.select-container').find('input[type="checkbox"]').not('[data-checkall]').bind('change', function() {
@@ -27,6 +29,8 @@
             } else {
                 $self.parents('.select-container').find('[data-checkall]').prop('checked', true);
             }
+
+            checkIfSelected();
 
         });
 
@@ -41,6 +45,18 @@
             }
 
         });
+
+        function checkIfSelected() {
+            var count = $('.select-container').find('input[type="checkbox"]:checked').length;
+
+            if (count > 0) {
+                $('#toggleAllPermissions').prop('checked', true);
+            } else {
+                $('#toggleAllPermissions').prop('checked', false);
+            }
+        }
+
+        checkIfSelected();
 
     </script>
 

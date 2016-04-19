@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Address;
 
 use Doctrine\ORM\Mapping as ORM;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
 /**
  * @ORM\Entity
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PublicPlace
 {
+
+    use Timestamps;
 
     /**
      * @ORM\Id

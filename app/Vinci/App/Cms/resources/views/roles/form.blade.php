@@ -23,7 +23,7 @@
 
         <div class="row">
             @foreach($groupedPermissions as $permissionGroup)
-                <div class="col-xs-6 col-sm-4 col-md-3 select-container">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 select-container">
                     <div class="checkbox">
                         <label><input type="checkbox" name="modules[]" value="{{ $permissionGroup['module']->getId() }}" @if(isset($role) && $role->getModules()->contains($permissionGroup['module'])) checked @endif data-checkall><b>{{ $permissionGroup['module']->getTitle() }}</b></label>
                     </div>
