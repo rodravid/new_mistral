@@ -28,14 +28,14 @@ class TopNavComposer
     {
         $dollar = $this->dollarRepository->getLast();
 
-        if ($dollar) {
+        if ($dollar && cmsUser()->canManageModule('dollar')) {
             $dollar = $this->presenter->model($dollar, DollarPresenter::class);
             $view->with('currentDollar', $dollar);
         }
 
         $deadline = $this->deadlineRepository->getLast();
 
-        if ($deadline) {
+        if ($deadline && cmsUser()->canManageModule('deadline')) {
             $deadline = $this->presenter->model($deadline, DeadlinePresenter::class);
             $view->with('currentDeadline', $deadline);
         }

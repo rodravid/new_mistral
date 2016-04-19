@@ -159,7 +159,7 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         return false;
     }
 
-    public function hasPermissionToModuleByName($moduleName)
+    public function canManageModule($moduleName)
     {
         if ($this->isSuperAdmin()) {
             return true;
@@ -174,6 +174,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         }
 
         return false;
+    }
+
+    public function cannotManageModule($module)
+    {
+        return ! $this->canManageModule($module);
     }
 
     public function getPermissions()
