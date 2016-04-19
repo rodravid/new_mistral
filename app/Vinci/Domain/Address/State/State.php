@@ -29,7 +29,7 @@ class State
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Address\Country\Country")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Address\Country\Country", fetch="EAGER")
      */
     protected $country;
 

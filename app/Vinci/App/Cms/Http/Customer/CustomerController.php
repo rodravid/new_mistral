@@ -8,6 +8,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Redirect;
 use Vinci\App\Cms\Http\Controller;
+use Vinci\App\Cms\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Customer\CustomerRepository;
@@ -55,6 +56,16 @@ class CustomerController extends Controller
         $customer = $this->repository->findOrFail($id);
 
         return $this->view('customers.edit')
+            ->withCustomer($customer);
+    }
+
+    public function show($id)
+    {
+        $customer = $this->repository->findOrFail($id);
+
+        $customer = $this->presenter->model($customer, CustomerPresenter::class);
+
+        return $this->view('customers.show')
             ->withCustomer($customer);
     }
 

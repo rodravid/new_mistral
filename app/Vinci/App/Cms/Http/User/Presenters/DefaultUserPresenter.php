@@ -14,11 +14,6 @@ class DefaultUserPresenter extends AbstractPresenter
         }
     }
 
-    public function presentMemberSinceDate()
-    {
-        return $this->getCreatedAt()->formatLocalized("%b/%Y");
-    }
-
     public function presentProfilePhoto()
     {
         if ($this->hasProfilePhoto()) {

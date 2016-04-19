@@ -1,12 +1,12 @@
 <?php
 
-namespace Vinci\App\Core\Doctrine;
+namespace Vinci\App\Core\Doctrine\Types;
 
 use Carbon\Carbon;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DateTimeType;
 
-class CarbonType extends DateTimeType
+class CarbonDatetime extends DateTimeType
 {
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {

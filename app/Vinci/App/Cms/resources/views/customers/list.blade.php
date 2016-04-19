@@ -30,7 +30,7 @@
                 searchDelay: 600,
                 columnDefs: [
                     {orderable: false, targets: [4,5] },
-                    {orderable: false, width: '92px', targets: -1 },
+                    {orderable: false, width: '170px', targets: -1 },
                     {className: 'hcenter vcenter', width: '20px', targets: [0] },
                     {className: 'vcenter', targets: [1,2,3,4,5,6,7,8] }
                 ]

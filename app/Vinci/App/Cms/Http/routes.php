@@ -30,6 +30,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->delete('/{customer}/delete', 'Customer\\CustomerController@destroy')->name('destroy');
                     $route->put('/{customer}', 'Customer\\CustomerController@update')->name('edit#update');
                     $route->get('datatable', 'Customer\\CustomerController@datatable')->name('list#datatable');
+                    $route->get('/{customer}', 'Customer\\CustomerController@show')->name('show');
                 });
 
                 /**

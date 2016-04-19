@@ -14,7 +14,6 @@ use Vinci\Domain\User\User;
  */
 class Customer extends User
 {
-
     use Authenticatable;
 
     /**
@@ -40,12 +39,22 @@ class Customer extends User
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    protected $cnpj;
+    protected $rg;
+
+    /**
+     * @ORM\Column(name="issuing_body", type="string", nullable=true)
+     */
+    protected $issuingBody;
+
+    /**
+     * @ORM\Column(name="company_name", type="string", nullable=true)
+     */
+    protected $companyName;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    protected $rg;
+    protected $cnpj;
 
     /**
      * @ORM\Column(name="state_registration", type="string", nullable=true)
@@ -53,14 +62,45 @@ class Customer extends User
     protected $stateRegistration;
 
     /**
+     * @ORM\Column(type="string", length=1, options={"fixed" = true}, nullable=true)
+     */
+    protected $gender;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $birthday;
+
+    /**
+     * @ORM\Column(name="phone", type="string", length=20)
+     */
+    protected $phone;
+
+    /**
+     * @ORM\Column(name="cell_phone", type="string", length=20)
+     */
+    protected $cellPhone;
+
+    /**
+     * @ORM\Column(name="commercial_phone", type="string", length=20)
+     */
+    protected $commercialPhone;
+
+    /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Order", mappedBy="customer")
      */
     protected $orders;
 
     /**
-     * @ORM\OneToOne(targetEntity="Vinci\Domain\Customer\Address\Address", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Customer\Address\Address", mappedBy="customer")
      */
     protected $addresses;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Vinci\Domain\Customer\Address\Address")
+     * @ORM\JoinColumn(name="main_address")
+     */
+    protected $mainAddress;
 
     public function __construct()
     {
@@ -136,6 +176,94 @@ class Customer extends User
         return $this;
     }
 
+    public function getIssuingBody()
+    {
+        return $this->issuingBody;
+    }
+
+    public function setIssuingBody($issuingBody)
+    {
+        $this->issuingBody = $issuingBody;
+        return $this;
+    }
+
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+        return $this;
+    }
+
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+        return $this;
+    }
+
+
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    public function getCellPhone()
+    {
+        return $this->cellPhone;
+    }
+
+    public function setCellPhone($cellPhone)
+    {
+        $this->cellPhone = $cellPhone;
+        return $this;
+    }
+
+    public function hasCellPhone()
+    {
+        return ! empty($this->cellPhone);
+    }
+
+    public function getCommercialPhone()
+    {
+        return $this->commercialPhone;
+    }
+
+    public function setCommercialPhone($commercialPhone)
+    {
+        $this->commercialPhone = $commercialPhone;
+        return $this;
+    }
+
+    public function hasCommercialPhone()
+    {
+        return ! empty($this->commercialPhone);
+    }
+
+    public function getCompanyName()
+    {
+        return $this->companyName;
+    }
+
+    public function setCompanyName($companyName)
+    {
+        $this->companyName = $companyName;
+        return $this;
+    }
+
     public function getDocument()
     {
         if ($this->isIndividual()) {
@@ -186,6 +314,38 @@ class Customer extends User
     public function getAddresses()
     {
         return $this->addresses;
+    }
+
+    public function getCustomerType()
+    {
+        return $this->customerType;
+    }
+
+    public function setCustomerType($customerType)
+    {
+        $this->customerType = $customerType;
+        return $this;
+    }
+
+    public function stats()
+    {
+        return new Stats($this);
+    }
+
+    public function getMainAddress()
+    {
+        return $this->mainAddress;
+    }
+
+    public function setMainAddress(Address $mainAddress)
+    {
+        $this->mainAddress = $mainAddress;
+        return $this;
+    }
+
+    public function hasMainAddress()
+    {
+        return $this->mainAddress instanceof Address;
     }
 
 }

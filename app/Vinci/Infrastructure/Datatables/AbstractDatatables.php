@@ -78,6 +78,11 @@ abstract class AbstractDatatables
         return new Paginator($query, $fetchJoinCollection);
     }
 
+    protected function getShowPermissionName()
+    {
+        return 'cms.' . $this->aclService->getCurrentModuleName() . '.show';
+    }
+
     protected function getEditPermissionName()
     {
         return 'cms.' . $this->aclService->getCurrentModuleName() . '.edit';
@@ -88,6 +93,11 @@ abstract class AbstractDatatables
         return 'cms.' . $this->aclService->getCurrentModuleName() . '.destroy';
     }
 
+    protected function getShowRouteName()
+    {
+        return $this->getShowPermissionName();
+    }
+
     protected function getEditRouteName()
     {
         return $this->getEditPermissionName();
@@ -96,6 +106,11 @@ abstract class AbstractDatatables
     protected function getDestroyRouteName()
     {
         return $this->getDestroyPermissionName();
+    }
+
+    protected function checkShowPermission(HasPermissions $user)
+    {
+        return $user->hasPermissionTo($this->getShowPermissionName());
     }
 
     protected function checkEditPermission(HasPermissions $user)

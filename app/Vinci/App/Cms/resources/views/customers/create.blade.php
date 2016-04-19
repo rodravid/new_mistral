@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="col-xs-12 col-lg-3">
-                    @include('cms::layouts.partials.publication.create.default')
+                    @include('cms::layouts.partials.publication.create.default', ['hasDraft' => false])
                 </div>
 
             {!! Form::close() !!}

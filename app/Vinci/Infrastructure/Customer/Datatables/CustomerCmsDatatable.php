@@ -4,6 +4,7 @@ namespace Vinci\Infrastructure\Customer\Datatables;
 
 use Vinci\App\Cms\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\Domain\ACL\ACLService;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -72,6 +73,32 @@ class CustomerCmsDatatable extends AbstractDatatables
             $presenter->status_html,
             $this->buildActionsColumn($customer)
         ];
+    }
+
+    protected function buildActionsColumn(Model $entity, array $params = [])
+    {
+        $actions = '<div class="btn-group btn-group-xs">';
+
+        if ($this->checkShowPermission(cmsUser())) {
+            $actions .= '<a href="' . route($this->getShowRouteName(), [$entity->getId()]) . '" class="btn btn-info"><i class="fa fa-eye"></i> Visualizar</a>';
+        }
+
+        if ($this->checkEditPermission(cmsUser())) {
+            $actions .= '<a href="' . route($this->getEditRouteName(), [$entity->getId()]) . '" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>';
+        }
+
+        if ($this->checkDestroyPermission(cmsUser())) {
+            $actions .= '<a href="javascript:void(0);" class="btn btn-danger"
+                   data-form-link
+                   data-confirm-title="Confirmação de exclusão"
+                   data-confirm-text="Deseja realmente excluir esse registro?"
+                   data-method="DELETE"
+                   data-action="' . route($this->getDestroyRouteName(), [$entity->getId()]) . '"><i class="fa fa-trash"></i> Excluir</a>';
+        }
+
+        $actions .= '</div>';
+
+        return $actions;
     }
 
 }

@@ -18,14 +18,6 @@
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtUserEmail">Cargo</label>
-            {!! Form::text('office', null, ['id' => 'txtUserOffice', 'class' => 'form-control', 'placeholder' => 'Digite o cargo']) !!}
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
             <label for="txtUserPassword">Senha</label>
             {!! Form::password('password', ['id' => 'txtUserPassword', 'class' => 'form-control', 'placeholder' => 'Digite a senha']) !!}
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>

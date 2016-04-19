@@ -41,7 +41,7 @@
 
     <div class="box-footer">
         <button type="submit" class="btn btn-success btn-block" name="status" value="1"><i class="fa fa-check"></i> Salvar e publicar</button>
-        @if($model->hasProperty('status'))
+        @if($model->hasProperty('status') && ! isset($hideDraft))
             <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Savar como rascunho</button>
         @endif
         @if($loggedUser->hasPermissionTo('cms.' . $currentModule->getName() . '.destroy'))

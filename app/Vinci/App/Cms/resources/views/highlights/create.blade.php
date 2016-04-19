@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="col-xs-12 col-lg-3">
-                    @include('cms::layouts.partials.publication.create.default', ['hasDraft' => true])
+                    @include('cms::layouts.partials.publication.create.default', ['hasDraft' => true, 'hasSchedule' => true])
                 </div>
 
             {!! Form::close() !!}
