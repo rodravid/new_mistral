@@ -1,5 +1,7 @@
 <?php
 
+use Vinci\App\Core\Utils\Mask;
+
 function asset_web($path, $secure = null) {
     return asset("assets/website/{$path}", $secure);
 }
@@ -40,4 +42,45 @@ function present_status_html($status)
             return '<i class="fa fa-check"></i><span class="text-success"> Publicado</span>';
         break;
     }
+}
+
+function mask($txt, $mask) {
+    if ($mask == Mask::PHONE)
+        $mask = strlen($txt) == 10 ? '(##) ####-####' : '(##) #####-####';
+    if ($mask == Mask::DOCUMENT) {
+        if (strlen($txt) == 11)
+            $mask = Mask::CPF;
+        elseif (strlen($txt) == 14)
+            $mask = Mask::CNPJ;
+        else
+            return $txt;
+    }
+    if (empty($txt))
+        return '';
+    $txt = unmask($txt);
+    $qtd = 0;
+    for ($x = 0; $x < strlen($mask); $x++) {
+        if ($mask[$x] == "#")
+            $qtd++;
+    }
+    if ($qtd > strlen($txt)) {
+        $txt = str_pad($txt, $qtd, "0", STR_PAD_LEFT);
+    }
+    elseif ($qtd < strlen($txt))
+    {
+        return $txt;
+    }
+    if ($txt <> '') {
+        $string = str_replace(" ", "", $txt);
+        for ($i = 0; $i < strlen($string); $i++) {
+            $pos = strpos($mask, "#");
+            $mask[$pos] = $string[$i];
+        }
+        return $mask;
+    }
+    return $txt;
+}
+
+function unmask($text) {
+    return preg_replace('/[\-\|\(\)\/\.\: ]/', '', $text);
 }

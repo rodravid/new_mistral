@@ -1,12 +1,16 @@
 <?php
 
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Database\Seeder;
 use Vinci\Domain\ACL\Module\Module;
 use Vinci\Domain\ACL\Module\ModuleRepository;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Admin\AdminRepository;
+use Vinci\Domain\Common\Gender;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Customer\CustomerRepository;
+use Vinci\Domain\Customer\CustomerType;
 
 class UsersTableSeeder extends Seeder
 {
@@ -25,8 +29,8 @@ class UsersTableSeeder extends Seeder
         EntityManager $em
     )
     {
-        $this->adminRepository = $adminRepository;
         $this->customerRepository = $customerRepository;
+        $this->adminRepository = $adminRepository;
         $this->moduleRepository = $moduleRepository;
         $this->em = $em;
     }
@@ -56,6 +60,17 @@ class UsersTableSeeder extends Seeder
             'name' => 'Teste',
             'email' => 'teste@teste.com',
             'password' => '123'
+        ]);
+
+        $customer1 = $this->customerRepository->create([
+            'name' => 'Felipe Alcântara',
+            'email' => 'felipe.ralc@gmail.com',
+            'password' => '123',
+            'customer_type' => CustomerType::INDIVIDUAL,
+            'birthday' => Carbon::now(),
+            'phone' => '11968588930',
+            'gender' => Gender::MALE,
+            'status' => Status::ACTIVE
         ]);
 
         $superAdminRole = Role::make([

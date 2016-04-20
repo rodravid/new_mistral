@@ -41,6 +41,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     protected $id;
 
     /**
+     * @ORM\Column(type="smallint", options={"default" = 0})
+     */
+    protected $status = 0;
+
+    /**
      * @ACL\HasRoles()
      * @var \Doctrine\Common\Collections\ArrayCollection|\LaravelDoctrine\ACL\Contracts\Role[]
      */
@@ -89,6 +94,17 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
     }
 
     public function getRoles()
@@ -143,7 +159,7 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         return false;
     }
 
-    public function hasPermissionToModuleByName($moduleName)
+    public function canManageModule($moduleName)
     {
         if ($this->isSuperAdmin()) {
             return true;
@@ -158,6 +174,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
         }
 
         return false;
+    }
+
+    public function cannotManageModule($module)
+    {
+        return ! $this->canManageModule($module);
     }
 
     public function getPermissions()

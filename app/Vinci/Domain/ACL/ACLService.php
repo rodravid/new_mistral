@@ -131,7 +131,9 @@ class ACLService
             'description' => $attributes['description']
         ]);
 
-        $this->assingModulesAndPermissions($role, $attributes['modules'], $attributes['permissions']);
+        $this->assignPermissions($role, $attributes['permissions']);
+
+        $this->assingModules($role, $attributes['modules']);
 
         $this->roleRepository->save($role);
 
@@ -143,6 +145,7 @@ class ACLService
         $role = $this->roleRepository->find($id);
 
         $role->getModules()->clear();
+
         $role->getPermissions()->clear();
 
         $this->assignPermissions($role, $attributes['permissions']);

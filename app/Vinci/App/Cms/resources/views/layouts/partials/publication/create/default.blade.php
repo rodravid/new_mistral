@@ -29,7 +29,7 @@
             </div>
         @else
             <button type="submit" class="btn btn-success btn-block" name="status" value="1"><i class="fa fa-check"></i> Salvar e publicar</button>
-            @if(isset($hasDraft))
+            @if(isset($hasDraft) && $hasDraft)
                 <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Salvar como rascunho</button>
             @endif
         @endif

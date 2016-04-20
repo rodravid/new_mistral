@@ -82,10 +82,10 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    @if(isset($currentDollar) && $loggedUser->hasPermissionToModuleByName('dollar'))
+                    @if(isset($currentDollar))
                         <li><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
                     @endif
-                    @if(isset($currentDeadline) && $loggedUser->hasPermissionToModuleByName('deadline'))
+                    @if(isset($currentDeadline))
                         <li><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-check-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
                     @endif
                     <!-- User Account: style can be found in dropdown.less -->
@@ -115,6 +115,10 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -130,6 +134,7 @@
     <!-- /.content-wrapper -->
 
     @include('cms::layouts.partials.footer')
+    @include('cms::layouts.partials.sidebar')
 
 </div>
 <!-- ./wrapper -->
@@ -184,8 +189,11 @@
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset_cms('plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <!-- AngularJS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset_cms('dist/js/app.min.js') }}"></script>
+    <script src="{{ asset_cms('dist/js/skins.js') }}"></script>
 
     <script>
 

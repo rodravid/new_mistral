@@ -61,13 +61,9 @@ class RolesCmsDatatable extends AbstractDatatables
         ];
 
         if ($role->isSuperAdmin()) {
-
             $result[] = '';
-
         } else {
-
             $result[] = $this->buildActionsColumn($role);
-
         }
 
         return $result;

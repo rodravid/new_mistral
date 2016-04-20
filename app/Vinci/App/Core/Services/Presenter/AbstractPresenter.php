@@ -4,6 +4,8 @@ namespace Vinci\App\Core\Services\Presenter;
 
 use Carbon\Carbon;
 use Robbo\Presenter\Presenter as BasePresenter;
+use Vinci\App\Core\Utils\Mask;
+use Vinci\Domain\Common\Gender;
 
 abstract class AbstractPresenter extends BasePresenter implements Presentable
 {
@@ -20,9 +22,16 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         }
     }
 
-    public function presentAmount()
+    protected function toDefaultDate($date)
     {
-        return $this->toRealCurrency($this->getAmount());
+        if (! empty($date) && $date instanceof Carbon) {
+            return  $date->format('d/m/Y');
+        }
+    }
+
+    protected function toMaskedPhoneNumber($phone)
+    {
+        return mask($phone, Mask::PHONE);
     }
 
     protected function toReal($amount)
@@ -33,6 +42,11 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
     protected function toRealCurrency($amount)
     {
         return 'R$ ' . $this->toReal($amount);
+    }
+
+    public function presentAmount()
+    {
+        return $this->toRealCurrency($this->getAmount());
     }
 
     public function presentCreatedAt()
@@ -59,6 +73,11 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         }
 
         return $date;
+    }
+
+    public function presentBirthday()
+    {
+        return $this->toDefaultDate($this->getBirthday());
     }
 
     public function presentStatus()
@@ -88,6 +107,38 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
     public function presentVisibleSite()
     {
         return $this->toAffirmative($this->getVisibleSite());
+    }
+
+    public function presentMemberSinceDate()
+    {
+        return $this->getCreatedAt()->formatLocalized("%b/%Y");
+    }
+
+    public function presentPhone()
+    {
+        return $this->toMaskedPhoneNumber($this->getPhone());
+    }
+
+    public function presentCellPhone()
+    {
+        return $this->toMaskedPhoneNumber($this->getCellPhone());
+    }
+
+    public function presentCommercialPhone()
+    {
+        return $this->toMaskedPhoneNumber($this->getCommercialPhone());
+    }
+
+    public function presentGender()
+    {
+        switch($this->getGender()) {
+            case Gender::MALE:
+                return 'Masculino';
+            break;
+            case Gender::FEMALE:
+                return 'Feminino';
+                break;
+        }
     }
 
 }

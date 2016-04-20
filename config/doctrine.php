@@ -111,7 +111,8 @@ return [
     */
     'custom_types'              => [
         'json' => LaravelDoctrine\ORM\Types\Json::class,
-        'datetime' => \Vinci\App\Core\Doctrine\CarbonType::class
+        'date' => \Vinci\App\Core\Doctrine\Types\CarbonDatetime::class,
+        'datetime' => \Vinci\App\Core\Doctrine\Types\CarbonDatetime::class
     ],
     /*
     |--------------------------------------------------------------------------

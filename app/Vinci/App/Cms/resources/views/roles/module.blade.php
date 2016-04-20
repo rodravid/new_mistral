@@ -16,6 +16,8 @@
                 $childrens.prop('checked', false);
             }
 
+            checkIfSelected();
+
         });
 
         $('.select-container').find('input[type="checkbox"]').not('[data-checkall]').bind('change', function() {
@@ -28,7 +30,33 @@
                 $self.parents('.select-container').find('[data-checkall]').prop('checked', true);
             }
 
+            checkIfSelected();
+
         });
+
+        $('#toggleAllPermissions').bind('change', function() {
+
+            var $self = $(this);
+
+            if ($self.is(':checked')) {
+                $('.select-container').find('input[type="checkbox"]').prop('checked', true);
+            } else {
+                $('.select-container').find('input[type="checkbox"]').prop('checked', false);
+            }
+
+        });
+
+        function checkIfSelected() {
+            var count = $('.select-container').find('input[type="checkbox"]:checked').length;
+
+            if (count > 0) {
+                $('#toggleAllPermissions').prop('checked', true);
+            } else {
+                $('#toggleAllPermissions').prop('checked', false);
+            }
+        }
+
+        checkIfSelected();
 
     </script>
 
