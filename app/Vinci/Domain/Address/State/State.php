@@ -3,14 +3,18 @@
 namespace Vinci\Domain\Address\State;
 
 use Doctrine\ORM\Mapping as ORM;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Address\Country\Country;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="ibge_states")
  */
-class State
+class State extends Model
 {
+
+    use Timestamps;
 
     /**
      * @ORM\Id

@@ -10,15 +10,23 @@ use Doctrine\ORM\Mapping as ORM;
 class AddressType
 {
 
+    const RESIDENTIAL = 1;
+    const COMMERCIAL = 2;
+
     protected static $types = [
-        0 => 'Residencial',
-        1 => 'Comercial'
+        self::RESIDENTIAL => 'Residencial',
+        self::COMMERCIAL => 'Comercial'
     ];
 
     /**
-     * @ORM\Column(name="address_type_id", type="integer")
+     * @ORM\Column(name="id", type="integer")
      */
     protected $id;
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function getTitle()
     {

@@ -189,8 +189,11 @@
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset_cms('plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <!-- AngularJS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset_cms('dist/js/app.min.js') }}"></script>
+    <script src="{{ asset_cms('dist/js/skins.js') }}"></script>
 
     <script>
 

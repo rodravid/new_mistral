@@ -517,6 +517,5 @@
     @parent
 
     <script src="{{ asset_cms('dist/js/pages/dashboard.js') }}"></script>
-    <script src="{{ asset_cms('dist/js/demo.js') }}"></script>
 
 @endsection

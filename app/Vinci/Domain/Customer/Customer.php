@@ -52,6 +52,11 @@ class Customer extends User
     protected $companyName;
 
     /**
+     * @ORM\Column(name="company_contact", type="string", nullable=true)
+     */
+    protected $companyContact;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     protected $cnpj;

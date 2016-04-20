@@ -4,12 +4,13 @@ namespace Vinci\Domain\Address\Country;
 
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="ibge_countries")
  */
-class Country
+class Country extends Model
 {
 
     use Timestamps;

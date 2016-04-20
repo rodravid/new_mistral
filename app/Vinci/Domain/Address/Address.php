@@ -24,9 +24,13 @@ abstract class Address extends Model
 
     /**
      * @ORM\Embedded(class="Vinci\Domain\Address\AddressType")
-     * @ORM\Column(name="address_type_id")
      */
     protected $type;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $nickname;
 
     /**
      * @ORM\Column(name="postal_code", type="integer")
@@ -68,6 +72,11 @@ abstract class Address extends Model
      * @ORM\Column(type="string", nullable=true)
      */
     protected $landmark;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $receiver;
 
     public function getId()
     {
@@ -170,6 +179,28 @@ abstract class Address extends Model
     public function setLandmark($landmark)
     {
         $this->landmark = $landmark;
+        return $this;
+    }
+
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    public function setReceiver($receiver)
+    {
+        $this->receiver = $receiver;
+        return $this;
+    }
+
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
         return $this;
     }
 

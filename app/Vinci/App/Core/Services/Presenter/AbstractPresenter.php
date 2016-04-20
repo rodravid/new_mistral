@@ -34,11 +34,6 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
         return mask($phone, Mask::PHONE);
     }
 
-    public function presentAmount()
-    {
-        return $this->toRealCurrency($this->getAmount());
-    }
-
     protected function toReal($amount)
     {
         return number_format($amount, 2, ',', '.');
@@ -47,6 +42,11 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
     protected function toRealCurrency($amount)
     {
         return 'R$ ' . $this->toReal($amount);
+    }
+
+    public function presentAmount()
+    {
+        return $this->toRealCurrency($this->getAmount());
     }
 
     public function presentCreatedAt()
