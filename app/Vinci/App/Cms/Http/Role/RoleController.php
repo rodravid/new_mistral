@@ -32,6 +32,8 @@ class RoleController extends Controller
     {
         parent::__construct($em);
 
+        $this->middleware('prevent-super-admin-role-management');
+
         $this->repository = $repository;
         $this->aclService = $aclService;
     }

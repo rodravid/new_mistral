@@ -49,6 +49,7 @@ class Kernel extends HttpKernel
         'guest' => \Vinci\App\Core\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'cms' =>  \Vinci\App\Cms\Http\Middleware\Cms::class,
-        'acl' =>  \Vinci\App\Core\Http\Middleware\AccessControlList::class,
+        'prevent-super-admin-role-management' => \Vinci\App\Cms\Http\Middleware\PreventSuperAdminRoleManagement::class,
+        'acl' => \Vinci\App\Core\Http\Middleware\AccessControlList::class,
     ];
 }
