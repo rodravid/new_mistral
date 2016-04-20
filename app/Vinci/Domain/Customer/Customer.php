@@ -62,7 +62,7 @@ class Customer extends User
     protected $stateRegistration;
 
     /**
-     * @ORM\Column(type="string", length=1, options={"fixed" = true}, nullable=true)
+     * @ORM\Column(type="string", length=1, options={"fixed" = true})
      */
     protected $gender;
 
@@ -77,12 +77,12 @@ class Customer extends User
     protected $phone;
 
     /**
-     * @ORM\Column(name="cell_phone", type="string", length=20)
+     * @ORM\Column(name="cell_phone", type="string", length=20, nullable=true)
      */
     protected $cellPhone;
 
     /**
-     * @ORM\Column(name="commercial_phone", type="string", length=20)
+     * @ORM\Column(name="commercial_phone", type="string", length=20, nullable=true)
      */
     protected $commercialPhone;
 

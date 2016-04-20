@@ -12,10 +12,10 @@ class DoctrineCustomerRepository extends DoctrineUserRepository implements Custo
     public function find($id, $lockMode = null, $lockVersion = null)
     {
         $query = $this->_em->createQuery('SELECT customer, a, c, s, co FROM Vinci\Domain\Customer\Customer customer
-        JOIN customer.mainAddress a
-        JOIN a.city c
-        JOIN c.state s
-        JOIN s.country co
+        LEFT JOIN customer.mainAddress a
+        LEFT JOIN a.city c
+        LEFT JOIN c.state s
+        LEFT JOIN s.country co
         WHERE customer.id = :id');
 
         $query->setParameter('id', $id);

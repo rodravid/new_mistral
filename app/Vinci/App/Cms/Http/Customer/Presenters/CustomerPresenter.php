@@ -21,9 +21,12 @@ class CustomerPresenter extends AbstractPresenter
     {
         $mainAddress = $this->getMainAddress();
 
-        return "<b>CEP: </b> {$this->getMainAddress()->postal_code}<br />
-                 {$mainAddress->public_place} {$mainAddress->address}, {$mainAddress->number} <br />
-                   {$mainAddress->city_name} - {$mainAddress->state_name} / {$mainAddress->uf} - {$mainAddress->country_name}";
+        if ($mainAddress) {
+
+            return "<b>CEP: </b> {$this->getMainAddress()->postal_code}<br />
+                     {$mainAddress->public_place} {$mainAddress->address}, {$mainAddress->number} <br />
+                       {$mainAddress->city_name} - {$mainAddress->state_name} / {$mainAddress->uf} - {$mainAddress->country_name}";
+        }
     }
 
     public function presentCustomerType()

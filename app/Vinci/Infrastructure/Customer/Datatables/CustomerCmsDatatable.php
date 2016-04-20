@@ -64,7 +64,7 @@ class CustomerCmsDatatable extends AbstractDatatables
 
         return [
             $presenter->getId(),
-            $presenter->type,
+            $presenter->customer_type,
             $presenter->getName(),
             $presenter->getEmail(),
             $presenter->getDocument(),
