@@ -255,7 +255,7 @@
 						<a href="javascript:void(0);">
 							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
-								<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
@@ -362,7 +362,7 @@
 						<a href="javascript:void(0);">
 							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
-								<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
@@ -388,4 +388,32 @@
 
 @include('website::layouts.footer')
 
-@stop
+
+
+@endsection
+
+@section("scripts")
+
+	@parent
+
+<script>
+	// $(window).scroll(function() {
+	// 	if ($(window).scrollTop() >= 490) {
+	// 		$(".header-main").addClass('menu-fixo');
+	// 		$(".menu-fixo").fadeIn(400,function(){
+	// 			$("body").css("margin-top","100px");   
+	// 		});
+	// 		$(".menu-fixo").addClass('opacity1');
+
+	// 	} else {
+	// 		$(".header-main").removeClass('menu-fixo');
+	// 		$(".header-main").removeClass('opacity1');
+	// 		$(".menu-fixo").fadeOut();
+	// 		$("body").css("margin-top","0px");
+	// 	}
+	// });
+</script>
+
+@endsection
+
+

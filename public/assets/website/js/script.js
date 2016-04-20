@@ -50,25 +50,47 @@ jQuery(document).ready(function ($) {
       }
     });
 
-
-
-    $('.details-wine').each(function () {
-      if ($(this).children('li').length > 9) {
-        $(this).find("li:nth-child(1n+11)").css("display", "none");
-        $(this).find(".see-more-filter").show();
-      }
-      else {
-        $(this).find(".see-more-filter").hide();
-      }
+    $(".ver-mais-det-vinhos").click(function (event) {
+      $(".mais-info-vinho").slideDown();
+      $(".ver-mais-det-vinhos").hide();
+      $(".ver-menos-det-vinhos").show();
     });
+
+    $(".ver-menos-det-vinhos").click(function (event) {
+      $(".mais-info-vinho").slideUp();
+      $(".ver-menos-det-vinhos").hide();
+      $(".ver-mais-det-vinhos").show();
+    });
+
+
+
+    // $('.details-wine').each(function () {
+    //   if ($(this).children('li').length > 9) {
+    //     $(this).find("li:nth-child(1n+11)").css("display", "none");
+    //     $(this).find(".see-more-filter").show();
+    //   }
+    //   else {
+    //     $(this).find(".see-more-filter").hide();
+    //   }
+    // });
+
+    //     $(".see-more-info").click(function (event) {
+    //   if ($(this).hasClass('see-less-info')) {
+    //     $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "none");
+    //     $(this).text('Veja mais').addClass('see-more-info').removeClass('see-less-info');
+    //   } else {
+    //     $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "inline-block");
+    //     $(this).text('Veja menos').addClass('see-less-info').removeClass('see-more-info');
+    //   }
+    // });
 
     $(".see-more-info").click(function (event) {
       if ($(this).hasClass('see-less-info')) {
-        $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "none");
         $(this).text('Veja mais').addClass('see-more-info').removeClass('see-less-info');
+        $(".rule-details-wine").slideUp();
       } else {
-        $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "inline-block");
         $(this).text('Veja menos').addClass('see-less-info').removeClass('see-more-info');
+        $(".rule-details-wine").slideDown();
       }
     });
 
@@ -105,6 +127,7 @@ jQuery(document).ready(function ($) {
     });
 
 
+
     $(".filtro-mobile").click(function (event) {
       $(".search-column").removeClass('opacidade-coluna1').addClass('semopacidade-coluna1');
       $(".bg-layer-filtro").fadeIn();
@@ -134,7 +157,7 @@ jQuery(document).ready(function ($) {
 
 
 
-    $('.call-login').on('click', function(){
+    $('.call-login').on('click', function() {
       $('.overlay, .modal-login').fadeIn();
     });
 
@@ -144,7 +167,11 @@ jQuery(document).ready(function ($) {
     });
 
     $('.close, .overlay').on('click', function(){
-      $('.overlay, .modal-login, .modal-recovery').fadeOut();
+      $('.overlay, .modal-login, .modal-recovery, .modal-adress').fadeOut();
+    });
+
+    $('.call-adress').on('click', function() {
+      $('.overlay, .modal-adress').fadeIn();
     });
 
 
@@ -177,6 +204,29 @@ jQuery(document).ready(function ($) {
                               $('.master:radio[name=flag-card]').prop('checked', false);
                               $('.american:radio[name=flag-card]').prop('checked', false);
                             });
+
+
+
+
+
+    
+
+$(".input-register").keyup(function(event) {
+  var $self = $(this);
+  if($self.val().length > 0){
+    $(this).siblings(".label-input").fadeIn();  
+
+  } else {
+    $(this).siblings(".label-input").fadeOut();      
+  }
+
+  
+}).keyup();
+ 
+
+
+
+
 
 
 

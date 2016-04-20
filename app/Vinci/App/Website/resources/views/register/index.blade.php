@@ -41,27 +41,34 @@
 					<h2 class="title-form">Dados de acesso *</h2>
 					<ul class="list-form-register">
 						<li>
+							<!-- <label for="" class="label-input">E-mail</label> -->
 							<input class="email input-register full" type="text" placeholder="E-mail *">
 						</li>
 						<li>
+							<!-- <label for="" class="label-input">Senha</label> -->
 							<input class="senha input-register half" type="password" placeholder="Senha *">
 						</li>
 						<li>
+							<!-- <label for="" class="label-input">Confirmar senha</label> -->
 							<input class="senha input-register half" type="password" placeholder="Confirmar senha *">
 						</li>
 					</ul>
 					<h2 class="title-form">Dados Pessoais *</h2>
 					<ul class="list-form-register">
 						<li>
+							<!-- <label for="" class="label-input">Nome completo *</label> -->
 							<input class="name-complete input-register full" type="text" placeholder="Nome completo *">
 						</li>
 						<li>
+							<!-- <label for="" class="label-input">CPF *</label> -->
 							<input class="cpf input-register full" type="text" placeholder="CPF *">
 						</li>
 						<li>
+							<!-- <label for="" class="label-input">RG *</label> -->
 							<input class="rg input-register full" type="text" placeholder="RG">
 						</li>
 						<li>
+							<!-- <label for="" class="label-input">Orgão Emissor *</label> -->
 							<input class="orgao-emissor input-register half" type="text" placeholder="Orgão Emissor *">
 						</li>
 						<li>
@@ -74,6 +81,7 @@
 							</div>
 						</li>
 						<li>
+							<!-- <label for="" class="label-input">Data de Nascimento *</label> -->
 							<input class="birth-date input-register seventy" type="text" placeholder="Data de Nascimento *">
 						</li>
 					</ul>
@@ -87,9 +95,11 @@
 					<h2 class="title-form">Endereço de Entrega *</h2>
 					<ul class="list-form-register">
 						<li>
-							<input class="email input-register full" type="text" placeholder="Identificador do local *">
+							<!-- <label for="" class="label-input">Tipo de endereço *</label> -->
+							<input class="email input-register full" type="text" placeholder="Tipo de endereço *">
 						</li>
 						<li>
+							<!-- <label for="" class="label-input">CEP</label> -->
 							<input class="cep input-register half" type="text" placeholder="CEP">
 							<div class="search-cep">
 								<p>Não sei o meu CEP.</p>
@@ -105,10 +115,13 @@
 							</div>
 						</li>
 						<li>
+						<!-- <label for="" class="label-input">Endereço</label> -->
 							<input class="input-register full" type="text" placeholder="Endereço">
 						</li>
 						<li>
+						<label for="" class="label-input">n°</label>
 							<input class="number input-register two-fields" type="text" placeholder="n°">
+							<!-- <label for="" class="label-input">Complemento</label> -->
 							<input class="number input-register two-fields" type="text" placeholder="Complemento">
 						</li>
 						<li>
@@ -147,6 +160,7 @@
 						</li>
 
 						<li>
+						<!-- <label for="" class="label-input">Bairro</label> -->
 							<input class="input-register full" type="text" placeholder="Bairro">
 						</li>
 
@@ -170,6 +184,7 @@
 						</li>
 
 						<li>
+						<!-- <label for="" class="label-input">Referência para entrega</label> -->
 							<input class="input-register full" type="text" placeholder="Referência para entrega">
 						</li>
 					</ul>
@@ -184,16 +199,19 @@
 					<h2 class="title-form">Contatos</h2>
 					<ul class="list-form-register">
 						<li>
+						<!-- <label for="" class="label-input">Telefone celular</label> -->
 							<input class="cel input-register full" type="text" placeholder="Telefone celular">
 						</li>
-							<li>
+						<li>
+					<!-- 	<label for="" class="label-input">Telefone comercial</label> -->
 							<input class="phone2 input-register full" type="text" placeholder="Telefone comercial">
 						</li>
 						<li>
-							<input class="cel input-register full" type="text" placeholder="Telefone de contato *">
+						<!-- <label for="" class="label-input">Telefone de contato *</label> -->
+							<input class="input-register full" type="text" placeholder="Telefone de contato *">
 						</li>
 
-					
+
 					</ul>
 
 				</div>

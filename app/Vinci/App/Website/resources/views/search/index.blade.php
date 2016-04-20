@@ -108,8 +108,6 @@
 					</ul>
 				</li>
 
-				<div class="more-info-wine">
-
 				<li class="filter-search-item">
 					<ul class="subitem-filter-search">
 						<li>
@@ -153,7 +151,6 @@
 						</li>
 					</ul>
 				</li>
-				</div>
 
 				<span class="see-more-filter">+ veja mais</span>
 			</ul>

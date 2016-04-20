@@ -41,12 +41,14 @@
 
 	<section class="wrap-payment">
 
-		<div class="wrap-content-bt mbottom20">
+		<div class="wrap-content-bt mbottom10">
 			<span class="title-internal-confirmation uppercase float-left">Pedido concluído com sucesso!</span>
 			<div class="content-bt-big hide-mobile">
-				<a class="bt-default-full bt-color" href="#">Continuar comprando <span class="arrow-link">&gt;</span></a>
+				<a class="bt-default-full bt-middle bt-color" href="#">Continuar comprando <span class="arrow-link">&gt;</span></a>
 			</div>
 		</div>
+
+		<p class="mbottom20">Agradecemos a sua compra. Você receberá um e-mail de confirmacão do seu produto</p>
 
 		<article class="order section-payment">
 			<div class="content-order float-left">
@@ -58,6 +60,12 @@
 				<p class="title-internal-15 mtop10">Aguardando pagamento</p>
 			</div>
 		</article>
+
+		<div class="wrap-content-bt mbottom10 show-desktop hide-tablet">
+			<div class="content-bt-middle ">
+				<a class="bt-default-full template1 bt-middle" href="#">Imprimir pedido <span class="arrow-link">&gt;</span></a>
+			</div>
+		</div>
 		
 		<p class="title-internal-blue mbottom20">Resumo do pedido</p>
 
@@ -109,8 +117,6 @@
 					</div>
 
 				</div>
-
-
 
 			</div>
 
