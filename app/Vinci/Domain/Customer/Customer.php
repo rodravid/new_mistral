@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Customer;
 
+use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Vinci\Domain\Auth\Authenticatable;
@@ -97,15 +98,9 @@ class Customer extends User
     protected $orders;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Customer\Address\Address", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Customer\Address\Address", mappedBy="customer", indexBy="id", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $addresses;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Vinci\Domain\Customer\Address\Address")
-     * @ORM\JoinColumn(name="main_address")
-     */
-    protected $mainAddress;
 
     public function __construct()
     {
@@ -208,7 +203,7 @@ class Customer extends User
         return $this->birthday;
     }
 
-    public function setBirthday($birthday)
+    public function setBirthday(Carbon $birthday)
     {
         $this->birthday = $birthday;
         return $this;
@@ -309,16 +304,57 @@ class Customer extends User
 
     public function addAddress(Address $address)
     {
-        if (! $this->addresses->contains($address)) {
+        if (! $this->addresses->containsKey($address->getId())) {
+            $address->setCustomer($this);
             $this->addresses->add($address);
         }
 
         return $this;
     }
 
+    public function removeAddress($address)
+    {
+        if ($address instanceof Address) {
+            return $this->addresses->remove($address->getId());
+        }
+
+        return $this->addresses->remove($address);
+    }
+
+    public function syncAddress(ArrayCollection $addresses)
+    {
+        $toRemove = $this->addresses->filter(function($address) use ($addresses) {
+            if ($addresses->contains($address)) {
+                return false;
+            }
+
+            return true;
+        });
+
+        foreach ($toRemove as $address) {
+            $this->addresses->remove($address->getId());
+        }
+
+        foreach ($addresses as $address) {
+
+            if ($this->addresses->containsKey($address->getId())) {
+                $this->addresses->set($address->getId(), $address);
+            } else {
+                $this->addresses->add($address);
+            }
+        }
+
+    }
+
     public function getAddresses()
     {
         return $this->addresses;
+    }
+
+    public function setAddresses(ArrayCollection $addresses)
+    {
+        $this->addresses = $addresses;
+        return $this;
     }
 
     public function getCustomerType()
@@ -339,18 +375,39 @@ class Customer extends User
 
     public function getMainAddress()
     {
-        return $this->mainAddress;
+        foreach ($this->addresses as $address) {
+            if ($address->isMainAddress()) {
+                return $address;
+            }
+        }
     }
 
     public function setMainAddress(Address $mainAddress)
     {
-        $this->mainAddress = $mainAddress;
+        foreach ($this->addresses as $address) {
+            $address->setMainAddress(false);
+        }
+
+        $mainAddress->setCustomer($this);
+        $mainAddress->setMainAddress(true);
+
         return $this;
     }
 
     public function hasMainAddress()
     {
-        return $this->mainAddress instanceof Address;
+        return $this->getMainAddress() instanceof Address;
+    }
+
+    public function getCompanyContact()
+    {
+        return $this->companyContact;
+    }
+
+    public function setCompanyContact($companyContact)
+    {
+        $this->companyContact = $companyContact;
+        return $this;
     }
 
 }

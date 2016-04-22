@@ -10,8 +10,15 @@ class CustomerValidator extends LaravelValidator
     protected $rules = [
         'name' => 'required',
         'email' => 'required|email|unique:Vinci\Domain\Customer\Customer,email',
-        'office' => 'max:255',
-        'password' => 'required_without:id|min:6|confirmed'
+        'password' => 'required_without:id|min:6|confirmed',
+        'addresses.*.postal_code' => 'required',
+        'addresses.*.public_place' => 'required',
+        'addresses.*.address' => 'required',
+        'addresses.*.number' => 'required',
+        'addresses.*.district' => 'required',
+        'addresses.*.country' => 'required',
+        'addresses.*.state' => 'required',
+        'addresses.*.city' => 'required',
     ];
 
     protected $messages = [

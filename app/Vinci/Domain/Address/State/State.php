@@ -2,8 +2,10 @@
 
 namespace Vinci\Domain\Address\State;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Address\City\City;
 use Vinci\Domain\Address\Country\Country;
 use Vinci\Domain\Core\Model;
 
@@ -33,9 +35,19 @@ class State extends Model
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Address\Country\Country", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Address\Country\Country", inversedBy="states")
      */
     protected $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Address\City\City", mappedBy="state", cascade={"persist"})
+     */
+    protected $cities;
+
+    public function __construct()
+    {
+        $this->cities = new ArrayCollection;
+    }
 
     public function getId()
     {
@@ -78,6 +90,17 @@ class State extends Model
     public function setCountry(Country $country)
     {
         $this->country = $country;
+        return $this;
+    }
+
+    public function addCity(City $city)
+    {
+        if (! $this->cities->contains($city)) {
+            $city->setState($this);
+            $city->setUf($this->getUf());
+            $this->cities->add($city);
+        }
+
         return $this;
     }
 

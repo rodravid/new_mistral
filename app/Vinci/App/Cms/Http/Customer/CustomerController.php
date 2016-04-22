@@ -95,10 +95,6 @@ class CustomerController extends Controller
 
     public function update(Request $request, $customerId)
     {
-        return Redirect::back()->withInput();
-
-        dd($request->all());
-
         try {
 
             $data = $request->all();

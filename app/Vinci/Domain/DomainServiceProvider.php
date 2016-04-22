@@ -5,6 +5,7 @@ namespace Vinci\Domain;
 use Illuminate\Support\ServiceProvider;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Admin\AdminService;
+use Vinci\Domain\Customer\Address\AddressFactory;
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Domain\Customer\CustomerService;
 use Vinci\Domain\Highlight\HighlightService;
@@ -33,7 +34,9 @@ class DomainServiceProvider extends ServiceProvider
             return new CustomerService(
                 $this->app['em'],
                 $this->app['Vinci\Domain\Customer\CustomerRepository'],
-                $this->app->make('Vinci\Domain\Customer\CustomerValidator')
+                $this->app->make('Vinci\Domain\Customer\CustomerValidator'),
+                new AddressFactory($this->app['em']),
+                $this->app['sanitizer']
             );
         });
 

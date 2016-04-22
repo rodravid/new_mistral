@@ -58,7 +58,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="txtCpf">CPF</label>
-                                    {!! Form::text('cpf', null, ['id' => 'txtCpf', 'class' => 'form-control']) !!}
+                                    {!! Form::text('cpf', null, ['id' => 'txtCpf', 'class' => 'form-control', 'data-inputmask' => '\'mask\': \'999.999.999-99\'', 'data-mask', 'maxlength' => 14]) !!}
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -87,7 +87,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="txtCnpj">CNPJ</label>
-                                    {!! Form::text('cnpj', null, ['id' => 'txtCnpj', 'class' => 'form-control']) !!}
+                                    {!! Form::text('cnpj', null, ['id' => 'txtCnpj', 'class' => 'form-control', 'data-inputmask' => '\'mask\': \'99.999.999/9999-99\'', 'data-mask']) !!}
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -99,24 +99,28 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="txtPhone">Telefone de contato</label>
-                            {!! Form::text('phone', null, ['id' => 'txtPhone', 'class' => 'form-control']) !!}
-                        </div>
-                    </div>
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtPhone">Telefone de contato</label>
+                                    {!! Form::text('phone', null, ['id' => 'txtPhone', 'class' => 'form-control', 'data-inputmask' => '\'mask\': \'(99) 9999-9999[9]\'', 'data-mask']) !!}
+                                </div>
+                            </div>
 
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="txtcellPhone">Celular</label>
-                            {!! Form::text('cellPhone', null, ['id' => 'txtcellPhone', 'class' => 'form-control']) !!}
-                        </div>
-                    </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtcellPhone">Celular</label>
+                                    {!! Form::text('cellPhone', null, ['id' => 'txtcellPhone', 'class' => 'form-control', 'data-inputmask' => '\'mask\': \'(99) 9999-9999[9]\'', 'data-mask']) !!}
+                                </div>
+                            </div>
 
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="txtCommercialPhone">Telefone comercial</label>
-                            {!! Form::text('commercialPhone', null, ['id' => 'txtCommercialPhone', 'class' => 'form-control']) !!}
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="txtCommercialPhone">Telefone comercial</label>
+                                    {!! Form::text('commercialPhone', null, ['id' => 'txtCommercialPhone', 'class' => 'form-control', 'data-inputmask' => '\'mask\': \'(99) 9999-9999[9]\'', 'data-mask']) !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -130,8 +134,8 @@
                         <div class="row">
                             <div class="col-xs-12 col-lg-6">
                                 <div class="form-group has-feedback">
-                                    <label for="txtUserPassword">Senha</label>
-                                    {!! Form::password('password', ['id' => 'txtUserPassword', 'class' => 'form-control', 'placeholder' => 'Digite a senha']) !!}
+                                    <label for="txtUserPassword">Nova senha</label>
+                                    {!! Form::password('password', ['id' => 'txtUserPassword', 'class' => 'form-control', 'placeholder' => 'Digite a nova senha']) !!}
                                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                 </div>
                             </div>
@@ -154,14 +158,14 @@
                     <div class="col-xs-12">
                         <div class="box-addresses">
                             <div class="row">
-                                <?php $i = 0; ?>
                                 @foreach($customer->getAddresses() as $address)
-                                    <div class="col-xs-12" data-id="{{ $address->getId() }}">
-                                        <div class="box box-default @if($i > 0) collapsed-box @endif">
+                                    <div class="col-xs-12 address-box" data-id="{{ $address->getId() }}">
+                                        <input type="hidden" name="addresses[{{ $address->getId() }}][id]" value="{{ $address->getId() }}">
+                                        <div class="box box-default">
                                             <div class="box-header with-border">
                                                 <h3 class="box-title"><i class="fa fa-flag-checkered"></i> {{ $address->getNickname() }}</h3>
                                                 <div class="box-tools pull-right">
-                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa {{ $i > 0 ? 'fa-plus' : 'fa-minus' }}"></i></button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                                 </div>
                                             </div>
                                             <div class="box-body">
@@ -185,7 +189,7 @@
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                        <a href="javascript:void(0)" class="btn btn-danger btn-sm pull-right"><i class="fa fa-trash"></i> Excluir endereço</a>
+                                                        <a href="javascript:void(0)" class="btn btn-danger btn-sm pull-right" ng-click="removeAddressBox({{ $address->getId() }})"><i class="fa fa-minus-circle"></i> Remover endereço</a>
                                                     </div>
 
                                                     <div class="col-xs-12">
@@ -194,7 +198,14 @@
                                                                 <div class="form-group">
                                                                     <label>CEP</label>
                                                                     <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="form-control"
-                                                                           value="{{ old('addresses.' . $address->getId() . '.postal_code', $address->getPostalCode()) }}">
+                                                                           value="{{ old('addresses.' . $address->getId() . '.postal_code', $address->getPostalCode()) }}" data-inputmask="'mask': '99999-999'" data-mask>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="form-group">
+                                                                    <label>Apelido</label>
+                                                                    <input type="text" name="addresses[{{ $address->getId() }}][nickname]" class="form-control"
+                                                                           value="{{ old('addresses.' . $address->getId() . '.nickname', $address->getNickname()) }}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -221,7 +232,7 @@
                                                         <div class="form-group">
                                                             <label>Número</label>
                                                             <input type="text" name="addresses[{{ $address->getId() }}][number]" class="form-control"
-                                                                   value="{{ old('addresses.' . $address->getId() . '.postal_code', $address->getPostalCode()) }}">
+                                                                   value="{{ old('addresses.' . $address->getId() . '.number', $address->getNumber()) }}">
                                                         </div>
                                                     </div>
 
@@ -236,7 +247,8 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Bairro</label>
-                                                            <input type="text" name="addresses[{{ $address->getId() }}][district]" class="form-control">
+                                                            <input type="text" name="addresses[{{ $address->getId() }}][district]" class="form-control"
+                                                                   value="{{ old('addresses.' . $address->getId() . '.district', $address->getDistrict()) }}">
                                                         </div>
                                                     </div>
 
@@ -270,14 +282,16 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Ponto de referência</label>
-                                                            <input type="text" name="addresses[{{ $address->getId() }}][landmark]" class="form-control">
+                                                            <input type="text" name="addresses[{{ $address->getId() }}][landmark]" class="form-control"
+                                                                   value="{{ old('addresses.' . $address->getId() . '.landmark', $address->getLandmark()) }}">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Receptor</label>
-                                                            <input type="text" name="addresses[{{ $address->getId() }}][receiver]" class="form-control">
+                                                            <input type="text" name="addresses[{{ $address->getId() }}][receiver]" class="form-control"
+                                                                   value="{{ old('addresses.' . $address->getId() . '.receiver', $address->getReceiver()) }}">
                                                         </div>
                                                     </div>
 
@@ -285,7 +299,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <?php $i++; ?>
                                 @endforeach
                             </div>
                         </div>
@@ -319,6 +332,12 @@
                             $scope.changePassword = false;
                         }
 
+                    };
+
+                    $scope.removeAddressBox = function(addressId) {
+                        $('.address-box[data-id="' + addressId + '"]').slideUp(300, function() {
+                            $(this).remove();
+                        });
                     };
 
                 });

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "93213161b30105ec92375a9c8e41a614",
-    "content-hash": "b74c399ab6166ea1fabc02c68522d2f5",
+    "hash": "2a270f869dcc0b15cc5a52575293fd34",
+    "content-hash": "49a5cf559a17636efc45fe50a1bf8b9a",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -217,6 +217,46 @@
                 "preload"
             ],
             "time": "2015-11-09 22:51:51"
+        },
+        {
+            "name": "daylerees/sanitizer",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/daylerees/sanitizer.git",
+                "reference": "a0f9b7d70bf9089ddcb74be1f031238f9af7b087"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/daylerees/sanitizer/zipball/a0f9b7d70bf9089ddcb74be1f031238f9af7b087",
+                "reference": "a0f9b7d70bf9089ddcb74be1f031238f9af7b087",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": ">=4.0.0",
+                "illuminate/support": ">=4.0.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rees\\Sanitizer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dayle Rees",
+                    "email": "me@daylerees.com"
+                }
+            ],
+            "time": "2014-09-27 19:13:37"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

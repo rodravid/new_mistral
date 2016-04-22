@@ -93,6 +93,30 @@ return [
         'roles' => [
             'required' => 'Você deve selecionar um grupo para o usuário.',
         ],
+        'addresses.*.postal_code' => [
+            'required' => 'O campo CEP é obrigatório para cada endereço.'
+        ],
+        'addresses.*.public_place' => [
+            'required' => 'O campo Tipo é obrigatório para cada endereço.'
+        ],
+        'addresses.*.address' => [
+            'required' => 'O campo Logradouro é obrigatório para cada endereço.'
+        ],
+        'addresses.*.number' => [
+            'required' => 'O campo Número é obrigatório para cada endereço.'
+        ],
+        'addresses.*.district' => [
+            'required' => 'O campo Bairro é obrigatório para cada endereço.'
+        ],
+        'addresses.*.country' => [
+            'required' => 'O campo País é obrigatório para cada endereço.'
+        ],
+        'addresses.*.state' => [
+            'required' => 'O campo Estado é obrigatório para cada endereço.'
+        ],
+        'addresses.*.city' => [
+            'required' => 'O campo Cidade é obrigatório para cada endereço.'
+        ],
     ],
 
     /*
