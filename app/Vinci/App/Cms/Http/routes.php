@@ -16,6 +16,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard.show');
             $route->get('profile', 'Account\\AccountController@index')->name('profile');
             $route->get('password/help', 'Auth\PasswordController@help')->name('password.help');
+            $route->post('settings/{key}/{value}', 'Settings\\SettingsController@store')->name('settings.store');
 
             $route->group(['middleware' => ['acl']], function() use ($route) {
 

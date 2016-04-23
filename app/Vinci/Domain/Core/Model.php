@@ -85,4 +85,11 @@ abstract class Model implements ArrayAccess
         }
     }
 
+    public function save()
+    {
+        $em = app('em');
+        $em->persist($this);
+        $em->flush();
+    }
+
 }
