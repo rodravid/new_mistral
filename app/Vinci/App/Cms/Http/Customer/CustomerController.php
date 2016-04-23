@@ -103,7 +103,8 @@ class CustomerController extends Controller
 
             Flash::success("Cliente {$customer->getName()} atualizado com sucesso!");
 
-            return Redirect::route($this->getEditRouteName(), $customer->getId());
+            return Redirect::route($this->getEditRouteName(), $customer->getId())
+                ->withInput(['current-tab' => $request->get('current-tab')]);
 
         } catch (ValidationException $e) {
 

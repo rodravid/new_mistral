@@ -2,11 +2,12 @@
 
     <div class="col-xs-12">
         <ul class="nav nav-tabs" style="margin-bottom: 20px;">
-            <li class=""><a href="#customer-data" data-toggle="tab" aria-expanded="true">Dados do cliente</a></li>
-            <li class="active"><a href="#customer-addresses" data-toggle="tab" aria-expanded="false">Endereços</a></li>
+            <li class="@if(old('current-tab') == '#customer-data' || old('current-tab') == null) active @endif"><a href="#customer-data" data-toggle="tab" aria-expanded="true">Dados do cliente</a></li>
+            <li class="@if(old('current-tab') == '#customer-addresses') active @endif"><a href="#customer-addresses" data-toggle="tab" aria-expanded="false">Endereços</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane" id="customer-data">
+            <input type="hidden" name="current-tab" id="currentTab" value="{{ old('current-tab', '#customer-data') }}">
+            <div class="tab-pane @if(old('current-tab') == '#customer-data' || old('current-tab') == null) active @endif" id="customer-data">
                 <div class="row">
 
                     <div class="col-xs-12">
@@ -64,7 +65,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="txtRg">RG</label>
-                                    {!! Form::text('rg', null, ['id' => 'txtRg', 'class' => 'form-control']) !!}
+                                    {!! Form::text('rg', null, ['id' => 'txtRg', 'class' => 'form-control', 'maxlength' => 15]) !!}
                                 </div>
                             </div>
                         </div>
@@ -80,7 +81,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="txtCompanyContact">Contato</label>
+                                    <label for="txtCompanyContact">Responsável</label>
                                     {!! Form::text('companyContact', null, ['id' => 'txtCompanyContact', 'class' => 'form-control']) !!}
                                 </div>
                             </div>
@@ -153,7 +154,7 @@
                 </div>
             </div>
 
-            <div class="tab-pane active" id="customer-addresses">
+            <div class="tab-pane @if(old('current-tab') == '#customer-addresses') active @endif" id="customer-addresses">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box-addresses">
@@ -318,7 +319,7 @@
         angular.module('customerForm', [])
                 .controller('CustomerFormController', function($scope) {
 
-                    $scope.customerType = '{{ $customer->getCustomerType() }}';
+                    $scope.customerType = '{{ old('customerType', $customer->getCustomerType()) }}';
                     $scope.changePassword = false;
 
                     $scope.toggleChangePassword = function() {
@@ -341,6 +342,13 @@
                     };
 
                 });
+
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var target = $(e.target).attr("href");
+
+            $('#currentTab').val(target);
+        });
 
     </script>
 
