@@ -19,6 +19,8 @@ use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Image\Image;
+use Vinci\Domain\User\Contracts\HasSettings;
+use Vinci\Domain\User\Settings\Settings;
 
 /**
  * @ORM\Entity
@@ -28,7 +30,13 @@ use Vinci\Domain\Image\Image;
  * @ORM\DiscriminatorMap({UserType::CUSTOMER = "Vinci\Domain\Customer\Customer", UserType::ADMIN = "Vinci\Domain\Admin\Admin"})
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-abstract class User extends Model implements Authenticatable, AuthorizableContract, CanResetPassword, HasRolesContract, HasPermissionsContract
+abstract class User extends Model implements
+    Authenticatable,
+    AuthorizableContract,
+    CanResetPassword,
+    HasRolesContract,
+    HasPermissionsContract,
+    HasSettings
 {
 
     use Timestamps, SoftDeletes, HasRoles, HasPermissions, Authorizable;
@@ -64,6 +72,11 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
      * @ORM\OneToOne(targetEntity="Vinci\Domain\Image\Image", fetch="EAGER")
      */
     protected $profile_photo;
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    protected $settings;
 
     public function __construct()
     {
@@ -219,6 +232,33 @@ abstract class User extends Model implements Authenticatable, AuthorizableContra
     public function getPhotosUploadPath()
     {
         return 'users/' . $this->getId() . '/photos';
+    }
+
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+    public function setSettings(array $settings)
+    {
+        $this->settings = $settings;
+        return $this;
+    }
+
+    public function settings($key = null, $value = null)
+    {
+        $settings = new Settings($this);
+
+        if (is_null($key)) {
+            return $settings;
+
+        } elseif (is_null($value)) {
+            return $settings->get($key);
+        }
+
+        $settings->set($key, $value);
+
+        return $this;
     }
 
 }
