@@ -83,10 +83,10 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     @if(isset($currentDollar))
-                        <li><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
+                        <li class="hidden-xs"><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
                     @endif
                     @if(isset($currentDeadline))
-                        <li><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-check-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
+                        <li class="hidden-xs"><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-check-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
                     @endif
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
