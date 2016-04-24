@@ -249,7 +249,10 @@
                 $(table).DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: $table.data('url'),
+                    ajax: {
+                        "url": $table.data('url'),
+                        "type": "POST"
+                    },
                     searchDelay: 600,
                     columnDefs: [
                         {orderable: false, width: '92px', targets: -1 },

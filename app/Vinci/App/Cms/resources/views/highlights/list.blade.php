@@ -24,7 +24,10 @@
             $table.DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: $table.data('url'),
+                ajax: {
+                    "url": $table.data('url'),
+                    "type": "POST"
+                },
                 searchDelay: 600,
                 order: [[ 1, "asc" ]],
                 columnDefs: [

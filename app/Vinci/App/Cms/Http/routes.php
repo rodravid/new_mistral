@@ -30,7 +30,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/{customer}/edit', 'Customer\\CustomerController@edit')->name('edit');
                     $route->delete('/{customer}/delete', 'Customer\\CustomerController@destroy')->name('destroy');
                     $route->put('/{customer}', 'Customer\\CustomerController@update')->name('edit#update');
-                    $route->get('datatable', 'Customer\\CustomerController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Customer\\CustomerController@datatable')->name('list#datatable');
                     $route->get('/{customer}', 'Customer\\CustomerController@show')->name('show');
                 });
 
@@ -45,7 +45,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->delete('/{country}/delete', 'Country\\CountryController@destroy')->name('destroy');
                     $route->put('/{country}', 'Country\\CountryController@update')->name('edit#update');
                     $route->delete('/{country}/image/{image}/delete', 'Country\\CountryController@removeImage')->name('edit#remove-image');
-                    $route->get('datatable', 'Country\\CountryController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Country\\CountryController@datatable')->name('list#datatable');
                 });
 
                 /**
@@ -59,7 +59,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->delete('/{region}/delete', 'Region\\RegionController@destroy')->name('destroy');
                     $route->put('/{region}', 'Region\\RegionController@update')->name('edit#update');
                     $route->delete('/{region}/image/{image}/delete', 'Region\\RegionController@removeImage')->name('edit#remove-image');
-                    $route->get('datatable', 'Region\\RegionController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Region\\RegionController@datatable')->name('list#datatable');
                 });
 
                 /**
@@ -73,7 +73,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->delete('/{producer}/delete', 'Producer\\ProducerController@destroy')->name('destroy');
                     $route->put('/{producer}', 'Producer\\ProducerController@update')->name('edit#update');
                     $route->delete('/{producer}/image/{image}/delete', 'Producer\\ProducerController@removeImage')->name('edit#remove-image');
-                    $route->get('datatable', 'Producer\\ProducerController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Producer\\ProducerController@datatable')->name('list#datatable');
                 });
 
                 /**
@@ -87,7 +87,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->delete('/{grape}/delete', 'Grape\\GrapeController@destroy')->name('destroy');
                     $route->put('/{grape}', 'Grape\\GrapeController@update')->name('edit#update');
                     $route->delete('/{grape}/image/{image}/delete', 'Grape\\GrapeController@removeImage')->name('edit#remove-image');
-                    $route->get('datatable', 'Grape\\GrapeController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Grape\\GrapeController@datatable')->name('list#datatable');
                 });
 
                 /**
@@ -101,7 +101,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->delete('/{productType}/delete', 'ProductType\\ProductTypeController@destroy')->name('destroy');
                     $route->put('/{productType}', 'ProductType\\ProductTypeController@update')->name('edit#update');
                     $route->delete('/{productType}/image/{image}/delete', 'ProductType\\ProductTypeController@removeImage')->name('edit#remove-image');
-                    $route->get('datatable', 'ProductType\\ProductTypeController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'ProductType\\ProductTypeController@datatable')->name('list#datatable');
                 });
 
                 /**
@@ -111,7 +111,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/', 'Dollar\\DollarController@index')->name('list');
                     $route->get('/create', 'Dollar\\DollarController@create')->name('create');
                     $route->post('/', 'Dollar\\DollarController@store')->name('create#store');
-                    $route->get('datatable', 'Dollar\\DollarController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Dollar\\DollarController@datatable')->name('list#datatable');
                 });
 
                 /**
@@ -121,7 +121,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/', 'Deadline\\DeadlineController@index')->name('list');
                     $route->get('/create', 'Deadline\\DeadlineController@create')->name('create');
                     $route->post('/', 'Deadline\\DeadlineController@store')->name('create#store');
-                    $route->get('datatable', 'Deadline\\DeadlineController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Deadline\\DeadlineController@datatable')->name('list#datatable');
                 });
 
                 /**
@@ -129,7 +129,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                  */
                 $route->group(['prefix' => 'newsletter', 'as' => 'newsletter.'], function () use ($route) {
                     $route->get('/', 'Newsletter\\NewsletterController@index')->name('list');
-                    $route->get('datatable', 'Newsletter\\NewsletterController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Newsletter\\NewsletterController@datatable')->name('list#datatable');
                     $route->get('export', 'Newsletter\\NewsletterController@export')->name('export');
                 });
 
@@ -150,7 +150,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->delete('/{highlight}/delete', 'Highlight\\HighlightController@destroy')->name('destroy');
                         $route->put('/{highlight}', 'Highlight\\HighlightController@update')->name('edit#update');
                         $route->delete('/{highlight}/photo/{photo}/delete', 'Highlight\\HighlightController@removeImage')->name('edit#remove-image');
-                        $route->get('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
+                        $route->post('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
                     });
 
                 });
@@ -165,7 +165,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/{user}/edit', 'User\\UserController@edit')->name('edit');
                     $route->delete('/{user}/delete', 'User\\UserController@destroy')->name('destroy');
                     $route->put('/{user}', 'User\\UserController@update')->name('edit#update');
-                    $route->get('datatable', 'User\\UserController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'User\\UserController@datatable')->name('list#datatable');
                     $route->delete('/{user}/photo/{photo}/delete', 'User\\UserController@removePhoto')->name('edit#remove-photo');
                 });
 
@@ -179,7 +179,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/{role}/edit', 'Role\\RoleController@edit')->name('edit');
                     $route->delete('/{role}/delete', 'Role\\RoleController@destroy')->name('destroy');
                     $route->put('/{role}', 'Role\\RoleController@update')->name('edit#update');
-                    $route->get('datatable', 'Role\\RoleController@datatable')->name('list#datatable');
+                    $route->post('datatable', 'Role\\RoleController@datatable')->name('list#datatable');
                 });
 
                 $route->group(['prefix' => 'minha-conta', 'as' => 'account.'], function () use ($route) {

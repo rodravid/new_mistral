@@ -1,0 +1,33 @@
+load_balancer:
+    image: tutum/haproxy
+    links:
+        - web
+    ports:
+        - "80:80"
+
+cache:
+    image: redis
+
+database:
+    image: mysql
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=web11
+        - MYSQL_DATABASE=vinci
+        - MYSQL_USER=vinci
+        - MYSQL_PASSWORD=web11
+
+web:
+    image: andrewmclagan/nginx-hhvm
+    links:
+        - database
+        - cache
+    volumes:
+        - ./:/var/www
+    environment:
+        - APP_ENV=local
+        - DB_DATABASE=vinci
+        - DB_USER=vinci
+        - DB_PASSWORD=web11
+        - VIRTUAL_HOST=vinci.localhost.com
