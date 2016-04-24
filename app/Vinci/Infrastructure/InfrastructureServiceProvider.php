@@ -115,6 +115,24 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\ProductType\ProductType'
         );
 
+        $this->registerRepository(
+            'Vinci\Domain\Address\Country\CountryRepository',
+            'Vinci\Infrastructure\Address\Country\DoctrineCountryRepository',
+            'Vinci\Domain\Address\Country\Country'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Address\State\StateRepository',
+            'Vinci\Infrastructure\Address\State\DoctrineStateRepository',
+            'Vinci\Domain\Address\State\State'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Address\City\CityRepository',
+            'Vinci\Infrastructure\Address\City\DoctrineCityRepository',
+            'Vinci\Domain\Address\City\City'
+        );
+
         $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
             return new StorageService($this->app['filesystem'], $this->app['config']);
         });

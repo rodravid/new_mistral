@@ -171,6 +171,16 @@ abstract class Address extends Model
         return $this;
     }
 
+    public function getState()
+    {
+        return $this->city->getState();
+    }
+
+    public function getCountry()
+    {
+        return $this->getState()->getCountry();
+    }
+
     public function getLandmark()
     {
         return $this->landmark;

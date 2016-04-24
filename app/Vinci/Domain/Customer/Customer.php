@@ -98,7 +98,12 @@ class Customer extends User
     protected $orders;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Customer\Address\Address", mappedBy="customer", indexBy="id", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Customer\Address\Address",
+     *     mappedBy="customer",
+     *     indexBy="id",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true)
+     * @ORM\OrderBy({"id" = "DESC"})
      */
     protected $addresses;
 

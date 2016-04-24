@@ -199,7 +199,7 @@
                                                                 <div class="form-group">
                                                                     <label>CEP</label>
                                                                     <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="form-control"
-                                                                           value="{{ old('addresses.' . $address->getId() . '.postal_code', $address->getPostalCode()) }}" data-inputmask="'mask': '99999-999'" data-mask>
+                                                                           value="{{ old('addresses.' . $address->getId() . '.postal_code', $address->getPostalCode()) }}" data-inputmask="'mask': '99999-999'" data-mask data-postalcode>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">
@@ -215,7 +215,7 @@
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
                                                             <label>Tipo</label>
-                                                            <select name="addresses[{{ $address->getId() }}][public_place]" class="form-control select2" style="width: 100%;">
+                                                            <select name="addresses[{{ $address->getId() }}][public_place]" class="form-control select2" style="width: 100%;" data-publicplace>
                                                                 <option value="1">Rua</option>
                                                             </select>
                                                         </div>
@@ -225,7 +225,7 @@
                                                         <div class="form-group">
                                                             <label>Logradouro</label>
                                                             <input type="text" name="addresses[{{ $address->getId() }}][address]" class="form-control"
-                                                                   value="{{ old('addresses.' . $address->getId() . '.address', $address->getAddress()) }}">
+                                                                   value="{{ old('addresses.' . $address->getId() . '.address', $address->getAddress()) }}" data-address>
                                                         </div>
                                                     </div>
 
@@ -249,15 +249,15 @@
                                                         <div class="form-group">
                                                             <label>Bairro</label>
                                                             <input type="text" name="addresses[{{ $address->getId() }}][district]" class="form-control"
-                                                                   value="{{ old('addresses.' . $address->getId() . '.district', $address->getDistrict()) }}">
+                                                                   value="{{ old('addresses.' . $address->getId() . '.district', $address->getDistrict()) }}" data-dictrict>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>País</label>
-                                                            <select name="addresses[{{ $address->getId() }}][country]" class="form-control select2" style="width: 100%;">
-                                                                <option value="1">Brasil</option>
+                                                            <select name="addresses[{{ $address->getId() }}][country]" class="form-control select2" style="width: 100%;" data-country>
+                                                                <option value="{{ $country->getId() }}">{{ $country->getName() }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -265,8 +265,13 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Estado</label>
-                                                            <select name="addresses[{{ $address->getId() }}][state]" class="form-control select2" style="width: 100%;">
-                                                                <option value="1">SP</option>
+                                                            <select name="addresses[{{ $address->getId() }}][state]" class="form-control select2" style="width: 100%;" data-state data-value="{{ old('addresses.' . $address->getId() . '.state', $address->getState()->getId()) }}">
+                                                                <option value=""></option>
+                                                                @foreach($states as $state)
+                                                                    <option value="{{ $state->getId() }}" @if(old('addresses.' . $address->getId() . '.state') == $state->getId() || $address->getState()->getId() == $state->getId()) selected @endif>
+                                                                        {{ $state->getUf() }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -274,8 +279,8 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label>
-                                                            <select name="addresses[{{ $address->getId() }}][city]" class="form-control select2" style="width: 100%;">
-                                                                <option value="1">Bragança Paulista</option>
+                                                            <select name="addresses[{{ $address->getId() }}][city]" class="form-control select2" style="width: 100%;" data-city data-value="{{ old('addresses.' . $address->getId() . '.city', $address->getCity()->getId()) }}">
+                                                                <option value="">Selecione a cidade</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -349,6 +354,44 @@
 
             $('#currentTab').val(target);
         });
+
+
+        (function($) {
+
+            var $selectState = $('select[data-state]');
+            var $selectCity = $('select[data-city]');
+
+            $selectState.bind('change', function() {
+
+                var $self = $(this);
+                var state = $self.val();
+
+
+                $selectCity.empty();
+
+                $selectCity.html('<option value="1">TEste</option>').select2();
+
+                return false;
+
+                getCitiesByState(state, function(response) {
+
+
+
+                });
+
+            });
+
+
+            function getCitiesByState(state, callback)
+            {
+                $.get('/api/ibge/cities/' + state, function(response) {
+
+                    callback(response);
+
+                });
+            }
+
+        })($);
 
     </script>
 
