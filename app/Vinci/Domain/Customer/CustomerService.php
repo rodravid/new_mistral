@@ -4,11 +4,9 @@ namespace Vinci\Domain\Customer;
 
 use Carbon\Carbon;
 use Closure;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Vinci\App\Core\Services\Sanitizer\Contracts\Sanitizer;
-use Vinci\Domain\Customer\Address\Address;
-use Vinci\Domain\Customer\Address\AddressFactory;
+use Vinci\Domain\Customer\Address\AddressService;
 
 class CustomerService
 {
@@ -18,7 +16,7 @@ class CustomerService
 
     private $validator;
 
-    private $addressFactory;
+    private $addressService;
 
     private $sanitizer;
 
@@ -26,24 +24,24 @@ class CustomerService
         EntityManagerInterface $entityManager,
         CustomerRepository $repository,
         CustomerValidator $validator,
-        AddressFactory $addressFactory,
+        AddressService $addressService,
         Sanitizer $sanitizer
     )
     {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
         $this->validator = $validator;
-        $this->addressFactory = $addressFactory;
+        $this->addressService = $addressService;
         $this->sanitizer = $sanitizer;
     }
 
     public function create(array $data)
     {
-        $this->sanitizer->sanitize($this->getSanitizeRules(), $data);
+        $this->sanitizeData($data);
 
-        $this->validator
-            ->with($data)
-            ->passesOrFail();
+        $this->validator->with($data)->passesOrFail();
+
+        $this->addressService->validate($data);
 
         return $this->saveCustomer($data, function() {
             return new Customer;
@@ -54,10 +52,9 @@ class CustomerService
     {
         $this->sanitizeData($data);
 
-        $this->validator
-            ->with($data)
-            ->setId($id)
-            ->passesOrFail();
+        $this->validator->with($data)->setId($id)->passesOrFail();
+
+        $this->addressService->validate($data);
 
         return $this->saveCustomer($data, function() use ($id) {
             return $this->repository->find($id);
@@ -75,7 +72,8 @@ class CustomerService
                  ->setCustomerType($data['customerType'])
                  ->setPhone($data['phone'])
                  ->setCellPhone($data['cellPhone'])
-                 ->setCommercialPhone($data['commercialPhone']);
+                 ->setCommercialPhone($data['commercialPhone'])
+                 ->setStatus($data['status']);
 
         if (! empty($data['password'])) {
             $customer->setPassword($data['password']);
@@ -96,7 +94,7 @@ class CustomerService
                      ->setStateRegistration($data['stateRegistration']);
         }
 
-        $this->saveCustomerAddresses($customer, $data['addresses'], $data['main_address']);
+        $this->addressService->hydrateCustomerAddresses($customer, $data['addresses'], $data['main_address']);
 
         $this->repository->save($customer);
 
@@ -120,42 +118,7 @@ class CustomerService
             'commercialPhone' => 'trim|only_numbers'
         ], $data);
 
-        foreach ($data['addresses'] as &$address) {
-            $this->sanitizeCustomerAddress($address);
-        }
-
-    }
-
-    protected function sanitizeCustomerAddress(array &$address)
-    {
-        $this->sanitizer->sanitize([
-            'postal_code' => 'trim|only_numbers',
-            'address' => 'trim|strtolower|ucwords'
-        ], $address);
-    }
-
-    protected function saveCustomerAddresses(Customer $customer, $addresses, $mainAddressId)
-    {
-        $addressCollection = $this->addressFactory->makeCollectionFromArray($addresses);
-
-        $customer->syncAddress($addressCollection);
-
-
-        if (empty($mainAddressId)) {
-
-            $mainAddress = $addressCollection->filter(function($address) {
-                return ! $address->getId();
-            })->first();
-
-        } else {
-
-            $mainAddress = $addressCollection->filter(function($address) use ($mainAddressId) {
-                return $address->getId() == $mainAddressId;
-            })->first();
-
-        }
-
-        $customer->setMainAddress($mainAddress);
+        $data['addresses'] = $this->addressService->sanitize($data['addresses']);
     }
 
 }

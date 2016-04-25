@@ -8,4 +8,14 @@ $route->group(['middleware' => ['api']], function () use ($route) {
 
     });
 
+    $route->group(['prefix' => 'customers', 'as' => 'customers.'], function () use ($route) {
+
+        $route->group(['prefix' => 'addresses', 'as' => 'addresses.'], function () use ($route) {
+
+            $route->post('/', 'Customer\\Address\\AddressController@store')->name('store');
+
+        });
+
+    });
+
 });

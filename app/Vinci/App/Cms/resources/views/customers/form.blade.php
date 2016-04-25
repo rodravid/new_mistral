@@ -125,13 +125,15 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <a href="javascript:void(0);" class="btn btn-primary btn-sm" ng-click="toggleChangePassword()">Alterar senha</a>
+                    @if(isset($customer))
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <a href="javascript:void(0);" class="btn btn-primary btn-sm" ng-click="toggleChangePassword()">Alterar senha</a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
 
-                    <div class="col-xs-12 ng-hide" ng-show="changePassword">
+                    <div class="col-xs-12 @if(isset($customer)) ng-hide @endif" @if(isset($customer)) ng-show="changePassword" @endif>
                         <div class="row">
                             <div class="col-xs-12 col-lg-6">
                                 <div class="form-group has-feedback">
@@ -160,6 +162,9 @@
                         <div class="box-addresses">
                             <div class="row">
                                 @if (isset($customer))
+                                    <div class="col-xs-12">
+                                        <a href="javascript:void(0);" class="btn btn-primary" style="margin-bottom: 20px;" data-toggle="modal" data-target="#modalNewAddress">Novo endereço</a>
+                                    </div>
                                     @foreach($customer->getAddresses() as $address)
                                         <div class="col-xs-12 address-box" data-id="{{ $address->getId() }}">
                                             <input type="hidden" name="addresses[{{ $address->getId() }}][id]" value="{{ $address->getId() }}">
@@ -215,7 +220,7 @@
                                                                 </div>
                                                                 <div class="col-lg-3">
                                                                     <div class="form-group">
-                                                                        <label>Apelido</label>
+                                                                        <label>Identificador do local</label>
                                                                         <input type="text" name="addresses[{{ $address->getId() }}][nickname]" class="form-control"
                                                                                value="{{ old('addresses.' . $address->getId() . '.nickname', $address->getNickname()) }}">
                                                                     </div>
@@ -234,7 +239,7 @@
 
                                                         <div class="col-lg-8">
                                                             <div class="form-group">
-                                                                <label>Logradouro</label>
+                                                                <label>Endereço</label>
                                                                 <input type="text" name="addresses[{{ $address->getId() }}][address]" id="txtAddress{{ $address->getId() }}" class="form-control"
                                                                        value="{{ old('addresses.' . $address->getId() . '.address', $address->getAddress()) }}" data-address>
                                                             </div>
@@ -329,8 +334,9 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                @else
+                                    @include('cms::customers.partials.address.new')
                                 @endif
-                                @include('cms::customers.partials.address.new')
                             </div>
                         </div>
                     </div>
@@ -368,6 +374,7 @@
                     $scope.removeAddressBox = function(addressId) {
                         $('.address-box[data-id="' + addressId + '"]').slideUp(300, function() {
                             $(this).remove();
+                            $('input[name="main_address"]').first().prop('checked', true);
                         });
                     };
 

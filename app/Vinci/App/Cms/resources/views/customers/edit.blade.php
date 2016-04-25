@@ -36,6 +36,7 @@
 
             {!! Form::close() !!}
 
+            @include('cms::customers.partials.address.modal.new')
         </div>
     </section>
 

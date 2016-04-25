@@ -94,34 +94,34 @@ return [
             'required' => 'Você deve selecionar um grupo para o usuário.',
         ],
         'addresses.*.postal_code' => [
-            'required' => 'O campo CEP é obrigatório para cada endereço.'
+            'required' => 'O campo CEP é obrigatório.'
         ],
         'addresses.*.type' => [
-            'required' => 'É necessário selecionar o tipo para cada endereço.'
+            'required' => 'É necessário selecionar o tipo do endereço.'
         ],
         'addresses.*.nickname' => [
-            'required' => 'O campo Apelido é obrigatório para cada endereço.'
+            'required' => 'O campo Identificador do local é obrigatório.'
         ],
         'addresses.*.public_place' => [
-            'required' => 'O campo Tipo é obrigatório para cada endereço.'
+            'required' => 'O campo Tipo de logradouro é obrigatório.'
         ],
         'addresses.*.address' => [
-            'required' => 'O campo Logradouro é obrigatório para cada endereço.'
+            'required' => 'O campo Endereço é obrigatório.'
         ],
         'addresses.*.number' => [
-            'required' => 'O campo Número é obrigatório para cada endereço.'
+            'required' => 'O campo Número é obrigatório.'
         ],
         'addresses.*.district' => [
-            'required' => 'O campo Bairro é obrigatório para cada endereço.'
+            'required' => 'O campo Bairro é obrigatório.'
         ],
         'addresses.*.country' => [
-            'required' => 'O campo País é obrigatório para cada endereço.'
+            'required' => 'O campo País é obrigatório.'
         ],
         'addresses.*.state' => [
-            'required' => 'O campo Estado é obrigatório para cada endereço.'
+            'required' => 'O campo Estado é obrigatório.'
         ],
         'addresses.*.city' => [
-            'required' => 'O campo Cidade é obrigatório para cada endereço.'
+            'required' => 'O campo Cidade é obrigatório.'
         ],
     ],
 

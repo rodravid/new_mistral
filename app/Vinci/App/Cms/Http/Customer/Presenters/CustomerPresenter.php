@@ -38,4 +38,9 @@ class CustomerPresenter extends AbstractPresenter
         return 'Jurídica';
     }
 
+    public function presentName()
+    {
+        return $this->getName() . 'teste';
+    }
+
 }
