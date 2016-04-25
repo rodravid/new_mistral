@@ -199,7 +199,17 @@
                                                                 <div class="form-group">
                                                                     <label>CEP</label>
                                                                     <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="form-control"
-                                                                           value="{{ old('addresses.' . $address->getId() . '.postal_code', $address->getPostalCode()) }}" data-inputmask="'mask': '99999-999'" data-mask data-postalcode>
+                                                                           value="{{ old('addresses.' . $address->getId() . '.postal_code', $address->getPostalCode()) }}"
+                                                                           data-inputmask="'mask': '99999-999'"
+                                                                           data-mask data-postalcode
+                                                                           data-target-publicplace="#selectPublicPlace{{ $address->getId() }}"
+                                                                           data-target-address="#txtAddress{{ $address->getId() }}"
+                                                                           data-target-district="#txtDistrict{{ $address->getId() }}"
+                                                                           data-target-state="#selectState{{ $address->getId() }}"
+                                                                           data-target-city="#selectCity{{ $address->getId() }}"
+                                                                           data-target-number="#txtNumber{{ $address->getId() }}"
+                                                                           data-target-complement="#txtComplement{{ $address->getId() }}"
+                                                                    >
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">
@@ -215,7 +225,7 @@
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
                                                             <label>Tipo</label>
-                                                            <select name="addresses[{{ $address->getId() }}][public_place]" class="form-control select2" style="width: 100%;" data-publicplace>
+                                                            <select name="addresses[{{ $address->getId() }}][public_place]" id="selectPublicPlace{{ $address->getId() }}" class="form-control select2" style="width: 100%;" data-publicplace>
                                                                 <option value="1">Rua</option>
                                                             </select>
                                                         </div>
@@ -224,7 +234,7 @@
                                                     <div class="col-lg-8">
                                                         <div class="form-group">
                                                             <label>Logradouro</label>
-                                                            <input type="text" name="addresses[{{ $address->getId() }}][address]" class="form-control"
+                                                            <input type="text" name="addresses[{{ $address->getId() }}][address]" id="txtAddress{{ $address->getId() }}" class="form-control"
                                                                    value="{{ old('addresses.' . $address->getId() . '.address', $address->getAddress()) }}" data-address>
                                                         </div>
                                                     </div>
@@ -232,7 +242,7 @@
                                                     <div class="col-lg-2">
                                                         <div class="form-group">
                                                             <label>Número</label>
-                                                            <input type="text" name="addresses[{{ $address->getId() }}][number]" class="form-control"
+                                                            <input type="text" name="addresses[{{ $address->getId() }}][number]" id="txtNumber{{ $address->getId() }}" class="form-control"
                                                                    value="{{ old('addresses.' . $address->getId() . '.number', $address->getNumber()) }}">
                                                         </div>
                                                     </div>
@@ -240,7 +250,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label>Complemento</label>
-                                                            <input type="text" name="addresses[{{ $address->getId() }}][complement]" class="form-control"
+                                                            <input type="text" name="addresses[{{ $address->getId() }}][complement]" id="txtComplement{{ $address->getId() }}" class="form-control"
                                                                    value="{{ old('addresses.' . $address->getId() . '.complement', $address->getComplement()) }}">
                                                         </div>
                                                     </div>
@@ -248,7 +258,7 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Bairro</label>
-                                                            <input type="text" name="addresses[{{ $address->getId() }}][district]" class="form-control"
+                                                            <input type="text" name="addresses[{{ $address->getId() }}][district]" class="form-control" id="txtDistrict{{ $address->getId() }}"
                                                                    value="{{ old('addresses.' . $address->getId() . '.district', $address->getDistrict()) }}" data-dictrict>
                                                         </div>
                                                     </div>
@@ -265,10 +275,10 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Estado</label>
-                                                            <select name="addresses[{{ $address->getId() }}][state]" class="form-control select2" style="width: 100%;" data-state data-value="{{ old('addresses.' . $address->getId() . '.state', $address->getState()->getId()) }}">
+                                                            <select name="addresses[{{ $address->getId() }}][state]" id="selectState{{ $address->getId() }}" class="form-control select2" style="width: 100%;" data-state data-target="#selectCity{{ $address->getId() }}" data-value="{{ old('addresses.' . $address->getId() . '.state', $address->getState()->getId()) }}">
                                                                 <option value=""></option>
                                                                 @foreach($states as $state)
-                                                                    <option value="{{ $state->getId() }}" @if(old('addresses.' . $address->getId() . '.state') == $state->getId() || $address->getState()->getId() == $state->getId()) selected @endif>
+                                                                    <option value="{{ $state->getId() }}" @if($state->getId() == old('addresses.' . $address->getId() . '.state') || $state->getId() == $address->getState()->getId()) selected @endif>
                                                                         {{ $state->getUf() }}
                                                                     </option>
                                                                 @endforeach
@@ -279,7 +289,7 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label>
-                                                            <select name="addresses[{{ $address->getId() }}][city]" class="form-control select2" style="width: 100%;" data-city data-value="{{ old('addresses.' . $address->getId() . '.city', $address->getCity()->getId()) }}">
+                                                            <select name="addresses[{{ $address->getId() }}][city]" id="selectCity{{ $address->getId() }}" class="form-control select2" style="width: 100%;" data-city data-value="{{ old('addresses.' . $address->getId() . '.city', $address->getCity()->getId()) }}">
                                                                 <option value="">Selecione a cidade</option>
                                                             </select>
                                                         </div>
@@ -298,6 +308,18 @@
                                                             <label>Receptor</label>
                                                             <input type="text" name="addresses[{{ $address->getId() }}][receiver]" class="form-control"
                                                                    value="{{ old('addresses.' . $address->getId() . '.receiver', $address->getReceiver()) }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="radio">
+                                                            <label for="radionMainAddress{{ $address->getId() }}">
+                                                                <input type="radio" name="main_address"
+                                                                       value="{{ $address->getId() }}"
+                                                                       id="radionMainAddress{{ $address->getId() }}"
+                                                                       @if($address->getId() == old('main_address', $address->getId() == $customer->getMainAddress()->getId())) checked @endif>
+                                                                Endereço principal
+                                                            </label>
                                                         </div>
                                                     </div>
 
@@ -358,36 +380,92 @@
 
         (function($) {
 
-            var $selectState = $('select[data-state]');
-            var $selectCity = $('select[data-city]');
+            $.each($('select[data-state]'), function(i, select) {
 
-            $selectState.bind('change', function() {
+                var $selectState = $(select);
+                var $selectCity = $($selectState.data('target'));
 
-                var $self = $(this);
-                var state = $self.val();
+                $selectState.bind('change', function() {
 
+                    var $self = $(this);
+                    var state = $self.val();
 
-                $selectCity.empty();
+                    if (state == '') {
+                        return;
+                    }
 
-                $selectCity.html('<option value="1">TEste</option>').select2();
+                    setOptions($selectCity, '<option value="">Carregando...</option>');
 
-                return false;
+                    getCitiesByState(state, function(cities) {
 
-                getCitiesByState(state, function(response) {
+                        var options = '<option value="">Selecione</option>';
 
+                        $.each(cities, function(i, city) {
+                            options += '<option value="' + city.id + '">' + city.name + '</option>';
+                        });
 
+                        setOptions($selectCity, options);
+
+                        var selectedId = $selectCity.data('value');
+
+                        $selectCity.find('option[value="' + selectedId + '"]').prop('selected', true).trigger('change');
+
+                    });
+
+                }).change();
+
+                function setOptions(select, options) {
+                    select.html(options).trigger('change');
+                }
+
+                function getCitiesByState(state, callback)
+                {
+                    $.get('/api/ibge/cities/' + state, function(cities) {
+                        callback(cities);
+                    });
+                }
+
+            });
+
+            $.each($('input[data-postalcode]'), function(i, input) {
+
+                var $input = $(input);
+
+                $input.bind('focusout', function() {
+
+                    var postalCode = $input.val();
+                    var $selectPublicPlace = $($input.data('target-publicplace'));
+                    var $txtAddress = $($input.data('target-address'));
+                    var $txtDistrict = $($input.data('target-district'));
+                    var $txtNumber = $($input.data('target-number'));
+                    var $txtComplement = $($input.data('target-complement'));
+                    var $selectState = $($input.data('target-state'));
+                    var $selectCity = $($input.data('target-city'));
+
+                    getAddressInfo(postalCode, function(addressInfo) {
+
+                        var stateIbgeCode = addressInfo.estado_info.codigo_ibge;
+                        var cityIbgeCode = addressInfo.cidade_info.codigo_ibge;
+
+                        $txtAddress.val(addressInfo.logradouro);
+                        $txtDistrict.val(addressInfo.bairro);
+                        $txtNumber.val('');
+                        $txtComplement.val('');
+
+                        $selectState.find('option[value="' + stateIbgeCode + '"]').prop('selected', true);
+                        $selectCity.data('value', cityIbgeCode);
+
+                        $selectState.trigger('change').change();
+                    });
 
                 });
 
             });
 
-
-            function getCitiesByState(state, callback)
+            function getAddressInfo(postalCode, callback)
             {
-                $.get('/api/ibge/cities/' + state, function(response) {
-
+                $.get('http://api.postmon.com.br/v1/cep/' + postalCode, function(response) {
                     callback(response);
-
                 });
             }
 

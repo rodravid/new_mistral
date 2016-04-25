@@ -7,4 +7,6 @@ interface CityRepository
 
     public function find($id);
 
+    public function getByState($state);
+
 }

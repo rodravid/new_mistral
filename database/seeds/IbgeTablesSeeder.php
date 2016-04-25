@@ -31,22 +31,36 @@ class IbgeTablesSeeder extends Seeder
             ->setName('Brasil')
             ->setInitials('BR');
 
-        $state = new State;
-        $state->setId(1)
+        $state1 = new State;
+        $state1->setId(35)
             ->setName('São Paulo')
             ->setUf('SP');
 
-        $city = new City;
-        $city->setId(1)
+        $state2 = new State;
+        $state2->setId(33)
+            ->setName('Rio de Janeiro')
+            ->setUf('RJ');
+
+        $city1 = new City;
+        $city1->setId(3507605)
             ->setName('Bragança Paulista');
 
-        $state->addCity($city);
-        $country->addState($state);
+        $city2 = new City;
+        $city2->setId(3301702)
+            ->setName('Duque de caxias');
+
+        $state1->addCity($city1);
+        $state2->addCity($city2);
+
+        $country->addState($state1);
+        $country->addState($state2);
 
         $this->em->persist($publicPlace);
         $this->em->persist($country);
-        $this->em->persist($state);
-        $this->em->persist($city);
+        $this->em->persist($state1);
+        $this->em->persist($state2);
+        $this->em->persist($city1);
+        $this->em->persist($city2);
 
         $this->em->flush();
         $this->em->clear();

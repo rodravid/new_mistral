@@ -96,7 +96,7 @@ class CustomerService
                      ->setStateRegistration($data['stateRegistration']);
         }
 
-        $this->syncCustomerAddresses($customer, $data['addresses']);
+        $this->saveCustomerAddresses($customer, $data['addresses'], $data['main_address']);
 
         $this->repository->save($customer);
 
@@ -134,15 +134,13 @@ class CustomerService
         ], $address);
     }
 
-    protected function syncCustomerAddresses(Customer $customer, $addresses)
+    protected function saveCustomerAddresses(Customer $customer, $addresses, $mainAddressId)
     {
         $addressCollection = $this->addressFactory->makeCollectionFromArray($addresses);
 
         $customer->syncAddress($addressCollection);
 
-        $addressCollection->map(function($address) use ($customer) {
-            $customer->addAddress($address);
-        });
+        $customer->setMainAddress($this->entityManager->getReference(Address::class, $mainAddressId));
     }
 
 }

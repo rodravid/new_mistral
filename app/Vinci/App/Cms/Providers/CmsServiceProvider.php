@@ -7,7 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class CmsServiceProvider extends ServiceProvider
 {
-    protected $namespace = 'Vinci\\App\\Cms\Http';
+    protected $namespace = 'Vinci\\App\\Cms\\Http';
 
     public function boot(Router $router)
     {

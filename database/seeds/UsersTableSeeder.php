@@ -94,7 +94,7 @@ class UsersTableSeeder extends Seeder
                 ->setAddress('Gilberto Augusto Mendes')
                 ->setNumber(350)
                 ->setDistrict('Vila Batista')
-                ->setCity($this->em->getReference(City::class, 1))
+                ->setCity($this->em->getReference(City::class, 3507605))
                 ->setNickname('Casa')
                 ->setLandmark('Próximo loja malwele')
                 ->setReceiver('Felipe');
@@ -102,12 +102,12 @@ class UsersTableSeeder extends Seeder
         $address2 = new Address;
 
         $address2->setType(new AddressType(AddressType::RESIDENTIAL))
-            ->setPostalCode(12922810)
+            ->setPostalCode(25010000)
             ->setPublicPlace($this->em->getReference(PublicPlace::class, 1))
             ->setAddress('Amapá')
             ->setNumber(221)
             ->setDistrict('Parque dos Estados')
-            ->setCity($this->em->getReference(City::class, 1))
+            ->setCity($this->em->getReference(City::class, 3301702))
             ->setNickname('Casa 2')
             ->setLandmark('Próximo antigo borges')
             ->setReceiver('Felipe');
