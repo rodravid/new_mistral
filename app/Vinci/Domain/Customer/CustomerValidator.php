@@ -20,7 +20,7 @@ class CustomerValidator extends LaravelValidator
         'cnpj' => 'required_if:customerType,2',
         'stateRegistration' => 'required_if:customerType,2',
         'password' => 'required_without:id|min:6|confirmed',
-        'main_address' => 'required',
+        'main_address' => 'required_with:addresses',
     ];
 
     protected $messages = [
@@ -34,7 +34,7 @@ class CustomerValidator extends LaravelValidator
         'companyContact.required_if' => 'O campo Responsável é obrigatório.',
         'cnpj.required_if' => 'O campo CNPJ é obrigatório.',
         'stateRegistration.required_if' => 'O campo Inscrição estadual é obrigatório.',
-        'main_address.required' => 'É necessário informar qual é o endereço principal.',
+        'main_address.required_with' => 'É necessário informar qual é o endereço principal.',
     ];
 
 }

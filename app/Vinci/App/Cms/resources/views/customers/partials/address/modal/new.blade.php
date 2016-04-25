@@ -52,7 +52,11 @@
                             $.notify({
                                 message: response.message
                             },{
-                                type: 'success'
+                                type: 'success',
+                                z_index: '9999',
+                                placement: {
+                                    align: 'center'
+                                }
                             });
 
                             setTimeout(function() {
@@ -64,9 +68,13 @@
                         } else {
 
                             $.notify({
-                                message: response.message[0]
+                                message: response.message,
                             },{
-                                type: 'error'
+                                type: 'error',
+                                z_index: '9999',
+                                placement: {
+                                    align: 'center'
+                                }
                             });
 
                         }

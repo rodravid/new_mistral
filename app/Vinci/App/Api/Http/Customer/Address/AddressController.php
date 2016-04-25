@@ -3,6 +3,7 @@
 namespace Vinci\App\Api\Http\Customer\Address;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Illuminate\Http\Request;
 use Response;
 use Vinci\App\Api\Http\Controller;
@@ -33,10 +34,10 @@ class AddressController extends Controller
             ]);
 
         } catch (ValidationException $e) {
-
+            
             return Response::json([
                 'success' => false,
-                'message' => $e->getErrors()
+                'message' => $e->getErrors()->first()
             ]);
 
         } catch (Exception $e) {

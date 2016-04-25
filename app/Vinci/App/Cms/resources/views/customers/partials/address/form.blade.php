@@ -42,7 +42,7 @@
         </div>
         <div class="col-lg-3">
             <div class="form-group">
-                <label>Apelido</label>
+                <label>Identificador do local</label>
                 <input type="text" name="addresses[{{ $address->getId() }}][nickname]" class="form-control" value="{{ old('addresses.' . $address->getId() . '.nickname') }}">
             </div>
         </div>
@@ -60,7 +60,7 @@
 
 <div class="col-lg-8">
     <div class="form-group">
-        <label>Logradouro</label>
+        <label>Endereço</label>
         <input type="text" name="addresses[{{ $address->getId() }}][address]" id="txtAddress{{ $address->getId() }}" class="form-control"
                value="{{ old('addresses.' . $address->getId() . '.address') }}" data-address>
     </div>

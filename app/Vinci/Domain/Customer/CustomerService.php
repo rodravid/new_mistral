@@ -94,7 +94,10 @@ class CustomerService
                      ->setStateRegistration($data['stateRegistration']);
         }
 
-        $this->addressService->hydrateCustomerAddresses($customer, $data['addresses'], $data['main_address']);
+        if (isset($data['addresses'])) {
+            $this->addressService->hydrateCustomerAddresses($customer, $data['addresses'], $data['main_address']);
+        }
+
 
         $this->repository->save($customer);
 
@@ -117,8 +120,6 @@ class CustomerService
             'cellPhone' => 'trim|only_numbers',
             'commercialPhone' => 'trim|only_numbers'
         ], $data);
-
-        $data['addresses'] = $this->addressService->sanitize($data['addresses']);
     }
 
 }
