@@ -81,6 +81,9 @@
 			</li>
 		</ul>
 		
+	</section>
+
+	<section class="titles-category-fixed">
 		
 	</section>
 
@@ -410,6 +413,20 @@
 	// 		$(".header-main").removeClass('opacity1');
 	// 		$(".menu-fixo").fadeOut();
 	// 		$("body").css("margin-top","0px");
+	// 	}
+	// });
+
+	// 	$(window).scroll(function() {
+	// 	if ($(window).scrollTop() >= 660) {
+	// 		$(".title-category").addClass('category-fixed');
+	// 		$(".category-fixed").addClass('opacity1');
+	// 		$(".titles-category-fixed").addClass('category-fixed').css("display", "inline-block");
+
+	// 	} else {
+	// 		$(".title-category").removeClass('category-fixed');
+	// 		$(".title-category").removeClass('opacity1');
+	// 		$(".titles-category-fixed").removeClass('category-fixed').css("display", "none");;
+
 	// 	}
 	// });
 </script>

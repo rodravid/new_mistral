@@ -24,10 +24,14 @@
 	<!-- JavaScripts -->
 	<script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
+	
+	<!-- <script src="{{ asset_web('js/masked-input.min.js') }}" type="text/javascript"></script> -->
+	<script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
+	<script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
-	<script src="{{ asset_web('js/masked-input.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/html5.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
+
 
 	@show
 </body>
