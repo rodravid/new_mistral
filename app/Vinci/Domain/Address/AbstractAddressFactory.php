@@ -16,7 +16,8 @@ abstract class AbstractAddressFactory
         $this->entityManager = $entityManager;
     }
 
-    protected abstract function getNewAddressInstance($id = null);
+    protected abstract function
+    getNewAddressInstance($id = null);
 
     public function makeFromArray(array $addressData)
     {

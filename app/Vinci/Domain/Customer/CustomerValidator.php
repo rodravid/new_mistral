@@ -21,6 +21,7 @@ class CustomerValidator extends LaravelValidator
         'stateRegistration' => 'required_if:customerType,2',
         'password' => 'required_without:id|min:6|confirmed',
         'main_address' => 'required',
+        'addresses.*.type' => 'required',
         'addresses.*.postal_code' => 'required',
         'addresses.*.nickname' => 'required',
         'addresses.*.public_place' => 'required',

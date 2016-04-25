@@ -96,6 +96,9 @@ return [
         'addresses.*.postal_code' => [
             'required' => 'O campo CEP é obrigatório para cada endereço.'
         ],
+        'addresses.*.type' => [
+            'required' => 'É necessário selecionar o tipo para cada endereço.'
+        ],
         'addresses.*.nickname' => [
             'required' => 'O campo Apelido é obrigatório para cada endereço.'
         ],

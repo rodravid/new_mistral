@@ -140,7 +140,22 @@ class CustomerService
 
         $customer->syncAddress($addressCollection);
 
-        $customer->setMainAddress($this->entityManager->getReference(Address::class, $mainAddressId));
+
+        if (empty($mainAddressId)) {
+
+            $mainAddress = $addressCollection->filter(function($address) {
+                return ! $address->getId();
+            })->first();
+
+        } else {
+
+            $mainAddress = $addressCollection->filter(function($address) use ($mainAddressId) {
+                return $address->getId() == $mainAddressId;
+            })->first();
+
+        }
+
+        $customer->setMainAddress($mainAddress);
     }
 
 }
