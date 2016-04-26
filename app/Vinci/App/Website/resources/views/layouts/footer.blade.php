@@ -2,11 +2,11 @@
 
 	<div class="row">
 		
-		<div class="row-footer show-desktop">	
+		<div class="row-footer border-top-footer show-desktop">	
 			<ul class="list-links-clients">
 				<li><a class="link-light" href="javascript:void(0);">Sobre a vinci</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Revendedores</a></li>
-				<li><a class="link-light" href="javascript:void(0);">Fale conosco</a></li>
+				<li><a class="link-light" href="/fale-conosco">Fale conosco</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Ajuda</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Dúvidas freguentes</a></li>
 			</ul>

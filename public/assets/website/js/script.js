@@ -5,6 +5,16 @@ jQuery(document).ready(function ($) {
     autoplay: true,
     autoplaySpeed: 8000,
     arrow: false,
+    touchMove: false,
+    responsive: [
+    {
+      breakpoint: 1100,
+      settings: {
+      touchMove: true,
+      dots: true,
+      }
+    }
+  ]
 
   });
   $('.slick-dots').appendTo('.w960');
@@ -273,7 +283,7 @@ jQuery(document).ready(function ($) {
 
 
 
-   $(".input-register").keyup(function(event) {
+   $(".input-register, .field-txt").keyup(function(event) {
     var $self = $(this);
 
     var $label = $('label[for="' + $self.attr('id') + '"]');

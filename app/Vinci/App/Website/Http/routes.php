@@ -67,8 +67,17 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::confirmation.index");
     });
 
-        $route->get('/login', function(){
+    $route->get('/login', function(){
         return view("website::login.index");
     });
+
+    $route->get('/fale-conosco', function(){
+        return view("website::contact.index");
+    });
+
+    $route->get('/dados-conta', function(){
+        return view("website::accountdata.index");
+    });
+
 
 });

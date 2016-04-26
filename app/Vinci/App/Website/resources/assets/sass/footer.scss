@@ -1,4 +1,6 @@
 
+
+
 footer{
 	display: inline-block;
 	width: 100%;
@@ -17,6 +19,22 @@ footer{
 		text-transform:uppercase;
 	}
 }
+
+
+.border-links {
+	.border-top-footer {
+    border-top: 1px solid #7f7f7f;
+    padding-top: 20px;
+    margin-top: -10px;
+}	
+}
+
+	.border-top-footer {
+    border-top: none;
+    padding-top: inherit;
+    margin-top: inherit;
+}	
+
 
 
 .featured-week{

@@ -30,22 +30,6 @@
 
 	<article class="wrap-content-search">
 
-		<a class="filtro-mobile show-mobile" href="javascript:void(0);">Filtro<span>></span></a>
-
-		<ul class="filter-search show-mobile">
-			<li class="filter-search-item">
-				<ul class="subitem-filter-search">
-					<li>
-						<a href="javascript:void(0);">Cabernet</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">X</a>
-					</li>
-				</ul>
-			</li>
-
-		</ul>
-
 		<div class="search-column opacidade-coluna1">
 
 			<h3 class="title-filter">Palavra Buscada</h3>
@@ -638,10 +622,35 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
+		<div class="wrap-pagination">
 
+			<ul class="pagination">
+				<li>
+					<a href="javascript:void(0);" class="selected">1</a>
+				</li>
+				<li>
+					<a href="">2</a>
+				</li>
+				<li>
+					<a href="">3</a>
+				</li>
+				<li>
+					<a href="">4</a>
+				</li>
+				<li>
+					<a href="">5</a>
+				</li>
+				<li>
+					<a href="">></a>
+				</li>
+			</ul>
 
-			<a class="bt-default-full template1" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
 		</div>
+
+			<!-- <a class="bt-default-full template1" href="#">Carregar mais produtos <span class="arrow-link">v</span></a> -->
+		</div>
+
+
 
 
 
