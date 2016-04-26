@@ -211,8 +211,8 @@ class ModulesTableSeeder extends Seeder
                 'url' => '/cms/delivery-tracks',
                 'datatable_url' => '/cms/delivery-tracks/datatable',
                 'icon' => 'fa fa-list',
-                'create_button_text' => 'Nova faixa de cep',
-                'editing_text' => 'Editando faixa de cep'
+                'create_button_text' => 'Nova faixa de CEP',
+                'editing_text' => 'Editando faixa de CEP'
             ])
                 ->setParent($delivery),
 

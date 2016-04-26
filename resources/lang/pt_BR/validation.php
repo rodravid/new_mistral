@@ -123,6 +123,14 @@ return [
         'addresses.*.city' => [
             'required' => 'O campo Cidade é obrigatório.'
         ],
+        'line.*.initial_track' => [
+            'required' => 'O campo CEP inicial é obrigatório.',
+            'digits' => 'O campo CEP inicial deve conter um valor numérico de :digits dígitos.',
+        ],
+        'line.*.final_track' => [
+            'required' => 'O campo CEP final é obrigatório.',
+            'digits' => 'O campo CEP final deve conter um valor numérico de :digits dígitos.',
+        ]
     ],
 
     /*

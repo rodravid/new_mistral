@@ -80,6 +80,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\DeliveryTrack\DeliveryTrackRepository',
+            'Vinci\Infrastructure\DeliveryTrack\DoctrineDeliveryTrackRepository',
+            'Vinci\Domain\DeliveryTrack\DeliveryTrack'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\Highlight\HighlightRepository',
             'Vinci\Infrastructure\Highlight\DoctrineHighlightRepository',
             'Vinci\Domain\Highlight\Highlight'

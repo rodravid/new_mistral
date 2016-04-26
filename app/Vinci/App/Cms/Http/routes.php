@@ -115,6 +115,19 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 });
 
                 /**
+                 * Grapes
+                 */
+                $route->group(['prefix' => 'delivery-tracks', 'as' => 'delivery-tracks.'], function () use ($route) {
+                    $route->get('/', 'DeliveryTrack\\DeliveryTrackController@index')->name('list');
+                    $route->get('/create', 'DeliveryTrack\\DeliveryTrackController@create')->name('create');
+                    $route->post('/', 'DeliveryTrack\\DeliveryTrackController@store')->name('create#store');
+                    $route->get('/{grape}/edit', 'DeliveryTrack\\DeliveryTrackController@edit')->name('edit');
+                    $route->delete('/{grape}/delete', 'DeliveryTrack\\DeliveryTrackController@destroy')->name('destroy');
+                    $route->put('/{grape}', 'DeliveryTrack\\DeliveryTrackController@update')->name('edit#update');
+                    $route->post('datatable', 'DeliveryTrack\\DeliveryTrackController@datatable')->name('list#datatable');
+                });
+
+                /**
                  * Deadline
                  */
                 $route->group(['prefix' => 'deadline', 'as' => 'deadline.'], function () use ($route) {

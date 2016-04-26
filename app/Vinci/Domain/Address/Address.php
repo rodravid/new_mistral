@@ -33,7 +33,7 @@ abstract class Address extends Model
     protected $nickname;
 
     /**
-     * @ORM\Column(name="postal_code", type="integer")
+     * @ORM\Column(name="postal_code", type="string", length=10)
      */
     protected $postalCode;
 

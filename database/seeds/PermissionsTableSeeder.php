@@ -77,6 +77,10 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'cms.customers.edit', 'description' => 'Editar clientes'],
             ['name' => 'cms.customers.destroy', 'description' => 'Excluir clientes'],
 
+            ['name' => 'cms.delivery-tracks.list', 'description' => 'Listar faixas'],
+            ['name' => 'cms.delivery-tracks.create', 'description' => 'Cadastrar nova faixa'],
+            ['name' => 'cms.delivery-tracks.edit', 'description' => 'Editar faixa'],
+            ['name' => 'cms.delivery-tracks.destroy', 'description' => 'Excluir faixas'],
 
         ];
 

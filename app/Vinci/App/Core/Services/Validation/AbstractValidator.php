@@ -61,7 +61,7 @@ abstract class AbstractValidator
      * @param $id
      * @return $this
      */
-    public function setId($id){
+    public function setId($id = null){
         $this->id = $id;
         return $this;
     }
