@@ -998,8 +998,21 @@ ul.pagination{
 .col-register3{
 	width:280px;
 	float:right;
-	@media #{$screen-767} {
+
+	@media #{$screen-970} {
 		width:100%;
+		float:right;
+
+		.user-phones {
+			width:280px;
+			float:right;
+		}
+	}
+	@media #{$screen-767} {
+		
+		.user-phones {
+			width:100%;
+		}
 	}
 
 }
@@ -1035,9 +1048,16 @@ ul.pagination{
 	font-size:14px;
 }
 
+.ie9 {
+	.label-input {
+		display:block !important;
+	}	
+}
+
+
 .pg-log {
 	.list-form-register {
-		margin:0;
+		margin:0; 
 	}
 }
 
@@ -1119,6 +1139,23 @@ ul.pagination{
 	@media #{$screen-767} {
 		width:100%;
 	}
+}
+
+.list-type-buyer {
+	li{
+		float:left;
+		margin-right:30px;
+		@media #{$screen-767} {
+			margin-right:20px;
+		}
+		label {
+			margin-right:5px;
+			font: 18px $robotobold;
+		}
+	}
+}
+#company,#person {
+	display:none;
 }
 
 /* PG CADASTRO*/
@@ -2043,6 +2080,9 @@ ul.pagination{
 			text-transform:uppercase;
 			margin-top: 10px;
 			float: left;
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 
 
@@ -2591,6 +2631,23 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
 	top: 0;
 	background:$blue;
 	position:fixed; 
+}
+.category-fixed {
+	z-index: 999999;
+	opacity: 0;
+	top: 100px;
+	position: fixed;
+	padding-top: 5px;
+}
+
+.titles-category-fixed {
+	background:#fff;
+	width:100%;
+	height:56px;
+	display:none;
+	@media #{$screen-970} {
+			display:none !important;
+	 }
 }
 
 .opacity1 {

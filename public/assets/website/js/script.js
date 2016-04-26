@@ -148,29 +148,35 @@ jQuery(document).ready(function ($) {
 
     $('input, textarea').placeholder();
 
-    $(".data").mask("99/99/9999");
-    $(".cpf").mask("999.999.999-99");
-    $(".birth-date").mask("99/99/9999");
-    $(".phone").mask("(99) 9999-9999");
-    $(".cel").mask("(99) 99999-9999");
-    $(".cep").mask("99999-999");
+    // $(".data").mask("99/99/9999");
+    // $(".cpf").mask("999.999.999-99");
+    // $(".birth-date").mask("99/99/9999");
+    // $(".phone").mask("(99) 9999-9999");
+    // $(".cel").mask("(99) 99999-9999");
+    // $(".cep").mask("99999-999");
+
+    $("[date]").inputmask("99/99/9999");
+    $("[cpf]").inputmask("999.999.999-99");
+    $("[cnpj]").inputmask("99.999.999/9999-99");
+     $("[phone-mask]").inputmask("(99) 9999-9999[9]");  //static mask
+     $("[cep]").inputmask("99999-999");
 
 
 
-    $('.call-login').on('click', function() {
+     $('.call-login').on('click', function() {
       $('.overlay, .modal-login').fadeIn();
     });
 
-    $('.call-recovery').on('click', function(){
+     $('.call-recovery').on('click', function(){
       $('.overlay, .modal-recovery').fadeIn();
       $('.modal-login').fadeOut();
     });
 
-    $('.close, .overlay').on('click', function(){
+     $('.close, .overlay').on('click', function(){
       $('.overlay, .modal-login, .modal-recovery, .modal-adress').fadeOut();
     });
 
-    $('.call-adress').on('click', function() {
+     $('.call-adress').on('click', function() {
       $('.overlay, .modal-adress').fadeIn();
     });
 
@@ -183,54 +189,101 @@ jQuery(document).ready(function ($) {
         $('.diners:radio[name=flag-card]').prop('checked', false);
       });
 
-              $(".master").click(function () { //when click on flip radio button
-                $('.master:radio[name=flag-card]').prop('checked', true);
-                $('.visa:radio[name=flag-card]').prop('checked', false);
-                $('.american:radio[name=flag-card]').prop('checked', false);
-                $('.diners:radio[name=flag-card]').prop('checked', false);
-              });
+      $(".master").click(function () { //when click on flip radio button
+        $('.master:radio[name=flag-card]').prop('checked', true);
+        $('.visa:radio[name=flag-card]').prop('checked', false);
+        $('.american:radio[name=flag-card]').prop('checked', false);
+        $('.diners:radio[name=flag-card]').prop('checked', false);
+      });
 
-                            $(".american").click(function () { //when click on flip radio button
-                              $('.american:radio[name=flag-card]').prop('checked', true);
-                              $('.visa:radio[name=flag-card]').prop('checked', false);
-                              $('.master:radio[name=flag-card]').prop('checked', false);
-                              $('.diners:radio[name=flag-card]').prop('checked', false);
-                            });
-
-
-                                                        $(".diners").click(function () { //when click on flip radio button
-                              $('.diners:radio[name=flag-card]').prop('checked', true);
-                              $('.visa:radio[name=flag-card]').prop('checked', false);
-                              $('.master:radio[name=flag-card]').prop('checked', false);
-                              $('.american:radio[name=flag-card]').prop('checked', false);
-                            });
+      $(".american").click(function () { //when click on flip radio button
+        $('.american:radio[name=flag-card]').prop('checked', true);
+        $('.visa:radio[name=flag-card]').prop('checked', false);
+        $('.master:radio[name=flag-card]').prop('checked', false);
+        $('.diners:radio[name=flag-card]').prop('checked', false);
+      });
 
 
+      $(".diners").click(function () { //when click on flip radio button
+        $('.diners:radio[name=flag-card]').prop('checked', true);
+        $('.visa:radio[name=flag-card]').prop('checked', false);
+        $('.master:radio[name=flag-card]').prop('checked', false);
+        $('.american:radio[name=flag-card]').prop('checked', false);
+      });
+
+
+      $('input[name=type-buyer]').on('change', function() {
+
+          var $self = $(this);
+          var value = $self.val();
+
+          if (value == 1) {
+
+            $("#person").fadeIn();
+            $("#company").hide();
+
+          } else if(value == 2) {
+
+            $("#company").fadeIn();
+            $("#person").hide();
+
+          }
+
+      });
+
+      function toggleTypeBuyer()
+      {
+
+          var $self = $(this);
+          var value = $('input[name=type-buyer]').val();
+
+          if (value == 1) {
+
+            $("#person").fadeIn();
+            $("#company").hide();
+
+          } else if(value == 2) {
+
+            $("#company").fadeIn();
+            $("#person").hide();
+
+          }
+
+      }
+
+      toggleTypeBuyer();
+
+
+    //  $(".physical-person").click(function () { //when click on flip radio button
+    //   $('.physical-person:radio[name=type-buyer]').prop('checked', true);
+    //   $('.legal-person:radio[name=type-buyer]').prop('checked', false);
+
+    //   $("#person").fadeIn();
+    //   $("#company").fadeOut();
+      
+    // });
+
+    // $(".legal-person").click(function () { //when click on flip radio button
+    //   $('.legal-person:radio[name=type-buyer]').prop('checked', true);
+    //   $('.physical-person:radio[name=type-buyer]').prop('checked', false);
+
+    //   $("#company").fadeIn();
+    //   $("#person").fadeOut();
+    // });
 
 
 
-    
+   $(".input-register").keyup(function(event) {
+    var $self = $(this);
 
-$(".input-register").keyup(function(event) {
-  var $self = $(this);
-  if($self.val().length > 0){
-    $(this).siblings(".label-input").fadeIn();  
+    var $label = $('label[for="' + $self.attr('id') + '"]');
 
-  } else {
-    $(this).siblings(".label-input").fadeOut();      
-  }
+    $self.val().length > 0 ? $label.fadeIn() : $label.fadeOut();
 
-  
-}).keyup();
- 
+  }).keyup();
 
 
-
-
-
-
-
-                          });
+});
 
 
 /*Detect IE add Class*/
