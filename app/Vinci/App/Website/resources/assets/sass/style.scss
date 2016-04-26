@@ -1073,17 +1073,12 @@ ul.pagination{
 	color: #111;
 	padding: 8px 10px;
 	font-family: "roboto_condensedlight";
+}
 
-	&:focus {
-		border:1px solid $blue;
-	}
-}
 .error-field{
 	border:1px solid $red;
 }
-.error-field{
-	border:1px solid $red;
-}
+
 .half { width:50%; }
 .width120 {
 	width: 120px;
@@ -1156,6 +1151,21 @@ ul.pagination{
 }
 #company,#person {
 	display:none;
+}
+
+
+.list-type-radio-2cols {
+	li{
+		float:left;
+		margin-right:0px;
+		width:45%;
+		margin-bottom:0;
+		label {
+			margin-right:5px;
+			font-size:15px;
+			font-family: "roboto_condensedlight";
+		}
+	}
 }
 
 /* PG CADASTRO*/
@@ -1240,7 +1250,7 @@ ul.pagination{
 	.modal-default {
 		width: 340px;
 		background-color: #fff;
-		position: absolute;
+		position: fixed;
 		left: 50%;
 		top: 30%;
 		margin-left: -170px;
@@ -2529,6 +2539,46 @@ ul.pagination{
 		/* PAGAMENTO FIM */
 
 
+		/* FALE CONOSCO */
+
+		.col-larger-form {
+			float:right;
+			width:610px;
+
+			@media #{$screen-970} {
+				width:380px;
+
+				.half {
+					width:100%;
+				}
+			}
+
+			@media #{$screen-767} {
+				width:100%;
+
+				.list-form-register {
+					margin-top: 0;
+				}
+			}
+		}
+		.field-txt {
+			border:1px solid #000;
+			font-family: "roboto_condensedlight";
+			font-size:15px;
+			resize: none;
+			padding:8px;
+			height: 100px;
+		}
+
+		.title-internal-mgs-send {
+			font:18px $robotobold;
+			color:$dark-orange;	
+		}
+
+
+		/* FALE CONOSCO */
+
+
 
 
 		/* select */
@@ -2645,9 +2695,7 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
 	width:100%;
 	height:56px;
 	display:none;
-	@media #{$screen-970} {
-			display:none !important;
-	 }
+
 }
 
 .opacity1 {

@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$robotobold".
-        on line 32 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
+        on line 50 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
 
-27: 	width:100%;
-28: }
-29: 
-30: .title-featured-week {
-31: 	float:left;
-32: 	font:30px $robotobold;
-33: 	color:$red;
-34: 	width:17%;
-35: 	text-transform:uppercase;
-36: 	line-height:30px;
-37: 	@media #{$screen-970}{
+45: 	width:100%;
+46: }
+47: 
+48: .title-featured-week {
+49: 	float:left;
+50: 	font:30px $robotobold;
+51: 	color:$red;
+52: 	width:17%;
+53: 	text-transform:uppercase;
+54: 	line-height:30px;
+55: 	@media #{$screen-970}{
 
 Backtrace:
-/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:32
+/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:50
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `block in _perform'
@@ -66,4 +66,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$robotobold\".\A         on line 32 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 27: 	width:100%;\A 28: }\A 29: \A 30: .title-featured-week {\A 31: 	float:left;\A 32: 	font:30px $robotobold;\A 33: 	color:$red;\A 34: 	width:17%;\A 35: 	text-transform:uppercase;\A 36: 	line-height:30px;\A 37: 	@media #{$screen-970}{"; }
+  content: "Error: Undefined variable: \"$robotobold\".\A         on line 50 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 45: 	width:100%;\A 46: }\A 47: \A 48: .title-featured-week {\A 49: 	float:left;\A 50: 	font:30px $robotobold;\A 51: 	color:$red;\A 52: 	width:17%;\A 53: 	text-transform:uppercase;\A 54: 	line-height:30px;\A 55: 	@media #{$screen-970}{"; }

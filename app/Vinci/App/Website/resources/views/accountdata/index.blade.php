@@ -2,11 +2,9 @@
 
 
 @section('content')
-<div class="header-internal template1-bg">
+<div class="header-internal template4-bg">
 	@include('website::layouts.menu')
 	<div class="row">
-
-		<h1 class="internal-subtitle">Cadastro</h1>
 
 		<ul class="breadcrumb">
 			<li class="breadcrumb-item">
@@ -14,11 +12,20 @@
 			</li>
 
 			<li class="breadcrumb-item">
-				<span>Cadastro</span>
+				<a class="breadcrumb-link" href="javascript:void(0);"><span>Minha conta</span></a> >
+			</li>
+			<li class="breadcrumb-item">
+			<span>Dados da conta</span>
 			</li>
 		</ul>
 
+		<h1 class="internal-subtitle">Minha conta</h1>
+
 	</div>
+</div>
+
+<div class="menu-my-account">
+	
 </div>
 
 <div class="row">
@@ -35,19 +42,7 @@
 	<article class="wrap-content-register">
 
 		<form action="">
-			
-			<header class="header-content-internal">
-				<ul class="list-type-buyer">
-					<li>
-						<label for="physical-person">Pessoa Física</label>
-						<input type="radio" name="type-buyer" value="1" class="physical-person" id="physical-person" checked>
-					</li>
-					<li>
-						<label for="legal-person">Pessoa Jurídica</label>
-						<input type="radio" name="type-buyer" value="2" class="legal-person" id="legal-person">
-					</li>
-				</ul>
-			</header>
+
 
 			<div class="col-register1 template1">
 
@@ -137,7 +132,7 @@
 						<li>
 							<ul class="list-type-radio-2cols">
 								<li>
-								<label for="residencial">Residencial</label>
+									<label for="residencial">Residencial</label>
 									<input type="radio" name="delivery-addres" value="1" class="physical-person" id="residencial" checked>
 								</li>
 								<li>
@@ -283,7 +278,7 @@
 
 <div class="border-links">
 
-@include('website::layouts.footer')
+	@include('website::layouts.footer')
 
 </div>
 
