@@ -23,7 +23,7 @@
 
 <div class="col-xs-12">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>CEP</label>
                 <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="form-control"
@@ -40,7 +40,7 @@
                 >
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="form-group">
                 <label>Identificador do local</label>
                 <input type="text" name="addresses[{{ $address->getId() }}][nickname]" class="form-control" value="{{ old('addresses.' . $address->getId() . '.nickname') }}">
@@ -103,7 +103,7 @@
     <div class="form-group">
         <label>Estado</label>
         <select name="addresses[{{ $address->getId() }}][state]" id="selectState{{ $address->getId() }}" class="form-control select2" style="width: 100%;" data-state data-target="#selectCity{{ $address->getId() }}" data-value="{{ old('addresses.' . $address->getId() . '.state') }}">
-            <option value=""></option>
+            <option value="">Selecione</option>
             @foreach($states as $state)
                 <option value="{{ $state->getId() }}" @if($state->getId() == old('addresses.' . $address->getId() . '.state')) selected @endif>
                     {{ $state->getUf() }}
@@ -117,7 +117,7 @@
     <div class="form-group">
         <label>Cidade</label>
         <select name="addresses[{{ $address->getId() }}][city]" id="selectCity{{ $address->getId() }}" class="form-control select2" style="width: 100%;" data-city data-value="{{ old('addresses.' . $address->getId() . '.city') }}">
-            <option value="">Selecione a cidade</option>
+            <option value="">Selecione</option>
         </select>
     </div>
 </div>

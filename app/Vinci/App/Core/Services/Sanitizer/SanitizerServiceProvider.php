@@ -18,9 +18,6 @@ class SanitizerServiceProvider extends ServiceProvider
             return Str::upper($field);
         });
 
-        $this->app['sanitizer']->register('ucwords', function ($field) {
-            return Str::studly($field);
-        });
     }
 
     public function register()

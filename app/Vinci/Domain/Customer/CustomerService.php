@@ -94,14 +94,20 @@ class CustomerService
                      ->setStateRegistration($data['stateRegistration']);
         }
 
-        if (isset($data['addresses'])) {
-            $this->addressService->hydrateCustomerAddresses($customer, $data['addresses'], $data['main_address']);
-        }
-
+        $this->syncAddresses($customer, $data);
 
         $this->repository->save($customer);
 
         return $customer;
+    }
+
+    protected function syncAddresses(Customer $customer, $data)
+    {
+        if (isset($data['addresses'])) {
+            $this->addressService->hydrateCustomerAddresses($customer, $data['addresses'], $data['main_address']);
+        } else {
+            $customer->getAddresses()->clear();
+        }
     }
 
     protected function sanitizeData(array &$data)
