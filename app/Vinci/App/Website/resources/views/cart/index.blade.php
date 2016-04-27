@@ -199,7 +199,7 @@
 					<span>Digite o CEP</span>
 					<div class="container-info-compra">
 						<form action="/checkShippingByShoppingCart" id="check-shipping">
-							<input type="text" class="cep" id="postalCode" data-postal-code="0" maxlenght="9">
+							<input type="text" class="cep" id="postalCode" data-postal-code="0" maxlenght="9" cep>
 							<input type="submit" value="OK >">
 						</form>
 					</div>

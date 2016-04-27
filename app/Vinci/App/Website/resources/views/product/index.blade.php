@@ -116,7 +116,7 @@
 						<li><p class="">9 a 11ºC</p></li>
 					</ul>
 				</li>
-
+<div class="rule-details-wine">
 				<li>
 					<ul>
 						<li><p class="item-info-wine">Corpo</p></li>
@@ -173,6 +173,8 @@
 						</li>
 					</ul>
 				</li>
+
+				</div>
 
 				<a href="javascript:void(0);" class="see-more-info"> Veja mais</a>
 
@@ -314,6 +316,8 @@
 					</ul>
 				</li>
 
+				<div class="rule-details-wine">
+
 				<li>
 					<ul>
 						<li><p class="item-info-wine">Sugestão de decantação</p></li>
@@ -363,6 +367,8 @@
 						</li>
 					</ul>
 				</li>
+
+				</div>
 
 				<a href="javascript:void(0);" class="see-more-info"> Veja mais</a>
 

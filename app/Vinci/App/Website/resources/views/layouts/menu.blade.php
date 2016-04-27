@@ -12,7 +12,7 @@
 		<div class="search">
 			<form action="">
 				<div class="wrap-input-search">	
-					<input class="input-search" type="text">
+					<input class="input-search" type="search">
 
 					<div class="results-suggestions">
 						<span class="bt-close-suggestions sprite-icon"></span>
@@ -605,7 +605,7 @@
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/fale-conosco">
 								Fale conosco
 							</a>
 						</li>
@@ -631,11 +631,12 @@
 				<h2 class="title-modal-default">Acesse sua conta</h2>
 				<ul class="list-form-register">
 					<li>
-						<label for="">E-mail</label>
-						<input class="email input-register full" type="text" placeholder="E-mail">
+						<label for="email-login" class="label-input">E-mail</label>
+						<input class="email input-register full" type="text" placeholder="E-mail" id="email-login">
 					</li>
 					<li>
-						<input class="senha input-register full" type="password" placeholder="Senha">
+						<label for="senha-login" class="label-input">Senha</label>
+						<input class="senha input-register full" type="password" placeholder="Senha" id="senha-login">
 						<a class="forgot-pass call-recovery" href="javascript:void(0);">Esqueceu a senha ?</a>
 					</li>
 

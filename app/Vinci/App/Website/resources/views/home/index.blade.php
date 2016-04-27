@@ -69,6 +69,9 @@
 <div class="w960">
 </div>
 
+
+
+
 <div class="row top90">
 
 	<section class="wrap-banners">
@@ -81,14 +84,85 @@
 			</li>
 		</ul>
 		
-		
 	</section>
 
+
+
 	<section class="featured-products">
+
+		<section class="titles-category-fixed">
+		
+	</section>
 
 		<div class="cols-products template3">
 			<h2 class="title-category">Compras Inteligentes</h2>
 			
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
 			<div class="wine-card">
 				<span class="favorite"></span>
 				
@@ -227,6 +301,70 @@
 				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
 			</div>
 
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
 			
 			<a class="show-mobile template1 bt-default-full" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
 			
@@ -255,7 +393,75 @@
 						<a href="javascript:void(0);">
 							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
-								<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
@@ -362,7 +568,73 @@
 						<a href="javascript:void(0);">
 							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
-								<p class="info-details-wine">Tinto Pinot</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<p class="info-details-wine">Tinto Pinot</p>
+							<p class="info-details-wine">Noir Chile</p>
+							<p class="info-details-wine">Tinto Pinot</p>
 							<p class="info-details-wine">Noir Chile</p>
 							<p class="in"> De <span>R$ 38,50</span></p>
 							<p class="wine-price">
@@ -388,4 +660,46 @@
 
 @include('website::layouts.footer')
 
-@stop
+
+
+@endsection
+
+@section("scripts")
+
+@parent
+
+<script>
+	// $(window).scroll(function() {
+	// 	if ($(window).scrollTop() >= 490) {
+	// 		$(".header-main").addClass('menu-fixo');
+	// 		$(".menu-fixo").fadeIn(400,function(){
+	// 			$("body").css("margin-top","100px");   
+	// 		});
+	// 		$(".menu-fixo").addClass('opacity1');
+
+	// 	} else {
+	// 		$(".header-main").removeClass('menu-fixo');
+	// 		$(".header-main").removeClass('opacity1');
+	// 		$(".menu-fixo").fadeOut();
+	// 		$("body").css("margin-top","0px");
+	// 	}
+	// });
+
+	// 	$(window).scroll(function() {
+	// 	if ($(window).scrollTop() >= 600) {
+	// 		$(".title-category").addClass('category-fixed');
+	// 		$(".category-fixed").addClass('opacity1');
+	// 		$(".titles-category-fixed").addClass('category-fixed').css("display", "inline-block");
+
+	// 	} else {
+	// 		$(".title-category").removeClass('category-fixed');
+	// 		$(".title-category").removeClass('opacity1');
+	// 		$(".titles-category-fixed").removeClass('category-fixed').css("display", "none");;
+
+	// 	}
+	// });
+</script>
+
+@endsection
+
+
