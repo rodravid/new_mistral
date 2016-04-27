@@ -20,9 +20,21 @@ class Kit extends Product
      */
     protected $items;
 
+    /**
+     * @ORM\Column(name="fixed_price", type="boolean", options={"default" = 0})
+     */
+    protected $fixedPrice = false;
+
     public function getItems()
     {
         return $this->items;
+    }
+
+    public function getPrice()
+    {
+        if ($this->fixedPrice) {
+            return parent::getPrice();
+        }
     }
 
 }

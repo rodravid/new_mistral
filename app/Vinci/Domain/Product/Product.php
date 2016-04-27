@@ -5,18 +5,19 @@ namespace Vinci\Domain\Product;
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Ecommerce\Purchase\Contracts\Purchasable;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="products")
- * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
  *     "product" = "Vinci\Domain\Product\Product",
  *     "kit" = "Vinci\Domain\Product\Kit\Kit"
  * })
  */
-class Product extends Model
+class Product extends Model implements Purchasable
 {
 
     use Timestamps;
@@ -67,4 +68,13 @@ class Product extends Model
         return $this->price;
     }
 
+    public function getOldPrice()
+    {
+        // TODO: Implement getOldPrice() method.
+    }
+
+    public function getTitle()
+    {
+        // TODO: Implement getTitle() method.
+    }
 }
