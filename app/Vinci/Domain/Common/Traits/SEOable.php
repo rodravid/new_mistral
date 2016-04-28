@@ -17,6 +17,11 @@ trait SEOable
      */
     protected $seoDescription;
 
+    /**
+     * @ORM\Column(name="seo_keywords", type="text", nullable=true)
+     */
+    protected $seoKeywords;
+
     public function getSeoTitle()
     {
         return $this->seoTitle;
@@ -36,6 +41,17 @@ trait SEOable
     public function setSeoDescription($description)
     {
         $this->seoDescription = $description;
+        return $this;
+    }
+
+    public function getSeoKeywords()
+    {
+        return $this->seoKeywords;
+    }
+
+    public function setSeoKeywords($seoKeywords)
+    {
+        $this->seoKeywords = $seoKeywords;
         return $this;
     }
 

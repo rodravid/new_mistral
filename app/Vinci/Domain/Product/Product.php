@@ -3,7 +3,11 @@
 namespace Vinci\Domain\Product;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Common\Traits\Schedulable;
+use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Ecommerce\Purchase\Contracts\Purchasable;
 
@@ -14,13 +18,14 @@ use Vinci\Domain\Ecommerce\Purchase\Contracts\Purchasable;
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
  *     "product" = "Vinci\Domain\Product\Product",
+ *     "wine" = "Vinci\Domain\Wine\Wine",
  *     "kit" = "Vinci\Domain\Product\Kit\Kit"
  * })
  */
 class Product extends Model implements Purchasable
 {
 
-    use Timestamps;
+    use Timestamps, SoftDeletes, SEOable, Schedulable;
 
     /**
      * @ORM\Id
@@ -30,9 +35,19 @@ class Product extends Model implements Purchasable
     protected $id;
 
     /**
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     */
+    protected $sku;
+
+    /**
      * @ORM\Column(type="string")
      */
-    protected $name;
+    protected $title;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
 
     /**
      * @ORM\Column(type="decimal")
@@ -40,9 +55,20 @@ class Product extends Model implements Purchasable
     protected $price;
 
     /**
+     * @Gedmo\Slug(fields={"title", "sku"}, unique=true, updatable=false)
+     * @ORM\Column(length=255, nullable=true)
+     */
+    protected $slug;
+
+    /**
      * @ORM\Column(type="integer")
      */
     protected $status;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default" = 0})
+     */
+    protected $online = false;
 
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\Image\Image")
@@ -58,9 +84,15 @@ class Product extends Model implements Purchasable
         return $this->id;
     }
 
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
     }
 
     public function getPrice()
@@ -73,8 +105,15 @@ class Product extends Model implements Purchasable
         // TODO: Implement getOldPrice() method.
     }
 
-    public function getTitle()
+    public function getSlug()
     {
-        // TODO: Implement getTitle() method.
+        return $this->slug;
     }
+
+    public function setSlug($slug)
+    {
+        $this->slug = ! empty($slug) ? $slug : null;
+        return $this;
+    }
+
 }

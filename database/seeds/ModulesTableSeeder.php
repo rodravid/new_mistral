@@ -64,17 +64,6 @@ class ModulesTableSeeder extends Seeder
             ])
                 ->setParent($catalog),
 
-            $wines = Module::make([
-                'title' => 'Vinhos',
-                'name' => 'wines',
-                'url' => '/cms/wines',
-                'datatable_url' => '/cms/wines/datatable',
-                'icon' => 'fa fa-glass',
-                'create_button_text' => 'Novo vinho',
-                'editing_text' => 'Editando vinho'
-            ])
-                ->setParent($catalog),
-
             $kits = Module::make([
                 'title' => 'Kits',
                 'name' => 'kits',
