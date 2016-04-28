@@ -11,6 +11,9 @@
 	<meta name="format-detection" content="telephone=no">
 	<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
 	<!--[if IE 9 ]> <html lang="en" class="ie9"> <![endif]-->
+	<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 	@show
 </head>
 <body>
@@ -24,12 +27,9 @@
 	<!-- JavaScripts -->
 	<script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
-	
-	<!-- <script src="{{ asset_web('js/masked-input.min.js') }}" type="text/javascript"></script> -->
 	<script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
-	<script src="{{ asset_web('js/html5.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
 
 

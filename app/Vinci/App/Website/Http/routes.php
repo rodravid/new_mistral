@@ -75,9 +75,22 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::contact.index");
     });
 
-    $route->get('/dados-conta', function(){
-        return view("website::accountdata.index");
+    $route->get('/minhaconta-cadastro', function(){
+        return view("website::my-account-data.index");
     });
+
+    $route->get('/minhaconta-pedidos', function(){
+        return view("website::my-account-requests.index");
+    });
+
+    $route->get('/minhaconta-enderecos', function(){
+        return view("website::my-account-address.index");
+    });
+
+    $route->get('/minhaconta-favoritos', function(){
+        return view("website::my-favorite-account.index");
+    });
+
 
 
 });

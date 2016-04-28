@@ -140,7 +140,7 @@
 
 		<p class="title-internal-blue mbottom20">Forma de pagamento</p>
 
-		<article class="form-payment section-payment">
+		<article class="form-payment section-payment template1">
 			<form action="">
 				<ul class="flags-card">
 					<li class="flags-list">

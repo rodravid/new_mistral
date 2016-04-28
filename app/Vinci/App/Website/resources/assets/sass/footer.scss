@@ -21,18 +21,26 @@ footer{
 }
 
 
-.border-links {
+.border-footer {
 	.border-top-footer {
-    border-top: 1px solid #7f7f7f;
-    padding-top: 20px;
-    margin-top: -10px;
-}	
+		border-top: 1px solid #7f7f7f;
+		padding-top: 20px;
+		margin-top: -10px;
+	}	
+
+	@media #{$screen-767}{
+		.border-mobile-footer {
+			border-top: 1px solid #7f7f7f;
+			padding-top: 20px;
+			margin-top: -10px;
+		}
+	}
 }
 
-	.border-top-footer {
-    border-top: none;
-    padding-top: inherit;
-    margin-top: inherit;
+.border-top-footer {
+	border-top: none;
+	padding-top: inherit;
+	margin-top: inherit;
 }	
 
 

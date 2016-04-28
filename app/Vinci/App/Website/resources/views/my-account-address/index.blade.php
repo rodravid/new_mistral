@@ -2,51 +2,74 @@
 
 
 @section('content')
-<div class="header-internal header-checkout template1-bg">
-	
+<div class="header-internal template4-bg">
+	@include('website::layouts.menu')
 	<div class="row">
-		
-		<div class="wrap-content-bt mbottom20 mtop20">
-			<span class="logo">
-				<a class="logo-vinci sprite-icon" href="/" title="Vinci - Loucos por vinho">Vinci - Loucos por vinho</a>
-			</span>
-		</div>
 
-		<h1 class="internal-subtitle">Meu Carrinho</h1>
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
+			</li>
 
-		<nav class="nav-status float-right">
-			<ul class="list-status">
-				<li class="current-status">
-					<span>Entrega</span>
-					<img class="cup-status" src="{{ asset_web('images/taca.png') }}" alt="">
-				</li>
-				<li class="show-desktop">
-					<span>Pagamento</span>
-					
-				</li>
-				<li class="show-desktop">
-					<span>Confirmação</span>
-				</li>
+			<li class="breadcrumb-item">
+				<a class="breadcrumb-link" href="javascript:void(0);"><span>Minha conta</span></a> >
+			</li>
+			<li class="breadcrumb-item">
+				<span>Dados da conta</span>
+			</li>
+		</ul>
 
-			</ul>
-		</nav>
+		<h1 class="internal-subtitle">Minha conta</h1>
 
 	</div>
+</div>
+
+<div class="wrap-menu-account-data">
+
+	<div class="row">
+
+			<div class="menu-account-mob">
+			<p>Endereços</p> <span class="seta-mobile-account">v</span>
+		</div>	
+
+		<ul class="menu-account-data">
+
+			<li>
+				<a href="/minhaconta-pedidos">Meus pedidos</a>
+			</li>
+
+			<li>
+				<a href="/minhaconta-cadastro">Dados da conta</a>
+			</li>
+
+			<li>
+				<a href="/minhaconta-favoritos">Favoritos</a>
+			</li>
+
+			<li class="current-account-data">
+				<a href="/minhaconta-enderecos">Endereços</a>
+			</li>
+
+		</ul>
+
+
+	</div>
+
 </div>
 
 <div class="row">
 
 	<div class="wrap-content-bt mbottom20">
-		<span class="title-internal-15 float-left">Escolha o endereço de entrega</span>
-		<div class="content-bt-middle hide-mobile">
-			<a class="bt-default-full bt-color call-adress" href="javascript:void(0);">Novo endereço <span class="arrow-link">&gt;</span></a>
+		<span class="title-internal-15 float-left">Lista de endereços cadastrados</span>
+		<div class="content-bt-middle mtop-ajust">
+			<a class="bt-default-full template11 call-adress" href="javascript:void(0);">Novo endereço <span class="arrow-link">&gt;</span></a>
 		</div>
 	</div>
 
 	<section class="adress-delivery">
 
-		<div class="adress">
-			<a href="javascript:void(0);" class="bt-edit call-adress" title="Editar Endereço"> > </a>
+		<div class="adress template4">
+			
 			<div class="content-adress mbottom20">
 				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
@@ -55,11 +78,12 @@
 			</div>
 			<h4>Frete</h4>
 			<p>R$ 10,00</p>
-			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
+			<a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
+
 		</div>
 
-		<div class="adress">
-			<a href="javascript:void(0);" class="bt-edit call-adress" title="Editar Endereço"> > </a>
+		<div class="adress template4">
+			
 			<div class="content-adress mbottom20">
 				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
@@ -68,11 +92,12 @@
 			</div>
 			<h4>Frete</h4>
 			<p>R$ 10,00</p>
-			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
+			<a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
+
 		</div>
 
-		<div class="adress">
-			<a href="javascript:void(0);" class="bt-edit call-adress" title="Editar Endereço"> > </a>
+		<div class="adress template4">
+			
 			<div class="content-adress mbottom20">
 				<h4 class="uppercase mbottom20">casa</h4>
 				<p>Rua bahia, 1126, Higienópolis</p>
@@ -81,46 +106,15 @@
 			</div>
 			<h4>Frete</h4>
 			<p>R$ 10,00</p>
-			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
+			<a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
+			
 		</div>
 
-		<div class="adress">
-			<a href="javascript:void(0);" class="bt-edit call-adress" title="Editar Endereço"> > </a>
-			<div class="content-adress mbottom20">
-				<h4 class="uppercase mbottom20">casa</h4>
-				<p>Rua bahia, 1126, Higienópolis</p>
-				<p>São Paulo - SP</p>
-				<p>CEP 04412-300</p>
-			</div>
-			<h4>Frete</h4>
-			<p>R$ 10,00</p>
-			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
-		</div>
-
-		<div class="adress">
-			<a href="javascript:void(0);" class="bt-edit call-adress" title="Editar Endereço"> > </a>
-			<div class="content-adress mbottom20">
-				<h4 class="uppercase mbottom20">casa</h4>
-				<p>Rua bahia, 1126, Higienópolis</p>
-				<p>São Paulo - SP</p>
-				<p>CEP 04412-300</p>
-			</div>
-			<h4>Frete</h4>
-			<p>R$ 10,00</p>
-			<a class="bt-default-full bt-color mtop20" href="/pagamento">Usar esse endereço <span class="arrow-link">&gt;</span></a>
-		</div>
-		
-		<div class="wrap-content-bt mbottom20 show-mobile">
-			<div class="content-bt-middle">
-				<a class="bt-default-full bt-color call-adress" href="#">Novo endereço <span class="arrow-link">&gt;</span></a>
-			</div>
-		</div>
 
 	</section>
 
 	
 </div>
-
 
 <div class="global-modal">
 <div class="modal-larger modal-adress template1">
@@ -252,8 +246,12 @@
 </div>
 <div class="overlay"></div>
 
+<div class="border-footer">
 
-@include('website::layouts.partials.checkoutfooter')
+	@include('website::layouts.footer')
+
+</div>
+
 
 
 @stop

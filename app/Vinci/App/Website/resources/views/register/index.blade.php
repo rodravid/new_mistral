@@ -281,7 +281,7 @@
 
 </div>
 
-<div class="border-links">
+<div class="border-footer">
 
 @include('website::layouts.footer')
 

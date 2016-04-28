@@ -102,13 +102,31 @@
     <li></li>
   </ul> 
   <ul>
-  <li><a href="/confirmacao" target="_blank">Confirmação</a></li>
+    <li><a href="/confirmacao" target="_blank">Confirmação</a></li>
     <li>V2</li>
     <li></li>
   </ul> 
 
+  <ul>
+    <li><a href="/fale-conosco" target="_blank">Fale Conosco</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul> 
+
+  <ul>
+  <li><a href="/minhaconta-cadastro" target="_blank">Minha conta - Dados da conta</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul> 
+
+  <ul>
+  <li><a href="/minhaconta-favoritos" target="_blank">Minha conta - Favoritos</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul> 
+
     <ul>
-  <li><a href="/fale-conosco" target="_blank">Fale Conosco</a></li>
+  <li><a href="/minhaconta-enderecos" target="_blank">Minha conta - Endereços</a></li>
     <li>V4</li>
     <li></li>
   </ul> 

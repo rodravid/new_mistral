@@ -12,7 +12,7 @@
 			</ul>
 		</div>
 
-		<div class="row-footer">	
+		<div class="row-footer border-mobile-footer">	
 			<ul class="buy-phone two-cols">
 				<li> 
 					<span>compre pelo telefone <span class="phone-mobile">(11) 3130.4500</span></span>
