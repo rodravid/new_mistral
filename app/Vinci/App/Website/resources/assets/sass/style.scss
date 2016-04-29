@@ -127,6 +127,7 @@ body {
 
 .wrap-slider-principal {
 	margin-top: -106px;
+	overflow:hidden; 
 	@media #{$screen-767} {
 		margin-top: -116px;
 	}
@@ -1130,6 +1131,14 @@ ul.pagination{
 .content-bt-middle {
 	float:right;
 	width:220px;
+	@media #{$screen-767} {
+		width:100%;
+	}
+}
+
+.content-bt-small {
+	float:right;
+	width:160px;
 	@media #{$screen-767} {
 		width:100%;
 	}
@@ -2330,17 +2339,14 @@ ul.pagination{
 			}
 		}
 
-		.bt-arrow-payment {
-			border: 2px solid #11b6f0;
-			padding: 3px 10px;
-			font: 16px "roboto_condensedbold";
+		.bt-arrow-action {
+			padding: 2px 9px;
+			font: 17px "roboto_condensedbold";
 			right: 10px;
 			top: 10px;
-			color: $blue;
 			transition: all .1s ease .05s;
 
 			&:hover {
-				background: $blue;
 				color: #fff;
 				transition: all .1s ease .05s;
 			}
@@ -2610,11 +2616,11 @@ ul.pagination{
 			margin-top: -30px;
 			margin-bottom: 30px;
 			height:50px;
-@media #{$screen-767} {
-			.row {
-				padding:0;
+			@media #{$screen-767} {
+				.row {
+					padding:0;
+				}
 			}
-		}
 		}
 
 
@@ -2626,7 +2632,7 @@ ul.pagination{
 				background:#ff008a;
 				position:relative;
 				z-index:99999;
-				    padding: 10px 15px 0 15px;
+				padding: 20px 15px 0 15px;
 			}
 			li {
 				display: inline-block;
@@ -2642,12 +2648,13 @@ ul.pagination{
 				@media #{$screen-767} { 
 					width:100%;
 					text-align: left;
-					margin-bottom: 5px;
+					margin-bottom: 15px;
 				}
 
 				a {
 					color:#fff;
 					font: 18px $robotobold;
+					letter-spacing: 1px;
 				}
 			}
 
@@ -2673,6 +2680,7 @@ ul.pagination{
 				color:#fff;
 				font: 18px $robotobold;
 				float:left;
+				letter-spacing: 1px;
 			}
 
 			.seta-mobile-account{
@@ -2692,9 +2700,6 @@ ul.pagination{
 			}
 
 		}
-
-
-
 
 		/* MINHA CONTA DADOS CONTA */
 
@@ -2791,7 +2796,162 @@ ul.pagination{
 			margin-top: 2px;
 		}
 
+		/* MINHA CONTA FAVORITOS */
 
+		/* MINHA CONTA PEDIDOS */
+
+		.row-request-account {
+			width:100%;
+			border:1px solid #adbfc6;
+			padding:20px;
+			display:inline-block;
+			margin-bottom:20px;
+		}
+		.col-request-account {
+			display:inline-block;
+			width:100%;
+		}
+
+		.wrap-pag-header {
+			width:100%;
+			display:inline-block;
+			margin-bottom:10px;
+
+			@media #{$screen-767} {
+				.container-total-products {
+					float: left;
+					width: 100%;
+					border-bottom: 1px solid #adbfc6;
+					padding-bottom: 15px;
+					margin-bottom: 10px;
+				}
+
+				ul.pagination {
+					text-align: right;
+					width: 100%;
+				}
+
+			}
+
+
+		}
+
+		.num-request-account,
+		.num-request-date, 
+		.num-request-price, 
+		.num-request-status {
+			float:left;
+
+
+		} 
+
+
+
+
+
+
+		.num-request-account {
+			width:240px;
+			@media #{$screen-970} {
+				width:170px;
+			}
+		}
+
+		.num-request-date {
+			width:240px;
+			@media #{$screen-970} {
+				width:170px;
+			}
+		}
+
+		.num-request-price {
+			width:220px;
+			@media #{$screen-970} {
+				width:140px;
+			}
+		}
+
+		.num-request-status {
+			width:165px;
+			@media #{$screen-970} {
+				width:140px;
+			}
+		}
+
+		p.title-info-req {
+			font-size:15px;
+		}
+
+		span.title-txt-req {
+			font: 18px $robotobold;
+			color:#000;
+		}
+
+		.num-request-cod {
+			color:$purple;
+			font: 18px $robotobold;
+		}
+
+
+
+		@media #{$screen-767} {
+			.num-request-account,
+			.num-request-date, 
+			.num-request-price {
+				border-bottom: 1px solid #adbfc6;
+				width: 100%;
+				display: inline-block;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+			}
+
+			.num-request-status {
+				width: 100%;
+				display: inline-block;
+				padding-bottom: 10px;
+				margin-bottom: 0px;
+			}
+
+			p.title-info-req {
+				font-size:15px;
+				float:left;
+			}
+
+			span.title-txt-req {
+				font: 15px $robotobold;
+				float:right;
+			}
+
+			.num-request-cod {
+				float:right;
+			}
+
+		}
+
+		.section-payment {
+			@media #{$screen-767} {
+			span.title-txt-req {
+				font: 17px "roboto_condensedbold";
+				float: left;
+			}
+		}
+		}
+
+
+
+		/* MINHA CONTA PEDIDOS */
+
+		/* MINHA CONTA DETALHES DO PEDIDOS  */
+
+
+
+		.title-internal {
+			font:20px $robotobold;
+			color:$blue;
+			text-transform:uppercase;
+		}
+
+		/* MINHA CONTA DETALHES DO PEDIDOS  */
 
 		/* select */
 
@@ -2899,6 +3059,7 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
 	opacity: 0;
 	top: 100px;
 	position: fixed;
+	padding-top:5px;
 	@media #{$screen-970} {
 		top: 62px;
 	}

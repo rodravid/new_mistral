@@ -91,8 +91,8 @@
 	<section class="featured-products">
 
 		<section class="titles-category-fixed">
-		
-	</section>
+
+		</section>
 
 		<div class="cols-products template3">
 			<h2 class="title-category">Compras Inteligentes</h2>
@@ -670,87 +670,110 @@
 
 <script>
 
-	// (function($) {
+	(function($) {
 
-	// 		var $window = $(window);
+		var $window = $(window);
 
-	// 		function getLastFeaturedBoxOffset() {
-	// 			return $('.featured-products').find('.cols-products:first').find('.wine-card:last').offset();
-	// 		}
+		function eDesktop() {
+			var larguraTela = $window.width();
 
-	// 		var h = $(".title-category:first").height() + 16;
+			if ( larguraTela > 767 ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 
-	// 		function toggleTitleCategory(action) {
+		function removeMenuFixo() {
+			$(".header-main").removeClass('menu-fixo').removeClass('opacity1');
+			$(".menu-fixo").fadeOut();
+			$("body").css("margin-top","0px");
+		}
 
+		function getLastFeaturedBoxOffset() {
+			return $('.featured-products').find('.cols-products:first').find('.wine-card:last').offset();
+		}
 
-	// 				if (action == 'show') {
+		var h = $(".title-category:first").height() + 16;
 
-	// 					$(".title-category").addClass('category-fixed');
-	// 					$(".category-fixed").addClass('opacity1');
-	// 					$(".titles-category-fixed").addClass('category-fixed').css("display", "inline-block");
-
-	// 					$('.cols-products').css({'margin-top': h + 'px'});
-
-	// 				} else {
-
-	// 					console.log('escondendo...');
-
-	// 					$(".title-category").removeClass('category-fixed');
-	// 					$(".title-category").removeClass('opacity1');
-	// 					$(".titles-category-fixed").removeClass('category-fixed').css("display", "none");
-
-	// 					$('.cols-products').css({'margin-top': '0px'});
-
-	// 				}
-
-	// 		}
-
-	// 		function getSliderHeight()
-	// 		{
-	// 			return $('.wrap-slider-principal').height();
-	// 		}
-
-	// 		$window.scroll(function() {
-
-	// 			var scrollTop = $window.scrollTop();
-	// 			var lastBoxOffsetTop = getLastFeaturedBoxOffset().top;
+		function toggleTitleCategory(action) {
 
 
-				
+			if (action == 'show') {
 
-	// 			if (scrollTop >= 465) {
+				$(".title-category").addClass('category-fixed');
+				$(".category-fixed").addClass('opacity1');
+				$(".titles-category-fixed").addClass('category-fixed').css("display", "inline-block");
 
-	// 				$(".header-main").addClass('menu-fixo');
+				$('.cols-products').css({'margin-top': h + 'px'});
 
-	// 				$(".menu-fixo").fadeIn(400,function(){
-	// 					$("body").css("margin-top","100px");   
-	// 				});
-
-	// 				$(".menu-fixo").addClass('opacity1');
-
-	// 			} else {
-	// 				$(".header-main").removeClass('menu-fixo');
-	// 				$(".header-main").removeClass('opacity1');
-	// 				$(".menu-fixo").fadeOut();
-	// 				$("body").css("margin-top","0px");
-	// 			}
-
-	// 			if (scrollTop >= 656 && scrollTop < lastBoxOffsetTop) {
-				
-	// 				toggleTitleCategory('show');
-
-	// 			} else {
-
-	// 				toggleTitleCategory('hide');
-
-	// 			}
+			} else {
 
 
 
-	// 	}).scroll();
+				$(".title-category").removeClass('category-fixed');
+				$(".title-category").removeClass('opacity1');
+				$(".titles-category-fixed").removeClass('category-fixed').css("display", "none");
+
+				$('.cols-products').css({'margin-top': '0px'});
+
+			}
+
+		}
+
+		function getSliderHeight()
+		{
+			return $('.wrap-slider-principal').height();
+		}
+
+		$window.scroll(function() {
+
+			var scrollTop = $window.scrollTop();
+			var lastBoxOffsetTop = getLastFeaturedBoxOffset().top;
 
 
-	// })($);
+			if (eDesktop()) {
+
+				if (scrollTop >= 465) {
+
+					$(".header-main").addClass('menu-fixo');
+
+					$(".menu-fixo").fadeIn(400,function(){
+						$("body").css("margin-top","100px");   
+					});
+
+					$(".menu-fixo").addClass('opacity1');
+
+						} else {
+							removeMenuFixo();
+						}
+
+					} else {
+						removeMenuFixo();
+					}
+
+			if (eDesktop()) {
+
+				if (scrollTop >= 656 && scrollTop < lastBoxOffsetTop) {
+
+					toggleTitleCategory('show');
+
+				} else {
+
+					toggleTitleCategory('hide');
+
+				}
+
+			} else {
+				toggleTitleCategory('hide');					
+			}
+
+
+
+		}).scroll();
+
+
+	})($);
 
 
 </script>

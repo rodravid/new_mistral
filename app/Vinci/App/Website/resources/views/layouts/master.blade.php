@@ -31,8 +31,6 @@
 	<script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
 	<script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
-
-
 	@show
 </body>
 </html>

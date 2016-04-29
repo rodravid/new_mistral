@@ -113,6 +113,18 @@
     <li></li>
   </ul> 
 
+    <ul>
+  <li><a href="/minhaconta-pedidos" target="_blank">Minha conta - Pedidos</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul> 
+
+      <ul>
+  <li><a href="/minhaconta-detalhe-pedido" target="_blank">Minha conta - Detalhes Pedidos</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul> 
+
   <ul>
   <li><a href="/minhaconta-cadastro" target="_blank">Minha conta - Dados da conta</a></li>
     <li>V4</li>

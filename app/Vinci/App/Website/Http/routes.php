@@ -83,13 +83,19 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::my-account-requests.index");
     });
 
+        $route->get('/minhaconta-favoritos', function(){
+        return view("website::my-favorite-account.index");
+    });
+
+    $route->get('/minhaconta-detalhe-pedido', function(){
+        return view("website::my-account-details-requests.index");
+    });
+
     $route->get('/minhaconta-enderecos', function(){
         return view("website::my-account-address.index");
     });
 
-    $route->get('/minhaconta-favoritos', function(){
-        return view("website::my-favorite-account.index");
-    });
+
 
 
 

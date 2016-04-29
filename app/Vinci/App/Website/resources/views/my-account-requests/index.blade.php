@@ -58,134 +58,198 @@
 
 <div class="row">
 
+	
+	<div class="wrap-pag-header">	
 
+		<div class="container-total-products">
+			<span class="total-products">1 - 15 de 350 produtos</span>
+		</div>
 
-	<article class="wrap-content-register">
+		<ul class="pagination">
+			<li>
+				<a href="javascript:void(0);" class="selected">1</a>
+			</li>
+			<li>
+				<a href="">2</a>
+			</li>
+			<li>
+				<a href="">3</a>
+			</li>
+			<li>
+				<a href="">4</a>
+			</li>
+			<li>
+				<a href="">5</a>
+			</li>
+			<li>
+				<a href="">></a>
+			</li>
+		</ul>
 
-		<form action="">
+	</div>
 
+	<article class="request section-request">
 
-			<div class="col-register1 template4">
+		<div class="row-request-account template11">
 
-				<div class="user-data">
-					<h2 class="title-form">Dados de acesso *</h2>
-					<ul class="list-form-register">
-						<li>
-							<label for="email" class="label-input">E-mail</label>
-							<input class="email input-register full" type="email" placeholder="E-mail *" id="email">
-						</li>
-						<li>
-							<label for="password" class="label-input">Senha</label>
-							<input class="senha input-register half" type="password" placeholder="Senha *" id="password">
-						</li>
-						<li>
-							<label for="password2" class="label-input">Confirmar senha</label>
-							<input class="senha input-register half" type="password" placeholder="Confirmar senha *" id="password2">
-						</li>
-					</ul>
+			<div class="col-request-account">
 
+				<div class="num-request-account">
+					<p class="title-info-req">Número do pedido</p>
+					<span class="num-request-cod">12345678</span>
+				</div>
+
+				<div class="num-request-date">
+					<p class="title-info-req">Data do pedido</p>
+					<span class="title-txt-req">25/jan/2106</span>
+				</div>
+
+				<div class="num-request-price">
+					<p class="title-info-req">Valor</p>
+					<span class="title-txt-req">R$ 145,56</span>
+				</div>
+
+				<div class="num-request-status">
+					<p class="title-info-req">Status</p>
+					<span class="title-txt-req">Entregue 02/fev</span>
+				</div>
+
+				<div class="float-right mtop10">
+					<a class="bt-arrow-action" href="/minhaconta-detalhe-pedido"> > </a>
 				</div>
 
 			</div>
 
-			<div class="col-register2 template4">
+		</div>
 
-				<div class="user-address">
-					<div class="">
-						<h2 class="title-form">Dados Pessoais *</h2>
-						<ul class="list-form-register">
-							<li>
-								<label for="name-complete" class="label-input">Nome completo *</label>
-								<input class="name-complete input-register full" type="text" placeholder="Nome completo *" id="name-complete">
-							</li>
-							<li>
-								<label for="cpf" class="label-input">CPF *</label>
-								<input class="cpf input-register full" type="text" placeholder="CPF *" cpf id="cpf">
-							</li>
-							<li>
-								<label for="rg" class="label-input">RG</label>
-								<input class="rg input-register full" type="text" placeholder="RG" id="rg">
-							</li>
-							<li>
-								<label for="orgao-emissor" class="label-input">Orgão Emissor *</label>
-								<input class="orgao-emissor input-register half" type="text" placeholder="Orgão Emissor *" id="orgao-emissor">
-							</li>
-							<li>
-								<div class="select-standard form-control-white">
-									<select class="" name="" id="">
-										<option value="">Sexo *</option>
-										<option value="">Masculino</option>
-										<option value="">Feminino</option>
-									</select>
-								</div>
-							</li>
-							<li>
-								<label for="birth-date" class="label-input">Data de Nascimento *</label>
-								<input class="birth-date input-register seventy" type="text" placeholder="Data de Nascimento *" date id="birth-date">
-							</li>
-						</ul>
-					</div>
+		<div class="row-request-account template11">
 
-					<div class="" style="display: none;">
-						<h2 class="title-form">Dados Empresa *</h2>
-						<ul class="list-form-register">
-							<li>
-								<label for="name-company" class="label-input">Nome da empresa *</label>
-								<input class="name-complete-company input-register full" type="text" placeholder="Nome da empresa *" id="name-company">
-							</li>
-							<li>
-								<label for="responsavel" class="label-input">Responsável</label>
-								<input class="input-register full" type="text" placeholder="Responsável" id="responsavel">
-							</li>
-							<li>
-								<label for="cnpj" class="label-input">CNPJ *</label>
-								<input class="cnpj input-register full" type="text" placeholder="CNPJ *" cnpj id="cnpj">
-							</li>
-							<li>
-								<label for="ie" class="label-input">IE</label>
-								<input class="ie input-register full" type="text" placeholder="IE" id="ie">
-							</li>
+			<div class="col-request-account">
 
-						</ul>
-					</div>
+				<div class="num-request-account">
+					<p class="title-info-req">Número do pedido</p>
+					<span class="num-request-cod">12345678</span>
+				</div>
 
+				<div class="num-request-date">
+					<p class="title-info-req">Data do pedido</p>
+					<span class="title-txt-req">25/jan/2106</span>
+				</div>
+
+				<div class="num-request-price">
+					<p class="title-info-req">Valor</p>
+					<span class="title-txt-req">R$ 145,56</span>
+				</div>
+
+				<div class="num-request-status">
+					<p class="title-info-req">Status</p>
+					<span class="title-txt-req">Entregue 02/fev</span>
+				</div>
+
+				<div class="float-right mtop10">
+					<a class="bt-arrow-action" href="/minhaconta-detalhe-pedido"> > </a>
 				</div>
 
 			</div>
 
-			<div class="col-register3 template4">
+		</div>
 
-				<div class="user-phones">
-					<h2 class="title-form">Contatos</h2>
-					<ul class="list-form-register">
-						<li>
-							<label for="phone1" class="label-input">Telefone celular *</label>
-							<input class="cel input-register full" type="tel" placeholder="Telefone celular *" phone-mask id="phone1">
-						</li>
-						<li>
-							<label for="phone2" class="label-input">Telefone comercial</label>
-							<input class="phone2 input-register full" type="tel" placeholder="Telefone comercial" phone-mask id="phone2">
-						</li>
-						<li>
-							<label for="phone3" class="label-input">Telefone de contato</label>
-							<input class="input-register full" type="tel" placeholder="Telefone de contato" phone-mask id="phone3">
-						</li>
+		<div class="row-request-account template11">
 
-					</ul>
+			<div class="col-request-account">
 
+				<div class="num-request-account">
+					<p class="title-info-req">Número do pedido</p>
+					<span class="num-request-cod">12345678</span>
+				</div>
+
+				<div class="num-request-date">
+					<p class="title-info-req">Data do pedido</p>
+					<span class="title-txt-req">25/jan/2106</span>
+				</div>
+
+				<div class="num-request-price">
+					<p class="title-info-req">Valor</p>
+					<span class="title-txt-req">R$ 145,56</span>
+				</div>
+
+				<div class="num-request-status">
+					<p class="title-info-req">Status</p>
+					<span class="title-txt-req">Entregue 02/fev</span>
+				</div>
+
+				<div class="float-right mtop10">
+					<a class="bt-arrow-action" href="/minhaconta-detalhe-pedido"> > </a>
 				</div>
 
 			</div>
 
-			<div class="wrap-content-bt">
-				<div class="content-bt-big">
-					<a class="bt-default-full template11 bt-middle" href="#">Atualizar dados <span class="arrow-link">></span></a>
+		</div>
+
+		<div class="row-request-account template11">
+
+			<div class="col-request-account">
+
+				<div class="num-request-account">
+					<p class="title-info-req">Número do pedido</p>
+					<span class="num-request-cod">12345678</span>
 				</div>
+
+				<div class="num-request-date">
+					<p class="title-info-req">Data do pedido</p>
+					<span class="title-txt-req">25/jan/2106</span>
+				</div>
+
+				<div class="num-request-price">
+					<p class="title-info-req">Valor</p>
+					<span class="title-txt-req">R$ 145,56</span>
+				</div>
+
+				<div class="num-request-status">
+					<p class="title-info-req">Status</p>
+					<span class="title-txt-req">Entregue 02/fev</span>
+				</div>
+
+				<div class="float-right mtop10">
+					<a class="bt-arrow-action" href="/minhaconta-detalhe-pedido"> > </a>
+				</div>
+
 			</div>
-		</form>
+
+		</div>
 
 
 	</article>
+
+
+	<div class="wrap-pag-header">	
+
+		<div class="container-total-products show-desktop">
+			<span class="total-products ">1 - 15 de 350 produtos</span>
+		</div>
+
+		<ul class="pagination">
+			<li>
+				<a href="javascript:void(0);" class="selected">1</a>
+			</li>
+			<li>
+				<a href="">2</a>
+			</li>
+			<li>
+				<a href="">3</a>
+			</li>
+			<li>
+				<a href="">4</a>
+			</li>
+			<li>
+				<a href="">5</a>
+			</li>
+			<li>
+				<a href="">></a>
+			</li>
+		</ul>
+
+	</div>
 
 </div>
 
