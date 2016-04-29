@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Domain\Wine;
+namespace Vinci\Domain\Product\Wine;
 
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Product\Product;
@@ -63,7 +63,7 @@ class Wine extends Product
     protected $agingPotential;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Wine\GrapeContent", mappedBy="wine")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\GrapeContent", mappedBy="wine")
      */
     protected $grapeContent;
 
