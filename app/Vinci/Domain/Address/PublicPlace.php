@@ -4,12 +4,13 @@ namespace Vinci\Domain\Address;
 
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="public_places")
  */
-class PublicPlace
+class PublicPlace extends Model
 {
 
     use Timestamps;

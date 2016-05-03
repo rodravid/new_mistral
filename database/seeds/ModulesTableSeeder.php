@@ -64,17 +64,6 @@ class ModulesTableSeeder extends Seeder
             ])
                 ->setParent($catalog),
 
-            $wines = Module::make([
-                'title' => 'Vinhos',
-                'name' => 'wines',
-                'url' => '/cms/wines',
-                'datatable_url' => '/cms/wines/datatable',
-                'icon' => 'fa fa-glass',
-                'create_button_text' => 'Novo vinho',
-                'editing_text' => 'Editando vinho'
-            ])
-                ->setParent($catalog),
-
             $kits = Module::make([
                 'title' => 'Kits',
                 'name' => 'kits',
@@ -211,8 +200,8 @@ class ModulesTableSeeder extends Seeder
                 'url' => '/cms/delivery-tracks',
                 'datatable_url' => '/cms/delivery-tracks/datatable',
                 'icon' => 'fa fa-list',
-                'create_button_text' => 'Nova faixa de cep',
-                'editing_text' => 'Editando faixa de cep'
+                'create_button_text' => 'Nova faixa de CEP',
+                'editing_text' => 'Editando faixa de CEP'
             ])
                 ->setParent($delivery),
 

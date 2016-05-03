@@ -17,4 +17,9 @@ class Stats
         return $this->customer->getOrders()->count();
     }
 
+    public function addresses()
+    {
+        return $this->customer->getAddresses()->count();
+    }
+
 }

@@ -15,6 +15,8 @@ use Vinci\Domain\Image\Image;
 class Country extends BaseTaxonomy
 {
 
+    const BRAZIL = 1;
+
     /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Country\CountryImage", mappedBy="country", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
      */

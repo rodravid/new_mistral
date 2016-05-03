@@ -26,6 +26,9 @@
                             <li class="list-group-item">
                                 <b>Total de pedidos</b> <a class="pull-right"> {{ $customer->stats()->orders() }}</a>
                             </li>
+                            <li class="list-group-item">
+                                <b>Total de endereços</b> <a class="pull-right"> {{ $customer->stats()->addresses() }}</a>
+                            </li>
                         </ul>
 
                         @if ($loggedUser->hasPermissionTo('cms.customers.edit'))

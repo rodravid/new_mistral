@@ -20,7 +20,9 @@
         "laracasts/flash": "^2.0",
         "intervention/image": "^2.3",
         "prettus/laravel-validation": "1.1.*",
-        "maatwebsite/excel": "~2.1.0"
+        "maatwebsite/excel": "~2.1.0",
+        "daylerees/sanitizer": "^1.0",
+        "spatie/laravel-fractal": "^1.9"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

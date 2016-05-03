@@ -84,3 +84,8 @@ function mask($txt, $mask) {
 function unmask($text) {
     return preg_replace('/[\-\|\(\)\/\.\: ]/', '', $text);
 }
+
+function only_numbers($string)
+{
+    return preg_replace("/[^0-9]/", "", $string);
+}

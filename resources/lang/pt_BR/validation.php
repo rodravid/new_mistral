@@ -93,6 +93,44 @@ return [
         'roles' => [
             'required' => 'Você deve selecionar um grupo para o usuário.',
         ],
+        'addresses.*.postal_code' => [
+            'required' => 'O campo CEP é obrigatório.'
+        ],
+        'addresses.*.type' => [
+            'required' => 'É necessário selecionar o tipo do endereço.'
+        ],
+        'addresses.*.nickname' => [
+            'required' => 'O campo Identificador do local é obrigatório.'
+        ],
+        'addresses.*.public_place' => [
+            'required' => 'O campo Tipo de logradouro é obrigatório.'
+        ],
+        'addresses.*.address' => [
+            'required' => 'O campo Endereço é obrigatório.'
+        ],
+        'addresses.*.number' => [
+            'required' => 'O campo Número é obrigatório.'
+        ],
+        'addresses.*.district' => [
+            'required' => 'O campo Bairro é obrigatório.'
+        ],
+        'addresses.*.country' => [
+            'required' => 'O campo País é obrigatório.'
+        ],
+        'addresses.*.state' => [
+            'required' => 'O campo Estado é obrigatório.'
+        ],
+        'addresses.*.city' => [
+            'required' => 'O campo Cidade é obrigatório.'
+        ],
+        'line.*.initial_track' => [
+            'required' => 'O campo CEP inicial é obrigatório.',
+            'digits' => 'O campo CEP inicial deve conter um valor numérico de :digits dígitos.',
+        ],
+        'line.*.final_track' => [
+            'required' => 'O campo CEP final é obrigatório.',
+            'digits' => 'O campo CEP final deve conter um valor numérico de :digits dígitos.',
+        ]
     ],
 
     /*

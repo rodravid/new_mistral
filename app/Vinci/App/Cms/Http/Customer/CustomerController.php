@@ -11,6 +11,10 @@ use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Cms\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
+use Vinci\Domain\Address\City\CityRepository;
+use Vinci\Domain\Address\Country\CountryRepository;
+use Vinci\Domain\Address\State\StateRepository;
+use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Domain\Customer\CustomerService;
 
@@ -29,16 +33,28 @@ class CustomerController extends Controller
 
     protected $imageRepository;
 
+    protected $countryRepository;
+
+    protected $stateRepository;
+
+    protected $cityRepository;
+
     public function __construct(
         EntityManagerInterface $em,
         CustomerService $service,
-        CustomerRepository $repository
+        CustomerRepository $repository,
+        CountryRepository $countryRepository,
+        StateRepository $stateRepository,
+        CityRepository $cityRepository
     )
     {
         parent::__construct($em);
 
         $this->service = $service;
         $this->repository = $repository;
+        $this->countryRepository = $countryRepository;
+        $this->stateRepository = $stateRepository;
+        $this->cityRepository = $cityRepository;
     }
 
     public function index()
@@ -48,15 +64,27 @@ class CustomerController extends Controller
 
     public function create()
     {
-        return $this->view('customers.create');
+        $country = $this->countryRepository->find(Country::BRAZIL);
+
+        $states = $this->stateRepository->getByCountry($country);
+
+        return $this->view('customers.create')
+            ->withCountry($country)
+            ->withStates($states);
     }
 
     public function edit($id)
     {
         $customer = $this->repository->findOrFail($id);
 
+        $country = $this->countryRepository->find(Country::BRAZIL);
+
+        $states = $this->stateRepository->getByCountry($country);
+
         return $this->view('customers.edit')
-            ->withCustomer($customer);
+            ->withCustomer($customer)
+            ->withCountry($country)
+            ->withStates($states);
     }
 
     public function show($id)
@@ -95,10 +123,6 @@ class CustomerController extends Controller
 
     public function update(Request $request, $customerId)
     {
-        return Redirect::back()->withInput();
-
-        dd($request->all());
-
         try {
 
             $data = $request->all();
@@ -107,7 +131,8 @@ class CustomerController extends Controller
 
             Flash::success("Cliente {$customer->getName()} atualizado com sucesso!");
 
-            return Redirect::route($this->getEditRouteName(), $customer->getId());
+            return Redirect::route($this->getEditRouteName(), $customer->getId())
+                ->withInput(['current-tab' => $request->get('current-tab')]);
 
         } catch (ValidationException $e) {
 

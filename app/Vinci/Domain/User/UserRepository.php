@@ -9,6 +9,8 @@ interface UserRepository extends RepositoryInterface
 
     public function create(array $data);
 
+    public function findOrFail($id);
+
     public function findByEmail($email);
 
 }

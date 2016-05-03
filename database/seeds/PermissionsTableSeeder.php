@@ -20,7 +20,7 @@ class PermissionsTableSeeder extends Seeder
     {
 
         $permissions = [
-            ['name' => 'cms.dashboard', 'description' => 'Ver dashboard'],
+            ['name' => 'cms.dashboard.list', 'description' => 'Ver dashboard'],
 
             ['name' => 'cms.users.list', 'description' => 'Listar usuários'],
             ['name' => 'cms.users.create', 'description' => 'Criar usuários'],
@@ -70,6 +70,17 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'cms.product-type.create', 'description' => 'Cadastrar novo tipo de produto'],
             ['name' => 'cms.product-type.edit', 'description' => 'Editar tipos de produtos'],
             ['name' => 'cms.product-type.destroy', 'description' => 'Excluir tipos de produtos'],
+
+            ['name' => 'cms.customers.list', 'description' => 'Listar clientes'],
+            ['name' => 'cms.customers.show', 'description' => 'Visualizar cliente'],
+            ['name' => 'cms.customers.create', 'description' => 'Cadastrar novo cliente'],
+            ['name' => 'cms.customers.edit', 'description' => 'Editar clientes'],
+            ['name' => 'cms.customers.destroy', 'description' => 'Excluir clientes'],
+
+            ['name' => 'cms.delivery-tracks.list', 'description' => 'Listar faixas'],
+            ['name' => 'cms.delivery-tracks.create', 'description' => 'Cadastrar nova faixa'],
+            ['name' => 'cms.delivery-tracks.edit', 'description' => 'Editar faixa'],
+            ['name' => 'cms.delivery-tracks.destroy', 'description' => 'Excluir faixas'],
 
         ];
 

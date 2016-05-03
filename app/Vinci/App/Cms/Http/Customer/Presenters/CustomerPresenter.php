@@ -23,7 +23,7 @@ class CustomerPresenter extends AbstractPresenter
 
         if ($mainAddress) {
 
-            return "<b>CEP: </b> {$this->getMainAddress()->postal_code}<br />
+            return "<b>CEP: </b> {$mainAddress->postal_code}<br />
                      {$mainAddress->public_place} {$mainAddress->address}, {$mainAddress->number} <br />
                        {$mainAddress->city_name} - {$mainAddress->state_name} / {$mainAddress->uf} - {$mainAddress->country_name}";
         }

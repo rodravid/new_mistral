@@ -62,7 +62,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini {{ $loggedUser->settings()->get('theme', 'skin-blue') }}">
 <div class="wrapper">
 
     <header class="main-header">
@@ -83,10 +83,10 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     @if(isset($currentDollar))
-                        <li><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
+                        <li class="hidden-xs"><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
                     @endif
                     @if(isset($currentDeadline))
-                        <li><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-check-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
+                        <li class="hidden-xs"><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-check-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
                     @endif
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
@@ -107,10 +107,10 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ route('cms.profile') }}" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="{{ route('cms.profile') }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i> Perfil</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ route('cms.logout') }}" class="btn btn-default btn-flat">Sair</a>
+                                    <a href="{{ route('cms.logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sair</a>
                                 </div>
                             </li>
                         </ul>
@@ -218,16 +218,16 @@
 
             $.extend( true, $.fn.dataTable.defaults, {
                 "language": {
-                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sEmptyTable": "Nenhum registro encontrado.",
                     "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
                     "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
                     "sInfoFiltered": "(Filtrados de _MAX_ registros)",
                     "sInfoPostFix": "",
                     "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLengthMenu": "_MENU_ registros por página",
                     "sLoadingRecords": "Carregando...",
                     "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sZeroRecords": "Nenhum registro encontrado.",
                     "sSearch": "Pesquisar",
                     "oPaginate": {
                         "sNext": "Próximo",
@@ -249,7 +249,10 @@
                 $(table).DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: $table.data('url'),
+                    ajax: {
+                        "url": $table.data('url'),
+                        "type": "POST"
+                    },
                     searchDelay: 600,
                     columnDefs: [
                         {orderable: false, width: '92px', targets: -1 },

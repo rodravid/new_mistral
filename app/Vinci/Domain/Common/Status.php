@@ -2,7 +2,7 @@
 
 namespace Vinci\Domain\Common;
 
-interface Status
+abstract class Status
 {
     const DRAFT = 0;
     const ACTIVE = 1;

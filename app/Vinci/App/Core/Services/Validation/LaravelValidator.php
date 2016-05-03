@@ -21,7 +21,7 @@ abstract class LaravelValidator extends AbstractValidator
         $attributes = $this->getAttributes();
         $validator = $this->validator->make($this->data, $rules, $messages, $attributes);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             $this->errors = $validator->messages();
             return false;
         }

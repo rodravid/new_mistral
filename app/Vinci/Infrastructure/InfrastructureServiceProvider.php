@@ -80,6 +80,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\DeliveryTrack\DeliveryTrackRepository',
+            'Vinci\Infrastructure\DeliveryTrack\DoctrineDeliveryTrackRepository',
+            'Vinci\Domain\DeliveryTrack\DeliveryTrack'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\Highlight\HighlightRepository',
             'Vinci\Infrastructure\Highlight\DoctrineHighlightRepository',
             'Vinci\Domain\Highlight\Highlight'
@@ -113,6 +119,24 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\ProductType\ProductTypeRepository',
             'Vinci\Infrastructure\ProductType\DoctrineProductTypeRepository',
             'Vinci\Domain\ProductType\ProductType'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Address\Country\CountryRepository',
+            'Vinci\Infrastructure\Address\Country\DoctrineCountryRepository',
+            'Vinci\Domain\Address\Country\Country'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Address\State\StateRepository',
+            'Vinci\Infrastructure\Address\State\DoctrineStateRepository',
+            'Vinci\Domain\Address\State\State'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Address\City\CityRepository',
+            'Vinci\Infrastructure\Address\City\DoctrineCityRepository',
+            'Vinci\Domain\Address\City\City'
         );
 
         $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {

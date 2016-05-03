@@ -5,8 +5,9 @@ namespace Vinci\Domain;
 use Illuminate\Support\ServiceProvider;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Admin\AdminService;
-use Vinci\Domain\Customer\CustomerRepository;
+use Vinci\Domain\Customer\Address\AddressService;
 use Vinci\Domain\Customer\CustomerService;
+use Vinci\Domain\DeliveryTrack\DeliveryTrackService;
 use Vinci\Domain\Highlight\HighlightService;
 use Vinci\Domain\Country\CountryService;
 use Vinci\Domain\Region\RegionService;
@@ -29,11 +30,32 @@ class DomainServiceProvider extends ServiceProvider
             );
         });
 
+        $this->app->singleton('Vinci\Domain\Customer\Address\AddressService', function() {
+            return new AddressService(
+                $this->app['em'],
+                $this->app['Vinci\Domain\Customer\Address\AddressFactory'],
+                $this->app['Vinci\Domain\Address\MultiAddressValidator'],
+                $this->app['sanitizer']
+            );
+        });
+
         $this->app->singleton('Vinci\Domain\Customer\CustomerService', function() {
             return new CustomerService(
                 $this->app['em'],
                 $this->app['Vinci\Domain\Customer\CustomerRepository'],
-                $this->app->make('Vinci\Domain\Customer\CustomerValidator')
+                $this->app->make('Vinci\Domain\Customer\CustomerValidator'),
+                $this->app->make('Vinci\Domain\Customer\Address\AddressService'),
+                $this->app['sanitizer']
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\DeliveryTrack\DeliveryTrackService', function() {
+            return new DeliveryTrackService(
+                $this->app['em'],
+                $this->app['Vinci\Domain\DeliveryTrack\DeliveryTrackRepository'],
+                $this->app->make('Vinci\Domain\DeliveryTrack\DeliveryTrackValidator'),
+                $this->app->make('Vinci\Domain\DeliveryTrack\LineValidator'),
+                $this->app['sanitizer']
             );
         });
 
