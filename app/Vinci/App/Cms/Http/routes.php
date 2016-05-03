@@ -9,6 +9,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $route->post('password/reset', 'Auth\PasswordController@reset');
 
+    $route->get('test', 'TestController@index');
+
     $route->group(['middleware' => ['auth:cms']], function() use ($route) {
 
         $route->group(['middleware' => ['cms']], function() use ($route) {

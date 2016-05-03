@@ -3,11 +3,21 @@
 namespace Vinci\Domain\Product;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Vinci\Domain\Common\Status;
 
 /**
- * @ORM\Table(name="products_skus")
+ * @ORM\Entity
+ * @ORM\Table(name="products_variants")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({
+ *     "product" = "Vinci\Domain\Product\ProductVariant",
+ *     "wine" = "Vinci\Domain\Product\Wine\WineVariant",
+ *     "kit" = "Vinci\Domain\Product\ProductVariant"
+ * })
  */
-class ProductSku
+class ProductVariant
 {
 
     /**
@@ -46,12 +56,12 @@ class ProductSku
     /**
      * @ORM\Column(type="integer")
      */
-    protected $status;
+    protected $status = Status::DRAFT;
 
     /**
      * @ORM\Column(type="boolean", options={"default" = 0})
      */
-    protected $online = false;
+    protected $master = false;
 
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\Image\Image")
@@ -61,6 +71,11 @@ class ProductSku
      *     )
      */
     protected $photos;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", inversedBy="variants")
+     */
+    protected $product;
 
     public function getId()
     {
@@ -78,9 +93,26 @@ class ProductSku
         return $this;
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
     public function getPrice()
     {
         return $this->price;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = (double) $price;
+        return $this;
     }
 
     public function getOldPrice()
@@ -96,6 +128,50 @@ class ProductSku
     public function setSlug($slug)
     {
         $this->slug = ! empty($slug) ? $slug : null;
+        return $this;
+    }
+
+    public function isMaster()
+    {
+        return $this->master;
+    }
+
+    public function setMaster($master)
+    {
+        $this->master = (bool) $master;
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = (int) $status;
+        return $this;
+    }
+
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    public function setProduct(Product $product = null)
+    {
+        $this->product = $product;
+        return $this;
+    }
+
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
         return $this;
     }
 
