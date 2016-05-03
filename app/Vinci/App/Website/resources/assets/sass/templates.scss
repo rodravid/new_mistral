@@ -132,10 +132,27 @@
 
 .template1 {
 
+	.title-form {
+		color:$blue;
+	}
+
+	.title-internal {
+		color:$blue;
+	}
+
 	.input-register{
 
 		&:focus {
 			border:1px solid $blue;
+		}
+	}
+
+	.bt-arrow-action {
+		border: 2px solid $blue;
+		color: $blue;
+
+		&:hover {
+			background: $blue;
 		}
 	}
 
@@ -296,10 +313,19 @@
 		background:$blue;
 
 
-/* 	.internal-subtitle{
-		color:#5d003b;
-		} */
+	.internal-subtitle-category{
+		color:#5e057b;
+		}
+		
+		@media #{$screen-767} {
+			.input-bt-search {
+				background-position: -209px -122px;
+
+			}
+		}
+
 	}
+
 
 	.wine-card.template1 {
 
@@ -394,6 +420,7 @@
 			color:$blue;
 			transition: all .1s ease .05s;
 			border: 2px solid $blue;
+			font-size: 14px;
 		}
 	}
 
@@ -413,7 +440,24 @@
 	/* Inicio templates RED ****************RED******************RED*******/
 
 
-	.template2{
+	.template2 {
+
+		.title-form {
+			color:$red;
+		}
+
+		.title-internal {
+			color:$red;
+		}
+		
+		.bt-arrow-action {
+			border: 2px solid $red;
+			color: $red;
+
+			&:hover {
+				background: $red;
+			}
+		}
 
 		.list-sub-menu li a:hover{
 			color:$red;
@@ -565,6 +609,15 @@
 
 	.header-internal.template2-bg {
 		background:$red;
+		@media #{$screen-767} {
+			.input-bt-search {
+				background-position: -209px -379px;
+			}
+			.input-search {
+				color:$red;
+			}
+		}
+
 	}
 
 	.template2.bg-slider-principal {
@@ -637,6 +690,24 @@
 
 	/* Inicio templates GREEN ****************GREEN******************GREEN*******/
 	.template3{
+
+
+		.title-form {
+			color:$green;
+		}
+
+		.title-internal {
+			color:$green;
+		}
+
+		.bt-arrow-action {
+			border: 2px solid $green;
+			color: $green;
+
+			&:hover {
+				background: $green;
+			}
+		}
 
 		.featured-sub-link:hover {
 			color:$green;
@@ -792,6 +863,15 @@
 
 		.header-internal.template3-bg{
 			background:$green;
+
+			@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -156px;
+				}
+							.input-search {
+				color:$green;
+			}
+			}
 		}
 
 		.template3.bg-slider-principal{
@@ -865,6 +945,23 @@
 		/* Inicio templates PURPLE ****************PURPLE******************PURPLE*******/
 
 		.template4 {
+
+			.title-form {
+				color:$purple;
+			}
+
+			.title-internal {
+				color:$purple;
+			}
+
+			.bt-arrow-action {
+				border: 2px solid $purple;
+				color: $purple;
+
+				&:hover {
+					background: $purple;
+				}
+			}
 
 			.list-sub-menu li a:hover{
 				color:$purple;
@@ -1013,6 +1110,15 @@
 
 		.header-internal.template4-bg{
 			background:$purple;
+
+			@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -190px;
+				}
+							.input-search {
+				color:$purple;
+			}
+			}
 		}
 
 		.wine-card.template4 {
@@ -1076,10 +1182,31 @@
 			border:0;
 			background:#efe6f2;
 		}
+
+		.adress.template4 {
+			border:1px solid $purple;
+		}
 		/* Fim templates PURPLE ******************PURPLE****************PURPLE*******/
 
 		/* Inicio templates PINK ******************PINK****************PINK*******/
 		.template5 {
+
+			.title-form {
+				color:$pink;
+			}
+
+			.title-internal {
+				color:$pink;
+			}
+
+			.bt-arrow-action {
+				border: 2px solid $pink;
+				color: $pink;
+
+				&:hover {
+					background: $pink;
+				}
+			}
 
 			.featured-sub-link:hover {
 				color:$pink;
@@ -1276,6 +1403,14 @@
 
 		.header-internal.template5-bg{
 			background: $pink;
+						@media #{$screen-767} {
+				.input-bt-search {
+					    background-position: -209px -221px;
+				}
+							.input-search {
+				color:$pink;
+			}
+			}
 		}
 
 
@@ -1309,6 +1444,23 @@
 
 		/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 		.template6 {
+
+			.title-form {
+				color:$darkblue;
+			}
+
+			.title-internal {
+				color:$darkblue;
+			}
+
+			.bt-arrow-action {
+				border: 2px solid $darkblue;
+				color: $darkblue;
+
+				&:hover {
+					background: $darkblue;
+				}
+			}
 
 			.list-sub-menu li a:hover{
 				color:$darkblue;
@@ -1466,6 +1618,14 @@
 
 	.header-internal.template6-bg{
 		background:$darkblue;
+					@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -250px;
+				}
+							.input-search {
+				color:$darkblue;
+			}
+			}
 	}
 
 	.bt-default-full.template6 {
@@ -1534,6 +1694,24 @@
 
 	/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 	.template7 {
+
+
+		.title-form {
+			color:$orange;
+		}
+
+		.title-internal {
+			color:$orange;
+		}
+
+		.bt-arrow-action {
+			border: 2px solid $orange;
+			color: $orange;
+
+			&:hover {
+				background: $orange;
+			}
+		}
 
 		.list-sub-menu li a:hover{
 			color:$orange;
@@ -1684,6 +1862,14 @@
 
 	.header-internal.template7-bg{
 		background:$orange;
+					@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -281px;
+				}
+							.input-search {
+				color:$orange;
+			}
+			}
 	}
 
 
@@ -1757,6 +1943,23 @@
 
 	/* Inicio templates BLACK ******************BLACK****************BLACK*******/
 	.template8 {
+
+		.title-form {
+			color:$black;
+		}
+
+		.title-internal {
+			color:$black;
+		}
+
+		.bt-arrow-action {
+			border: 2px solid $black;
+			color: $black;
+
+			&:hover {
+				background: $black;
+			}
+		}
 
 		.list-sub-menu li a:hover{
 			color:$black;
@@ -1889,6 +2092,14 @@
 	}
 	.header-internal.template8-bg{
 		background:$black;
+					@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -314px;
+				}
+							.input-search {
+				color:$black;
+			}
+			}
 	}
 
 
@@ -1970,6 +2181,27 @@
 	/* Inicio templates LARANJA ESCURO **************LARANJA ESCURO****************LARANJA ESCURO***********/
 
 	.template9 {
+
+		.txt-contact {
+			color:$dark-orange;
+		}
+
+		.title-form {
+			color:$dark-orange;
+		}
+
+		.title-internal {
+			color:$dark-orange;
+		}
+
+		.bt-arrow-action {
+			border: 2px solid $dark-orange;
+			color: $dark-orange;
+
+			&:hover {
+				background: $dark-orange;
+			}
+		}
 
 		.input-register{
 
@@ -2141,6 +2373,15 @@
 	.header-internal.template9-bg{
 		background:$dark-orange;
 
+							@media #{$screen-767} {
+				.input-bt-search {
+					    background-position: -209px -281px;
+				}
+							.input-search {
+				color:$dark-orange;
+			}
+			}
+
 
 /* 	.internal-subtitle{
 		color:#5d003b;
@@ -2259,7 +2500,28 @@
 
 	.template10 {
 
+		.txt-contact {
+			color:#de1e43;
+		}
 
+		.title-form {
+			color:$dark-pink;
+		}
+
+		.title-internal {
+			color:$dark-pink;
+		}
+
+
+
+		.bt-arrow-action {
+			border: 2px solid $dark-pink;
+			color: $dark-pink;
+
+			&:hover {
+				background: $dark-pink;
+			}
+		}
 
 		.list-sub-menu li a:hover{
 			color:$dark-pink;
@@ -2417,6 +2679,15 @@
 	.header-internal.template10-bg{
 		background:$dark-pink;
 
+							@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -314px;
+				}
+							.input-search {
+				color:$dark-pink;
+			}
+			}
+
 
 /* 	.internal-subtitle{
 		color:#5d003b;
@@ -2528,6 +2799,311 @@
 		border:0;
 		background:#e5f7fd;
 	}
+
+	/* Fim templates ROSA ESCURO **************ROSA ESCURO****************ROSA ESCURO***********/
+
+
+
+	/* Inicio templates ROSA ESCURO **************ROSA ESCURO****************ROSA ESCURO***********/
+
+	.template11 {
+
+		.title-form {
+			color:$dark-pink-heavy;
+		}
+
+		.title-internal {
+			color:$dark-pink-heavy;
+		}
+
+		.bt-arrow-action {
+			border: 2px solid $dark-pink-heavy;
+			color: $dark-pink-heavy;
+
+			&:hover {
+				background: $dark-pink-heavy;
+			}
+		}
+
+		.list-sub-menu li a:hover{
+			color:$dark-pink-heavy;
+		}
+
+		.link-featured-sub-menu:hover {
+			background:$dark-pink-heavy;
+			transition: all 50ms ease;
+
+			h3,p,span{
+				color:#fff;
+			}
+
+		}
+
+		.featured-sub-link:hover {
+			color:$dark-pink-heavy;
+		}
+
+		.favorite {
+			background-position:0 -40px;
+		}
+
+		.favorite.clicado {
+			background-position: -40px -40px;
+		}
+
+		.title-menu {
+			color:#11b6f0;
+		}
+
+		.featured-sub-menu {
+			border:1px solid #11b6f0;
+		}
+
+		.every-category {
+			background: #11b6f0;
+
+			h3 { }
+
+			span {
+				color:#11b6f0;
+			}
+
+		}
+
+		/**slider*/
+
+		.title-slider {
+			color:#5d003b;
+		}
+
+/* 	.descr-slider {
+
+		.bt-default {
+			background:#570036;
+		}
+
+		.arrow-link {
+			color:#5d003b;
+			background: #00b1ef;
+		}
+
+		} */
+
+		.descr-slider{
+			.bt-default{
+				background:#570036;
+				border: 2px solid #5d003b;
+			}
+			.arrow-link{
+				color:#5d003b;
+				background: $dark-pink-heavy;
+				border: 2px solid #5d003b;
+			}
+		}
+
+		/*card produto*/
+
+/* 	.wine-card:hover {
+		.bt-default {
+			background:#fff;
+			border:2px solid $dark-pink-heavy;
+			color:$dark-pink-heavy;
+			transition: all .1s ease .05s;
+			.arrow-link {
+				background: $dark-pink-heavy;
+				color: #fff;
+				transition: all .1s ease .05s;
+			}
+		}
+		} */
+
+		.title-category {
+			color:$dark-pink-heavy;
+		}
+
+		.wine-card {
+			border:1px solid $dark-pink-heavy;
+
+			.wine-price {
+				color:$dark-pink-heavy;
+			}
+
+			.bt-default {
+				background:$dark-pink-heavy;
+				border: 2px solid $dark-pink-heavy;
+			}
+
+			.arrow-link {
+				background:#fff;
+				color:$dark-pink-heavy;
+				border: 2px solid $dark-pink-heavy;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $dark-pink-heavy;
+					color:$dark-pink-heavy;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $dark-pink-heavy;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+		}
+
+		.bt-default-full {
+			background: $dark-pink-heavy;
+
+			.arrow-link {
+				color:$dark-pink-heavy;
+			}
+
+		}
+
+		.tit-product-info {
+			color:#5e057b;
+		}
+
+		.current-price {
+			color:$dark-pink-heavy;
+		}
+
+		.info-vinho-template {
+			color:$dark-pink-heavy;
+		}
+
+	}
+
+	.header-internal.template11-bg{
+		background:$dark-pink-heavy;
+
+
+							@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -314px;
+				}
+							.input-search {
+				color:$dark-pink-heavy;
+			}
+			}
+
+
+/* 	.internal-subtitle{
+		color:#5d003b;
+		} */
+	}
+
+	.wine-card.template11 {
+
+		border:1px solid $dark-pink-heavy;
+		.wine-price{
+			color:$dark-pink-heavy;
+		}
+
+		.bt-default{
+			background:$dark-pink-heavy;
+			border: 2px solid $dark-pink-heavy;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$dark-pink-heavy;
+			border: 2px solid $dark-pink-heavy;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $dark-pink-heavy;
+				color:$dark-pink-heavy;
+			}
+			.arrow-link{
+				background:$dark-pink-heavy;
+				color:#fff;
+				border: 2px solid $dark-pink-heavy;
+			}
+		}
+
+	}
+
+	.template11.bg-slider-principal {
+		background: #11b6f0;
+	}
+
+	.bt-default.bt-default-dark-pink {
+		background: #11b6f0;
+		color: #fff;
+		border: 2px solid #11b6f0;
+		position: relative;
+		padding-right: 38px;
+		text-align: center;
+		line-height: 24px;
+		transition: all .1s ease .05s;
+		&:hover{
+			background:#fff;
+			color:$dark-pink-heavy;
+			border:2px solid $dark-pink-heavy;
+			transition: all .1s ease .05s;
+
+			.arrow-link {
+				color:#fff;
+				background: $dark-pink-heavy;
+			}
+		}
+
+		.arrow-link {
+			color: $dark-pink-heavy;
+			background: #fff;
+			position: absolute;
+			top: -2px;
+			right: -2px;
+			line-height: 20px;
+			border: 2px solid $dark-pink-heavy;
+			height: 32px;
+			width: 30px;
+		}
+
+	}
+
+	.bt-default-full.template11 {
+		background: $dark-pink-heavy;
+		border:2px solid $dark-pink-heavy;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$dark-pink-heavy;
+			border:2px solid $dark-pink-heavy;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $dark-pink-heavy;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $dark-pink-heavy;
+			}
+		}
+
+		.arrow-link{
+			color:$dark-pink-heavy;
+			transition: all .1s ease .05s;
+			border: 2px solid $dark-pink-heavy;
+			font-size: 16px;
+		}
+	}
+
+	.bg-product.template11 {
+		background: $dark-pink-heavy;
+	}
+
+	.bg-template.template11 {
+		border:0;
+		background:#e5f7fd;
+	}
+
+
 
 	/* Fim templates ROSA ESCURO **************ROSA ESCURO****************ROSA ESCURO***********/
 

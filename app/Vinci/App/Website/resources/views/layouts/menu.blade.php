@@ -44,7 +44,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="javascript:void();">
+					<a class="nav-link" href="/minhaconta-pedidos">
 						Meus pedidos
 					</a>
 				</li>
