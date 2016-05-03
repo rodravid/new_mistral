@@ -145,13 +145,19 @@
 
   <ul>
     <li><a href="/privacidade" target="_blank">Privacidade</a></li>
-    <li>V4</li>
+    <li>V5</li>
+    <li></li>
+  </ul>
+
+    <ul>
+    <li><a href="/sobre-vinci" target="_blank">Sobre Vinci</a></li>
+    <li>V5</li>
     <li></li>
   </ul>
 
   <ul>
   <li><a href="/duvidas-frequentes" target="_blank">Dúvidas-frequentes</a></li>
-    <li>V4</li>
+    <li>V5</li>
     <li></li>
   </ul>  
 </li>
