@@ -199,7 +199,6 @@
 	-ms-appearance:none;
 	-o-appearance:none;
 	@media #{$screen-767}{
-		color:$blue; 
 		padding: 10.8px 30px 10.8px 17px;
 	}
 }
@@ -263,10 +262,16 @@
 	margin-left: 15px;
 	@media #{$screen-767}{
 		/* position:absolute; */
-		background-position: -209px -122px;
 		margin-left: 0px;
 		margin-right: 25px;
 		float:right;
+	}
+}
+
+@media #{$screen-767} {
+	.input-bt-search {
+		background-position: -209px -122px;
+
 	}
 }
 

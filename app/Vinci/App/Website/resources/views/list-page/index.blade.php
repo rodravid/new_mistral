@@ -113,35 +113,47 @@
     <li></li>
   </ul> 
 
-    <ul>
-  <li><a href="/minhaconta-pedidos" target="_blank">Minha conta - Pedidos</a></li>
-    <li>V4</li>
-    <li></li>
-  </ul> 
-
-      <ul>
-  <li><a href="/minhaconta-detalhe-pedido" target="_blank">Minha conta - Detalhes Pedidos</a></li>
+  <ul>
+    <li><a href="/minhaconta-pedidos" target="_blank">Minha conta - Pedidos</a></li>
     <li>V4</li>
     <li></li>
   </ul> 
 
   <ul>
-  <li><a href="/minhaconta-cadastro" target="_blank">Minha conta - Dados da conta</a></li>
+    <li><a href="/minhaconta-detalhe-pedido" target="_blank">Minha conta - Detalhes Pedidos</a></li>
     <li>V4</li>
     <li></li>
   </ul> 
 
   <ul>
-  <li><a href="/minhaconta-favoritos" target="_blank">Minha conta - Favoritos</a></li>
+    <li><a href="/minhaconta-cadastro" target="_blank">Minha conta - Dados da conta</a></li>
     <li>V4</li>
     <li></li>
   </ul> 
 
-    <ul>
-  <li><a href="/minhaconta-enderecos" target="_blank">Minha conta - Endereços</a></li>
+  <ul>
+    <li><a href="/minhaconta-favoritos" target="_blank">Minha conta - Favoritos</a></li>
     <li>V4</li>
     <li></li>
   </ul> 
+
+  <ul>
+    <li><a href="/minhaconta-enderecos" target="_blank">Minha conta - Endereços</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul> 
+
+  <ul>
+    <li><a href="/privacidade" target="_blank">Privacidade</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul>
+
+  <ul>
+  <li><a href="/duvidas-frequentes" target="_blank">Dúvidas-frequentes</a></li>
+    <li>V4</li>
+    <li></li>
+  </ul>  
 </li>
 </ul>
 

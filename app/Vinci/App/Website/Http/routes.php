@@ -83,7 +83,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::my-account-requests.index");
     });
 
-        $route->get('/minhaconta-favoritos', function(){
+    $route->get('/minhaconta-favoritos', function(){
         return view("website::my-favorite-account.index");
     });
 
@@ -95,8 +95,17 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::my-account-address.index");
     });
 
+    $route->get('/privacidade', function(){
+        return view("website::privacy.index");
+    });
 
+    $route->get('/duvidas-frequentes', function(){
+        return view("website::frequent-doubts.index");
+    });
 
+    $route->get('/sobre-vinci', function(){
+        return view("website::about-vinci.index");
+    });
 
 
 });

@@ -4,11 +4,11 @@
 		
 		<div class="row-footer border-top-footer show-desktop">	
 			<ul class="list-links-clients">
-				<li><a class="link-light" href="javascript:void(0);">Sobre a vinci</a></li>
+				<li><a class="link-light" href="/sobre-vinci">Sobre a vinci</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Revendedores</a></li>
 				<li><a class="link-light" href="/fale-conosco">Fale conosco</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Ajuda</a></li>
-				<li><a class="link-light" href="javascript:void(0);">Dúvidas freguentes</a></li>
+				<li><a class="link-light" href="/duvidas-frequentes">Dúvidas freguentes</a></li>
 			</ul>
 		</div>
 
@@ -113,7 +113,7 @@
 			<li>
 				
 				<p>
-					<a href="javascript:void(0);">Termos de Uso e Política de Privicidade e Segurança.</a>
+					<a href="/privacidade">Termos de Uso e Política de Privicidade e Segurança.</a>
 				</p>
 			</li>
 

@@ -313,10 +313,19 @@
 		background:$blue;
 
 
-/* 	.internal-subtitle{
-		color:#5d003b;
-		} */
+	.internal-subtitle-category{
+		color:#5e057b;
+		}
+		
+		@media #{$screen-767} {
+			.input-bt-search {
+				background-position: -209px -122px;
+
+			}
+		}
+
 	}
+
 
 	.wine-card.template1 {
 
@@ -600,6 +609,15 @@
 
 	.header-internal.template2-bg {
 		background:$red;
+		@media #{$screen-767} {
+			.input-bt-search {
+				background-position: -209px -379px;
+			}
+			.input-search {
+				color:$red;
+			}
+		}
+
 	}
 
 	.template2.bg-slider-principal {
@@ -845,6 +863,15 @@
 
 		.header-internal.template3-bg{
 			background:$green;
+
+			@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -156px;
+				}
+							.input-search {
+				color:$green;
+			}
+			}
 		}
 
 		.template3.bg-slider-principal{
@@ -1083,6 +1110,15 @@
 
 		.header-internal.template4-bg{
 			background:$purple;
+
+			@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -190px;
+				}
+							.input-search {
+				color:$purple;
+			}
+			}
 		}
 
 		.wine-card.template4 {
@@ -1367,6 +1403,14 @@
 
 		.header-internal.template5-bg{
 			background: $pink;
+						@media #{$screen-767} {
+				.input-bt-search {
+					    background-position: -209px -221px;
+				}
+							.input-search {
+				color:$pink;
+			}
+			}
 		}
 
 
@@ -1574,6 +1618,14 @@
 
 	.header-internal.template6-bg{
 		background:$darkblue;
+					@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -250px;
+				}
+							.input-search {
+				color:$darkblue;
+			}
+			}
 	}
 
 	.bt-default-full.template6 {
@@ -1810,6 +1862,14 @@
 
 	.header-internal.template7-bg{
 		background:$orange;
+					@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -281px;
+				}
+							.input-search {
+				color:$orange;
+			}
+			}
 	}
 
 
@@ -2032,6 +2092,14 @@
 	}
 	.header-internal.template8-bg{
 		background:$black;
+					@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -314px;
+				}
+							.input-search {
+				color:$black;
+			}
+			}
 	}
 
 
@@ -2113,6 +2181,10 @@
 	/* Inicio templates LARANJA ESCURO **************LARANJA ESCURO****************LARANJA ESCURO***********/
 
 	.template9 {
+
+		.txt-contact {
+			color:$dark-orange;
+		}
 
 		.title-form {
 			color:$dark-orange;
@@ -2301,6 +2373,15 @@
 	.header-internal.template9-bg{
 		background:$dark-orange;
 
+							@media #{$screen-767} {
+				.input-bt-search {
+					    background-position: -209px -281px;
+				}
+							.input-search {
+				color:$dark-orange;
+			}
+			}
+
 
 /* 	.internal-subtitle{
 		color:#5d003b;
@@ -2418,6 +2499,10 @@
 	/* Inicio templates ROSA ESCURO **************ROSA ESCURO****************ROSA ESCURO***********/
 
 	.template10 {
+
+		.txt-contact {
+			color:#de1e43;
+		}
 
 		.title-form {
 			color:$dark-pink;
@@ -2593,6 +2678,15 @@
 
 	.header-internal.template10-bg{
 		background:$dark-pink;
+
+							@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -314px;
+				}
+							.input-search {
+				color:$dark-pink;
+			}
+			}
 
 
 /* 	.internal-subtitle{
@@ -2886,6 +2980,16 @@
 
 	.header-internal.template11-bg{
 		background:$dark-pink-heavy;
+
+
+							@media #{$screen-767} {
+				.input-bt-search {
+					background-position: -209px -314px;
+				}
+							.input-search {
+				color:$dark-pink-heavy;
+			}
+			}
 
 
 /* 	.internal-subtitle{

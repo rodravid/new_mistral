@@ -39,7 +39,7 @@
 
 <div class="row">
 
-	<section class="wrap-payment template11">
+	<section class="wrap-payment">
 
 		<div class="wrap-content-bt mbottom10">
 			<span class="title-internal-confirmation uppercase float-left">Pedido concluído com sucesso!</span>

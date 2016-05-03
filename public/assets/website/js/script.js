@@ -310,7 +310,24 @@ jQuery(document).ready(function ($) {
     }).keyup();
 
 
-  });
+        // accordion
+        $(".click-accordion").click(function(event) {
+
+          if (!$(this).hasClass('aberto')){
+            $(this).siblings(".conteudo-accordion").slideDown(200);
+            $(this).addClass('aberto');
+            $(this).children(".seta-accordion-interna").removeClass('arrow-down').addClass('arrow-up');
+
+          } else {
+            
+            $(this).siblings(".conteudo-accordion").slideUp(200);
+            $(this).removeClass('aberto');
+            $(this).children(".seta-accordion-interna").addClass('arrow-down').removeClass('arrow-up');
+          }
+        });
+
+
+      });
 
 
 /*Detect IE add Class*/
