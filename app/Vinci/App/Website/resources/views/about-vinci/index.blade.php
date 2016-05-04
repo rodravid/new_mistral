@@ -109,14 +109,14 @@ Rua Pamplona, 972  <br>
 
 
 	</article>
-
+	@include('website::layouts.partials.featuredweek')
 </div>
 
-<div class="border-footer">
+
 
 	@include('website::layouts.footer')
 
-</div>
+
 
 
 
