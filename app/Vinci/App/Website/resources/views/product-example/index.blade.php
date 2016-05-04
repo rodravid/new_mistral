@@ -1,7 +1,7 @@
 @extends('website::layouts.master')
 
 @section('content')
-<div class="header-internal template1-bg">
+<div class="header-internal template2-bg">
 	@include('website::layouts.menu')
 	<div class="row">
 
@@ -32,11 +32,11 @@
 
 </div>
 
-<div class="bg-product template1"></div>
+<div class="bg-product template2"></div>
 
 <div class="row relative">
 
-	<section class="wrap-content-product template1">
+	<section class="wrap-content-product template2">
 		
 		<div class="col-product-one">
 			<div class="height-bg-product">
@@ -194,7 +194,7 @@
 			</div>
 
 			<div class="content-img-product">
-				<img src="http://www.vinci.com.br/images/product/1647130_g.jpg" alt="">
+				<img src="{{ asset_web('images/vinho-pg-produto.png') }}" alt=""> 
 				<div class="wrap-seal-product">
 					<img src="{{ asset_web('images/selo-slider.png') }}" alt="Selo Vinho">
 					<img src="{{ asset_web('images/selo-slider.png') }}" alt="Selo Vinho">

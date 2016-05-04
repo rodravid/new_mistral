@@ -85,6 +85,12 @@
     <li>V1</li>
     <li></li>
   </ul>
+
+    <ul>
+    <li><a href="/produto-exemplo" target="_blank">Produto EXEMPLO</a></li>
+    <li>V1</li>
+    <li></li>
+  </ul>
   <ul>
     <li><a href="/carrinho" target="_blank">Carrinho</a></li>
     <li>V2</li>
