@@ -8,7 +8,7 @@
 				<li><a class="link-light" href="javascript:void(0);">Revendedores</a></li>
 				<li><a class="link-light" href="/fale-conosco">Fale conosco</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Ajuda</a></li>
-				<li><a class="link-light" href="/duvidas-frequentes">Dúvidas freguentes</a></li>
+				<li><a class="link-light" href="/duvidas-frequentes">Dúvidas frequentes</a></li>
 			</ul>
 		</div>
 

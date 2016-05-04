@@ -1618,7 +1618,6 @@ ul.pagination{
 		.botoes-add {
 			float:right;
 			width:90px;
-			background:$blue;
 			padding:1px;
 		}
 
@@ -1732,11 +1731,11 @@ ul.pagination{
 		.see-more-info,
 		.see-less-info {
 			margin-left: 120px;
-			border: 1px solid $blue;
+
 			padding: 3px 12px;
 			text-transform: uppercase;
 			font-size: 14px;
-			color: $blue;
+
 			margin-top: 10px;
 			float: left;
 			@media #{$screen-767} { 

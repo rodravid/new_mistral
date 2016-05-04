@@ -52,6 +52,34 @@
 	}
 
 }
+
+.bt-default-full-template {
+	width: 100%;
+	line-height: 24px;
+	text-align: center;
+	display: inline-block;
+	color: #fff;
+	font-family: roboto_condensedbold;
+	font-size: 16px;
+	text-transform:uppercase;
+	padding: 2px 2px 2px 16px;
+	letter-spacing: 0.6px;
+	position:relative;
+	padding-right: 45px;
+
+	.arrow-link {
+		padding: 0 0 0 2px;
+		background: #fff;
+		line-height: 28px;
+		position: absolute;
+		right: -2px;
+		top: -2px;
+		height: 32px;
+		width: 32px;
+		font-size: 11px;
+	}
+
+}
 /*card vinho ******************************************/
 
 .bt-big {
@@ -131,6 +159,73 @@
 /* Inicio templates BLUE **************BLUE****************BLUE***********/
 
 .template1 {
+
+
+		.template-button {
+		background: $purple;
+		border:2px solid $purple;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$purple;
+			border:2px solid $purple;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $purple;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $purple;
+			}
+		}
+
+		.arrow-link{
+			color:$purple;
+			transition: all .1s ease .05s;
+			border: 2px solid $purple;
+			font-size: 14px;
+		}
+	}
+
+
+
+
+		.botoes-add {
+		background:$blue;
+	}
+
+	.see-more-info,
+	.see-less-info {
+		border: 1px solid $blue;
+		color: $blue;
+
+				@media #{$screen-767} { 
+			border:0;
+		}
+	}
+
+				.seals-description {
+
+			li {
+
+				p {
+
+					color:$blue;
+				}
+
+				div {
+				}
+
+			}
+
+			li+li {
+
+		
+				div {
+					display:none;
+				}
+			}
+		}
 
 	.title-form {
 		color:$blue;
@@ -444,6 +539,77 @@
 
 	.template2 {
 
+				.template-button {
+		background: $orange;
+		border:2px solid $orange;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$orange;
+			border:2px solid $orange;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $orange;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $orange;
+			}
+		}
+
+		.arrow-link{
+			color:$orange;
+			transition: all .1s ease .05s;
+			border: 2px solid $orange;
+			font-size: 14px;
+		}
+	}
+
+		.see-more-info,
+	.see-less-info {
+		border: 1px solid $red;
+		color: $red;
+
+		@media #{$screen-767} { 
+			border:0;
+		}
+	}
+
+			.seals-description {
+
+			li {
+
+				p {
+
+					color:$red;
+				}
+
+				div {
+				}
+
+			}
+
+			li+li {
+
+				border-top:1px solid #a0a0a0;
+				div {
+					display:none;
+				}
+			}
+		}
+
+	.botoes-add {
+		background:$red;
+	}
+
+	.tit-product-info {
+			color:$orange;
+	}
+
+	.current-price {
+			color:$red;
+	}
+
 		.title-form {
 			color:$red;
 		}
@@ -681,6 +847,10 @@
 			transition: all .1s ease .05s;
 			border: 2px solid $red;
 		}
+	}
+
+	.bg-product.template2 {
+		background: $red;
 	}
 
 	.bg-template.template2 {

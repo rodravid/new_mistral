@@ -107,5 +107,9 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         return view("website::about-vinci.index");
     });
 
+        $route->get('/produto-exemplo', function(){
+        return view("website::product-example.index");
+    });
+
 
 });
