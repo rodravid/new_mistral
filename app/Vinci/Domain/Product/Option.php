@@ -2,118 +2,90 @@
 
 namespace Vinci\Domain\Product;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="options")
+ */
 class Option
 {
 
     /**
-     * @var mixed
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $code;
 
     /**
-     * Displayed to user.
-     *
-     * @var string
+     * @ORM\Column(type="string")
      */
     protected $name;
 
     /**
-     * @var Collection|OptionValueInterface[]
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\OptionValue", mappedBy="option", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $values;
 
     public function __construct()
     {
-        $this->initializeTranslationsCollection();
-
-        $this->values = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        $this->values = new ArrayCollection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCode()
     {
         return $this->code;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
-        return $this->translate()->getName();
+        return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setName($name)
     {
-        $this->translate()->setName($name);
+        $this->name = $name;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getValues()
     {
         return $this->values;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setValues(Collection $values)
     {
         $this->values = $values;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addValue(OptionValueInterface $value)
+    public function addValue(OptionValue $value)
     {
-        if (!$this->hasValue($value)) {
+        if (! $this->hasValue($value)) {
             $value->setOption($this);
             $this->values->add($value);
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function removeValue(OptionValueInterface $value)
+    public function removeValue(OptionValue $value)
     {
         if ($this->hasValue($value)) {
             $this->values->removeElement($value);
@@ -121,12 +93,14 @@ class Option
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function hasValue(OptionValueInterface $value)
+    public function hasValue(OptionValue $value)
     {
         return $this->values->contains($value);
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
 }
