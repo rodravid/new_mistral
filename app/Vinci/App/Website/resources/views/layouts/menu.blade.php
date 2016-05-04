@@ -543,7 +543,7 @@
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-pedidos">
 								Meus pedidos
 							</a>
 						</li>
@@ -559,19 +559,19 @@
 					<ul class="menu menu-login-mobile">
 						
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-pedidos">
 								Meus Pedidos
 							</a>
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-cadastro">
 								Meus Dados
 							</a>
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-favoritos">
 								Favoritos
 							</a>
 						</li>
@@ -581,7 +581,7 @@
 					<ul class="menu">
 						
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/sobre-vinci">
 								Sobre a vinci
 							</a>
 						</li>
@@ -593,7 +593,7 @@
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/duvidas-frequentes">
 								dúvidas frequentes
 							</a>
 						</li>

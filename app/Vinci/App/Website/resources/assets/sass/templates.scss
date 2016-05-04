@@ -381,6 +381,7 @@
 			.arrow-link {
 				color:#fff;
 				background: $blue;
+				transition: all .1s ease .05s;
 			}
 		}
 
@@ -394,6 +395,7 @@
 			border: 2px solid $blue;
 			height: 32px;
 			width: 30px;
+			transition: all .1s ease .05s;
 		}
 
 	}
