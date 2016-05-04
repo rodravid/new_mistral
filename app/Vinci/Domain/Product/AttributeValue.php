@@ -4,62 +4,60 @@ namespace Vinci\Domain\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="products_attributes_values")
+ */
 class AttributeValue
 {
 
     /**
-     * @var mixed
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
-     * @var AttributeProductInterface
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", inversedBy="attributes")
      */
     protected $product;
 
     /**
-     * @var AttributeInterface
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Attribute", inversedBy="values")
      */
     protected $attribute;
 
     /**
-     * @var mixed
-     */
-    protected $value;
-
-    /**
-     * @var string
+     * @ORM\Column(name="text_value", type="string", nullable=true)
      */
     protected $text;
 
     /**
-     * @var bool
+     * @ORM\Column(name="boolean_value", type="boolean", nullable=true)
      */
     protected $boolean;
 
     /**
-     * @var int
+     * @ORM\Column(name="integer_value", type="integer", nullable=true)
      */
     protected $integer;
 
     /**
-     * @var float
+     * @ORM\Column(name="float_value", type="decimal", precision=13, scale=2, nullable=true)
      */
     protected $float;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(name="datetime_value", type="datetime", nullable=true)
      */
     protected $datetime;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(name="date_value", type="date", nullable=true)
      */
     protected $date;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId()
     {
         return $this->id;
@@ -98,9 +96,6 @@ class AttributeValue
         return $this->$getter();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setValue($value)
     {
         $this->assertAttributeIsSet();
@@ -109,9 +104,6 @@ class AttributeValue
         $this->$property = $value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCode()
     {
         $this->assertAttributeIsSet();
@@ -119,9 +111,6 @@ class AttributeValue
         return $this->attribute->getCode();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         $this->assertAttributeIsSet();
@@ -129,9 +118,6 @@ class AttributeValue
         return $this->attribute->getName();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType()
     {
         $this->assertAttributeIsSet();
@@ -139,104 +125,72 @@ class AttributeValue
         return $this->attribute->getType();
     }
 
-    /**
-     * @return bool
-     */
     public function getBoolean()
     {
         return $this->boolean;
     }
 
-    /**
-     * @param bool $boolean
-     */
     public function setBoolean($boolean)
     {
         $this->boolean = $boolean;
+        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getText()
     {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     */
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getInteger()
     {
         return $this->integer;
     }
 
-    /**
-     * @param int $integer
-     */
     public function setInteger($integer)
     {
         $this->integer = $integer;
+        return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getFloat()
     {
         return $this->float;
     }
 
-    /**
-     * @param float $float
-     */
     public function setFloat($float)
     {
         $this->float = $float;
+        return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getDatetime()
     {
         return $this->datetime;
     }
 
-    /**
-     * @param \DateTime $datetime
-     */
     public function setDatetime(\DateTime $datetime)
     {
         $this->datetime = $datetime;
+        return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getDate()
     {
         return $this->date;
     }
 
-    /**
-     * @param \DateTime $date
-     */
     public function setDate(\DateTime $date)
     {
         $this->date = $date;
+        return $this;
     }
-    /**
-     * @throws \BadMethodCallException
-     */
+
     protected function assertAttributeIsSet()
     {
         if (null === $this->attribute) {

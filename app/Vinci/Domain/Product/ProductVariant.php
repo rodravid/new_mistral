@@ -2,22 +2,18 @@
 
 namespace Vinci\Domain\Product;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Common\Status;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="products_variants")
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({
- *     "product" = "Vinci\Domain\Product\ProductVariant",
- *     "wine" = "Vinci\Domain\Product\Wine\WineVariant",
- *     "kit" = "Vinci\Domain\Product\ProductVariant"
- * })
  */
-class ProductVariant
+class ProductVariant extends Model
 {
 
     /**
@@ -76,6 +72,20 @@ class ProductVariant
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", inversedBy="variants")
      */
     protected $product;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\OptionValue")
+     * @ORM\JoinTable(name="products_variants_options_values",
+     *     joinColumns={@ORM\JoinColumn(name="variant_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="option_value_id", referencedColumnName="id")}
+     *     )
+     */
+    protected $options;
+
+    public function __construct()
+    {
+        $this->options = new ArrayCollection;
+    }
 
     public function getId()
     {
@@ -173,6 +183,36 @@ class ProductVariant
     {
         $this->sku = $sku;
         return $this;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    public function setOptions(Collection $options)
+    {
+        $this->options = $options;
+        return $this;
+    }
+
+    public function addOption(OptionValue $option)
+    {
+        if (! $this->hasOption($option)) {
+            $this->options->add($option);
+        }
+    }
+
+    public function removeOption(OptionValue $option)
+    {
+        if ($this->hasOption($option)) {
+            $this->options->removeElement($option);
+        }
+    }
+
+    public function hasOption(OptionValue $option)
+    {
+        return $this->options->contains($option);
     }
 
 }

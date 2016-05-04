@@ -2,60 +2,53 @@
 
 namespace Vinci\Domain\Product;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Common\Traits\Timestampable;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="products_attributes")
+ */
 class Attribute
 {
+    use Timestampable;
 
     /**
-     * @var mixed
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $code;
 
     /**
-     *
+     * @ORM\Column(type="string")
      */
     protected $name;
 
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
-    protected $type = TextAttributeType::TYPE;
+    protected $type = 'text';
 
     /**
-     * @var array
-     */
-    protected $configuration = [];
-
-    /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\AttributeValue")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\AttributeValue", mappedBy="attribute", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $values;
 
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     protected $storageType;
 
     public function __construct()
     {
-        $this->initializeTranslationsCollection();
-
-        $this->values = new ArrayCollection();
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return $this->getName();
+        $this->values = new ArrayCollection;
     }
 
     public function getId()
@@ -95,19 +88,25 @@ class Attribute
         return $this;
     }
 
-    public function getConfiguration()
-    {
-        return $this->configuration;
-    }
-
-    public function setConfiguration(array $configuration)
-    {
-        $this->configuration = $configuration;
-    }
-
     public function getValues()
     {
         return $this->values;
+    }
+
+    public function getStorageType()
+    {
+        return $this->storageType;
+    }
+
+    public function setStorageType($storageType)
+    {
+        $this->storageType = $storageType;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
 }

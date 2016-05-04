@@ -51,9 +51,18 @@ class Product extends Model
      */
     protected $variants;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\AttributeValue", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
     protected $attributes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Option")
+     * @ORM\JoinTable(name="products_options",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id")}
+     *     )
+     */
     protected $options;
 
     public function __construct()
@@ -85,7 +94,7 @@ class Product extends Model
         }
     }
 
-    public function removeVariant(BaseVariantInterface $variant)
+    public function removeVariant(ProductVariant $variant)
     {
         if ($this->hasVariant($variant)) {
             $variant->setProduct(null);

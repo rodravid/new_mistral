@@ -1,103 +1,76 @@
 <?php
 
-
 namespace Vinci\Domain\Product;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="options_values")
+ */
 class OptionValue
 {
 
     /**
-     * @var mixed
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $code;
 
     /**
-     * @var string
+     * @ORM\Column(type="string")
      */
     protected $value;
 
     /**
-     * @var OptionInterface
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Option", inversedBy="values")
      */
     protected $option;
 
-    public function __construct()
-    {
-        $this->initializeTranslationCollection();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return $this->getValue();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCode()
     {
         return $this->code;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOption()
     {
         return $this->option;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setOption(OptionInterface $option = null)
+    public function setOption(Option $option = null)
     {
         $this->option = $option;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getValue()
     {
-        return $this->translate()->getValue();
+        return $this->value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setValue($value)
     {
-        $this->translate()->setValue($value);
+        $this->value = $value;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOptionCode()
     {
         if (null === $this->option) {
@@ -107,9 +80,6 @@ class OptionValue
         return $this->option->getCode();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPresentation()
     {
         if (null === $this->option) {
@@ -118,4 +88,10 @@ class OptionValue
 
         return $this->option->getName();
     }
+
+    public function __toString()
+    {
+        return $this->getValue();
+    }
+
 }
