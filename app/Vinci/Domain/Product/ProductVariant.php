@@ -6,7 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Common\Status;
+use Vinci\Domain\Common\Traits\Schedulable;
+use Vinci\Domain\Common\Traits\SEOable;
+use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -15,6 +19,8 @@ use Vinci\Domain\Core\Model;
  */
 class ProductVariant extends Model
 {
+
+    use Timestampable, SoftDeletes, SEOable, Schedulable;
 
     /**
      * @ORM\Id
@@ -39,7 +45,7 @@ class ProductVariant extends Model
     protected $description;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", precision=13, scale=2)
      */
     protected $price;
 
@@ -60,13 +66,9 @@ class ProductVariant extends Model
     protected $master = false;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Image\Image")
-     * @ORM\JoinTable(name="products_photos",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="photo_id", referencedColumnName="id", unique=true)}
-     *     )
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantImage", mappedBy="productVariant", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
      */
-    protected $photos;
+    protected $images;
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", inversedBy="variants")
@@ -85,6 +87,7 @@ class ProductVariant extends Model
     public function __construct()
     {
         $this->options = new ArrayCollection;
+        $this->images = new ArrayCollection;
     }
 
     public function getId()
@@ -213,6 +216,55 @@ class ProductVariant extends Model
     public function hasOption(OptionValue $option)
     {
         return $this->options->contains($option);
+    }
+
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function setImages(Collection $images)
+    {
+        $this->images = $images;
+        return $this;
+    }
+
+    public function getImagesUploadPath()
+    {
+        return 'products/variants/' . $this->getId() . '/images';
+    }
+
+    public function addImage(Image $image, $version)
+    {
+        $variantImage = new ProductVariantImage;
+        $variantImage->setImage($image);
+        $variantImage->setProductVariant($this);
+        $variantImage->setImageVersion($version);
+        $this->images->remove($version);
+        $this->images->set($version, $variantImage);
+    }
+
+    public function removeImage(Image $image)
+    {
+        foreach ($this->images as $img) {
+            if ($image == $img->getImage()) {
+                $this->images->removeElement($img);
+            }
+        }
+    }
+
+    public function getImage($version)
+    {
+        foreach ($this->images as $relation) {
+            if ($relation->getImageVersion() == $version) {
+                return $relation->getImage();
+            }
+        }
+    }
+
+    public function hasImage($version)
+    {
+        return !! $this->getImage($version);
     }
 
 }

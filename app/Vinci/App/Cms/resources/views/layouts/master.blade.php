@@ -216,6 +216,12 @@
 
             $('.html-editor').wysihtml5();
 
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr("href");
+
+                $('#currentTab').val(target);
+            });
+
             $.extend( true, $.fn.dataTable.defaults, {
                 "language": {
                     "sEmptyTable": "Nenhum registro encontrado.",

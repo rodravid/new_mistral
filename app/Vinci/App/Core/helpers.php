@@ -89,3 +89,16 @@ function only_numbers($string)
 {
     return preg_replace("/[^0-9]/", "", $string);
 }
+
+function currentTabActive($tabName, $activeClass = 'active', $first = false)
+{
+    if (old('current-tab') == $tabName) {
+        return $activeClass;
+    } else {
+
+        if ($first && old('current-tab') == null) {
+            return $activeClass;
+        }
+
+    }
+}

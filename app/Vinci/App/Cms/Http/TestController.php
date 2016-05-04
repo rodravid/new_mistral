@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Cms\Http;
 
+use Vinci\Domain\Product\ProductVariant;
 use Vinci\Domain\Product\Wine\Wine;
 use Vinci\Domain\Product\Wine\WineVariant;
 
@@ -12,8 +13,8 @@ class TestController extends Controller
     {
 
         $wine = new Wine();
-        $wineVariant = new WineVariant();
-        $wine->setMasterVariant($wineVariant);
+        $variant = new ProductVariant();
+        $wine->setMasterVariant($variant);
 
         $wine->setTitle('Teste')
             ->setDescription('testando')

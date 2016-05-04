@@ -22,6 +22,21 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
             $route->group(['middleware' => ['acl']], function() use ($route) {
 
+
+                /**
+                 * Products
+                 */
+                $route->group(['prefix' => 'products', 'as' => 'products.'], function () use ($route) {
+                    $route->get('/', 'Product\\ProductController@index')->name('list');
+                    $route->get('/create', 'Product\\ProductController@create')->name('create');
+                    $route->post('/', 'Product\\ProductController@store')->name('create#store');
+                    $route->get('/{product}/edit', 'Product\\ProductController@edit')->name('edit');
+                    $route->delete('/{product}/delete', 'Product\\ProductController@destroy')->name('destroy');
+                    $route->put('/{product}', 'Product\\ProductController@update')->name('edit#update');
+                    $route->delete('/{product}/image/{image}/delete', 'Product\\ProductController@removeImage')->name('edit#remove-image');
+                    $route->post('datatable', 'Product\\ProductController@datatable')->name('list#datatable');
+                });
+
                 /**
                  * Customers
                  */

@@ -2,8 +2,8 @@
 
     <div class="col-xs-12">
         <ul class="nav nav-tabs" style="margin-bottom: 20px;">
-            <li class="@if(old('current-tab') == '#customer-data' || old('current-tab') == null) active @endif"><a href="#customer-data" data-toggle="tab" aria-expanded="true">Dados do cliente</a></li>
-            <li class="@if(old('current-tab') == '#customer-addresses') active @endif"><a href="#customer-addresses" data-toggle="tab" aria-expanded="false">Endereços</a></li>
+            <li class="@if(old('current-tab') == '#customer-data' || old('current-tab') == null) active @endif"><a href="#customer-data" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Dados do cliente</a></li>
+            <li class="@if(old('current-tab') == '#customer-addresses') active @endif"><a href="#customer-addresses" data-toggle="tab" aria-expanded="false"><i class="fa fa-flag-checkered"></i> Endereços</a></li>
         </ul>
         <div class="tab-content">
             <input type="hidden" name="current-tab" id="currentTab" value="{{ old('current-tab', '#customer-data') }}">

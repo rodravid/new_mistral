@@ -29,10 +29,6 @@ class CustomerController extends Controller
 
     protected $datatable = 'Vinci\Infrastructure\Customer\Datatables\CustomerCmsDatatable';
 
-    protected $roleRepository;
-
-    protected $imageRepository;
-
     protected $countryRepository;
 
     protected $stateRepository;

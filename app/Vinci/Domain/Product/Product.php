@@ -10,7 +10,6 @@ use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
-use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -27,7 +26,7 @@ use Vinci\Domain\Core\Model;
 class Product extends Model
 {
 
-    use Timestamps, SoftDeletes, SEOable, Schedulable;
+    use Timestamps, SoftDeletes, Schedulable;
 
     /**
      * @ORM\Id
