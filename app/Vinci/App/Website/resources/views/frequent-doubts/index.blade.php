@@ -16,7 +16,7 @@
 			</li>
 		</ul>
 
-		<h1 class="internal-subtitle">Dúvidas Freguentes</h1>
+		<h1 class="internal-subtitle">Dúvidas Frequentes</h1>
 
 	</div>
 </div>
