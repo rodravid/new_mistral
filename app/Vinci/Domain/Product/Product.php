@@ -64,6 +64,15 @@ class Product extends Model
      */
     protected $options;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Channel\Channel")
+     * @ORM\JoinTable(name="products_channels",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="channel_id", referencedColumnName="id")}
+     *     )
+     */
+    protected $channels;
+
     public function __construct()
     {
         $this->variants = new ArrayCollection;

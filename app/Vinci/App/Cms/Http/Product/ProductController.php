@@ -48,9 +48,11 @@ class ProductController extends Controller
         return $this->view('products.list');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return $this->view('products.create');
+        $type = $request->get('type');
+
+        return $this->view('products.create', compact('type'));
     }
 
     public function edit($id)
