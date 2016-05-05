@@ -10,15 +10,6 @@ use Vinci\App\Core\Services\Presenter\Presenter;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->configureDebugBarDoctrineCollector();
-    }
 
     /**
      * Register any application services.
@@ -33,13 +24,6 @@ class AppServiceProvider extends ServiceProvider
             return new Presenter($app);
         });
 
-    }
-
-    protected function configureDebugBarDoctrineCollector()
-    {
-        $debugStack = new DebugStack();
-        $this->app['em']->getConnection()->getConfiguration()->setSQLLogger($debugStack);
-        $this->app['debugbar']->addCollector(new DoctrineCollector($debugStack));
     }
 
     protected function configureLocale()
