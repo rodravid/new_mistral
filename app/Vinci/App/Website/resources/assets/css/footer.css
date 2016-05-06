@@ -1,5 +1,5 @@
 /*
-Error: Undefined variable: "$screen-767".
+Error: Undefined variable: "$screen767".
         on line 31 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
 
 26: 		border-top: 1px solid #7f7f7f;
@@ -7,7 +7,7 @@ Error: Undefined variable: "$screen-767".
 28: 		margin-top: -10px;
 29: 	}	
 30: 
-31: 	@media #{$screen-767}{
+31: 	@media #{$screen767}{
 32: 		.border-mobile-footer {
 33: 			border-top: 1px solid #7f7f7f;
 34: 			padding-top: 20px;
@@ -68,4 +68,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$screen-767\".\A         on line 31 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 26: 		border-top: 1px solid #7f7f7f;\A 27: 		padding-top: 20px;\A 28: 		margin-top: -10px;\A 29: 	}	\A 30: \A 31: 	@media #{$screen-767}{\A 32: 		.border-mobile-footer {\A 33: 			border-top: 1px solid #7f7f7f;\A 34: 			padding-top: 20px;\A 35: 			margin-top: -10px;\A 36: 		}"; }
+  content: "Error: Undefined variable: \"$screen767\".\A         on line 31 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 26: 		border-top: 1px solid #7f7f7f;\A 27: 		padding-top: 20px;\A 28: 		margin-top: -10px;\A 29: 	}	\A 30: \A 31: 	@media #{$screen767}{\A 32: 		.border-mobile-footer {\A 33: 			border-top: 1px solid #7f7f7f;\A 34: 			padding-top: 20px;\A 35: 			margin-top: -10px;\A 36: 		}"; }

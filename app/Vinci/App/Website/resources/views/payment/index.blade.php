@@ -188,7 +188,16 @@
 							<h2 class="title-form">Dados do cartão</h2>
 							<ul class="list-form-register">
 								<li>
-									<input class="email input-register full" type="text" placeholder="CPF / CNPJ">
+								<label class="label-input" for="name-card">Nome impresso do cartão *</label>
+									<input class="input-register full" type="text" placeholder="Nome impresso do cartão *" id="name-card">
+								</li>
+								<li>
+								<label class="label-input" for="numb-card">Número do cartão *</label>
+									<input class="email input-register full" type="text" placeholder="Número do cartão *" id="numb-card">
+								</li>
+								<li>
+								<label class="label-input" for="cpf-cnpj">CPF / CNPJ *</label>
+									<input class="email input-register full" type="text" placeholder="CPF / CNPJ" id="cpf-cnpj">
 								</li>
 
 <!-- 						<li>
@@ -196,14 +205,10 @@
 							<input class="number input-register two-fields" type="text" placeholder="Complemento">
 						</li> -->
 
-						<li>
-							<input class="email input-register full" type="text" placeholder="Número do cartão">
-						</li>
 
 
-						<li>
-							<input class="input-register full" type="text" placeholder="Nome impresso do cartão">
-						</li>
+
+
 					</ul>
 
 				</div>
