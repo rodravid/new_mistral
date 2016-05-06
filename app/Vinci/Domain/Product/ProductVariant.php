@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
+use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\SEOable;
@@ -17,7 +18,7 @@ use Vinci\Domain\Core\Model;
  * @ORM\Entity
  * @ORM\Table(name="products_variants")
  */
-class ProductVariant extends Model
+class ProductVariant extends Model implements ProductVariantInterface
 {
 
     use Timestampable, SoftDeletes, SEOable, Schedulable;
@@ -45,9 +46,9 @@ class ProductVariant extends Model
     protected $description;
 
     /**
-     * @ORM\Column(type="decimal", precision=13, scale=2)
+     * @ORM\Column(type="integer")
      */
-    protected $price;
+    protected $stock;
 
     /**
      * @Gedmo\Slug(fields={"title", "sku"}, unique=true, updatable=false)
@@ -84,10 +85,16 @@ class ProductVariant extends Model
      */
     protected $options;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant")
+     */
+    protected $prices;
+
     public function __construct()
     {
         $this->options = new ArrayCollection;
         $this->images = new ArrayCollection;
+        $this->prices = new ArrayCollection;
     }
 
     public function getId()
@@ -117,20 +124,15 @@ class ProductVariant extends Model
         return $this;
     }
 
-    public function getPrice()
+    public function getStock()
     {
-        return $this->price;
+        return $this->stock;
     }
 
-    public function setPrice($price)
+    public function setStock($stock)
     {
-        $this->price = (double) $price;
+        $this->stock = (int) $stock;
         return $this;
-    }
-
-    public function getOldPrice()
-    {
-        // TODO: Implement getOldPrice() method.
     }
 
     public function getSlug()
@@ -218,6 +220,58 @@ class ProductVariant extends Model
         return $this->options->contains($option);
     }
 
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    public function setPrices(Collection $prices)
+    {
+        $this->prices = $prices;
+        return $this;
+    }
+
+    public function addPrice(ProductVariantPrice $price)
+    {
+        if (! $this->hasPrice($price)) {
+
+            $price->setVariant($this);
+
+            if (! $price->hasChannel()) {
+                $price->setChannel($this->getDefaultChannel());
+            }
+
+            $this->prices->add($price);
+        }
+    }
+
+    public function removePrice(ProductVariantPrice $price)
+    {
+        if ($this->hasPrice($price)) {
+            $this->prices->removeElement($price);
+        }
+    }
+
+    public function hasPrice(ProductVariantPrice $price)
+    {
+        return $this->prices->contains($price);
+    }
+
+    public function getDefaultChannel()
+    {
+        return $this->getProduct()->getDefaultChannel();
+    }
+
+    public function getCurrentChannel()
+    {
+        return $this->getProduct()->getCurrentChannel();
+    }
+
+    public function getChannels()
+    {
+        return $this->getProduct()->getChannels();
+    }
+
     public function getImages()
     {
         return $this->images;
@@ -267,4 +321,43 @@ class ProductVariant extends Model
         return !! $this->getImage($version);
     }
 
+    public function getPrice($channel = null)
+    {
+        if (! $price = $this->getPriceOnChannel($channel)) {
+            return $this->getPriceOnChannel($this->getDefaultChannel());
+        }
+
+        return $price;
+    }
+
+    protected function getPriceOnChannel($channel)
+    {
+        if ($channel instanceof Channel) {
+            $channelCode = $channel->getCode();
+
+        } else {
+            $channelCode = $channel ?? $this->getCurrentChannel()->getCode();
+        }
+
+        foreach ($this->prices as $price) {
+            if ($price->getChannel()->getCode() == $channelCode) {
+                return $price;
+            }
+        }
+    }
+
+    public function getPriceCalculator()
+    {
+        return $this->getProduct()->getPriceCalculator();
+    }
+
+    public function getSalePrice()
+    {
+        // TODO: Implement getSalePrice() method.
+    }
+
+    public function getOriginalPrice()
+    {
+        // TODO: Implement getOriginalPrice() method.
+    }
 }

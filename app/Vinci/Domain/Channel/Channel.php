@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Channel
 {
 
+    const DEFAULT_CHANNEL = 'default';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -39,7 +41,7 @@ class Channel
     protected $accessKey;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductChannel", mappedBy="channel")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", inversedBy="channels")
      */
     protected $products;
 
@@ -90,6 +92,11 @@ class Channel
     {
         $this->accessKey = $accessKey;
         return $this;
+    }
+
+    public function isDefault()
+    {
+        return $this->code == self::DEFAULT_CHANNEL;
     }
 
 }

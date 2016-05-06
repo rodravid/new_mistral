@@ -8,9 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Pricing\Calculator\PriceCalculator;
 
 /**
  * @ORM\Entity
@@ -23,7 +25,7 @@ use Vinci\Domain\Core\Model;
  *     "kit" = "Vinci\Domain\Product\Kit\Kit"
  * })
  */
-class Product extends Model
+class Product extends Model implements ProductInterface
 {
 
     use Timestamps, SoftDeletes, Schedulable;
@@ -65,19 +67,21 @@ class Product extends Model
     protected $options;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Channel\Channel")
-     * @ORM\JoinTable(name="products_channels",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="channel_id", referencedColumnName="id")}
-     *     )
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Channel\Channel", inversedBy="products")
+     * @ORM\JoinTable(name="products_channels")
      */
     protected $channels;
+
+    protected $currentChannel;
+
+    protected $priceCalculator;
 
     public function __construct()
     {
         $this->variants = new ArrayCollection;
         $this->attributes = new ArrayCollection;
         $this->options = new ArrayCollection;
+        $this->channels = new ArrayCollection;
     }
 
     public function getVariants()
@@ -136,6 +140,81 @@ class Product extends Model
             $masterVariant->setProduct($this);
             $this->variants->add($masterVariant);
         }
+
+        return $this;
+    }
+
+    public function getChannels()
+    {
+        return $this->channels;
+    }
+
+    public function setChannels(Collection $channels)
+    {
+        $this->channels->clear();
+
+        foreach ($channels as $channel) {
+            $this->addChannel($channel);
+        }
+    }
+
+    public function addChannel(Channel $channel)
+    {
+        if (! $this->hasChannel($channel)) {
+            $this->channels->add($channel);
+        }
+
+        return $this;
+    }
+
+    public function removeChannel(Channel $channel)
+    {
+        if ($this->hasChannel($channel)) {
+            $this->channels->removeElement($channel);
+        }
+    }
+
+    public function hasChannel(Channel $channel)
+    {
+        return $this->channels->contains($channel);
+    }
+
+    public function getCurrentChannel()
+    {
+        if (empty($this->currentChannel)) {
+            return $this->currentChannel = $this->getDefaultChannel();
+        }
+
+        return $this->currentChannel;
+    }
+
+    public function setCurrentChannel($channel)
+    {
+        $this->currentChannel = $channel;
+        return $this;
+    }
+
+    public function getDefaultChannel()
+    {
+        foreach ($this->channels as $channel) {
+            if ($channel->isDefault()) {
+                return $channel;
+            }
+        }
+    }
+
+    public function setMasterChannel(Channel $masterChannel)
+    {
+        foreach ($this->channels as $channel) {
+            $channel->setMaster(false);
+        }
+
+        $masterChannel->setMaster(true);
+
+        if (! $this->hasChannel($masterChannel)) {
+            $masterChannel->setProduct($this);
+            $this->channels->add($masterChannel);
+        }
     }
 
     public function isOnline()
@@ -187,15 +266,10 @@ class Product extends Model
         return $this->getMasterVariant()->getPrice();
     }
 
-    public function setPrice($price)
+    public function addPrice(ProductVariantPrice $price)
     {
-        $this->getMasterVariant()->setPrice($price);
+        $this->getMasterVariant()->addPrice($price);
         return $this;
-    }
-
-    public function getOldPrice()
-    {
-        // TODO: Implement getOldPrice() method.
     }
 
     public function getSlug()
@@ -218,6 +292,17 @@ class Product extends Model
     {
         $this->getMasterVariant()->setSku($sku);
         return $this;
+    }
+
+    public function setPriceCalculator(PriceCalculator $priceCalculator)
+    {
+        $this->priceCalculator = $priceCalculator;
+        return $this;
+    }
+
+    public function getPriceCalculator()
+    {
+        return $this->priceCalculator;
     }
 
 }
