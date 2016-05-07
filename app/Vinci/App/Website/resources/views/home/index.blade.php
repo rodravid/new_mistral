@@ -70,7 +70,9 @@
 </div>
 
 
+		<section class="titles-category-fixed">
 
+		</section>
 
 <div class="row top90">
 
@@ -90,9 +92,7 @@
 
 	<section class="featured-products">
 
-		<section class="titles-category-fixed">
 
-		</section>
 
 		<div class="cols-products template3">
 			<h2 class="title-category">Compras Inteligentes</h2>
@@ -677,7 +677,7 @@
 		function eDesktop() {
 			var larguraTela = $window.width();
 
-			if ( larguraTela > 767 ) {
+			if ( larguraTela > 990 ) {
 				return true;
 			} else {
 				return false;
@@ -726,6 +726,14 @@
 			return $('.wrap-slider-principal').height();
 		}
 
+		$('body').delegate('.menu-fixo', 'mouseenter', function() {
+			$('.menu-main').slideDown();
+			$(".category-fixed").css("top","100px");
+		});
+
+
+
+
 		$window.scroll(function() {
 
 			var scrollTop = $window.scrollTop();
@@ -734,13 +742,25 @@
 
 			if (eDesktop()) {
 
+
+				if(scrollTop > 200) {
+					$(".menu-main").slideUp();
+				} else {
+					$(".menu-main").show();
+				}
+
 				if (scrollTop >= 465) {
+
+					//$(".menu-main").slideUp();
 
 					$(".header-main").addClass('menu-fixo');
 
 					$(".menu-fixo").fadeIn(400,function(){
 						$("body").css("margin-top","100px");   
 					});
+
+					$(".category-fixed").css("top","70px");
+
 
 					$(".menu-fixo").addClass('opacity1');
 
@@ -754,7 +774,7 @@
 
 			if (eDesktop()) {
 
-				if (scrollTop >= 656 && scrollTop < lastBoxOffsetTop) {
+				if (scrollTop >= 686 && scrollTop < lastBoxOffsetTop) {
 
 					toggleTitleCategory('show');
 

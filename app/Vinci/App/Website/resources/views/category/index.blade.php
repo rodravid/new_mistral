@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="header-internal template1-bg" style="background: url({{ asset_web('images/bg-pais.jpg') }}) #11b6f0 no-repeat top right; min-height:350px">
+<div class="header-internal template1-bg bg-color-category" style="background: url({{ asset_web('images/bg-pais.jpg') }}) no-repeat top right;">
 	@include('website::layouts.menu')
 	<div class="row">
 
@@ -18,9 +18,12 @@
 		</ul>
 
 		<h1 class="internal-subtitle-category">Vinho por país</h1>
-
-		<p class="category-description">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina. Mostra muita classe, elegância e fantástica pureza, tendo recebido nada menos do que 92 pontos de Robert Parker, premiado com 93 pontos pela Wine Spectator na safra 2012 e escolhido como um dos "100 Melhores Vinhos do Mundo em 2014". Um vinho profundo e com muita alma, que enche a boca com camadas e mais camadas de fruta madura e finos taninos. 
-</p>
+		<div class="container-leia-mais">
+			<p class="category-description">
+			Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina. Mostra muita classe, elegância e fantástica pureza, tendo recebido nada menos do que 92 pontos de Robert Parker, premiado com 93 pontos pela Wine Spectator na safra 2012 e escolhido como um dos "100 Melhores Vinhos do Mundo em 2014". Um vinho profundo e com muita alma, que enche a boca com camadas e mais camadas de fruta madura e finos taninos.
+	
+			</p>
+		</div>
 
 	</div>
 </div>

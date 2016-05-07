@@ -161,7 +161,7 @@
 .template1 {
 
 
-		.template-button {
+	.template-button {
 		background: $purple;
 		border:2px solid $purple;
 		transition: all .1s ease .05s;
@@ -187,10 +187,7 @@
 		}
 	}
 
-
-
-
-		.botoes-add {
+	.botoes-add {
 		background:$blue;
 	}
 
@@ -199,33 +196,33 @@
 		border: 1px solid $blue;
 		color: $blue;
 
-				@media #{$screen-767} { 
+		@media #{$screen767} { 
 			border:0;
 		}
 	}
 
-				.seals-description {
+	.seals-description {
 
-			li {
+		li {
 
-				p {
+			p {
 
-					color:$blue;
-				}
-
-				div {
-				}
-
+				color:$blue;
 			}
 
-			li+li {
+			div {
+			}
 
-		
-				div {
-					display:none;
-				}
+		}
+
+		li+li {
+
+			
+			div {
+				display:none;
 			}
 		}
+	}
 
 	.title-form {
 		color:$blue;
@@ -407,12 +404,43 @@
 	.header-internal.template1-bg{
 		background:$blue;
 
-
-	.internal-subtitle-category{
-		color:#5e057b;
+		.nav-link:hover{
+			color:$blue;
 		}
+
+		.nav-item-user-logged .nav-link {
+			color:$blue;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$blue;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $blue;
+				}
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+
+
+
+
+		.internal-subtitle-category {
+			color:#5e057b;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5e057b;
+		}
+
 		
-		@media #{$screen-767} {
+		@media #{$screen767} {
 			.input-bt-search {
 				background-position: -209px -122px;
 
@@ -530,6 +558,13 @@
 		background:#e5f7fd;
 	}
 
+	.template1-bg.bg-color-category {
+		background-color:$blue !important;
+		@media #{$screen970} {
+			background:$blue !important;
+		}
+	}
+
 	/* Fim templates BLUE ******************BLUE****************BLUE*******/
 
 
@@ -539,43 +574,43 @@
 
 	.template2 {
 
-				.template-button {
-		background: $orange;
-		border:2px solid $orange;
-		transition: all .1s ease .05s;
-
-		&:hover{
-			background: #fff;
-			color:$orange;
+		.template-button {
+			background: $orange;
 			border:2px solid $orange;
 			transition: all .1s ease .05s;
+
+			&:hover{
+				background: #fff;
+				color:$orange;
+				border:2px solid $orange;
+				transition: all .1s ease .05s;
+				.arrow-link{
+					background: $orange;
+					color:#fff;
+					transition: all .1s ease .05s;
+					border: 2px solid $orange;
+				}
+			}
+
 			.arrow-link{
-				background: $orange;
-				color:#fff;
+				color:$orange;
 				transition: all .1s ease .05s;
 				border: 2px solid $orange;
+				font-size: 14px;
 			}
 		}
 
-		.arrow-link{
-			color:$orange;
-			transition: all .1s ease .05s;
-			border: 2px solid $orange;
-			font-size: 14px;
-		}
-	}
-
 		.see-more-info,
-	.see-less-info {
-		border: 1px solid $red;
-		color: $red;
+		.see-less-info {
+			border: 1px solid $red;
+			color: $red;
 
-		@media #{$screen-767} { 
-			border:0;
+			@media #{$screen767} { 
+				border:0;
+			}
 		}
-	}
 
-			.seals-description {
+		.seals-description {
 
 			li {
 
@@ -598,17 +633,17 @@
 			}
 		}
 
-	.botoes-add {
-		background:$red;
-	}
+		.botoes-add {
+			background:$red;
+		}
 
-	.tit-product-info {
+		.tit-product-info {
 			color:$orange;
-	}
+		}
 
-	.current-price {
+		.current-price {
 			color:$red;
-	}
+		}
 
 		.title-form {
 			color:$red;
@@ -777,7 +812,39 @@
 
 	.header-internal.template2-bg {
 		background:$red;
-		@media #{$screen-767} {
+
+		.nav-link:hover{
+			color:$red;
+		} 
+
+		.nav-item-user-logged .nav-link {
+			color:$red;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$red;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $red;
+				}
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+
+		.internal-subtitle-category {
+			color:#ffc600;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#ffc600;
+		}
+		@media #{$screen767} {
 			.input-bt-search {
 				background-position: -209px -379px;
 			}
@@ -856,6 +923,13 @@
 	.bg-template.template2 {
 		border:0;
 		background:#fce8ec;
+	}
+
+		.template2-bg.bg-color-category {
+		background-color:$red !important;
+		@media #{$screen970} {
+			background:$red !important; 
+		}
 	}
 	/* Fim templates RED ******************RED****************RED*******/
 
@@ -1033,16 +1107,48 @@
 
 		}
 
-		.header-internal.template3-bg{
+		.header-internal.template3-bg {
 			background:$green;
 
-			@media #{$screen-767} {
+			.nav-link:hover{
+				color:$green;
+			} 
+
+			.nav-item-user-logged .nav-link {
+				color:$green;
+			}
+			.nav-item-user-logged:hover .nav-link:before,
+			.nav-item-user-logged:hover .nav-link{
+				color:$green;
+			}
+
+			.drop-user{
+				a{
+					&:hover{
+						color: $green;
+					}
+				}
+				a+a{
+					border-top:1px solid #d6d6d6;
+				}
+			}
+
+					.internal-subtitle-category {
+			color:#0b2f00;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#0b2f00;
+		}
+
+			@media #{$screen767} {
 				.input-bt-search {
 					background-position: -209px -156px;
 				}
-							.input-search {
-				color:$green;
-			}
+				.input-search {
+					color:$green;
+				}
 			}
 		}
 
@@ -1109,6 +1215,14 @@
 				color:$green;
 				transition: all .1s ease .05s;
 				border: 2px solid $green;
+			}
+		}
+
+
+		.template3-bg.bg-color-category {
+			background-color:$green !important;
+			@media #{$screen970} {
+				background:$green !important;
 			}
 		}
 
@@ -1283,13 +1397,45 @@
 		.header-internal.template4-bg{
 			background:$purple;
 
-			@media #{$screen-767} {
+			.nav-link:hover{
+				color:$purple;
+			} 
+
+			.nav-item-user-logged .nav-link {
+				color:$purple;
+			}
+			.nav-item-user-logged:hover .nav-link:before,
+			.nav-item-user-logged:hover .nav-link{
+				color:$purple;
+			}
+
+			.drop-user{
+				a{
+					&:hover{
+						color: $purple;
+					}
+				}
+				a+a{
+					border-top:1px solid #d6d6d6;
+				}
+			}
+
+					.internal-subtitle-category {
+			color:#ff008a;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#ff008a;
+		}
+
+			@media #{$screen767} {
 				.input-bt-search {
 					background-position: -209px -190px;
 				}
-							.input-search {
-				color:$purple;
-			}
+				.input-search {
+					color:$purple;
+				}
 			}
 		}
 
@@ -1357,6 +1503,15 @@
 
 		.adress.template4 {
 			border:1px solid $purple;
+		}
+
+
+
+		.template4-bg.bg-color-category {
+			background-color:$purple !important;
+			@media #{$screen970} {
+				background:$purple !important;
+			}
 		}
 		/* Fim templates PURPLE ******************PURPLE****************PURPLE*******/
 
@@ -1575,13 +1730,45 @@
 
 		.header-internal.template5-bg{
 			background: $pink;
-						@media #{$screen-767} {
-				.input-bt-search {
-					    background-position: -209px -221px;
-				}
-							.input-search {
-				color:$pink;
+
+			.nav-link:hover{
+				color:$purple;
+			} 
+
+			.nav-item-user-logged .nav-link {
+				color:$purple;
 			}
+			.nav-item-user-logged:hover .nav-link:before,
+			.nav-item-user-logged:hover .nav-link{
+				color:$purple;
+			}
+
+			.drop-user{
+				a{
+					&:hover{
+						color: $purple;
+					}
+				}
+				a+a{
+					border-top:1px solid #d6d6d6;
+				}
+			}
+
+					.internal-subtitle-category {
+			color:#5d003b;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5d003b;
+		}
+			@media #{$screen767} {
+				.input-bt-search {
+					background-position: -209px -221px;
+				}
+				.input-search {
+					color:$pink;
+				}
 			}
 		}
 
@@ -1608,6 +1795,15 @@
 				color:$pink;
 				transition: all .1s ease .05s;
 				border: 2px solid $pink;
+			}
+		}
+
+
+
+				.template5-bg.bg-color-category {
+			background-color:$pink !important;
+			@media #{$screen970} {
+				background:$pink !important;
 			}
 		}
 
@@ -1790,14 +1986,46 @@
 
 	.header-internal.template6-bg{
 		background:$darkblue;
-					@media #{$screen-767} {
-				.input-bt-search {
-					background-position: -209px -250px;
+
+		.nav-link:hover{
+			color:$darkblue;
+		} 
+
+		.nav-item-user-logged .nav-link {
+			color:$darkblue;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$darkblue;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $darkblue;
 				}
-							.input-search {
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+
+				.internal-subtitle-category {
+			color:#e929d9;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#e929d9;
+		}
+		@media #{$screen767} {
+			.input-bt-search {
+				background-position: -209px -250px;
+			}
+			.input-search {
 				color:$darkblue;
 			}
-			}
+		}
 	}
 
 	.bt-default-full.template6 {
@@ -1862,6 +2090,13 @@
 		border: 0;
 		background: #5e6dc7;
 	}
+
+					.template6-bg.bg-color-category {
+			background-color:$darkblue !important;
+			@media #{$screen970} {
+				background:$darkblue !important;
+			}
+		}
 	/* Fim templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 
 	/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
@@ -2034,14 +2269,44 @@
 
 	.header-internal.template7-bg{
 		background:$orange;
-					@media #{$screen-767} {
-				.input-bt-search {
-					background-position: -209px -281px;
+		.nav-link:hover{
+			color:$orange;
+		} 
+
+		.nav-item-user-logged .nav-link {
+			color:$orange;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$orange;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $orange;
 				}
-							.input-search {
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+				.pink {
+			color:#a0015f;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5e057b;
+		}
+		@media #{$screen767} {
+			.input-bt-search {
+				background-position: -209px -281px;
+			}
+			.input-search {
 				color:$orange;
 			}
-			}
+		}
 	}
 
 
@@ -2108,6 +2373,13 @@
 	.template7.bg-template {
 		border: 0;
 		background: #fff5e5;
+	}
+
+	.template7-bg.bg-color-category {
+		background-color:$orange !important;
+		@media #{$screen970} {
+			background:$orange !important;
+		}
 	}
 
 	/* Fim templates ORANGE ******************ORANGE****************ORANGE*******/
@@ -2264,14 +2536,44 @@
 	}
 	.header-internal.template8-bg{
 		background:$black;
-					@media #{$screen-767} {
-				.input-bt-search {
-					background-position: -209px -314px;
+		.nav-link:hover{
+			color:$black;
+		} 
+
+		.nav-item-user-logged .nav-link {
+			color:$black;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$black;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $black;
 				}
-							.input-search {
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+				.internal-subtitle-category {
+			color:#5e057b;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5e057b;
+		}
+		@media #{$screen767} {
+			.input-bt-search {
+				background-position: -209px -314px;
+			}
+			.input-search {
 				color:$black;
 			}
-			}
+		}
 	}
 
 
@@ -2338,7 +2640,12 @@
 		background: #ededed;
 	}
 
-
+				.template8-bg.bg-color-category {
+			background-color:$black !important;
+			@media #{$screen970} {
+				background:$black !important;
+			}
+		}
 
 
 
@@ -2545,14 +2852,46 @@
 	.header-internal.template9-bg{
 		background:$dark-orange;
 
-							@media #{$screen-767} {
-				.input-bt-search {
-					    background-position: -209px -281px;
+		.nav-link:hover{
+			color:$dark-orange;
+		} 
+
+		.nav-item-user-logged .nav-link {
+			color:$dark-orange;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$dark-orange;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $dark-orange;
 				}
-							.input-search {
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+
+				.internal-subtitle-category {
+			color:#5e057b;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5e057b;
+		}
+
+		@media #{$screen767} {
+			.input-bt-search {
+				background-position: -209px -281px;
+			}
+			.input-search {
 				color:$dark-orange;
 			}
-			}
+		}
 
 
 /* 	.internal-subtitle{
@@ -2663,6 +3002,13 @@
 	.bg-template.template9 {
 		border:0;
 		background:#e5f7fd;
+	}
+
+	.template9-bg.bg-color-category {
+		background-color:$dark-orange !important;
+		@media #{$screen970} {
+			background:$dark-orange !important;
+		}
 	}
 
 	/* Fim templates LARANJA ESCURO **************LARANJA ESCURO****************LARANJA ESCURO***********/
@@ -2851,14 +3197,46 @@
 	.header-internal.template10-bg{
 		background:$dark-pink;
 
-							@media #{$screen-767} {
-				.input-bt-search {
-					background-position: -209px -314px;
+		.nav-link:hover{
+			color:$dark-pink;
+		} 
+
+		.nav-item-user-logged .nav-link {
+			color:$dark-pink;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$dark-pink;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $dark-pink;
 				}
-							.input-search {
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+
+				.internal-subtitle-category {
+			color:#5e057b;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5e057b;
+		}
+
+		@media #{$screen767} {
+			.input-bt-search {
+				background-position: -209px -314px;
+			}
+			.input-search {
 				color:$dark-pink;
 			}
-			}
+		}
 
 
 /* 	.internal-subtitle{
@@ -2970,6 +3348,13 @@
 	.bg-template.template10 {
 		border:0;
 		background:#e5f7fd;
+	}
+
+	.template10-bg.bg-color-category {
+		background-color:$dark-pink !important;
+		@media #{$screen970} {
+			background:$dark-pink !important;
+		}
 	}
 
 	/* Fim templates ROSA ESCURO **************ROSA ESCURO****************ROSA ESCURO***********/
@@ -3153,15 +3538,47 @@
 	.header-internal.template11-bg{
 		background:$dark-pink-heavy;
 
+		.nav-link:hover{
+			color:$dark-pink-heavy;
+		} 
 
-							@media #{$screen-767} {
-				.input-bt-search {
-					background-position: -209px -314px;
+		.nav-item-user-logged .nav-link {
+			color:$dark-pink-heavy;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$dark-pink-heavy;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $dark-pink-heavy;
 				}
-							.input-search {
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+
+				.internal-subtitle-category {
+			color:#5e057b;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5e057b;
+		}
+
+
+		@media #{$screen767} {
+			.input-bt-search {
+				background-position: -209px -314px;
+			}
+			.input-search {
 				color:$dark-pink-heavy;
 			}
-			}
+		}
 
 
 /* 	.internal-subtitle{
@@ -3275,7 +3692,12 @@
 		background:#e5f7fd;
 	}
 
-
+				.template11-bg.bg-color-category {
+			background-color:$dark-pink-heavy !important;
+			@media #{$screen970} {
+				background:$dark-pink-heavy !important;
+			}
+		}
 
 	/* Fim templates ROSA ESCURO **************ROSA ESCURO****************ROSA ESCURO***********/
 

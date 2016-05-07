@@ -6,8 +6,6 @@
 	@include('website::layouts.menu')
 	<div class="row">
 
-		<h1 class="internal-subtitle">Cadastro</h1>
-
 		<ul class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
@@ -17,6 +15,10 @@
 				<span>Cadastro</span>
 			</li>
 		</ul>
+
+		<h1 class="internal-subtitle">Cadastro</h1>
+
+
 
 	</div>
 </div>
@@ -119,8 +121,8 @@
 								<input class="cnpj input-register full" type="text" placeholder="CNPJ *" cnpj id="cnpj">
 							</li>
 							<li>
-								<label for="ie" class="label-input">IE</label>
-								<input class="ie input-register full" type="text" placeholder="IE" id="ie">
+								<label for="ie" class="label-input">IE *</label>
+								<input class="ie input-register full" type="text" placeholder="IE *" id="ie">
 							</li>
 
 						</ul>
@@ -135,24 +137,29 @@
 					<h2 class="title-form">Endereço de Entrega *</h2>
 					<ul class="list-form-register">
 						<li>
-							<ul class="list-type-radio-2cols">
+							<ul class="list-type-radio-3cols">
 								<li>
-								<label for="residencial">Residencial</label>
+									<label for="residencial">Residencial</label>
 									<input type="radio" name="delivery-addres" value="1" class="physical-person" id="residencial" checked>
 								</li>
 								<li>
 									<label for="comercial">Comercial</label>
 									<input type="radio" name="delivery-addres" value="2" class="legal-person" id="comercial">
 								</li>
+
+								<li>
+									<label for="outros">Outros</label>
+									<input type="radio" name="delivery-addres" value="3" class="legal-person" id="outros">
+								</li>
 							</ul>
 						</li>
 						<li>
-							<label for="type-addres" class="label-input">Identificador do local *</label>
-							<input class="type-addres input-register full" type="text" placeholder="Identificador do local (Ex: casa, trabalho)" id="type-addres">
+							<label for="type-addres" class="label-input">Tipo de endereço (Ex: casa, trabalho) *</label>
+							<input class="type-addres input-register full" type="text" placeholder="Tipo de endereço (Ex: casa, trabalho) *" id="type-addres">
 						</li>
 						<li>
-							<label for="cep" class="label-input">CEP</label>
-							<input class="cep input-register half" type="text" placeholder="CEP" cep id="cep">
+							<label for="cep" class="label-input">CEP *</label>
+							<input class="cep input-register half" type="text" placeholder="CEP *" cep id="cep">
 							<div class="search-cep">
 								<p>Não sei o meu CEP.</p>
 								<a href="http://m.correios.com.br/movel/buscaCep.do" target="_blank">Faça a pesquisa aqui ></a>
@@ -167,14 +174,14 @@
 							</div>
 						</li>
 						<li>
-							<label for="address" class="label-input">Endereço</label>
-							<input class="input-register full" type="text" placeholder="Endereço" id="address">
+							<label for="address" class="label-input">Endereço *</label>
+							<input class="input-register full" type="text" placeholder="Endereço *" id="address">
 						</li>
 						<li>
 							<label for="num" class="label-input">n°</label>
 							<input class="number input-register two-fields" type="text" placeholder="n°" id="num">
 							<label for="complement" class="label-input">Complemento</label>
-							<input class="number input-register two-fields" type="text" placeholder="Complemento" id="complement">
+							<input class="number input-register float-right two-fields" type="text" placeholder="Complemento" id="complement">
 						</li>
 						<li>
 							<div class="select-standard half form-control-white">
@@ -212,8 +219,8 @@
 						</li>
 
 						<li>
-							<label for="bairro" class="label-input">Bairro</label>
-							<input class="input-register full" type="text" placeholder="Bairro" id="bairro">
+							<label for="bairro" class="label-input">Bairro *</label>
+							<input class="input-register full" type="text" placeholder="Bairro *" id="bairro">
 						</li>
 
 						<li>
@@ -248,20 +255,20 @@
 			<div class="col-register3 template1">
 
 				<div class="user-phones">
-					<h2 class="title-form">Contatos</h2>
+					<h2 class="title-form">Contatos *</h2>
 					<ul class="list-form-register">
 						<li>
-							<label for="phone1" class="label-input">Telefone celular</label>
-							<input class="cel input-register full" type="tel" placeholder="Telefone celular" phone-mask id="phone1">
+							<label for="phone1" class="label-input">Telefone celular *</label>
+							<input class="cel input-register full" type="tel" placeholder="Telefone celular *" phone-mask id="phone1">
 						</li>
 						<li>
-							<label for="phone2" class="label-input">Telefone comercial</label>
-							<input class="phone2 input-register full" type="tel" placeholder="Telefone comercial" phone-mask id="phone2">
+							<label for="phone2" class="label-input">Telefone fixo</label>
+							<input class="phone2 input-register full" type="tel" placeholder="Telefone fixo" phone-mask id="phone2">
 						</li>
-						<li>
-							<label for="phone3" class="label-input">Telefone de contato *</label>
+<!-- 						<li>
+							<label for="phone3" class="label-input">Telefone de contato</label>
 							<input class="input-register full" type="tel" placeholder="Telefone de contato *" phone-mask id="phone3">
-						</li>
+						</li> -->
 
 					</ul>
 
@@ -283,7 +290,7 @@
 
 <div class="border-footer">
 
-@include('website::layouts.footer')
+	@include('website::layouts.footer')
 
 </div>
 

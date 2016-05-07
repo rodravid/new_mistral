@@ -256,6 +256,9 @@ jQuery(document).ready(function ($) {
 
           $("#company").fadeIn();
           $("#person").hide();
+          $("#residencial").hide();
+          $("#outros").hide();
+          
 
         }
 
@@ -324,6 +327,13 @@ jQuery(document).ready(function ($) {
             $(this).removeClass('aberto');
             $(this).children(".seta-accordion-interna").addClass('arrow-down').removeClass('arrow-up');
           }
+        });
+
+        $('.container-leia-mais').readmore({
+          speed: 100,
+          collapsedHeight: 70,
+          moreLink: '<a href="javascript:void(0);" class="more-txt">+ Veja mais</a>',
+          lessLink: '<a href="javascript:void(0);" class="less-txt">- Veja menos </a>'
         });
 
 

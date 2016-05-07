@@ -66,7 +66,7 @@
 		</div>
 	</div>
 
-	<section class="adress-delivery">
+	<section class="adress-delivery adress-user">
 
 		<div class="adress template4">
 			
@@ -76,8 +76,7 @@
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
 			</div>
-			<h4>Frete</h4>
-			<p>R$ 10,00</p>
+
 			<a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
 
 		</div>
@@ -90,8 +89,7 @@
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
 			</div>
-			<h4>Frete</h4>
-			<p>R$ 10,00</p>
+
 			<a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
 
 		</div>
@@ -104,8 +102,7 @@
 				<p>São Paulo - SP</p>
 				<p>CEP 04412-300</p>
 			</div>
-			<h4>Frete</h4>
-			<p>R$ 10,00</p>
+
 			<a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
 			
 		</div>
@@ -124,20 +121,25 @@
 					<!-- <h2 class="title-form">Endereço de Entrega *</h2> -->
 							<ul class="list-form-register">
 						<li>
-							<ul class="list-type-radio-2cols">
+							<ul class="list-type-radio-3cols">
 								<li>
-								<label for="residencial">Residencial</label>
+									<label for="residencial">Residencial</label>
 									<input type="radio" name="delivery-addres" value="1" class="physical-person" id="residencial" checked>
 								</li>
 								<li>
 									<label for="comercial">Comercial</label>
 									<input type="radio" name="delivery-addres" value="2" class="legal-person" id="comercial">
 								</li>
+
+								<li>
+									<label for="outros">Outros</label>
+									<input type="radio" name="delivery-addres" value="3" class="legal-person" id="outros">
+								</li>
 							</ul>
 						</li>
 						<li>
-							<label for="type-addres" class="label-input">Identificador do local *</label>
-							<input class="type-addres input-register full" type="text" placeholder="Identificador do local (Ex: casa, trabalho)" id="type-addres">
+							<label for="type-addres" class="label-input">Tipo de endereço (Ex: casa, trabalho) *</label>
+							<input class="type-addres input-register full" type="text" placeholder="Tipo de endereço (Ex: casa, trabalho) *" id="type-addres">
 						</li>
 						<li>
 							<label for="cep" class="label-input">CEP</label>
@@ -163,7 +165,7 @@
 							<label for="num" class="label-input">n°</label>
 							<input class="number input-register two-fields" type="text" placeholder="n°" id="num">
 							<label for="complement" class="label-input">Complemento</label>
-							<input class="number input-register two-fields" type="text" placeholder="Complemento" id="complement">
+							<input class="number input-register float-right two-fields" type="text" placeholder="Complemento" id="complement">
 						</li>
 						<li>
 							<div class="select-standard half form-control-white">

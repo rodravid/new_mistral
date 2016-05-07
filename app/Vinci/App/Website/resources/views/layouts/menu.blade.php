@@ -64,8 +64,10 @@
 						Seja bem vindo, Wellington!
 					</a>
 					<div class="drop-user">
-						<a href="">Meus dados</a>
-						<a href="">Favoritos</a>
+						<a href="/minhaconta-cadastro">Meus dados</a>
+						<a href="/minhaconta-pedidos">Dados Conta</a>
+						<a href="/minhaconta-favoritos">Favoritos</a>
+						<a href="/minhaconta-enderecos">Endereços</a>
 						<a href="">Sair</a>
 					</div>
 				</li>
@@ -104,7 +106,7 @@
 								</a>
 							</li>
 						</ul>
-						<a href="javascript:void(0);" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
+						<a href="/carrinho" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
 					</div>
 				</div>
 
@@ -595,12 +597,6 @@
 						<li class="menu-item">
 							<a class="menu-link" href="/duvidas-frequentes">
 								dúvidas frequentes
-							</a>
-						</li>
-
-						<li class="menu-item">
-							<a class="menu-link" href="#">
-								Ajuda
 							</a>
 						</li>
 
