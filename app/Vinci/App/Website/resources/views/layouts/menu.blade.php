@@ -12,7 +12,7 @@
 		<div class="search">
 			<form action="">
 				<div class="wrap-input-search">	
-					<input class="input-search" type="search">
+					<input class="input-search" type="text">
 
 					<div class="results-suggestions">
 						<span class="bt-close-suggestions sprite-icon"></span>

@@ -677,7 +677,7 @@
 		function eDesktop() {
 			var larguraTela = $window.width();
 
-			if ( larguraTela > 990 ) {
+			if ( larguraTela > 970 ) {
 				return true;
 			} else {
 				return false;
