@@ -130,14 +130,19 @@
 					<!-- <h2 class="title-form">Endereço de Entrega *</h2> -->
 							<ul class="list-form-register">
 						<li>
-							<ul class="list-type-radio-2cols">
+							<ul class="list-type-radio-3cols">
 								<li>
-								<label for="residencial">Residencial</label>
+									<label for="residencial">Residencial</label>
 									<input type="radio" name="delivery-addres" value="1" class="physical-person" id="residencial" checked>
 								</li>
 								<li>
 									<label for="comercial">Comercial</label>
 									<input type="radio" name="delivery-addres" value="2" class="legal-person" id="comercial">
+								</li>
+
+								<li>
+									<label for="outros">Outros</label>
+									<input type="radio" name="delivery-addres" value="3" class="legal-person" id="outros">
 								</li>
 							</ul>
 						</li>
@@ -169,7 +174,7 @@
 							<label for="num" class="label-input">n°</label>
 							<input class="number input-register two-fields" type="text" placeholder="n°" id="num">
 							<label for="complement" class="label-input">Complemento</label>
-							<input class="number input-register two-fields" type="text" placeholder="Complemento" id="complement">
+							<input class="number input-register float-right two-fields" type="text" placeholder="Complemento" id="complement">
 						</li>
 						<li>
 							<div class="select-standard half form-control-white">

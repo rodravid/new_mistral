@@ -27,6 +27,10 @@
 	}
 	}
 
+	@media #{$screen970}{ 
+			padding-bottom:3px;
+	}
+
 	}
 
 	.topcategorias {
@@ -214,6 +218,7 @@
 	-o-appearance:none;
 	@media #{$screen767}{
 		padding: 10.8px 30px 10.8px 17px;
+		color:$blue;
 	}
 }
 
@@ -375,7 +380,7 @@
 	}
 
 	.nav-link:hover {
-		color: #fff;
+		color: #fff !important;
 	}
 }
 
@@ -638,6 +643,7 @@
 				-ms-transform: translate(-100%, 0);
 				transform: translate(-100%, 0);
 				padding:29px 20px 20px 20px;
+				display: inline-block !important;
 			}
 
 		}

@@ -57,7 +57,7 @@
 					<h2 class="title-form">Dados de acesso *</h2>
 					<ul class="list-form-register">
 						<li>
-							<label for="email" class="label-input">E-mail</label>
+							<label for="email" class="label-input">E-mail *</label>
 							<input class="email input-register full" type="email" placeholder="E-mail *" id="email">
 						</li>
 						<li>
@@ -178,8 +178,8 @@
 							<input class="input-register full" type="text" placeholder="Endereço *" id="address">
 						</li>
 						<li>
-							<label for="num" class="label-input">n°</label>
-							<input class="number input-register two-fields" type="text" placeholder="n°" id="num">
+							<label for="num" class="label-input">n° *</label>
+							<input class="number input-register two-fields" type="text" placeholder="n° *" id="num">
 							<label for="complement" class="label-input">Complemento</label>
 							<input class="number input-register float-right two-fields" type="text" placeholder="Complemento" id="complement">
 						</li>
