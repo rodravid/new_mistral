@@ -4,13 +4,13 @@ namespace Vinci\Domain\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Channel\Channel;
-use Vinci\Domain\Pricing\Calculator\PriceCalculator;
+use Vinci\Domain\Pricing\Contracts\Price as PriceInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="products_variants_price")
  */
-class ProductVariantPrice
+class ProductVariantPrice implements PriceInterface
 {
 
     /**
@@ -178,7 +178,7 @@ class ProductVariantPrice
         $this->assertPriceCalculatorIsDefined();
 
         return $this->getPriceCalculator()
-            ->calculate($this->getVariant());
+            ->calculate($this);
     }
 
     public function asOriginalSalePrice()
@@ -187,7 +187,7 @@ class ProductVariantPrice
 
         return $this->getPriceCalculator()
             ->skipDiscounts()
-            ->calculate($this->getVariant());
+            ->calculate($this);
     }
 
     private function assertPriceCalculatorIsDefined()

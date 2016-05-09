@@ -64,7 +64,7 @@ class Kit extends Product
         return $this->items->contains($item);
     }
 
-    public function getPrice()
+    public function getPrice($channel = null)
     {
         if ($this->fixedPrice) {
             return parent::getPrice();

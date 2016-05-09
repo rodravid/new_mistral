@@ -9,6 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Channel\Channel;
+use Vinci\Domain\Channel\Contracts\Channel as ChannelInterface;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Core\Model;
@@ -119,6 +120,40 @@ class Product extends Model implements ProductInterface
         return $this->variants->contains($variant);
     }
 
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    public function setAttributes(Collection $attributes)
+    {
+        $this->attributes->clear();
+
+        foreach ($attributes as $attribute) {
+            $this->addAttribute($attribute);
+        }
+    }
+
+    public function addAttribute(AttributeValue $attribute)
+    {
+        if (! $this->hasAttribute($attribute)) {
+            $attribute->setProduct($this);
+            $this->attributes->add($attribute);
+        }
+    }
+
+    public function removeAttribute(AttributeValue $attribute)
+    {
+        if ($this->hasAttribute($attribute)) {
+            $this->attributes->removeElement($attribute);
+        }
+    }
+
+    public function hasAttribute(AttributeValue $attribute)
+    {
+        return $this->attributes->contains($attribute);
+    }
+
     public function getMasterVariant()
     {
         foreach ($this->variants as $variant) {
@@ -161,6 +196,7 @@ class Product extends Model implements ProductInterface
     public function addChannel(Channel $channel)
     {
         if (! $this->hasChannel($channel)) {
+            $channel->addProduct($this);
             $this->channels->add($channel);
         }
 
@@ -179,17 +215,37 @@ class Product extends Model implements ProductInterface
         return $this->channels->contains($channel);
     }
 
+    public function normalizeChannel($channel)
+    {
+        if ($channel instanceof ChannelInterface) {
+            return $channel;
+        }
+
+        foreach ($this->channels as $ch) {
+            if ($ch->getCode() == $channel) {
+                return $ch;
+            }
+        }
+    }
+
     public function getCurrentChannel()
     {
         if (empty($this->currentChannel)) {
             return $this->currentChannel = $this->getDefaultChannel();
         }
 
-        return $this->currentChannel;
+        return $this->currentChannel instanceof ChannelInterface ?
+            $this->currentChannel : $this->normalizeChannel($this->currentChannel);
     }
 
     public function setCurrentChannel($channel)
     {
+        $ch = $this->normalizeChannel($channel);
+
+        if (! $ch) {
+            throw new \Exception(sprintf('The channel "%s" has not been set or does not exist.', $channel));
+        }
+
         $this->currentChannel = $channel;
         return $this;
     }
@@ -200,20 +256,6 @@ class Product extends Model implements ProductInterface
             if ($channel->isDefault()) {
                 return $channel;
             }
-        }
-    }
-
-    public function setMasterChannel(Channel $masterChannel)
-    {
-        foreach ($this->channels as $channel) {
-            $channel->setMaster(false);
-        }
-
-        $masterChannel->setMaster(true);
-
-        if (! $this->hasChannel($masterChannel)) {
-            $masterChannel->setProduct($this);
-            $this->channels->add($masterChannel);
         }
     }
 
@@ -261,9 +303,14 @@ class Product extends Model implements ProductInterface
         return $this;
     }
 
-    public function getPrice()
+    public function getPrices()
     {
-        return $this->getMasterVariant()->getPrice();
+        return $this->getMasterVariant()->getPrices();
+    }
+
+    public function getPrice($channel = null)
+    {
+        return $this->getMasterVariant()->getPrice($channel);
     }
 
     public function addPrice(ProductVariantPrice $price)

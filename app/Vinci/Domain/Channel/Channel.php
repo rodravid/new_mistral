@@ -2,13 +2,16 @@
 
 namespace Vinci\Domain\Channel;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Channel\Contracts\Channel as ChannelInterface;
+use Vinci\Domain\Product\ProductInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="channels")
  */
-class Channel
+class Channel implements ChannelInterface
 {
 
     const DEFAULT_CHANNEL = 'default';
@@ -44,6 +47,11 @@ class Channel
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", inversedBy="channels")
      */
     protected $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection;
+    }
 
     public function getId()
     {
@@ -97,6 +105,18 @@ class Channel
     public function isDefault()
     {
         return $this->code == self::DEFAULT_CHANNEL;
+    }
+
+    public function addProduct(ProductInterface $product)
+    {
+        if (! $this->hasProduct($product)) {
+            $this->products->add($product);
+        }
+    }
+
+    public function hasProduct(ProductInterface $product)
+    {
+        return $this->products->contains($product);
     }
 
 }

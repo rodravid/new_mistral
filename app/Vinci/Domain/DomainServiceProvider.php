@@ -3,6 +3,7 @@
 namespace Vinci\Domain;
 
 use Illuminate\Support\ServiceProvider;
+use Vinci\App\Website\Channel\ChannelProvider;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Admin\AdminService;
 use Vinci\Domain\Customer\Address\AddressService;
@@ -10,6 +11,8 @@ use Vinci\Domain\Customer\CustomerService;
 use Vinci\Domain\DeliveryTrack\DeliveryTrackService;
 use Vinci\Domain\Highlight\HighlightService;
 use Vinci\Domain\Country\CountryService;
+use Vinci\Domain\Pricing\Calculator\PriceCalculatorProvider;
+use Vinci\Domain\Pricing\Calculator\StandardPriceCalculator;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
@@ -128,6 +131,18 @@ class DomainServiceProvider extends ServiceProvider
                 $this->app['Vinci\Infrastructure\Storage\StorageService'],
                 $this->app['Vinci\Domain\Image\ImageRepository']
             );
+        });
+
+        $this->app->singleton('Vinci\Domain\Channel\Contracts\ChannelProvider', function() {
+            return new ChannelProvider;
+        });
+
+        $this->app->singleton('Vinci\Domain\Pricing\PriceCalculator', function() {
+            return new StandardPriceCalculator();
+        });
+
+        $this->app->singleton('Vinci\Domain\Pricing\Contracts\PriceCalculatorProvider', function() {
+            return new PriceCalculatorProvider($this->app['Vinci\Domain\Pricing\PriceCalculator']);
         });
 
     }
