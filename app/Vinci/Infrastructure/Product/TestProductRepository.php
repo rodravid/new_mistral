@@ -62,8 +62,6 @@ class TestProductRepository implements ProductRepository
             ->addPrice($price3)
         ;
 
-        $wine->setCurrentChannel('outro');
-
         $this->fireLoadEvent($wine);
 
         return $wine;

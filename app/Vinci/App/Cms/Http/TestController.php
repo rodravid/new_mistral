@@ -21,6 +21,8 @@ class TestController extends Controller
     {
         $product = $this->productRepository->find(1);
 
+        //$product->setCurrentChannel('teste');
+
         dd('Produto ' . $product->getTitle() . ': R$ ' . number_format($product->getPrice()->asSalePrice(), 2, ',', '.'));
     }
 

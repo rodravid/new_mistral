@@ -28,4 +28,9 @@ class DoctrineGrapeRepository extends DoctrineBaseRepository implements GrapeRep
         return $country;
     }
 
+    public function getAll()
+    {
+        $query = 'SELECT g FROM Vinci\Domain\Grape\Grape g';
+        return $this->_em->createQuery($query)->getResult();
+    }
 }

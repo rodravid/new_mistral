@@ -13,6 +13,7 @@ use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\Entity
@@ -41,9 +42,14 @@ class ProductVariant extends Model implements ProductVariantInterface
     protected $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
+
+    /**
+     * @ORM\Column(name="short_description", type="text", nullable=true)
+     */
+    protected $shortDescription;
 
     /**
      * @ORM\Column(type="integer")

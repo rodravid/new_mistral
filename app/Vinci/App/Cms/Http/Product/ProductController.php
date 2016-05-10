@@ -12,6 +12,7 @@ use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Product\ProductService;
 use Vinci\Domain\Image\ImageRepository;
+use Vinci\Domain\Product\ProductType;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Services\ProductManagementService;
 use Vinci\Infrastructure\Product\Datatables\ProductCmsDatatable;
@@ -50,9 +51,11 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $type = $request->get('type');
+        $type = $this->normalizeType($request);
+        $wineGrapes = $this->getGrapes($request);
+        $wineScores = $this->getScores($request);
 
-        return $this->view('products.create', compact('type'));
+        return $this->view('products.create', compact('type', 'wineGrapes', 'wineScores'));
     }
 
     public function edit($id)
@@ -155,6 +158,48 @@ class ProductController extends Controller
 
             Flash::error($e->getMessage());
             return Redirect::back();
+        }
+    }
+
+    protected function normalizeType(Request $request)
+    {
+        $type = $request->get('type', 'product');
+        return $this->entityManager->getRepository(ProductType::class)->findOneBy(['code' => $type]);
+    }
+
+    protected function getGrapes(Request $request, Product $product = null)
+    {
+        if ($request->old('grapes')) {
+
+            $grapes = [];
+
+            foreach ($request->old('grapes') as $grape) {
+                $grapes[] = $grape;
+            }
+
+            return $grapes;
+        }
+
+        if ($product) {
+            return $product->getGrapes();
+        }
+    }
+
+    protected function getScores(Request $request, Product $product = null)
+    {
+        if ($request->old('scores')) {
+
+            $scores = [];
+
+            foreach ($request->old('scores') as $score) {
+                $scores[] = $score;
+            }
+
+            return $scores;
+        }
+
+        if ($product) {
+            return $product->getScores();
         }
     }
 

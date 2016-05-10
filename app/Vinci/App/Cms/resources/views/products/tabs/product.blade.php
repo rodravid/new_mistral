@@ -11,32 +11,17 @@
 
         <div class="col-lg-12">
             <div class="form-group has-feedback">
+                <label for="txtShortDescription">Resumo</label>
+                {!! Form::textarea('shortDescription', null, ['id' => 'txtShortDescription', 'class' => 'form-control', 'rows' => 2, 'placeholder' => 'Digite o resumo']) !!}
+                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="form-group has-feedback">
                 <label for="txtCountryDescription">Descrição</label>
                 {!! Form::textarea('description', null, ['id' => 'txtCountryDescription', 'class' => 'form-control html-editor', 'rows' => 5, 'placeholder' => 'Digite a descrição']) !!}
                 <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group has-feedback">
-                <label for="txtCountrySeoTitle">Título SEO</label>
-                {!! Form::text('seoTitle', null, ['id' => 'txtCountryName', 'class' => 'form-control', 'placeholder' => 'Digite o título para SEO']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group has-feedback">
-                <label for="txtCountrySeoDescription">Descrição SEO</label>
-                {!! Form::textarea('seoDescription', null, ['id' => 'txtCountrySeoDescription', 'class' => 'form-control', 'rows' => 4, 'placeholder' => 'Digite a descrição para SEO']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <label for="txtKeywords">Palavras chaves</label>
-                {!! Form::text('seoKeywords', null, ['id' => 'txtKeywords', 'class' => 'form-control', 'placeholder' => 'Digite a descrição para SEO', 'data-keywords']) !!}
             </div>
         </div>
 

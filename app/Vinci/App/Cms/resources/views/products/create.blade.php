@@ -18,7 +18,7 @@
                 <div class="col-xs-12 col-lg-9">
                     <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{ $currentModule->getCreateButtonText() }}</h3>
+                        <h3 class="box-title">Novo {{ $type->getName() }}</h3>
                     </div>
                         <div class="box-body">
                             @include('cms::products.form')
