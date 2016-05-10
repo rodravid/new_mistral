@@ -17,14 +17,31 @@ class ProductViewComposer
 
     public function compose(View $view)
     {
+        $view->with('grapes', $this->getGrapes());
+        $view->with('discountTypes', $this->getDiscountTypes());
+    }
+
+    protected function getDiscountTypes()
+    {
+        return [
+            '' => 'Nenhum',
+            'percent' => 'Porcentagem',
+            'fixed' => 'Fixo',
+            'exchange-rate' => 'Taxa de câmbio'
+        ];
+    }
+
+    protected function getGrapes()
+    {
         $g = $this->grapeRepository->getAll();
 
         $grapes = [];
+
         foreach ($g as $grape) {
             $grapes[$grape->getId()] = $grape->getName();
         }
 
-        $view->with('grapes', $grapes);
+        return $grapes;
     }
 
 }

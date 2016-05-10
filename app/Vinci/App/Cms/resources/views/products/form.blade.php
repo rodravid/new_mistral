@@ -15,6 +15,7 @@
         </ul>
         <div class="tab-content">
             <input type="hidden" name="current-tab" id="currentTab" value="{{ old('current-tab', '#productData') }}">
+            <input type="hidden" name="product_type" value="{{ $type->getCode() }}">
 
             @include('cms::products.tabs.product')
             @include('cms::products.tabs.search')

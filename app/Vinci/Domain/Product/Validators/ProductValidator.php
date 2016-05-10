@@ -11,7 +11,6 @@ class ProductValidator extends LaravelValidator
         'title' => 'required',
         'startsAt' => 'required|date_format:d/m/Y H:i',
         'expirationAt' => 'date_format:d/m/Y H:i',
-        'position' => 'integer'
     ];
 
     protected $messages = [

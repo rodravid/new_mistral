@@ -43,7 +43,11 @@ class ProductManagementService
 
         return $this->saveProduct($data, function($data) {
 
+            dd($data);
+
             $product = new Product;
+
+
             $product->setScheduleFieldsFromArray($data);
             $product->fill($data);
 
@@ -69,6 +73,8 @@ class ProductManagementService
     protected function saveProduct($data, Closure $method)
     {
         $product = $method($data);
+
+        dd($product);
 
         $this->repository->save($product);
 

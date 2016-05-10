@@ -6,7 +6,7 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="txtName">{{ $attribute->getName() }}</label>
-                            {!! Form::input($attribute->getType(), $attribute->getCode(), null, ['class' => 'form-control']) !!}
+                            {!! Form::input($attribute->getType(), 'attributes[' . $attribute->getCode() . ']', null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
                 </div>

@@ -76,7 +76,7 @@ class ProductController extends Controller
 
             $product = $this->service->create($data);
 
-            Flash::success("Destaque {$product->getTitle()} criado com sucesso!");
+            Flash::success("Produto {$product->getTitle()} criado com sucesso!");
 
             return Redirect::route($this->getEditRouteName(), $product->getId());
 
@@ -105,7 +105,7 @@ class ProductController extends Controller
 
             $product = $this->service->update($data, $id);
 
-            Flash::success("Destaque {$product->getTitle()} atualizado com sucesso!");
+            Flash::success("Produto {$product->getTitle()} atualizado com sucesso!");
 
             return Redirect::route($this->getEditRouteName(), $product->getId());
 
@@ -130,7 +130,7 @@ class ProductController extends Controller
 
             $this->repository->delete($product);
 
-            Flash::success("Destaque {$product->getTitle()} excluído com sucesso!");
+            Flash::success("Produto {$product->getTitle()} excluído com sucesso!");
 
             return Redirect::route($this->getListRouteName());
 

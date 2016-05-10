@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-sm-4 col-lg-3">
                     <div class="form-group has-feedback">
                         <label>Estoque disponível</label>
                         {!! Form::text('stock', null, ['class' => 'form-control', 'placeholder' => 'Digite a quantidade em estoque']) !!}
