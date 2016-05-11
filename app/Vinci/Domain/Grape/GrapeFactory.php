@@ -3,35 +3,45 @@
 namespace Vinci\Domain\Grape;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManagerInterface;
 
 class GrapeFactory
 {
 
-    public function makeFromArray(array $data)
+    protected $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $line = $this->getNewLineInstance();
-
-        $line->setInitialTrack($data['initial_track'])
-            ->setFinalTrack($data['final_track'])
-            ->setDescription($data['description']);
-
-        return $line;
+        $this->entityManager = $entityManager;
     }
 
-    public function makeCollectionFromArray(array $lines)
+    public function make(array $data)
     {
-        $linesCollection = new ArrayCollection;
+        $grape = $this->getNewGrapeInstance($data);
 
-        foreach ($lines as $line) {
-            $linesCollection->add($this->makeFromArray($line));
+        return $grape;
+    }
+
+    public function makeCollection(array $data)
+    {
+        $grapes = new ArrayCollection;
+
+        foreach ($data as $item) {
+            $grapes->add($this->make($item));
         }
 
-        return $linesCollection;
+        return $grapes;
     }
 
-    public function getNewLineInstance()
+    public function getNewGrapeInstance($data)
     {
-        return new Grape;
+        if (isset($data['id'])) {
+            $grape = $this->entityManager->getReference(Grape::class, $data['id']);
+        } else {
+            $grape = new Grape;
+        }
+
+        return $grape;
     }
 
 }

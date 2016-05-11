@@ -13,7 +13,9 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <input type="hidden" name="import_stock" value="0">
-                            <label for="ckbImportStock"> {!! Form::checkbox('import_stock', 1, null, ['id' => 'ckbImportStock', 'class' => '']) !!} Importa estoque do ERP da People?</label>
+                            <label for="ckbImportStock">
+                                <input type="checkbox" value="1" @if(old('should_import_stock', isset($product) ? $product->shouldImportStock() : false)) checked @endif>
+                                Importa estoque do ERP da People?</label>
                         </div>
                     </div>
                 </div>

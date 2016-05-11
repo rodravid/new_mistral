@@ -4,6 +4,7 @@ namespace Vinci\Domain\Product\Wine;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Grape\Grape;
 use Vinci\Domain\Product\Product;
 
 /**
@@ -14,7 +15,7 @@ class Wine extends Product
 {
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\GrapeContent", mappedBy="wine")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\GrapeContent", mappedBy="wine", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $grapeContent;
 
@@ -38,7 +39,7 @@ class Wine extends Product
 
     public function getScores()
     {
-        return $this->getScores();
+        return $this->scores;
     }
 
     public function addScore(Score $score)
@@ -63,6 +64,37 @@ class Wine extends Product
     public function hasScore(Score $score)
     {
         return $this->scores->contains($score);
+    }
+
+    public function getGrapes()
+    {
+        return $this->grapeContent;
+    }
+
+    public function addGrape(Grape $grape, $weight)
+    {
+        $grapeContent = new GrapeContent();
+
+        $grapeContent
+            ->setWine($this)
+            ->setGrape($grape)
+            ->setWeight($weight);
+
+        $this->addGrapeContent($grapeContent);
+
+        return $this;
+    }
+
+    public function addGrapeContent(GrapeContent $grapeContent)
+    {
+        if (! $this->hasGrapeContent($grapeContent)) {
+            $this->grapeContent->add($grapeContent);
+        }
+    }
+
+    public function hasGrapeContent(GrapeContent $grapeContent)
+    {
+        return $this->grapeContent->contains($grapeContent);
     }
 
 }

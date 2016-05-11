@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li><a href="/cms"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{ $currentModule->getUrl() }}"><i class="{{ $currentModule->getIcon() }}"></i> {{ $currentModule->getTitle() }}</a></li>
-        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $customer->getId() }}</li>
+        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $product->getId() }}</li>
     </ol>
 @endsection
 
@@ -13,30 +13,28 @@
     <section class="content">
         <div class="row">
 
-            {!! Form::model($customer, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $customer->getId()], 'method' => 'PUT', 'files' => true]) !!}
+            {!! Form::model($product, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $product->getId()], 'method' => 'PUT', 'files' => true]) !!}
 
             <div class="col-xs-12 col-lg-9">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $customer->getId() }}</h3>
+                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $product->getId() }}</h3>
                     </div>
 
-                    {!! Form::hidden('id', $customer->getId()) !!}
+                    {!! Form::hidden('id', $product->getId()) !!}
 
                     <div class="box-body">
-                        @include('cms::customers.form')
+                        @include('cms::products.form')
                     </div>
 
                 </div>
             </div>
 
             <div class="col-xs-12 col-lg-3">
-                @include('cms::layouts.partials.publication.edit.default', ['model' => $customer, 'hideDraft' => true])
+                @include('cms::layouts.partials.publication.edit.default', ['model' => $product, 'hideDraft' => true])
             </div>
 
             {!! Form::close() !!}
-
-            @include('cms::customers.partials.address.modal.new')
         </div>
     </section>
 

@@ -10,6 +10,7 @@ use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
+use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\ProductService;
 use Vinci\Domain\Image\ImageRepository;
 use Vinci\Domain\Product\ProductType;
@@ -58,12 +59,15 @@ class ProductController extends Controller
         return $this->view('products.create', compact('type', 'wineGrapes', 'wineScores'));
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $product = $this->repository->findOrFail($id);
 
-        return $this->view('products.edit')
-            ->withProduct($product);
+        $type = $product->getArchType();
+        $wineGrapes = $this->getGrapes($request, $product);
+        $wineScores = $this->getScores($request, $product);
+
+        return $this->view('products.edit', compact('product', 'type', 'wineGrapes', 'wineScores'));
     }
 
     public function store(Request $request)
@@ -181,7 +185,19 @@ class ProductController extends Controller
         }
 
         if ($product) {
-            return $product->getGrapes();
+            
+            $grapes = [];
+
+            foreach ($product->getGrapes() as $grapeContent) {
+
+                $grapes[] = [
+                    'id' => $grapeContent->getGrape()->getId(),
+                    'weight' => $grapeContent->getWeight(),
+                    'name' => $grapeContent->getGrape()->getName()
+                ];
+            }
+
+            return $grapes;
         }
     }
 

@@ -5,47 +5,59 @@
                 <div class="col-xs-12 col-sm-2">
                     <div class="form-group">
                         <label>Canal de venda</label>
-                        {!! Form::select('price[0][channel]', ['default' => 'Padrão'], null, ['class' => 'form-control', 'disabled', 'readonly']) !!}
+                        <input type="text" class="form-control" name="price[0][channel][id]" value="{{ old('price.0.channel.id', isset($product) ? $product->getDefaultChannel()->getName() : '') }}" disabled readonly>
+                        <input type="hidden" name="price[0][channel][id]" value="{{ old('price.0.channel.id', isset($product) ? $product->getDefaultChannel()->getId() : '') }}">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <div class="form-group has-feedback">
                         <label>Preço em dólar</label>
-                        {!! Form::text('price[0][price]', null, ['class' => 'form-control']) !!}
+                        <input type="text" class="form-control" name="price[0][price]" value="{{ old('price.0.price', isset($product) ? $product->getPrice()->getPrice() : '') }}">
                         <span class="fa fa-dollar form-control-feedback"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <div class="form-group has-feedback">
                         <label>Valor do dólar</label>
-                        {!! Form::text('price[0][currency_amount]', null, ['class' => 'form-control']) !!}
+                        <input type="text" class="form-control" name="price[0][currency_amount]" value="{{ old('price.0.currency_amount', isset($product) ? $product->getPrice()->getCurrencyAmount() : '') }}">
                         <span class="fa fa-money form-control-feedback"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <div class="form-group has-feedback">
                         <label>IPI %</label>
-                        {!! Form::text('price[0][aliquot_ipi]', null, ['class' => 'form-control']) !!}
+                        <input type="text" class="form-control" name="price[0][aliquot_ipi]" value="{{ old('price.0.aliquot_ipi', isset($product) ? $product->getPrice()->getAliquotIpi() : '') }}">
                         <span class="fa fa-percent form-control-feedback"></span>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <div class="form-group">
                         <label>Tipo de desconto</label>
-                        {!! Form::select('price[0][discount_type]', $discountTypes, null, ['class' => 'form-control']) !!}
+
+                        <select name="price[0][discount_type]" class="form-control">
+
+                            @foreach($discountTypes as $key => $value)
+
+                                <option value="{{ $key }}" @if(old('price.0.discount_type', isset($product) ? $product->getPrice()->getDiscountType() : null) == $key) selected @endif>{{ $value }}</option>
+
+                            @endforeach
+
+                        </select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <div class="form-group has-feedback">
                         <label>Valor do desconto</label>
-                        {!! Form::text('price[0][discount_value]', null, ['class' => 'form-control']) !!}
+                        <input type="text" class="form-control" name="price[0][discount_value]" value="{{ old('price.0.discount_value', isset($product) ? $product->getPrice()->getDiscountAmount() : '') }}">
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
                         <div class="checkbox">
-                            <input type="hidden" name="price[0][import_price]" value="0">
-                            <label for="ckbImportPrice"> {!! Form::checkbox('price[0][import_price]', 1, null, ['id' => 'ckbImportPrice', 'class' => '']) !!} Importa preço do ERP da People?</label>
+                            <input type="hidden" name="import_price" value="0">
+                            <label for="ckbImportPrice">
+                                <input type="checkbox" value="1" @if(old('should_import_price', isset($product) ? $product->shouldImportPrice() : false)) checked @endif>
+                                Importa preço do ERP da People?</label>
                         </div>
                     </div>
                 </div>

@@ -11,11 +11,11 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function find($id)
     {
-        $qb = $this->createQueryBuilder('o');
+        $qb = $this->createQueryBuilder('p');
 
-        $qb->select('o', 'i')
-            ->leftJoin('o.images', 'i')
-            ->where($qb->expr()->eq('o.id', $id));
+        $qb->select('p', 'v')
+            ->join('p.variants', 'v')
+            ->where($qb->expr()->eq('p.id', $id));
 
         return $qb->getQuery()->getOneOrNullResult();
     }

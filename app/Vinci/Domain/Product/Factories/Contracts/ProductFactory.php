@@ -5,6 +5,8 @@ namespace Vinci\Domain\Product\Factories\Contracts;
 interface ProductFactory
 {
 
-    public function makeFromArray(array $data);
+    public function make(array $data);
+
+    public function getInstanceFromType($type);
 
 }

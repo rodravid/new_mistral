@@ -73,6 +73,11 @@ class Product extends Model implements ProductInterface
      */
     protected $channels;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductType")
+     */
+    protected $archType;
+
     protected $currentChannel;
 
     protected $priceCalculator;
@@ -83,6 +88,11 @@ class Product extends Model implements ProductInterface
         $this->attributes = new ArrayCollection;
         $this->options = new ArrayCollection;
         $this->channels = new ArrayCollection;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getVariants()
@@ -303,6 +313,50 @@ class Product extends Model implements ProductInterface
         return $this;
     }
 
+    public function getShortDescription()
+    {
+        return $this->getMasterVariant()->getShortDescription();
+    }
+
+    public function setShortDescription($description)
+    {
+        $this->getMasterVariant()->setShortDescription($description);
+        return $this;
+    }
+
+    public function getSeoTitle()
+    {
+        return $this->getMasterVariant()->getSeoTitle();
+    }
+
+    public function setSeoTitle($title)
+    {
+        $this->getMasterVariant()->setSeoTitle($title);
+        return $this;
+    }
+
+    public function getSeoDescription()
+    {
+        return $this->getMasterVariant()->getSeoDescription();
+    }
+
+    public function setSeoDescription($description)
+    {
+        $this->getMasterVariant()->setSeoDescription($description);
+        return $this;
+    }
+
+    public function getSeoKeywords()
+    {
+        return $this->getMasterVariant()->getSeoKeywords();
+    }
+
+    public function setSeoKeywords($keywords)
+    {
+        $this->getMasterVariant()->setSeoKeywords($keywords);
+        return $this;
+    }
+
     public function getPrices()
     {
         return $this->getMasterVariant()->getPrices();
@@ -317,6 +371,16 @@ class Product extends Model implements ProductInterface
     {
         $this->getMasterVariant()->addPrice($price);
         return $this;
+    }
+
+    public function shouldImportPrice()
+    {
+        return $this->getMasterVariant()->shouldImportPrice();
+    }
+
+    public function shouldImportStock()
+    {
+        return $this->getMasterVariant()->shouldImportStock();
     }
 
     public function getSlug()
@@ -341,6 +405,17 @@ class Product extends Model implements ProductInterface
         return $this;
     }
 
+    public function getStock()
+    {
+        return $this->getMasterVariant()->getStock();
+    }
+
+    public function setStock($stock)
+    {
+        $this->getMasterVariant()->setStock($stock);
+        return $this;
+    }
+
     public function setPriceCalculator(PriceCalculator $priceCalculator)
     {
         $this->priceCalculator = $priceCalculator;
@@ -350,6 +425,22 @@ class Product extends Model implements ProductInterface
     public function getPriceCalculator()
     {
         return $this->priceCalculator;
+    }
+
+    public function getArchType()
+    {
+        return $this->archType;
+    }
+
+    public function setArchType(ProductType $archType)
+    {
+        $this->archType = $archType;
+        return $this;
+    }
+
+    public function isType($type)
+    {
+        return $this->getArchType()->is($type);
     }
 
 }

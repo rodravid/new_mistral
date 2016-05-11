@@ -6,12 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="products_types")
  */
-class ProductType
+class ProductType extends Model
 {
 
     use Timestampable;
@@ -108,6 +109,11 @@ class ProductType
     public function hasAttribute(Attribute $attribute)
     {
         return $this->attributes->contains($attribute);
+    }
+
+    public function hasAttributes()
+    {
+        return $this->attributes->count() > 0;
     }
 
     public function is($type)

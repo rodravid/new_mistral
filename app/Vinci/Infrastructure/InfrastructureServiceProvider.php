@@ -139,16 +139,22 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Address\City\City'
         );
 
+        $this->registerRepository(
+            'Vinci\Domain\Product\Repositories\ProductRepository',
+            'Vinci\Infrastructure\Product\DoctrineProductRepository',
+            'Vinci\Domain\Product\Product'
+        );
 
-        $this->app->singleton('Vinci\Domain\Product\Repositories\ProductRepository', function($app) {
 
-            $entityManager = $app['em'];
-
-            return $app->make('Vinci\Infrastructure\Product\TestProductRepository', [
-                $app['events']
-            ]);
-
-        });
+//        $this->app->singleton('Vinci\Domain\Product\Repositories\ProductRepository', function($app) {
+//
+//            $entityManager = $app['em'];
+//
+//            return $app->make('Vinci\Infrastructure\Product\TestProductRepository', [
+//                $app['events']
+//            ]);
+//
+//        });
 
         $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
             return new StorageService($this->app['filesystem'], $this->app['config']);

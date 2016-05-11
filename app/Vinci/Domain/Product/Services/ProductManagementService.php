@@ -9,6 +9,8 @@ use Illuminate\Http\UploadedFile;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Image\ImageVersion;
+use Vinci\Domain\Product\Builder\ProductBuilder;
+use Vinci\Domain\Product\Factories\Contracts\ProductFactory;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Validators\ProductValidator;
 
@@ -24,17 +26,21 @@ class ProductManagementService
 
     private $imageService;
 
+    private $productFactory;
+
     public function __construct(
         EntityManagerInterface $entityManager,
         ProductRepository $repository,
         ProductValidator $validator,
-        ProductImageService $imageService
+        ProductImageService $imageService,
+        \Vinci\Domain\Product\Factories\ProductFactory $productFactory
     )
     {
         $this->entityManager = $entityManager;
         $this->repository = $repository;
         $this->validator = $validator;
         $this->imageService = $imageService;
+        $this->productFactory = $productFactory;
     }
 
     public function create(array $data)
@@ -43,16 +49,9 @@ class ProductManagementService
 
         return $this->saveProduct($data, function($data) {
 
-            dd($data);
-
-            $product = new Product;
-
-
-            $product->setScheduleFieldsFromArray($data);
-            $product->fill($data);
+            $product = $this->productFactory->make($data);
 
             return $product;
-
         });
     }
 
@@ -74,14 +73,16 @@ class ProductManagementService
     {
         $product = $method($data);
 
-        dd($product);
-
         $this->repository->save($product);
+
+        dd('salvou');
 
         $this->imageService->storeAndAttach($data['image_desktop'], $product, ImageVersion::DESKTOP);
         $this->imageService->storeAndAttach($data['image_mobile'], $product, ImageVersion::MOBILE);
 
         $this->repository->save($product);
+
+        
 
         return $product;
     }

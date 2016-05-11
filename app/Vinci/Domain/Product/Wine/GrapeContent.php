@@ -3,12 +3,13 @@
 namespace Vinci\Domain\Product\Wine;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="wines_grapes")
  */
-class GrapeContent
+class GrapeContent extends Model
 {
 
     /**

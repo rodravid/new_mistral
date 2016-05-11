@@ -92,7 +92,7 @@ class ProductVariant extends Model implements ProductVariantInterface
     protected $options;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $prices;
 
@@ -357,13 +357,25 @@ class ProductVariant extends Model implements ProductVariantInterface
         return $this->getProduct()->getPriceCalculator();
     }
 
-    public function getSalePrice()
+    public function getShortDescription()
     {
-        // TODO: Implement getSalePrice() method.
+        return $this->shortDescription;
     }
 
-    public function getOriginalPrice()
+    public function setShortDescription($shortDescription)
     {
-        // TODO: Implement getOriginalPrice() method.
+        $this->shortDescription = $shortDescription;
+        return $this;
     }
+
+    public function shouldImportPrice()
+    {
+        return true;
+    }
+
+    public function shouldImportStock()
+    {
+        return true;
+    }
+
 }

@@ -5,13 +5,13 @@
                 <div class="col-xs-6 col-sm-6">
                     <div class="form-group">
                         <label>Selecione o tipo de uva</label>
-                        {!! Form::select('grape', ['' => 'Selecione a uva'] + $grapes, null, ['id' => 'selectGrape', 'class' => 'form-control select2', 'style' => 'width: 100%']) !!}
+                        {!! Form::select(null, ['' => 'Selecione a uva'] + $grapes, null, ['id' => 'selectGrape', 'class' => 'form-control select2', 'style' => 'width: 100%']) !!}
                     </div>
                 </div>
                 <div class="col-xs-3 col-sm-4">
                     <div class="form-group">
                         <label>Peso %</label>
-                        {!! Form::text('weight', null, ['id' => 'txtGrapeWeight', 'class' => 'form-control']) !!}
+                        {!! Form::text(null, null, ['id' => 'txtGrapeWeight', 'class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-xs-2 col-sm-2">
