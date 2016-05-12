@@ -23,7 +23,7 @@
 			</div>
 		</div>
 
-		<div class="bg-slider-principal template3">
+		<div class="bg-slider-principal template2">
 
 			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
 
@@ -43,7 +43,7 @@
 
 		</div>
 
-		<div class="bg-slider-principal template4">
+		<div class="bg-slider-principal template3">
 
 			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
 
@@ -57,11 +57,109 @@
 				</div>
 				
 				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
+
 			</div>
 
+		</div>
 
+				<div class="bg-slider-principal template4">
+
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
+
+				<div class="descr-slider">
+					<a href="javascript:void(0);">
+						<h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span> WINE SPECTATOR</h3>
+						<span class="sub-title-slider">Luca Malbec 2012</span>
+						<p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina! </p>
+					</a>
+					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
+				</div>
+				
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
+
+			</div>
 
 		</div>
+
+				<div class="bg-slider-principal template5">
+
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
+
+				<div class="descr-slider">
+					<a href="javascript:void(0);">
+						<h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span> WINE SPECTATOR</h3>
+						<span class="sub-title-slider">Luca Malbec 2012</span>
+						<p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina! </p>
+					</a>
+					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
+				</div>
+				
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
+
+			</div>
+
+		</div>
+
+				<div class="bg-slider-principal template6">
+
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
+
+				<div class="descr-slider">
+					<a href="javascript:void(0);">
+						<h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span> WINE SPECTATOR</h3>
+						<span class="sub-title-slider">Luca Malbec 2012</span>
+						<p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina! </p>
+					</a>
+					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
+				</div>
+				
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
+
+			</div>
+
+		</div>
+
+				<div class="bg-slider-principal template7">
+
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
+
+				<div class="descr-slider">
+					<a href="javascript:void(0);">
+						<h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span> WINE SPECTATOR</h3>
+						<span class="sub-title-slider">Luca Malbec 2012</span>
+						<p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina! </p>
+					</a>
+					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
+				</div>
+				
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
+
+			</div>
+
+		</div>
+
+		<div class="bg-slider-principal template8">
+
+			<div class="conteudo-slider-principal" style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
+
+				<div class="descr-slider">
+					<a href="javascript:void(0);">
+						<h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span> WINE SPECTATOR</h3>
+						<span class="sub-title-slider">Luca Malbec 2012</span>
+						<p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina! </p>
+					</a>
+					<a href="javascript:void(0);" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
+				</div>
+				
+				<img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
+
+			</div>
+
+		</div>
+
+	
+
+
 
 
 	</div>
@@ -677,7 +775,7 @@
 		function eDesktop() {
 			var larguraTela = $window.width();
 
-			if ( larguraTela > 970 ) {
+			if ( larguraTela > 767 ) {
 				return true;
 			} else {
 				return false;

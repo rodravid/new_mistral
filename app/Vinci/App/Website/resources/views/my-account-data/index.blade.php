@@ -156,20 +156,20 @@
 			<div class="col-register3 template4">
 
 				<div class="user-phones">
-					<h2 class="title-form">Contatos</h2>
+					<h2 class="title-form">Contatos *</h2>
 					<ul class="list-form-register">
 						<li>
 							<label for="phone1" class="label-input">Telefone celular *</label>
 							<input class="cel input-register full" type="tel" placeholder="Telefone celular *" phone-mask id="phone1">
 						</li>
 						<li>
-							<label for="phone2" class="label-input">Telefone comercial</label>
-							<input class="phone2 input-register full" type="tel" placeholder="Telefone comercial" phone-mask id="phone2">
+							<label for="phone2" class="label-input">Telefone fixo</label>
+							<input class="phone2 input-register full" type="tel" placeholder="Telefone fixo" phone-mask id="phone2">
 						</li>
-						<li>
+<!-- 						<li>
 							<label for="phone3" class="label-input">Telefone de contato</label>
-							<input class="input-register full" type="tel" placeholder="Telefone de contato" phone-mask id="phone3">
-						</li>
+							<input class="input-register full" type="tel" placeholder="Telefone de contato *" phone-mask id="phone3">
+						</li> -->
 
 					</ul>
 
