@@ -31,6 +31,11 @@ class GrapeContent extends Model
      */
     protected $weight;
 
+    public function getId()
+    {
+        return $this->getGrape()->getId();
+    }
+
     public function getWine()
     {
         return $this->wine;

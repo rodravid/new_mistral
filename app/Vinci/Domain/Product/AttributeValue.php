@@ -63,6 +63,12 @@ class AttributeValue
         return $this->id;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getProduct()
     {
         return $this->product;
@@ -77,6 +83,13 @@ class AttributeValue
     public function getAttribute()
     {
         return $this->attribute;
+    }
+
+    public function getAttributeId()
+    {
+        $this->assertAttributeIsSet();
+
+        return $this->getAttribute()->getId();
     }
 
     public function setAttribute(Attribute $attribute)

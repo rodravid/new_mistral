@@ -123,4 +123,16 @@ class Score extends Model
         return $this;
     }
 
+    public function override(Score $score)
+    {
+        $this
+            ->setTitle($score->getTitle())
+            ->setYear($score->getYear())
+            ->setValue($score->getValue())
+            ->setHighlight($score->isHighlighted())
+            ->setDescription($score->getDescription());
+
+        return $this;
+    }
+
 }

@@ -126,12 +126,12 @@ class CountryService
 
     protected function saveImages($data, Country $country)
     {
-        if (! empty($imageDesktop = $data['image_map'])) {
+        if (isset($data['image_map']) && ! empty($imageDesktop = $data['image_map'])) {
             $image = $this->storeImage($country, $imageDesktop);
             $country->addImage($image, ImageVersion::MAP);
         }
 
-        if (! empty($imageMobile = $data['image_banner'])) {
+        if (isset($data['image_banner']) && ! empty($imageMobile = $data['image_banner'])) {
             $image = $this->storeImage($country, $imageMobile);
             $country->addImage($image, ImageVersion::BANNER);
         }

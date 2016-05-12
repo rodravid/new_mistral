@@ -9,33 +9,33 @@
             <div class="row">
                 <div class="col-xs-12" id="boxScores">
                     @if($wineScores)
-                        @foreach($wineScores as $score)
+                        @foreach($wineScores as $key => $score)
                             <div class="row item" style="position: relative; margin-top: 20px;">
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
                                         <label>Título</label>
-                                        {!! Form::text('scores[0][title]', $score['title'], ['class' => 'form-control']) !!}
-                                        {!! Form::hidden('scores[0][id]', $score['id']) !!}
+                                        {!! Form::text('scores[' . $key . '][title]', $score['title'], ['class' => 'form-control']) !!}
+                                        {!! Form::hidden('scores[' . $key . '][id]', $score['id']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-2">
                                     <div class="form-group">
                                         <label>Ano</label>
-                                        {!! Form::text('scores[0][year]', $score['year'], ['class' => 'form-control']) !!}
+                                        {!! Form::text('scores[' . $key . '][year]', $score['year'], ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-2">
                                     <div class="form-group">
                                         <label>Pontos</label>
-                                        {!! Form::text('scores[0][value]', $score['value'], ['class' => 'form-control']) !!}
+                                        {!! Form::text('scores[' . $key . '][value]', $score['value'], ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-2">
                                     <div class="form-group">
                                         <div class="checkbox" style="margin-top: 30px;">
-                                            <input type="hidden" name="scores[0][highlighted]" value="0">
+                                            <input type="hidden" name="scores[{{ $key }}][highlighted]" value="0">
                                             <label for="ckbScoreHighlight">
-                                                <input type="checkbox" name="scores[0][highlighted]" value="1" @if(old('scores.0.highlighted', is_object($score) ? $score->isHighlighted() : $score['highlighted'])) checked @endif>
+                                                <input type="checkbox" name="scores[{{ $key }}][highlighted]" value="1" @if(old('scores.0.highlighted', is_object($score) ? $score->isHighlighted() : $score['highlighted'])) checked @endif>
                                                 Destaque?
                                             </label>
                                         </div>
@@ -44,7 +44,7 @@
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label>Descrição</label>
-                                        {!! Form::text('scores[0][description]', $score['description'], ['class' => 'form-control']) !!}
+                                        {!! Form::text('scores[' . $key . '][description]', $score['description'], ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-danger btnRemoveScore" style="position: absolute; bottom: 80px; right: 15px;" title="Remover pontuação"><i class="fa fa-minus-circle"></i> Remover</button>
@@ -91,6 +91,7 @@
                 '</div>' +
                 '<div class="col-xs-12 col-sm-2">' +
                 '<div class="form-group">' +
+                '<input type="hidden" name="scores[i' + index + '][highlighted]" value="0">' +
                 '<div class="checkbox" style="margin-top: 30px;">' +
                 '<label for="ckbScoreHighlight"><input type="checkbox" name="scores[i' + index + '][highlighted]" value="1"> Destaque?</label>' +
                 '</div>' +

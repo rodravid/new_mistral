@@ -25,7 +25,7 @@ class TestProductRepository implements ProductRepository
     {
         $channel1 = new Channel();
         $channel1->setName('Default');
-        $channel1->setCode(Channel::DEFAULT_CHANNEL);
+        $channel1->setCode('default');
 
         $channel2 = new Channel();
         $channel2->setName('Teste');

@@ -12,9 +12,9 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <div class="checkbox">
-                            <input type="hidden" name="import_stock" value="0">
+                            <input type="hidden" name="should_import_stock" value="0">
                             <label for="ckbImportStock">
-                                <input type="checkbox" value="1" @if(old('should_import_stock', isset($product) ? $product->shouldImportStock() : false)) checked @endif>
+                                <input type="checkbox" value="1" id="ckbImportStock" name="should_import_stock" @if(old('should_import_stock', isset($product) ? $product->shouldImportStock() : false)) checked @endif>
                                 Importa estoque do ERP da People?</label>
                         </div>
                     </div>

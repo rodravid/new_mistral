@@ -15,12 +15,12 @@ class Wine extends Product
 {
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\GrapeContent", mappedBy="wine", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\GrapeContent", mappedBy="wine", cascade={"all"}, indexBy="grape_id", orphanRemoval=true)
      */
     protected $grapeContent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine", cascade={"persist", "remove"}, indexBy="id", orphanRemoval=true)
      */
     protected $scores;
 
@@ -37,6 +37,22 @@ class Wine extends Product
         return $this->grapeContent;
     }
 
+    public function setGrapeContent(ArrayCollection $grapeContent)
+    {
+        foreach ($grapeContent as $item) {
+            $item->setWine($this);
+
+            if (! $this->grapeContent->containsKey($item->getGrape()->getId())) {
+                $this->grapeContent->add($item);
+            } else {
+                $this->grapeContent->get($item->getGrape()->getId())->setWeight($item->getWeight());
+            }
+
+        }
+
+        return $this;
+    }
+
     public function getScores()
     {
         return $this->scores;
@@ -46,7 +62,11 @@ class Wine extends Product
     {
         if (! $this->hasScore($score)) {
             $score->setWine($this);
-            $this->scores->add($score);
+            $this->scores->set($score->getId(), $score);
+
+        } else {
+
+            $this->scores->get($score->getId())->override($score);
         }
 
         return $this;
@@ -63,7 +83,7 @@ class Wine extends Product
 
     public function hasScore(Score $score)
     {
-        return $this->scores->contains($score);
+        return $this->scores->containsKey($score->getId());
     }
 
     public function getGrapes()
@@ -89,19 +109,24 @@ class Wine extends Product
     {
         if (! $this->hasGrapeContent($grapeContent)) {
             $grapeContent->setWine($this);
-            $this->grapeContent->add($grapeContent);
+            $this->grapeContent->set($grapeContent->getId(), $grapeContent);
+
+        } else {
+            $this->grapeContent->get($grapeContent->getId())->setWeight($grapeContent->getWeight());
         }
+
+        return $this;
     }
 
     public function hasGrapeContent(GrapeContent $grapeContent)
     {
-        return $this->grapeContent->contains($grapeContent);
+        return $this->grapeContent->containsKey($grapeContent->getId());
     }
 
     public function syncGrapeContent(ArrayCollection $grapesContents)
     {
         $toRemove = $this->grapeContent->filter(function($grapeContent) use ($grapesContents) {
-            if ($grapesContents->contains($grapeContent)) {
+            if ($grapesContents->containsKey($grapeContent->getId())) {
                 return false;
             }
             return true;
@@ -113,6 +138,26 @@ class Wine extends Product
 
         foreach ($grapesContents as $grapeContent) {
             $this->addGrapeContent($grapeContent);
+        }
+
+        return $this;
+    }
+
+    public function syncScores(ArrayCollection $scores)
+    {
+        $toRemove = $this->scores->filter(function($score) use ($scores) {
+            if ($scores->containsKey($score->getId())) {
+                return false;
+            }
+            return true;
+        });
+
+        foreach ($toRemove as $score) {
+            $this->scores->removeElement($score);
+        }
+
+        foreach ($scores as $score) {
+            $this->addScore($score);
         }
 
         return $this;

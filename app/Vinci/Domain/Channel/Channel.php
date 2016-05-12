@@ -14,8 +14,6 @@ use Vinci\Domain\Product\ProductInterface;
 class Channel implements ChannelInterface
 {
 
-    const DEFAULT_CHANNEL = 'default';
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -42,6 +40,11 @@ class Channel implements ChannelInterface
      * @ORM\Column(type="string", unique=true)
      */
     protected $accessKey;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default" = 0})
+     */
+    protected $default = false;
 
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", inversedBy="channels")
@@ -104,7 +107,13 @@ class Channel implements ChannelInterface
 
     public function isDefault()
     {
-        return $this->code == self::DEFAULT_CHANNEL;
+        return $this->default;
+    }
+
+    public function setDefault($default)
+    {
+        $this->default = (bool) $default;
+        return $this;
     }
 
     public function addProduct(ProductInterface $product)

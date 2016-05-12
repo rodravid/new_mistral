@@ -63,7 +63,7 @@ class ProductManagementService
 
             $product = $this->repository->find($id);
 
-            $this->productFactory->merge($product, $data);
+            $this->productFactory->override($product, $data);
 
             return $product;
         });

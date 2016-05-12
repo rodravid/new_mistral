@@ -29,6 +29,8 @@ class ProductVariantFactory
             ->setShortDescription($data['shortDescription'])
             ->setStatus($data['status'])
             ->setStock($data['stock'])
+            ->setImportPrice($data['should_import_price'])
+            ->setImportStock($data['should_import_stock'])
             ->setStartsAtFromFormat($data['startsAt'])
             ->setExpirationAtFromFormat($data['expirationAt']);
 

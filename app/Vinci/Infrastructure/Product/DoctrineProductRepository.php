@@ -13,11 +13,12 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
     {
         $qb = $this->createQueryBuilder('p');
 
-        $qb->select('p', 'v', 'i', 'vp', 'c')
+        $qb->select('p', 'v', 'i', 'vp', 'c', 'a')
             ->join('p.variants', 'v')
             ->leftJoin('p.channels', 'c')
             ->leftJoin('v.images', 'i')
             ->leftJoin('v.prices', 'vp')
+            ->leftJoin('p.attributes', 'a')
             ->where($qb->expr()->eq('p.id', $id));
 
         return $qb->getQuery()->getOneOrNullResult();

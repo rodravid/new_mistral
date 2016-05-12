@@ -73,6 +73,16 @@ class ProductVariant extends Model implements ProductVariantInterface
     protected $master = false;
 
     /**
+     * @ORM\Column(name="import_price", type="boolean", options={"default" = 1})
+     */
+    protected $importPrice = true;
+
+    /**
+     * @ORM\Column(name="import_stock", type="boolean", options={"default" = 1})
+     */
+    protected $importStock = true;
+
+    /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantImage", mappedBy="productVariant", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
      */
     protected $images;
@@ -92,7 +102,7 @@ class ProductVariant extends Model implements ProductVariantInterface
     protected $options;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant", cascade={"persist", "remove"}, indexBy="channel_id", orphanRemoval=true)
      */
     protected $prices;
 
@@ -240,14 +250,11 @@ class ProductVariant extends Model implements ProductVariantInterface
     public function addPrice(ProductVariantPrice $price)
     {
         if (! $this->hasPrice($price)) {
-
             $price->setVariant($this);
+            $this->prices->set($price->getId(), $price);
 
-            if (! $price->hasChannel()) {
-                $price->setChannel($this->getDefaultChannel());
-            }
-
-            $this->prices->add($price);
+        } else {
+            $this->prices->get($price->getId())->override($price);
         }
     }
 
@@ -260,7 +267,7 @@ class ProductVariant extends Model implements ProductVariantInterface
 
     public function hasPrice(ProductVariantPrice $price)
     {
-        return $this->prices->contains($price);
+        return $this->prices->containsKey($price->getId());
     }
 
     public function getDefaultChannel()
@@ -370,12 +377,44 @@ class ProductVariant extends Model implements ProductVariantInterface
 
     public function shouldImportPrice()
     {
-        return true;
+        return $this->importPrice;
+    }
+
+    public function setImportPrice($importPrice)
+    {
+        $this->importPrice = (bool) $importPrice;
+        return $this;
     }
 
     public function shouldImportStock()
     {
-        return true;
+        return $this->importStock;
+    }
+
+    public function setImportStock($importStock)
+    {
+        $this->importStock = (bool) $importStock;
+        return $this;
+    }
+
+    public function syncPrices(ArrayCollection $prices)
+    {
+        $toRemove = $this->prices->filter(function($price) use ($prices) {
+            if ($prices->containsKey($price->getId())) {
+                return false;
+            }
+            return true;
+        });
+
+        foreach ($toRemove as $price) {
+            $this->prices->removeElement($price);
+        }
+
+        foreach ($prices as $price) {
+            $this->addPrice($price);
+        }
+
+        return $this;
     }
 
 }

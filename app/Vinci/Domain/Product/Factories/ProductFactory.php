@@ -21,17 +21,21 @@ class ProductFactory implements ProductFactoryInterface
     
     private $scoreFactory;
 
+    private $attributeFactory;
+
     public function __construct(
         ProductVariantFactory $variantFactory,
         ProductTypeFactory $productTypeFactory,
         GrapeFactory $grapeFactory,
-        ScoreFactory $scoreFactory
+        ScoreFactory $scoreFactory,
+        AttributeFactory $attributeFactory
     )
     {
         $this->variantFactory = $variantFactory;
         $this->productTypeFactory = $productTypeFactory;
         $this->grapeFactory = $grapeFactory;
         $this->scoreFactory = $scoreFactory;
+        $this->attributeFactory = $attributeFactory;
     }
 
     public function make(array $data)
@@ -49,6 +53,8 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAtFromFormat($data['startsAt'])
             ->setExpirationAtFromFormat($data['expirationAt']);
 
+        $this->includeAttributes($product, $data);
+
         if ($product->isType(ProductType::TYPE_WINE)) {
 
             $this->includeGrapes($product, $data);
@@ -57,6 +63,14 @@ class ProductFactory implements ProductFactoryInterface
         }
 
         return $product;
+    }
+
+    protected function includeAttributes(Product $product, $data)
+    {
+        if (isset($data['attributes'])) {
+            $attributes = $this->attributeFactory->makeCollection($data['attributes']);
+            $product->setAttributes($attributes);
+        }
     }
 
     protected function includeGrapes($product, array $data)
@@ -81,7 +95,7 @@ class ProductFactory implements ProductFactoryInterface
         }
     }
 
-    public function merge(Product $product, array $data)
+    public function override(Product $product, array $data)
     {
         $newProduct = $this->make($data);
 
@@ -90,8 +104,11 @@ class ProductFactory implements ProductFactoryInterface
             ->setDescription($newProduct->getDescription())
             ->setShortDescription($newProduct->getShortDescription())
             ->setStatus($newProduct->getStatus())
-            ->setAttributes($newProduct->getAttributes())
+            ->syncAttributes($newProduct->getAttributes())
             ->syncChannels($newProduct->getChannels())
+            ->syncScores($newProduct->getScores())
+            ->syncPrices($newProduct->getPrices())
+            ->setStock($newProduct->getStock())
             ->setSeoTitle($newProduct->getSeoTitle())
             ->setSeoDescription($newProduct->getSeoDescription())
             ->setSeoKeywords($newProduct->getSeoKeywords())
@@ -100,12 +117,12 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAt($newProduct->getStartsAt())
             ->setExpirationAt($newProduct->getExpirationAt())
             ->setOnline($newProduct->isOnline())
+            ->setImportStock($newProduct->shouldImportStock())
+            ->setImportPrice($newProduct->shouldImportPrice())
         ;
 
         if ($product->isType(ProductType::TYPE_WINE)) {
-
             $product->syncGrapeContent($newProduct->getGrapes());
-
         }
 
         return $product;

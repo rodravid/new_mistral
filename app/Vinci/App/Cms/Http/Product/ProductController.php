@@ -10,6 +10,7 @@ use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
+use Vinci\Domain\Channel\ChannelRepository;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\ProductService;
 use Vinci\Domain\Image\ImageRepository;
@@ -31,11 +32,14 @@ class ProductController extends Controller
 
     protected $imageRepository;
 
+    protected $channelRepository;
+
     public function __construct(
         EntityManagerInterface $em,
         ProductManagementService $service,
         ProductRepository $repository,
-        ImageRepository $imageRepository
+        ImageRepository $imageRepository,
+        ChannelRepository $channelRepository
     )
     {
         parent::__construct($em);
@@ -43,6 +47,7 @@ class ProductController extends Controller
         $this->service = $service;
         $this->repository = $repository;
         $this->imageRepository = $imageRepository;
+        $this->channelRepository = $channelRepository;
     }
 
     public function index()
@@ -55,8 +60,9 @@ class ProductController extends Controller
         $type = $this->normalizeType($request);
         $wineGrapes = $this->getGrapes($request);
         $wineScores = $this->getScores($request);
+        $channel = $this->channelRepository->getDefaultChannel();
 
-        return $this->view('products.create', compact('type', 'wineGrapes', 'wineScores'));
+        return $this->view('products.create', compact('type', 'wineGrapes', 'wineScores', 'channel'));
     }
 
     public function edit(Request $request, $id)
@@ -102,14 +108,12 @@ class ProductController extends Controller
 
             $data = $request->all();
 
-            $data['image_desktop'] = $request->file('image_desktop');
-            $data['image_mobile'] = $request->file('image_mobile');
-
             $product = $this->service->update($data, $id);
 
             Flash::success("Produto {$product->getTitle()} atualizado com sucesso!");
 
-            return Redirect::route($this->getEditRouteName(), $product->getId());
+            return Redirect::route($this->getEditRouteName(), $product->getId())
+                ->withInput(['current-tab' => $request->get('current-tab')]);
 
         } catch (ValidationException $e) {
 

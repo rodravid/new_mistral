@@ -54,7 +54,7 @@ class Product extends Model implements ProductInterface
     protected $variants;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\AttributeValue", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\AttributeValue", mappedBy="product", cascade={"persist", "remove"}, indexBy="id", orphanRemoval=true)
      */
     protected $attributes;
 
@@ -146,24 +146,54 @@ class Product extends Model implements ProductInterface
         return $this;
     }
 
+    public function hasAttributes()
+    {
+        return $this->attributes->count() > 0;
+    }
+
     public function addAttribute(AttributeValue $attribute)
     {
-        if (! $this->hasAttribute($attribute)) {
+        if (! $this->hasAttributeValue($attribute)) {
             $attribute->setProduct($this);
-            $this->attributes->add($attribute);
+
+            if (!empty($attribute->getId())) {
+                $this->attributes->set($attribute->getId(), $attribute);
+            } else {
+                $this->attributes->add($attribute);
+            }
         }
     }
 
     public function removeAttribute(AttributeValue $attribute)
     {
-        if ($this->hasAttribute($attribute)) {
+        if ($this->hasAttributeValue($attribute)) {
             $this->attributes->removeElement($attribute);
         }
     }
 
-    public function hasAttribute(AttributeValue $attribute)
+    public function hasAttributeValue(AttributeValue $attribute)
     {
-        return $this->attributes->contains($attribute);
+        return $this->attributes->containsKey($attribute->getId());
+    }
+
+    public function hasAttribute(Attribute $attribute)
+    {
+        foreach ($this->attributes as $attr) {
+            if ($attribute == $attr->getAttribute()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getAttribute($code)
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($attribute->getCode() == $code) {
+                return $attribute;
+            }
+        }
     }
 
     public function getMasterVariant()
@@ -382,9 +412,21 @@ class Product extends Model implements ProductInterface
         return $this->getMasterVariant()->shouldImportPrice();
     }
 
+    public function setImportPrice($importPrice)
+    {
+        $this->getMasterVariant()->setImportPrice($importPrice);
+        return $this;
+    }
+
     public function shouldImportStock()
     {
         return $this->getMasterVariant()->shouldImportStock();
+    }
+
+    public function setImportStock($importStock)
+    {
+        $this->getMasterVariant()->setImportStock($importStock);
+        return $this;
     }
 
     public function getSlug()
@@ -469,6 +511,41 @@ class Product extends Model implements ProductInterface
             }
         }
 
+        return $this;
+    }
+
+    public function syncAttributes(ArrayCollection $attributes)
+    {
+        $toRemove = $this->attributes->filter(function($attribute) use ($attributes) {
+            if ($attributes->containsKey($attribute->getId())) {
+                return false;
+            }
+            return true;
+        });
+
+        foreach ($toRemove as $attribute) {
+            $this->attributes->remove($attribute->getId());
+        }
+
+        foreach ($attributes as $attr) {
+
+            $attr->setProduct($this);
+
+            if ($this->attributes->containsKey($attr->getId())) {
+                $attribute = $this->attributes->get($attr->getId());
+                $attribute->setValue($attr->getValue());
+
+            } else {
+                $this->attributes->add($attr);
+            }
+        }
+
+        return $this;
+    }
+
+    public function syncPrices(ArrayCollection $prices)
+    {
+        $this->getMasterVariant()->syncPrices($prices);
         return $this;
     }
 

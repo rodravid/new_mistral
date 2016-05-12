@@ -5,8 +5,8 @@
                 <div class="col-xs-12 col-sm-2">
                     <div class="form-group">
                         <label>Canal de venda</label>
-                        <input type="text" class="form-control" name="price[0][channel][id]" value="{{ old('price.0.channel.id', isset($product) ? $product->getDefaultChannel()->getName() : '') }}" disabled readonly>
-                        <input type="hidden" name="price[0][channel][id]" value="{{ old('price.0.channel.id', isset($product) ? $product->getDefaultChannel()->getId() : '') }}">
+                        <input type="text" class="form-control" name="price[0][channel][id]" value="{{ old('price.0.channel.id', isset($product) ? $product->getDefaultChannel()->getName() : $channel->getName()) }}" disabled readonly>
+                        <input type="hidden" name="price[0][channel][id]" value="{{ old('price.0.channel.id', isset($product) ? $product->getDefaultChannel()->getId() : $channel->getId()) }}">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2">
@@ -54,9 +54,9 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         <div class="checkbox">
-                            <input type="hidden" name="import_price" value="0">
+                            <input type="hidden" name="should_import_price" value="0">
                             <label for="ckbImportPrice">
-                                <input type="checkbox" value="1" @if(old('should_import_price', isset($product) ? $product->shouldImportPrice() : false)) checked @endif>
+                                <input type="checkbox" id="ckbImportPrice" name="should_import_price" value="1" @if(old('should_import_price', isset($product) ? $product->shouldImportPrice() : false)) checked @endif>
                                 Importa preço do ERP da People?</label>
                         </div>
                     </div>

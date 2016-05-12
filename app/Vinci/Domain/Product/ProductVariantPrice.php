@@ -64,6 +64,11 @@ class ProductVariantPrice implements PriceInterface
 
     protected $priceCalculator;
 
+    public function getId()
+    {
+        return $this->getChannel()->getId();
+    }
+
     public function getPriceCalculator()
     {
         return $this->getVariant()->getPriceCalculator();
@@ -195,6 +200,19 @@ class ProductVariantPrice implements PriceInterface
         if (! $this->getPriceCalculator()) {
             throw new \Exception('Price calculator is not defined.');
         }
+    }
+
+    public function override(ProductVariantPrice $price)
+    {
+        $this
+            ->setPrice($price->getPrice())
+            ->setCostPrice($price->getCostPrice())
+            ->setDiscountType($price->getDiscountType())
+            ->setDiscountAmount($price->getDiscountAmount())
+            ->setAliquotIpi($price->getAliquotIpi())
+            ->setCurrencyAmount($price->getCurrencyAmount());
+
+        return $this;
     }
 
 }
