@@ -3,13 +3,17 @@
 namespace Vinci\Domain\Product\Wine;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="wines_scores")
  */
-class Score
+class Score extends Model
 {
+
+    use Timestampable;
 
     /**
      * @ORM\Id

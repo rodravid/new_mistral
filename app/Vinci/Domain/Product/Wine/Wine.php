@@ -88,6 +88,7 @@ class Wine extends Product
     public function addGrapeContent(GrapeContent $grapeContent)
     {
         if (! $this->hasGrapeContent($grapeContent)) {
+            $grapeContent->setWine($this);
             $this->grapeContent->add($grapeContent);
         }
     }
@@ -95,6 +96,26 @@ class Wine extends Product
     public function hasGrapeContent(GrapeContent $grapeContent)
     {
         return $this->grapeContent->contains($grapeContent);
+    }
+
+    public function syncGrapeContent(ArrayCollection $grapesContents)
+    {
+        $toRemove = $this->grapeContent->filter(function($grapeContent) use ($grapesContents) {
+            if ($grapesContents->contains($grapeContent)) {
+                return false;
+            }
+            return true;
+        });
+
+        foreach ($toRemove as $grapeContent) {
+            $this->grapeContent->removeElement($grapeContent);
+        }
+
+        foreach ($grapesContents as $grapeContent) {
+            $this->addGrapeContent($grapeContent);
+        }
+
+        return $this;
     }
 
 }

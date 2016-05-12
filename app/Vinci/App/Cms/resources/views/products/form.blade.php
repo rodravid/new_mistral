@@ -31,7 +31,7 @@
 
             @if($type->is('wine'))
                 @include('cms::products.tabs.grapes')
-                {{--@include('cms::products.tabs.scores')--}}
+                @include('cms::products.tabs.scores')
             @endif
 
         </div>

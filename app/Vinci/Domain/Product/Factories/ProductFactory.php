@@ -49,12 +49,11 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAtFromFormat($data['startsAt'])
             ->setExpirationAtFromFormat($data['expirationAt']);
 
-        if( $product->isType(ProductType::TYPE_WINE)) {
+        if ($product->isType(ProductType::TYPE_WINE)) {
 
             $this->includeGrapes($product, $data);
 
             $this->includeScores($product, $data);
-
         }
 
         return $product;
@@ -68,20 +67,48 @@ class ProductFactory implements ProductFactoryInterface
                 $grape = $this->grapeFactory->make($item);
                 $product->addGrape($grape, $item['weight']);
             }
-
         }
     }
 
     protected function includeScores($product, array $data)
     {
         if (isset($data['scores'])) {
-
             $scores = $this->scoreFactory->makeCollection($data['scores']);
 
             foreach ($scores as $score) {
                 $product->addScore($score);
             }
         }
+    }
+
+    public function merge(Product $product, array $data)
+    {
+        $newProduct = $this->make($data);
+
+        $product
+            ->setTitle($newProduct->getTitle())
+            ->setDescription($newProduct->getDescription())
+            ->setShortDescription($newProduct->getShortDescription())
+            ->setStatus($newProduct->getStatus())
+            ->setAttributes($newProduct->getAttributes())
+            ->syncChannels($newProduct->getChannels())
+            ->setSeoTitle($newProduct->getSeoTitle())
+            ->setSeoDescription($newProduct->getSeoDescription())
+            ->setSeoKeywords($newProduct->getSeoKeywords())
+            ->setSlug($newProduct->getSlug())
+            ->setSku($newProduct->getSku())
+            ->setStartsAt($newProduct->getStartsAt())
+            ->setExpirationAt($newProduct->getExpirationAt())
+            ->setOnline($newProduct->isOnline())
+        ;
+
+        if ($product->isType(ProductType::TYPE_WINE)) {
+
+            $product->syncGrapeContent($newProduct->getGrapes());
+
+        }
+
+        return $product;
     }
 
     public function getInstanceFromType($type)

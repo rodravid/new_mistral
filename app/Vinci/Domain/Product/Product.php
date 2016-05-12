@@ -68,7 +68,7 @@ class Product extends Model implements ProductInterface
     protected $options;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Channel\Channel", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Channel\Channel", inversedBy="products", indexBy="channel_id")
      * @ORM\JoinTable(name="products_channels")
      */
     protected $channels;
@@ -142,6 +142,8 @@ class Product extends Model implements ProductInterface
         foreach ($attributes as $attribute) {
             $this->addAttribute($attribute);
         }
+
+        return $this;
     }
 
     public function addAttribute(AttributeValue $attribute)
@@ -201,6 +203,8 @@ class Product extends Model implements ProductInterface
         foreach ($channels as $channel) {
             $this->addChannel($channel);
         }
+
+        return $this;
     }
 
     public function addChannel(Channel $channel)
@@ -441,6 +445,31 @@ class Product extends Model implements ProductInterface
     public function isType($type)
     {
         return $this->getArchType()->is($type);
+    }
+
+    public function syncChannels(ArrayCollection $channels)
+    {
+        $toRemove = $this->channels->filter(function($channel) use ($channels) {
+            if ($channels->contains($channel)) {
+                return false;
+            }
+            return true;
+        });
+
+        foreach ($toRemove as $channel) {
+            $this->channels->remove($channel->getId());
+        }
+
+        foreach ($channels as $channel) {
+
+            if ($this->channels->containsKey($channel->getId())) {
+                $this->channels->set($channel->getId(), $channel);
+            } else {
+                $this->channels->add($channel);
+            }
+        }
+
+        return $this;
     }
 
 }

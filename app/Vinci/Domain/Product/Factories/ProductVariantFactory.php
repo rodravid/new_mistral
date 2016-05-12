@@ -22,6 +22,9 @@ class ProductVariantFactory
 
         $variant
             ->setTitle($data['title'])
+            ->setSeoTitle($data['seoTitle'])
+            ->setSeoDescription($data['seoDescription'])
+            ->setSeoKeywords($data['seoKeywords'])
             ->setDescription($data['description'])
             ->setShortDescription($data['shortDescription'])
             ->setStatus($data['status'])

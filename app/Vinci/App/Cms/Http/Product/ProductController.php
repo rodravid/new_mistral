@@ -102,8 +102,6 @@ class ProductController extends Controller
 
             $data = $request->all();
 
-            dd($data);
-
             $data['image_desktop'] = $request->file('image_desktop');
             $data['image_mobile'] = $request->file('image_mobile');
 

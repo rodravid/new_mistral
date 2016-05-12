@@ -12,8 +12,8 @@
 
                 <div class="col-lg-12">
                     <div class="form-group has-feedback">
-                        <label for="txtCountrySeoDescription">Descrição SEO</label>
-                        {!! Form::textarea('seoDescription', null, ['id' => 'txtCountrySeoDescription', 'class' => 'form-control', 'rows' => 4, 'placeholder' => 'Digite a descrição para SEO']) !!}
+                        <label for="txtSeoDescription">Descrição SEO</label>
+                        {!! Form::textarea('seoDescription', null, ['id' => 'txtSeoDescription', 'class' => 'form-control', 'rows' => 4, 'placeholder' => 'Digite a descrição para SEO']) !!}
                         <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
                     </div>
                 </div>

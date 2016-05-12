@@ -62,8 +62,8 @@ class ProductManagementService
         return $this->saveProduct($data, function($data) use ($id) {
 
             $product = $this->repository->find($id);
-            $product->setScheduleFieldsFromArray($data);
-            $product->fill($data);
+
+            $this->productFactory->merge($product, $data);
 
             return $product;
         });
@@ -73,16 +73,12 @@ class ProductManagementService
     {
         $product = $method($data);
 
-        $this->repository->save($product);
-
-        dd('salvou');
-
-        $this->imageService->storeAndAttach($data['image_desktop'], $product, ImageVersion::DESKTOP);
-        $this->imageService->storeAndAttach($data['image_mobile'], $product, ImageVersion::MOBILE);
+//        $this->repository->save($product);
+//
+//        $this->imageService->storeAndAttach($data['image_desktop'], $product, ImageVersion::DESKTOP);
+//        $this->imageService->storeAndAttach($data['image_mobile'], $product, ImageVersion::MOBILE);
 
         $this->repository->save($product);
-
-        
 
         return $product;
     }
