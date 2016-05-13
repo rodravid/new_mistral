@@ -58,6 +58,7 @@ class ProductFactory implements ProductFactoryInterface
         $product
             ->setArchType($productType)
             ->setMasterVariant($variant)
+            ->setSku($data['sku'])
             ->setStatus($data['status'])
             ->setStartsAtFromFormat($data['startsAt'])
             ->setExpirationAtFromFormat($data['expirationAt']);
@@ -143,6 +144,7 @@ class ProductFactory implements ProductFactoryInterface
         $newProduct = $this->make($data);
 
         $product
+            ->setSku($newProduct->getSku())
             ->setTitle($newProduct->getTitle())
             ->setDescription($newProduct->getDescription())
             ->setShortDescription($newProduct->getShortDescription())

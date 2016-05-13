@@ -9,6 +9,7 @@ class ProductValidator extends LaravelValidator
 
     protected $rules = [
         'title' => 'required',
+        'sku' => 'required',
         'startsAt' => 'required|date_format:d/m/Y H:i',
         'expirationAt' => 'date_format:d/m/Y H:i',
     ];

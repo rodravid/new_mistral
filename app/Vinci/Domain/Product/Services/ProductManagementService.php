@@ -30,7 +30,7 @@ class ProductManagementService
         ProductRepository $repository,
         ProductValidator $validator,
         ProductImageService $imageService,
-        \Vinci\Domain\Product\Factories\ProductFactory $productFactory
+        ProductFactory $productFactory
     )
     {
         $this->entityManager = $entityManager;

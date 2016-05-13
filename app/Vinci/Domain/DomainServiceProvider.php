@@ -133,6 +133,10 @@ class DomainServiceProvider extends ServiceProvider
             );
         });
 
+        $this->app->singleton('Vinci\Domain\Product\Factories\Contracts\ProductFactory', function() {
+            return $this->app->make('Vinci\Domain\Product\Factories\ProductFactory');
+        });
+
         $this->app->singleton('Vinci\Domain\Channel\Contracts\ChannelProvider', function() {
             return new ChannelProvider;
         });

@@ -33,7 +33,7 @@
             <div class="col-xs-12 col-lg-3">
                 <div class="row">
                     <div class="col-xs-12">
-                        @include('cms::layouts.partials.publication.edit.default', ['model' => $product, 'hideDraft' => true])
+                        @include('cms::layouts.partials.publication.edit.default', ['model' => $product])
                     </div>
 
                     @if ($product->hasImage('mobile'))

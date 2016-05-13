@@ -1,6 +1,15 @@
 <div class="tab-pane {{ currentTabActive('#productData', 'active', true) }}" id="productData">
     <div class="row">
 
+
+        <div class="col-xs-12">
+            <div class="form-group has-feedback">
+                <label for="txtSku">SKU</label>
+                {!! Form::text('sku', null, ['id' => 'txtSku', 'class' => 'form-control', 'placeholder' => 'Digite o código do produto (SKU)']) !!}
+                <span class="fa fa-pencil form-control-feedback"></span>
+            </div>
+        </div>
+
         <div class="col-xs-12">
             <div class="form-group has-feedback">
                 <label for="txtTitle">Título</label>
