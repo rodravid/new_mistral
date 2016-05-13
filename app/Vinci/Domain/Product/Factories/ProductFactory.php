@@ -2,28 +2,36 @@
 
 namespace Vinci\Domain\Product\Factories;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Vinci\Domain\Channel\Channel;
+use Vinci\Domain\Country\Country;
 use Vinci\Domain\Grape\GrapeFactory;
+use Vinci\Domain\Producer\Producer;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory as ProductFactoryInterface;
 use Vinci\Domain\Product\Kit\Kit;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\ProductType;
 use Vinci\Domain\Product\Wine\Score\ScoreFactory;
 use Vinci\Domain\Product\Wine\Wine;
+use Vinci\Domain\Region\Region;
 
 class ProductFactory implements ProductFactoryInterface
 {
 
+    private $entityManager;
+
     private $variantFactory;
 
     private $productTypeFactory;
-   
+
     private $grapeFactory;
-    
+
     private $scoreFactory;
 
     private $attributeFactory;
 
     public function __construct(
+        EntityManagerInterface $entityManager,
         ProductVariantFactory $variantFactory,
         ProductTypeFactory $productTypeFactory,
         GrapeFactory $grapeFactory,
@@ -31,6 +39,7 @@ class ProductFactory implements ProductFactoryInterface
         AttributeFactory $attributeFactory
     )
     {
+        $this->entityManager = $entityManager;
         $this->variantFactory = $variantFactory;
         $this->productTypeFactory = $productTypeFactory;
         $this->grapeFactory = $grapeFactory;
@@ -53,7 +62,11 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAtFromFormat($data['startsAt'])
             ->setExpirationAtFromFormat($data['expirationAt']);
 
+        $this->includeCountry($product, $data);
+        $this->includeRegion($product, $data);
+        $this->includeProducer($product, $data);
         $this->includeAttributes($product, $data);
+        $this->includeChannels($product, $data);
 
         if ($product->isType(ProductType::TYPE_WINE)) {
 
@@ -84,7 +97,7 @@ class ProductFactory implements ProductFactoryInterface
         }
     }
 
-    protected function includeScores($product, array $data)
+    protected function includeScores(Product $product, array $data)
     {
         if (isset($data['scores'])) {
             $scores = $this->scoreFactory->makeCollection($data['scores']);
@@ -92,6 +105,36 @@ class ProductFactory implements ProductFactoryInterface
             foreach ($scores as $score) {
                 $product->addScore($score);
             }
+        }
+    }
+
+    protected function includeChannels(Product $product, $data)
+    {
+        if (isset($data['channels']) && ! empty($data['channels'])) {
+            foreach ($data['channels'] as $channel) {
+                $product->addChannel($this->entityManager->getReference(Channel::class, $channel));
+            }
+        }
+    }
+
+    protected function includeCountry(Product $product, $data)
+    {
+        if (isset($data['country_id']) && ! empty($data['country_id'])) {
+            $product->setCountry($this->entityManager->getReference(Country::class, $data['country_id']));
+        }
+    }
+
+    protected function includeRegion(Product $product, $data)
+    {
+        if (isset($data['region_id']) && ! empty($data['region_id'])) {
+            $product->setRegion($this->entityManager->getReference(Region::class, $data['region_id']));
+        }
+    }
+
+    protected function includeProducer(Product $product, $data)
+    {
+        if (isset($data['producer_id']) && ! empty($data['producer_id'])) {
+            $product->setProducer($this->entityManager->getReference(Producer::class, $data['producer_id']));
         }
     }
 
@@ -106,7 +149,6 @@ class ProductFactory implements ProductFactoryInterface
             ->setStatus($newProduct->getStatus())
             ->syncAttributes($newProduct->getAttributes())
             ->syncChannels($newProduct->getChannels())
-            ->syncScores($newProduct->getScores())
             ->syncPrices($newProduct->getPrices())
             ->setStock($newProduct->getStock())
             ->setSeoTitle($newProduct->getSeoTitle())
@@ -122,6 +164,7 @@ class ProductFactory implements ProductFactoryInterface
         ;
 
         if ($product->isType(ProductType::TYPE_WINE)) {
+            $product->syncScores($newProduct->getScores());
             $product->syncGrapeContent($newProduct->getGrapes());
         }
 

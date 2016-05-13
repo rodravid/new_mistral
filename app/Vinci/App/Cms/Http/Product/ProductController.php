@@ -16,6 +16,7 @@ use Vinci\Domain\Product\ProductService;
 use Vinci\Domain\Image\ImageRepository;
 use Vinci\Domain\Product\ProductType;
 use Vinci\Domain\Product\Repositories\ProductRepository;
+use Vinci\Domain\Product\Services\ProductImageService;
 use Vinci\Domain\Product\Services\ProductManagementService;
 use Vinci\Infrastructure\Product\Datatables\ProductCmsDatatable;
 
@@ -34,11 +35,14 @@ class ProductController extends Controller
 
     protected $channelRepository;
 
+    protected $imageService;
+
     public function __construct(
         EntityManagerInterface $em,
         ProductManagementService $service,
         ProductRepository $repository,
         ImageRepository $imageRepository,
+        ProductImageService $imageService,
         ChannelRepository $channelRepository
     )
     {
@@ -48,6 +52,7 @@ class ProductController extends Controller
         $this->repository = $repository;
         $this->imageRepository = $imageRepository;
         $this->channelRepository = $channelRepository;
+        $this->imageService = $imageService;
     }
 
     public function index()
@@ -70,10 +75,17 @@ class ProductController extends Controller
         $product = $this->repository->findOrFail($id);
 
         $type = $product->getArchType();
-        $wineGrapes = $this->getGrapes($request, $product);
-        $wineScores = $this->getScores($request, $product);
 
-        return $this->view('products.edit', compact('product', 'type', 'wineGrapes', 'wineScores'));
+        $channel = $product->getDefaultChannel();
+
+        $view = $this->view('products.edit', compact('product', 'type', 'channel'));
+
+        if ($type->is('wine')) {
+            $view->with('wineGrapes', $this->getGrapes($request, $product));
+            $view->with('wineScores', $this->getScores($request, $product));
+        }
+
+        return $view;
     }
 
     public function store(Request $request)
@@ -154,7 +166,7 @@ class ProductController extends Controller
             $product = $this->repository->find($productId);
             $image = $this->imageRepository->find($imageId);
 
-            $this->service->removeImage($image, $product);
+            $this->imageService->removeFrom($product, $image);
 
             Flash::success("Imagem excluída com sucesso!");
 

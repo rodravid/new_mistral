@@ -16,4 +16,19 @@ class ProductPresenter extends AbstractPresenter
         return '--';
     }
 
+    public function presentOnline()
+    {
+        return $this->toAffirmative($this->isOnline());
+    }
+
+    public function presentShouldImportStock()
+    {
+        return $this->toAffirmative($this->shouldImportStock());
+    }
+
+    public function presentShouldImportPrice()
+    {
+        return $this->toAffirmative($this->shouldImportPrice());
+    }
+
 }

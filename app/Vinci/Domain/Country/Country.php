@@ -27,6 +27,11 @@ class Country extends BaseTaxonomy
      */
     protected $regions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Product", mappedBy="country")
+     */
+    protected $products;
+
     public function getImagesUploadPath()
     {
         return 'countries/' . $this->getId() . '/images';

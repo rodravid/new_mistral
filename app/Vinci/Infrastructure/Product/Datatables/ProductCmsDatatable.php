@@ -4,7 +4,7 @@ namespace Vinci\Infrastructure\Product\Datatables;
 
 use Vinci\App\Cms\Http\Product\Presenters\ProductPresenter;
 use Vinci\Domain\ACL\ACLService;
-use Vinci\Domain\Product\ProductRepository;
+use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
 class ProductCmsDatatable extends AbstractDatatables
@@ -20,34 +20,31 @@ class ProductCmsDatatable extends AbstractDatatables
     }
 
     protected $sortMapping = [
-        0 => 'n.id',
-        1 => 'n.position',
-        2 => 'i.id',
-        3 => 'n.title',
-        4 => 'n.createdAt',
-        5 => 'n.startsAt',
-        6 => 'n.expirationAt',
-        7 => 'n.status',
+        0 => 'p.id',
+        2 => 'v.title',
+        3 => 'v.stock',
+        4 => 'v.importStock',
+        5 => 'v.importPrice',
+        6 => 'p.online',
+        7 => 'p.createdAt',
+        8 => 'p.status',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
-        $qb = $this->repository->getBySortableGroupsQueryBuilder()
-            ->join('n.user', 'u')
-            ->leftJoin('n.images', 'i')
+        $qb = $this->repository->createQueryBuilder('p')
+            ->select('p')
+            ->join('p.variants', 'v')
+            ->leftJoin('v.images', 'i')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
-        $qb->where($qb->expr()->eq('n.type', ':type'));
-
-        $qb->setParameter('type', $this->aclService->getCurrentModuleName());
-
         if (! empty($search['value'])) {
 
-            $qb->where($qb->expr()->eq('n.id', ':id'));
+            $qb->where($qb->expr()->eq('p.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('n.title', ':search')
+                $qb->expr()->like('p.title', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
@@ -65,13 +62,14 @@ class ProductCmsDatatable extends AbstractDatatables
         $presenter = new ProductPresenter($product);
 
         return [
-            $product->getId(),
-            $product->position,
+            $presenter->id,
             $presenter->image_html,
-            $product->getTitle(),
+            $presenter->title,
+            $presenter->stock,
+            $presenter->should_import_stock,
+            $presenter->should_import_price,
+            $presenter->online,
             $presenter->created_at,
-            $presenter->starts_at,
-            $presenter->expiration_at,
             $presenter->status_html,
             $this->buildActionsColumn($product)
         ];

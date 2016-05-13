@@ -31,7 +31,31 @@
             </div>
 
             <div class="col-xs-12 col-lg-3">
-                @include('cms::layouts.partials.publication.edit.default', ['model' => $product, 'hideDraft' => true])
+                <div class="row">
+                    <div class="col-xs-12">
+                        @include('cms::layouts.partials.publication.edit.default', ['model' => $product, 'hideDraft' => true])
+                    </div>
+
+                    @if ($product->hasImage('mobile'))
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Imagem mobile',
+                            'image' => $product->getImage('mobile'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$product->getId(), $product->getImage('mobile')->getId()])
+                            ])
+                        </div>
+                    @endif
+
+                    @if ($product->hasImage('desktop'))
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Imagem desktop',
+                            'image' => $product->getImage('desktop'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$product->getId(), $product->getImage('desktop')->getId()])
+                            ])
+                        </div>
+                    @endif
+                </div>
             </div>
 
             {!! Form::close() !!}

@@ -32,6 +32,11 @@ class Region extends BaseTaxonomy
      */
     protected $producers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Product", mappedBy="region")
+     */
+    protected $products;
+
     public function __construct()
     {
         parent::__construct();
@@ -75,6 +80,11 @@ class Region extends BaseTaxonomy
         if ($this->producers->contains($producer)) {
             $this->producers->add($producer);
         }
+    }
+
+    public function getProducts()
+    {
+        return $this->products;
     }
 
 }

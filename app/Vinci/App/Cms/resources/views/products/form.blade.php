@@ -19,6 +19,7 @@
         <div class="tab-content">
             <input type="hidden" name="current-tab" id="currentTab" value="{{ old('current-tab', '#productData') }}">
             <input type="hidden" name="type[id]" value="{{ $type->getId() }}">
+            <input type="hidden" name="channels[0]" value="{{ $channel->getId() }}">
 
             @include('cms::products.tabs.product')
             @include('cms::products.tabs.search')

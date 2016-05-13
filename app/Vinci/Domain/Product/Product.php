@@ -13,7 +13,11 @@ use Vinci\Domain\Channel\Contracts\Channel as ChannelInterface;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Country\Country;
+use Vinci\Domain\Image\Image;
 use Vinci\Domain\Pricing\Calculator\PriceCalculator;
+use Vinci\Domain\Producer\Producer;
+use Vinci\Domain\Region\Region;
 
 /**
  * @ORM\Entity
@@ -25,6 +29,7 @@ use Vinci\Domain\Pricing\Calculator\PriceCalculator;
  *     "wine" = "Vinci\Domain\Product\Wine\Wine",
  *     "kit" = "Vinci\Domain\Product\Kit\Kit"
  * })
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Product extends Model implements ProductInterface
 {
@@ -68,7 +73,7 @@ class Product extends Model implements ProductInterface
     protected $options;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Channel\Channel", inversedBy="products", indexBy="channel_id")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Channel\Channel", inversedBy="products", indexBy="id")
      * @ORM\JoinTable(name="products_channels")
      */
     protected $channels;
@@ -77,6 +82,21 @@ class Product extends Model implements ProductInterface
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductType")
      */
     protected $archType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Country\Country", inversedBy="products")
+     */
+    protected $country;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Region\Region", inversedBy="products")
+     */
+    protected $region;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Producer\Producer", inversedBy="products")
+     */
+    protected $producer;
 
     protected $currentChannel;
 
@@ -240,8 +260,7 @@ class Product extends Model implements ProductInterface
     public function addChannel(Channel $channel)
     {
         if (! $this->hasChannel($channel)) {
-            $channel->addProduct($this);
-            $this->channels->add($channel);
+            $this->channels->set($channel->getId(), $channel);
         }
 
         return $this;
@@ -250,13 +269,13 @@ class Product extends Model implements ProductInterface
     public function removeChannel(Channel $channel)
     {
         if ($this->hasChannel($channel)) {
-            $this->channels->removeElement($channel);
+            $this->channels->remove($channel->getId());
         }
     }
 
     public function hasChannel(Channel $channel)
     {
-        return $this->channels->contains($channel);
+        return $this->channels->containsKey($channel->getId());
     }
 
     public function normalizeChannel($channel)
@@ -492,7 +511,7 @@ class Product extends Model implements ProductInterface
     public function syncChannels(ArrayCollection $channels)
     {
         $toRemove = $this->channels->filter(function($channel) use ($channels) {
-            if ($channels->contains($channel)) {
+            if ($channels->containsKey($channel->getId())) {
                 return false;
             }
             return true;
@@ -503,12 +522,7 @@ class Product extends Model implements ProductInterface
         }
 
         foreach ($channels as $channel) {
-
-            if ($this->channels->containsKey($channel->getId())) {
-                $this->channels->set($channel->getId(), $channel);
-            } else {
-                $this->channels->add($channel);
-            }
+            $this->addChannel($channel);
         }
 
         return $this;
@@ -547,6 +561,77 @@ class Product extends Model implements ProductInterface
     {
         $this->getMasterVariant()->syncPrices($prices);
         return $this;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function setCountry(Country $country)
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    public function setRegion(Region $region)
+    {
+        $this->region = $region;
+        return $this;
+    }
+
+    public function getProducer()
+    {
+        return $this->producer;
+    }
+
+    public function setProducer(Producer $producer)
+    {
+        $this->producer = $producer;
+        return $this;
+    }
+
+    public function getImages()
+    {
+        return $this->getMasterVariant()->getImages();
+    }
+
+    public function setImages(ArrayCollection $images)
+    {
+        $this->getMasterVariant()->setImages($images);
+        return $this;
+    }
+
+    public function getImagesUploadPath()
+    {
+        return $this->getMasterVariant()->getImagesUploadPath();
+    }
+
+    public function addImage(Image $image, $version)
+    {
+        $this->getMasterVariant()->addImage($image, $version);
+        return $this;
+    }
+
+    public function removeImage(Image $image)
+    {
+        $this->getMasterVariant()->removeImage($image);
+        return $this;
+    }
+
+    public function getImage($version)
+    {
+        return $this->getMasterVariant()->getImage($version);
+    }
+
+    public function hasImage($version)
+    {
+        return $this->getMasterVariant()->hasImage($version);
     }
 
 }

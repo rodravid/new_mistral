@@ -4,13 +4,10 @@ namespace Vinci\Domain\Product\Services;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
-use Illuminate\Http\UploadedFile;
 use Vinci\Domain\Core\Validation\ValidationTrait;
-use Vinci\Domain\Image\Image;
 use Vinci\Domain\Image\ImageVersion;
-use Vinci\Domain\Product\Builder\ProductBuilder;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory;
+use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Validators\ProductValidator;
 
@@ -71,16 +68,39 @@ class ProductManagementService
 
     protected function saveProduct($data, Closure $method)
     {
-        $product = $method($data);
+        try {
 
-//        $this->repository->save($product);
-//
-//        $this->imageService->storeAndAttach($data['image_desktop'], $product, ImageVersion::DESKTOP);
-//        $this->imageService->storeAndAttach($data['image_mobile'], $product, ImageVersion::MOBILE);
+            $this->entityManager->beginTransaction();
+
+            $product = $method($data);
+
+            $this->repository->save($product);
+
+            $this->saveImages($data, $product);
+
+            $this->entityManager->commit();
+
+            return $product;
+
+        } catch (Exception $e) {
+
+            $this->entityManager->rollback();
+
+            throw $e;
+        }
+    }
+
+    protected function saveImages($data, Product $product)
+    {
+        if (isset($data['image_desktop']) && ! empty($imageDesktop = $data['image_desktop'])) {
+            $this->imageService->storeAndAttach($imageDesktop, $product, ImageVersion::DESKTOP);
+        }
+
+        if (isset($data['image_mobile']) && ! empty($imageMobile = $data['image_mobile'])) {
+            $this->imageService->storeAndAttach($imageMobile, $product, ImageVersion::MOBILE);
+        }
 
         $this->repository->save($product);
-
-        return $product;
     }
 
 }

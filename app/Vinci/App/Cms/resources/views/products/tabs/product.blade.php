@@ -33,5 +33,21 @@
             </div>
         </div>
 
+        <div class="col-lg-12">
+            <div class="form-group has-feedback">
+                <label>Foto versão desktop</label>
+                {!! Form::file('image_desktop') !!}
+                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="form-group has-feedback">
+                <label>Foto versão mobile</label>
+                {!! Form::file('image_mobile') !!}
+                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
+            </div>
+        </div>
+
     </div>
 </div>

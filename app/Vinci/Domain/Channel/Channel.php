@@ -47,7 +47,7 @@ class Channel implements ChannelInterface
     protected $default = false;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", inversedBy="channels")
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", mappedBy="channels", indexBy="id")
      */
     protected $products;
 
@@ -125,7 +125,12 @@ class Channel implements ChannelInterface
 
     public function hasProduct(ProductInterface $product)
     {
-        return $this->products->contains($product);
+        return $this->products->containsKey($product->getId());
+    }
+
+    public function getProducts()
+    {
+        return $this->products;
     }
 
 }
