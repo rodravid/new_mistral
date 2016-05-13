@@ -54,13 +54,13 @@
 					</a>
 				</li>
 				<li class="nav-item nav-item-login">
-					<a class="nav-link call-login" href="javascript:void();">
+					<a class="nav-link call-login" href="javascript:void(0);">
 						Login
 					</a>
 				</li>
 
 				<li class="nav-item nav-item-user-logged">
-					<a class="nav-link" href="javascript:void();">
+					<a class="nav-link" href="javascript:void(0);">
 						Seja bem vindo, Wellington!
 					</a>
 					<div class="drop-user">
@@ -121,24 +121,24 @@
 							<div class="drop-menu">
 								<div class="division">
 									<ul class="list-sub-menu">
-										<li><a href="javascript:void();">África do Sul</a></li>
-										<li><a href="javascript:void();">Alemanha</a></li>
-										<li><a href="javascript:void();">Argentina</a></li>
-										<li><a href="javascript:void();">Austrália</a></li>
-										<li><a href="javascript:void();">Brasil</a></li>
-										<li><a href="javascript:void();">Chile</a></li>
-										<li><a href="javascript:void();">Espanha</a></li>
-										<li><a href="javascript:void();">Estados Unidos</a></li>
+										<li><a href="javascript:void(0);">África do Sul</a></li>
+										<li><a href="javascript:void(0);">Alemanha</a></li>
+										<li><a href="javascript:void(0);">Argentina</a></li>
+										<li><a href="javascript:void(0);">Austrália</a></li>
+										<li><a href="javascript:void(0);">Brasil</a></li>
+										<li><a href="javascript:void(0);">Chile</a></li>
+										<li><a href="javascript:void(0);">Espanha</a></li>
+										<li><a href="javascript:void(0);">Estados Unidos</a></li>
 									</ul>
 								</div>
 								<div class="division">
 									<ul class="list-sub-menu">
-										<li><a href="javascript:void();">África do Sul</a></li>
-										<li><a href="javascript:void();">Alemanha</a></li>
-										<li><a href="javascript:void();">Argentina</a></li>
-										<li><a href="javascript:void();">Austrália</a></li>
-										<li><a href="javascript:void();">Brasil</a></li>
-										<li><a href="javascript:void();">Chile</a></li>
+										<li><a href="javascript:void(0);">África do Sul</a></li>
+										<li><a href="javascript:void(0);">Alemanha</a></li>
+										<li><a href="javascript:void(0);">Argentina</a></li>
+										<li><a href="javascript:void(0);">Austrália</a></li>
+										<li><a href="javascript:void(0);">Brasil</a></li>
+										<li><a href="javascript:void(0);">Chile</a></li>
 									</ul>
 								</div>
 								<div class="division">
@@ -257,12 +257,12 @@
 
 								<div class="division">
 									<ul class="list-sub-menu">
-										<li><a href="javascript:void();">África do Sul</a></li>
-										<li><a href="javascript:void();">Alemanha</a></li>
-										<li><a href="javascript:void();">Argentina</a></li>
-										<li><a href="javascript:void();">Austrália</a></li>
-										<li><a href="javascript:void();">Brasil</a></li>
-										<li><a href="javascript:void();">Chile</a></li>
+										<li><a href="javascript:void(0);">África do Sul</a></li>
+										<li><a href="javascript:void(0);">Alemanha</a></li>
+										<li><a href="javascript:void(0);">Argentina</a></li>
+										<li><a href="javascript:void(0);">Austrália</a></li>
+										<li><a href="javascript:void(0);">Brasil</a></li>
+										<li><a href="javascript:void(0);">Chile</a></li>
 									</ul>
 								</div>
 
@@ -477,58 +477,6 @@
 							</div>
 						</li>
 
-				<!-- 		<li class="menu-item larger760-right template8">
-							<a class="menu-link" href="javascript:void(0);">
-								Especiais
-							</a>
-							<div class="drop-menu">
-								<div class="division">
-									<div class="featured-wrap">
-										<h2 class="title-menu">Argentina</h2>
-										<div class="featured-sub-menu">
-											<a class="link-featured-sub-menu" href="/produto">
-												<h3>
-													Cune Crianza 2011 <span>CVNE</span> 
-												</h3>
-												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-												
-												<span class="featured-sub-more">Saiba Mais > </span>
-											</a>
-										</div>
-
-										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
-									</div>
-								</div>
-
-								<div class="division">
-									<div class="featured-wrap">
-										<h2 class="title-menu">Argentina</h2>
-										<div class="featured-sub-menu">
-											<a class="link-featured-sub-menu" href="/produto">
-												<h3>
-													Cune Crianza 2011 <span>CVNE</span> 
-												</h3>
-												<p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade...</p>
-												
-												<span class="featured-sub-more">Saiba Mais > </span>
-											</a>
-										</div>
-
-										<a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
-									</div>
-								</div>
-
-								<div class="division">
-									<a href="#">
-										<div class="every-category">
-											<h3>Veja todos os vinhos dessa categoria</h3>
-											<span>></span>
-										</div>
-									</a>
-								</div>
-							</div>
-						</li> -->
-
 					</ul>
 					<ul class="menu menu-logout-mobile">
 						
@@ -674,6 +622,12 @@
 		</div>
 
 		<div class="overlay"></div>
+</header>
+
+@include('website::layouts.modals.login.default')
+@include('website::layouts.modals.login.password.recovery.default')
+
+<div class="overlay"></div>
 
 
 

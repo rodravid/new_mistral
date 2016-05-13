@@ -3,8 +3,6 @@
 namespace Vinci\Infrastructure;
 
 use Illuminate\Support\ServiceProvider;
-use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository;
-use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepositoryCached;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class InfrastructureServiceProvider extends ServiceProvider
