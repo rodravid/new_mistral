@@ -10,11 +10,11 @@ jQuery(document).ready(function ($) {
     {
       breakpoint: 1100,
       settings: {
-      touchMove: true,
-      dots: true,
+        touchMove: true,
+        dots: true,
       }
     }
-  ]
+    ]
 
   });
   $('.slick-dots').appendTo('.w960');
@@ -183,11 +183,11 @@ jQuery(document).ready(function ($) {
     });
 
      $('.close, .overlay').on('click', function(){
-      $('.overlay, .modal-login, .modal-recovery, .modal-adress').fadeOut();
+      $('.overlay, .modal-login, .modal-recovery, .modal-adress, .global-modal').fadeOut();
     });
 
      $('.call-adress').on('click', function() {
-      $('.overlay, .modal-adress').fadeIn();
+      $('.overlay, .modal-adress, .global-modal').fadeIn();
     });
 
 
@@ -224,44 +224,64 @@ jQuery(document).ready(function ($) {
 
       $('input[name=type-buyer]').on('change', function() {
 
-          var $self = $(this);
-          var value = $self.val();
+        var $self = $(this);
+        var value = $self.val();
 
-          if (value == 1) {
+        if (value == 1) {
 
-            $("#person").fadeIn();
-            $("#company").hide();
+          $("#person").fadeIn();
+          $("#company").hide();
 
-          } else if(value == 2) {
+        } else if(value == 2) {
 
-            $("#company").fadeIn();
-            $("#person").hide();
+          $("#company").fadeIn();
+          $("#person").hide();
 
-          }
+        }
 
       });
 
       function toggleTypeBuyer()
       {
 
-          var $self = $(this);
-          var value = $('input[name=type-buyer]').val();
+        var $self = $(this);
+        var value = $('input[name=type-buyer]').val();
 
-          if (value == 1) {
+        if (value == 1) {
 
-            $("#person").fadeIn();
-            $("#company").hide();
+          $("#person").fadeIn();
+          $("#company").hide();
 
-          } else if(value == 2) {
+        } else if(value == 2) {
 
-            $("#company").fadeIn();
-            $("#person").hide();
+          $("#company").fadeIn();
+          $("#person").hide();
+          $("#residencial").hide();
+          $("#outros").hide();
+          
 
-          }
+        }
 
       }
 
       toggleTypeBuyer();
+
+
+
+
+      $(".menu-account-mob").click(function () { 
+        if (!$(this).hasClass('open-menu')) {
+          $(".menu-account-data").show();
+          $(".current-account-data").hide();
+          $(".menu-account-mob").addClass('open-menu');
+
+        } else {
+          $(".menu-account-data, .current-account-data").hide();
+          $(".menu-account-mob").removeClass('open-menu');
+        }
+      });
+
+
 
 
     //  $(".physical-person").click(function () { //when click on flip radio button
@@ -270,7 +290,7 @@ jQuery(document).ready(function ($) {
 
     //   $("#person").fadeIn();
     //   $("#company").fadeOut();
-      
+
     // });
 
     // $(".legal-person").click(function () { //when click on flip radio button
@@ -283,17 +303,41 @@ jQuery(document).ready(function ($) {
 
 
 
-   $(".input-register, .field-txt").keyup(function(event) {
-    var $self = $(this);
+    $(".input-register, .field-txt").keyup(function(event) {
+      var $self = $(this);
 
-    var $label = $('label[for="' + $self.attr('id') + '"]');
+      var $label = $('label[for="' + $self.attr('id') + '"]');
 
-    $self.val().length > 0 ? $label.fadeIn() : $label.fadeOut();
+      $self.val().length > 0 ? $label.fadeIn() : $label.fadeOut();
 
-  }).keyup();
+    }).keyup();
 
 
-});
+        // accordion
+        $(".click-accordion").click(function(event) {
+
+          if (!$(this).hasClass('aberto')){
+            $(this).siblings(".conteudo-accordion").slideDown(200);
+            $(this).addClass('aberto');
+            $(this).children(".seta-accordion-interna").removeClass('arrow-down').addClass('arrow-up');
+
+          } else {
+            
+            $(this).siblings(".conteudo-accordion").slideUp(200);
+            $(this).removeClass('aberto');
+            $(this).children(".seta-accordion-interna").addClass('arrow-down').removeClass('arrow-up');
+          }
+        });
+
+        $('.container-leia-mais').readmore({
+          speed: 100,
+          collapsedHeight: 70,
+          moreLink: '<a href="javascript:void(0);" class="more-txt">+ Veja mais</a>',
+          lessLink: '<a href="javascript:void(0);" class="less-txt">- Veja menos </a>'
+        });
+
+
+      });
 
 
 /*Detect IE add Class*/

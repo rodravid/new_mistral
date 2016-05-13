@@ -4,15 +4,15 @@
 		
 		<div class="row-footer border-top-footer show-desktop">	
 			<ul class="list-links-clients">
-				<li><a class="link-light" href="javascript:void(0);">Sobre a vinci</a></li>
+				<li><a class="link-light" href="/sobre-vinci">Sobre a vinci</a></li>
 				<li><a class="link-light" href="javascript:void(0);">Revendedores</a></li>
 				<li><a class="link-light" href="/fale-conosco">Fale conosco</a></li>
-				<li><a class="link-light" href="javascript:void(0);">Ajuda</a></li>
-				<li><a class="link-light" href="javascript:void(0);">Dúvidas freguentes</a></li>
+				<!-- <li><a class="link-light" href="javascript:void(0);">Ajuda</a></li> -->
+				<li><a class="link-light" href="/duvidas-frequentes">Dúvidas frequentes</a></li>
 			</ul>
 		</div>
 
-		<div class="row-footer">	
+		<div class="row-footer border-mobile-footer">	
 			<ul class="buy-phone two-cols">
 				<li> 
 					<span>compre pelo telefone <span class="phone-mobile">(11) 3130.4500</span></span>
@@ -113,7 +113,7 @@
 			<li>
 				
 				<p>
-					<a href="javascript:void(0);">Termos de Uso e Política de Privicidade e Segurança.</a>
+					<a href="/privacidade">Termos de Uso e Política de Privicidade e Segurança.</a>
 				</p>
 			</li>
 

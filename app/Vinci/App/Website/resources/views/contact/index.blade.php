@@ -73,7 +73,7 @@
 				<ul class="list-form-register">
 					<li>
 						<label for="assunto" class="label-input">Assunto *</label>
-						<input class="name-complete input-register half" type="text" placeholder="Assunto" id="assunto">
+						<input class="name-complete input-register half" type="text" placeholder="Assunto *" id="assunto">
 					</li>
 
 					<li>
@@ -98,7 +98,7 @@
 
 </div>
 
-<div class="border-links">
+<div class="border-footer">
 
 	@include('website::layouts.footer')
 

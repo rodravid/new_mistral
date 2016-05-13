@@ -6,8 +6,6 @@
 	@include('website::layouts.menu')
 	<div class="row">
 
-		<h1 class="internal-subtitle">Meu Carrinho</h1>
-
 		<ul class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
@@ -17,6 +15,8 @@
 				<span>Carrinho</span>
 			</li>
 		</ul>
+
+		<h1 class="internal-subtitle">Meu Carrinho</h1>
 
 	</div>
 </div>

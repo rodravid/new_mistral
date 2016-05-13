@@ -7,16 +7,35 @@
 	display: inline-block;
 
 
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		width:100%;
 	}
 
-	@media #{$screen-767} {
+	@media #{$screen767} {
 		.row {
 			padding:0;
 		}
 	}
 }
+
+.menu-fixo {
+	.cart-header {
+	    margin: -16px 30px 6px 0px;
+
+	    	@media #{$screen970} {
+	    margin: -50px 30px 6px 0px; 
+	}
+	}
+
+	@media #{$screen970}{ 
+			padding-bottom:3px;
+	}
+
+	}
+
+	.topcategorias {
+		top:70px;
+	}
 
 .logged-in-user{
 	.nav-item-cadastro,
@@ -37,7 +56,7 @@
 		display:inline-block;
 		color:$blue;
 	}
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		.menu-login-mobile{
 			display:inline-block !important;
 		}
@@ -76,7 +95,7 @@
 	background: #fff;
 	width: 100%;
 	z-index:9999999;
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		left: -230px;
 		width: 300px;
 	}
@@ -115,7 +134,6 @@
 .nav-item-user-logged:hover .nav-link:before,
 .nav-item-user-logged:hover .nav-link{
 	background: #fff;
-	color:$blue;
 }
 
 
@@ -129,7 +147,7 @@
 
 .logo { 
 	float: left;
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		margin-left: 41px;
 	}
 }
@@ -139,7 +157,7 @@
 	height:32px;
 	float:left;
 	text-indent: -5000px;
-	@media #{$screen-767}{
+	@media #{$screen767}{
 		margin-left: 16px;
 	 }
 }
@@ -151,7 +169,7 @@
 	display: inline-block;
 	margin-bottom: 9px;
 	display:none;
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		display:inline-block;
 	}
 }
@@ -159,11 +177,11 @@
 .search {
 	float:left;
 	padding-left:17px;
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		width: 67%;
 		margin-left: 10px;
 	}
-	@media #{$screen-767}{
+	@media #{$screen767}{
 		width:100%;
 		padding-left:0;
 		margin:10px 0 0 0;
@@ -176,10 +194,10 @@
 	float:left; 
 	position:relative;
 	width: 280px;
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		width:85%;
 	}
-	@media #{$screen-767}{
+	@media #{$screen767}{
 		width:80%;
 	}
 }
@@ -188,7 +206,7 @@
 	background: none;
 	border: 1px solid #fff;
 	width: 100%;
-	padding: 4.8px 30px 4.8px 10px;
+	padding: 4.8px 30px 4.8px 4.8px;
 	float:left;
 	color:#fff;
 	font-size:15px;
@@ -198,9 +216,9 @@
 	-webkit-appearance:none; /* Safari and Chrome */
 	-ms-appearance:none;
 	-o-appearance:none;
-	@media #{$screen-767}{
-		color:$blue; 
+	@media #{$screen767}{
 		padding: 10.8px 30px 10.8px 17px;
+		color:$blue;
 	}
 }
 
@@ -261,19 +279,25 @@
 	height: 30px;
 	width: 19px;
 	margin-left: 15px;
-	@media #{$screen-767}{
+	@media #{$screen767}{
 		/* position:absolute; */
-		background-position: -209px -122px;
 		margin-left: 0px;
 		margin-right: 25px;
 		float:right;
 	}
 }
 
+@media #{$screen767} {
+	.input-bt-search {
+		background-position: -209px -122px;
+
+	}
+}
+
 .navbar {
 	float:left;
 	margin-left: 60px;
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		display:none;
 	}
 }
@@ -282,7 +306,7 @@
 	margin-right:10px;
 }
 
-.nav-link{
+.nav-link {
 	border:1px solid #fff;
 	padding: 6.9px 10px;
 	font-size:12px;
@@ -294,17 +318,17 @@
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-	-webkit-backface-visibility: hidden;
+	/* -webkit-backface-visibility: hidden; */
 	backface-visibility: hidden;
-	-moz-osx-font-smoothing: grayscale;
+	/* -moz-osx-font-smoothing: grayscale; */
 	position: relative;
 	-webkit-transition-property: color;
 	transition-property: color;
 	-webkit-transition-duration: 0.3s;
 	transition-duration: 0.3s;
 }
-.nav-link:hover{
-	color:#11b6f0;
+.nav-link:hover {
+	color:$blue;
 }
 
 .nav-link:hover:before{
@@ -356,7 +380,7 @@
 	}
 
 	.nav-link:hover {
-		color: #fff;
+		color: #fff !important;
 	}
 }
 
@@ -368,15 +392,15 @@
 	margin: 12px 30px 0 0px;
 	position:relative;
 
-	@media #{$screen-990}{
+	@media #{$screen990}{
 		margin: 12px 10px 0 0px;
 	}
 
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		float:right;
 		margin: -50px 15px 0 9px;
 	}
-	@media #{$screen-767}{
+	@media #{$screen767}{
 		margin: -105px 0px 0 9px;
 		background-position: -135px -110px; 
 	}
@@ -399,7 +423,7 @@
 	background: #fff;
 	width: 420px;
 	box-shadow: 0 0 10px rgba(0,0,0,.5);
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		left: -230px;
 		width: 300px;
 	}
@@ -461,7 +485,7 @@
 	-o-transition: all .3s ease .30s;
 	-ms-transition: all .3s ease .30s;
 	transition: all .3s ease .30s;
-	@media #{$screen-767}{
+	@media #{$screen767}{
 		visibility: hidden;
 		overflow: hidden;
 	}
@@ -496,7 +520,7 @@
 	text-align: right;
 	float: right;
 
-	@media #{$screen-970}{
+	@media #{$screen970}{
 		float: left;
 		margin-top: 15px;
 	}
@@ -602,7 +626,7 @@
 			float:left;
 
 
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				margin-top: 0px;
 				position: fixed;
 				top: 0;
@@ -619,19 +643,20 @@
 				-ms-transform: translate(-100%, 0);
 				transform: translate(-100%, 0);
 				padding:29px 20px 20px 20px;
+				display: inline-block !important;
 			}
 
 		}
 
 		.menu{
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				padding-bottom: 10px;
 			}
 		}
 
 		.menu+.menu{
 			display:none;
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				border-top: 1px solid #7f7f7f;
 				display:inline-block;
 				width: 100%;
@@ -643,7 +668,7 @@
 
 		.menu-item {
 			display:inline-block;
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				display:block;
 			}
 		}
@@ -662,7 +687,7 @@
 			-o-transition: all .3s ease .30s;
 			-ms-transition: all .3s ease .30s;
 			transition: all .3s ease .30s;
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				color:#000;
 				padding: 10px 0px 0 0px;
 			}
@@ -678,7 +703,7 @@
 			transition: all .3s ease .30s;
 			box-shadow: -2px -1px 1px 0px rgba(0, 0, 0, 0.2);
 
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.0);		
 			}
 		}
@@ -730,7 +755,7 @@
 			/* box-shadow: 0 0 5px rgba(0,0,0,.5); */
 			box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 			z-index:800;
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				display:none;
 			}
 		}
@@ -921,7 +946,7 @@
 		.control-nav {
 			display:none;
 			
-			@media #{$screen-970}{
+			@media #{$screen970}{
 				position: absolute;
 				left: 0px;
 				top: 2px;
@@ -934,7 +959,7 @@
 				cursor: pointer;
 			}
 
-			@media #{$screen-767}{
+			@media #{$screen767}{
 				left: 15px;
 			}
 		}

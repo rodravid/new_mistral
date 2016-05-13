@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="header-internal template1-bg">
+<div class="header-internal template1-bg bg-color-category" style="background: url({{ asset_web('images/bg-pais.jpg') }}) no-repeat top right;">
 	@include('website::layouts.menu')
 	<div class="row">
 
@@ -17,16 +17,18 @@
 
 		</ul>
 
-		<h1 class="internal-subtitle">Vinho por país</h1>
-
-		<p class="category-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio consequuntur expedita quam, maiores recusandae! Esse dicta ab sit totam, quas veniam tenetur molestias incidunt aspernatur doloribus laudantium, cumque officiis aperiam! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio consequuntur expedita quam, maiores recusandae! Esse dicta ab sit totam.</p>
+		<h1 class="internal-subtitle-category">Vinho por país</h1>
+		<div class="container-leia-mais">
+			<p class="category-description">
+			Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade é sem dúvida um dos grandes vinhos da Argentina. Mostra muita classe, elegância e fantástica pureza, tendo recebido nada menos do que 92 pontos de Robert Parker, premiado com 93 pontos pela Wine Spectator na safra 2012 e escolhido como um dos "100 Melhores Vinhos do Mundo em 2014". Um vinho profundo e com muita alma, que enche a boca com camadas e mais camadas de fruta madura e finos taninos.
+	
+			</p>
+		</div>
 
 	</div>
 </div>
 
 <div class="row">
-
-
 
 	<article class="wrap-content-search">
 
@@ -359,7 +361,9 @@
 		</div>
 
 		<div class="column-products-search-category template1">
-
+			<a href="javascript:void(0);">
+				<img class="img-responsive mbottom20" src="{{ asset_web('images/banner-pais.jpg') }}" alt="">
+			</a>
 			<header class="header-content-internal">
 
 				<span class="total-products show-mobile">1- 15 de 350 produtos</span>
@@ -499,6 +503,130 @@
 			</div>
 
 			<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+						<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+						<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+						<div class="wine-card">
+				<span class="favorite"></span>
+				
+				<h3 class="title-card-wine">
+					<a href="javascript:void(0);">
+						Kaiken terroir series Corte 2012
+						<span>Kaiken</span>
+					</a>
+				</h3>
+				<p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
+				<div class="content-card-product">
+					<div class="thumb-wine">
+						<a href="javascript:void(0);">
+							<img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+						</a>
+					</div>
+					<div class="other-wine-info">
+						<a href="javascript:void(0);">
+							<span class="wine-intro">Tinto Pinot Noir Chile</span>
+							<p class="in"> De <span>R$ 38,50</span></p>
+							<p class="wine-price">
+								R$ 72,26
+							</p>
+						</a>
+					</div>
+
+				</div>
+				
+				<a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+			</div>
+
+						<div class="wine-card">
 				<span class="favorite"></span>
 				
 				<h3 class="title-card-wine">

@@ -39,17 +39,13 @@
 
 <div class="row">
 
-
-	
-
-
 	<section class="wrap-payment">
 		
 		<p class="title-internal-blue mbottom20">Resumo do pedido</p>
 
 		<article class="request section-payment">
 
-			<div class="row-request">
+			<div class="row-request template1">
 
 				<div class="col-request">
 
@@ -71,13 +67,13 @@
 				</div>
 
 				<div class="bt-request">
-					<a class="bt-arrow-payment" href="javascript:void(0);"> > </a>
+					<a class="bt-arrow-action" href="javascript:void(0);"> > </a>
 				</div>
 
 
 			</div>
 
-			<div class="row-request">
+			<div class="row-request template1">
 
 				<div class="col-request">
 
@@ -99,7 +95,7 @@
 				</div>
 
 				<div class="bt-request">
-					<a class="bt-arrow-payment" href="javascript:void(0);"> > </a>
+					<a class="bt-arrow-action" href="javascript:void(0);"> > </a>
 				</div>
 
 			</div>
@@ -126,7 +122,7 @@
 
 		<p class="title-internal-blue mbottom20">Endereço de Entrega</p>
 
-		<article class="to-deliver section-payment">
+		<article class="to-deliver section-payment template1">
 			<div class="float-left">
 				<span class="title-internal-15 uppercase">Casa</span>
 				<p>Rua bahia, 1126, Higienópolis</p>
@@ -134,17 +130,17 @@
 				<p>CEP 04412-300</p>
 			</div>
 			<div class="float-right">
-				<a class="bt-arrow-payment" href="javascript:void(0);"> > </a>
+				<a class="bt-arrow-action" href="javascript:void(0);"> > </a>
 			</div>
 		</article>
 
 		<p class="title-internal-blue mbottom20">Forma de pagamento</p>
 
-		<article class="form-payment section-payment">
+		<article class="form-payment section-payment template1">
 			<form action="">
 				<ul class="flags-card">
 					<li class="flags-list">
-						<div for="flags-card" id="" class="flags visa"></div>
+						<div class="flags visa"></div>
 						<input type="radio" name="flag-card" value="" class="visa">
 					</li>
 					<li class="flags-list">
@@ -192,7 +188,16 @@
 							<h2 class="title-form">Dados do cartão</h2>
 							<ul class="list-form-register">
 								<li>
-									<input class="email input-register full" type="text" placeholder="CPF / CNPJ">
+								<label class="label-input" for="name-card">Nome impresso do cartão *</label>
+									<input class="input-register full" type="text" placeholder="Nome impresso do cartão *" id="name-card">
+								</li>
+								<li>
+								<label class="label-input" for="numb-card">Número do cartão *</label>
+									<input class="email input-register full" type="text" placeholder="Número do cartão *" id="numb-card">
+								</li>
+								<li>
+								<label class="label-input" for="cpf-cnpj">CPF / CNPJ *</label>
+									<input class="email input-register full" type="text" placeholder="CPF / CNPJ" id="cpf-cnpj">
 								</li>
 
 <!-- 						<li>
@@ -200,14 +205,10 @@
 							<input class="number input-register two-fields" type="text" placeholder="Complemento">
 						</li> -->
 
-						<li>
-							<input class="email input-register full" type="text" placeholder="Número do cartão">
-						</li>
 
 
-						<li>
-							<input class="input-register full" type="text" placeholder="Nome impresso do cartão">
-						</li>
+
+
 					</ul>
 
 				</div>

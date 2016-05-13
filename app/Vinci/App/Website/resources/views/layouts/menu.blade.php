@@ -12,7 +12,7 @@
 		<div class="search">
 			<form action="">
 				<div class="wrap-input-search">	
-					<input class="input-search" type="search">
+					<input class="input-search" type="text">
 
 					<div class="results-suggestions">
 						<span class="bt-close-suggestions sprite-icon"></span>
@@ -44,7 +44,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="javascript:void();">
+					<a class="nav-link" href="/minhaconta-pedidos">
 						Meus pedidos
 					</a>
 				</li>
@@ -64,8 +64,10 @@
 						Seja bem vindo, Wellington!
 					</a>
 					<div class="drop-user">
-						<a href="">Meus dados</a>
-						<a href="">Favoritos</a>
+						<a href="/minhaconta-cadastro">Meus dados</a>
+						<a href="/minhaconta-pedidos">Dados Conta</a>
+						<a href="/minhaconta-favoritos">Favoritos</a>
+						<a href="/minhaconta-enderecos">Endereços</a>
 						<a href="">Sair</a>
 					</div>
 				</li>
@@ -104,7 +106,7 @@
 								</a>
 							</li>
 						</ul>
-						<a href="javascript:void(0);" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
+						<a href="/carrinho" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
 					</div>
 				</div>
 
@@ -543,7 +545,7 @@
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-pedidos">
 								Meus pedidos
 							</a>
 						</li>
@@ -559,19 +561,19 @@
 					<ul class="menu menu-login-mobile">
 						
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-pedidos">
 								Meus Pedidos
 							</a>
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-cadastro">
 								Meus Dados
 							</a>
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/minhaconta-favoritos">
 								Favoritos
 							</a>
 						</li>
@@ -581,7 +583,7 @@
 					<ul class="menu">
 						
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/sobre-vinci">
 								Sobre a vinci
 							</a>
 						</li>
@@ -593,14 +595,8 @@
 						</li>
 
 						<li class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="/duvidas-frequentes">
 								dúvidas frequentes
-							</a>
-						</li>
-
-						<li class="menu-item">
-							<a class="menu-link" href="#">
-								Ajuda
 							</a>
 						</li>
 

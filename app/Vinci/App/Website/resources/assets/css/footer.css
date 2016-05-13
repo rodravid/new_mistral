@@ -1,28 +1,30 @@
 /*
-Error: Undefined variable: "$robotobold".
-        on line 50 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
+Error: Undefined variable: "$screen767".
+        on line 31 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss
 
-45: 	width:100%;
-46: }
-47: 
-48: .title-featured-week {
-49: 	float:left;
-50: 	font:30px $robotobold;
-51: 	color:$red;
-52: 	width:17%;
-53: 	text-transform:uppercase;
-54: 	line-height:30px;
-55: 	@media #{$screen-970}{
+26: 		border-top: 1px solid #7f7f7f;
+27: 		padding-top: 20px;
+28: 		margin-top: -10px;
+29: 	}	
+30: 
+31: 	@media #{$screen767}{
+32: 		.border-mobile-footer {
+33: 			border-top: 1px solid #7f7f7f;
+34: 			padding-top: 20px;
+35: 			margin-top: -10px;
+36: 		}
 
 Backtrace:
-/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:50
+/Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss:31
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `block in _perform'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `map'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `_perform'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/interpolation.rb:100:in `_perform'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
-/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:526:in `block in run_interp_no_strip'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:524:in `map'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:524:in `run_interp_no_strip'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:531:in `run_interp'
+/Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:499:in `visit_media'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
 /Users/WSilva/Downloads/Koala.app/Contents/Resources/app.nw/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
@@ -66,4 +68,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$robotobold\".\A         on line 50 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 45: 	width:100%;\A 46: }\A 47: \A 48: .title-featured-week {\A 49: 	float:left;\A 50: 	font:30px $robotobold;\A 51: 	color:$red;\A 52: 	width:17%;\A 53: 	text-transform:uppercase;\A 54: 	line-height:30px;\A 55: 	@media #{$screen-970}{"; }
+  content: "Error: Undefined variable: \"$screen767\".\A         on line 31 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/footer.scss\A \A 26: 		border-top: 1px solid #7f7f7f;\A 27: 		padding-top: 20px;\A 28: 		margin-top: -10px;\A 29: 	}	\A 30: \A 31: 	@media #{$screen767}{\A 32: 		.border-mobile-footer {\A 33: 			border-top: 1px solid #7f7f7f;\A 34: 			padding-top: 20px;\A 35: 			margin-top: -10px;\A 36: 		}"; }
