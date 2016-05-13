@@ -1,15 +1,15 @@
-<div class="modal-default modal-login">
+<div class="modal-default modal-login" ng-controller="LoginCtrl">
     <div class="content-modal">
         <h2 class="title-modal-default">Acesse sua conta</h2>
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST" ng-submit="postLogin($event)">
             <ul class="list-form-register">
                 <li>
                     <label for="email-login" class="label-input">E-mail</label>
-                    <input class="email input-register full" type="text" name="email" placeholder="E-mail" id="email-login">
+                    <input class="email input-register full" type="text" name="email" ng-model="email" placeholder="E-mail" id="email-login">
                 </li>
                 <li>
                     <label for="senha-login" class="label-input">Senha</label>
-                    <input class="senha input-register full" type="password" name="password" placeholder="Senha" id="senha-login">
+                    <input class="senha input-register full" type="password" name="password" ng-model="password" placeholder="Senha" id="senha-login">
                     <a class="forgot-pass call-recovery" href="javascript:void(0);">Esqueceu a senha ?</a>
                 </li>
 

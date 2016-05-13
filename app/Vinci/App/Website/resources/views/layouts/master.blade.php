@@ -18,12 +18,13 @@
         <![endif]-->
     @show
 </head>
-<body>
+<body ng-app="app">
 
 @yield('content')
 
 @section('scripts')
 
+    <script src="{{ asset_web('js/angular/angular.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/readmore.min.js') }}" type="text/javascript"></script>
@@ -31,6 +32,10 @@
     <script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset_web('app/js/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('app/js/services/auth.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('app/js/controllers/loginController.js') }}" type="text/javascript"></script>
 
 @show
 </body>
