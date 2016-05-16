@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('AuthService', ['$http', '$q', function($http, $q) {
+    .factory('AuthService', ['$http', '$q', function($http, $q) {
 
         return ({
             login: login
