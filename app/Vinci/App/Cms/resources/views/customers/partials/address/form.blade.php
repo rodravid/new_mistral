@@ -16,6 +16,13 @@
                        id="addressType{{ $address->getId() }}C"
                        @if(old('addresses.' . $address->getId() . '.type') == 2) checked @endif>
                 Comercial
+            </label>&nbsp;&nbsp;&nbsp;
+            <label for="addressType{{ $address->getId() }}O">
+                <input type="radio" name="addresses[{{ $address->getId() }}][type]"
+                       value="3"
+                       id="addressType{{ $address->getId() }}O"
+                       @if(old('addresses.' . $address->getId() . '.type') == 3) checked @endif>
+                Outros
             </label>
         </div>
     </div>

@@ -69,6 +69,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      */
     $route->group(['prefix' => 'cadastro', 'as' => 'register.'], function() use ($route) {
         $route->get('/', 'Register\RegisterController@index')->name('index');
+        $route->post('/', 'Register\\RegisterController@store')->name('store');
     });
 
     /**

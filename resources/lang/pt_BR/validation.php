@@ -100,7 +100,8 @@ return [
             'required' => 'É necessário selecionar o tipo do endereço.'
         ],
         'addresses.*.nickname' => [
-            'required' => 'O campo Identificador do local é obrigatório.'
+            'required' => 'O campo Identificador do local é obrigatório.',
+            'required_if' => 'O campo Identificador do local é obrigatório.'
         ],
         'addresses.*.public_place' => [
             'required' => 'O campo Tipo de logradouro é obrigatório.'

@@ -6,11 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Robbo\Presenter\PresentableInterface;
 use Robbo\Presenter\Robbo;
 use Vinci\Domain\Address\Address as BaseAddress;
+use Vinci\Domain\Address\AddressType;
 use Vinci\Domain\Customer\Customer;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="customers_addresses")
+ * @ORM\HasLifecycleCallbacks
  */
 class Address extends BaseAddress implements PresentableInterface
 {
@@ -62,4 +64,13 @@ class Address extends BaseAddress implements PresentableInterface
     {
         return !! $this->mainAddress;
     }
+
+    /** @ORM\PreFlush */
+    public function generateNickname()
+    {
+        if ($this->type->getId() != AddressType::OTHER) {
+            $this->nickname = $this->type->getTitle();
+        }
+    }
+
 }

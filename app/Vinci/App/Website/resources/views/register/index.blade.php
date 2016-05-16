@@ -27,13 +27,16 @@
             <div class="container-total-products">
                 <span class="title-internal-15">Para criar a sua conta basta preencher os dados abaixo</span>
                 <p>* Campos obrigatórios</p>
+                @if($errors->has())
+                    <p>{{ $errors->first() }}</p>
+                @endif
             </div>
 
         </header>
 
         <article class="wrap-content-register">
 
-            <form action="">
+            {!! Form::open(['route' => 'register.store', 'method' => 'post']) !!}
 
                 <header class="header-content-internal">
                     <ul class="list-type-buyer">
@@ -56,17 +59,15 @@
                         <ul class="list-form-register">
                             <li>
                                 <label for="email" class="label-input">E-mail *</label>
-                                <input class="email input-register full" type="email" placeholder="E-mail *" id="email">
+                                {!! Form::email('email', null, ['id' => 'email', 'placeholder' => 'E-mail *', 'class' => 'email input-register full ' . ($errors->has('email') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
-                                <label for="password" class="label-input">Senha</label>
-                                <input class="senha input-register half" type="password" placeholder="Senha *"
-                                       id="password">
+                                <label for="password" class="label-input">Senha *</label>
+                                {!! Form::password('password', ['id' => 'password', 'placeholder' => 'Senha *', 'class' => 'email input-register half ' . ($errors->has('password') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
-                                <label for="password2" class="label-input">Confirmar senha</label>
-                                <input class="senha input-register half" type="password" placeholder="Confirmar senha *"
-                                       id="password2">
+                                <label for="passwordConfirmation" class="label-input">Confirmar senha *</label>
+                                {!! Form::password('password_confirmation', ['id' => 'passwordConfirmation', 'placeholder' => 'Confirmar senha *', 'class' => 'email input-register half ' . ($errors->has('password') ? 'error-field' : '')]) !!}
                             </li>
                         </ul>
 
@@ -74,9 +75,8 @@
                             <h2 class="title-form">Dados Pessoais *</h2>
                             <ul class="list-form-register">
                                 <li>
-                                    <label for="name-complete" class="label-input">Nome completo *</label>
-                                    <input class="name-complete input-register full" type="text"
-                                           placeholder="Nome completo *" id="name-complete">
+                                    <label for="name" class="label-input">Nome completo *</label>
+                                    {!! Form::text('name', null, ['id' => 'name', 'placeholder' => 'Nome completo *', 'class' => 'email input-register full ' . ($errors->has('name') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
                                     <label for="cpf" class="label-input">CPF *</label>
@@ -170,7 +170,19 @@
                             </li>
                             <li>
                                 <label for="cep" class="label-input">CEP *</label>
-                                <input class="cep input-register half" type="text" placeholder="CEP *" cep id="cep">
+
+
+                                <input type="text" name="addresses[0][postal_code]" class="cep input-register half" placeholder="CEP *"
+                                       value="{{ old('addresses.0.postal_code') }}"
+                                       data-mask data-postalcode
+                                       data-target-publicplace="#selectPublicPlace"
+                                       data-target-address="#txtAddress"
+                                       data-target-district="#txtDistrict"
+                                       data-target-state="#selectState"
+                                       data-target-city="#selectCity"
+                                       data-target-number="#txtNumber"
+                                       data-target-complement="#txtComplement">
+
                                 <div class="search-cep">
                                     <p>Não sei o meu CEP.</p>
                                     <a href="http://m.correios.com.br/movel/buscaCep.do" target="_blank">Faça a pesquisa
@@ -197,64 +209,29 @@
                                        placeholder="Complemento" id="complement">
                             </li>
                             <li>
-                                <div class="select-standard half form-control-white">
-                                    <select class="" name="" id="">
-                                        <option value="">Estado</option>
-                                        <option value="AL">AC</option>
-                                        <option value="AL">AL</option>
-                                        <option value="AM">AM</option>
-                                        <option value="AP">AP</option>
-                                        <option value="BA">BA</option>
-                                        <option value="CE">CE</option>
-                                        <option value="DF">DF</option>
-                                        <option value="ES">ES</option>
-                                        <option value="GO">GO</option>
-                                        <option value="MA">MA</option>
-                                        <option value="MG">MG</option>
-                                        <option value="MS">MS</option>
-                                        <option value="MT">MT</option>
-                                        <option value="PA">PA</option>
-                                        <option value="PB">PB</option>
-                                        <option value="PE">PE</option>
-                                        <option value="PI">PI</option>
-                                        <option value="PR">PR</option>
-                                        <option value="RJ">RJ</option>
-                                        <option value="RN">RN</option>
-                                        <option value="RO">RO</option>
-                                        <option value="RR">RR</option>
-                                        <option value="RS">RS</option>
-                                        <option value="SC">SC</option>
-                                        <option value="SE">SE</option>
-                                        <option value="SP">SP</option>
-                                        <option value="TO">TO</option>
-                                    </select>
-                                </div>
-                            </li>
-
-                            <li>
                                 <label for="bairro" class="label-input">Bairro *</label>
                                 <input class="input-register full" type="text" placeholder="Bairro *" id="bairro">
                             </li>
+                            <li>
+                                <div class="select-standard half form-control-white">
+                                    <select name="addresses[0][state]" id="selectState" class="form-control select2" style="width: 100%;" data-state data-target="#selectCity" data-value="{{ old('addresses.0.state') }}">
+                                        <option value="">Estado</option>
+                                        @foreach($states as $state)
+                                            <option value="{{ $state->getId() }}" @if($state->getId() == old('addresses.0.state')) selected @endif>
+                                                {{ $state->getUf() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </li>
 
                             <li>
                                 <div class="select-standard full form-control-white">
-                                    <select class="" name="" id="">
+                                    <select name="addresses[0][city]" id="selectCity" class="form-control select2" style="width: 100%;" data-city data-value="{{ old('addresses.0.city') }}">
                                         <option value="">Cidade</option>
-
                                     </select>
                                 </div>
                             </li>
-
-                            <li>
-                                <div class="select-standard full form-control-white">
-                                    <select class="" name="" id="">
-                                        <option value="">País</option>
-                                        <option value="SC">Brasil</option>
-
-                                    </select>
-                                </div>
-                            </li>
-
                             <li>
                                 <label for="referencia" class="label-input">Referência para entrega</label>
                                 <input class="input-register full" type="text" placeholder="Referência para entrega"
@@ -287,7 +264,7 @@
 
                 <div class="wrap-content-bt">
                     <div class="content-bt-big">
-                        <a class="bt-default-full bt-color" href="#">Criar conta <span class="arrow-link">></span></a>
+                        <button type="submit" class="bt-default-full bt-color">Criar conta <span class="arrow-link">></span></button>
                     </div>
                 </div>
             </form>
