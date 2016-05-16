@@ -1,32 +1,34 @@
 <?php
 
-namespace Vinci\App\Website\Http\Account;
+namespace Vinci\App\Website\Http\Account\Favorite;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Redirect;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\Customer\CustomerService;
+use Vinci\Domain\Order\OrderRepository;
 
-class AccountController extends Controller
+class FavoriteController extends Controller
 {
     protected $customerService;
 
-    protected $auth;
-
-    public function __construct(CustomerService $customerService, AuthManager $auth, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, CustomerService $customerService)
     {
         parent::__construct($em);
 
         $this->customerService = $customerService;
-        $this->auth = $auth->guard('website');
     }
 
-    public function index()
+    public function index(OrderRepository $orderRepository)
     {
-        return Redirect::route('account.orders.index');
+//        $customer = $this->auth->user();
+//
+//        //$orders = $customer->getOrders();
+//
+//        $orders = $orderRepository->getByCustomer($customer->getId());
+
+        return $this->view('account.favorite.index');
     }
 
     public function create()
@@ -38,7 +40,7 @@ class AccountController extends Controller
     {
         $user = $this->auth->user();
 
-        return $this->view('account.info.index', compact('user'));
+        return $this->view('account.create', compact('user'));
     }
 
     public function store(Request $request)

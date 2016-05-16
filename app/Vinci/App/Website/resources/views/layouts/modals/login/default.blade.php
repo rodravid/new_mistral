@@ -1,4 +1,4 @@
-<div class="modal-default modal-login" ng-controller="LoginCtrl">
+<div class="modal-default modal-login" ng-controller="ModalLoginCtrl">
     <div class="content-modal">
         <h2 class="title-modal-default">Acesse sua conta</h2>
         <form action="{{ route('login') }}" method="POST" ng-submit="postLogin($event)">

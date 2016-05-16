@@ -1,66 +1,66 @@
 @extends('website::layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login Site</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+    <div class="header-internal template1-bg">
+        @include('website::layouts.menu')
+        <div class="row">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+            <h1 class="internal-subtitle">Login</h1>
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="breadcrumb-link" href="/"><span>Início</span></a> >
+                </li>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                <li class="breadcrumb-item">
+                    <span>Login</span>
+                </li>
+            </ul>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
-</div>
-@endsection
+
+    <div class="row">
+
+        <article class="wrap-content-register">
+
+            <div class="pg-log">
+                <form action="/login" method="POST">
+
+                    @if ($errors->has())
+                        <span class="help-block text-danger"><strong>{{ $errors->first() }}</strong></span>
+                    @endif
+
+                    <ul class="list-form-register">
+                        <li>
+                            <!-- <label for="">E-mail</label> -->
+                            <input class="email input-register full" name="email" type="text" placeholder="E-mail">
+                        </li>
+                        <li>
+                            <input class="senha input-register full" type="password" name="password" placeholder="Senha">
+                            <a class="forgot-pass call-recovery" href="javascript:void(0);">Esqueceu a senha ?</a>
+                        </li>
+
+                    </ul>
+                    <button type="submit" class="bt-default-full bt-middle template1">Entrar <span class="arrow-link">></span></button>
+
+                    <div class="footer-modal">
+                        <div class="center-content-bt">
+                            <a href="/cadastro">
+                                <span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
+                                <span class="bt-arrow">></span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="close">X</a>
+                </form>
+            </div>
+
+
+        </article>
+
+    </div>
+
+    @include('website::layouts.footer')
+
+@stop

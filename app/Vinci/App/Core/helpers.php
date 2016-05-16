@@ -102,3 +102,10 @@ function currentTabActive($tabName, $activeClass = 'active', $first = false)
 
     }
 }
+
+function activeItem($pattern, $activeClass = 'active')
+{
+    if (app('request')->is($pattern . '*')) {
+        return $activeClass;
+    }
+}
