@@ -48,7 +48,8 @@ class DomainServiceProvider extends ServiceProvider
                 $this->app['Vinci\Domain\Customer\CustomerRepository'],
                 $this->app->make('Vinci\Domain\Customer\CustomerValidator'),
                 $this->app->make('Vinci\Domain\Customer\Address\AddressService'),
-                $this->app['sanitizer']
+                $this->app['sanitizer'],
+                $this->app['events']
             );
         });
 

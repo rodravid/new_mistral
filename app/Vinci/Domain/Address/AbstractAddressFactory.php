@@ -26,14 +26,14 @@ abstract class AbstractAddressFactory
         $address->setType($this->getAddressType($addressData['type']))
                 ->setPublicPlace($this->getPublicPlace($addressData['public_place']))
                 ->setCity($this->getCity($addressData['city']))
-                ->setNickname($addressData['nickname'])
-                ->setPostalCode($addressData['postal_code'])
-                ->setAddress($addressData['address'])
-                ->setNumber($addressData['number'])
-                ->setComplement($addressData['complement'])
-                ->setDistrict($addressData['district'])
-                ->setLandmark($addressData['landmark'])
-                ->setReceiver($addressData['receiver']);
+                ->setNickname(array_get($addressData, 'nickname'))
+                ->setPostalCode(array_get($addressData, 'postal_code'))
+                ->setAddress(array_get($addressData, 'address'))
+                ->setNumber(array_get($addressData, 'number'))
+                ->setComplement(array_get($addressData, 'complement'))
+                ->setDistrict(array_get($addressData, 'district'))
+                ->setLandmark(array_get($addressData, 'landmark'))
+                ->setReceiver(array_get($addressData, 'receiver'));
 
         return $address;
     }

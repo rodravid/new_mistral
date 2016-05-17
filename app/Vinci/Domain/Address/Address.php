@@ -197,7 +197,7 @@ abstract class Address extends Model
         return $this->receiver;
     }
 
-    public function setReceiver($receiver)
+    public function setReceiver($receiver = null)
     {
         $this->receiver = $receiver;
         return $this;
