@@ -39,7 +39,7 @@
             {!! Form::open(['route' => 'register.store', 'method' => 'post']) !!}
 
                 <header class="header-content-internal">
-                    <ul class="list-type-buyer" ng-init="customerType = 1; onCustomerTypeChange()">
+                    <ul class="list-type-buyer" ng-init="customerType = {{ old('customerType', 1) }}; selectedAddressType = {{ old('addresses.0.type', 1) }}; onCustomerTypeChange()">
                         <li>
                             <label for="radioPersonTypeIndividual">Pessoa Física</label>
                             {!! Form::radio('customerType', \Vinci\Domain\Customer\CustomerType::INDIVIDUAL, null, ['id' => 'radioPersonTypeIndividual', 'ng-model' => 'customerType', 'class' => 'legal-person', 'ng-change' => 'onCustomerTypeChange()']) !!}
@@ -79,15 +79,15 @@
                                 </li>
                                 <li>
                                     <label for="cpf" class="label-input">CPF *</label>
-                                    {!! Form::text('cpf', null, ['id' => 'cpf', 'placeholder' => 'CPF *', 'class' => 'email input-register full ' . ($errors->has('cpf') ? 'error-field' : '')]) !!}
+                                    {!! Form::text('cpf', null, ['id' => 'cpf', 'placeholder' => 'CPF *', 'class' => 'input-register full ' . ($errors->has('cpf') ? 'error-field' : ''), 'cpf']) !!}
                                 </li>
                                 <li>
                                     <label for="rg" class="label-input">RG</label>
-                                    {!! Form::text('rg', null, ['id' => 'rg', 'placeholder' => 'RG', 'class' => 'email input-register full ' . ($errors->has('rg') ? 'error-field' : '')]) !!}
+                                    {!! Form::text('rg', null, ['id' => 'rg', 'placeholder' => 'RG', 'class' => 'input-register full ' . ($errors->has('rg') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
-                                    <label for="issuingBody" class="label-input">Orgão Emissor *</label>
-                                    {!! Form::text('issuingBody', null, ['id' => 'issuingBody', 'placeholder' => 'Órgão emissor *', 'class' => 'email input-register full ' . ($errors->has('issuingBody') ? 'error-field' : '')]) !!}
+                                    <label for="issuingBody" class="label-input">Orgão Emissor</label>
+                                    {!! Form::text('issuingBody', null, ['id' => 'issuingBody', 'placeholder' => 'Órgão emissor', 'class' => 'input-register full ' . ($errors->has('issuingBody') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
                                     <div class="select-standard form-control-white {{ $errors->has('gender') ? 'error-field' : '' }}">
@@ -96,7 +96,7 @@
                                 </li>
                                 <li>
                                     <label for="txtBirthday" class="label-input">Data de Nascimento *</label>
-                                    {!! Form::text('birthday', null, ['id' => 'txtBirthday', 'placeholder' => 'Data de Nascimento *', 'class' => 'birth-date input-register seventy ' . ($errors->has('birthday') ? 'error-field' : '')]) !!}
+                                    {!! Form::text('birthday', null, ['id' => 'txtBirthday', 'placeholder' => 'Data de Nascimento *', 'class' => 'birth-date input-register seventy ' . ($errors->has('birthday') ? 'error-field' : ''), 'date']) !!}
                                 </li>
                             </ul>
                         </div>
@@ -105,23 +105,20 @@
                             <h2 class="title-form">Dados Empresa *</h2>
                             <ul class="list-form-register">
                                 <li>
-                                    <label for="name-company" class="label-input">Nome da empresa *</label>
-                                    <input class="name-complete-company input-register full" type="text"
-                                           placeholder="Nome da empresa *" id="name-company">
+                                    <label for="companyName" class="label-input">Nome da empresa *</label>
+                                    {!! Form::text('companyName', null, ['id' => 'companyName', 'placeholder' => 'Nome da empresa *', 'class' => 'input-register full ' . ($errors->has('companyName') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
-                                    <label for="responsavel" class="label-input">Responsável</label>
-                                    <input class="input-register full" type="text" placeholder="Responsável"
-                                           id="responsavel">
+                                    <label for="companyContact" class="label-input">Responsável</label>
+                                    {!! Form::text('companyContact', null, ['id' => 'companyContact', 'placeholder' => 'Responsável', 'class' => 'input-register full ' . ($errors->has('companyContact') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
                                     <label for="cnpj" class="label-input">CNPJ *</label>
-                                    <input class="cnpj input-register full" type="text" placeholder="CNPJ *" cnpj
-                                           id="cnpj">
+                                    {!! Form::text('cnpj', null, ['id' => 'cnpj', 'placeholder' => 'CNPJ *', 'class' => 'input-register full ' . ($errors->has('cnpj') ? 'error-field' : ''), 'cnpj']) !!}
                                 </li>
                                 <li>
-                                    <label for="ie" class="label-input">IE *</label>
-                                    <input class="ie input-register full" type="text" placeholder="IE *" id="ie">
+                                    <label for="stateRegistration" class="label-input">IE *</label>
+                                    {!! Form::text('stateRegistration', null, ['id' => 'stateRegistration', 'placeholder' => 'IE *', 'class' => 'input-register full ' . ($errors->has('stateRegistration') ? 'error-field' : '')]) !!}
                                 </li>
 
                             </ul>
@@ -135,33 +132,37 @@
                     <div class="user-address">
                         <h2 class="title-form">Endereço de Entrega *</h2>
                         <ul class="list-form-register">
+                            <input type="hidden" name="addresses[0][id]" value="0">
+                            <input type="hidden" name="addresses[0][country]" value="1">
+                            <input type="hidden" name="main_address" value="0">
                             <li>
                                 <ul class="list-type-radio-3cols">
                                     <li ng-hide="customerType == 2">
                                         <label for="residencial">Residencial</label>
-                                        <input type="radio" name="addresses[0][type]" value="1" class="physical-person" id="residencial" ng-model="addressType">
+                                        {!! Form::radio('addresses[0][type]', 1, null, ['class' => 'physical-person', 'id' => 'residencial', 'ng-model' => 'addressType']) !!}
                                     </li>
                                     <li>
                                         <label for="comercial">Comercial</label>
-                                        <input type="radio" name="addresses[0][type]" value="2" class="legal-person" id="comercial" ng-model="addressType">
+                                        {!! Form::radio('addresses[0][type]', 2, null, ['class' => 'physical-person', 'id' => 'comercial', 'ng-model' => 'addressType']) !!}
                                     </li>
                                     <li ng-hide="customerType == 2">
-                                        <label for="outros">Outros</label>
-                                        <input type="radio" name="addresses[0][type]" value="3" class="legal-person" id="outros" ng-model="addressType">
+                                        <label for="other">Outros</label>
+                                        {!! Form::radio('addresses[0][type]', 3, null, ['class' => 'physical-person', 'id' => 'other', 'ng-model' => 'addressType']) !!}
                                     </li>
                                 </ul>
                             </li>
+
                             <li ng-show="addressType == 3">
-                                <label for="type-addres" class="label-input">Tipo de endereço (Ex: casa, trabalho) *</label>
-                                <input class="type-addres input-register full" type="text" name="addresses[0][nickname]" placeholder="Tipo de endereço (Ex: casa, trabalho) *" id="type-addres">
+                                <label for="type-addres" class="label-input">Identificador do local (Ex: casa, trabalho) *</label>
+                                {!! Form::text('addresses[0][nickname]', null, ['id' => 'addressNickname', 'placeholder' => 'Identificador do local (Ex: casa, trabalho) *', 'class' => 'input-register full ' . ($errors->has('addresses.0.nickname') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
                                 <label for="cep" class="label-input">CEP *</label>
 
-
-                                <input type="text" name="addresses[0][postal_code]" class="cep input-register half" placeholder="CEP *"
+                                <input type="text" name="addresses[0][postal_code]" class="input-register half" placeholder="CEP *"
                                        value="{{ old('addresses.0.postal_code') }}"
-                                       data-mask data-postalcode
+                                       cep
+                                       data-postalcode
                                        data-target-publicplace="#selectPublicPlace"
                                        data-target-address="#txtAddress"
                                        data-target-district="#txtDistrict"
@@ -177,27 +178,23 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="select-standard half form-control-white">
-                                    <select class="" name="" id="">
-                                        <option value="">Rua</option>
-                                        <option value="">Avenida</option>
-                                    </select>
+                                <div class="select-standard half form-control-white {{ $errors->has('addresses.0.public_place') ? 'error-field' : '' }}">
+                                    {!! Form::select('addresses[0][public_place]', ['1' => 'Rua', '2' => 'Avenida'], null, ['id' => 'selectPublicPlace', 'data-publicplace']) !!}
                                 </div>
                             </li>
                             <li>
-                                <label for="address" class="label-input">Endereço *</label>
-                                <input class="input-register full" type="text" placeholder="Endereço *" id="address">
+                                <label for="txtAddress" class="label-input">Endereço *</label>
+                                {!! Form::text('addresses[0][address]', null, ['id' => 'txtAddress', 'placeholder' => 'Endereço *', 'class' => 'input-register full ' . ($errors->has('addresses.0.address') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
-                                <label for="num" class="label-input">n° *</label>
-                                <input class="number input-register two-fields" type="text" placeholder="n° *" id="num">
-                                <label for="complement" class="label-input">Complemento</label>
-                                <input class="number input-register float-right two-fields" type="text"
-                                       placeholder="Complemento" id="complement">
+                                <label for="txtNumber" class="label-input">N° *</label>
+                                {!! Form::text('addresses[0][number]', null, ['id' => 'txtNumber', 'placeholder' => 'N° *', 'class' => 'number input-register two-fields ' . ($errors->has('addresses.0.number') ? 'error-field' : '')]) !!}
+                                <label for="txtComplement" class="label-input">Complemento</label>
+                                {!! Form::text('addresses[0][complement]', null, ['id' => 'txtComplement', 'placeholder' => 'Complemento', 'class' => 'number input-register two-fields float-right ' . ($errors->has('addresses.0.complement') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
-                                <label for="bairro" class="label-input">Bairro *</label>
-                                <input class="input-register full" type="text" placeholder="Bairro *" id="bairro">
+                                <label for="txtDistrict" class="label-input">Bairro *</label>
+                                {!! Form::text('addresses[0][district]', null, ['id' => 'txtDistrict', 'placeholder' => 'Bairro *', 'class' => 'input-register full ' . ($errors->has('addresses.0.district') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
                                 <div class="select-standard half form-control-white">
@@ -220,9 +217,8 @@
                                 </div>
                             </li>
                             <li>
-                                <label for="referencia" class="label-input">Referência para entrega</label>
-                                <input class="input-register full" type="text" placeholder="Referência para entrega"
-                                       id="referencia">
+                                <label for="addressLandmark" class="label-input">Referência para entrega</label>
+                                {!! Form::text('addresses[0][landmark]', null, ['id' => 'addressLandmark', 'placeholder' => 'Referência para entrega', 'class' => 'input-register full ' . ($errors->has('addresses.0.landmark') ? 'error-field' : '')]) !!}
                             </li>
                         </ul>
 
@@ -235,16 +231,13 @@
                         <h2 class="title-form">Contatos *</h2>
                         <ul class="list-form-register">
                             <li>
-                                <label for="phone1" class="label-input">Telefone celular *</label>
-                                <input class="cel input-register full" type="tel" placeholder="Telefone celular *"
-                                       phone-mask id="phone1">
+                                <label for="txtCellPhone" class="label-input">Telefone celular *</label>
+                                {!! Form::tel('cellPhone', null, ['id' => 'txtCellPhone', 'placeholder' => 'Telefone celular *', 'class' => 'cel input-register full ' . ($errors->has('cellPhone') ? 'error-field' : ''), 'phone-mask']) !!}
                             </li>
                             <li>
-                                <label for="phone2" class="label-input">Telefone fixo</label>
-                                <input class="phone2 input-register full" type="tel" placeholder="Telefone fixo"
-                                       phone-mask id="phone2">
+                                <label for="txtPhone" class="label-input">Telefone fixo</label>
+                                {!! Form::tel('phone', null, ['id' => 'txtPhone', 'placeholder' => 'Telefone fixo', 'class' => 'cel input-register full ' . ($errors->has('phone') ? 'error-field' : ''), 'phone-mask']) !!}
                             </li>
-
                         </ul>
                     </div>
                 </div>
@@ -254,7 +247,8 @@
                         <button type="submit" class="bt-default-full bt-color">Criar conta <span class="arrow-link">></span></button>
                     </div>
                 </div>
-            </form>
+
+            {!! Form::close() !!}
 
         </article>
 

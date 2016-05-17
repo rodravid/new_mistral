@@ -68,17 +68,17 @@ class Customer extends User
     protected $stateRegistration;
 
     /**
-     * @ORM\Column(type="string", length=1, options={"fixed" = true})
+     * @ORM\Column(type="string", length=1, options={"fixed" = true}, nullable=true)
      */
     protected $gender;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $birthday;
 
     /**
-     * @ORM\Column(name="phone", type="string", length=20)
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     protected $phone;
 
@@ -137,7 +137,7 @@ class Customer extends User
         return $this;
     }
 
-    public function setCpf($cpf)
+    public function setCpf($cpf = null)
     {
         $this->cpf = $cpf;
         return $this;
@@ -148,7 +148,7 @@ class Customer extends User
         return $this->cpf;
     }
 
-    public function setCnpj($cnpj)
+    public function setCnpj($cnpj = null)
     {
         $this->cnpj = $cnpj;
         return $this;
@@ -159,7 +159,7 @@ class Customer extends User
         return $this->cnpj;
     }
 
-    public function setRg($rg)
+    public function setRg($rg = null)
     {
         $this->rg = $rg;
         return $this;
@@ -175,7 +175,7 @@ class Customer extends User
         return $this->stateRegistration;
     }
 
-    public function setStateRegistration($stateRegistration)
+    public function setStateRegistration($stateRegistration = null)
     {
         $this->stateRegistration = $stateRegistration;
         return $this;
@@ -186,7 +186,7 @@ class Customer extends User
         return $this->issuingBody;
     }
 
-    public function setIssuingBody($issuingBody)
+    public function setIssuingBody($issuingBody = null)
     {
         $this->issuingBody = $issuingBody;
         return $this;
@@ -197,7 +197,7 @@ class Customer extends User
         return $this->gender;
     }
 
-    public function setGender($gender)
+    public function setGender($gender = null)
     {
         $this->gender = $gender;
         return $this;
@@ -208,7 +208,7 @@ class Customer extends User
         return $this->birthday;
     }
 
-    public function setBirthday(Carbon $birthday)
+    public function setBirthday(Carbon $birthday = null)
     {
         $this->birthday = $birthday;
         return $this;
@@ -220,7 +220,7 @@ class Customer extends User
         return $this->phone;
     }
 
-    public function setPhone($phone)
+    public function setPhone($phone = null)
     {
         $this->phone = $phone;
         return $this;
@@ -231,7 +231,7 @@ class Customer extends User
         return $this->cellPhone;
     }
 
-    public function setCellPhone($cellPhone)
+    public function setCellPhone($cellPhone = null)
     {
         $this->cellPhone = $cellPhone;
         return $this;
@@ -247,7 +247,7 @@ class Customer extends User
         return $this->commercialPhone;
     }
 
-    public function setCommercialPhone($commercialPhone)
+    public function setCommercialPhone($commercialPhone = null)
     {
         $this->commercialPhone = $commercialPhone;
         return $this;
@@ -263,7 +263,7 @@ class Customer extends User
         return $this->companyName;
     }
 
-    public function setCompanyName($companyName)
+    public function setCompanyName($companyName = null)
     {
         $this->companyName = $companyName;
         return $this;
@@ -409,7 +409,7 @@ class Customer extends User
         return $this->companyContact;
     }
 
-    public function setCompanyContact($companyContact)
+    public function setCompanyContact($companyContact = null)
     {
         $this->companyContact = $companyContact;
         return $this;

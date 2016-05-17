@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Website\Http\Register;
 
+use Auth;
 use Doctrine\ORM\EntityManagerInterface;
 use Flash;
 use Illuminate\Http\Request;
@@ -45,9 +46,9 @@ class RegisterController extends Controller
 
             $customer = $this->customerService->create($data);
 
-            Flash::success("Cliente {$customer->getName()} criado com sucesso!");
+            Auth::login($customer);
 
-            return Redirect::route($this->getEditRouteName(), $customer->getId());
+            return Redirect::route('account.index');
 
         } catch (ValidationException $e) {
 

@@ -7,6 +7,9 @@ use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Vinci\App\Core\Services\Sanitizer\Contracts\Sanitizer;
 use Vinci\Domain\Customer\Address\AddressService;
+use Illuminate\Contracts\Events\Dispatcher as Event;
+use Vinci\Domain\Customer\Events\CustomerWasCreated;
+use Vinci\Domain\Customer\Events\CustomerWasUpdated;
 
 class CustomerService
 {
@@ -20,12 +23,15 @@ class CustomerService
 
     private $sanitizer;
 
+    private $event;
+
     public function __construct(
         EntityManagerInterface $entityManager,
         CustomerRepository $repository,
         CustomerValidator $validator,
         AddressService $addressService,
-        Sanitizer $sanitizer
+        Sanitizer $sanitizer,
+        Event $event
     )
     {
         $this->repository = $repository;
@@ -33,6 +39,7 @@ class CustomerService
         $this->validator = $validator;
         $this->addressService = $addressService;
         $this->sanitizer = $sanitizer;
+        $this->event = $event;
     }
 
     public function create(array $data)
@@ -67,13 +74,14 @@ class CustomerService
 
         $this->sanitizeData($data);
 
-        $customer->setName($data['name'])
-                 ->setEmail($data['email'])
-                 ->setCustomerType($data['customerType'])
-                 ->setPhone($data['phone'])
-                 ->setCellPhone($data['cellPhone'])
-                 ->setCommercialPhone($data['commercialPhone'])
-                 ->setStatus($data['status']);
+        $customer
+            ->setEmail(array_get($data, 'email'))
+            ->setCustomerType(array_get($data, 'customerType'))
+            ->setPhone(array_get($data, 'phone'))
+            ->setCellPhone(array_get($data, 'cellPhone'))
+            ->setCommercialPhone(array_get($data, 'commercialPhone'))
+            ->setStatus(array_get($data, 'status', 1));
+
 
         if (! empty($data['password'])) {
             $customer->setPassword($data['password']);
@@ -81,23 +89,33 @@ class CustomerService
 
         if ($customer->isIndividual()) {
 
-            $customer->setGender($data['gender'])
-                     ->setBirthday(Carbon::createFromFormat('d/m/Y', $data['birthday']))
-                     ->setCpf($data['cpf'])
-                     ->setRg($data['rg'])
-                     ->setIssuingBody($data['issuingBody']);
+            $customer
+                ->setName($data['name'])
+                ->setGender($data['gender'])
+                ->setBirthday(Carbon::createFromFormat('d/m/Y', $data['birthday']))
+                ->setCpf($data['cpf'])
+                ->setRg($data['rg'])
+                ->setIssuingBody($data['issuingBody']);
 
         } elseif ($customer->isCompany()) {
 
-            $customer->setCompanyName($data['companyName'])
-                     ->setCompanyContact($data['companyContact'])
-                     ->setCnpj($data['cnpj'])
-                     ->setStateRegistration($data['stateRegistration']);
+            $customer
+                ->setName($data['companyName'])
+                ->setCompanyName($data['companyName'])
+                ->setCompanyContact($data['companyContact'])
+                ->setCnpj($data['cnpj'])
+                ->setStateRegistration($data['stateRegistration']);
         }
 
         $this->syncAddresses($customer, $data);
 
         $this->repository->save($customer);
+
+        if (empty($customer->getId())) {
+            $this->event->fire(new CustomerWasCreated($customer));
+        } else {
+            $this->event->fire(new CustomerWasUpdated($customer));
+        }
 
         return $customer;
     }
