@@ -3,13 +3,17 @@
 namespace Vinci\App\Core\Providers;
 
 use Carbon\Carbon;
-use DebugBar\Bridge\DoctrineCollector;
-use Doctrine\DBAL\Logging\DebugStack;
 use Illuminate\Support\ServiceProvider;
 use Vinci\App\Core\Services\Presenter\Presenter;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    public function boot()
+    {
+        \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+        $this->app['em']->getConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('uuid', 'uuid');
+    }
 
     /**
      * Register any application services.

@@ -125,6 +125,12 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Address\Country\Country'
         );
 
+        $this->registerRepository(
+            'Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository',
+            'Vinci\Infrastructure\ShoppingCart\DoctrineShoppingCartRepository',
+            'Vinci\Domain\ShoppingCart\ShoppingCart'
+        );
+
 //        $this->registerRepository(
 //            'Vinci\Domain\Address\State\StateRepository',
 //            'Vinci\Infrastructure\Address\State\DoctrineStateRepository',

@@ -334,6 +334,11 @@ class ProductVariant extends Model implements ProductVariantInterface
         return !! $this->getImage($version);
     }
 
+    public function getSalePrice($channel = null)
+    {
+        return $this->getPrice($channel)->asSalePrice();
+    }
+
     public function getPrice($channel = null)
     {
         if (! $price = $this->getPriceOnChannel($channel)) {

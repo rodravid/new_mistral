@@ -4,6 +4,7 @@ namespace Vinci\Domain;
 
 use Illuminate\Support\ServiceProvider;
 use Vinci\App\Website\Channel\ChannelProvider;
+use Vinci\App\Website\Http\ShoppingCart\Provider\ShoppingCartProvider;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Admin\AdminService;
 use Vinci\Domain\Customer\Address\AddressService;
@@ -140,6 +141,23 @@ class DomainServiceProvider extends ServiceProvider
 
         $this->app->singleton('Vinci\Domain\Channel\Contracts\ChannelProvider', function() {
             return new ChannelProvider;
+        });
+
+        $this->app->singleton('Vinci\Domain\ShoppingCart\Factory\Contracts\ShoppingCartFactory', function() {
+            return $this->app->make('Vinci\Domain\ShoppingCart\Factory\ShoppingCartFactory');
+        });
+
+        $this->app->singleton('Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext', function() {
+            return $this->app->make('Vinci\App\Website\Http\ShoppingCart\Context\ShoppingCartContextSession', [$this->app['session']->driver()]);
+        });
+
+        $this->app->singleton('Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider', function() {
+
+            $context = $this->app->make('Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext');
+            $repository = $this->app->make('Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository');
+            $factory = $this->app->make('Vinci\Domain\ShoppingCart\Factory\Contracts\ShoppingCartFactory');
+
+            return new ShoppingCartProvider($context, $repository, $factory);
         });
 
         $this->app->singleton('Vinci\Domain\Pricing\PriceCalculator', function() {

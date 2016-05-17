@@ -420,6 +420,11 @@ class Product extends Model implements ProductInterface
         return $this->getMasterVariant()->getPrice($channel);
     }
 
+    public function getSalePrice($channel = null)
+    {
+        return $this->getMasterVariant()->getSalePrice($channel);
+    }
+
     public function addPrice(ProductVariantPrice $price)
     {
         $this->getMasterVariant()->addPrice($price);

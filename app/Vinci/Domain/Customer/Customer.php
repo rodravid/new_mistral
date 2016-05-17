@@ -107,6 +107,11 @@ class Customer extends User
      */
     protected $addresses;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\ShoppingCart", mappedBy="customer")
+     */
+    protected $shoppingCarts;
+
     public function __construct()
     {
         parent::__construct();
