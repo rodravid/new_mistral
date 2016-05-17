@@ -35,6 +35,8 @@
         <link rel="stylesheet" href="{{ asset_cms('plugins/datatables/dataTables.bootstrap.css') }}">
         <!-- Select2 -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/select2/select2.min.css') }}">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.css') }}">
         <!-- Sweet alert -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/sweetalert/dist/sweetalert.css') }}">
         <!-- Theme style -->
@@ -189,6 +191,8 @@
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset_cms('plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.js') }}"></script>
     <!-- AngularJS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <!-- AdminLTE App -->
@@ -215,6 +219,18 @@
             });
 
             $('.html-editor').wysihtml5();
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr("href");
+
+                $('#currentTab').val(target);
+            });
+
+            $('[data-keywords]').tagsInput({
+                width: '100%',
+                height: '77px',
+                defaultText: ''
+            });
 
             $.extend( true, $.fn.dataTable.defaults, {
                 "language": {

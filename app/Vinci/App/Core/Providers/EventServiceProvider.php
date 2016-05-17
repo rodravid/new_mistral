@@ -18,6 +18,11 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 
+    protected $subscribe = [
+        'Vinci\Domain\Product\Events\Subscribers\SetCurrentChannelSubscriber',
+        'Vinci\Domain\Product\Events\Subscribers\SetPriceCalculatorSubscriber',
+    ];
+
     /**
      * Register any other events for your application.
      *

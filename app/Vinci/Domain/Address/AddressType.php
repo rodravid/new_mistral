@@ -12,10 +12,12 @@ class AddressType
 
     const RESIDENTIAL = 1;
     const COMMERCIAL = 2;
+    const OTHER = 3;
 
     protected static $types = [
         self::RESIDENTIAL => 'Residencial',
-        self::COMMERCIAL => 'Comercial'
+        self::COMMERCIAL => 'Comercial',
+        self::OTHER => 'Outros'
     ];
 
     /**

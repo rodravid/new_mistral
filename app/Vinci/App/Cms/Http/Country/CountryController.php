@@ -10,7 +10,6 @@ use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
-use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Country\CountryRepository;
 use Vinci\Domain\Country\CountryService;
 use Vinci\Domain\Image\ImageRepository;
@@ -29,14 +28,11 @@ class CountryController extends Controller
 
     protected $imageRepository;
 
-    protected $aclService;
-
     public function __construct(
         EntityManagerInterface $em,
         CountryService $service,
         CountryRepository $repository,
-        ImageRepository $imageRepository,
-        ACLService $aclService
+        ImageRepository $imageRepository
     )
     {
         parent::__construct($em);
@@ -44,7 +40,6 @@ class CountryController extends Controller
         $this->service = $service;
         $this->repository = $repository;
         $this->imageRepository = $imageRepository;
-        $this->aclService = $aclService;
     }
 
     public function index()
@@ -70,11 +65,10 @@ class CountryController extends Controller
         try {
 
             $data = $request->all();
-            $data['image_map'] = $request->file('image_map');
-            $data['image_banner'] = $request->file('image_banner');
-            $data['user'] = cmsUser();
 
-            $country = $this->service->create($data);
+            $country = $this->service->create(array_merge($data, [
+                'user' => $this->user
+            ]));
 
             Flash::success("País {$country->getName()} criado com sucesso!");
 
@@ -96,12 +90,9 @@ class CountryController extends Controller
     {
         try {
 
-            $data = $request->all();
-            $data['image_map'] = $request->file('image_map');
-            $data['image_banner'] = $request->file('image_banner');
-            $data['user'] = cmsUser();
-
-            $country = $this->service->update($data, $id);
+            $country = $this->service->update(array_merge($request->all(), [
+                'user' => $this->user
+            ]), $id);
 
             Flash::success("País {$country->getName()} atualizado com sucesso!");
 

@@ -25,9 +25,9 @@ class DoctrineCustomerRepository extends DoctrineUserRepository implements Custo
 
     public function create(array $data)
     {
-        $cusotmer = Customer::make($data);
-        $this->_em->persist($cusotmer);
+        $customer = Customer::make($data);
+        $this->_em->persist($customer);
         $this->_em->flush();
-        return $cusotmer;
+        return $customer;
     }
 }

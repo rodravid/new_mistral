@@ -82,6 +82,12 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'cms.delivery-tracks.edit', 'description' => 'Editar faixa'],
             ['name' => 'cms.delivery-tracks.destroy', 'description' => 'Excluir faixas'],
 
+            ['name' => 'cms.products.list', 'description' => 'Listar produtos'],
+            ['name' => 'cms.products.show', 'description' => 'Visualizar produto'],
+            ['name' => 'cms.products.create', 'description' => 'Cadastrar novo produto'],
+            ['name' => 'cms.products.edit', 'description' => 'Editar produtos'],
+            ['name' => 'cms.products.destroy', 'description' => 'Excluir produtos'],
+
         ];
 
         foreach ($permissions as $permission) {

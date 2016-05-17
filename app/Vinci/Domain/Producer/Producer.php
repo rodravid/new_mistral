@@ -25,6 +25,11 @@ class Producer extends BaseTaxonomy
      */
     protected $region;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Product", mappedBy="producer")
+     */
+    protected $products;
+
     public function getImagesUploadPath()
     {
         return 'producers/' . $this->getId() . '/images';
@@ -54,6 +59,11 @@ class Producer extends BaseTaxonomy
     public function belongsToRegion(Region $region)
     {
         return $this->region == $region;
+    }
+
+    public function getProducts()
+    {
+        return $this->products;
     }
 
 }

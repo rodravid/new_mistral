@@ -2,26 +2,28 @@
 
 namespace Vinci\App\Cms\Http;
 
-use Vinci\Domain\Product\Wine\Wine;
-use Vinci\Domain\Product\Wine\WineVariant;
+use Doctrine\ORM\EntityManagerInterface;
+use Vinci\Domain\Product\Repositories\ProductRepository;
 
 class TestController extends Controller
 {
 
+    private $productRepository;
+
+    public function __construct(EntityManagerInterface $em, ProductRepository $productRepository)
+    {
+        parent::__construct($em);
+
+        $this->productRepository = $productRepository;
+    }
+
     public function index()
     {
+        $product = $this->productRepository->find(1);
 
-        $wine = new Wine();
-        $wineVariant = new WineVariant();
-        $wine->setMasterVariant($wineVariant);
+        //$product->setCurrentChannel('teste');
 
-        $wine->setTitle('Teste')
-            ->setDescription('testando')
-            ->setPrice(50.99)
-        ;
-
-        $this->entityManager->persist($wine);
-        $this->entityManager->flush();
+        dd('Produto ' . $product->getTitle() . ': R$ ' . number_format($product->getPrice()->asSalePrice(), 2, ',', '.'));
     }
 
 }

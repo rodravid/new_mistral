@@ -84,7 +84,8 @@ class CustomerService
             $customer->setGender($data['gender'])
                      ->setBirthday(Carbon::createFromFormat('d/m/Y', $data['birthday']))
                      ->setCpf($data['cpf'])
-                     ->setRg($data['rg']);
+                     ->setRg($data['rg'])
+                     ->setIssuingBody($data['issuingBody']);
 
         } elseif ($customer->isCompany()) {
 

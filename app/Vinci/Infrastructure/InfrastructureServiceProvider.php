@@ -3,8 +3,6 @@
 namespace Vinci\Infrastructure;
 
 use Illuminate\Support\ServiceProvider;
-use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepository;
-use Vinci\Infrastructure\ACL\Modules\DoctrineModuleRepositoryCached;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class InfrastructureServiceProvider extends ServiceProvider
@@ -127,17 +125,57 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Address\Country\Country'
         );
 
+//        $this->registerRepository(
+//            'Vinci\Domain\Address\State\StateRepository',
+//            'Vinci\Infrastructure\Address\State\DoctrineStateRepository',
+//            'Vinci\Domain\Address\State\State'
+//        );
+//
+//        $this->registerRepository(
+//            'Vinci\Domain\Address\City\CityRepository',
+//            'Vinci\Infrastructure\Address\City\DoctrineCityRepository',
+//            'Vinci\Domain\Address\City\City'
+//        );
+
         $this->registerRepository(
-            'Vinci\Domain\Address\State\StateRepository',
-            'Vinci\Infrastructure\Address\State\DoctrineStateRepository',
-            'Vinci\Domain\Address\State\State'
+            'Vinci\Domain\Product\Repositories\ProductRepository',
+            'Vinci\Infrastructure\Product\DoctrineProductRepository',
+            'Vinci\Domain\Product\Product'
         );
 
         $this->registerRepository(
-            'Vinci\Domain\Address\City\CityRepository',
-            'Vinci\Infrastructure\Address\City\DoctrineCityRepository',
-            'Vinci\Domain\Address\City\City'
+            'Vinci\Domain\Channel\ChannelRepository',
+            'Vinci\Infrastructure\Channel\DoctrineChannelRepository',
+            'Vinci\Domain\Channel\Channel'
         );
+
+        $this->app->singleton('Vinci\Domain\Address\City\CityRepository', function() {
+
+            $stateRepository =  $this->app->make('Vinci\Infrastructure\Address\City\DoctrineCityRepository', [
+                $this->app['em'],
+                $this->app['em']->getClassMetaData('Vinci\Domain\Address\City\City')
+            ]);
+
+            return $this->app->make('Vinci\Infrastructure\Address\City\DoctrineCityRepositoryCached', [
+                $stateRepository,
+                $this->app['cache']->driver()
+            ]);
+
+        });
+
+        $this->app->singleton('Vinci\Domain\Address\State\StateRepository', function() {
+
+            $stateRepository =  $this->app->make('Vinci\Infrastructure\Address\State\DoctrineStateRepository', [
+                $this->app['em'],
+                $this->app['em']->getClassMetaData('Vinci\Domain\Address\State\State')
+            ]);
+
+            return $this->app->make('Vinci\Infrastructure\Address\State\DoctrineStateRepositoryCached', [
+                $stateRepository,
+                $this->app['cache']->driver()
+            ]);
+
+        });
 
         $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
             return new StorageService($this->app['filesystem'], $this->app['config']);

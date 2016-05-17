@@ -71,7 +71,6 @@ class AddressService
 
     public function hydrateCustomerAddresses(Customer $customer, $addresses, $mainAddressId)
     {
-
         $this->sanitize($addresses);
 
         $addressCollection = $this->addressFactory->makeCollectionFromArray($addresses);

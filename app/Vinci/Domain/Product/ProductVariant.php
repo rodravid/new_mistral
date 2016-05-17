@@ -6,15 +6,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
+use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Common\Status;
+use Vinci\Domain\Common\Traits\Schedulable;
+use Vinci\Domain\Common\Traits\SEOable;
+use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="products_variants")
  */
-class ProductVariant extends Model
+class ProductVariant extends Model implements ProductVariantInterface
 {
+
+    use Timestampable, SoftDeletes, SEOable, Schedulable;
 
     /**
      * @ORM\Id
@@ -34,14 +42,19 @@ class ProductVariant extends Model
     protected $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(name="short_description", type="text", nullable=true)
      */
-    protected $price;
+    protected $shortDescription;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $stock;
 
     /**
      * @Gedmo\Slug(fields={"title", "sku"}, unique=true, updatable=false)
@@ -60,13 +73,19 @@ class ProductVariant extends Model
     protected $master = false;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Image\Image")
-     * @ORM\JoinTable(name="products_photos",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="photo_id", referencedColumnName="id", unique=true)}
-     *     )
+     * @ORM\Column(name="import_price", type="boolean", options={"default" = 1})
      */
-    protected $photos;
+    protected $importPrice = true;
+
+    /**
+     * @ORM\Column(name="import_stock", type="boolean", options={"default" = 1})
+     */
+    protected $importStock = true;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantImage", mappedBy="productVariant", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
+     */
+    protected $images;
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", inversedBy="variants")
@@ -82,9 +101,16 @@ class ProductVariant extends Model
      */
     protected $options;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant", cascade={"persist", "remove"}, indexBy="channel_id", orphanRemoval=true)
+     */
+    protected $prices;
+
     public function __construct()
     {
         $this->options = new ArrayCollection;
+        $this->images = new ArrayCollection;
+        $this->prices = new ArrayCollection;
     }
 
     public function getId()
@@ -114,20 +140,15 @@ class ProductVariant extends Model
         return $this;
     }
 
-    public function getPrice()
+    public function getStock()
     {
-        return $this->price;
+        return $this->stock;
     }
 
-    public function setPrice($price)
+    public function setStock($stock)
     {
-        $this->price = (double) $price;
+        $this->stock = (int) $stock;
         return $this;
-    }
-
-    public function getOldPrice()
-    {
-        // TODO: Implement getOldPrice() method.
     }
 
     public function getSlug()
@@ -213,6 +234,187 @@ class ProductVariant extends Model
     public function hasOption(OptionValue $option)
     {
         return $this->options->contains($option);
+    }
+
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    public function setPrices(Collection $prices)
+    {
+        $this->prices = $prices;
+        return $this;
+    }
+
+    public function addPrice(ProductVariantPrice $price)
+    {
+        if (! $this->hasPrice($price)) {
+            $price->setVariant($this);
+            $this->prices->set($price->getId(), $price);
+
+        } else {
+            $this->prices->get($price->getId())->override($price);
+        }
+    }
+
+    public function removePrice(ProductVariantPrice $price)
+    {
+        if ($this->hasPrice($price)) {
+            $this->prices->removeElement($price);
+        }
+    }
+
+    public function hasPrice(ProductVariantPrice $price)
+    {
+        return $this->prices->containsKey($price->getId());
+    }
+
+    public function getDefaultChannel()
+    {
+        return $this->getProduct()->getDefaultChannel();
+    }
+
+    public function getCurrentChannel()
+    {
+        return $this->getProduct()->getCurrentChannel();
+    }
+
+    public function getChannels()
+    {
+        return $this->getProduct()->getChannels();
+    }
+
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function setImages(Collection $images)
+    {
+        $this->images = $images;
+        return $this;
+    }
+
+    public function getImagesUploadPath()
+    {
+        return 'products/variants/' . $this->getId() . '/images';
+    }
+
+    public function addImage(Image $image, $version)
+    {
+        $variantImage = new ProductVariantImage;
+        $variantImage->setImage($image);
+        $variantImage->setProductVariant($this);
+        $variantImage->setImageVersion($version);
+        $this->images->remove($version);
+        $this->images->set($version, $variantImage);
+    }
+
+    public function removeImage(Image $image)
+    {
+        foreach ($this->images as $img) {
+            if ($image == $img->getImage()) {
+                $this->images->removeElement($img);
+            }
+        }
+    }
+
+    public function getImage($version)
+    {
+        foreach ($this->images as $relation) {
+            if ($relation->getImageVersion() == $version) {
+                return $relation->getImage();
+            }
+        }
+    }
+
+    public function hasImage($version)
+    {
+        return !! $this->getImage($version);
+    }
+
+    public function getPrice($channel = null)
+    {
+        if (! $price = $this->getPriceOnChannel($channel)) {
+            return $this->getPriceOnChannel($this->getDefaultChannel());
+        }
+
+        return $price;
+    }
+
+    protected function getPriceOnChannel($channel)
+    {
+        if ($channel instanceof Channel) {
+            $channelCode = $channel->getCode();
+
+        } else {
+            $channelCode = $channel ?? $this->getCurrentChannel()->getCode();
+        }
+
+        foreach ($this->prices as $price) {
+            if ($price->getChannel()->getCode() == $channelCode) {
+                return $price;
+            }
+        }
+    }
+
+    public function getPriceCalculator()
+    {
+        return $this->getProduct()->getPriceCalculator();
+    }
+
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+        return $this;
+    }
+
+    public function shouldImportPrice()
+    {
+        return $this->importPrice;
+    }
+
+    public function setImportPrice($importPrice)
+    {
+        $this->importPrice = (bool) $importPrice;
+        return $this;
+    }
+
+    public function shouldImportStock()
+    {
+        return $this->importStock;
+    }
+
+    public function setImportStock($importStock)
+    {
+        $this->importStock = (bool) $importStock;
+        return $this;
+    }
+
+    public function syncPrices(ArrayCollection $prices)
+    {
+        $toRemove = $this->prices->filter(function($price) use ($prices) {
+            if ($prices->containsKey($price->getId())) {
+                return false;
+            }
+            return true;
+        });
+
+        foreach ($toRemove as $price) {
+            $this->prices->removeElement($price);
+        }
+
+        foreach ($prices as $price) {
+            $this->addPrice($price);
+        }
+
+        return $this;
     }
 
 }

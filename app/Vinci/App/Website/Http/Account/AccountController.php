@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Redirect;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\Customer\CustomerService;
 
@@ -25,11 +26,7 @@ class AccountController extends Controller
 
     public function index()
     {
-        $user = $this->auth->user();
-
-        dd($user);
-
-        return $this->view('account.index', compact('user'));
+        return Redirect::route('account.orders.index');
     }
 
     public function create()
@@ -41,7 +38,7 @@ class AccountController extends Controller
     {
         $user = $this->auth->user();
 
-        return $this->view('account.create', compact('user'));
+        return $this->view('account.info.index', compact('user'));
     }
 
     public function store(Request $request)
