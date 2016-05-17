@@ -349,7 +349,7 @@ class ProductVariant extends Model implements ProductVariantInterface
             $channelCode = $channel->getCode();
 
         } else {
-            $channelCode = $channel ?? $this->getCurrentChannel()->getCode();
+            $channelCode = empty($channel) ? $this->getCurrentChannel()->getCode() : $channel;
         }
 
         foreach ($this->prices as $price) {
