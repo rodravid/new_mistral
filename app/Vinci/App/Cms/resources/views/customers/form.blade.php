@@ -68,6 +68,12 @@
                                     {!! Form::text('rg', null, ['id' => 'txtRg', 'class' => 'form-control', 'maxlength' => 15]) !!}
                                 </div>
                             </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="txtIssuingBody">Órgão emissor</label>
+                                    {!! Form::text('issuingBody', null, ['id' => 'txtIssuingBody', 'class' => 'form-control', 'maxlength' => 15]) !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
 

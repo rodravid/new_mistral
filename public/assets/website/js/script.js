@@ -215,48 +215,48 @@ jQuery(document).ready(function ($) {
     });
 
 
-    $('input[name=type-buyer]').on('change', function () {
-
-        var $self = $(this);
-        var value = $self.val();
-
-        if (value == 1) {
-
-            $("#person").fadeIn();
-            $("#company").hide();
-
-        } else if (value == 2) {
-
-            $("#company").fadeIn();
-            $("#person").hide();
-
-        }
-
-    });
-
-    function toggleTypeBuyer() {
-
-        var $self = $(this);
-        var value = $('input[name=type-buyer]').val();
-
-        if (value == 1) {
-
-            $("#person").fadeIn();
-            $("#company").hide();
-
-        } else if (value == 2) {
-
-            $("#company").fadeIn();
-            $("#person").hide();
-            $("#residencial").hide();
-            $("#outros").hide();
-
-
-        }
-
-    }
-
-    toggleTypeBuyer();
+    //$('input[name=type-buyer]').on('change', function () {
+    //
+    //    var $self = $(this);
+    //    var value = $self.val();
+    //
+    //    if (value == 1) {
+    //
+    //        $("#person").fadeIn();
+    //        $("#company").hide();
+    //
+    //    } else if (value == 2) {
+    //
+    //        $("#company").fadeIn();
+    //        $("#person").hide();
+    //
+    //    }
+    //
+    //});
+    //
+    //function toggleTypeBuyer() {
+    //
+    //    var $self = $(this);
+    //    var value = $('input[name=type-buyer]').val();
+    //
+    //    if (value == 1) {
+    //
+    //        $("#person").fadeIn();
+    //        $("#company").hide();
+    //
+    //    } else if (value == 2) {
+    //
+    //        $("#company").fadeIn();
+    //        $("#person").hide();
+    //        $("#residencial").hide();
+    //        $("#outros").hide();
+    //
+    //
+    //    }
+    //
+    //}
+    //
+    //toggleTypeBuyer();
 
 
     $(".menu-account-mob").click(function () {

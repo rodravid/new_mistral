@@ -8,9 +8,9 @@ class CustomerValidator extends LaravelValidator
 {
 
     protected $rules = [
+        'customerType' => 'required',
         'name' => 'required',
         'email' => 'required|email|unique:Vinci\Domain\Customer\Customer,email',
-        'customerType' => 'required',
         'gender' => 'required_if:customerType,1',
         'birthday' => 'required_if:customerType,1|date_format:d/m/Y',
         'cpf' => 'required_if:customerType,1',
@@ -24,6 +24,7 @@ class CustomerValidator extends LaravelValidator
     ];
 
     protected $messages = [
+        'customerType.required' => 'Selecione o tipo de pessoa.',
         'email.unique' => 'Esse endereço de e-mail já está sendo utilizado por outro usuário.',
         'password.required_without' => 'O campo senha é obrigatório.',
         'gender.required_if' => 'Selecione o sexo.',

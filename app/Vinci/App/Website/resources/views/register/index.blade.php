@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-controller="RegisterController">
 
         <header class="header-content-internal">
 
@@ -39,15 +39,14 @@
             {!! Form::open(['route' => 'register.store', 'method' => 'post']) !!}
 
                 <header class="header-content-internal">
-                    <ul class="list-type-buyer">
+                    <ul class="list-type-buyer" ng-init="customerType = 1; onCustomerTypeChange()">
                         <li>
-                            <label for="physical-person">Pessoa Física</label>
-                            <input type="radio" name="type-buyer" value="1" class="physical-person" id="physical-person"
-                                   checked>
+                            <label for="radioPersonTypeIndividual">Pessoa Física</label>
+                            {!! Form::radio('customerType', \Vinci\Domain\Customer\CustomerType::INDIVIDUAL, null, ['id' => 'radioPersonTypeIndividual', 'ng-model' => 'customerType', 'class' => 'legal-person', 'ng-change' => 'onCustomerTypeChange()']) !!}
                         </li>
                         <li>
-                            <label for="legal-person">Pessoa Jurídica</label>
-                            <input type="radio" name="type-buyer" value="2" class="legal-person" id="legal-person">
+                            <label for="radioPersonTypeCompany">Pessoa Jurídica</label>
+                            {!! Form::radio('customerType', \Vinci\Domain\Customer\CustomerType::COMPANY, null, ['id' => 'radioPersonTypeCompany', 'ng-model' => 'customerType', 'class' => 'legal-person', 'ng-change' => 'onCustomerTypeChange()']) !!}
                         </li>
                     </ul>
                 </header>
@@ -71,7 +70,7 @@
                             </li>
                         </ul>
 
-                        <div class="" id="person">
+                        <div class="" id="person" ng-show="customerType == 1">
                             <h2 class="title-form">Dados Pessoais *</h2>
                             <ul class="list-form-register">
                                 <li>
@@ -80,35 +79,29 @@
                                 </li>
                                 <li>
                                     <label for="cpf" class="label-input">CPF *</label>
-                                    <input class="cpf input-register full" type="text" placeholder="CPF *" cpf id="cpf">
+                                    {!! Form::text('cpf', null, ['id' => 'cpf', 'placeholder' => 'CPF *', 'class' => 'email input-register full ' . ($errors->has('cpf') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
                                     <label for="rg" class="label-input">RG</label>
-                                    <input class="rg input-register full" type="text" placeholder="RG" id="rg">
+                                    {!! Form::text('rg', null, ['id' => 'rg', 'placeholder' => 'RG', 'class' => 'email input-register full ' . ($errors->has('rg') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
-                                    <label for="orgao-emissor" class="label-input">Orgão Emissor *</label>
-                                    <input class="orgao-emissor input-register half" type="text"
-                                           placeholder="Orgão Emissor *" id="orgao-emissor">
+                                    <label for="issuingBody" class="label-input">Orgão Emissor *</label>
+                                    {!! Form::text('issuingBody', null, ['id' => 'issuingBody', 'placeholder' => 'Órgão emissor *', 'class' => 'email input-register full ' . ($errors->has('issuingBody') ? 'error-field' : '')]) !!}
                                 </li>
                                 <li>
-                                    <div class="select-standard form-control-white">
-                                        <select class="" name="" id="">
-                                            <option value="">Sexo *</option>
-                                            <option value="">Masculino</option>
-                                            <option value="">Feminino</option>
-                                        </select>
+                                    <div class="select-standard form-control-white {{ $errors->has('gender') ? 'error-field' : '' }}">
+                                        {!! Form::select('gender', ['' => 'Sexo *', \Vinci\Domain\Common\Gender::MALE => 'Masculino', \Vinci\Domain\Common\Gender::FEMALE => 'Feminino'], null, ['id' => 'selectGender']) !!}
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="birth-date" class="label-input">Data de Nascimento *</label>
-                                    <input class="birth-date input-register seventy" type="text"
-                                           placeholder="Data de Nascimento *" date id="birth-date">
+                                    <label for="txtBirthday" class="label-input">Data de Nascimento *</label>
+                                    {!! Form::text('birthday', null, ['id' => 'txtBirthday', 'placeholder' => 'Data de Nascimento *', 'class' => 'birth-date input-register seventy ' . ($errors->has('birthday') ? 'error-field' : '')]) !!}
                                 </li>
                             </ul>
                         </div>
 
-                        <div class="" id="company">
+                        <div class="" id="company" ng-show="customerType == 2">
                             <h2 class="title-form">Dados Empresa *</h2>
                             <ul class="list-form-register">
                                 <li>
@@ -144,29 +137,23 @@
                         <ul class="list-form-register">
                             <li>
                                 <ul class="list-type-radio-3cols">
-                                    <li>
+                                    <li ng-hide="customerType == 2">
                                         <label for="residencial">Residencial</label>
-                                        <input type="radio" name="delivery-addres" value="1" class="physical-person"
-                                               id="residencial" checked>
+                                        <input type="radio" name="addresses[0][type]" value="1" class="physical-person" id="residencial" ng-model="addressType">
                                     </li>
                                     <li>
                                         <label for="comercial">Comercial</label>
-                                        <input type="radio" name="delivery-addres" value="2" class="legal-person"
-                                               id="comercial">
+                                        <input type="radio" name="addresses[0][type]" value="2" class="legal-person" id="comercial" ng-model="addressType">
                                     </li>
-
-                                    <li>
+                                    <li ng-hide="customerType == 2">
                                         <label for="outros">Outros</label>
-                                        <input type="radio" name="delivery-addres" value="3" class="legal-person"
-                                               id="outros">
+                                        <input type="radio" name="addresses[0][type]" value="3" class="legal-person" id="outros" ng-model="addressType">
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <label for="type-addres" class="label-input">Tipo de endereço (Ex: casa, trabalho)
-                                    *</label>
-                                <input class="type-addres input-register full" type="text"
-                                       placeholder="Tipo de endereço (Ex: casa, trabalho) *" id="type-addres">
+                            <li ng-show="addressType == 3">
+                                <label for="type-addres" class="label-input">Tipo de endereço (Ex: casa, trabalho) *</label>
+                                <input class="type-addres input-register full" type="text" name="addresses[0][nickname]" placeholder="Tipo de endereço (Ex: casa, trabalho) *" id="type-addres">
                             </li>
                             <li>
                                 <label for="cep" class="label-input">CEP *</label>
