@@ -2,10 +2,12 @@
 
 namespace Vinci\App\Website\Http\ShoppingCart\Provider;
 
+use Illuminate\Contracts\Auth\Factory as AuthManager;
 use Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext;
 use Vinci\Domain\ShoppingCart\Factory\Contracts\ShoppingCartFactory;
 use Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository;
 use Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider as ShoppingCartProviderInterface;
+use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
 class ShoppingCartProvider implements ShoppingCartProviderInterface
 {
@@ -16,19 +18,34 @@ class ShoppingCartProvider implements ShoppingCartProviderInterface
 
     protected $cartFactory;
 
+    protected $currentCart;
+
+    protected $auth;
+
     public function __construct(
         ShoppingCartContext $cartContext,
         ShoppingCartRepository $cartRepository,
-        ShoppingCartFactory $cartFactory
+        ShoppingCartFactory $cartFactory,
+        AuthManager $auth
     ) {
         $this->cartContext = $cartContext;
         $this->cartRepository = $cartRepository;
         $this->cartFactory = $cartFactory;
+        $this->auth = $auth;
     }
 
     public function getShoppingCart()
     {
-        return $this->provideCart();
+        if (! $this->currentCart) {
+
+            $cart = $this->provideCart();
+
+            $this->setShoppingCart($cart);
+
+            return $cart;
+        }
+
+        return $this->currentCart;
     }
 
     private function provideCart()
@@ -42,17 +59,15 @@ class ShoppingCartProvider implements ShoppingCartProviderInterface
             if ($cart !== null) {
                 return $cart;
             }
+
         }
 
-        $cart = $this->cartFactory->createNew();
-
-        $this->cartContext->setCurrentCartIdentifier($cart);
-
-        return $cart;
+        return $this->cartFactory->createNew();
     }
 
-    public function hasShoppingCart()
+    public function setShoppingCart(ShoppingCartInterface $shoppingCart)
     {
-        return (bool) $this->cartContext->getCurrentCartIdentifier();
+        $this->currentCart = $shoppingCart;
+        $this->cartContext->setCurrentCartIdentifier($shoppingCart);
     }
 }

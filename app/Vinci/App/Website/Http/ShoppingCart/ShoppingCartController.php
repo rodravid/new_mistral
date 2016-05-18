@@ -24,8 +24,9 @@ class ShoppingCartController extends Controller
 
     public function index(Request $request)
     {
+        $cart = $this->cartService->getCart();
 
-        $this->cartService->getCart();
+        return $cart->getId();
 
         return $request->session()->get('_webeleven_cart_id');
 
@@ -33,6 +34,13 @@ class ShoppingCartController extends Controller
 
 
         return $this->view('cart.index');
+    }
+
+    public function add()
+    {
+
+        $this->cartService->add();
+
     }
 
 }

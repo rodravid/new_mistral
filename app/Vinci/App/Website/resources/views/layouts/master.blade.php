@@ -32,13 +32,13 @@
     <script src="{{ asset_web('js/readmore.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/bootstrap-notify/bootstrap-notify.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/common/js/address-autocomplete.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
 
     <script src="{{ asset_web('app/js/app.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/services/auth.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('app/js/controllers/home/homeController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/auth/modalLoginController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/register/registerController.js') }}" type="text/javascript"></script>
 

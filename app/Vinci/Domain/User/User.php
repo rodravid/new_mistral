@@ -18,6 +18,7 @@ use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\User\Contracts\HasSettings;
 use Vinci\Domain\User\Settings\Settings;
@@ -259,6 +260,11 @@ abstract class User extends Model implements
         $settings->set($key, $value);
 
         return $this;
+    }
+
+    public function isCustomer()
+    {
+        return $this instanceof Customer;
     }
 
 }

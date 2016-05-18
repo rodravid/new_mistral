@@ -98,6 +98,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      */
     $route->group(['prefix' => 'carrinho', 'as' => 'cart.'], function() use ($route) {
         $route->get('/', 'ShoppingCart\ShoppingCartController@index')->name('index');
+        $route->post('add', 'ShoppingCart\ShoppingCartController@add')->name('add');
     });
 
     /**

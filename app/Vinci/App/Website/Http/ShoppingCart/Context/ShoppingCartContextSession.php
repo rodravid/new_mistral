@@ -15,8 +15,6 @@ class ShoppingCartContextSession implements ShoppingCartContext
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
-
-        $this->session->set('teste', 'kkkk');
     }
 
     public function getCurrentCartIdentifier()

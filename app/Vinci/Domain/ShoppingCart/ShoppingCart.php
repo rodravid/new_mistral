@@ -12,7 +12,7 @@ use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="shopping_cart", indexes={@ORM\Index(name="session_idx", columns={"session_id"})})
+ * @ORM\Table(name="shopping_cart")
  */
 class ShoppingCart implements ShoppingCartInterface
 {
@@ -25,11 +25,6 @@ class ShoppingCart implements ShoppingCartInterface
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=40, options={"fixed" = true})
-     */
-    protected $sessionId;
-
-    /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\Item\ShoppingCartItem", mappedBy="shoppingCart", cascade={"persist", "remove"})
      */
     protected $items;
@@ -38,6 +33,11 @@ class ShoppingCart implements ShoppingCartInterface
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Customer\Customer", inversedBy="shoppingCarts")
      */
     protected $customer;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default" = 0})
+     */
+    protected $current = false;
 
     /**
      * @ORM\Column(type="smallint", options={"defalut" = 1})
@@ -109,6 +109,16 @@ class ShoppingCart implements ShoppingCartInterface
         return $this->items;
     }
 
+    public function hasItems()
+    {
+        return $this->items->count() > 0;
+    }
+
+    public function isEmpty()
+    {
+        return ! $this->hasItems();
+    }
+
     public function addItem(ShoppingCartItem $cartItem)
     {
         if (! $this->hasItem($cartItem)) {
@@ -131,6 +141,17 @@ class ShoppingCart implements ShoppingCartInterface
     public function hasItem(ShoppingCartItem $cartItem)
     {
         return $this->items->contains($cartItem);
+    }
+
+    public function isCurrent()
+    {
+        return $this->current;
+    }
+
+    public function setCurrent($current)
+    {
+        $this->current = (bool) $current;
+        return $this;
     }
 
 }
