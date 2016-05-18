@@ -4,8 +4,10 @@ namespace Vinci\App\Website\Http\Register;
 
 use Auth;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Flash;
 use Illuminate\Http\Request;
+use Log;
 use Redirect;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
@@ -56,7 +58,9 @@ class RegisterController extends Controller
 
         } catch (Exception $e) {
 
-            Flash::error($e->getMessage());
+            Log::error('Register error: ' . $e->getMessage());
+
+            Flash::error(trans('register.failed'));
 
             return Redirect::back()->withInput();
         }
