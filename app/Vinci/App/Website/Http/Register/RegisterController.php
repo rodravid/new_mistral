@@ -11,8 +11,8 @@ use Log;
 use Redirect;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
+use Vinci\Domain\Address\Country\Country;
 use Vinci\Domain\Address\State\StateRepository;
-use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerService;
 
 class RegisterController extends Controller
@@ -54,11 +54,13 @@ class RegisterController extends Controller
 
         } catch (ValidationException $e) {
 
-            return Redirect::back()->withErrors($e->getErrors())->withInput();
+            return Redirect::back()
+                ->withErrors($e->getErrors())
+                ->withInput();
 
         } catch (Exception $e) {
 
-            Log::error('Register error: ' . $e->getMessage());
+            Log::error(sprintf('Register error: %s', $e->getMessage()));
 
             Flash::error(trans('register.failed'));
 
