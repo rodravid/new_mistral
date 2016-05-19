@@ -19,8 +19,7 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     protected $subscribe = [
-        'Vinci\Domain\Product\Events\Subscribers\SetCurrentChannelSubscriber',
-        'Vinci\Domain\Product\Events\Subscribers\SetPriceCalculatorSubscriber',
+        'Vinci\Domain\ShoppingCart\Events\Subscribers\ShoppingCartEventSubscriber'
     ];
 
     /**

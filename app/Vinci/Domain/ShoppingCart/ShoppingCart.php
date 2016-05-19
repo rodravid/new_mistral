@@ -4,10 +4,15 @@ namespace Vinci\Domain\ShoppingCart;
 
 use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Customer\Customer;
+use Vinci\Domain\Product\ProductInterface;
+use Vinci\Domain\ShoppingCart\Events\ItemWasRemoved;
+use Vinci\Domain\ShoppingCart\Events\NewItemWasAdded;
 use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
 
 /**
@@ -16,7 +21,7 @@ use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
  */
 class ShoppingCart implements ShoppingCartInterface
 {
-    use Timestampable;
+    use Timestampable, HasEvents;
 
     /**
      * @ORM\Id
@@ -25,19 +30,9 @@ class ShoppingCart implements ShoppingCartInterface
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\Item\ShoppingCartItem", mappedBy="shoppingCart", cascade={"persist", "remove"})
-     */
-    protected $items;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Customer\Customer", inversedBy="shoppingCarts")
      */
     protected $customer;
-
-    /**
-     * @ORM\Column(type="boolean", options={"default" = 0})
-     */
-    protected $current = false;
 
     /**
      * @ORM\Column(type="smallint", options={"defalut" = 1})
@@ -49,6 +44,11 @@ class ShoppingCart implements ShoppingCartInterface
      */
     protected $expirationAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\Item\ShoppingCartItem", mappedBy="shoppingCart", cascade={"persist", "remove"})
+     */
+    protected $items;
+
     public function __construct()
     {
         $this->id = Uuid::uuid4();
@@ -58,17 +58,6 @@ class ShoppingCart implements ShoppingCartInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getSessionId()
-    {
-        return $this->sessionId;
-    }
-
-    public function setSessionId($sessionId)
-    {
-        $this->sessionId = $sessionId;
-        return $this;
     }
 
     public function getCustomer()
@@ -124,6 +113,8 @@ class ShoppingCart implements ShoppingCartInterface
         if (! $this->hasItem($cartItem)) {
             $cartItem->setShoppingCart($this);
             $this->items->add($cartItem);
+
+            $this->raise(new NewItemWasAdded($cartItem));
         }
 
         return $this;
@@ -133,6 +124,8 @@ class ShoppingCart implements ShoppingCartInterface
     {
         if ($this->hasItem($cartItem)) {
             $this->items->remove($cartItem);
+
+            $this->raise(new ItemWasRemoved($cartItem));
         }
 
         return $this;
@@ -143,15 +136,24 @@ class ShoppingCart implements ShoppingCartInterface
         return $this->items->contains($cartItem);
     }
 
-    public function isCurrent()
+    public function findItemByProduct(ProductInterface $product)
     {
-        return $this->current;
+        $criteria = Criteria::create()
+            ->where(Criteria::expr()->eq('product', $product));
+
+        return $this->items->matching($criteria)->first();
     }
 
-    public function setCurrent($current)
+    public function releaseEvents()
     {
-        $this->current = (bool) $current;
-        return $this;
+        $events = $this->pendingEvents;
+        $this->pendingEvents = [];
+
+        foreach ($this->items as $item) {
+            $events = array_merge($events, $item->releaseEvents());
+        }
+
+        return $events;
     }
 
 }

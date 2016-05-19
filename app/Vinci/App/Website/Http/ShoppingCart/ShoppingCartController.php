@@ -3,7 +3,9 @@
 namespace Vinci\App\Website\Http\ShoppingCart;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Illuminate\Http\Request;
+use Response;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 
@@ -24,23 +26,28 @@ class ShoppingCartController extends Controller
 
     public function index(Request $request)
     {
-        $cart = $this->cartService->getCart();
-
-        return $cart->getId();
-
-        return $request->session()->get('_webeleven_cart_id');
-
-        return($this->cartService->getCart());
-
-
         return $this->view('cart.index');
     }
 
     public function add()
     {
+        try {
 
-        $this->cartService->add();
+            $this->cartService->addItem(2, 10);
 
+            return Response::json([
+                'success' => true,
+                'message' => trans('cart.item_added')
+            ]);
+
+        } catch (Exception $e) {
+
+            return Response::json([
+                'success' => false,
+                'message' => trans('cart.item_add_failed')
+            ]);
+
+        }
     }
 
 }

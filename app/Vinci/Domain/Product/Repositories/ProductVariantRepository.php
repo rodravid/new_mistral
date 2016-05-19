@@ -2,9 +2,9 @@
 
 namespace Vinci\Domain\Product\Repositories;
 
-interface ProductRepository
+interface ProductVariantRepository
 {
     public function find($id);
 
-    public function findOneByIdAndChannel($id, $channel);
+    public function getOneValidById($id);
 }

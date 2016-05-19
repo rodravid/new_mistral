@@ -11,8 +11,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
-        $this->app['em']->getConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('uuid', 'uuid');
+        $this->registerRamseyUuid();
     }
 
     /**
@@ -34,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
     {
         setlocale(LC_ALL, "pt_BR", "pt_BR.iso-8859-1", "pt_BR.utf-8", "portuguese");
         Carbon::setLocale($this->app->getLocale());
+    }
+
+    private function registerRamseyUuid()
+    {
+        \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
     }
 
 }

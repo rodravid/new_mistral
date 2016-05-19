@@ -29,6 +29,7 @@ use Vinci\Domain\Region\Region;
  *     "wine" = "Vinci\Domain\Product\Wine\Wine",
  *     "kit" = "Vinci\Domain\Product\Kit\Kit"
  * })
+ * @ORM\EntityListeners({"Vinci\Domain\Product\Events\Listeners\ProductListener"})
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Product extends Model implements ProductInterface
@@ -289,6 +290,8 @@ class Product extends Model implements ProductInterface
                 return $ch;
             }
         }
+
+        return $this->getDefaultChannel();
     }
 
     public function getCurrentChannel()
@@ -637,6 +640,11 @@ class Product extends Model implements ProductInterface
     public function hasImage($version)
     {
         return $this->getMasterVariant()->hasImage($version);
+    }
+
+    public function isInClearanceSale()
+    {
+        return false;
     }
 
 }

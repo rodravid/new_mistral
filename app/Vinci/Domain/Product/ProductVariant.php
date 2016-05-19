@@ -106,6 +106,12 @@ class ProductVariant extends Model implements ProductVariantInterface
      */
     protected $prices;
 
+    /**
+     * @ORM\Version
+     * @ORM\Column(type="integer", options={"default" = 0})
+     */
+    protected $version;
+
     public function __construct()
     {
         $this->options = new ArrayCollection;
@@ -420,6 +426,11 @@ class ProductVariant extends Model implements ProductVariantInterface
         }
 
         return $this;
+    }
+
+    public function getVersion()
+    {
+        return $this->version;
     }
 
 }

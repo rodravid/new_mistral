@@ -32,4 +32,8 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $highlight;
     }
 
+    public function findOneByIdAndChannel($id, $channel)
+    {
+
+    }
 }

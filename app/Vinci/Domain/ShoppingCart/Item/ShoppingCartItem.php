@@ -3,9 +3,10 @@
 namespace Vinci\Domain\ShoppingCart\Item;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
-use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Product\ProductVariantInterface;
+use Vinci\Domain\ShoppingCart\Events\ItemQuantityWasIncremented;
 use Vinci\Domain\ShoppingCart\ShoppingCart;
 
 /**
@@ -15,7 +16,7 @@ use Vinci\Domain\ShoppingCart\ShoppingCart;
 class ShoppingCartItem
 {
 
-    use Timestampable;
+    use Timestampable, HasEvents;
 
     /**
      * @ORM\Id
@@ -26,6 +27,7 @@ class ShoppingCartItem
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\ShoppingCart\ShoppingCart", inversedBy="items")
+     * @ORM\JoinColumn(name="shopping_cart_id", onDelete="CASCADE")
      */
     protected $shoppingCart;
 
@@ -70,12 +72,6 @@ class ShoppingCartItem
         return $this->product;
     }
 
-    public function setProduct(ProductInterface $product)
-    {
-        $this->product = $product;
-        return $this;
-    }
-
     public function getProductVariant()
     {
         return $this->productVariant;
@@ -84,6 +80,10 @@ class ShoppingCartItem
     public function setProductVariant(ProductVariantInterface $productVariant)
     {
         $this->productVariant = $productVariant;
+        $this->product = $productVariant->getProduct();
+
+        $this->setInClearanceSale($this->product->isInClearanceSale());
+
         return $this;
     }
 
@@ -122,13 +122,23 @@ class ShoppingCartItem
 
     public function incrementQuantity($quantity = 1)
     {
-        $this->setQuantity($this->getQuantity() + intval($quantity));
+        $quantity = intval($quantity);
+
+        $this->setQuantity($this->getQuantity() + $quantity);
+
+        $this->raise(new ItemQuantityWasIncremented($this, $quantity));
+
         return $this;
     }
 
     public function decrementQuantity($quantity = 1)
     {
-        $this->setQuantity($this->getQuantity() - intval($quantity));
+        $quantity = intval($quantity);
+
+        $this->setQuantity($this->getQuantity() - $quantity);
+
+        $this->raise(new ItemQuantityWasIncremented($this, $quantity));
+
         return $this;
     }
 

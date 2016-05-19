@@ -150,6 +150,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\Product\Repositories\ProductVariantRepository',
+            'Vinci\Infrastructure\Product\Variant\DoctrineProductVariantRepository',
+            'Vinci\Domain\Product\ProductVariant'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\Channel\ChannelRepository',
             'Vinci\Infrastructure\Channel\DoctrineChannelRepository',
             'Vinci\Domain\Channel\Channel'

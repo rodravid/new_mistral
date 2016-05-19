@@ -14,12 +14,16 @@ use Vinci\Domain\Customer\CustomerService;
 use Vinci\Domain\DeliveryTrack\DeliveryTrackService;
 use Vinci\Domain\Highlight\HighlightService;
 use Vinci\Domain\Country\CountryService;
+use Vinci\Domain\Inventory\Checkers\AvailabilityChecker;
 use Vinci\Domain\Pricing\Calculator\PriceCalculatorProvider;
 use Vinci\Domain\Pricing\Calculator\StandardPriceCalculator;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
 use Vinci\Domain\ProductType\ProductTypeService;
+use Vinci\Domain\ShoppingCart\Checkers\ProductVariantStockChecker;
+use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
+use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
 
 class DomainServiceProvider extends ServiceProvider
 {
@@ -159,12 +163,21 @@ class DomainServiceProvider extends ServiceProvider
             $repository = $this->app->make('Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository');
             $factory = $this->app->make('Vinci\Domain\ShoppingCart\Factory\Contracts\ShoppingCartFactory');
 
-            return new ShoppingCartProvider($context, $repository, $factory, $this->app['auth']);
-
+            return new ShoppingCartProvider($context, $repository, $factory, $this->app['auth']->guard('website'));
         });
 
         $this->app->singleton('Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider', function() {
-            return new CustomerShoppingCartProvider($this->app['cart.provider'], $this->app['auth']);
+            return new CustomerShoppingCartProvider($this->app['cart.provider'], $this->app['auth']->guard('website'));
+        });
+
+        $this->app->singleton('Vinci\Domain\Inventory\Checkers\Contracts\AvailabilityChecker', function() {
+            return new AvailabilityChecker;
+        });
+
+        $this->app->alias('Vinci\Domain\Inventory\Checkers\Contracts\AvailabilityChecker', 'inventory.checker');
+
+        $this->app->singleton('Vinci\Domain\ShoppingCart\Resolver\Contracts\ItemResolver', function() {
+            return new ItemResolver($this->app['inventory.checker'], new ShoppingCartItemFactory);
         });
 
         $this->app->singleton('Vinci\App\Website\Auth\Events\Listeners\LinkCustomerToCurrentCart', function() {

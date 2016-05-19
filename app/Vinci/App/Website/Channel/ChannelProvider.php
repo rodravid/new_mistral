@@ -9,6 +9,6 @@ class ChannelProvider implements ChannelProviderInterface
 
     public function getChannel()
     {
-        return 'default';
+        return 'outro';
     }
 }

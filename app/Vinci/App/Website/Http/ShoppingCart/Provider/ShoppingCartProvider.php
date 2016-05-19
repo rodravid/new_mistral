@@ -2,7 +2,7 @@
 
 namespace Vinci\App\Website\Http\ShoppingCart\Provider;
 
-use Illuminate\Contracts\Auth\Factory as AuthManager;
+use Illuminate\Contracts\Auth\Guard;
 use Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext;
 use Vinci\Domain\ShoppingCart\Factory\Contracts\ShoppingCartFactory;
 use Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository;
@@ -26,7 +26,7 @@ class ShoppingCartProvider implements ShoppingCartProviderInterface
         ShoppingCartContext $cartContext,
         ShoppingCartRepository $cartRepository,
         ShoppingCartFactory $cartFactory,
-        AuthManager $auth
+        Guard $auth
     ) {
         $this->cartContext = $cartContext;
         $this->cartRepository = $cartRepository;
@@ -62,7 +62,7 @@ class ShoppingCartProvider implements ShoppingCartProviderInterface
 
         }
 
-        return $this->cartFactory->createNew();
+        return $this->cartFactory->createNew(['customer' => $this->auth->user()]);
     }
 
     public function setShoppingCart(ShoppingCartInterface $shoppingCart)
