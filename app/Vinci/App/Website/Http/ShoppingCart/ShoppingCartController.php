@@ -11,10 +11,8 @@ use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 
 class ShoppingCartController extends Controller
 {
-    protected $customerService;
-    /**
-     * @var ShoppingCartService
-     */
+    private $customerService;
+
     private $cartService;
 
     public function __construct(EntityManagerInterface $em, ShoppingCartService $cartService)
@@ -27,6 +25,35 @@ class ShoppingCartController extends Controller
     public function index(Request $request)
     {
         return $this->view('cart.index');
+    }
+
+    public function getItems()
+    {
+
+        $items = [
+            'id' => 'dfg8dufg9dfg',
+            'items' => [
+                [
+                    'id' => 1,
+                    'name' => 'Produto 1',
+                    'producer' => 'Catena Zapata',
+                    'sale_price' => 40.99,
+                    'quantity' => 2,
+                    'subtotal' => 81.98
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Produto 2',
+                    'producer' => 'Catena Zapata',
+                    'sale_price' => 30.45,
+                    'quantity' => 1,
+                    'subtotal' => 30.45
+                ]
+            ]
+        ];
+
+
+        return Response::json($items);
     }
 
     public function add()

@@ -58,7 +58,7 @@ class ShoppingCartService
         $this->cart = $cart;
     }
 
-    public function boot()
+    protected function boot()
     {
         try {
 

@@ -147,4 +147,9 @@ class ShoppingCartItem
         return $this->getQuantity() * $this->getProductVariant()->getSalePrice();
     }
 
+    public function __call($name, array $args = [])
+    {
+        call_user_func_array([$this->productVariant, $name], $args);
+    }
+
 }
