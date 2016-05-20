@@ -145,8 +145,16 @@ class DomainServiceProvider extends ServiceProvider
             return $this->app->make('Vinci\Domain\Product\Factories\ProductFactory');
         });
 
+        $this->app->singleton('Vinci\Domain\Channel\Contracts\ChannelContext', function() {
+            return $this->app->make('Vinci\App\Website\Channel\Context\ChannelContextSession', [$this->app['session']->driver()]);
+        });
+
         $this->app->singleton('Vinci\Domain\Channel\Contracts\ChannelProvider', function() {
-            return new ChannelProvider;
+
+            $context = $this->app->make('Vinci\Domain\Channel\Contracts\ChannelContext');
+            $repository = $this->app->make('Vinci\Domain\Channel\ChannelRepository');
+
+            return new ChannelProvider($context, $repository);
         });
 
         $this->app->singleton('Vinci\Domain\ShoppingCart\Factory\Contracts\ShoppingCartFactory', function() {

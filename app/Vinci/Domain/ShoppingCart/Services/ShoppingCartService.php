@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Contracts\Events\Dispatcher;
 use Vinci\Domain\Product\ProductVariantInterface;
 use Vinci\Domain\Product\Repositories\ProductVariantRepository;
+use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
 use Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider;
 use Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository;
 use Vinci\Domain\ShoppingCart\Resolver\Contracts\ItemResolver;
@@ -89,7 +90,11 @@ class ShoppingCartService
 
             $item = $this->itemResolver->resolve($this->cart, $productVariant, compact('quantity'));
 
-            $this->cart->addItem($item);
+            if ($this->cart->hasItem($item)) {
+                $item->incrementQuantity($quantity);
+            } else {
+                $this->cart->addItem($item);
+            }
 
             $this->dispatchEvents($this->cart);
 
@@ -100,13 +105,33 @@ class ShoppingCartService
         });
     }
 
+
+    public function syncQuantity($item, $quantity)
+    {
+        $this->entityManager->transactional(function($em) use ($item, $quantity) {
+
+            $productVariant = $this->getItem($item)->getProductVariant();
+
+            $item = $this->itemResolver->resolve($this->cart, $productVariant, compact('quantity'));
+
+            $item->syncQuantity($quantity);
+
+            $this->dispatchEvents($this->cart);
+
+            $em->persist($this->cart);
+            $em->persist($productVariant);
+
+            $em->lock($productVariant, LockMode::OPTIMISTIC, $productVariant->getVersion());
+        });
+
+    }
+
     public function dispatchEvents(ShoppingCartInterface $cart)
     {
         foreach ($cart->releaseEvents() as $event) {
             $this->event->fire($event);
         }
     }
-
 
     protected function getProductVariant($variant)
     {
@@ -115,6 +140,15 @@ class ShoppingCartService
         }
 
         return $variant;
+    }
+
+    protected function getItem($item)
+    {
+        if (! $item instanceof ShoppingCartItem) {
+            return $this->cart->findItemById($item);
+        }
+
+        return $item;
     }
 
     public function __call($name, array $arguments)

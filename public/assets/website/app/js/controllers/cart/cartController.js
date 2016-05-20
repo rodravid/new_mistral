@@ -7,9 +7,11 @@ angular.module('app')
 
         self.getCart = function() {
 
-            cartService.getCart().then(function(cart) {
+            cartService.getCachedCart().then(function(cart) {
 
                 self.cart = cart;
+
+                self.getCart();
 
             });
 

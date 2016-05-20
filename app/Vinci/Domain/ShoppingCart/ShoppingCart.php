@@ -120,6 +120,27 @@ class ShoppingCart implements ShoppingCartInterface
         return $this;
     }
 
+    public function addItemOrSyncQuantity(ShoppingCartItem $cartItem, $quantity = 1)
+    {
+        if (! $this->hasItem($cartItem)) {
+            return $this->addItem($cartItem, $quantity);
+        }
+
+        $cartItem->syncQuantity($quantity);
+
+        return $this;
+    }
+
+    public function getItemById($itemId)
+    {
+        foreach ($this->items as $item) {
+
+            if ($item->getId() == $itemId) {
+                return $item;
+            }
+        }
+    }
+
     public function removeItem(ShoppingCartItem $cartItem)
     {
         if ($this->hasItem($cartItem)) {

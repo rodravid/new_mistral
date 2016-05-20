@@ -1,1 +1,3 @@
-angular.module('app', []);
+angular.module('app', [
+    'Firestitch.angular-counter'
+]);

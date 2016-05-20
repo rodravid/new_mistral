@@ -18,6 +18,6 @@ class StandardPriceCalculator implements PriceCalculator
 
     public function calculate(Price $subject)
     {
-        return $subject->getPrice();
+        return (double) $subject->getPrice();
     }
 }

@@ -70,9 +70,9 @@
                             </div>
                             <div class="col-cart2">
                                 <div class="botoes-add">
-                                    <a id="remover-unidade" class="bt-remove" href="javascript:void(0);">-</a>
+                                    <a href="javascript:void(0);" class="bt-remove">-</a>
                                     <input type="text" id="mudarUnidade" class="input-quantity" value="@{{ item.quantity }}">
-                                    <a id="add-unidade" href="javascript:void(0);" class="bt-add">+</a>
+                                    <a href="javascript:void(0);" class="bt-add">+</a>
                                 </div>
                                 <a class="link-cart remove-product-cart" href="javascript:void(0);" ng-click="ctrl.removeItem(item.id)">Remover ></a>
                             </div>

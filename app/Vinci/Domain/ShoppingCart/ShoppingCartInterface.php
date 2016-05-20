@@ -15,4 +15,6 @@ interface ShoppingCartInterface extends AggregateRoot
 
     public function findItemByProduct(ProductInterface $product);
 
+    public function getItems();
+
 }

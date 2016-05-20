@@ -34,7 +34,6 @@ class ItemResolver implements ItemResolverInterface
         $this->checkStock($productVariant, $quantityToCheck);
 
         if ($item) {
-            $item->incrementQuantity($quantity);
             return $item;
         }
 

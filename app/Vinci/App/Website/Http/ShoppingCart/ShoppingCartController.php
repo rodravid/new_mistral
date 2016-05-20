@@ -7,19 +7,23 @@ use Exception;
 use Illuminate\Http\Request;
 use Response;
 use Vinci\App\Website\Http\Controller;
+use Vinci\App\Website\Http\ShoppingCart\Transformers\ShoppingCartTransformer;
+use Vinci\Domain\Product\Repositories\ProductVariantRepository;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 
 class ShoppingCartController extends Controller
 {
-    private $customerService;
 
     private $cartService;
 
-    public function __construct(EntityManagerInterface $em, ShoppingCartService $cartService)
+    private $variantRepository;
+
+    public function __construct(EntityManagerInterface $em, ShoppingCartService $cartService, ProductVariantRepository $variantRepository)
     {
         parent::__construct($em);
 
         $this->cartService = $cartService;
+        $this->variantRepository = $variantRepository;
     }
 
     public function index(Request $request)
@@ -29,38 +33,21 @@ class ShoppingCartController extends Controller
 
     public function getItems()
     {
+        $cart = fractal()
+            ->item($this->cartService->getCart())
+            ->transformWith(new ShoppingCartTransformer());
 
-        $items = [
-            'id' => 'dfg8dufg9dfg',
-            'items' => [
-                [
-                    'id' => 1,
-                    'name' => 'Produto 1',
-                    'producer' => 'Catena Zapata',
-                    'sale_price' => 40.99,
-                    'quantity' => 2,
-                    'subtotal' => 81.98
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Produto 2',
-                    'producer' => 'Catena Zapata',
-                    'sale_price' => 30.45,
-                    'quantity' => 1,
-                    'subtotal' => 30.45
-                ]
-            ]
-        ];
-
-
-        return Response::json($items);
+        return Response::json($cart->toArray());
     }
 
-    public function add()
+    public function add(Request $request)
     {
         try {
 
-            $this->cartService->addItem(2, 10);
+            $variant = $request->get('variant');
+            $quantity = $request->get('quantity', 1);
+
+            $this->cartService->addItem($variant, $quantity);
 
             return Response::json([
                 'success' => true,
@@ -68,6 +55,34 @@ class ShoppingCartController extends Controller
             ]);
 
         } catch (Exception $e) {
+
+            throw $e;
+
+            return Response::json([
+                'success' => false,
+                'message' => trans('cart.item_add_failed')
+            ]);
+
+        }
+    }
+
+    public function syncQuantity(Request $request)
+    {
+        try {
+
+            $item = $request->get('item');
+            $quantity = $request->get('quantity', 1);
+
+            $this->cartService->syncQuantity($item, $quantity);
+
+            return Response::json([
+                'success' => true,
+                'message' => trans('cart.item_quantity_synced')
+            ]);
+
+        } catch (Exception $e) {
+
+            throw $e;
 
             return Response::json([
                 'success' => false,

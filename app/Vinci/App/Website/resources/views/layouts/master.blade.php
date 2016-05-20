@@ -27,6 +27,7 @@
 
     <script src="{{ asset_web('js/angular/angular.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/angular/angular-locale_pt-br.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('js/angular/angular-counter.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('js/sweetalert/sweetalert.min.js') }}" type="text/javascript"></script>

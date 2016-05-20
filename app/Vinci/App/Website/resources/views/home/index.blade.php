@@ -264,7 +264,7 @@
 
                         </div>
 
-                        <a href="javascript:void(0);" class="bt-default" ng-click="comprar()">Comprar <span class="arrow-link">></span></a>
+                        <a href="javascript:void(0);" class="bt-default" ng-click="comprar(2)">Comprar <span class="arrow-link">></span></a>
                     </div>
 
                     <div class="wine-card">

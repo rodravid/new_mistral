@@ -1,8 +1,12 @@
 angular.module('app')
-    .factory('CartService', ['$http', '$q', function($http, $q) {
+    .factory('CartService', ['$http', '$q', '$cacheFactory', function($http, $q, $cacheFactory) {
+
+        var cache = $cacheFactory('myCache');
+        var cachedCart = {};
 
         return ({
-            getCart: getCart
+            getCart: getCart,
+            getCachedCart: getCachedCart
         });
 
         function getCart() {
@@ -13,6 +17,17 @@ angular.module('app')
             });
 
             return(request.then(handleSuccess, handleError));
+        }
+
+        function getCachedCart()
+        {
+            if (! cache.get('cart')) {
+
+                console.log(cachedCart);
+                return getCart();
+            }
+
+            return $q.defer(cache.get('cart')).promise;
         }
 
         function handleError(response) {
@@ -26,6 +41,9 @@ angular.module('app')
         }
 
         function handleSuccess(response) {
+
+            cache.put('cart', response.data);
+
             return(response.data);
         }
 

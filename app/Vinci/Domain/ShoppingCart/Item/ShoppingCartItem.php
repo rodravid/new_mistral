@@ -32,7 +32,7 @@ class ShoppingCartItem
     protected $shoppingCart;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", cascade={"persist"})
      */
     protected $product;
 
@@ -55,6 +55,11 @@ class ShoppingCartItem
      * @ORM\Column(type="smallint", options={"defalut" = 1})
      */
     protected $status = 1;
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function getShoppingCart()
     {
@@ -142,6 +147,31 @@ class ShoppingCartItem
         return $this;
     }
 
+    public function syncQuantity($quantity = 1)
+    {
+        $currentQuantity = $this->getQuantity();
+
+        if ($quantity > $currentQuantity) {
+
+            $quantity -= $currentQuantity;
+
+            return $this->incrementQuantity($quantity);
+
+        } elseif ($quantity < $currentQuantity) {
+
+            $quantity = $currentQuantity - $quantity;
+
+            return $this->decrementQuantity($quantity);
+        }
+
+        return $this;
+    }
+
+    public function equals(ShoppingCartItem $cartItem)
+    {
+        return $this === $cartItem;
+    }
+
     public function getSubTotal()
     {
         return $this->getQuantity() * $this->getProductVariant()->getSalePrice();
@@ -149,7 +179,7 @@ class ShoppingCartItem
 
     public function __call($name, array $args = [])
     {
-        call_user_func_array([$this->productVariant, $name], $args);
+        return call_user_func_array([$this->productVariant, $name], $args);
     }
 
 }
