@@ -4,9 +4,11 @@ namespace Vinci\Domain\Customer;
 
 use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping AS ORM;
 use Vinci\Domain\Auth\Authenticatable;
 use Vinci\Domain\Customer\Address\Address;
+use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 use Vinci\Domain\User\User;
 
 /**
@@ -107,12 +109,18 @@ class Customer extends User
      */
     protected $addresses;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\ShoppingCart", mappedBy="customer", cascade={"persist", "remove"})
+     */
+    protected $shoppingCarts;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->orders = new ArrayCollection;
         $this->addresses = new ArrayCollection;
+        $this->shoppingCarts = new ArrayCollection;
     }
 
     public function getName()
@@ -413,6 +421,37 @@ class Customer extends User
     {
         $this->companyContact = $companyContact;
         return $this;
+    }
+
+    public function getShoppingCarts()
+    {
+        return $this->shoppingCarts;
+    }
+
+    public function addShoppingCart(ShoppingCartInterface $shoppingCart)
+    {
+        if (! $this->shoppingCarts->contains($shoppingCart)) {
+            $shoppingCart->setCustomer($this);
+
+            if ($this->shoppingCarts->isEmpty()) {
+                $shoppingCart->setCurrent(true);
+            }
+
+            $this->shoppingCarts->add($shoppingCart);
+        }
+    }
+
+    public function hasShoppingCart(ShoppingCartInterface $shoppingCart)
+    {
+        return $this->shoppingCarts->contains($shoppingCart);
+    }
+
+    public function getLastShoppingCart()
+    {
+        $criteria = Criteria::create()
+            ->orderBy(['createdAt' => Criteria::DESC]);
+
+        return $this->shoppingCarts->matching($criteria)->first();
     }
 
 }

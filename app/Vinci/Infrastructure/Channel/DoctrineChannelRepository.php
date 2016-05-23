@@ -10,7 +10,20 @@ class DoctrineChannelRepository extends DoctrineBaseRepository implements Channe
 
     public function getDefaultChannel()
     {
-        $query = 'SELECT c FROM Vinci\Domain\Channel\Channel c WHERE c.default = true';
-        return $this->_em->createQuery($query)->getOneOrNullResult();
+        $dql = 'SELECT c FROM Vinci\Domain\Channel\Channel c WHERE c.default = true ORDER BY c.createdAt DESC';
+        $query = $this->_em->createQuery($dql);
+        $query->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function findByCode($code)
+    {
+        $dql = 'SELECT c FROM Vinci\Domain\Channel\Channel c WHERE c.code = :code';
+        $query =  $this->_em->createQuery($dql);
+
+        $query->setParameter('code', $code);
+
+        return $query->getOneOrNullResult();
     }
 }

@@ -13,14 +13,13 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Vinci\Events\SomeEvent' => [
-            'Vinci\Listeners\EventListener',
+        'Illuminate\Auth\Events\Login' => [
+            'Vinci\App\Website\Auth\Events\Listeners\LinkCustomerToCurrentCart',
         ],
     ];
 
     protected $subscribe = [
-        'Vinci\Domain\Product\Events\Subscribers\SetCurrentChannelSubscriber',
-        'Vinci\Domain\Product\Events\Subscribers\SetPriceCalculatorSubscriber',
+        'Vinci\Domain\ShoppingCart\Events\Subscribers\ShoppingCartEventSubscriber'
     ];
 
     /**

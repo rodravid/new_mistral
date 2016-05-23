@@ -98,6 +98,15 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      */
     $route->group(['prefix' => 'carrinho', 'as' => 'cart.'], function() use ($route) {
         $route->get('/', 'ShoppingCart\ShoppingCartController@index')->name('index');
+        $route->post('add', 'ShoppingCart\ShoppingCartController@add')->name('add');
+
+        $route->group(['prefix' => 'items', 'as' => 'items.'], function() use ($route) {
+
+            $route->get('/', 'ShoppingCart\ShoppingCartController@getItems')->name('index');
+            $route->post('{item}/sync', 'ShoppingCart\ShoppingCartController@syncQuantity')->name('sync');
+            $route->delete('{item}/remove', 'ShoppingCart\ShoppingCartController@removeItem')->name('remove');
+
+        });
     });
 
     /**

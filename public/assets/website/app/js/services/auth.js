@@ -33,4 +33,4 @@ angular.module('app')
             return( response.data );
         }
 
-    }])
+    }]);

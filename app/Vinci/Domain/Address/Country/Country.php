@@ -15,6 +15,8 @@ use Vinci\Domain\Core\Model;
 class Country extends Model
 {
 
+    const BRAZIL = 1;
+
     use Timestamps;
 
     /**
