@@ -604,6 +604,11 @@ class Product extends Model implements ProductInterface
         return $this;
     }
 
+    public function hasProducer()
+    {
+        return $this->producer !== null;
+    }
+
     public function getImages()
     {
         return $this->getMasterVariant()->getImages();

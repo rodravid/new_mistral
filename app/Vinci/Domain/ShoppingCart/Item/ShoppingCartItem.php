@@ -3,8 +3,11 @@
 namespace Vinci\Domain\ShoppingCart\Item;
 
 use Doctrine\ORM\Mapping as ORM;
+use Robbo\Presenter\Robbo;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Product\ProductVariantInterface;
 use Vinci\Domain\ShoppingCart\Events\ItemQuantityWasIncremented;
 use Vinci\Domain\ShoppingCart\ShoppingCart;
@@ -13,10 +16,12 @@ use Vinci\Domain\ShoppingCart\ShoppingCart;
  * @ORM\Entity
  * @ORM\Table(name="shopping_cart_items")
  */
-class ShoppingCartItem
+class ShoppingCartItem extends Model implements ShoppingCartItemInterface
 {
 
-    use Timestampable, HasEvents;
+    use Timestampable, HasEvents, PresentableTrait;
+
+    protected $presenter = ShoppingCartItemPresenter::class;
 
     /**
      * @ORM\Id
@@ -182,4 +187,8 @@ class ShoppingCartItem
         return call_user_func_array([$this->productVariant, $name], $args);
     }
 
+    public function getPresenter()
+    {
+        return $this->present();
+    }
 }

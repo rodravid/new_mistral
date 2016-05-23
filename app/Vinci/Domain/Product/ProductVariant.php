@@ -433,4 +433,9 @@ class ProductVariant extends Model implements ProductVariantInterface
         return $this->version;
     }
 
+    public function hasProducer()
+    {
+        return $this->getProduct()->hasProducer();
+    }
+
 }

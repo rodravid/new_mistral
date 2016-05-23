@@ -161,6 +161,12 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Channel\Channel'
         );
 
+        $this->registerRepository(
+            'Vinci\Domain\Customer\Address\AddressRepository',
+            'Vinci\Infrastructure\Customer\Address\DoctrineAddressRepository',
+            'Vinci\Domain\Customer\Address\Address'
+        );
+
         $this->app->singleton('Vinci\Domain\Address\City\CityRepository', function() {
 
             $stateRepository =  $this->app->make('Vinci\Infrastructure\Address\City\DoctrineCityRepository', [

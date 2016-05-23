@@ -29,7 +29,7 @@
 
                 <div class="wrap-content-bt mbottom20">
                     <div class="content-bt-middle">
-                        <a class="bt-default-full bt-middle bt-color" href="{{ route('delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
+                        <a class="bt-default-full bt-middle bt-color" href="{{ route('checkout.delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
                     </div>
                 </div>
 
@@ -159,7 +159,7 @@
                             <a class="keep-buying" href="{{ route('index') }}">Continuar comprando ></a>
 
                             <div class="content-bt-middle">
-                                <a class="bt-default-full bt-middle bt-color" href="{{ route('delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
+                                <a class="bt-default-full bt-middle bt-color" href="{{ route('checkout.delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
                             </div>
                         </div>
                     </div>

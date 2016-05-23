@@ -10,7 +10,7 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
 
     public function find($id)
     {
-        $dql = 'SELECT c FROM Vinci\Domain\ShoppingCart\ShoppingCart c WHERE c.id = :id';
+        $dql = 'SELECT c, i FROM Vinci\Domain\ShoppingCart\ShoppingCart c JOIN c.items i WHERE c.id = :id';
         $query = $this->_em->createQuery($dql);
         $query->setParameter('id', $id);
 
