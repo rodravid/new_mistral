@@ -17,4 +17,10 @@ interface ShoppingCartInterface extends AggregateRoot
 
     public function getItems();
 
+    public function countItems();
+
+    public function getSubtotal();
+
+    public function getTotal();
+
 }

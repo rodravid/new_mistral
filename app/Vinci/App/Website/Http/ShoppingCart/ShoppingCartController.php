@@ -26,7 +26,7 @@ class ShoppingCartController extends Controller
         $this->variantRepository = $variantRepository;
     }
 
-    public function index(Request $request)
+    public function index()
     {
         return $this->view('cart.index');
     }
@@ -56,21 +56,18 @@ class ShoppingCartController extends Controller
 
         } catch (Exception $e) {
 
-            throw $e;
-
             return Response::json([
                 'success' => false,
                 'message' => trans('cart.item_add_failed')
-            ]);
+            ], 422);
 
         }
     }
 
-    public function syncQuantity(Request $request)
+    public function syncQuantity(Request $request, $item)
     {
         try {
 
-            $item = $request->get('item');
             $quantity = $request->get('quantity', 1);
 
             $this->cartService->syncQuantity($item, $quantity);
@@ -82,13 +79,31 @@ class ShoppingCartController extends Controller
 
         } catch (Exception $e) {
 
-            throw $e;
-
             return Response::json([
                 'success' => false,
                 'message' => trans('cart.item_add_failed')
+            ], 422);
+
+        }
+    }
+
+    public function removeItem($id)
+    {
+        try {
+
+            $this->cartService->removeItem($id);
+
+            return Response::json([
+                'success' => true,
+                'message' => trans('cart.item_removed')
             ]);
 
+        } catch (Exception $e) {
+
+            return Response::json([
+                'success' => false,
+                'message' => trans('cart.item_remove_failed')
+            ], 422);
         }
     }
 

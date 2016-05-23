@@ -1,15 +1,16 @@
 angular.module('app')
-    .controller('HomeController', ['$scope', '$http', function($scope, $http) {
-
+    .controller('HomeController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
 
         $scope.comprar = function(variant, quantity) {
 
             $http.post('/carrinho/add', {
                 variant: variant,
                 quantity: quantity
-            }).then(function() {
+            }).then(function(response) {
 
-                alert('Adicionado');
+                swal('Pronto', response.data.message, 'success');
+
+                $rootScope.$broadcast('cart.item_added');
 
             });
 

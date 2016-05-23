@@ -1,26 +1,17 @@
 angular.module('app')
-    .controller('CartController', ['CartService', function(cartService) {
+    .controller('CartController', ['$rootScope', '$scope', 'CartService', function($rootScope, $scope, cartService) {
 
-        var self = this;
+        $rootScope.cart = {};
 
-        self.cart = {};
-
-        self.getCart = function() {
-
-            cartService.getCart().then(function(cart) {
-
-                self.cart = cart;
-
-            });
-
+        $scope.getCart = function() {
+            return $rootScope.cart;
         };
 
-        self.hasItems = function() {
-            return self.cart.items && self.cart.items.length > 0;
+        $scope.hasItems = function() {
+            return $rootScope.cart.items && $rootScope.cart.items.length > 0;
         };
 
-        self.getCart();
-
+        $scope.getCart();
 
     }]);
 

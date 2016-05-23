@@ -16,7 +16,10 @@ class ShoppingCartTransformer extends TransformerAbstract
     public function transform(ShoppingCartInterface $shoppingCart)
     {
         return [
-            'id' => (string) $shoppingCart->getId()
+            'id' => (string) $shoppingCart->getId(),
+            'subtotal' => $shoppingCart->getSubtotal(),
+            'total' => $shoppingCart->getTotal(),
+            'count_items' => $shoppingCart->countItems()
         ];
     }
 

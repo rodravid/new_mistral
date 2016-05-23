@@ -45,7 +45,7 @@ class ShoppingCart implements ShoppingCartInterface
     protected $expirationAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\Item\ShoppingCartItem", mappedBy="shoppingCart", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\Item\ShoppingCartItem", mappedBy="shoppingCart", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $items;
 
@@ -144,7 +144,7 @@ class ShoppingCart implements ShoppingCartInterface
     public function removeItem(ShoppingCartItem $cartItem)
     {
         if ($this->hasItem($cartItem)) {
-            $this->items->remove($cartItem);
+            $this->items->removeElement($cartItem);
 
             $this->raise(new ItemWasRemoved($cartItem));
         }
@@ -165,6 +165,16 @@ class ShoppingCart implements ShoppingCartInterface
         return $this->items->matching($criteria)->first();
     }
 
+    public function findItemById($id)
+    {
+        foreach ($this->getItems() as $item) {
+
+            if ($item->getId() == $id) {
+                return $item;
+            }
+        }
+    }
+
     public function releaseEvents()
     {
         $events = $this->pendingEvents;
@@ -177,4 +187,30 @@ class ShoppingCart implements ShoppingCartInterface
         return $events;
     }
 
+    public function getSubtotal()
+    {
+        $sum = 0;
+
+        foreach ($this->getItems() as $item) {
+            $sum += $item->getSubtotal();
+        }
+
+        return $sum;
+    }
+
+    public function getTotal()
+    {
+        return $this->getSubtotal();
+    }
+
+    public function countItems()
+    {
+        $count = 0;
+
+        foreach ($this->getItems() as $item) {
+            $count += $item->getQuantity();
+        }
+
+        return $count;
+    }
 }

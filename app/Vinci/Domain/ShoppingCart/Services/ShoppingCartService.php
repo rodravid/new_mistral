@@ -116,14 +116,19 @@ class ShoppingCartService
 
             $item->syncQuantity($quantity);
 
-            $this->dispatchEvents($this->cart);
+            $this->saveCart();
 
-            $em->persist($this->cart);
             $em->persist($productVariant);
 
             $em->lock($productVariant, LockMode::OPTIMISTIC, $productVariant->getVersion());
         });
 
+    }
+
+    protected function saveCart()
+    {
+        $this->dispatchEvents($this->cart);
+        $this->entityManager->persist($this->cart);
     }
 
     public function dispatchEvents(ShoppingCartInterface $cart)
@@ -140,6 +145,18 @@ class ShoppingCartService
         }
 
         return $variant;
+    }
+
+    public function removeItem($item)
+    {
+        $this->entityManager->transactional(function() use ($item) {
+
+            $item = $this->getItem($item);
+
+            $this->cart->removeItem($item);
+
+            $this->saveCart();
+        });
     }
 
     protected function getItem($item)

@@ -414,7 +414,7 @@
 
                         </div>
 
-                        <a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
+                        <a href="javascript:void(0);" class="bt-default" ng-click="comprar(5)">Comprar <span class="arrow-link">></span></a>
                     </div>
 
                     <div class="wine-card">

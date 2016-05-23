@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div ng-controller="CartController as ctrl">
+    <div ng-controller="CartController">
 
         <div class="header-internal template1-bg">
             @include('website::layouts.menu')
@@ -23,7 +23,9 @@
 
         <div class="row">
 
-            <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
+            <h2 class="ng-hide" style="text-align: center;" ng-show="!hasItems()">Não há produtos em seu carrinho.</h2>
+
+            <div class="cart-content ng-hide" ng-show="hasItems()">
 
                 <div class="wrap-content-bt mbottom20">
                     <div class="content-bt-middle">
@@ -44,7 +46,7 @@
                         <div class="col-cart3">SUBTOTAL</div>
                     </div>
 
-                    <article class="row-item-cart template1" ng-repeat="item in ctrl.cart.items">
+                    <article cart-item="@{{ item.id }}" class="row-item-cart template1" ng-repeat="item in cart.items">
                         <div class="col-cart1">
                             <div class="col-product-cart">
                                 <div class="thumb-wine">
@@ -63,20 +65,19 @@
                                 </div>
                             </div>
                             <div class="col-price-cart">
-                                <p class="in" ng-show="item.original_orice"> De <span>R$ @{{ item.original_price }}/span></p>
+                                <p class="in" ng-show="item.original_orice"> De <span>R$ @{{ item.original_price | currency }}</span></p>
                                 <p class="wine-price">
                                     @{{ item.sale_price | currency }}
                                 </p>
                             </div>
-                            <div class="col-cart2">
+                            <div class="col-cart2" ng-init="quantity = item.quantity">
                                 <div class="botoes-add">
-                                    <a href="javascript:void(0);" class="bt-remove">-</a>
-                                    <input type="text" id="mudarUnidade" class="input-quantity" value="@{{ item.quantity }}">
-                                    <a href="javascript:void(0);" class="bt-add">+</a>
+                                    <a href="javascript:void(0);" class="bt-remove" ng-click="decrementQuantity()">-</a>
+                                    <input type="text" class="input-quantity txtQuantity" value="@{{ item.quantity }}" ng-model="quantity" ng-blur="syncQuantity()">
+                                    <a href="javascript:void(0);" class="bt-add" ng-click="incrementQuantity()">+</a>
                                 </div>
-                                <a class="link-cart remove-product-cart" href="javascript:void(0);" ng-click="ctrl.removeItem(item.id)">Remover ></a>
+                                <a class="link-cart remove-product-cart" href="javascript:void(0);" ng-click="removeItem()">Remover ></a>
                             </div>
-
                         </div>
                         <div class="col-cart3 show-desktop">
                             <h3 class="current-price">
@@ -100,7 +101,7 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Subtotal</span>
                                 <div class="container-info-compra">
-                                    <p class="price-cart" id="pgCartSubtotal">R$ 7112,26</p>
+                                    <p class="price-cart" id="pgCartSubtotal">@{{ cart.subtotal | currency }}</p>
                                 </div>
                             </article>
                         </li>
@@ -146,7 +147,7 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Total</span>
                                 <div class="container-info-compra">
-                                    <p class="current-price" id="pgCartTotal">R$ 99,00</p>
+                                    <p class="current-price" id="pgCartTotal">@{{ cart.total | currency }}</p>
                                 </div>
                             </article>
                         </li>

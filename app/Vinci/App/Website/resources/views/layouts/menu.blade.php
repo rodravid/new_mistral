@@ -75,43 +75,39 @@
             </ul>
         </nav>
 
-        <a href="/carrinho">
-            <div class="cart-header sprite-icon show-mobile">
-                <div class="nav-cart-count sprite-icon">22</div>
-            </div>
-        </a>
+        <div ng-controller="CartWidgetController as ctrl">
+            <a href="/carrinho">
+                <div class="cart-header sprite-icon show-mobile">
+                    <div class="nav-cart-count sprite-icon">@{{ cart.count_items }}</div>
+                </div>
+            </a>
 
-        <div class="cart-header sprite-icon show-desktop">
-            <div class="nav-cart-count sprite-icon">22</div>
-            <div class="drop-cart template1">
-                <p class="your-cart">Você tem <span id="cartCount">2 produtos</span> no carrinho de compras</p>
-                <ul class="lista-add" id="cartItems">
-                    <li>
-                        <a href="/produto/vallontano-espumante-brut-vallontano">
-                            <div class="product-add">
-                                <img src="https://mistral2015.s3.amazonaws.com/products/19446/img_s_19446.jpg"
-                                     width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
-                                <p class="product-name-cart">Vallontano Espumante Brut <span>(Vallontano)</span></p>
-                            </div>
-                            <div class="value-product">
-                                <p class="price-wine">R$ 58,50 <span>2 un.</span></p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/produto/vallontano-espumante-brut-vallontano">
-                            <div class="product-add">
-                                <img src="https://mistral2015.s3.amazonaws.com/products/19446/img_s_19446.jpg"
-                                     width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
-                                <p class="product-name-cart">Vallontano Espumante Brut <span>(Vallontano)</span></p>
-                            </div>
-                            <div class="value-product">
-                                <p class="price-wine">R$ 58,50 <span>2 un.</span></p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <a href="/carrinho" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
+            <div class="cart-header sprite-icon show-desktop">
+                <div class="nav-cart-count sprite-icon">@{{ cart.count_items }}</div>
+                <div class="drop-cart template1">
+
+                    <p class="your-cart ng-hide" ng-show="!ctrl.hasItems()">Não há items em seu carrinho.</p>
+
+                    <div class="ng-hide" ng-show="ctrl.hasItems()">
+                        <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no carrinho de compras</p>
+                        <ul class="lista-add" id="cartItems">
+                            <li ng-repeat="item in cart.items">
+                                <a href="/produto/vallontano-espumante-brut-vallontano">
+                                    <div class="product-add">
+                                        <img src="https://mistral2015.s3.amazonaws.com/products/19446/img_s_19446.jpg"
+                                             width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
+                                        <p class="product-name-cart">@{{ item.name }} <span ng-show="item.producer">(@{{ item.producer }})</span></p>
+                                    </div>
+                                    <div class="value-product">
+                                        <p class="price-wine">@{{ item.sale_price | currency }} <span>@{{ item.quantity }} un.</span></p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="{{ route('cart.index') }}" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
+                    </div>
+
+                </div>
             </div>
         </div>
 
