@@ -33,6 +33,7 @@
 
     <div class="row">
         {!! Form::open(['route' => 'order.store', 'method' => 'post']) !!}
+            <input type="hidden" name="shipping[address]" value="{{ $deliveryAddress->getId() }}">
 
             <section class="wrap-payment">
 
@@ -41,27 +42,22 @@
             <article class="request section-payment">
 
                 <div class="cart-items-wrapper">
-
                     @foreach($shoppingCart->getItems() as $item)
                         <div class="row-request template1">
                             <div class="col-request">
                                 <div class="name-product-request">
                                     <h3 class="title-card-wine">
                                         {{ $item->getTitle() }}
-
                                         @if($item->hasProducer())
                                             <span>{{ $item->getProducer()->getName() }}</span>
                                         @endif
                                     </h3>
                                 </div>
-
                                 <div class="qtd-request">{{ $item->quantity_units }}</div>
-
                                 <div class="price-request">
                                     <span class="title-internal-15">{{ $item->subtotal }}</span>
                                 </div>
                             </div>
-
                             <div class="bt-request">
                                 <a class="bt-arrow-action" href="javascript:void(0);"> > </a>
                             </div>
@@ -100,130 +96,101 @@
             <p class="title-internal-blue mbottom20">Forma de pagamento</p>
 
             <article class="form-payment section-payment template1">
-                <form action="">
-                    <ul class="flags-card">
-                        <li class="flags-list">
-                            <div class="flags visa"></div>
-                            <input type="radio" name="flag-card" value="" class="visa">
-                        </li>
-                        <li class="flags-list">
-                            <div class="flags master"></div>
-                            <input type="radio" name="flag-card" value="" class="master">
-                        </li>
-                        <li class="flags-list">
-                            <div class="flags american"></div>
-                            <input type="radio" name="flag-card" value="" class="american">
-                        </li>
-                        <li class="flags-list">
-                            <div class="flags diners"></div>
-                            <input type="radio" name="flag-card" value="" class="diners">
-                        </li>
-                    </ul>
-                    <div class="col-register1">
+                @if($errors->has())
+                    <p class="error-message">{{ $errors->first() }}</p>
+                @endif
+                <ul class="flags-card">
+                    <li class="flags-list">
+                        <div class="flags visa"></div>
+                        {!! Form::radio('payment[method]', 1, null, ['class' => 'visa']) !!}
+                    </li>
+                    <li class="flags-list">
+                        <div class="flags master"></div>
+                        {!! Form::radio('payment[method]', 2, null, ['class' => 'master']) !!}
+                    </li>
+                    <li class="flags-list">
+                        <div class="flags american"></div>
+                        {!! Form::radio('payment[method]', 3, null, ['class' => 'american']) !!}
+                    </li>
+                    <li class="flags-list">
+                        <div class="flags diners"></div>
+                        {!! Form::radio('payment[method]', 4, null, ['class' => 'diners']) !!}
+                    </li>
+                </ul>
+                <div class="col-register1">
 
-                        <div class="user-data">
-                            <h2 class="title-form">Parcelamento</h2>
-                            <ul class="list-form-register">
-                                <li>
-                                    <div class="select-standard full form-control-white">
-                                        <select class="" name="" id="">
-                                            <option value="">1x de R$154,56</option>
-                                            <option value="">2x de R$1254,56</option>
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>O limite disponível no cartão de crédito deve ser
-                                        superior ao valor total da compra, e não ao
-                                        valor de cada parcela.</p>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-register2">
-
-                        <div class="user-data">
-                            <h2 class="title-form">Dados do cartão</h2>
-                            <ul class="list-form-register">
-                                <li>
-                                    <label class="label-input" for="name-card">Nome impresso do cartão *</label>
-                                    <input class="input-register full" type="text" placeholder="Nome impresso do cartão *" id="name-card">
-                                </li>
-                                <li>
-                                    <label class="label-input" for="numb-card">Número do cartão *</label>
-                                    <input class="email input-register full" type="text" placeholder="Número do cartão *" id="numb-card">
-                                </li>
-                                <li>
-                                    <label class="label-input" for="cpf-cnpj">CPF / CNPJ *</label>
-                                    <input class="email input-register full" type="text" placeholder="CPF / CNPJ" id="cpf-cnpj">
-                                </li>
-
-                            </ul>
-
-                        </div>
+                    <div class="user-data">
+                        <h2 class="title-form">Parcelamento</h2>
+                        <ul class="list-form-register">
+                            <li>
+                                <div class="select-standard full form-control-white @if($errors->has('payment.installments')) error-field @endif">
+                                    {!! Form::select('payment[installments]', ['1' => '1x de R$154,56', '2' => '2x de R$ 77,28'], null) !!}
+                                </div>
+                            </li>
+                            <li>
+                                <p>
+                                    O limite disponível no cartão de crédito deve ser
+                                    superior ao valor total da compra, e não ao
+                                    valor de cada parcela.
+                                </p>
+                            </li>
+                        </ul>
 
                     </div>
 
-                    <div class="col-register3">
+                </div>
 
-                        <div class="card-validity">
-                            <ul class="list-form-register">
-                                <li>
-                                    <label class="label-above">Data de validade</label>
-                                    <div class="select-standard width120 form-control-white">
-                                        <select class="" name="" id="">
-                                            <option value="">Mês</option>
-                                            <option value="">janeiro</option>
-                                            <option value="">Fevereiro</option>
-                                            <option value="">Março</option>
-                                            <option value="">Abril</option>
-                                            <option value="">Maio</option>
-                                            <option value="">Junho</option>
-                                            <option value="">Julho</option>
-                                            <option value="">Agosto</option>
-                                            <option value="">Setembro</option>
-                                            <option value="">Outubro</option>
-                                            <option value="">novembro</option>
-                                            <option value="">Dezembro</option>
-                                        </select>
-                                    </div>
-                                    <div class="select-standard width120 form-control-white">
-                                        <select class="" name="" id="">
-                                            <option value="">Ano</option>
-                                            <option value="">2016</option>
-                                            <option value="">2017</option>
-                                            <option value="">2018</option>
-                                            <option value="">2019</option>
-                                            <option value="">2020</option>
-                                            <option value="">2021</option>
-                                            <option value="">2022</option>
+                <div class="col-register2">
 
-                                        </select>
-                                    </div>
-                                </li>
-                                <li>
-                                    <label class="label-above">Código de segurança</label>
-                                    <input class="number input-register width120" type="text">
-                                    <img class="float-left img-cod-seg" src="{{ asset_web('images/img-cod-seg.jpg') }}"
-                                         alt="">
-                                </li>
+                    <div class="user-data">
+                        <h2 class="title-form">Dados do cartão</h2>
+                        <ul class="list-form-register">
+                            <li>
+                                <label class="label-input" for="txtCardHoldername">Nome impresso do cartão *</label>
+                                {!! Form::text('card[holdername]', null, ['id' => 'txtCardHoldername', 'placeholder' => 'Nome impresso no cartão *', 'class' => 'input-register full ' . ($errors->has('card.holdername') ? 'error-field' : '')]) !!}
+                            </li>
+                            <li>
+                                <label class="label-input" for="txtCardNumber">Número do cartão *</label>
+                                {!! Form::text('card[number]', null, ['id' => 'txtCardNumber', 'placeholder' => 'Número do cartão *', 'class' => 'input-register full ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
+                            </li>
+                            <li>
+                                <label class="label-input" for="txtDocument">CPF / CNPJ *</label>
+                                {!! Form::text('document', null, ['id' => 'txtDocument', 'placeholder' => 'CPF / CNPJ *', 'class' => 'input-register full ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-                            </ul>
+                <div class="col-register3">
 
-                        </div>
+                    <div class="card-validity">
+                        <ul class="list-form-register">
+                            <li>
+                                <label class="label-above">Data de validade</label>
+                                <div class="select-standard width120 form-control-white @if($errors->has('card.expiry_month')) error-field @endif">
+                                    {!! Form::select('card[expiry_month]', ['' => 'Mês'] + $months, null) !!}
+                                </div>
+                                <div class="select-standard width120 form-control-white @if($errors->has('card.expiry_year')) error-field @endif">
+                                    {!! Form::select('card[expiry_year]', ['' => 'Ano'] + $years, null) !!}
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label-above" for="">Código de segurança *</label>
+                                {!! Form::text('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
+                                <img class="float-left img-cod-seg" src="{{ asset_web('images/img-cod-seg.jpg') }}" alt="">
+                            </li>
+
+                        </ul>
 
                     </div>
 
+                </div>
 
-                </form>
             </article>
 
             <div class="wrap-content-bt remove-mbttom20">
                 <div class="content-bt-big">
-                    <button type="submit" class="bt-default-full bt-middle bt-color">Pagar <span class="arrow-link">&gt;</span></button>
+                    <button class="bt-default-full bt-middle bt-color" href="#">Pagar <span class="arrow-link">&gt;</span></button>
                 </div>
             </div>
         </section>
@@ -232,5 +199,6 @@
     </div>
 
     @include('website::layouts.partials.checkoutfooter')
+
 
 @stop

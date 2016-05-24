@@ -33,7 +33,7 @@ class City extends Model
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Address\State\State")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Address\State\State", inversedBy="cities")
      */
     protected $state;
 

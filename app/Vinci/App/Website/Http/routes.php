@@ -52,14 +52,14 @@ $route->group(['middleware' => ['web']], function () use ($route) {
              * Payment
              */
             $route->group(['prefix' => 'pagamento', 'as' => 'payment.'], function() use ($route) {
-                $route->post('/', 'Checkout\Payment\PaymentController@index')->name('index');
+                $route->get('/', 'Checkout\Payment\PaymentController@index')->name('index');
             });
 
             /**
              * Confirmation
              */
             $route->group(['prefix' => 'confirmacao', 'as' => 'confirmation.'], function() use ($route) {
-                $route->get('/', 'Checkout\Confirmation\ConfirmationController@index')->name('index');
+                $route->get('/{order}', 'Checkout\Confirmation\ConfirmationController@index')->name('index');
             });
 
         });

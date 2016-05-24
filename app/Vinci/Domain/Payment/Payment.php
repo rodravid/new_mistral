@@ -1,0 +1,117 @@
+<?php
+
+namespace Vinci\Domain\Payment;
+
+use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Order\OrderInterface;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="order_payments")
+ */
+class Payment implements PaymentInterface
+{
+    use Timestampable;
+
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Payment\PaymentMethod")
+     */
+    protected $method;
+
+    /**
+     * @ORM\Column(type="decimal", precision=13, scale=2)
+     */
+    protected $amount = 0;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $status = PaymentInterface::STATUS_NEW;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Payment\CreditCard", cascade={"persist"})
+     */
+    protected $creditCard;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Order", inversedBy="payments")
+     */
+    protected $order;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    public function setMethod(PaymentMethodInterface $method = null)
+    {
+        $this->method = $method;
+        return $this;
+    }
+
+    public function setSource(PaymentSourceInterface $source = null)
+    {
+        if (null === $source) {
+            $this->creditCard = null;
+        }
+
+        if ($source instanceof CreditCardInterface) {
+            $this->creditCard = $source;
+        }
+    }
+
+    public function getSource()
+    {
+        if (null !== $this->creditCard) {
+            return $this->creditCard;
+        }
+
+        return null;
+    }
+
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    public function setAmount($amount)
+    {
+        $this->amount = (double) $amount;
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    public function setOrder(OrderInterface $order = null)
+    {
+        $this->order = $order;
+        return $this;
+    }
+}

@@ -214,4 +214,19 @@ abstract class Address extends Model
         return $this;
     }
 
+    public function override(Address $address)
+    {
+        $this
+            ->setType($address->getType())
+            ->setPostalCode($address->getPostalCode())
+            ->setPublicPlace($address->getPublicPlace())
+            ->setAddress($address->getAddress())
+            ->setNumber($address->getNumber())
+            ->setComplement($address->getComplement())
+            ->setDistrict($address->getDistrict())
+            ->setCity($address->getCity())
+            ->setReceiver($address->getReceiver())
+            ->setNickname($address->getNickname());
+    }
+
 }

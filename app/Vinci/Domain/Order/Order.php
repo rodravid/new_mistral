@@ -4,20 +4,26 @@ namespace Vinci\Domain\Order;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
-use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Channel\Contracts\Channel;
+use Vinci\Domain\Common\AggregateRoot;
+use Vinci\Domain\Common\Event\HasEvents;
+use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Vinci\Domain\Customer\Customer;
+use Vinci\Domain\Order\Address\Address;
+use Vinci\Domain\Order\Events\NewOrderWasCreated;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="orders")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-class Order extends Model
+class Order extends Model implements OrderInterface, AggregateRoot
 {
 
-    use Timestamps, SoftDeletes;
+    use Timestampable, SoftDeletes, HasEvents;
 
     /**
      * @ORM\Id
@@ -27,30 +33,56 @@ class Order extends Model
     protected $id;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Customer\Customer", inversedBy="orders")
+     */
+    protected $customer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Channel\Channel")
+     */
+    protected $channel;
+
+    /**
+     * @ORM\Column(type="decimal", precision=13, scale=2)
      */
     protected $total;
+
+    /**
+     * @ORM\Column(name="items_total", type="decimal", precision=13, scale=2)
+     */
+    protected $itemsTotal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Address\Address")
+     */
+    protected $shippingAddress;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Address\Address")
+     */
+    protected $billingAddress;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Payment\Payment", mappedBy="order", cascade={"persist"})
+     */
+    protected $payments;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Item\OrderItem", mappedBy="order")
+     */
+    protected $items;
 
     /**
      * @ORM\Column(type="integer")
      */
     protected $status;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Customer\Customer", inversedBy="orders")
-     */
-    protected $customer;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Item\OrderItem", mappedBy="order", fetch="EAGER")
-     */
-    protected $items;
-
-    public function __construct(array $attributes = [])
+    public function __construct()
     {
-        parent::__construct($attributes);
-
+        $this->payments = new ArrayCollection;
         $this->items = new ArrayCollection;
+
+        $this->raise(new NewOrderWasCreated($this));
     }
 
     public function getId()
@@ -58,14 +90,72 @@ class Order extends Model
         return $this->id;
     }
 
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+        return $this;
+    }
+
+    public function getChannel()
+    {
+        return $this->channel;
+    }
+
+    public function setChannel(Channel $channel)
+    {
+        $this->channel = $channel;
+        return $this;
+    }
+
     public function getTotal()
     {
         return $this->total;
     }
 
-    public function getCustomer()
+    public function setTotal($total)
     {
-        return $this->customer;
+        $this->total = (double) $total;
+        return $this;
+    }
+
+    public function getItemsTotal()
+    {
+        return $this->itemsTotal;
+    }
+
+    public function setItemsTotal($itemsTotal)
+    {
+        $this->itemsTotal = (double) $itemsTotal;
+        return $this;
+    }
+
+    public function getShippingAddress()
+    {
+        return $this->shippingAddress;
+    }
+
+    public function setShippingAddress(Address $shippingAddress)
+    {
+        $shippingAddress->setOrder($this);
+        $this->shippingAddress = $shippingAddress;
+        return $this;
+    }
+
+    public function getBillingAddress()
+    {
+        return $this->billingAddress;
+    }
+
+    public function setBillingAddress(Address $billingAddress)
+    {
+        $billingAddress->setOrder($this);
+        $this->billingAddress = $billingAddress;
+        return $this;
     }
 
     public function getItems()

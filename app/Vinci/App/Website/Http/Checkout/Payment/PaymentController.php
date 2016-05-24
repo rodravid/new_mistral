@@ -33,7 +33,10 @@ class PaymentController extends Controller
 
         $shoppingCart = $this->presenter->model($this->cartService->getCart(), ShoppingCartPresenter::class);
 
-        return $this->view('checkout.payment.index', compact('shoppingCart', 'deliveryAddress'));
+        $months = $this->getMonths();
+        $years = $this->getYears();
+
+        return $this->view('checkout.payment.index', compact('shoppingCart', 'deliveryAddress', 'months', 'years'));
     }
 
     protected function getDeliveryAddress(PaymentRequest $request)
@@ -41,6 +44,29 @@ class PaymentController extends Controller
         $deliveryAddress = $this->addressRepository->getOneById($request->get('address_id'));
 
         return $this->presenter->model($deliveryAddress, AddressPresenter::class);
+    }
+
+    protected function getYears()
+    {
+        return range(date('Y'), date('Y') + 10);
+    }
+
+    protected function getMonths()
+    {
+        return [
+            1 => 'Janeiro',
+            2 => 'Fevereiro',
+            3 => 'Março',
+            4 => 'Abril',
+            5 => 'Maio',
+            6 => 'Junho',
+            7 => 'Julho',
+            8 => 'Agosto',
+            9 => 'Setembro',
+            10 => 'Outubro',
+            11 => 'Novembro',
+            12 => 'Dezembro',
+        ];
     }
 
 }

@@ -45,7 +45,7 @@
 
         <section class="adress-delivery">
 
-            {!! Form::open(['route' => 'checkout.payment.index', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'checkout.payment.index', 'method' => 'GET']) !!}
 
             @foreach($addresses as $address)
 

@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Order\Item;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Order\OrderInterface;
 
 /**
  * @ORM\Entity
@@ -19,33 +20,49 @@ class OrderItem
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    protected $name;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $quantity;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Order", inversedBy="items")
      */
     protected $order;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", fetch="EAGER")
+     * @ORM\Column(type="string")
      */
-    protected $product;
+    protected $title;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $quantity = 1;
+
+    /**
+     * @ORM\Column(type="decimal", precision=13, scale=2)
+     */
+    protected $price;
+
+    /**
+     * @ORM\Column(type="decimal", precision=13, scale=2)
+     */
+    protected $originalPrice;
+
+    /**
+     * @ORM\Column(type="decimal", precision=13, scale=2)
+     */
+    protected $total;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
     }
 
     public function getQuantity()
@@ -53,14 +70,54 @@ class OrderItem
         return $this->quantity;
     }
 
+    public function setQuantity($quantity)
+    {
+        $this->quantity = (int) $quantity;
+        return $this;
+    }
+
     public function getOrder()
     {
         return $this->order;
     }
 
-    public function getProduct()
+    public function setOrder(OrderInterface $order)
     {
-        return $this->product;
+        $this->order = $order;
+        return $this;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    public function getOriginalPrice()
+    {
+        return $this->originalPrice;
+    }
+
+    public function setOriginalPrice($originalPrice)
+    {
+        $this->originalPrice = $originalPrice;
+        return $this;
+    }
+
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    public function setTotal($total)
+    {
+        $this->total = $total;
+        return $this;
     }
 
 }
