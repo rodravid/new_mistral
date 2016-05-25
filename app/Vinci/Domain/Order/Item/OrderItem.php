@@ -3,14 +3,26 @@
 namespace Vinci\Domain\Order\Item;
 
 use Doctrine\ORM\Mapping as ORM;
+use Robbo\Presenter\Robbo;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
+use Vinci\Domain\Common\Event\HasEvents;
+use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Order\OrderInterface;
+use Vinci\Domain\Order\Presenter\OrderItemPresenter;
+use Vinci\Domain\Product\ProductVariantInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="orders_items")
  */
-class OrderItem
+class OrderItem extends Model implements Presentable
 {
+
+    use Timestampable, HasEvents, PresentableTrait;
+
+    protected $presenter = OrderItemPresenter::class;
 
     /**
      * @ORM\Id
@@ -23,11 +35,6 @@ class OrderItem
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Order", inversedBy="items")
      */
     protected $order;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    protected $title;
 
     /**
      * @ORM\Column(type="integer")
@@ -49,20 +56,14 @@ class OrderItem
      */
     protected $total;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductVariant")
+     */
+    protected $productVariant;
+
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
     }
 
     public function getQuantity()
@@ -117,6 +118,17 @@ class OrderItem
     public function setTotal($total)
     {
         $this->total = $total;
+        return $this;
+    }
+
+    public function getProductVariant()
+    {
+        return $this->productVariant;
+    }
+
+    public function setProductVariant(ProductVariantInterface $productVariant)
+    {
+        $this->productVariant = $productVariant;
         return $this;
     }
 

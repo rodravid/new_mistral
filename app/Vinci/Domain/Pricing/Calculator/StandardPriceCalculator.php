@@ -16,6 +16,11 @@ class StandardPriceCalculator implements PriceCalculator
         return $this;
     }
 
+    public function skipDiscounts()
+    {
+        return $this;
+    }
+
     public function calculate(Price $subject)
     {
         return (double) $subject->getPrice();

@@ -1,6 +1,5 @@
 @extends('website::layouts.master')
 
-
 @section('content')
     <div class="header-internal header-checkout-confirmation template1-bg">
         @include('website::layouts.menu')
@@ -63,56 +62,34 @@
 
             <article class="request section-confirmation">
 
-                <div class="row-request">
+                @foreach($order->items as $item)
 
-                    <div class="col-request">
+                    <div class="row-request">
+                        <div class="col-request">
+                            <div class="name-product-request">
+                                <h3 class="title-card-wine">
+                                    {{ $item->product->title }}
+                                    @if ($item->product->hasProducer())
+                                        <span>{{ $item->product->producer->name }}</span>
+                                    @endif
+                                </h3>
+                            </div>
 
-                        <div class="name-product-request">
-                            <h3 class="title-card-wine">
-                                Kaiken terroir series Corte 2012
-                                <span>Kaiken</span>
-                            </h3>
+                            <div class="qtd-request">
+                                {{ $item->quantity_units }}
+                            </div>
+
+                            <div class="price-request">
+                                <span class="title-internal-15">{{ $item->total }}</span>
+                            </div>
                         </div>
-
-                        <div class="qtd-request">
-                            1 unidade
-                        </div>
-
-                        <div class="price-request">
-                            <span class="title-internal-15">R$ 72,26</span>
-                        </div>
-
                     </div>
 
-
-                </div>
-
-                <div class="row-request">
-
-                    <div class="col-request">
-
-                        <div class="name-product-request">
-                            <h3 class="title-card-wine">
-                                Kaiken terroir series Corte 2012
-                                <span>Kaiken</span>
-                            </h3>
-                        </div>
-
-                        <div class="qtd-request">
-                            1 unidade
-                        </div>
-
-                        <div class="price-request">
-                            <span class="title-internal-15">R$ 72,26</span>
-                        </div>
-
-                    </div>
-
-                </div>
+                @endforeach
 
                 <div class="row-request">
                     <div class="info-request float-left">
-                        <span class="title-internal-15">	Frete</span>
+                        <span class="title-internal-15">Frete</span>
                     </div>
                     <div class="price-final float-right">
                         <span class="title-internal-15">R$ 10,26</span>
@@ -121,10 +98,10 @@
 
                 <div class="row-request">
                     <div class="info-request float-left">
-                        <span class="title-internal-15">	Total</span>
+                        <span class="title-internal-15">Total</span>
                     </div>
                     <div class="price-final float-right">
-                        <span class="title-internal-15">R$ 2172,26</span>
+                        <span class="title-internal-15">{{ $order->total }}</span>
                     </div>
                 </div>
 
@@ -134,10 +111,8 @@
 
             <article class="to-deliver section-payment">
                 <div class="float-left">
-                    <span class="title-internal-15 uppercase">Casa</span>
-                    <p>Rua bahia, 1126, Higienópolis</p>
-                    <p>São Paulo - SP</p>
-                    <p>CEP 04412-300</p>
+                    <span class="title-internal-15 uppercase">{{ $order->billingAddress->nickname }}</span>
+                    {!! $order->billingAddress->address_html !!}
                 </div>
 
             </article>

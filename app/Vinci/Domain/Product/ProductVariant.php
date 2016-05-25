@@ -345,6 +345,11 @@ class ProductVariant extends Model implements ProductVariantInterface
         return $this->getPrice($channel)->asSalePrice();
     }
 
+    public function getOriginalSalePrice($channel = null)
+    {
+        return $this->getPrice($channel)->asOriginalSalePrice();
+    }
+
     public function getPrice($channel = null)
     {
         if (! $price = $this->getPriceOnChannel($channel)) {
@@ -435,7 +440,12 @@ class ProductVariant extends Model implements ProductVariantInterface
 
     public function hasProducer()
     {
-        return $this->getProduct()->hasProducer();
+        return $this->product->hasProducer();
+    }
+
+    public function getProducer()
+    {
+        return $this->product->getProducer();
     }
 
 }

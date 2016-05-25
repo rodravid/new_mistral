@@ -32,6 +32,16 @@ class Payment implements PaymentInterface
     protected $amount = 0;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $installments = 1;
+
+    /**
+     * @ORM\Column(type="decimal", precision=13, scale=2)
+     */
+    protected $installmentAmount = 0;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $status = PaymentInterface::STATUS_NEW;
@@ -113,5 +123,37 @@ class Payment implements PaymentInterface
     {
         $this->order = $order;
         return $this;
+    }
+
+    public function getInstallments()
+    {
+        return $this->installments;
+    }
+
+    public function setInstallments($installments)
+    {
+        $this->installments = (int) $installments;
+
+        $this->calcInstallmentAmount();
+
+        return $this;
+    }
+
+    public function getInstallmentAmount()
+    {
+        return $this->installmentAmount;
+    }
+
+    public function setInstallmentAmount($installmentAmount)
+    {
+        $this->installmentAmount = (double) $installmentAmount;
+        return $this;
+    }
+
+    protected function calcInstallmentAmount()
+    {
+        $amount = $this->getAmount() / $this->getInstallments();
+
+        $this->setInstallmentAmount($amount);
     }
 }

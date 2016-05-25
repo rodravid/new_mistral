@@ -15,7 +15,7 @@ use Vinci\Domain\User\User;
  * @ORM\Entity(repositoryClass="Vinci\Infrastructure\Customer\DoctrineCustomerRepository")
  * @ORM\Table(name="customers", indexes={@ORM\Index(name="customer_type_idx", columns={"customer_type"})})
  */
-class Customer extends User
+class Customer extends User implements CustomerInterface
 {
     use Authenticatable;
 
@@ -444,14 +444,6 @@ class Customer extends User
     public function hasShoppingCart(ShoppingCartInterface $shoppingCart)
     {
         return $this->shoppingCarts->contains($shoppingCart);
-    }
-
-    public function getLastShoppingCart()
-    {
-        $criteria = Criteria::create()
-            ->orderBy(['createdAt' => Criteria::DESC]);
-
-        return $this->shoppingCarts->matching($criteria)->first();
     }
 
 }

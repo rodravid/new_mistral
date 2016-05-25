@@ -175,7 +175,11 @@ class DomainServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider', function() {
-            return new CustomerShoppingCartProvider($this->app['cart.provider'], $this->app['auth']->guard('website'));
+            return new CustomerShoppingCartProvider(
+                $this->app['cart.provider'],
+                $this->app['cart.repository'],
+                $this->app['auth']->guard('website')
+            );
         });
 
         $this->app->singleton('Vinci\Domain\Inventory\Checkers\Contracts\AvailabilityChecker', function() {

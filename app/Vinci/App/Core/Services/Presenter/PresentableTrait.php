@@ -22,7 +22,7 @@ trait PresentableTrait
      */
     public function present()
     {
-        if ( ! $this->presenter or ! class_exists($this->presenter))
+        if (! property_exists($this, 'presenter') || ! $this->presenter or ! class_exists($this->presenter))
         {
             throw new PresenterException('Please set the $presenter property to your presenter path.');
         }
@@ -33,6 +33,11 @@ trait PresentableTrait
         }
 
         return $this->presenterInstance;
+    }
+
+    public function getPresenter()
+    {
+        return $this->present();
     }
 
 }

@@ -10,14 +10,19 @@ class ShoppingCartItemTransformer extends TransformerAbstract
 
     public function transform(ShoppingCartItem $item)
     {
-        return [
+        $data = [
             'id' => $item->getId(),
             'name' => $item->getTitle(),
-            'producer' => 'Catena Zapata',
             'sale_price' => $item->getSalePrice(),
             'quantity' => $item->getQuantity(),
             'subtotal' => $item->getSubTotal()
         ];
+
+        if ($item->hasProducer()) {
+            $data['producer'] = $item->getProducer()->getName();
+        }
+
+        return $data;
     }
 
 }

@@ -187,6 +187,11 @@ class ShoppingCartItem extends Model implements ShoppingCartItemInterface
         return call_user_func_array([$this->productVariant, $name], $args);
     }
 
+    public function __get($name)
+    {
+        dd($name);
+    }
+
     public function getPresenter()
     {
         return $this->present();

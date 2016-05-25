@@ -14,6 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Order\Address\Address;
 use Vinci\Domain\Order\Events\NewOrderWasCreated;
+use Vinci\Domain\Order\Item\OrderItem;
 
 /**
  * @ORM\Entity
@@ -53,12 +54,12 @@ class Order extends Model implements OrderInterface, AggregateRoot
     protected $itemsTotal;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Address\Address")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Address\Address", cascade={"persist"})
      */
     protected $shippingAddress;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Address\Address")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\Address\Address", cascade={"persist"})
      */
     protected $billingAddress;
 
@@ -68,14 +69,14 @@ class Order extends Model implements OrderInterface, AggregateRoot
     protected $payments;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Item\OrderItem", mappedBy="order")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Item\OrderItem", mappedBy="order", cascade={"persist"})
      */
     protected $items;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
-    protected $status;
+    protected $status = OrderInterface::STATUS_NEW;
 
     public function __construct()
     {
@@ -161,6 +162,49 @@ class Order extends Model implements OrderInterface, AggregateRoot
     public function getItems()
     {
         return $this->items;
+    }
+
+    public function addItem(OrderItem $item)
+    {
+        if (! $this->hasItem($item)) {
+
+            $item->setOrder($this);
+
+            $this->items->add($item);
+
+            $this->calculateItemsTotal();
+            $this->calculateTotal();
+        }
+    }
+
+    public function hasItem(OrderItem $item)
+    {
+        return $this->items->contains($item);
+    }
+
+    protected function calculateItemsTotal()
+    {
+        $this->itemsTotal = 0;
+        foreach ($this->getItems() as $item) {
+            $this->itemsTotal += $item->getTotal();
+        }
+    }
+
+    protected function calculateTotal()
+    {
+        $this->total = $this->itemsTotal;
+    }
+
+    public function releaseEvents()
+    {
+        $events = $this->pendingEvents;
+        $this->pendingEvents = [];
+
+        foreach ($this->items as $item) {
+            $events = array_merge($events, $item->releaseEvents());
+        }
+
+        return $events;
     }
 
 }
