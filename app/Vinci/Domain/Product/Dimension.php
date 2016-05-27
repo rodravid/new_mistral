@@ -11,22 +11,22 @@ class Dimension
 {
 
     /**
-     * @ORM\Column(name="width", type="decimal", precision=13, scale=2)
+     * @ORM\Column(name="width", type="decimal", precision=13, scale=2, nullable=true)
      */
     protected $width;
 
     /**
-     * @ORM\Column(name="height", type="decimal", precision=13, scale=2)
+     * @ORM\Column(name="height", type="decimal", precision=13, scale=2, nullable=true)
      */
     protected $height;
 
     /**
-     * @ORM\Column(name="weight", type="decimal", precision=13, scale=2)
+     * @ORM\Column(name="weight", type="decimal", precision=13, scale=2, nullable=true)
      */
     protected $weight;
 
     /**
-     * @ORM\Column(name="length", type="decimal", precision=13, scale=2)
+     * @ORM\Column(name="length", type="decimal", precision=13, scale=2, nullable=true)
      */
     protected $length;
 

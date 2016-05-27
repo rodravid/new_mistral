@@ -106,7 +106,13 @@ class AttributeValue
 
         $getter = 'get'.ucfirst($this->attribute->getStorageType());
 
-        return $this->$getter();
+        $value = $this->$getter();
+
+        if (empty($value)) {
+            return '';
+        }
+
+        return $value;
     }
 
     public function setValue($value)

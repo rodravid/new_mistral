@@ -5,6 +5,7 @@ namespace Vinci\App\Core\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Vinci\App\Core\Console\Commands\DoctrineTruncateTable;
+use Vinci\App\Core\Console\Commands\ImportProduct;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        DoctrineTruncateTable::class
+        DoctrineTruncateTable::class,
+        ImportProduct::class
     ];
 
     /**
