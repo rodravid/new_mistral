@@ -48,7 +48,9 @@ class PaymentController extends Controller
 
     protected function getYears()
     {
-        return range(date('Y'), date('Y') + 10);
+        $currentYear = date('Y');
+        $years = range($currentYear, $currentYear + 10);
+        return array_combine($years, $years);
     }
 
     protected function getMonths()

@@ -15,6 +15,8 @@ use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Order\Address\Address;
 use Vinci\Domain\Order\Events\NewOrderWasCreated;
 use Vinci\Domain\Order\Item\OrderItem;
+use Vinci\Domain\Payment\PaymentInterface;
+use Vinci\Domain\Shipping\ShipmentInterface;
 
 /**
  * @ORM\Entity
@@ -67,6 +69,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Payment\Payment", mappedBy="order", cascade={"persist"})
      */
     protected $payments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Shipping\Shipment")
+     */
+    protected $shipment;
 
     /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Item\OrderItem", mappedBy="order", cascade={"persist"})
@@ -205,6 +212,30 @@ class Order extends Model implements OrderInterface, AggregateRoot
         }
 
         return $events;
+    }
+
+    public function addPayment(PaymentInterface $payment)
+    {
+        if (! $this->hasPayment($payment)) {
+            $payment->setOrder($this);
+            $this->payments->add($payment);
+        }
+    }
+
+    public function hasPayment(PaymentInterface $payment)
+    {
+        return $this->payments->contains($payment);
+    }
+
+    public function getShipment()
+    {
+        return $this->shipment;
+    }
+
+    public function setShipment(ShipmentInterface $shipment)
+    {
+        $this->shipment = $shipment;
+        return $this;
     }
 
 }

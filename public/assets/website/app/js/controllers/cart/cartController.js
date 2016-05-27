@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('CartController', ['$rootScope', '$scope', 'CartService', function($rootScope, $scope, cartService) {
+    .controller('CartController', ['$rootScope', '$scope', function($rootScope, $scope) {
 
         $rootScope.cart = {};
 

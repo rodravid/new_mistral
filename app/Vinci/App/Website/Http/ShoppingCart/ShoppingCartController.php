@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Response;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\ShoppingCart\Transformers\ShoppingCartTransformer;
+use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Product\Repositories\ProductVariantRepository;
+use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 
 class ShoppingCartController extends Controller
@@ -16,18 +18,29 @@ class ShoppingCartController extends Controller
 
     private $cartService;
 
+    private $shippingService;
+
     private $variantRepository;
 
-    public function __construct(EntityManagerInterface $em, ShoppingCartService $cartService, ProductVariantRepository $variantRepository)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        ShoppingCartService $cartService,
+        ShippingService $shippingService,
+        ProductVariantRepository $variantRepository
+    ) {
         parent::__construct($em);
 
         $this->cartService = $cartService;
+        $this->shippingService = $shippingService;
         $this->variantRepository = $variantRepository;
     }
 
     public function index()
     {
+
+        $this->shippingService->getShippingByLowestPrice(new PostalCode(123), $this->cartService->getCart());
+
+
         return $this->view('cart.index');
     }
 

@@ -21,6 +21,7 @@ use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
 use Vinci\Domain\ProductType\ProductTypeService;
+use Vinci\Domain\Shipping\Services\ShippingCarrierLocator;
 use Vinci\Domain\ShoppingCart\Checkers\ProductVariantStockChecker;
 use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
 use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
@@ -138,6 +139,12 @@ class DomainServiceProvider extends ServiceProvider
                 $this->app->make('Vinci\Domain\ProductType\ProductTypeValidator'),
                 $this->app['Vinci\Infrastructure\Storage\StorageService'],
                 $this->app['Vinci\Domain\Image\ImageRepository']
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator', function() {
+            return new ShippingCarrierLocator(
+                $this->app['carrier.repository']
             );
         });
 

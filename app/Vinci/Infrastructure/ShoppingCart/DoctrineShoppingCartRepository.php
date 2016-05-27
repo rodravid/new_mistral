@@ -13,9 +13,10 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
     {
         $qb = $this->getBaseQueryBuilder();
 
-        $qb->where($qb->expr()->eq('c.id', $id));
-
-        return $qb->getQuery()->getOneOrNullResult();
+        return $qb->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     public function getLastByCustomer(CustomerInterface $customer)
@@ -38,11 +39,11 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
         $query = $this
             ->createQueryBuilder('c')
             ->select('c', 'cs', 'i', 'p', 'pv', 'pvp')
-            ->join('c.customer', 'cs')
-            ->join('c.items', 'i')
-            ->join('i.product', 'p')
-            ->join('i.productVariant', 'pv')
-            ->join('pv.prices', 'pvp');
+            ->leftJoin('c.customer', 'cs')
+            ->leftJoin('c.items', 'i')
+            ->leftJoin('i.product', 'p')
+            ->leftJoin('i.productVariant', 'pv')
+            ->leftJoin('pv.prices', 'pvp');
 
         return $query;
     }

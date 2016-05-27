@@ -133,6 +133,14 @@ class InfrastructureServiceProvider extends ServiceProvider
 
         $this->app->alias('Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository', 'cart.repository');
 
+
+        $this->registerRepository(
+            'Vinci\Domain\Carrier\CarrierRepository',
+            'Vinci\Infrastructure\Carrier\DoctrineCarrierRepository',
+            'Vinci\Domain\Carrier\Carrier'
+        );
+        $this->app->alias('Vinci\Domain\Carrier\CarrierRepository', 'carrier.repository');
+
 //        $this->registerRepository(
 //            'Vinci\Domain\Address\State\StateRepository',
 //            'Vinci\Infrastructure\Address\State\DoctrineStateRepository',

@@ -86,6 +86,8 @@ class ShoppingCartService
     {
         $this->entityManager->transactional(function($em) use ($productVariant, $quantity) {
 
+            $quantity = $this->normalizeQuantity($quantity);
+
             $productVariant = $this->getProductVariant($productVariant);
 
             $item = $this->itemResolver->resolve($this->cart, $productVariant, compact('quantity'));
@@ -109,6 +111,8 @@ class ShoppingCartService
     public function syncQuantity($item, $quantity)
     {
         $this->entityManager->transactional(function($em) use ($item, $quantity) {
+
+            $quantity = $this->normalizeQuantity($quantity);
 
             $productVariant = $this->getItem($item)->getProductVariant();
 
@@ -171,6 +175,15 @@ class ShoppingCartService
     public function __call($name, array $arguments)
     {
         return call_user_func_array([$this->cart, $name], $arguments);
+    }
+
+    private function normalizeQuantity($quantity)
+    {
+        if ($quantity <= 0) {
+            $quantity = 1;
+        }
+
+        return (int) $quantity;
     }
 
 }

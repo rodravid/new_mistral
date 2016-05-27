@@ -48,6 +48,11 @@ angular.module('app')
                 };
 
                 $scope.syncQuantity = function() {
+
+                    if ($scope.quantity <= 0) {
+                        $scope.quantity = 1;
+                    }
+
                     syncQuantity(itemId, $scope.quantity);
                 };
 

@@ -22,6 +22,10 @@ interface PaymentInterface
 
     public function setMethod(PaymentMethodInterface $method = null);
 
+    public function getCreditCard();
+
+    public function setCreditCard(CreditCardInterface $card);
+
     public function getStatus();
 
     public function setStatus($status);

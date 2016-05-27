@@ -72,24 +72,15 @@ class Payment implements PaymentInterface
         return $this;
     }
 
-    public function setSource(PaymentSourceInterface $source = null)
+    public function setCreditCard(CreditCardInterface $card = null)
     {
-        if (null === $source) {
-            $this->creditCard = null;
-        }
-
-        if ($source instanceof CreditCardInterface) {
-            $this->creditCard = $source;
-        }
+        $this->creditCard = $card;
+        return $this;
     }
 
-    public function getSource()
+    public function getCreditCard()
     {
-        if (null !== $this->creditCard) {
-            return $this->creditCard;
-        }
-
-        return null;
+        return $this->creditCard;
     }
 
     public function getAmount()
@@ -100,6 +91,9 @@ class Payment implements PaymentInterface
     public function setAmount($amount)
     {
         $this->amount = (double) $amount;
+
+        $this->calcInstallmentAmount();
+
         return $this;
     }
 

@@ -19,7 +19,7 @@ class CheckShoppingCart
     public function handle($request, Closure $next)
     {
         if ($this->cartService->isEmpty()) {
-            return Redirect::route('index');
+            return Redirect::route('cart.index');
         }
 
         return $next($request);
