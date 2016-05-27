@@ -155,7 +155,7 @@
 
 /*Cores ******************************************/
 .orange {color:$orange;}
-.blue {color:$blue;}
+.blue {color:$blue;} 
 
 /* Inicio templates BLUE **************BLUE****************BLUE***********/
 
@@ -943,80 +943,80 @@
 	/* Inicio templates GREEN ****************GREEN******************GREEN*******/
 	.template3{
 
-	.template-button {
-		background: #0c2401;
-		border:2px solid #0c2401;
-		transition: all .1s ease .05s;
-
-		&:hover{
-			background: #fff;
-			color:#0c2401;
+		.template-button {
+			background: #0c2401;
 			border:2px solid #0c2401;
 			transition: all .1s ease .05s;
+
+			&:hover{
+				background: #fff;
+				color:#0c2401;
+				border:2px solid #0c2401;
+				transition: all .1s ease .05s;
+				.arrow-link{
+					background: #0c2401;
+					color:#fff;
+					transition: all .1s ease .05s;
+					border: 2px solid #0c2401;
+				}
+			}
+
 			.arrow-link{
-				background: #0c2401;
-				color:#fff;
+				color:#0c2401;
 				transition: all .1s ease .05s;
 				border: 2px solid #0c2401;
+				background: #3cc811;
 			}
 		}
 
-		.arrow-link{
+		.botoes-add {
+			background:$green;
+		}
+
+		.see-more-info,
+		.see-less-info {
+			border: 1px solid $green;
+			color: $green;
+
+			@media #{$screen767} { 
+				border:0;
+			}
+		}
+
+		.seals-description {
+
+			li {
+
+				p {
+
+					color:$green;
+				}
+
+				div {
+				}
+
+			}
+
+			li+li {
+
+				
+				div {
+					display:none;
+				}
+			}
+		}
+
+		.tit-product-info {
 			color:#0c2401;
-			transition: all .1s ease .05s;
-			border: 2px solid #0c2401;
-			background: #3cc811;
-		}
-	}
-
-	.botoes-add {
-		background:$green;
-	}
-
-	.see-more-info,
-	.see-less-info {
-		border: 1px solid $green;
-		color: $green;
-
-		@media #{$screen767} { 
-			border:0;
-		}
-	}
-
-	.seals-description {
-
-		li {
-
-			p {
-
-				color:$green;
-			}
-
-			div {
-			}
-
 		}
 
-		li+li {
-
-			
-			div {
-				display:none;
-			}
+		.current-price {
+			color:$green;
 		}
-	}
 
-	.tit-product-info {
-		color:#0c2401;
-	}
-
-	.current-price {
-		color:$green;
-	}
-
-	.info-vinho-template {
-		color:$green;
-	}
+		.info-vinho-template {
+			color:$green;
+		}
 
 
 
@@ -1318,6 +1318,81 @@
 
 		.template4 {
 
+
+			.template-button {
+				background: $dark-pink-heavy;
+				border:2px solid $dark-pink-heavy;
+				transition: all .1s ease .05s;
+
+				&:hover{
+					background: #fff;
+					color:$dark-pink-heavy;
+					border:2px solid $dark-pink-heavy;
+					transition: all .1s ease .05s;
+					.arrow-link{
+						background: $dark-pink-heavy;
+						color:#fff;
+						transition: all .1s ease .05s;
+						border: 2px solid $dark-pink-heavy;
+					}
+				}
+
+				.arrow-link{
+					color:$dark-pink-heavy;
+					transition: all .1s ease .05s;
+					border: 2px solid $dark-pink-heavy;
+				}
+			}
+
+			.botoes-add {
+				background:$purple;
+			}
+
+			.see-more-info,
+			.see-less-info {
+				border: 1px solid $pink;
+				color: $pink;
+
+				@media #{$screen767} { 
+					border:0;
+				}
+			}
+
+			.seals-description {
+
+				li {
+
+					p {
+
+						color:$purple;
+					}
+
+					div {
+					}
+
+				}
+
+				li+li {
+
+					
+					div {
+						display:none;
+					}
+				}
+			}
+
+			.tit-product-info {
+				color:$dark-pink-heavy;
+			}
+
+			.current-price {
+				color:$purple;
+			}
+
+			.info-vinho-template {
+				color:$purple;
+			}
+
 			.title-form {
 				color:$purple;
 			}
@@ -1607,6 +1682,80 @@
 
 		/* Inicio templates PINK ******************PINK****************PINK*******/
 		.template5 {
+
+			.template-button {
+				background: #00e667;
+				border:2px solid #00e667;
+				transition: all .1s ease .05s;
+
+				&:hover{
+					background: #fff;
+					color:$pink;
+					border:2px solid #00e667;
+					transition: all .1s ease .05s;
+					.arrow-link{
+						background: $pink;
+						color:#fff;
+						transition: all .1s ease .05s;
+						border: 2px solid #00e667;
+					}
+				}
+
+				.arrow-link{
+					color:#00e667;
+					transition: all .1s ease .05s;
+					border: 2px solid #00e667;
+				}
+			}
+
+			.botoes-add {
+				background:$pink;
+			}
+
+			.see-more-info,
+			.see-less-info {
+				border: 1px solid $pink;
+				color: $pink;
+
+				@media #{$screen767} { 
+					border:0;
+				}
+			}
+
+			.seals-description {
+
+				li {
+
+					p {
+
+						color:$pink;
+					}
+
+					div {
+					}
+
+				}
+
+				li+li {
+
+					
+					div {
+						display:none;
+					}
+				}
+			}
+
+			.tit-product-info {
+				color:#00e667;
+			}
+
+			.current-price {
+				color:$pink;
+			}
+
+			.info-vinho-template {
+				color:$pink;
+			}
 
 			.title-form {
 				color:$pink;
@@ -1909,6 +2058,80 @@
 		/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 		.template6 {
 
+			.template-button {
+				background: #e929d9;
+				border:2px solid #e929d9;
+				transition: all .1s ease .05s;
+
+				&:hover{
+					background: #fff;
+					color:#e929d9;
+					border:2px solid #e929d9;
+					transition: all .1s ease .05s;
+					.arrow-link{
+						background: #e929d9;
+						color:#fff;
+						transition: all .1s ease .05s;
+						border: 2px solid #e929d9;
+					}
+				}
+
+				.arrow-link{
+					color:#e929d9;
+					transition: all .1s ease .05s;
+					border: 2px solid #e929d9;
+				}
+			}
+
+			.botoes-add {
+				background:$darkblue;
+			}
+
+			.see-more-info,
+			.see-less-info {
+				border: 1px solid $darkblue;
+				color: $darkblue;
+
+				@media #{$screen767} { 
+					border:0;
+				}
+			}
+
+			.seals-description {
+
+				li {
+
+					p {
+
+						color:$darkblue;
+					}
+
+					div {
+					}
+
+				}
+
+				li+li {
+
+					
+					div {
+						display:none;
+					}
+				}
+			}
+
+			.tit-product-info {
+				color:#e929d9;
+			}
+
+			.current-price {
+				color:$darkblue;
+			}
+
+			.info-vinho-template {
+				color:$darkblue;
+			}
+
 			.title-form {
 				color:$darkblue;
 			}
@@ -2204,6 +2427,79 @@
 	/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 	.template7 {
 
+		.template-button {
+			background: #a0015f;
+			border:2px solid #a0015f;
+			transition: all .1s ease .05s;
+
+			&:hover{
+				background: #fff;
+				color:#a0015f;
+				border:2px solid #a0015f;
+				transition: all .1s ease .05s;
+				.arrow-link{
+					background: #a0015f;
+					color:#fff;
+					transition: all .1s ease .05s;
+					border: 2px solid #a0015f;
+				}
+			}
+
+			.arrow-link{
+				color:#a0015f;
+				transition: all .1s ease .05s;
+				border: 2px solid #a0015f;
+			}
+		}
+
+		.botoes-add {
+			background:$orange;
+		}
+
+		.see-more-info,
+		.see-less-info {
+			border: 1px solid $orange;
+			color: $orange;
+
+			@media #{$screen767} { 
+				border:0;
+			}
+		}
+
+		.seals-description {
+
+			li {
+
+				p {
+
+					color:$orange;
+				}
+
+				div {
+				}
+
+			}
+
+			li+li {
+
+				
+				div {
+					display:none;
+				}
+			}
+		}
+
+		.tit-product-info {
+			color:#a0015f;
+		}
+
+		.current-price {
+			color:$orange;
+		}
+
+		.info-vinho-template {
+			color:$orange;
+		}
 
 		.title-form {
 			color:$orange;
@@ -2495,6 +2791,80 @@
 
 	/* Inicio templates BLACK ******************BLACK****************BLACK*******/
 	.template8 {
+
+		.template-button {
+			background: #fff;
+			border:2px solid $black;
+			transition: all .1s ease .05s;
+			color:$black;
+			&:hover{
+				background: #fff;
+				color:$black;
+				border:2px solid $black;
+				transition: all .1s ease .05s;
+				.arrow-link{
+					background: #fff;
+					color:$black;
+					transition: all .1s ease .05s;
+					border: 2px solid $black; 
+				}
+			}
+
+			.arrow-link{
+				color:$black;
+				transition: all .1s ease .05s;
+				border: 2px solid $black;
+			}
+		}
+
+		.botoes-add {
+			background:$black;
+		}
+
+		.see-more-info,
+		.see-less-info {
+			border: 1px solid $black;
+			color: $black;
+
+			@media #{$screen767} { 
+				border:0;
+			}
+		}
+
+		.seals-description {
+
+			li {
+
+				p {
+
+					color:$black;
+				}
+
+				div {
+				}
+
+			}
+
+			li+li {
+
+				
+				div {
+					display:none;
+				}
+			}
+		}
+
+		.tit-product-info {
+			color:#fff;
+		}
+
+		.current-price {
+			color:$black;
+		}
+
+		.info-vinho-template {
+			color:$black;
+		}
 
 		.title-form {
 			color:$black;

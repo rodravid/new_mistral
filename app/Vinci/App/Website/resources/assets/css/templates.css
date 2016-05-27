@@ -8,7 +8,7 @@ Error: Undefined variable: "$orange".
 155: 
 156: /*Cores ******************************************\/
 157: .orange {color:$orange;}
-158: .blue {color:$blue;}
+158: .blue {color:$blue;} 
 159: 
 160: /* Inicio templates BLUE **************BLUE****************BLUE***********\/
 161: 
@@ -62,4 +62,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$orange\".\A         on line 157 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss\A \A 152: 		text-decoration: underline;\A 153: 	}\A 154: }\A 155: \A 156: /*Cores ******************************************/\A 157: .orange {color:$orange;}\A 158: .blue {color:$blue;}\A 159: \A 160: /* Inicio templates BLUE **************BLUE****************BLUE***********/\A 161: \A 162: .template1 {"; }
+  content: "Error: Undefined variable: \"$orange\".\A         on line 157 of /Users/WSilva/Jobs/vincivinhos/app/Vinci/App/Website/resources/assets/sass/templates.scss\A \A 152: 		text-decoration: underline;\A 153: 	}\A 154: }\A 155: \A 156: /*Cores ******************************************/\A 157: .orange {color:$orange;}\A 158: .blue {color:$blue;} \A 159: \A 160: /* Inicio templates BLUE **************BLUE****************BLUE***********/\A 161: \A 162: .template1 {"; }

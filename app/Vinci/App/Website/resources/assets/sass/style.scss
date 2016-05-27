@@ -1546,8 +1546,10 @@ ul.pagination{
 		.wrap-price-units {
 			width:220px;
 			float:right;
+			min-height:300px;
 			@media #{$screen767} { 
 				width:100%;
+				min-height:auto;
 			}
 		}
 
@@ -1873,6 +1875,18 @@ ul.pagination{
 
 
 		/*PG PRODUTO*/
+		.answer-delivery {
+			margin:30px 0 10px 0;
+			color:$blue;
+			font-size:20px;
+			text-align:center;
+		}
+
+		.modal-delivery-time {
+			.content-modal {
+				padding-bottom:20px;
+			}
+		}
 
 
 		/* PG CARRINHO */
@@ -3309,6 +3323,21 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
 			background-position: 10px 10px; 
 		}
 	}
+}
+.wrap-compra-dados-venda {
+.select-standard:before {
+    content: "";
+    background: url("../images/seta-select.jpg") no-repeat center center;
+    width: 30px;
+    height: 26px;
+    z-index: 2;
+    pointer-events: none;
+    position: absolute;
+    right: 1px;
+    top: 0;
+    margin-top: 1px;
+    background-position: 10px 10px;
+}
 }
 
 /* Hack select*/

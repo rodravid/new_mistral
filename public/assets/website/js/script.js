@@ -177,11 +177,15 @@ jQuery(document).ready(function ($) {
     });
 
     $('.close, .overlay').on('click', function () {
-        $('.overlay, .modal-login, .modal-recovery, .modal-adress, .global-modal').fadeOut();
+        $('.overlay, .modal-login, .modal-recovery, .modal-adress, .global-modal, .modal-delivery-time').fadeOut();
     });
 
     $('.call-adress').on('click', function () {
         $('.overlay, .modal-adress, .global-modal').fadeIn();
+    });
+
+    $('.content-term-delivery').on('click', function () {
+        $('.overlay, .modal-delivery-time').fadeIn();
     });
 
 
