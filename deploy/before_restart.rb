@@ -9,6 +9,8 @@ node[:deploy].each do |app_name, deploy|
       composer install --no-dev --no-interaction --optimize-autoloader
       chmod -R 777 storage
       chmod -R 777 bootstrap/cache
+      ln -s #{current_path}/storage/app/public/ #{current_path}/public/storage
+      php artisan doctrine:generate:proxies
       EOH
     end
   end
