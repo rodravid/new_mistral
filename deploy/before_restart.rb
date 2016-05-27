@@ -12,4 +12,4 @@ node[:deploy].each do |app_name, deploy|
       EOH
     end
   end
-end
+end 
