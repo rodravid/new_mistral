@@ -9,12 +9,18 @@
 
                             @if(isset($product) && $product->hasAttribute($attribute))
 
-                                <input type="hidden" name="attributes[{{ $key }}][id]" value="{{ $product->getAttribute($attribute->getCode())->getId() }}">
+                                <input type="hidden" name="attributes[{{ $key }}][id]"
+                                       value="{{ $product->getAttribute($attribute->getCode())->getId() }}">
 
                             @endif
 
-                            <input type="hidden" name="attributes[{{ $key }}][attribute_id]" value="{{ $attribute->getId() }}">
-                            {!! Form::input($attribute->getType(), 'attributes[' . $key . '][value]', isset($product) && $product->hasAttribute($attribute) ? $product->getAttribute($attribute->getCode())->getValue() : '', ['class' => 'form-control']) !!}
+                            <input type="hidden" name="attributes[{{ $key }}][attribute_id]"
+                                   value="{{ $attribute->getId() }}">
+                            @if($attribute->getType() == "textarea")
+                                {!! Form::textarea('attributes[' . $key . '][value]', isset($product) && $product->hasAttribute($attribute) ? $product->getAttribute($attribute->getCode())->getValue() : '', ['class' => 'form-control', 'rows' => '3']) !!}
+                            @else
+                                {!! Form::input($attribute->getType(), 'attributes[' . $key . '][value]', isset($product) && $product->hasAttribute($attribute) ? $product->getAttribute($attribute->getCode())->getValue() : '', ['class' => 'form-control']) !!}
+                            @endif
                         </div>
                     </div>
                 </div>
