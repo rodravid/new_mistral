@@ -107,6 +107,11 @@ class ProductVariant extends Model implements ProductVariantInterface
     protected $prices;
 
     /**
+     * @ORM\Embedded(class="Vinci\Domain\Product\Dimension", columnPrefix=false)
+     */
+    protected $dimension;
+
+    /**
      * @ORM\Version
      * @ORM\Column(type="integer", options={"default" = 0})
      */
@@ -345,6 +350,11 @@ class ProductVariant extends Model implements ProductVariantInterface
         return $this->getPrice($channel)->asSalePrice();
     }
 
+    public function getOriginalSalePrice($channel = null)
+    {
+        return $this->getPrice($channel)->asOriginalSalePrice();
+    }
+
     public function getPrice($channel = null)
     {
         if (! $price = $this->getPriceOnChannel($channel)) {
@@ -431,6 +441,27 @@ class ProductVariant extends Model implements ProductVariantInterface
     public function getVersion()
     {
         return $this->version;
+    }
+
+    public function hasProducer()
+    {
+        return $this->product->hasProducer();
+    }
+
+    public function getProducer()
+    {
+        return $this->product->getProducer();
+    }
+
+    public function getDimension()
+    {
+        return $this->dimension;
+    }
+
+    public function setDimension(Dimension $dimension)
+    {
+        $this->dimension = $dimension;
+        return $this;
     }
 
 }

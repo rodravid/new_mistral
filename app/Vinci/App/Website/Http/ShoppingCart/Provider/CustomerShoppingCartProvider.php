@@ -4,19 +4,24 @@ namespace Vinci\App\Website\Http\ShoppingCart\Provider;
 
 use Illuminate\Contracts\Auth\Guard;
 use Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider as ShoppingCartProviderInterface;
+use Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
 class CustomerShoppingCartProvider implements ShoppingCartProviderInterface
 {
     protected $cartProvider;
 
+    private $cartRepository;
+
     protected $auth;
 
     public function __construct(
         ShoppingCartProviderInterface $cartProvider,
+        ShoppingCartRepository $cartRepository,
         Guard $auth
     ) {
         $this->cartProvider = $cartProvider;
+        $this->cartRepository = $cartRepository;
         $this->auth = $auth;
     }
 
@@ -26,7 +31,7 @@ class CustomerShoppingCartProvider implements ShoppingCartProviderInterface
 
             $customer = $this->auth->user();
 
-            $cart = $customer->getLastShoppingCart();
+            $cart = $this->cartRepository->getLastByCustomer($customer);
 
             if ($cart) {
                 return $cart;

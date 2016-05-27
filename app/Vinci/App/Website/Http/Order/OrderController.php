@@ -3,75 +3,68 @@
 namespace Vinci\App\Website\Http\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Auth\AuthManager;
+use Exception;
+use Flash;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
+use Redirect;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
-use Vinci\Domain\Customer\CustomerService;
+use Vinci\Domain\Channel\Contracts\ChannelProvider;
+use Vinci\Domain\Order\OrderService;
+use Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider;
 
 class OrderController extends Controller
 {
-    protected $customerService;
+    protected $service;
 
-    protected $auth;
+    protected $channelProvider;
 
-    public function __construct(CustomerService $customerService, AuthManager $auth, EntityManagerInterface $em)
-    {
+    protected $cartProvider;
+
+    public function __construct(
+        EntityManagerInterface $em,
+        OrderService $service,
+        ChannelProvider $channelProvider,
+        ShoppingCartProvider $cartProvider
+    ) {
         parent::__construct($em);
 
-        $this->customerService = $customerService;
-        $this->auth = $auth->guard('website');
-    }
-
-    public function index()
-    {
-        $user = $this->auth->user();
-
-        dd($user);
-
-        return $this->view('account.orders.index', compact('user'));
-    }
-
-    public function create()
-    {
-        return $this->view('account.create');
-    }
-
-    public function edit()
-    {
-        $user = $this->auth->user();
-
-        return $this->view('account.create', compact('user'));
+        $this->service = $service;
+        $this->channelProvider = $channelProvider;
+        $this->cartProvider = $cartProvider;
     }
 
     public function store(Request $request)
     {
         try {
 
-            $customer = $this->customerService->create($request->all());
+            $order = $this->service->create($this->getData($request));
 
-            $this->auth->login($customer);
-
-            return redirect()->route('account.index');
+            return Redirect::route('checkout.confirmation.index', $order->getId());
 
         } catch (ValidationException $e) {
 
-            $this->throwValidationException($request, $e->validator);
+            return Redirect::back()->withErrors($e->getErrors())->withInput();
+
         }
+//        catch (Exception $e) {
+//
+//            Flash::error($e->getMessage());
+//
+//            return Redirect::back()->withInput();
+//        }
+
     }
 
-    public function update(Request $request, $customerId)
+    protected function getData(Request $request)
     {
-        try {
+        $data = $request->all();
 
-            $this->customerService->update($request->all(), $customerId);
-
-            return redirect()->route('account.index');
-
-        } catch (ValidationException $e) {
-
-            $this->throwValidationException($request, $e->validator);
-        }
+        return array_merge($data, [
+            'customer' => $this->user,
+            'channel' => $this->channelProvider->getChannel(),
+            'cart' => $this->cartProvider->getShoppingCart()
+        ]);
     }
 
 }

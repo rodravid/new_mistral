@@ -21,6 +21,7 @@ use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
 use Vinci\Domain\ProductType\ProductTypeService;
+use Vinci\Domain\Shipping\Services\ShippingCarrierLocator;
 use Vinci\Domain\ShoppingCart\Checkers\ProductVariantStockChecker;
 use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
 use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
@@ -141,6 +142,12 @@ class DomainServiceProvider extends ServiceProvider
             );
         });
 
+        $this->app->singleton('Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator', function() {
+            return new ShippingCarrierLocator(
+                $this->app['carrier.repository']
+            );
+        });
+
         $this->app->singleton('Vinci\Domain\Product\Factories\Contracts\ProductFactory', function() {
             return $this->app->make('Vinci\Domain\Product\Factories\ProductFactory');
         });
@@ -175,7 +182,11 @@ class DomainServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider', function() {
-            return new CustomerShoppingCartProvider($this->app['cart.provider'], $this->app['auth']->guard('website'));
+            return new CustomerShoppingCartProvider(
+                $this->app['cart.provider'],
+                $this->app['cart.repository'],
+                $this->app['auth']->guard('website')
+            );
         });
 
         $this->app->singleton('Vinci\Domain\Inventory\Checkers\Contracts\AvailabilityChecker', function() {

@@ -37,24 +37,38 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         });
 
         /**
-         * Delivery
+         * Checkout
          */
-        $route->group(['prefix' => 'entrega', 'as' => 'delivery.'], function() use ($route) {
-            $route->get('/', 'Checkout\Delivery\DeliveryController@index')->name('index');
+        $route->group(['prefix' => 'checkout', 'as' => 'checkout.', 'middleware' => ['check-cart']], function() use ($route) {
+
+            /**
+             * Delivery
+             */
+            $route->group(['prefix' => 'entrega', 'as' => 'delivery.'], function() use ($route) {
+                $route->get('/', 'Checkout\Delivery\DeliveryController@index')->name('index');
+            });
+
+            /**
+             * Payment
+             */
+            $route->group(['prefix' => 'pagamento', 'as' => 'payment.'], function() use ($route) {
+                $route->get('/', 'Checkout\Payment\PaymentController@index')->name('index');
+            });
+
+            /**
+             * Confirmation
+             */
+            $route->group(['prefix' => 'confirmacao', 'as' => 'confirmation.'], function() use ($route) {
+                $route->get('/{order}', 'Checkout\Confirmation\ConfirmationController@index')->name('index');
+            });
+
         });
 
         /**
-         * Payment
+         * Order
          */
-        $route->group(['prefix' => 'pagamento', 'as' => 'payment.'], function() use ($route) {
-            $route->get('/', 'Checkout\Payment\PaymentController@index')->name('index');
-        });
-
-        /**
-         * Confirmation
-         */
-        $route->group(['prefix' => 'confirmacao', 'as' => 'confirmation.'], function() use ($route) {
-            $route->get('/', 'Checkout\Confirmation\ConfirmationController@index')->name('index');
+        $route->group(['prefix' => 'order', 'as' => 'order.'], function() use ($route) {
+            $route->post('/', 'Order\OrderController@store')->name('store');
         });
 
     });

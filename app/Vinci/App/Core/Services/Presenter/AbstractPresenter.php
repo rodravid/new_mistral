@@ -7,7 +7,7 @@ use Robbo\Presenter\Presenter as BasePresenter;
 use Vinci\App\Core\Utils\Mask;
 use Vinci\Domain\Common\Gender;
 
-abstract class AbstractPresenter extends BasePresenter implements Presentable
+abstract class AbstractPresenter extends BasePresenter
 {
 
     protected function toAffirmative($expression)
@@ -139,6 +139,22 @@ abstract class AbstractPresenter extends BasePresenter implements Presentable
                 return 'Feminino';
                 break;
         }
+    }
+
+    public function presentQuantityUnits()
+    {
+        $quantity = $this->getQuantity();
+
+        if ($quantity == 1) {
+            return '1 unidade';
+        }
+
+        return sprintf('%s unidades', $quantity);
+    }
+
+    public function presentTotal()
+    {
+        return $this->toRealCurrency($this->getTotal());
     }
 
 }

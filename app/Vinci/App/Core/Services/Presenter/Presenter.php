@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Collection;
-use Vinci\Domain\Core\Model;
 
 class Presenter
 {
@@ -18,7 +17,7 @@ class Presenter
         $this->container = $container;
     }
 
-    public function model(Model $model, $presenterClass)
+    public function model($model, $presenterClass)
     {
         return $this->container->make($presenterClass, [$model]);
     }

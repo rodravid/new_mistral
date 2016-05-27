@@ -51,5 +51,6 @@ class Kernel extends HttpKernel
         'cms' =>  \Vinci\App\Cms\Http\Middleware\Cms::class,
         'psarm' => \Vinci\App\Cms\Http\Middleware\PreventSuperAdminRoleManagement::class,
         'acl' => \Vinci\App\Core\Http\Middleware\AccessControlList::class,
+        'check-cart' => \Vinci\App\Website\Http\Checkout\Middleware\CheckShoppingCart::class
     ];
 }

@@ -29,7 +29,7 @@
 
                 <div class="wrap-content-bt mbottom20">
                     <div class="content-bt-middle">
-                        <a class="bt-default-full bt-middle bt-color" href="{{ route('delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
+                        <a class="bt-default-full bt-middle bt-color" href="{{ route('checkout.delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
                     </div>
                 </div>
 
@@ -110,10 +110,8 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Digite o CEP</span>
                                 <div class="container-info-compra">
-                                    <form action="/checkShippingByShoppingCart" id="check-shipping">
-                                        <input type="text" class="cep" id="postalCode" data-postal-code="0" maxlenght="9" cep>
-                                        <input type="submit" value="OK >">
-                                    </form>
+                                    <input type="text" class="cep" ng-model="postalCode" id="txtPostalCode" data-postal-code="0" maxlenght="9" cep>
+                                    <button type="button" ng-click="getShipping()">OK ></button>
                                 </div>
                             </article>
                             <p class="cep-invalido" id="cepInvalido" style="display:none;">CEP inválido!</p>
@@ -159,7 +157,7 @@
                             <a class="keep-buying" href="{{ route('index') }}">Continuar comprando ></a>
 
                             <div class="content-bt-middle">
-                                <a class="bt-default-full bt-middle bt-color" href="{{ route('delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
+                                <a class="bt-default-full bt-middle bt-color" href="{{ route('checkout.delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
                             </div>
                         </div>
                     </div>

@@ -4,16 +4,21 @@ namespace Vinci\Domain\Address;
 
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Address\City\City;
+use Vinci\Domain\Address\Presenter\AddressPresenter;
 use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\MappedSuperclass
  */
-abstract class Address extends Model
+abstract class Address extends Model implements Presentable
 {
 
-    use Timestamps;
+    use Timestamps, PresentableTrait;
+
+    protected $presenter = AddressPresenter::class;
 
     /**
      * @ORM\Id
@@ -212,6 +217,21 @@ abstract class Address extends Model
     {
         $this->nickname = $nickname;
         return $this;
+    }
+
+    public function override(Address $address)
+    {
+        $this
+            ->setType($address->getType())
+            ->setPostalCode($address->getPostalCode())
+            ->setPublicPlace($address->getPublicPlace())
+            ->setAddress($address->getAddress())
+            ->setNumber($address->getNumber())
+            ->setComplement($address->getComplement())
+            ->setDistrict($address->getDistrict())
+            ->setCity($address->getCity())
+            ->setReceiver($address->getReceiver())
+            ->setNickname($address->getNickname());
     }
 
 }

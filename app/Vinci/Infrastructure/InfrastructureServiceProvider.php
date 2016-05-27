@@ -131,6 +131,16 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\ShoppingCart\ShoppingCart'
         );
 
+        $this->app->alias('Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository', 'cart.repository');
+
+
+        $this->registerRepository(
+            'Vinci\Domain\Carrier\CarrierRepository',
+            'Vinci\Infrastructure\Carrier\DoctrineCarrierRepository',
+            'Vinci\Domain\Carrier\Carrier'
+        );
+        $this->app->alias('Vinci\Domain\Carrier\CarrierRepository', 'carrier.repository');
+
 //        $this->registerRepository(
 //            'Vinci\Domain\Address\State\StateRepository',
 //            'Vinci\Infrastructure\Address\State\DoctrineStateRepository',
@@ -159,6 +169,12 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Channel\ChannelRepository',
             'Vinci\Infrastructure\Channel\DoctrineChannelRepository',
             'Vinci\Domain\Channel\Channel'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Customer\Address\AddressRepository',
+            'Vinci\Infrastructure\Customer\Address\DoctrineAddressRepository',
+            'Vinci\Domain\Customer\Address\Address'
         );
 
         $this->app->singleton('Vinci\Domain\Address\City\CityRepository', function() {

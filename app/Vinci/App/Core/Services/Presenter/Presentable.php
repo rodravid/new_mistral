@@ -2,7 +2,9 @@
 
 namespace Vinci\App\Core\Services\Presenter;
 
-interface Presentable
+use Robbo\Presenter\PresentableInterface;
+
+interface Presentable extends PresentableInterface
 {
 
 }

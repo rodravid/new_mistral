@@ -8,21 +8,31 @@ use Illuminate\Http\Request;
 use Response;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\ShoppingCart\Transformers\ShoppingCartTransformer;
+use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Product\Repositories\ProductVariantRepository;
+use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
+use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
 class ShoppingCartController extends Controller
 {
 
     private $cartService;
 
+    private $shippingService;
+
     private $variantRepository;
 
-    public function __construct(EntityManagerInterface $em, ShoppingCartService $cartService, ProductVariantRepository $variantRepository)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        ShoppingCartService $cartService,
+        ShippingService $shippingService,
+        ProductVariantRepository $variantRepository
+    ) {
         parent::__construct($em);
 
         $this->cartService = $cartService;
+        $this->shippingService = $shippingService;
         $this->variantRepository = $variantRepository;
     }
 
@@ -31,13 +41,15 @@ class ShoppingCartController extends Controller
         return $this->view('cart.index');
     }
 
-    public function getItems()
+    public function getItems(Request $request)
     {
-        $cart = fractal()
-            ->item($this->cartService->getCart())
+        $shoppingCart = $this->cartService->getCart();
+
+        $transform = fractal()
+            ->item($shoppingCart)
             ->transformWith(new ShoppingCartTransformer());
 
-        return Response::json($cart->toArray());
+        return Response::json($transform->toArray());
     }
 
     public function add(Request $request)
@@ -105,6 +117,11 @@ class ShoppingCartController extends Controller
                 'message' => trans('cart.item_remove_failed')
             ], 422);
         }
+    }
+
+    protected function getShipping($postalCode, ShoppingCartInterface $cart)
+    {
+        return $this->shippingService->getShippingByLowestPrice(new PostalCode($postalCode), $cart);
     }
 
 }
