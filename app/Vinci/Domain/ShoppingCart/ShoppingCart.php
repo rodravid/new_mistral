@@ -11,6 +11,7 @@ use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Product\ProductInterface;
+use Vinci\Domain\Shipping\ShippingOption;
 use Vinci\Domain\ShoppingCart\Events\ItemWasRemoved;
 use Vinci\Domain\ShoppingCart\Events\NewItemWasAdded;
 use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
@@ -48,6 +49,8 @@ class ShoppingCart implements ShoppingCartInterface
      * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\Item\ShoppingCartItem", mappedBy="shoppingCart", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $items;
+
+    protected $shipping;
 
     public function __construct()
     {
@@ -200,7 +203,13 @@ class ShoppingCart implements ShoppingCartInterface
 
     public function getTotal()
     {
-        return $this->getSubtotal();
+        $total = $this->getSubtotal();
+
+        if ($this->hasShipping()) {
+            return $total + $this->getShipping()->getPrice();
+        }
+
+        return $total;
     }
 
     public function countItems()
@@ -227,4 +236,21 @@ class ShoppingCart implements ShoppingCartInterface
         
         return (double) $totalWeight;
     }
+
+    public function getShipping()
+    {
+        return $this->shipping;
+    }
+
+    public function setShipping(ShippingOption $shipping)
+    {
+        $this->shipping = $shipping;
+        return $this;
+    }
+
+    public function hasShipping()
+    {
+        return ! empty($this->getShipping());
+    }
+
 }

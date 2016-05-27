@@ -2,17 +2,22 @@
 
 namespace Vinci\Domain\Payment;
 
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Order\OrderInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Payment\Presenter\PaymentPresenter;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="order_payments")
  */
-class Payment implements PaymentInterface
+class Payment implements PaymentInterface, Presentable
 {
-    use Timestampable;
+    use Timestampable, PresentableTrait;
+
+    protected $presenter = PaymentPresenter::class;
 
     /**
      * @ORM\Id

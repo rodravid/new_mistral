@@ -2,10 +2,18 @@
 
 namespace Vinci\Domain\Shipping;
 
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Carrier\CarrierInterface;
+use Vinci\Domain\Core\Model;
+use Vinci\Domain\Shipping\Presenter\ShippingPresenter;
 
-class ShippingOption
+class ShippingOption extends Model implements Presentable
 {
+
+    use PresentableTrait;
+
+    protected $presenter = ShippingPresenter::class;
 
     private $price;
 

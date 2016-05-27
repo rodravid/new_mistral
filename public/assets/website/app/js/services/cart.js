@@ -1,5 +1,5 @@
 angular.module('app')
-    .factory('CartService', ['$http', '$q', function($http, $q) {
+    .factory('CartService', ['$http', '$q', '$rootScope', function($http, $q, $rootScope) {
 
         return ({
             getCart: getCart,
@@ -9,9 +9,16 @@ angular.module('app')
 
         function getCart() {
 
+            var url = '/carrinho/items';
+
+            if (typeof $rootScope.postalCode !== 'undefined' && $rootScope.postalCode !== '') {
+                url += "?postal_code=" + $rootScope.postalCode;
+            }
+
             var request = $http({
                 method: "get",
-                url: "/carrinho/items"
+                url: url,
+                cache: true
             });
 
             return(request.then(handleSuccess, handleError));

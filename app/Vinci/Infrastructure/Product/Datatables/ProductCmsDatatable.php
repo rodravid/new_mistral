@@ -21,13 +21,14 @@ class ProductCmsDatatable extends AbstractDatatables
 
     protected $sortMapping = [
         0 => 'p.id',
-        2 => 'v.title',
-        3 => 'v.stock',
-        4 => 'v.importStock',
-        5 => 'v.importPrice',
-        6 => 'p.online',
-        7 => 'p.createdAt',
-        8 => 'p.status',
+        1 => 'v.sku',
+        3 => 'v.title',
+        4 => 'v.stock',
+        5 => 'v.importStock',
+        6 => 'v.importPrice',
+        7 => 'p.online',
+        8 => 'p.createdAt',
+        9 => 'p.status',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -44,7 +45,7 @@ class ProductCmsDatatable extends AbstractDatatables
             $qb->where($qb->expr()->eq('p.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('p.title', ':search')
+                $qb->expr()->like('v.title', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
@@ -63,6 +64,7 @@ class ProductCmsDatatable extends AbstractDatatables
 
         return [
             $presenter->id,
+            $presenter->sku,
             $presenter->image_html,
             $presenter->title,
             $presenter->stock,

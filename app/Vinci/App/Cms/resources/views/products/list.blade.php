@@ -3,6 +3,7 @@
 @section('module.content.thead')
     <tr>
         <th>#ID</th>
+        <th>SKU</th>
         <th><i class="fa fa-picture-o"></i> Imagem</th>
         <th><i class="fa fa-pencil"></i> Título</th>
         <th><i class="fa fa-envelope"></i> Estoque</th>
@@ -33,10 +34,10 @@
                 },
                 searchDelay: 600,
                 columnDefs: [
-                    {orderable: false, targets: [1] },
+                    {orderable: false, targets: [2] },
                     {orderable: false, width: '170px', targets: -1 },
                     {className: 'hcenter vcenter', width: '20px', targets: [0] },
-                    {className: 'vcenter', targets: [1,2,3,4,5,6,7,8,9] }
+                    {className: 'vcenter', targets: [1,2,3,4,5,6,7,8,9,10] }
                 ]
             });
 

@@ -3,8 +3,14 @@
 namespace Vinci\Domain\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Payment\CreditCard;
+use Vinci\Domain\Payment\Payment;
+use Vinci\Domain\Payment\PaymentMethod;
+use Vinci\Domain\Shipping\Services\ShippingService;
+use Vinci\Domain\Shipping\Shipment;
 
 class OrderService
 {
@@ -15,17 +21,21 @@ class OrderService
 
     protected $factory;
 
+    protected $shippingService;
+
     protected $eventDispatcher;
 
     public function __construct(
         EntityManagerInterface $entityManager,
         OrderValidator $validator,
         OrderFactory $factory,
+        ShippingService $shippingService,
         Dispatcher $eventDispatcher
     ) {
         $this->entityManager = $entityManager;
         $this->validator = $validator;
         $this->factory = $factory;
+        $this->shippingService = $shippingService;
         $this->eventDispatcher = $eventDispatcher;
     }
 
@@ -37,21 +47,88 @@ class OrderService
 
             $order = $this->factory->make($data);
 
-            dd($order);
+            $shipment = $this->getShipment($order);
 
-            $this->dispatchEvents($order);
+            $order->setShipment($shipment);
+
+            $payment = $this->getPayment($data);
+
+            $payment->setAmount($order->getTotal());
+
+            $order->addPayment($payment);
+
+            $this->dispatchOrderEvents($order);
 
             $em->persist($order);
+
+            $this->finalize();
 
             return $order;
         });
     }
 
-    protected function dispatchEvents(OrderInterface $order)
+    protected function dispatchOrderEvents(OrderInterface $order)
     {
         foreach ($order->releaseEvents() as $event) {
             $this->eventDispatcher->fire($event);
         }
+    }
+
+    protected function getShipment(OrderInterface $order)
+    {
+        $postalCode = new PostalCode($order->getShippingAddress()->getPostalCode());
+
+        $shippingOption = $this->shippingService->getShippingByLowestPrice($postalCode, $order);
+
+        $shipment = new Shipment;
+
+        $shipment
+            ->setCarrier($shippingOption->getCarrier())
+            ->setDeadline($shippingOption->getDeadline())
+            ->setAmount($shippingOption->getPrice());
+
+        return $shipment;
+    }
+
+    protected function getPayment(array $data)
+    {
+        $payment = new Payment;
+
+        $paymentMethod = $this->getPaymentMethod($data);
+
+        $creditCard = $this->getCreditCard($data);
+
+        $creditCard->setBrand($paymentMethod->getCode());
+
+        $payment
+            ->setMethod($paymentMethod)
+            ->setCreditCard($creditCard);
+
+        return $payment;
+    }
+
+    protected function getCreditCard(array $data)
+    {
+        $card = new CreditCard;
+
+        $card
+            ->setHolderName(array_get($data, 'card.holdername'))
+            ->setNumber(array_get($data, 'card.number'))
+            ->setExpiryMonth(array_get($data, 'card.expiry_month'))
+            ->setExpiryYear(array_get($data, 'card.expiry_year'))
+            ->setSecurityCode(array_get($data, 'card.security_code'));
+
+        return $card;
+    }
+
+    protected function getPaymentMethod($data)
+    {
+        return $this->entityManager->getReference(PaymentMethod::class, array_get($data, 'payment.method'));
+    }
+
+    protected function finalize()
+    {
+
     }
 
 }

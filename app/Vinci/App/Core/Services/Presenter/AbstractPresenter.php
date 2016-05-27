@@ -157,4 +157,9 @@ abstract class AbstractPresenter extends BasePresenter
         return $this->toRealCurrency($this->getTotal());
     }
 
+    public function presentPrice()
+    {
+        return $this->toRealCurrency($this->getPrice());
+    }
+
 }

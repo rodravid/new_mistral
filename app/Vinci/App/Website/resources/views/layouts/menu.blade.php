@@ -86,7 +86,7 @@
                 <div class="nav-cart-count sprite-icon" ng-bind="cart.count_items"></div>
                 <div class="drop-cart template1">
 
-                    <p class="your-cart ng-hide" ng-show="!ctrl.hasItems()">Não há items em seu carrinho.</p>
+                    <p class="your-cart ng-hide" ng-show="!ctrl.hasItems()">Não há produtos em seu carrinho.</p>
 
                     <div class="ng-hide" ng-show="ctrl.hasItems()">
                         <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no carrinho de compras</p>

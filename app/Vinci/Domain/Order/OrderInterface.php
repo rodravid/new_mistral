@@ -2,7 +2,9 @@
 
 namespace Vinci\Domain\Order;
 
-interface OrderInterface
+use Vinci\Domain\Shipping\ShippableInterface;
+
+interface OrderInterface extends ShippableInterface
 {
 
     const STATUS_NEW = 'new';
