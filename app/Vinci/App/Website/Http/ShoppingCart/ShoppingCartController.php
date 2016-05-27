@@ -45,6 +45,13 @@ class ShoppingCartController extends Controller
     {
         $shoppingCart = $this->cartService->getCart();
 
+        if (! empty($request->get('postal_code'))) {
+
+            $shipping = $this->getShipping($request->get('postal_code'), $shoppingCart);
+
+            $shoppingCart->setShipping($shipping);
+        }
+
         $transform = fractal()
             ->item($shoppingCart)
             ->transformWith(new ShoppingCartTransformer());

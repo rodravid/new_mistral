@@ -4,6 +4,7 @@ namespace Vinci\Domain\Order;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
+use Ramsey\Uuid\Uuid;
 use Vinci\Domain\Channel\Contracts\Channel;
 use Vinci\Domain\Common\AggregateRoot;
 use Vinci\Domain\Common\Event\HasEvents;
@@ -34,6 +35,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
      * @ORM\Column(type="integer")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="uuid")
+     */
+    protected $number;
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Customer\Customer", inversedBy="orders")
@@ -71,7 +77,7 @@ class Order extends Model implements OrderInterface, AggregateRoot
     protected $payments;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Shipping\Shipment")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Shipping\Shipment", cascade={"persist"})
      */
     protected $shipment;
 
@@ -89,6 +95,7 @@ class Order extends Model implements OrderInterface, AggregateRoot
     {
         $this->payments = new ArrayCollection;
         $this->items = new ArrayCollection;
+        $this->number = Uuid::uuid4();
 
         $this->raise(new NewOrderWasCreated($this));
     }
@@ -96,6 +103,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getNumber()
+    {
+        return $this->number;
     }
 
     public function getCustomer()
@@ -179,7 +191,6 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
             $this->items->add($item);
 
-            $this->calculateItemsTotal();
             $this->calculateTotal();
         }
     }
@@ -199,7 +210,13 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     protected function calculateTotal()
     {
+        $this->calculateItemsTotal();
+
         $this->total = $this->itemsTotal;
+
+        if ($this->hasShipment()) {
+            $this->total += $this->getShipment()->getAmount();
+        }
     }
 
     public function releaseEvents()
@@ -232,10 +249,38 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return $this->shipment;
     }
 
+    public function hasShipment()
+    {
+        return ! empty($this->shipment);
+    }
+
     public function setShipment(ShipmentInterface $shipment)
     {
+        $shipment->setOrder($this);
         $this->shipment = $shipment;
+
+        $this->calculateTotal();
+
         return $this;
+    }
+
+    public function getShippingWeight()
+    {
+        $totalWeight = 0;
+
+        foreach ($this->getItems() as $item) {
+            $variant = $item->getProductVariant();
+            $weight = $variant->getDimension()->getWeight();
+
+            $totalWeight += $weight * $item->getQuantity();
+        }
+
+        return (double) $totalWeight;
+    }
+
+    public function getPayment()
+    {
+        return $this->payments->first();
     }
 
 }

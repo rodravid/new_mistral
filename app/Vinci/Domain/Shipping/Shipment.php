@@ -3,16 +3,22 @@
 namespace Vinci\Domain\Shipping;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Order\OrderInterface;
+use Vinci\Domain\Shipping\Presenter\ShipmentPresenter;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="order_shipments")
  */
-class Shipment implements ShipmentInterface
+class Shipment implements ShipmentInterface, Presentable
 {
 
-    use Timestampable;
+    use Timestampable, PresentableTrait;
+
+    protected $presenter = ShipmentPresenter::class;
 
     /**
      * @ORM\Id
@@ -40,9 +46,6 @@ class Shipment implements ShipmentInterface
      * @ORM\Column(type="integer")
      */
     protected $deadline;
-
-    
-    protected $metrics;
 
     public function getId()
     {
@@ -85,6 +88,17 @@ class Shipment implements ShipmentInterface
     public function setDeadline($deadline)
     {
         $this->deadline = (int) $deadline;
+        return $this;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    public function setOrder(OrderInterface $order)
+    {
+        $this->order = $order;
         return $this;
     }
 

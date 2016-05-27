@@ -3,6 +3,8 @@ angular.module('app')
 
         return {
 
+            scope: true,
+
             link: function($scope, elt, attributes) {
 
                 var $item = $(elt);
@@ -16,7 +18,7 @@ angular.module('app')
                             $item.remove();
                         });
 
-                        $rootScope.$broadcast('cart.item_removed');
+                        $rootScope.$broadcast('cart.update');
 
                     }, function() {
                         swal('Ops!', response.data.message, 'error');
@@ -60,13 +62,13 @@ angular.module('app')
 
                     cartService.syncQuantity(id, quantity).then(function() {
 
-                        $rootScope.$broadcast('cart.item_synced');
+                        $rootScope.$broadcast('cart.update');
 
                     }, function(response) {
 
                         swal('Ops!', response.data.message, 'error');
 
-                        $rootScope.$broadcast('cart.item_synced');
+                        $rootScope.$broadcast('cart.update');
                     });
 
                 }

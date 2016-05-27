@@ -1,26 +1,42 @@
 angular.module('app')
-    .controller('CartController', ['$rootScope', '$scope', function($rootScope, $scope) {
+    .controller('CartController', ['$rootScope', '$cacheFactory', 'CartService', function($rootScope, $cacheFactory, cartService) {
 
-        $rootScope.cart = {};
+        var self = this;
 
-        $scope.postalCode = '';
+        $rootScope.postalCode = '';
 
-        $scope.getCart = function() {
-            return $rootScope.cart;
+        self.cart = {};
+
+        self.getCart = function() {
+            cartService.getCart().then(function(cart) {
+                self.cart = cart;
+            });
         };
 
-        $scope.hasItems = function() {
-            return $rootScope.cart.items && $rootScope.cart.items.length > 0;
+        self.hasItems = function() {
+            return self.cart.items && self.cart.items.length > 0;
         };
 
-        $scope.getShipping = function() {
+        self.refreshCart = function() {
+            var cache = $cacheFactory.get('$http');
+            cache.removeAll();
+            self.getCart();
+        }
 
-            console.log($scope.postalCode);
-
-            //$rootScope.$broadcast('cart.update');
+        self.getShipping = function() {
+            $rootScope.$broadcast('cart.update');
         };
 
-        $scope.getCart();
+        self.removeShipping = function() {
+            $rootScope.postalCode = '';
+            $rootScope.$broadcast('cart.update');
+        };
+
+        $rootScope.$on('cart.update', function() {
+            self.refreshCart();
+        });
+
+        self.getCart();
 
     }]);
 

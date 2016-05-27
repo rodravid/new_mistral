@@ -7,8 +7,11 @@ use Vinci\App\Website\Http\Checkout\Payment\Request\PaymentRequest;
 use Vinci\App\Website\Http\Checkout\Presenters\AddressPresenter;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\ShoppingCart\Presenters\ShoppingCartPresenter;
+use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Customer\Address\AddressRepository;
+use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
+use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
 class PaymentController extends Controller
 {
@@ -16,22 +19,32 @@ class PaymentController extends Controller
 
     protected $addressRepository;
 
+    protected $shippingService;
+
     public function __construct(
         EntityManagerInterface $em,
         ShoppingCartService $cartService,
-        AddressRepository $addressRepository
+        AddressRepository $addressRepository,
+        ShippingService $shippingService
     ) {
         parent::__construct($em);
 
         $this->cartService = $cartService;
         $this->addressRepository = $addressRepository;
+        $this->shippingService = $shippingService;
     }
 
     public function index(PaymentRequest $request)
     {
         $deliveryAddress = $this->getDeliveryAddress($request);
 
+        $shoppingCart = $this->cartService->getCart();
+
+        $shipping = $this->getShipping($deliveryAddress->getPostalCode(), $shoppingCart);
+
         $shoppingCart = $this->presenter->model($this->cartService->getCart(), ShoppingCartPresenter::class);
+
+        $shoppingCart->setShipping($shipping);
 
         $months = $this->getMonths();
         $years = $this->getYears();
@@ -46,6 +59,11 @@ class PaymentController extends Controller
         return $this->presenter->model($deliveryAddress, AddressPresenter::class);
     }
 
+    protected function getShipping($postalCode, ShoppingCartInterface $cart)
+    {
+        return $this->shippingService->getShippingByLowestPrice(new PostalCode($postalCode), $cart);
+    }
+
     protected function getYears()
     {
         $currentYear = date('Y');
@@ -55,20 +73,7 @@ class PaymentController extends Controller
 
     protected function getMonths()
     {
-        return [
-            1 => 'Janeiro',
-            2 => 'Fevereiro',
-            3 => 'Março',
-            4 => 'Abril',
-            5 => 'Maio',
-            6 => 'Junho',
-            7 => 'Julho',
-            8 => 'Agosto',
-            9 => 'Setembro',
-            10 => 'Outubro',
-            11 => 'Novembro',
-            12 => 'Dezembro',
-        ];
+        return getMonths();
     }
 
 }

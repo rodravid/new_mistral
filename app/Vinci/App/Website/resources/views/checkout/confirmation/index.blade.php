@@ -44,7 +44,7 @@
             <article class="order section-payment">
                 <div class="content-order float-left">
                     <p class="txt-order">Numero do pedido</p>
-                    <span class="num-order">12345678</span>
+                    <span class="num-order">{{ $order->number }}</span>
                 </div>
                 <div class="status-order float-right">
                     <p class="txt-order">Status</p>
@@ -92,7 +92,7 @@
                         <span class="title-internal-15">Frete</span>
                     </div>
                     <div class="price-final float-right">
-                        <span class="title-internal-15">R$ 10,26</span>
+                        <span class="title-internal-15">{{ $order->shipment->amount }}</span>
                     </div>
                 </div>
 
@@ -124,10 +124,10 @@
                     <img src="{{ asset_web('images/img-cartao-credito.jpg') }}" alt="">
                 </div>
                 <div class="info-card-payment">
-                    <p class="amount-paid">1x de R$ 154,56</p>
+                    <p class="amount-paid">{{ $order->payment->installment_text }}</p>
                     <p class="card-used">
-                        Nome impresso no cartão
-                        <span>xxxx xxxx xxxx 1234</span>
+                        {{ $order->payment->getCreditCard()->getHoldername() }}
+                        <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
                     </p>
                 </div>
             </article>
@@ -138,13 +138,10 @@
                 </div>
             </div>
 
-
         </section>
-
 
     </div>
 
     @include('website::layouts.footer')
-
 
 @stop

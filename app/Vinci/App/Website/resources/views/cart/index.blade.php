@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div ng-controller="CartController">
+    <div ng-controller="CartController as ctrl">
 
         <div class="header-internal template1-bg">
             @include('website::layouts.menu')
@@ -23,9 +23,9 @@
 
         <div class="row">
 
-            <h2 class="ng-hide" style="text-align: center;" ng-show="!hasItems()">Não há produtos em seu carrinho.</h2>
+            <h2 class="ng-hide" style="text-align: center;" ng-show="!ctrl.hasItems()">Não há produtos em seu carrinho.</h2>
 
-            <div class="cart-content ng-hide" ng-show="hasItems()">
+            <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
                 <div class="wrap-content-bt mbottom20">
                     <div class="content-bt-middle">
@@ -46,7 +46,7 @@
                         <div class="col-cart3">SUBTOTAL</div>
                     </div>
 
-                    <article cart-item="@{{ item.id }}" class="row-item-cart template1" ng-repeat="item in cart.items">
+                    <article cart-item="@{{ item.id }}" class="row-item-cart template1" ng-repeat="item in ctrl.cart.items">
                         <div class="col-cart1">
                             <div class="col-product-cart">
                                 <div class="thumb-wine">
@@ -101,7 +101,7 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Subtotal</span>
                                 <div class="container-info-compra">
-                                    <p class="price-cart" id="pgCartSubtotal">@{{ cart.subtotal | currency }}</p>
+                                    <p class="price-cart" id="pgCartSubtotal">@{{ ctrl.cart.subtotal | currency }}</p>
                                 </div>
                             </article>
                         </li>
@@ -110,16 +110,16 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Digite o CEP</span>
                                 <div class="container-info-compra">
-                                    <input type="text" class="cep" ng-model="postalCode" id="txtPostalCode" data-postal-code="0" maxlenght="9" cep>
-                                    <button type="button" ng-click="getShipping()">OK ></button>
+                                    <input type="text" class="cep" ng-model="$root.postalCode" maxlength="8" id="txtPostalCode">
+                                    <button type="button" ng-click="ctrl.getShipping()" class="btn-submit">OK ></button>
                                 </div>
                             </article>
                             <p class="cep-invalido" id="cepInvalido" style="display:none;">CEP inválido!</p>
                         </li>
 
-                        <li id="shipping-info" style="display:none;">
+                        <li id="shipping-info ng-hide" ng-show="ctrl.cart.shipping.price">
                             <article class="wrap-compra-dados-venda">
-                                <span>Frete</span>
+                                <span>Frete @{{ ctrl.cart.shipping.price | currency }}</span>
                                 <div class="container-info-compra">
                                     <span id="shipping-value"></span>
                                 </div>
@@ -132,12 +132,12 @@
                             </article>
                             <article class="wrap-compra-dados-venda">
                                 <div class="wrap-select-convencional select-standard half form-control-white">
-                                    <select name="" id="" class="select-standard" style="display: none;">
+                                    <select name="" id="" class="select-standard" style="">
                                         <option value="">convencional</option>
                                     </select>
                                 </div>
                                 <div class="container-info-remover">
-                                    <a href="javascript:void(0);" class="remover-carrinho" id="removeShipping">remover</a>
+                                    <a href="javascript:void(0);" class="remover-carrinho" id="removeShipping" ng-click="ctrl.removeShipping()">remover</a>
                                 </div>
                             </article>
                         </li>
