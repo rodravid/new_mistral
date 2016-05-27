@@ -78,12 +78,12 @@
         <div ng-controller="CartWidgetController as ctrl">
             <a href="/carrinho">
                 <div class="cart-header sprite-icon show-mobile">
-                    <div class="nav-cart-count sprite-icon">@{{ cart.count_items }}</div>
+                    <div class="nav-cart-count sprite-icon" ng-bind="cart.count_items"></div>
                 </div>
             </a>
 
             <div class="cart-header sprite-icon show-desktop">
-                <div class="nav-cart-count sprite-icon">@{{ cart.count_items }}</div>
+                <div class="nav-cart-count sprite-icon" ng-bind="cart.count_items"></div>
                 <div class="drop-cart template1">
 
                     <p class="your-cart ng-hide" ng-show="!ctrl.hasItems()">Não há items em seu carrinho.</p>
