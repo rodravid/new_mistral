@@ -23,6 +23,10 @@ angular.module('app', [
             refreshCart();
         });
 
+        $rootScope.$on('cart.update', function() {
+            refreshCart();
+        });
+
         function refreshCart() {
             cartService.getCart().then(function(cart) {
                 $rootScope.cart = cart;

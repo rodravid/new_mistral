@@ -5,6 +5,7 @@ namespace Vinci\Domain\Shipping\Services;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Carrier\CarrierRepository;
 use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator as ShippingCarrierLocatorContract;
+use Vinci\Domain\Shipping\Exceptions\ShippingException;
 use Vinci\Domain\Shipping\ShippableInterface;
 
 class ShippingCarrierLocator implements ShippingCarrierLocatorContract
@@ -24,15 +25,17 @@ class ShippingCarrierLocator implements ShippingCarrierLocatorContract
             $shippable->getShippingWeight()
         );
 
-        return $carriers;
+        if (! empty($carriers)) {
+            return $carriers;
+        }
 
         $defaultCarrier = $this->getDefaultCarrier();
 
         if ($defaultCarrier) {
-            $carriers[] = $defaultCarrier;
+            return [$defaultCarrier];
         }
 
-        return $carriers;
+        throw new ShippingException('No carrier found for shipping.');
     }
 
     protected function getDefaultCarrier()

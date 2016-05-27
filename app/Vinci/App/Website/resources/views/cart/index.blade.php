@@ -110,10 +110,8 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Digite o CEP</span>
                                 <div class="container-info-compra">
-                                    <form action="/checkShippingByShoppingCart" id="check-shipping">
-                                        <input type="text" class="cep" id="postalCode" data-postal-code="0" maxlenght="9" cep>
-                                        <input type="submit" value="OK >">
-                                    </form>
+                                    <input type="text" class="cep" ng-model="postalCode" id="txtPostalCode" data-postal-code="0" maxlenght="9" cep>
+                                    <button type="button" ng-click="getShipping()">OK ></button>
                                 </div>
                             </article>
                             <p class="cep-invalido" id="cepInvalido" style="display:none;">CEP inválido!</p>

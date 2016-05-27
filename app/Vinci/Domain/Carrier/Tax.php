@@ -108,20 +108,19 @@ class Tax implements TaxInterface
 
     public function apply(&$amount)
     {
+        switch (self::getType()) {
 
-       switch (self::getType()) {
+            case self::TYPE_FIXED:
+                $amount += $this->getAmount();
 
-           case self::TYPE_FIXED:
-               $amount += $this->getAmount();
+                break;
 
-               break;
+            case self::TYPE_PERCENTAGE:
 
-           case self::TYPE_PERCENTAGE:
+                $amount = $amount + ($amount * $this->getAmount() / 100);
 
-               $amount = $amount + ($amount * $this->getAmount() / 100);
-
-               break;
-       }
+                break;
+        }
 
     }
 

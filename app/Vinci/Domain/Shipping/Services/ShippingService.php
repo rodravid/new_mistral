@@ -12,7 +12,6 @@ use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator as Locator;
 use Vinci\Domain\Shipping\ShippableInterface;
 use Vinci\Domain\Shipping\ShippingOption;
 
-
 class ShippingService
 {
 
@@ -36,7 +35,7 @@ class ShippingService
 
         foreach ($carriers as $carrier) {
 
-            $metric = $this->getShippingMetric($postalCode, $shippable, $carrier);
+            $metric = $this->chooseShippingMetric($carrier);
 
             $shipping = $this->getShippingOption($shippable, $carrier, $metric);
 
@@ -55,6 +54,11 @@ class ShippingService
         return $options->matching($criteria)->first();
     }
 
+    public function locateCarriers(PostalCode $postalCode, ShippableInterface $shippable)
+    {
+        return $this->carrierLocator->locate($postalCode, $shippable);
+    }
+
     protected function getShippingOption(ShippableInterface $shippable, CarrierInterface $carrier, CarrierMetric $metric)
     {
         $calculator = $this->getShippingCalculatorFor($carrier);
@@ -66,39 +70,14 @@ class ShippingService
         return new ShippingOption($price, $deadline, $carrier);
     }
 
-    public function locateCarriers(PostalCode $postalCode, ShippableInterface $shippable)
-    {
-        return $this->carrierLocator->locate($postalCode, $shippable);
-    }
-
     protected function getShippingCalculatorFor(CarrierInterface $carrier)
     {
         return $this->calculatorFactory->make($carrier->getShippingCalculator());
     }
 
-    protected function getShippingMetric(PostalCode $postalCode, ShippableInterface $shippable, CarrierInterface $carrier)
+    protected function chooseShippingMetric(CarrierInterface $carrier)
     {
-
-        if ($carrier->isDefault()) {
-            return $carrier->getMetrics()->first();
-        }
-
-        $weight = $shippable->getShippingWeight();
-        $postalCode = (int) $postalCode->getCode();
-
-        $expr = Criteria::expr();
-
-        $criteria = Criteria::create()
-            ->where($expr->andX(
-                $expr->lte('initialTrack', $postalCode),
-                $expr->gte('finalTrack', $postalCode)
-            ))
-            ->andWhere($expr->andX(
-                $expr->lte('initialWeight', $weight),
-                $expr->gte('finalWeight', $weight)
-            ));
-        
-        return $carrier->getMetricsMatching($criteria)->first();
+        return $carrier->getMetrics()->first();
     }
 
 }

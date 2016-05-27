@@ -219,12 +219,10 @@ class ShoppingCart implements ShoppingCartInterface
         $totalWeight = 0;
 
         foreach ($this->getItems() as $item) {
-
             $variant = $item->getProductVariant();
             $weight = $variant->getDimension()->getWeight();
 
             $totalWeight += $weight * $item->getQuantity();
-
         }
         
         return (double) $totalWeight;

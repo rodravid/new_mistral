@@ -21,9 +21,8 @@ class DoctrineCarrierRepository extends DoctrineBaseRepository implements Carrie
             ->andWhere($qb->expr()->andX(
                 $qb->expr()->gte($weight, 'm.initialWeight'),
                 $qb->expr()->lte($weight, 'm.finalWeight')
-            ));
-
-        $qb->join('Vinci\Domain\Carrier\Carrier', 'd', 'with', 'd.code = :code');
+            ))
+            ->andWhere('c.code != :code');
 
         $qb->setParameter('code', CarrierInterface::CARRIER_DEFAULT);
 

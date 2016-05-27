@@ -10,19 +10,15 @@ class DefaultShippingCalculator implements ShippingCalculatorInterface
 
     public function calculatePrice(ShippableInterface $shippable, CarrierMetricInterface $carrierMetric)
     {
-
         $finalPrice = $carrierMetric->getPrice();
 
         if ($carrierMetric->hasTaxes()) {
 
             foreach ($carrierMetric->getTaxes() as $tax) {
-
                 $tax->apply($finalPrice);
-
             }
 
         }
-
 
         return $finalPrice;
     }
