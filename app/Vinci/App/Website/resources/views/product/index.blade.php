@@ -565,6 +565,7 @@
 
 	</section>
 	@include('website::layouts.partials.featuredweek')
+	@include('website::layouts.modals.delivery-time.default')
 </div>
 
 @include('website::layouts.footer')
