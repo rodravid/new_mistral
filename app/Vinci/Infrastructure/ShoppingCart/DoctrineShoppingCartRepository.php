@@ -4,6 +4,7 @@ namespace Vinci\Infrastructure\ShoppingCart;
 
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository;
+use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
 class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements ShoppingCartRepository
@@ -21,17 +22,26 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
 
     public function getLastByCustomer(CustomerInterface $customer)
     {
+        $result = $this->getAllByCustomer($customer);
+
+        return ! empty($result) ? $result[0] : null;
+    }
+
+    public function getAllByCustomer(CustomerInterface $customer)
+    {
         $qb = $this->getBaseQueryBuilder();
 
         $qb
             ->where($qb->expr()->eq('cs.id', $customer->getId()))
+            ->where($qb->expr()->in('c.status', [
+                ShoppingCartInterface::STATUS_ACTIVE,
+                ShoppingCartInterface::STATUS_EXPIRED_BY_SYSTEM
+            ]))
             ->orderBy('c.createdAt', 'desc');
 
         $query = $qb->getQuery();
 
-        $result = $query->getResult();
-
-        return ! empty($result) ? $result[0] : null;
+        return $query->getResult();
     }
 
     protected function getBaseQueryBuilder()

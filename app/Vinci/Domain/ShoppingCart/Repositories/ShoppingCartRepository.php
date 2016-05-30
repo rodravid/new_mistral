@@ -11,4 +11,6 @@ interface ShoppingCartRepository
 
     public function getLastByCustomer(CustomerInterface $customer);
 
+    public function getAllByCustomer(CustomerInterface $customer);
+
 }

@@ -6,6 +6,7 @@ use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Product\ProductVariantInterface;
 use Vinci\Domain\Product\Repositories\ProductVariantRepository;
 use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
@@ -120,7 +121,7 @@ class ShoppingCartService
 
             $item->syncQuantity($quantity);
 
-            $this->saveCart();
+            $this->save($this->cart);
 
             $em->persist($productVariant);
 
@@ -129,10 +130,10 @@ class ShoppingCartService
 
     }
 
-    protected function saveCart()
+    public function save(ShoppingCartInterface $cart)
     {
-        $this->dispatchEvents($this->cart);
-        $this->entityManager->persist($this->cart);
+        $this->dispatchEvents($cart);
+        $this->entityManager->persist($cart);
     }
 
     public function dispatchEvents(ShoppingCartInterface $cart)
@@ -140,6 +141,30 @@ class ShoppingCartService
         foreach ($cart->releaseEvents() as $event) {
             $this->event->fire($event);
         }
+    }
+
+    public function closeAbandonedCarts(Customer $customer)
+    {
+        $carts = $this->cartRepository->getAllByCustomer($customer);
+
+        foreach ($carts as $cart) {
+
+            switch ($cart->getStatus()) {
+
+                case ShoppingCartInterface::STATUS_ACTIVE:
+                    $cart->setStatus(ShoppingCartInterface::STATUS_EXPIRED_BY_CUSTOMER);
+                    $this->entityManager->persist($cart);
+                    break;
+
+                case ShoppingCartInterface::STATUS_EXPIRED_BY_SYSTEM:
+                    $cart->setStatus(ShoppingCartInterface::STATUS_DELETED);
+                    $this->entityManager->persist($cart);
+                    break;
+            }
+
+        }
+
+        $this->entityManager->flush();
     }
 
     protected function getProductVariant($variant)
@@ -159,7 +184,7 @@ class ShoppingCartService
 
             $this->cart->removeItem($item);
 
-            $this->saveCart();
+            $this->save($this->cart);
         });
     }
 
