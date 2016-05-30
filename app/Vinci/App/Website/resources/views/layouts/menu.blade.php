@@ -228,6 +228,7 @@
                                 <h2 class="title-menu">Argentina</h2>
                                 <div class="featured-sub-menu">
                                     <a class="link-featured-sub-menu" href="/produto">
+                                    <img class="label-wine-menu" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
                                         <h3>
                                             Cune Crianza 2011 <span>CVNE</span>
                                         </h3>
@@ -339,6 +340,7 @@
                                 <h2 class="title-menu">Argentina</h2>
                                 <div class="featured-sub-menu">
                                     <a class="link-featured-sub-menu" href="/produto">
+
                                         <h3>
                                             Cune Crianza 2011 <span>CVNE</span>
                                         </h3>
@@ -358,6 +360,7 @@
                                 <h2 class="title-menu">Argentina</h2>
                                 <div class="featured-sub-menu">
                                     <a class="link-featured-sub-menu" href="/produto">
+                                    <img class="label-wine-menu" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
                                         <h3>
                                             Cune Crianza 2011 <span>CVNE</span>
                                         </h3>
