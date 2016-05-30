@@ -46,6 +46,7 @@ class DomainServiceProvider extends ServiceProvider
                 $this->app['em'],
                 $this->app['Vinci\Domain\Customer\Address\AddressFactory'],
                 $this->app['Vinci\Domain\Address\MultiAddressValidator'],
+                $this->app['address.repository'],
                 $this->app['sanitizer']
             );
         });

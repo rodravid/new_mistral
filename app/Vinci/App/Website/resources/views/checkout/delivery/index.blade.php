@@ -50,7 +50,7 @@
             @foreach($addresses as $address)
 
                 <div class="adress">
-                    <a href="javascript:void(0);" class="bt-edit call-adress" title="Editar Endereço"> > </a>
+                    <a href="javascript:void(0);" class="bt-edit call-adress" data-address-id="{{ $address->id }}" title="Editar Endereço"> > </a>
                     <div class="content-adress mbottom20">
                         <h4 class="uppercase mbottom20">{{ $address->nickname }}</h4>
                         {!! $address->address_html !!}
@@ -70,8 +70,6 @@
 
         </section>
     </div>
-
-    @include('website::layouts.modals.address.default')
 
     @include('website::layouts.partials.checkoutfooter')
 

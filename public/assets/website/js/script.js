@@ -176,12 +176,37 @@ jQuery(document).ready(function ($) {
         $('.modal-login').fadeOut();
     });
 
-    $('.close, .overlay').on('click', function () {
+    $('body').delegate('.close, .overlay', 'click', function () {
         $('.overlay, .modal-login, .modal-recovery, .modal-adress, .global-modal, .modal-delivery-time').fadeOut();
     });
 
     $('.call-adress').on('click', function () {
-        $('.overlay, .modal-adress, .global-modal').fadeIn();
+
+        var $self = $(this);
+        var addressId = $self.data('address-id');
+        var $modalWrapper = $('body').find("#current-modal");
+
+        $.ajax({
+            type: 'GET',
+            url: '/minhaconta/enderecos/modal',
+            dataType: 'html',
+            data: {
+                address_id: addressId
+            },
+            success: function(response) {
+
+                //var $modal = $(response);
+
+                $modalWrapper.html(response);
+
+                var $modal = $modalWrapper.find('.global-modal');
+
+                $modal.fadeIn();
+                $('body').find('.overlay, .modal-larger, .global-modal').fadeIn();
+
+            }
+        });
+
     });
 
     $('.content-term-delivery').on('click', function () {

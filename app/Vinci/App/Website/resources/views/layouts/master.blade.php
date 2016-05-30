@@ -23,6 +23,8 @@
 
 @yield('content')
 
+<div id="current-modal"></div>
+
 @section('scripts')
 
     <script src="{{ asset_web('js/angular/angular.min.js') }}" type="text/javascript"></script>

@@ -1,15 +1,12 @@
-<?php
-    $address = new \Vinci\Domain\Customer\Address\Address();
-    $r = new ReflectionObject($address);
-    $property = $r->getProperty('id');
-    $property->setAccessible(true);
-    $property->setValue($address, 0);
-?>
 <div class="global-modal" ng-controller="AddressModalController">
     <div class="modal-larger modal-adress template1">
         <div class="content-modal">
-            {!! Form::open() !!}
-                <h2 class="title-modal-default">Novo Endereço</h2>
+            {!! Form::open(['route' => $address->getId() > 0 ? ['api.customers.addresses.update', $address->getId()] : 'api.customers.addresses.store', 'method' => 'POST', 'id' => 'frmNewAddress']) !!}
+                <input type="hidden" name="addresses[{{ $address->getId() }}][id]" value="{{ $address->getId() }}">
+                <input type="hidden" name="addresses[{{ $address->getId() }}][country]" value="1">
+                <input type="hidden" name="main_address" value="0">
+                <input type="hidden" name="customer" value="{{ $loggedUser->getId() }}">
+                <h2 class="title-modal-default">@if($address->getId() > 0) Atualizar endereço @else Novo Endereço @endif</h2>
                 <div class="user-data">
                     <ul class="list-form-register">
                         <li>
@@ -19,43 +16,43 @@
                                     <input type="radio" name="addresses[{{ $address->getId() }}][type]" class="physical-person"
                                            value="1"
                                            id="addressType{{ $address->getId() }}R"
-                                           @if(old('addresses.' . $address->getId() . '.type') == 1) checked @endif>
+                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 1) checked @endif>
                                 </li>
                                 <li>
                                     <label for="addressType{{ $address->getId() }}C">Comercial</label>
                                     <input type="radio" name="addresses[{{ $address->getId() }}][type]" class="physical-person"
                                            value="2"
                                            id="addressType{{ $address->getId() }}C"
-                                           @if(old('addresses.' . $address->getId() . '.type') == 2) checked @endif>
+                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 2) checked @endif>
                                 </li>
                                 <li>
                                     <label for="addressType{{ $address->getId() }}O">Outros</label>
                                     <input type="radio" name="addresses[{{ $address->getId() }}][type]" class="physical-person"
                                            value="3"
                                            id="addressType{{ $address->getId() }}O"
-                                           @if(old('addresses.' . $address->getId() . '.type') == 3) checked @endif>
+                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 3) checked @endif>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <label for="txtNickname" class="label-input">Identificador do local *</label>
-                            <input type="text" name="addresses[{{ $address->getId() }}][nickname]" placeholder="Identificador do local (Ex: casa, trabalho)" id="txtNickname" class="type-addres input-register full" value="{{ old('addresses.' . $address->getId() . '.nickname') }}">
+                            <input type="text" name="addresses[{{ $address->getId() }}][nickname]" placeholder="Identificador do local (Ex: casa, trabalho)" id="txtNickname" class="type-addres input-register full" value="{{ old('addresses.' . $address->getId() . '.nickname', ($address->getId() > 0 ? $address->getNickname() : null)) }}">
                         </li>
                         <li>
                             <label for="txtPostalCode" class="label-input">CEP</label>
                             <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="cep input-register half"
                                    id="txtPostalCode"
-                                   value="{{ old('addresses.' . $address->getId() . '.postal_code') }}"
+                                   value="{{ old('addresses.' . $address->getId() . '.postal_code', ($address->getId() > 0 ? $address->getPostalCode() : null)) }}"
                                    placeholder="CEP"
-                                   data-inputmask="'mask': '99999-999'"
+                                   cep
                                    data-mask data-postalcode
-                                   data-target-publicplace="#selectPublicPlace{{ $address->getId() }}"
-                                   data-target-address="#txtAddress{{ $address->getId() }}"
-                                   data-target-district="#txtDistrict{{ $address->getId() }}"
-                                   data-target-state="#selectState{{ $address->getId() }}"
-                                   data-target-city="#selectCity{{ $address->getId() }}"
-                                   data-target-number="#txtNumber{{ $address->getId() }}"
-                                   data-target-complement="#txtComplement{{ $address->getId() }}">
+                                   data-target-publicplace="#selectPublicPlace"
+                                   data-target-address="#txtAddress"
+                                   data-target-district="#txtDistrict"
+                                   data-target-state="#selectState"
+                                   data-target-city="#selectCity"
+                                   data-target-number="#txtNumber"
+                                   data-target-complement="#txtComplement">
 
                             <div class="search-cep">
                                 <p>Não sei o meu CEP.</p>
@@ -73,81 +70,119 @@
                         <li>
                             <label for="txtAddress" class="label-input">Endereço *</label>
                             <input type="text" name="addresses[{{ $address->getId() }}][address]" placeholder="Endereço *" id="txtAddress" class="input-register full"
-                                   value="{{ old('addresses.' . $address->getId() . '.address') }}" data-address>
+                                   value="{{ old('addresses.' . $address->getId() . '.address', ($address->getId() > 0 ? $address->getAddress() : null)) }}" data-address>
                         </li>
                         <li>
                             <label for="txtNumber" class="label-input">n°</label>
                             <input type="text" name="addresses[{{ $address->getId() }}][number]" id="txtNumber" placeholder="n°" class="number input-register two-fields"
-                                   value="{{ old('addresses.' . $address->getId() . '.number') }}">
+                                   value="{{ old('addresses.' . $address->getId() . '.number', ($address->getId() > 0 ? $address->getNumber() : null)) }}">
 
                             <label for="txtComplement" class="label-input">Complemento</label>
                             <input type="text" name="addresses[{{ $address->getId() }}][complement]" id="txtComplement" placeholder="Complemento" class="number input-register float-right two-fields"
-                                   value="{{ old('addresses.' . $address->getId() . '.complement') }}">
+                                   value="{{ old('addresses.' . $address->getId() . '.complement', ($address->getId() > 0 ? $address->getComplement() : null)) }}">
 
                         </li>
 
                         <li>
                             <label for="txtDistrict" class="label-input">Bairro</label>
                             <input type="text" name="addresses[{{ $address->getId() }}][district]" placeholder="Bairro" class="input-register full" id="txtDistrict"
-                                   value="{{ old('addresses.' . $address->getId() . '.district') }}" data-dictrict>
+                                   value="{{ old('addresses.' . $address->getId() . '.district', ($address->getId() > 0 ? $address->getDistrict() : null)) }}" data-dictrict>
                         </li>
 
                         <li>
                             <div class="select-standard half form-control-white">
-                                <select class="" name="" id="">
-                                    <option value="">Estado</option>
-                                    <option value="AL">AC</option>
-                                    <option value="AL">AL</option>
-                                    <option value="AM">AM</option>
-                                    <option value="AP">AP</option>
-                                    <option value="BA">BA</option>
-                                    <option value="CE">CE</option>
-                                    <option value="DF">DF</option>
-                                    <option value="ES">ES</option>
-                                    <option value="GO">GO</option>
-                                    <option value="MA">MA</option>
-                                    <option value="MG">MG</option>
-                                    <option value="MS">MS</option>
-                                    <option value="MT">MT</option>
-                                    <option value="PA">PA</option>
-                                    <option value="PB">PB</option>
-                                    <option value="PE">PE</option>
-                                    <option value="PI">PI</option>
-                                    <option value="PR">PR</option>
-                                    <option value="RJ">RJ</option>
-                                    <option value="RN">RN</option>
-                                    <option value="RO">RO</option>
-                                    <option value="RR">RR</option>
-                                    <option value="RS">RS</option>
-                                    <option value="SC">SC</option>
-                                    <option value="SE">SE</option>
-                                    <option value="SP">SP</option>
-                                    <option value="TO">TO</option>
+                                <select name="addresses[{{ $address->getId() }}][state]" id="selectState" data-state data-target="#selectCity" data-value="{{ old('addresses.' . $address->getId() . '.state', ($address->getId() > 0 ? $address->getState()->getId() : null)) }}">
+                                    <option value="">Selecione</option>
+                                    @foreach($states as $state)
+                                        <option value="{{ $state->getId() }}" @if($state->getId() == old('addresses.' . $address->getId() . '.state', ($address->getId() > 0 ? $address->getState()->getId() : null))) selected @endif>
+                                            {{ $state->getUf() }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </li>
 
                         <li>
                             <div class="select-standard full form-control-white">
-                                <select class="" name="" id="">
-                                    <option value="">Cidade</option>
+                                <select name="addresses[{{ $address->getId() }}][city]" id="selectCity" data-city data-value="{{ old('addresses.' . $address->getId() . '.city', ($address->getId() > 0 ? $address->getCity()->getId() : null)) }}">
 
+                                    @if ($address->getId() > 0)
+
+                                        @foreach($cities as $city)
+                                            <option value="{{ $city->getId() }}" @if($city->getId() == old('addresses.' . $address->getId() . '.city', $address->getCity()->getId())) selected @endif>
+                                                {{ $city->getName() }}
+                                            </option>
+                                        @endforeach
+
+                                    @else
+                                        <option value="">Selecione</option>
+                                    @endif
                                 </select>
                             </div>
                         </li>
 
                         <li>
-                            <label for="referencia" class="label-input">Referência para entrega</label>
-                            <input class="input-register full" type="text" placeholder="Referência para entrega"
-                                   id="referencia">
+                            <label for="txtLandmark" class="label-input">Referência para entrega</label>
+                            <input type="text" name="addresses[{{ $address->getId() }}][landmark]" placeholder="Referência para entrega" id="txtLandmark" class="input-register full"
+                                   value="{{ old('addresses.' . $address->getId() . '.landmark', ($address->getId() > 0 ? $address->getLandmark() : null)) }}">
                         </li>
                     </ul>
 
                 </div>
-                <button type="submit" class="bt-default-full bt-big template1">Cadastrar <span class="arrow-link">></span></button>
+
+                <div class="error-message"></div>
+
+                <button type="submit" class="bt-default-full bt-big template1">@if($address->getId() > 0) Salvar @else Cadastrar @endif <span class="arrow-link">></span></button>
             {!! Form::close() !!}
         </div>
         <a href="javascript:void(0)" class="close">X</a>
     </div>
 </div>
 <div class="overlay"></div>
+
+<script src="{{ asset('assets/common/js/address-autocomplete.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $('#frmNewAddress').bind('submit', function(e) {
+
+                var $form = $(this);
+
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    dataType: 'json',
+                    success: function(response) {
+
+                        if (response.success) {
+
+                            $('.global-modal, .overlay').fadeOut(300, function() {
+
+                                swal('Pronto!', response.message, 'success');
+
+                                setTimeout(function() {
+
+                                    window.location.reload();
+
+                                }, 1000);
+
+                            });
+
+                        } else {
+
+                            $('.error-message').text(response.message);
+
+                        }
+
+                    }
+                });
+
+                e.preventDefault();
+            });
+
+
+        });
+
+    </script>
