@@ -304,4 +304,15 @@ class Order extends Model implements OrderInterface, AggregateRoot
     {
         return !is_null($this->shoppingCart);
     }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
 }

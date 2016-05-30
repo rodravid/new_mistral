@@ -3,6 +3,7 @@ angular.module('app')
 
         return ({
             getCart: getCart,
+            addItem: addItem,
             removeItem: removeItem,
             syncQuantity: syncQuantity
         });
@@ -22,6 +23,16 @@ angular.module('app')
             });
 
             return(request.then(handleSuccess, handleError));
+        }
+
+        function addItem(variant, quantity) {
+
+            var request = $http.post('/carrinho/items/add', {
+                variant: variant,
+                quantity: quantity
+            });
+
+            return request.then(handleSuccess, handleError);
         }
 
         function removeItem(id) {
