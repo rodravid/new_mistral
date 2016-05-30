@@ -120,7 +120,6 @@
                                     <label for="stateRegistration" class="label-input">IE *</label>
                                     {!! Form::text('stateRegistration', null, ['id' => 'stateRegistration', 'placeholder' => 'IE *', 'class' => 'input-register full ' . ($errors->has('stateRegistration') ? 'error-field' : '')]) !!}
                                 </li>
-
                             </ul>
                         </div>
                     </div>

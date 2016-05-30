@@ -52,6 +52,25 @@
     <script src="{{ asset_web('app/js/controllers/cart/cartController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
 
+    @if (Session::has('flash_notification.message'))
+        <script>
+
+            (function(){
+
+                var level = '{{ Session::get('flash_notification.level') }}';
+                var message = '{{ Session::get('flash_notification.message') }}';
+
+                if (level == 'danger') {
+                    level = 'error';
+                }
+
+                swal('', message, level);
+
+            })();
+
+        </script>
+    @endif
+
 @show
 </body>
 </html>

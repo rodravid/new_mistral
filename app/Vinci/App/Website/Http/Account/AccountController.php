@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Flash;
 use Illuminate\Http\Request;
+use Log;
 use Redirect;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
@@ -42,6 +43,8 @@ class AccountController extends Controller
 
             $this->customerService->update($request->all(), $customerId);
 
+            Flash::success('Dados atualizados com sucesso!');
+
             return redirect()->route('account.edit');
 
         } catch (ValidationException $e) {
@@ -50,7 +53,9 @@ class AccountController extends Controller
 
         } catch (Exception $e) {
 
-            Flash::error($e->getMessage());
+            Log::error(sprintf('Erro ao atualizar dados da conta: %s', $e->getMessage()));
+
+            Flash::error('Não foi possível atualizar seus dados. Tente novamente mais tarde.');
 
             return Redirect::back()->withInput();
         }
