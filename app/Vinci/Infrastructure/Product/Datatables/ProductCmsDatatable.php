@@ -45,6 +45,7 @@ class ProductCmsDatatable extends AbstractDatatables
             $qb->where($qb->expr()->eq('p.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
+                $qb->expr()->eq('v.sku', ':id'),
                 $qb->expr()->like('v.title', ':search')
             ));
 

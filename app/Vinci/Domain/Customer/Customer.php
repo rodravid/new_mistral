@@ -6,6 +6,9 @@ use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping AS ORM;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
+use Vinci\App\Website\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\Domain\Auth\Authenticatable;
 use Vinci\Domain\Customer\Address\Address;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
@@ -15,9 +18,11 @@ use Vinci\Domain\User\User;
  * @ORM\Entity(repositoryClass="Vinci\Infrastructure\Customer\DoctrineCustomerRepository")
  * @ORM\Table(name="customers", indexes={@ORM\Index(name="customer_type_idx", columns={"customer_type"})})
  */
-class Customer extends User implements CustomerInterface
+class Customer extends User implements CustomerInterface, Presentable
 {
-    use Authenticatable;
+    use Authenticatable, PresentableTrait;
+
+    protected $presenter = CustomerPresenter::class;
 
     /**
      * @ORM\Column(name="customer_type", type="smallint")

@@ -17,4 +17,9 @@ class PaymentPresenter extends AbstractPresenter
         return $this->toRealCurrency($this->getInstallmentAmount());
     }
 
+    public function presentCreditCard()
+    {
+        return $this->getCreditCard();
+    }
+
 }

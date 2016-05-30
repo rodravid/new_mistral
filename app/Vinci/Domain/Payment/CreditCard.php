@@ -2,16 +2,22 @@
 
 namespace Vinci\Domain\Payment;
 
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Core\Model;
+use Vinci\Domain\Payment\Presenter\CreditCardPresenter;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="credit_cards")
  */
-class CreditCard implements CreditCardInterface
+class CreditCard  extends Model implements CreditCardInterface, Presentable
 {
-    use Timestampable;
+    use Timestampable, PresentableTrait;
+
+    protected $presenter = CreditCardPresenter::class;
 
     /**
      * @ORM\Id
