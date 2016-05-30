@@ -42,36 +42,29 @@
                         <h2 class="title-form">Dados Pessoais *</h2>
                         <ul class="list-form-register">
                             <li>
-                                <label for="name-complete" class="label-input">Nome completo *</label>
-                                <input class="name-complete input-register full" type="text"
-                                       placeholder="Nome completo *" id="name-complete">
+                                <label for="txtName" class="label-input">Nome completo *</label>
+                                {{ Form::text('name', null, ['id' => 'txtName', 'class' => 'name-complete input-register full', 'placeholder' => 'Nome completo *']) }}
                             </li>
                             <li>
-                                <label for="cpf" class="label-input">CPF *</label>
-                                <input class="cpf input-register full" type="text" placeholder="CPF *" cpf id="cpf">
+                                <label for="txtCpf" class="label-input">CPF *</label>
+                                {{ Form::text('cpf', null, ['id' => 'txtCpf', 'class' => 'name-complete input-register full', 'placeholder' => 'CPF *', 'cpf']) }}
                             </li>
                             <li>
-                                <label for="rg" class="label-input">RG</label>
-                                <input class="rg input-register full" type="text" placeholder="RG" id="rg">
+                                <label for="txtRg" class="label-input">RG</label>
+                                {{ Form::text('rg', null, ['id' => 'txtRg', 'class' => 'name-complete input-register full', 'placeholder' => 'RG']) }}
                             </li>
                             <li>
-                                <label for="orgao-emissor" class="label-input">Orgão Emissor *</label>
-                                <input class="orgao-emissor input-register half" type="text"
-                                       placeholder="Orgão Emissor *" id="orgao-emissor">
+                                <label for="txtIssuingBody" class="label-input">Orgão Emissor *</label>
+                                {{ Form::text('issuingBody', null, ['id' => 'txtIssuingBody', 'class' => 'name-complete input-register full', 'placeholder' => 'Orgão Emissor']) }}
                             </li>
                             <li>
                                 <div class="select-standard form-control-white">
-                                    <select class="" name="" id="">
-                                        <option value="">Sexo *</option>
-                                        <option value="">Masculino</option>
-                                        <option value="">Feminino</option>
-                                    </select>
+                                    {!! Form::select('gender', ['' => 'Sexo *', \Vinci\Domain\Common\Gender::MALE => 'Masculino', \Vinci\Domain\Common\Gender::FEMALE => 'Feminino'], null, ['id' => 'selectGender']) !!}
                                 </div>
                             </li>
                             <li>
                                 <label for="birth-date" class="label-input">Data de Nascimento *</label>
-                                <input class="birth-date input-register seventy" type="text"
-                                       placeholder="Data de Nascimento *" date id="birth-date">
+                                {!! Form::text('birthday', $customer->getBirthday()->format('d/m/Y'), ['id' => 'txtBirthday', 'placeholder' => 'Data de Nascimento *', 'class' => 'birth-date input-register seventy ' . ($errors->has('birthday') ? 'error-field' : ''), 'date']) !!}
                             </li>
                         </ul>
                     </div>
