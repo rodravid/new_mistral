@@ -19,6 +19,11 @@ class ProductType extends BaseTaxonomy
      */
     protected $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Product", mappedBy="productType")
+     */
+    protected $products;
+
     public function getImagesUploadPath()
     {
         return 'product_type/' . $this->getId() . '/images';

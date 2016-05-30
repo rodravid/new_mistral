@@ -95,6 +95,11 @@ class Product extends Model implements ProductInterface
     protected $region;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\ProductType\ProductType", inversedBy="products")
+     */
+    protected $productType;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Producer\Producer", inversedBy="products")
      */
     protected $producer;
