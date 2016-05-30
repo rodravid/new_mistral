@@ -22,4 +22,9 @@ class OrderPresenter extends AbstractPresenter
         }
     }
 
+    public function presentCreationDate()
+    {
+        return $this->toDefaultDate($this->getCreatedAt());
+    }
+
 }

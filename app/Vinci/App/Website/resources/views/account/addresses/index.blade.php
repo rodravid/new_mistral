@@ -17,44 +17,17 @@
 
     <section class="adress-delivery adress-user">
 
-        <div class="adress template4">
+        @foreach($addresses as $address)
 
-            <div class="content-adress mbottom20">
-                <h4 class="uppercase mbottom20">casa</h4>
-                <p>Rua bahia, 1126, Higienópolis</p>
-                <p>São Paulo - SP</p>
-                <p>CEP 04412-300</p>
+            <div class="adress template4">
+                <div class="content-adress mbottom20">
+                    <h4 class="uppercase mbottom20">{{ $address->nickname }}</h4>
+                    {!! $address->address_html !!}
+                </div>
+                <a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
             </div>
 
-            <a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
-
-        </div>
-
-        <div class="adress template4">
-
-            <div class="content-adress mbottom20">
-                <h4 class="uppercase mbottom20">casa</h4>
-                <p>Rua bahia, 1126, Higienópolis</p>
-                <p>São Paulo - SP</p>
-                <p>CEP 04412-300</p>
-            </div>
-
-            <a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
-
-        </div>
-
-        <div class="adress template4">
-
-            <div class="content-adress mbottom20">
-                <h4 class="uppercase mbottom20">casa</h4>
-                <p>Rua bahia, 1126, Higienópolis</p>
-                <p>São Paulo - SP</p>
-                <p>CEP 04412-300</p>
-            </div>
-
-            <a class="bt-default-full template11 mtop20" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
-
-        </div>
+        @endforeach
 
     </section>
 

@@ -11,6 +11,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
             $route->get('/', 'Account\AccountController@index')->name('index');
             $route->get('/editar', 'Account\AccountController@edit')->name('edit');
+            $route->put('/{customer}', 'Account\AccountController@update')->name('update');
 
             /**
              * Orders

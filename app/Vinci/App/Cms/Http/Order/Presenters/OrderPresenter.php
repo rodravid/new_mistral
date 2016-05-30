@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\App\Website\Http\Order\Presenter;
+namespace Vinci\App\Cms\Http\Order\Presenters;
 
 use Vinci\Domain\Order\Presenter\OrderPresenter as BaseOrderPresenter;
 

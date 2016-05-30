@@ -52,6 +52,15 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 });
 
                 /**
+                 * Orders
+                 */
+                $route->group(['prefix' => 'orders', 'as' => 'orders.'], function () use ($route) {
+                    $route->get('/', 'Order\\OrderController@index')->name('list');
+                    $route->post('datatable', 'Order\\OrderController@datatable')->name('list#datatable');
+                    $route->get('/{order}', 'Order\\OrderController@show')->name('show');
+                });
+
+                /**
                  * Countries
                  */
                 $route->group(['prefix' => 'countries', 'as' => 'countries.'], function () use ($route) {

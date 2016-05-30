@@ -48,7 +48,9 @@ class CustomerService
 
         $this->validator->with($data)->passesOrFail();
 
-        $this->addressService->validate($data);
+        if (isset($data['addresses'])) {
+            $this->addressService->validate($data);
+        }
 
         return $this->saveCustomer($data, function() {
             return new Customer;
@@ -61,7 +63,9 @@ class CustomerService
 
         $this->validator->with($data)->setId($id)->passesOrFail();
 
-        $this->addressService->validate($data);
+        if (isset($data['addresses'])) {
+            $this->addressService->validate($data);
+        }
 
         return $this->saveCustomer($data, function() use ($id) {
             return $this->repository->find($id);
