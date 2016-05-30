@@ -9,6 +9,13 @@ class WebsiteServiceProvider extends ServiceProvider
 {
     protected $namespace = 'Vinci\\App\\Website\Http';
 
+    public function boot(Router $router)
+    {
+        parent::boot($router);
+
+        $this->registerComposers();
+    }
+
     public function register()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'website');
@@ -19,5 +26,10 @@ class WebsiteServiceProvider extends ServiceProvider
         $router->group(['namespace' => $this->namespace], function ($route) {
             require __DIR__ . '/../Http/routes.php';
         });
+    }
+
+    protected function registerComposers()
+    {
+        $this->app['view']->composer('website::layouts.modals.address.default', 'Vinci\App\Website\Http\ViewComposers\ModalAddressComposer');
     }
 }

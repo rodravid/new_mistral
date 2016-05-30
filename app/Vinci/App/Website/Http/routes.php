@@ -33,6 +33,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
              */
             $route->group(['prefix' => 'enderecos', 'as' => 'addresses.'], function() use ($route) {
                 $route->get('/', 'Account\Addresses\AddressesController@index')->name('index');
+                $route->get('/modal', 'Account\Addresses\AddressesController@getAddressModal')->name('modal');
             });
 
         });

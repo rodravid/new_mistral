@@ -16,18 +16,22 @@ class AddressService
 
     private $addressValidator;
 
+    private $addressRepository;
+
     private $sanitizer;
 
     public function __construct(
         EntityManagerInterface $entityManager,
         AddressFactory $addressFactory,
         MultiAddressValidator $addressValidator,
+        AddressRepository $addressRepository,
         Sanitizer $sanitizer
     )
     {
         $this->entityManager = $entityManager;
         $this->addressFactory = $addressFactory;
         $this->addressValidator = $addressValidator;
+        $this->addressRepository = $addressRepository;
         $this->sanitizer = $sanitizer;
     }
 
@@ -41,9 +45,26 @@ class AddressService
         });
     }
 
+    public function update(array $data, $customerId, $addressId)
+    {
+        $this->sanitize($data['addresses']);
+
+        $this->validate($data);
+
+        return $this->saveAddress($data, $customerId, function($addressData) use ($addressId) {
+            $address = $this->addressRepository->getOneById($addressId);
+
+            $newAddress = $this->addressFactory->makeFromArray($addressData);
+
+            $address->override($newAddress);
+
+            return $address;
+        });
+    }
+
     protected function saveAddress($data, $customerId,  Closure $method)
     {
-        $address = $method($data['addresses'][0]);
+        $address = $method(array_first($data['addresses']));
 
         $address->setCustomer($this->entityManager->getReference(Customer::class, $customerId));
 

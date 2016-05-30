@@ -176,6 +176,7 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Infrastructure\Customer\Address\DoctrineAddressRepository',
             'Vinci\Domain\Customer\Address\Address'
         );
+        $this->app->alias('Vinci\Domain\Customer\Address\AddressRepository', 'address.repository');
 
         $this->app->singleton('Vinci\Domain\Address\City\CityRepository', function() {
 

@@ -13,6 +13,7 @@ $route->group(['middleware' => ['api']], function () use ($route) {
         $route->group(['prefix' => 'addresses', 'as' => 'addresses.'], function () use ($route) {
 
             $route->post('/', 'Customer\\Address\\AddressController@store')->name('store');
+            $route->post('/{address}', 'Customer\\Address\\AddressController@update')->name('update');
 
         });
 
