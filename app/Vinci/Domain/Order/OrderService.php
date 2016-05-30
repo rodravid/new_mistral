@@ -51,6 +51,8 @@ class OrderService
 
             $order->setShipment($shipment);
 
+            $order->setShoppingCart($this->getShoppingCart($data));
+
             $payment = $this->getPayment($data);
 
             $payment->setAmount($order->getTotal());
@@ -60,8 +62,6 @@ class OrderService
             $this->dispatchOrderEvents($order);
 
             $em->persist($order);
-
-            $this->finalize();
 
             return $order;
         });
@@ -121,14 +121,19 @@ class OrderService
         return $card;
     }
 
+    protected function getShoppingCart(array $data)
+    {
+        return array_get($data, 'cart');
+    }
+
+    protected function getCustomer($data)
+    {
+        return array_get($data, 'customer');
+    }
+
     protected function getPaymentMethod($data)
     {
         return $this->entityManager->getReference(PaymentMethod::class, array_get($data, 'payment.method'));
-    }
-
-    protected function finalize()
-    {
-
     }
 
 }

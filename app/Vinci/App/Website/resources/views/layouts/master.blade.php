@@ -44,7 +44,9 @@
     <script src="{{ asset_web('app/js/controllers/home/homeController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/auth/modalLoginController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/register/registerController.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('app/js/controllers/address/addressModalController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/directives/cart/cartItem.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('app/js/directives/cart/cartAddButton.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/cart/cartController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
 

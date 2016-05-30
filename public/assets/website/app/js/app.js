@@ -7,21 +7,13 @@ var delay = (function(){
     };
 })();
 
-angular.module('app', [
-    'Firestitch.angular-counter'
-])
+angular.module('app', [])
     .run(['$rootScope', 'CartService', function($rootScope, cartService) {
 
         $rootScope.$on('cart.update', function() {
-            refreshCart();
-        });
-
-        function refreshCart() {
-
-
             cartService.getCart().then(function(cart) {
                 $rootScope.cart = cart;
             });
-        }
+        });
 
     }]);

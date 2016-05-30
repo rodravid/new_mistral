@@ -9,8 +9,8 @@
 @section('account.content')
 
     <article class="wrap-content-register">
-
-        <form action="">
+        
+        {!! Form::model($customer, ['route' => ['account.update', $customer->getId()], 'method' => 'PUT']) !!}
 
             <div class="col-register1 template4">
 
@@ -18,18 +18,16 @@
                     <h2 class="title-form">Dados de acesso *</h2>
                     <ul class="list-form-register">
                         <li>
-                            <label for="email" class="label-input">E-mail</label>
-                            <input class="email input-register full" type="email" placeholder="E-mail *" id="email">
+                            <label for="txtEmail" class="label-input">E-mail *</label>
+                            {{ Form::email('email', null, ['placeholder' => 'E-mail *', 'id' => 'txtEmail', 'class' => 'email input-register full']) }}
                         </li>
                         <li>
-                            <label for="password" class="label-input">Senha</label>
-                            <input class="senha input-register half" type="password" placeholder="Senha *"
-                                   id="password">
+                            <label for="txtPassword" class="label-input">Senha *</label>
+                            {{ Form::password('password', ['placeholder' => 'Senha *', 'id' => 'txtPassword', 'class' => 'senha input-register half']) }}
                         </li>
                         <li>
-                            <label for="password2" class="label-input">Confirmar senha</label>
-                            <input class="senha input-register half" type="password" placeholder="Confirmar senha *"
-                                   id="password2">
+                            <label for="txtPasswordConfirmation" class="label-input">Confirmação da senha *</label>
+                            {{ Form::password('password_confirmation', ['placeholder' => 'Confirmação da senha *', 'id' => 'txtPasswordConfirmation', 'class' => 'senha input-register half']) }}
                         </li>
                     </ul>
 
@@ -130,10 +128,10 @@
 
             <div class="wrap-content-bt">
                 <div class="content-bt-big">
-                    <a class="bt-default-full template11 bt-middle" href="#">Atualizar dados <span class="arrow-link">></span></a>
+                    <button type="submit" class="bt-default-full template11 bt-middle">Atualizar dados <span class="arrow-link">></span></button>
                 </div>
             </div>
-        </form>
+        {!! Form::close() !!}
 
     </article>
 

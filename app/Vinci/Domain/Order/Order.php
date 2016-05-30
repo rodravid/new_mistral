@@ -18,6 +18,7 @@ use Vinci\Domain\Order\Events\NewOrderWasCreated;
 use Vinci\Domain\Order\Item\OrderItem;
 use Vinci\Domain\Payment\PaymentInterface;
 use Vinci\Domain\Shipping\ShipmentInterface;
+use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
 /**
  * @ORM\Entity
@@ -85,6 +86,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Item\OrderItem", mappedBy="order", cascade={"persist"})
      */
     protected $items;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\ShoppingCart\ShoppingCart")
+     */
+    protected $shoppingCart;
 
     /**
      * @ORM\Column(type="string")
@@ -283,4 +289,30 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return $this->payments->first();
     }
 
+    public function getShoppingCart()
+    {
+        return $this->shoppingCart;
+    }
+
+    public function setShoppingCart(ShoppingCartInterface $cart)
+    {
+        $this->shoppingCart = $cart;
+        return $this;
+    }
+
+    public function hasShoppingCart()
+    {
+        return !is_null($this->shoppingCart);
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
 }

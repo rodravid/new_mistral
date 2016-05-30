@@ -40,15 +40,19 @@ DQL;
 
     public function getByCustomer($customerId, $perPage = 10, $pageName = 'page')
     {
-        $query = $this->_em->createQuery("SELECT o, oi, c, p FROM \Vinci\Domain\Order\Order o JOIN o.items oi JOIN oi.product p JOIN o.customer c WHERE c.id = :customer_id");
-        $query->setParameter('customer_id', $customerId);
+        $qb = $this->getBaseQueryBuilder();
 
-        return $this->paginate($query, $perPage, $pageName);
+        $qb->where($qb->expr()->eq('c.id', $customerId));
+
+        return $this->paginate($qb->getQuery(), $perPage, $pageName);
     }
 
 
     protected function getBaseQueryBuilder()
     {
-
+        return $this->createQueryBuilder('o')
+            ->select('o', 'i', 'c')
+            ->join('o.items', 'i')
+            ->join('o.customer', 'c');
     }
 }

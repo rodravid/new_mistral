@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\Login' => [
             'Vinci\App\Website\Auth\Events\Listeners\LinkCustomerToCurrentCart',
         ],
+        'Vinci\Domain\Order\Events\NewOrderWasCreated' => [
+            'Vinci\Domain\Order\Events\Listeners\FinalizeCustomerShoppingCart',
+            'Vinci\Domain\Order\Events\Listeners\CloseCustomerAbandonedCarts'
+        ]
     ];
 
     protected $subscribe = [

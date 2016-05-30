@@ -3,10 +3,11 @@
 namespace Vinci\App\Website\Http\Account;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Auth\AuthManager;
+use Exception;
+use Flash;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Redirect;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\Customer\CustomerService;
 
@@ -16,12 +17,11 @@ class AccountController extends Controller
 
     protected $auth;
 
-    public function __construct(CustomerService $customerService, AuthManager $auth, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, CustomerService $customerService)
     {
         parent::__construct($em);
 
         $this->customerService = $customerService;
-        $this->auth = $auth->guard('website');
     }
 
     public function index()
@@ -29,32 +29,11 @@ class AccountController extends Controller
         return Redirect::route('account.orders.index');
     }
 
-    public function create()
-    {
-        return $this->view('account.create');
-    }
-
     public function edit()
     {
-        $user = $this->auth->user();
+        $customer = $this->user;
 
-        return $this->view('account.info.index', compact('user'));
-    }
-
-    public function store(Request $request)
-    {
-        try {
-
-            $customer = $this->customerService->create($request->all());
-
-            $this->auth->login($customer);
-
-            return redirect()->route('account.index');
-
-        } catch (ValidationException $e) {
-
-            $this->throwValidationException($request, $e->validator);
-        }
+        return $this->view('account.info.index', compact('customer'));
     }
 
     public function update(Request $request, $customerId)
@@ -63,11 +42,17 @@ class AccountController extends Controller
 
             $this->customerService->update($request->all(), $customerId);
 
-            return redirect()->route('account.index');
+            return redirect()->route('account.edit');
 
         } catch (ValidationException $e) {
 
-            $this->throwValidationException($request, $e->validator);
+            return Redirect::back()->withErrors($e->getErrors())->withInput();
+
+        } catch (Exception $e) {
+
+            Flash::error($e->getMessage());
+
+            return Redirect::back()->withInput();
         }
     }
 

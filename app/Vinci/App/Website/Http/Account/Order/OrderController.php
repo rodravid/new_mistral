@@ -3,37 +3,40 @@
 namespace Vinci\App\Website\Http\Account\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Vinci\App\Website\Http\Controller;
-use Vinci\Domain\Customer\CustomerService;
+use Vinci\App\Website\Http\Order\Presenter\OrderPresenter;
 use Vinci\Domain\Order\OrderRepository;
 
 class OrderController extends Controller
 {
-    protected $customerService;
 
-    public function __construct(EntityManagerInterface $em, CustomerService $customerService)
+    protected $orderRepository;
+
+    public function __construct(EntityManagerInterface $em, OrderRepository $orderRepository)
     {
         parent::__construct($em);
 
-        $this->customerService = $customerService;
+        $this->orderRepository = $orderRepository;
     }
 
-    public function index(OrderRepository $orderRepository)
+    public function index()
     {
-//        $customer = $this->auth->user();
-//
-//        //$orders = $customer->getOrders();
-//
-//        $orders = $orderRepository->getByCustomer($customer->getId());
+        $customer = $this->user;
 
-        return $this->view('account.orders.index');
+        $orders = $this->orderRepository->getByCustomer($customer->getId());
+
+        $orders = $this->presenter->paginator($orders, OrderPresenter::class);
+
+        return $this->view('account.orders.index', compact('orders'));
     }
 
     public function show($id)
     {
-        return $this->view('account.orders.show');
+        $order = $this->orderRepository->getOneById($id);
+
+        $order = $this->presenter->model($order, OrderPresenter::class);
+
+        return $this->view('account.orders.show', compact('order'));
     }
 
 }

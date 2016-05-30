@@ -5,6 +5,7 @@ namespace Vinci\App\Core\Services\Presenter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class Presenter
@@ -43,6 +44,20 @@ class Presenter
         }
 
         throw new Exception('The given collection not is valid.');
+    }
+
+    public function paginator(LengthAwarePaginator $paginator, $presenterClass)
+    {
+        $items = array();
+
+        foreach($paginator as $item)
+        {
+            $items[] = $this->model($item, $presenterClass);
+        }
+
+        $paginator->setCollection(collect($items));
+
+        return $paginator;
     }
 
     protected function doctrineCollection(ArrayCollection $collection, $presenterClass)

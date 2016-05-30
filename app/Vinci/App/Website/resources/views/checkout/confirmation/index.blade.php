@@ -48,7 +48,7 @@
                 </div>
                 <div class="status-order float-right">
                     <p class="txt-order">Status</p>
-                    <p class="title-internal-15 mtop10">Aguardando pagamento</p>
+                    <p class="title-internal-15 mtop10">{{ $order->status }}</p>
                 </div>
             </article>
 

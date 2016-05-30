@@ -57,7 +57,7 @@ class OrderFactory
 
     protected function getOrderItems(array $data)
     {
-        return $this->orderItemFactory->makeFromShoppingCart(array_get($data, 'cart'));
+        return $this->orderItemFactory->makeFromShoppingCart($this->getShoppingCart($data));
     }
 
     protected function getChannel($data)
@@ -68,6 +68,11 @@ class OrderFactory
     protected function getCustomer($data)
     {
         return array_get($data, 'customer');
+    }
+
+    protected function getShoppingCart(array $data)
+    {
+        return array_get($data, 'cart');
     }
 
     private function getAddresses(array $data)
