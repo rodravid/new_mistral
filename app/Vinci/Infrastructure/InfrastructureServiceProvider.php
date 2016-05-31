@@ -159,6 +159,8 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Product\Product'
         );
 
+        $this->app->alias('Vinci\Domain\Product\Repositories\ProductRepository', 'product.repository');
+
         $this->registerRepository(
             'Vinci\Domain\Product\Repositories\ProductVariantRepository',
             'Vinci\Infrastructure\Product\Variant\DoctrineProductVariantRepository',

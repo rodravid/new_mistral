@@ -33,7 +33,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
              */
             $route->group(['prefix' => 'enderecos', 'as' => 'addresses.'], function() use ($route) {
                 $route->get('/', 'Account\Addresses\AddressesController@index')->name('index');
-                $route->get('/modal', 'Account\Addresses\AddressesController@getAddressModal')->name('modal');
+                $route->get('/modal', 'Account\Addresses\AddressesController@getAddressModal')->name('index');
             });
 
         });
@@ -105,8 +105,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     /**
      * Product
      */
-    $route->group(['prefix' => 'produto', 'as' => 'product.'], function() use ($route) {
-        $route->get('/', 'Product\ProductController@index')->name('index');
+    $route->group(['prefix' => 'p', 'as' => 'product.'], function() use ($route) {
+        $route->get('/{type}/{slug}', 'Product\ProductController@show')->name('index');
     });
 
     /**

@@ -8,9 +8,13 @@ var delay = (function(){
 })();
 
 angular.module('app', [])
-    .run(['$rootScope', 'CartService', function($rootScope, cartService) {
+    .run(['$rootScope', '$cacheFactory', 'CartService', function($rootScope, $cacheFactory, cartService) {
 
         $rootScope.$on('cart.update', function() {
+
+            var httpCache = $cacheFactory.get('$http');
+            httpCache.removeAll();
+
             cartService.getCart().then(function(cart) {
                 $rootScope.cart = cart;
             });

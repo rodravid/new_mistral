@@ -44,7 +44,7 @@ class ItemResolver implements ItemResolverInterface
     protected function checkStock(Stockable $stockable, $quantity)
     {
         if (! $this->availabilityChecker->isStockSufficient($stockable, $quantity)) {
-            throw new InsufficientStockException;
+            throw new InsufficientStockException('Estoque insdisponível.');
         }
     }
 

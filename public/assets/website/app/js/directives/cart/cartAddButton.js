@@ -24,8 +24,9 @@ angular.module('app')
 
                         $rootScope.$broadcast('cart.update');
 
-                    }, function() {
-                        swal('Ops!', response.message, 'error');
+                    }, function(response) {
+
+                        swal('Ops!', response.data.message, 'error');
                     });
 
                 });

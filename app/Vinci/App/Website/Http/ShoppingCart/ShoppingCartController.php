@@ -5,6 +5,7 @@ namespace Vinci\App\Website\Http\ShoppingCart;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Http\Request;
+use Log;
 use Response;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\ShoppingCart\Transformers\ShoppingCartTransformer;
@@ -74,6 +75,8 @@ class ShoppingCartController extends Controller
             ]);
 
         } catch (Exception $e) {
+
+            Log::error(sprintf('Erro ao adicionar item no carrinho: %s', $e->getMessage()));
 
             return Response::json([
                 'success' => false,
