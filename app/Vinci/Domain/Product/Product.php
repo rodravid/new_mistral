@@ -698,4 +698,14 @@ class Product extends Model implements ProductInterface
         return ! empty($this->getDescription());
     }
 
+    public function getWebPath()
+    {
+        return with(app('product.url_generator'))->generate($this);
+    }
+
+    public function getType()
+    {
+        return self::TYPE_PRODUCT;
+    }
+
 }

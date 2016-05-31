@@ -26,13 +26,18 @@ class ProductIndexerService
 
     public function indexAllProducts()
     {
+
+        if ($this->client->indices()->exists(['index' => 'vinci'])) {
+            $this->client->indices()->delete(['index' => 'vinci']);
+        }
+
         $query = $this->productRepository->getProductsForIndexing();
 
-        $iterable = $query->iterate();
+        //$iterable = $query->iterate();
 
-        foreach ($iterable as $item) {
+        foreach ($query as $item) {
 
-            $product = $item[0];
+            $product = $item;
 
             $params['body'][] = [
                 'index' => [

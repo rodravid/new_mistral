@@ -187,4 +187,9 @@ class Wine extends Product
         return $this;
     }
 
+    public function getType()
+    {
+        return self::TYPE_WINE;
+    }
+
 }
