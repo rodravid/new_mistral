@@ -31,9 +31,14 @@ class Carrier implements CarrierInterface
     protected $title;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $code;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default"=0})
+     */
+    protected $defaultCarrier = false;
 
     /**
      * @ORM\Column(type="string")
@@ -101,5 +106,16 @@ class Carrier implements CarrierInterface
     public function isDefault()
     {
         return $this->getCode() == self::CARRIER_DEFAULT;
+    }
+
+    public function getDefaultCarrier()
+    {
+        return $this->defaultCarrier;
+    }
+
+    public function setDefaultCarrier($defaultCarrier)
+    {
+        $this->defaultCarrier = $defaultCarrier;
+        return $this;
     }
 }
