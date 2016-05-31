@@ -10,11 +10,12 @@
         <div class="wrap-slider-principal">
 
             <div class="slider slider-principal">
+
                 @foreach($highlights as $highlight)
 
                     <div class="bg-slider-principal {{ $highlight->template }}">
                         <div class="conteudo-slider-principal"
-                             style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
+                             style="background: url({{ $highlight->getImage('desktop')->getWebPath() }}) no-repeat;">
                             <div class="descr-slider">
                                 <a href="javascript:void(0);">
                                     <h3 class="title-slider">{!! $highlight->title !!}</h3>
