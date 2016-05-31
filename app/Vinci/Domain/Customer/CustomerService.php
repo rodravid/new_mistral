@@ -133,7 +133,7 @@ class CustomerService
         if (isset($data['addresses'])) {
             $this->addressService->hydrateCustomerAddresses($customer, $data['addresses'], $data['main_address']);
         } else {
-            $customer->getAddresses()->clear();
+            //$customer->getAddresses()->clear();
         }
     }
 

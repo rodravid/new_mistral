@@ -36,7 +36,7 @@ class RegisterController extends Controller
     public function index()
     {
         $states = $this->stateRepository->getByCountry(Country::BRAZIL);
-        
+
         return $this->view('register.index', compact('states'));
     }
 

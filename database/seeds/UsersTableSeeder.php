@@ -70,51 +70,51 @@ class UsersTableSeeder extends Seeder
             'status' => Status::ACTIVE
         ]);
 
-        $customer1 = $this->customerRepository->create([
-            'name' => 'Felipe Alcântara',
-            'email' => 'felipe.ralc@gmail.com',
-            'password' => '123',
-            'customer_type' => CustomerType::INDIVIDUAL,
-            'birthday' => Carbon::create(1994, 07, 19),
-            'cpf' => '43103602898',
-            'rg' => '441425094',
-            'issuing_body' => 'SSP',
-            'phone' => '1134032709',
-            'cellPhone' => '11968588930',
-            'commercialPhone' => '1129258403',
-            'gender' => Gender::MALE,
-            'status' => Status::ACTIVE
-        ]);
-
-        $address1 = new Address;
-
-        $address1->setType(new AddressType(AddressType::RESIDENTIAL))
-                ->setPostalCode(12906720)
-                ->setPublicPlace($this->em->getReference(PublicPlace::class, 1))
-                ->setAddress('Gilberto Augusto Mendes')
-                ->setNumber(350)
-                ->setDistrict('Vila Batista')
-                ->setCity($this->em->getReference(City::class, 3507605))
-                ->setNickname('Casa')
-                ->setLandmark('Próximo loja malwele')
-                ->setReceiver('Felipe');
-
-        $address2 = new Address;
-
-        $address2->setType(new AddressType(AddressType::RESIDENTIAL))
-            ->setPostalCode(25010000)
-            ->setPublicPlace($this->em->getReference(PublicPlace::class, 1))
-            ->setAddress('Amapá')
-            ->setNumber(221)
-            ->setDistrict('Parque dos Estados')
-            ->setCity($this->em->getReference(City::class, 3301702))
-            ->setNickname('Casa 2')
-            ->setLandmark('Próximo antigo borges')
-            ->setReceiver('Felipe');
-
-        $customer1->addAddress($address1)
-                  ->addAddress($address2)
-                  ->setMainAddress($address1);
+//        $customer1 = $this->customerRepository->create([
+//            'name' => 'Felipe Alcântara',
+//            'email' => 'felipe.ralc@gmail.com',
+//            'password' => '123',
+//            'customer_type' => CustomerType::INDIVIDUAL,
+//            'birthday' => Carbon::create(1994, 07, 19),
+//            'cpf' => '43103602898',
+//            'rg' => '441425094',
+//            'issuing_body' => 'SSP',
+//            'phone' => '1134032709',
+//            'cellPhone' => '11968588930',
+//            'commercialPhone' => '1129258403',
+//            'gender' => Gender::MALE,
+//            'status' => Status::ACTIVE
+//        ]);
+//
+//        $address1 = new Address;
+//
+//        $address1->setType(new AddressType(AddressType::RESIDENTIAL))
+//                ->setPostalCode(12906720)
+//                ->setPublicPlace($this->em->getReference(PublicPlace::class, 1))
+//                ->setAddress('Gilberto Augusto Mendes')
+//                ->setNumber(350)
+//                ->setDistrict('Vila Batista')
+//                ->setCity($this->em->getReference(City::class, 3507605))
+//                ->setNickname('Casa')
+//                ->setLandmark('Próximo loja malwele')
+//                ->setReceiver('Felipe');
+//
+//        $address2 = new Address;
+//
+//        $address2->setType(new AddressType(AddressType::RESIDENTIAL))
+//            ->setPostalCode(25010000)
+//            ->setPublicPlace($this->em->getReference(PublicPlace::class, 1))
+//            ->setAddress('Amapá')
+//            ->setNumber(221)
+//            ->setDistrict('Parque dos Estados')
+//            ->setCity($this->em->getReference(City::class, 3301702))
+//            ->setNickname('Casa 2')
+//            ->setLandmark('Próximo antigo borges')
+//            ->setReceiver('Felipe');
+//
+//        $customer1->addAddress($address1)
+//                  ->addAddress($address2)
+//                  ->setMainAddress($address1);
 
         $superAdminRole = Role::make([
             'title' => 'Super admin',
@@ -143,7 +143,7 @@ class UsersTableSeeder extends Seeder
         $this->em->persist($admin1);
         $this->em->persist($admin2);
         $this->em->persist($admin3);
-        $this->em->persist($user1);
+        //$this->em->persist($user1);
 
         $this->em->flush();
         $this->em->clear();
