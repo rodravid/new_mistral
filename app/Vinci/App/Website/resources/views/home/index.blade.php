@@ -15,7 +15,7 @@
                          style="background: url({{ asset_web('images/bg-slider.png') }}) no-repeat;">
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -37,7 +37,7 @@
 
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -62,7 +62,7 @@
 
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -86,7 +86,7 @@
 
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -110,7 +110,7 @@
 
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -134,7 +134,7 @@
 
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -158,7 +158,7 @@
 
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -182,7 +182,7 @@
 
                         <div class="descr-slider">
                             <a href="javascript:void(0);">
-                                <h3 class="title-slider">O MELHOR VINHO DA <span>ARGENTINA</span> ENTRE TODOS <span>OS TOP 100 DA</span>
+                                <h3 class="title-slider">O MELHOR VINHO DA <b class="featured-title-slider">ARGENTINA</b> ENTRE TODOS <b class="featured-title-slider">OS TOP 100 DA</b>
                                     WINE SPECTATOR</h3>
                                 <span class="sub-title-slider">Luca Malbec 2012</span>
                                 <p class="txt-slider">Elaborado pela talentosa Laura Catena, este Malbec poderoso e
@@ -855,7 +855,7 @@
             function eDesktop() {
                 var larguraTela = $window.width();
 
-                if (larguraTela > 767) {
+                if (larguraTela > 970) {
                     return true;
                 } else {
                     return false;
