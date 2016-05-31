@@ -177,7 +177,7 @@ jQuery(document).ready(function ($) {
     });
 
     $('body').delegate('.close, .overlay', 'click', function () {
-        $('.overlay, .modal-login, .modal-recovery, .modal-adress, .global-modal, .modal-delivery-time').fadeOut();
+        $('.overlay, .modal-login, .modal-recovery, .modal-adress, .global-modal, .modal-delivery-time, .modal-gift').fadeOut();
     });
 
     $('.call-adress').on('click', function () {
@@ -212,6 +212,31 @@ jQuery(document).ready(function ($) {
     $('.content-term-delivery').on('click', function () {
         $('.overlay, .modal-delivery-time').fadeIn();
     });
+
+
+    $('body').delegate(".gift",'click', function () {
+            // $modal.fadeIn();
+                $('body').find('.overlay, .modal-larger, .global-modal, .modal-gift').fadeIn();
+    });
+
+    $('.slider-gift').slick({
+     slidesToShow: 3,
+     dots: true,
+      responsive: [
+    {
+      breakpoint: 800,
+      settings: {
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1
+      }
+    }
+  ]
+ });
 
 
     $('.flags-list .flags').bind('click', function() {
