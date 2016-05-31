@@ -587,6 +587,11 @@ class Product extends Model implements ProductInterface
         return $this;
     }
 
+    public function hasCountry()
+    {
+        return $this->country !== null;
+    }
+
     public function getRegion()
     {
         return $this->region;
@@ -596,6 +601,11 @@ class Product extends Model implements ProductInterface
     {
         $this->region = $region;
         return $this;
+    }
+
+    public function hasRegion()
+    {
+        return $this->region !== null;
     }
 
     public function getProducer()
@@ -655,6 +665,22 @@ class Product extends Model implements ProductInterface
     public function isInClearanceSale()
     {
         return false;
+    }
+
+    public function getProductType()
+    {
+        return $this->productType;
+    }
+
+    public function setProductType($productType)
+    {
+        $this->productType = $productType;
+        return $this;
+    }
+
+    public function hasProductType()
+    {
+        return $this->productType !== null;
     }
 
 }

@@ -9,10 +9,9 @@
         </h1>
 
         <div class="search">
-            <form action="">
+            {!! Form::open(['route' => 'search.index', 'method' => 'GET']) !!}
                 <div class="wrap-input-search">
-                    <input class="input-search" type="search">
-
+                        <input class="input-search" type="search" name="termo">
                     <div class="results-suggestions">
                         <span class="bt-close-suggestions sprite-icon"></span>
                         <ul class="suggestions-list">
@@ -32,7 +31,7 @@
                     </div>
                 </div>
                 <input class="input-bt-search sprite-icon" type="submit" value="">
-            </form>
+            {{ Form::close() }}
         </div>
 
         <nav class="navbar">

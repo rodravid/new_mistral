@@ -159,6 +159,7 @@ return [
         Vinci\App\Core\Providers\EventServiceProvider::class,
         Vinci\Infrastructure\InfrastructureServiceProvider::class,
         Vinci\Domain\DomainServiceProvider::class,
+        Vinci\Domain\Search\SearchServiceProvider::class,
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
         Vinci\App\Cms\Providers\CmsServiceProvider::class,
         Vinci\App\Api\Providers\ApiServiceProvider::class,

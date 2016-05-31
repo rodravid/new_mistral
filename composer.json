@@ -24,6 +24,7 @@
         "daylerees/sanitizer": "^1.0",
         "spatie/laravel-fractal": "^1.9",
         "ramsey/uuid-doctrine": "^1.2",
+        "elasticsearch/elasticsearch": "^2.1",
         "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {

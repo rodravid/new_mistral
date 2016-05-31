@@ -7,7 +7,7 @@ use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="productVariants_variants_images")
+ * @ORM\Table(name="products_variants_images")
  */
 class ProductVariantImage extends Model
 {

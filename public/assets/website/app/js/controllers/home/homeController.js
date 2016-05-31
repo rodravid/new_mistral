@@ -1,6 +1,7 @@
 angular.module('app')
     .controller('HomeController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
 
+
         $scope.comprar = function(variant, quantity) {
 
             $http.post('/carrinho/add', {
