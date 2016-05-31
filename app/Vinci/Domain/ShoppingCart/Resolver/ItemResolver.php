@@ -6,6 +6,7 @@ namespace Vinci\Domain\ShoppingCart\Resolver;
 use Vinci\Domain\Inventory\Checkers\Contracts\AvailabilityChecker;
 use Vinci\Domain\Inventory\Contracts\Stockable;
 use Vinci\Domain\Inventory\Exceptions\InsufficientStockException;
+use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Product\ProductVariantInterface;
 use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
 use Vinci\Domain\ShoppingCart\Resolver\Contracts\ItemResolver as ItemResolverInterface;
@@ -30,8 +31,11 @@ class ItemResolver implements ItemResolverInterface
         $item = $shoppingCart->findItemByProduct($product);
         $quantity = $this->getQuantity($params);
         $quantityToCheck = $this->getQuantityToCheck($product, $quantity, $item);
+        $checkStock = isset($params['checkStock']) ? $params['checkStock'] : true;
 
-        $this->checkStock($productVariant, $quantityToCheck);
+        if ($checkStock) {
+            $this->checkStock($productVariant, $quantityToCheck);
+        }
 
         if ($item) {
             return $item;
@@ -52,9 +56,9 @@ class ItemResolver implements ItemResolverInterface
         return array_get($params, 'quantity', 1);
     }
 
-    protected function getQuantityToCheck($product, $quantity, $item = null)
+    protected function getQuantityToCheck(ProductInterface $product, $quantity, $item = null)
     {
-        if ($item && $product->isInClearanceSale()) {
+        if ($item && ! $product->isInClearanceSale()) {
             return $quantity + $item->getQuantity();
         }
 
