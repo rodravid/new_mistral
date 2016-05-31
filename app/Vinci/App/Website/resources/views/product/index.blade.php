@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="content-img-product">
-                    <img src="http://www.vinci.com.br/images/product/1647130_g.jpg" alt="">
+                    <img src="{{ asset_web('images/no_photo.jpg') }}" style="height: 600px;" alt="{{ $product->title }}">
                     <div class="wrap-seal-product">
                         <img src="{{ asset_web('images/selo-slider.png') }}" alt="Selo Vinho">
                         <img src="{{ asset_web('images/selo-slider.png') }}" alt="Selo Vinho">
