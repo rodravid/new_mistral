@@ -30,6 +30,11 @@ class Highlight extends Model
     /**
      * @ORM\Column(type="string")
      */
+    protected $template;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $title;
 
     /**
@@ -217,6 +222,23 @@ class Highlight extends Model
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param mixed $template
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
         return $this;
     }
 

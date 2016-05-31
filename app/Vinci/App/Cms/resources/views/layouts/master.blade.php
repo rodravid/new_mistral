@@ -220,6 +220,16 @@
 
             $('.html-editor').wysihtml5();
 
+            $('.html-editor-especial').wysihtml5({
+                "font-styles": false, //Font styling, e.g. h1, h2, etc.
+                "emphasis": true, //Italics, bold, etc.
+                "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers.
+                "html": false, //Button which allows you to edit the generated HTML.
+                "link": false, //Button to insert a link.
+                "image": false, //Button to insert an image.
+                "color": false //Button to change color of font
+            });
+
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 var target = $(e.target).attr("href");
 
