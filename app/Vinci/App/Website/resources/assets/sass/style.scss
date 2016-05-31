@@ -77,7 +77,7 @@ strong {
 	}
 }
 
-.featured-sub-menu{}
+
 
 /* menu principal*/
 .slider-main {
@@ -189,9 +189,10 @@ h3.title-slider {
 		line-height: 26px;
 	}
 
-	span {
-		color:#fff;
-	}
+}
+
+.featured-title-slider {
+	color:#fff;
 }
 
 .sub-title-slider {
@@ -465,6 +466,11 @@ a.bt-default {
 	position:absolute;
 	left: -15px;
 	top: -2px;
+}
+.label-wine-menu{
+	position:absolute;
+	right: -23px;
+	top: -30px;
 }
 
 .other-wine-info {}

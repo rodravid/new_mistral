@@ -10,7 +10,6 @@
         <div class="wrap-slider-principal">
 
             <div class="slider slider-principal">
-
                 @foreach($highlights as $highlight)
 
                     <div class="bg-slider-principal {{ $highlight->template }}">
@@ -27,6 +26,7 @@
 
                             </div>
                             <img class="seal-slider" src="{{ asset_web('images/selo-slider.png') }}" alt="">
+
                         </div>
                     </div>
                 @endforeach
@@ -688,7 +688,7 @@
             function eDesktop() {
                 var larguraTela = $window.width();
 
-                if (larguraTela > 767) {
+                if (larguraTela > 970) {
                     return true;
                 } else {
                     return false;
