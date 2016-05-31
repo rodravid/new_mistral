@@ -19,8 +19,8 @@ class DoctrineCarrierRepository extends DoctrineBaseRepository implements Carrie
                 $qb->expr()->lte($postalCode, 'm.finalTrack')
             ))
             ->andWhere($qb->expr()->andX(
-                $qb->expr()->gte($weight, 'm.initialWeight'),
-                $qb->expr()->lte($weight, 'm.finalWeight')
+                $qb->expr()->gte($qb->expr()->literal($weight), 'm.initialWeight'),
+                $qb->expr()->lte($qb->expr()->literal($weight), 'm.finalWeight')
             ))
             ->andWhere('c.code != :code');
 
