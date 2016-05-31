@@ -12,6 +12,7 @@ class HomeController extends Controller
     {
         $highlights = $repo->lists("home-main-slider");
         $banners = $repo->lists("home-banners");
+        
         return $this->view('home.index', compact('highlights', 'banners'));
     }
 

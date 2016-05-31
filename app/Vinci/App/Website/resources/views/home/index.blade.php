@@ -51,6 +51,7 @@
                 <ul class="banners">
 
                     @foreach($banners as $banner)
+                        
                         @if ($banner->hasImage('desktop'))
                             <li class="list-banners">
                                 <img src="{{ $banner->getImage('desktop')->getWebPath() }}" alt="{{ $banner->title }}">
