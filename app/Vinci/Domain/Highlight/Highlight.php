@@ -225,17 +225,11 @@ class Highlight extends Model
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getTemplate()
     {
         return $this->template;
     }
 
-    /**
-     * @param mixed $template
-     */
     public function setTemplate($template)
     {
         $this->template = $template;

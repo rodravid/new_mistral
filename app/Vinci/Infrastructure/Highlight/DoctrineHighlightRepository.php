@@ -2,12 +2,31 @@
 
 namespace Vinci\Infrastructure\Highlight;
 
+use Carbon\Carbon;
 use Vinci\Domain\Highlight\Highlight;
 use Vinci\Domain\Highlight\HighlightRepository;
 use Vinci\Infrastructure\Common\DoctrineSortableRepository;
 
 class DoctrineHighlightRepository extends DoctrineSortableRepository implements HighlightRepository
 {
+    public function lists()
+    {
+
+        $qb = $this->createQueryBuilder('o');
+
+        $qb->select('o', 'i')
+            ->leftJoin('o.images', 'i')
+            ->where($qb->expr()->lte('o.startsAt', $qb->expr()->literal(Carbon::now())))
+            ->andWhere($qb->expr()->orX(
+                $qb->expr()->gte('o.expirationAt', $qb->expr()->literal(Carbon::now())),
+                $qb->expr()->isNull('o.expirationAt')
+            ))
+            ->andWhere($qb->expr()->eq('o.status',1));
+
+        return $qb->getQuery()->getResult();
+
+
+    }
 
     public function find($id)
     {
