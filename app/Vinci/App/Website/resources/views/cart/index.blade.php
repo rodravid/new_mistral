@@ -59,7 +59,7 @@
                                         @{{ item.name }}
                                         <span ng-show="item.producer">@{{ item.producer }}</span>
                                     </h3>
-                                    <a class="link-cart" href="javascript:void(0);">
+                                    <a class="link-cart gift" href="javascript:void(0);">
                                         Embalagem para presente >
                                     </a>
                                 </div>
@@ -321,9 +321,9 @@
             </section>
 
         </div>
-
+    @include('website::layouts.modals.gift-packaging.default')
     </div>
-
+    
     @include('website::layouts.footer')
 
 @stop

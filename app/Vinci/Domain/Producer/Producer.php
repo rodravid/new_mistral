@@ -66,4 +66,8 @@ class Producer extends BaseTaxonomy
         return $this->products;
     }
 
+    public function getBaseWebUrl()
+    {
+        return '/c/produtor/';
+    }
 }

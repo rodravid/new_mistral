@@ -1489,6 +1489,26 @@ ul.pagination{
 				padding-bottom:20px;
 			}
 		}
+
+				.modal-x {
+			max-width: 800px;
+			background-color: #fff;
+			z-index: 99999999;
+			margin: 20px auto;
+			position: relative;
+			top: 5%;
+
+			@media #{$screen970} {
+				top: 3%;
+			}
+
+			@media #{$screen767} {
+				width: 90%;
+			}
+			.content-modal {
+				padding-bottom:20px;
+			}
+		}
 		/* MODAL */
 
 
@@ -2267,6 +2287,100 @@ ul.pagination{
 
 
 		/* PG CARRINHO */
+
+		.slider-gift {
+			position:relative;
+			width:100%;
+
+			.slick-next {
+				position:absolute;
+				right:-20px;
+				top:31%;
+				margin-top:-10px;
+				width: 13px;
+				height: 36px;
+				background: url($imgPath + "arrow_next.png") no-repeat;
+				width: 13px;
+				height: 36px;
+				border: 0;
+				overflow: hidden;
+				font-size: 0;
+				outline:none;
+			}
+			.slick-prev {
+				position:absolute;
+				left:-20px;
+				top:31%;
+				margin-top:-10px;
+				background: url($imgPath + "arrow_prev.png") no-repeat;
+				width: 13px;
+				height: 36px;
+				border: 0;
+				overflow: hidden;
+				font-size: 0;
+				outline:none;
+			}
+
+			.slick-dots{
+				text-align:center;
+
+				li {
+					display:inline-block;
+					width: 20px;
+					margin: 10px 0 10px 5px;
+
+					button {
+						width: 16px;
+						overflow: hidden;
+						height: 5px;
+						background: $blue;
+						border: 0;
+						outline: 0;
+						line-height: 0;
+						font-size: 0;
+						cursor:pointer;
+					}
+				}
+
+				.slick-active button {
+					background:#1581A7;
+				}
+			}
+		}
+
+		.slider-gift img{
+			max-height: 160px;
+			width: auto;
+			max-width: 100%;
+		}
+		.slider-gift div {
+				text-align:center; 
+		}
+
+		.description-gift {
+			color:$black;
+			font-size:17px;
+		}
+		.price-gift {
+			color:$blue;
+			font-size:17px;
+		}
+
+		.modal-gift {
+			max-width:800px;
+			margin:0 auto;
+		}
+
+		.txt-modal-gift {
+			@media #{$screen767} {
+					display:none;
+			 }
+		}
+
+		.content-button-gift {
+			width:80%;
+			margin:10px auto;
+		}
 
 
 		/* PG ENTREGA */

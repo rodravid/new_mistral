@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Flash;
 use Illuminate\Http\Request;
+use Log;
 use Redirect;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
@@ -46,13 +47,14 @@ class OrderController extends Controller
 
             return Redirect::back()->withErrors($e->getErrors())->withInput();
 
+        } catch (Exception $e) {
+
+            Log::error(sprintf('Erro ao finalizar pedido: ', $e->getMessage()));
+
+            Flash::error('Não foi possível finalizar seu pedido, por gentileza entrar em contato através do email ' . env('CONTACT_MAIL'));
+
+            return Redirect::back()->withInput();
         }
-//        catch (Exception $e) {
-//
-//            Flash::error($e->getMessage());
-//
-//            return Redirect::back()->withInput();
-//        }
 
     }
 
