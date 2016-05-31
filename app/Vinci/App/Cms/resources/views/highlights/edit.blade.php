@@ -26,7 +26,11 @@
                             {!! Form::hidden('id', $highlight->getId()) !!}
 
                             <div class="box-body">
-                                @include('cms::highlights.form')
+                                @if($currentModule->getName() == "home-banners")
+                                    @include('cms::highlights.form_banners')
+                                @else
+                                    @include('cms::highlights.form')
+                                @endif
                             </div>
                         </div>
                     </div>

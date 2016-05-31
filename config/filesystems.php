@@ -59,7 +59,7 @@ return [
             'key' => env('AWS_S3_KEY'),
             'secret' => env('AWS_S3_SECRET'),
             'region' => env('AWS_S3_REGION','sa-east-1'),
-            'bucket' => env('AWS_S3_BUCKET'),
+            'bucket' => env('AWS_S3_BUCKET')
         ],
 
     ],

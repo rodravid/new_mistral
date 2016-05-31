@@ -10,9 +10,9 @@ class HomeController extends Controller
 
     public function index(HighlightRepository $repo)
     {
-        $highlights = $repo->lists();
-
-        return $this->view('home.index', compact('highlights'));
+        $highlights = $repo->lists("home-main-slider");
+        $banners = $repo->lists("home-banners");
+        return $this->view('home.index', compact('highlights', 'banners'));
     }
 
 }

@@ -22,7 +22,8 @@
                                     <span class="sub-title-slider">{!! $highlight->subtitle !!}</span>
                                     <p class="txt-slider"{!! $highlight->description !!}</p>
                                 </a>
-                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique aqui <span
+                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique
+                                    aqui <span
                                             class="arrow-link">></span></a>
 
                             </div>
@@ -47,12 +48,15 @@
 
             <section class="wrap-banners">
                 <ul class="banners">
-                    <li class="list-banners">
-                        <img src="{{ asset_web('images/banner1.jpg') }}" alt="">
-                    </li>
-                    <li class="list-banners">
-                        <img src="{{ asset_web('images/banner2.jpg') }}" alt="">
-                    </li>
+
+                    @foreach($banners as $banner)
+                        @if ($banner->hasImage('desktop'))
+                            <li class="list-banners">
+                                <img src="{{ $banner->getImage('desktop')->getWebPath() }}" alt="{{ $banner->title }}">
+                            </li>
+                        @endif
+                    @endforeach
+
                 </ul>
 
             </section>

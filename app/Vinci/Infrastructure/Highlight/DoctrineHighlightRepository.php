@@ -9,7 +9,7 @@ use Vinci\Infrastructure\Common\DoctrineSortableRepository;
 
 class DoctrineHighlightRepository extends DoctrineSortableRepository implements HighlightRepository
 {
-    public function lists()
+    public function lists($type)
     {
 
         $qb = $this->createQueryBuilder('o');
@@ -21,7 +21,8 @@ class DoctrineHighlightRepository extends DoctrineSortableRepository implements 
                 $qb->expr()->gte('o.expirationAt', $qb->expr()->literal(Carbon::now())),
                 $qb->expr()->isNull('o.expirationAt')
             ))
-            ->andWhere($qb->expr()->eq('o.status',1));
+            ->andWhere($qb->expr()->eq('o.status', 1))
+            ->andWhere($qb->expr()->eq('o.type',  $qb->expr()->literal($type)));
 
         return $qb->getQuery()->getResult();
 

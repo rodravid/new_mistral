@@ -192,6 +192,17 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->post('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
                     });
 
+                    $route->group(['prefix' => 'home-banners', 'as' => 'home-banners.'], function () use ($route) {
+                        $route->get('/', 'Highlight\\HighlightController@index')->name('list');
+                        $route->get('/create', 'Highlight\\HighlightController@create')->name('create');
+                        $route->post('/', 'Highlight\\HighlightController@store')->name('create#store');
+                        $route->get('/{highlight}/edit', 'Highlight\\HighlightController@edit')->name('edit');
+                        $route->delete('/{highlight}/delete', 'Highlight\\HighlightController@destroy')->name('destroy');
+                        $route->put('/{highlight}', 'Highlight\\HighlightController@update')->name('edit#update');
+                        $route->delete('/{highlight}/photo/{photo}/delete', 'Highlight\\HighlightController@removeImage')->name('edit#remove-image');
+                        $route->post('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
+                    });
+
                 });
 
                 /**

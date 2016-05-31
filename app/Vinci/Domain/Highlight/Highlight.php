@@ -33,7 +33,7 @@ class Highlight extends Model
     protected $template;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $title;
 

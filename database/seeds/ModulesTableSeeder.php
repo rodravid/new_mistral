@@ -222,6 +222,17 @@ class ModulesTableSeeder extends Seeder
             ])
                 ->setParent($highlights),
 
+            $homeBanners = Module::make([
+                'title' => 'Banners Home',
+                'name' => 'home-banners',
+                'url' => '/cms/highlights/home-banners',
+                'datatable_url' => '/cms/highlights/home-banners/datatable',
+                'icon' => 'fa fa-photo',
+                'create_button_text' => 'Novo destaque',
+                'editing_text' => 'Editando destaque'
+            ])
+                ->setParent($highlights),
+
             $newsletter = Module::make([
                 'title' => 'Newsletter',
                 'name' => 'newsletter',
