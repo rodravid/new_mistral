@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'public',
+    'default' => env('STORAGE_DISK','public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,10 +56,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key' => env('AWS_S3_KEY'),
+            'secret' => env('AWS_S3_SECRET'),
+            'region' => env('AWS_S3_REGION','sa-east-1'),
+            'bucket' => env('AWS_S3_BUCKET'),
         ],
 
     ],
