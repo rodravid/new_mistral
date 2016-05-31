@@ -40,7 +40,6 @@ class ItemResolver implements ItemResolverInterface
         return $this->itemFactory->make(['quantity' => $quantity, 'variant' => $productVariant]);
     }
 
-
     protected function checkStock(Stockable $stockable, $quantity)
     {
         if (! $this->availabilityChecker->isStockSufficient($stockable, $quantity)) {

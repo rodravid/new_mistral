@@ -7,18 +7,17 @@ angular.module('app')
 
             scope: {
                 variantId: '@',
-                quantity: '@'
+                quantity: '@',
+                quantityResolver: '&'
             },
 
             link: function($scope, elt, attributes) {
 
                 var $item = $(elt);
-                var variantId = attributes.variantId;
-                var quantity = attributes.quantity;
 
                 $item.bind('click', function() {
 
-                    cartService.addItem(variantId, quantity).then(function(response) {
+                    cartService.addItem($scope.variantId, getQuantity()).then(function(response) {
 
                         swal('Pronto!', response.message, 'success');
 
@@ -31,6 +30,14 @@ angular.module('app')
 
                 });
 
+                function getQuantity() {
+
+                    if (typeof $scope.quantity !== 'undefined') {
+                        return $scope.quantity;
+                    }
+
+                    return $scope.quantityResolver();
+                }
 
             }
         }

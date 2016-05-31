@@ -452,14 +452,13 @@
                                     <span class="favorite"></span>
                                 </h3>
                                 <a href="javascript:void(0);">
-                                    <p class="wine-intro">{{ $product->short_description }}</p>
+                                    <p class="wine-intro">{{ $product->shortned_description }}</p>
                                     <p class="info-details-wine">Tinto Pinot</p>
                                     <p class="info-details-wine">Noir Chile</p>
                                 </a>
                             </div>
                             <div class="other-wine-info">
-
-                                {{--<p class="in"> De <span>R$ 38,50</span></p>--}}
+                                {!! $product->original_sale_price_html !!}
                                 <p class="wine-price">{{ $product->sale_price }}</p>
 
                                 <a href="javascript:void(0);" class="bt-default" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1">Comprar <span class="arrow-link">></span></a>

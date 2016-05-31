@@ -352,7 +352,13 @@ class ProductVariant extends Model implements ProductVariantInterface
 
     public function getOriginalSalePrice($channel = null)
     {
-        return $this->getPrice($channel)->asOriginalSalePrice();
+        $price =  $this->getPrice($channel);
+        $salePrice = $price->asSalePrice();
+        $originalSalePrice = $price->asOriginalSalePrice();
+
+        if ($originalSalePrice > $salePrice) {
+            return $originalSalePrice;
+        }
     }
 
     public function getPrice($channel = null)
