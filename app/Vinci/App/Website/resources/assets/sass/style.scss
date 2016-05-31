@@ -1547,6 +1547,10 @@ ul.pagination{
 			}
 		}
 
+		.img-product {
+			max-width:100%;
+		}
+
 		.height-bg-product {
 			min-height:300px;
 			@media #{$screen970} {
@@ -1704,6 +1708,37 @@ ul.pagination{
 				@media #{$screen970} {
 					width:70px;
 				}
+			}
+		}
+
+		.content-seal-product {
+			width:90px;
+			height:90px;
+			display:table;
+			text-align:center;
+			margin-bottom:20px;
+			@media #{$screen970} {
+				width:70px;
+				height:70px;
+			 }
+		}
+
+		.seal-score {
+			display: table-cell; 
+			vertical-align: middle;
+			
+			span {
+				font: 33px $robotobold;
+				position:relative;
+				@media #{$screen970} {
+					font: 23px $robotobold;
+				}
+			}
+
+			img {
+				position:absolute;
+				top:0px;
+				left:0px;
 			}
 		}
 
