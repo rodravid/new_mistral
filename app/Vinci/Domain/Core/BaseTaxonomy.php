@@ -155,4 +155,10 @@ abstract class BaseTaxonomy extends Model implements Sluggable
         return !! $this->getImage($version);
     }
 
+    public function getWebUrl()
+    {
+        return env('APP_URL') . $this->getBaseWebUrl() . $this->getSlug();
+    }
+
+    public abstract function getBaseWebUrl();
 }

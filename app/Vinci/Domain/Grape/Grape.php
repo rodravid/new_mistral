@@ -34,4 +34,8 @@ class Grape extends BaseTaxonomy
         $this->images->set($version, $grapeImage);
     }
 
+    public function getBaseWebUrl()
+    {
+        return '/c/tipos-de-uva/';
+    }
 }

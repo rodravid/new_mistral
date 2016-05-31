@@ -15,7 +15,7 @@ use Vinci\Domain\Image\Image;
 class Country extends BaseTaxonomy
 {
 
-    const BRAZIL = 1;
+    const BRAZIL = 30;
 
     /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Country\CountryImage", mappedBy="country", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
@@ -58,4 +58,8 @@ class Country extends BaseTaxonomy
         return $this;
     }
 
+    public function getBaseWebUrl()
+    {
+        return '/c/pais/';
+    }
 }

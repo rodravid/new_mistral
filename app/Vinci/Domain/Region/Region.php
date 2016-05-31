@@ -87,4 +87,8 @@ class Region extends BaseTaxonomy
         return $this->products;
     }
 
+    public function getBaseWebUrl()
+    {
+        return '/c/regiao/';
+    }
 }

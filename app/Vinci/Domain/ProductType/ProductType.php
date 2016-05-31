@@ -39,4 +39,8 @@ class ProductType extends BaseTaxonomy
         $this->images->set($version, $productTypeImage);
     }
 
+    public function getBaseWebUrl()
+    {
+        return '/c/tipos-de-vinho/';
+    }
 }

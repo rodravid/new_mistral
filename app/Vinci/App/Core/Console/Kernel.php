@@ -7,6 +7,12 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Vinci\App\Core\Console\Commands\DoctrineTruncateTable;
 use Vinci\App\Core\Console\Commands\ImportCustomers;
 use Vinci\App\Core\Console\Commands\ImportProduct;
+use Vinci\App\Core\Console\Commands\MakeSlugCountry;
+use Vinci\App\Core\Console\Commands\MakeSlugGrape;
+use Vinci\App\Core\Console\Commands\MakeSlugGrapes;
+use Vinci\App\Core\Console\Commands\MakeSlugProducer;
+use Vinci\App\Core\Console\Commands\MakeSlugProductType;
+use Vinci\App\Core\Console\Commands\MakeSlugRegion;
 use Vinci\App\Website\Search\Console\Commands\IndexProducts;
 
 class Kernel extends ConsoleKernel
@@ -20,7 +26,12 @@ class Kernel extends ConsoleKernel
         DoctrineTruncateTable::class,
         ImportProduct::class,
         IndexProducts::class,
-        ImportCustomers::class
+        ImportCustomers::class,
+        MakeSlugCountry::class,
+        MakeSlugRegion::class,
+        MakeSlugProducer::class,
+        MakeSlugProductType::class,
+        MakeSlugGrapes::class
     ];
 
     /**

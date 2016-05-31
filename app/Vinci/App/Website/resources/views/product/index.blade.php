@@ -74,7 +74,7 @@
                             <li>
                                 <ul>
                                     <li><p class="item-info-wine">País</p></li>
-                                    <li><a href="/pais/argentina"><p class="info-vinho-template">{{ $product->country->name }}</p></a></li>
+                                    <li><a href="{{ $product->country->getWebUrl() }}"><p class="info-vinho-template">{{ $product->country->name }}</p></a></li>
                                 </ul>
                             </li>
                         @endif
@@ -83,7 +83,7 @@
                             <li>
                                 <ul>
                                     <li><p class="item-info-wine">Região</p></li>
-                                    <li><a href="/regiao/mendoza"><p class="info-vinho-template">{{ $product->region->name }}</p></a></li>
+                                    <li><a href="{{ $product->region->getWebUrl() }}"><p class="info-vinho-template">{{ $product->region->name }}</p></a></li>
                                 </ul>
                             </li>
                         @endif
@@ -92,7 +92,7 @@
                             <li>
                                 <ul>
                                     <li><p class="item-info-wine">Tipo</p></li>
-                                    <li><a href="/tipo-de-vinho/branco-seco"><p class="info-vinho-template">{{ $product->productType->name }}</p></a>
+                                    <li><a href="{{ $product->productType->getWebUrl() }}"><p class="info-vinho-template">{{ $product->productType->name }}</p></a>
                                     </li>
                                 </ul>
                             </li>
@@ -134,12 +134,15 @@
                 <div class="col-product-two">
                     <div class="show-mobile">
                         <span class="favorite-product"></span>
-                        <h1 class="tit-product"> ERRAZURIZ WILD FERMENTED PINOT NOIR 2010</h1>
-                        <span class="tit-product-producer">Luca (Laura catena)</span>
+                        <h1 class="tit-product">{{ $product->title }}</h1>
+                        @if($product->hasProducer())
+                            <span class="tit-product-producer">{{ $product->producer->name }}</span>
+                        @endif
 
-                        <h2 class="tit-product-info">O melhor vinho da Argentina entre todos os Top 100
-                            da Wine Spectator
-                        </h2>
+                        @if($product->hasShortDescription())
+                            <h2 class="tit-product-info">{!! $product->short_description !!}</h2>
+                        @endif
+
                     </div>
 
                     <div class="content-img-product">
