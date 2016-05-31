@@ -46,7 +46,7 @@
                     @if ($highlight->hasImage('mobile'))
                         <div class="col-xs-12">
                             @include('cms::layouts.partials.image.default', [
-                            'box_title' => 'Imagem mobile',
+                            'box_title' => 'Imagem',
                             'image' => $highlight->getImage('mobile'),
                             'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('mobile')->getId()])
                             ])
@@ -56,7 +56,7 @@
                     @if ($highlight->hasImage('desktop'))
                         <div class="col-xs-12">
                             @include('cms::layouts.partials.image.default', [
-                            'box_title' => 'Imagem desktop',
+                            'box_title' => 'Imagem',
                             'image' => $highlight->getImage('desktop'),
                             'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$highlight->getId(), $highlight->getImage('desktop')->getId()])
                             ])
