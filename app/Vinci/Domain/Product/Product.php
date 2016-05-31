@@ -374,6 +374,11 @@ class Product extends Model implements ProductInterface
         return $this;
     }
 
+    public function hasShortDescription()
+    {
+        return ! empty($this->getShortDescription());
+    }
+
     public function getShortDescription()
     {
         return $this->getMasterVariant()->getShortDescription();
@@ -431,6 +436,11 @@ class Product extends Model implements ProductInterface
     public function getSalePrice($channel = null)
     {
         return $this->getMasterVariant()->getSalePrice($channel);
+    }
+
+    public function getOriginalSalePrice($channel = null)
+    {
+        return $this->getMasterVariant()->getOriginalSalePrice($channel);
     }
 
     public function addPrice(ProductVariantPrice $price)
@@ -681,6 +691,11 @@ class Product extends Model implements ProductInterface
     public function hasProductType()
     {
         return $this->productType !== null;
+    }
+
+    public function hasDescription()
+    {
+        return ! empty($this->getDescription());
     }
 
 }

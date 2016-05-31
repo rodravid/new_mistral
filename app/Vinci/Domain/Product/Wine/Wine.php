@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Product\Wine;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Grape\Grape;
 use Vinci\Domain\Product\Product;
@@ -55,7 +56,25 @@ class Wine extends Product
 
     public function getScores()
     {
+
+        $expr = Criteria::expr();
+        $criteria = Criteria::create();
+
+        $criteria->where($expr->eq('highlight', true));
+
+        return $this->scores->matching($criteria);
+
         return $this->scores;
+    }
+
+    public function getHighlightedScores()
+    {
+        $expr = Criteria::expr();
+        $criteria = Criteria::create();
+
+        $criteria->where($expr->eq('highlight', true));
+
+        return $this->scores->matching($criteria);
     }
 
     public function addScore(Score $score)
@@ -84,6 +103,11 @@ class Wine extends Product
     public function hasScore(Score $score)
     {
         return $this->scores->containsKey($score->getId());
+    }
+
+    public function hasScores()
+    {
+        return (bool) $this->scores->count();
     }
 
     public function getGrapes()

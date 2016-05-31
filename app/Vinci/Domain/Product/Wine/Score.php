@@ -3,6 +3,9 @@
 namespace Vinci\Domain\Product\Wine;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
+use Vinci\App\Website\Http\Product\Score\Presenter\ScorePresenter;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 
@@ -10,10 +13,12 @@ use Vinci\Domain\Core\Model;
  * @ORM\Entity
  * @ORM\Table(name="wines_scores")
  */
-class Score extends Model
+class Score extends Model implements Presentable
 {
 
-    use Timestampable;
+    use Timestampable, PresentableTrait;
+
+    protected $presenter = ScorePresenter::class;
 
     /**
      * @ORM\Id
