@@ -25,6 +25,11 @@ class Customer extends User implements CustomerInterface, Presentable
     protected $presenter = CustomerPresenter::class;
 
     /**
+     * @ORM\Column(name="import_id", type="integer")
+     */
+    protected $importId;
+
+    /**
      * @ORM\Column(name="customer_type", type="smallint")
      */
     protected $customerType;
@@ -449,6 +454,17 @@ class Customer extends User implements CustomerInterface, Presentable
     public function hasShoppingCart(ShoppingCartInterface $shoppingCart)
     {
         return $this->shoppingCarts->contains($shoppingCart);
+    }
+
+    public function getImportId()
+    {
+        return $this->importId;
+    }
+
+    public function setImportId($importId)
+    {
+        $this->importId = $importId;
+        return $this;
     }
 
 }

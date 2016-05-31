@@ -6,10 +6,10 @@ node[:deploy].each do |app_name, deploy|
       user "root"
       cwd "#{current_path}"
       code <<-EOH
-      composer install --no-dev --no-interaction --optimize-autoloader
       chmod -R 777 storage
       chmod -R 777 bootstrap/cache
+      ln -s #{current_path}/storage/app/public/ #{current_path}/public/storage
       EOH
     end
   end
-end
+end 
