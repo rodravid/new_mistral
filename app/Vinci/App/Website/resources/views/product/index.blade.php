@@ -195,7 +195,7 @@
                         </div>
                     </div>
 
-                    <a class="bt-default-full-template bt-big template-button" href="#">Comprar <span
+                    <a class="bt-default-full-template bt-big template-button" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1" href="#">Comprar <span
                                 class="arrow-link">></span></a>
 
                     <div class="content-term-delivery show-desktop">
