@@ -78,6 +78,10 @@ class CustomerService
 
         $this->sanitizeData($data);
 
+        if (isset($data['importId']) && ! empty($data['importId'])) {
+            $customer->setImportId($data['importId']);
+        }
+
         $customer
             ->setEmail(array_get($data, 'email'))
             ->setCustomerType(array_get($data, 'customerType'))
