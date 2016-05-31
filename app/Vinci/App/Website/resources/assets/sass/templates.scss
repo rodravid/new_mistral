@@ -161,6 +161,31 @@
 
 .template1 {
 
+					.every-category {
+			background: $blue;
+			border:2px solid $blue;
+
+			&:hover {
+				background: #fff;
+				transition: all 50ms ease;
+
+				h3 {
+					color:$blue;
+				}
+				span {
+					color:#fff;
+					background:$blue;
+					right: 2px;
+					bottom:2px;
+
+				}
+			}
+
+			span{
+				color:$blue;
+			}
+		}
+
 
 	.template-button {
 		background: $purple;
@@ -451,6 +476,8 @@
 				color:$blue;
 			}
 		}
+
+
 
 	}
 
@@ -2901,7 +2928,7 @@
 
 		}
 
-		.every-category{
+		.every-category {
 			background: $black;
 			border:2px solid $black;
 
