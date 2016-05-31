@@ -17,7 +17,7 @@
                         <div class="conteudo-slider-principal"
                              style="background: url({{ $highlight->getImage('desktop')->getWebPath() }}) no-repeat;">
                             <div class="descr-slider">
-                                <a href="javascript:void(0);">
+                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}">
                                     <h3 class="title-slider">{!! $highlight->title !!}</h3>
                                     <span class="sub-title-slider">{!! $highlight->subtitle !!}</span>
                                     <p class="txt-slider"{!! $highlight->description !!}</p>
