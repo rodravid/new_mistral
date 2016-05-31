@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Carrier;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
@@ -152,7 +153,10 @@ class CarrierMetric extends Model implements CarrierMetricInterface
 
     public function getTaxes()
     {
-        return $this->taxes;
+        $criteria = Criteria::create()
+            ->orderBy(['position' => Criteria::ASC]);
+
+        return $this->taxes->matching($criteria);
     }
 
     public function addTax(TaxInterface $tax)

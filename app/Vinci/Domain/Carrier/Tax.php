@@ -42,6 +42,11 @@ class Tax implements TaxInterface
     protected $type;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $position;
+
+    /**
      * @ORM\Column(type="decimal", precision=13, scale=2)
      */
     protected $amount;
@@ -91,7 +96,7 @@ class Tax implements TaxInterface
 
     public function setAmount($amount)
     {
-        $this->amount = (double) $amount;
+        $this->amount = (double)$amount;
         return $this;
     }
 
@@ -117,11 +122,26 @@ class Tax implements TaxInterface
 
             case self::TYPE_PERCENTAGE:
 
-                $amount = $amount + ($amount * $this->getAmount() / 100);
+                if ($this->getCode() == 'icms'){
+                    $amount = $amount / $this->getAmount();
+                }else {
+                    $amount = $amount + ($amount * $this->getAmount() / 100);
+                }
 
                 break;
         }
 
+    }
+
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    public function setPosition($position)
+    {
+        $this->position = $position;
+        return $this;
     }
 
 }
