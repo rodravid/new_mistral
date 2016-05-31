@@ -34,7 +34,7 @@ class OrderItemFactory
         $data = [
             'product_variant' => $cartItem->getProductVariant(),
             'price' => $cartItem->getSalePrice(),
-            'original_price' => $cartItem->getOriginalSalePrice(),
+            'original_price' => ! empty($cartItem->getOriginalSalePrice()) ? $cartItem->getOriginalSalePrice() : $cartItem->getSalePrice(),
             'quantity' => $cartItem->getQuantity(),
             'total' => $cartItem->getSubtotal()
         ];
