@@ -77,17 +77,22 @@
                                 <span>Kaiken</span>
                             </a>
                         </h3>
-                        <p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot
-                            para
-                            ...</p>
+                        <p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para ...</p>
                         <div class="content-card-product">
-                            <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}"
-                                     alt="Selo Vinho">
-                                <a href="javascript:void(0);">
-                                    <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
-                                </a>
-                            </div>
+                           <div class="thumb-wine">
+                               <div class="wrap-seal-card">
+                                   <div class="content-seal-card">
+                                     <div class="seal-score-card">
+                                         <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                         <span>92</span>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <a href="javascript:void(0);">
+                                <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
+                            </a>
+                        </div>
                             <div class="other-wine-info">
                                 <a href="javascript:void(0);">
                                     <p class="info-details-wine">Tinto Pinot</p>
@@ -119,8 +124,15 @@
                             ...</p>
                         <div class="content-card-product">
                             <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}"
-                                     alt="Selo Vinho">
+                             <div class="wrap-seal-card">
+                                 <div class="content-seal-card">
+                                   <div class="seal-score-card">
+                                       <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                       <span>92</span>
+                                   </div>
+                               </div>
+                           </div>
+
                                 <a href="javascript:void(0);">
                                     <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
                                 </a>
@@ -155,8 +167,15 @@
                             ...</p>
                         <div class="content-card-product">
                             <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}"
-                                     alt="Selo Vinho">
+                             <div class="wrap-seal-card">
+                                 <div class="content-seal-card">
+                                   <div class="seal-score-card">
+                                       <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                       <span>92</span>
+                                   </div>
+                               </div>
+                           </div>
+
                                 <a href="javascript:void(0);">
                                     <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
                                 </a>
@@ -530,8 +549,15 @@
                             ...</p>
                         <div class="content-card-product">
                             <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}"
-                                     alt="Selo Vinho">
+                             <div class="wrap-seal-card">
+                                 <div class="content-seal-card">
+                                   <div class="seal-score-card">
+                                       <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                       <span>92</span>
+                                   </div>
+                               </div>
+                           </div>
+
                                 <a href="javascript:void(0);">
                                     <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
                                 </a>
@@ -566,8 +592,15 @@
                             ...</p>
                         <div class="content-card-product">
                             <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}"
-                                     alt="Selo Vinho">
+                             <div class="wrap-seal-card">
+                                 <div class="content-seal-card">
+                                   <div class="seal-score-card">
+                                       <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                       <span>92</span>
+                                   </div>
+                               </div>
+                           </div>
+
                                 <a href="javascript:void(0);">
                                     <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
                                 </a>
@@ -602,8 +635,15 @@
                             ...</p>
                         <div class="content-card-product">
                             <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}"
-                                     alt="Selo Vinho">
+                             <div class="wrap-seal-card">
+                                 <div class="content-seal-card">
+                                   <div class="seal-score-card">
+                                       <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                       <span>92</span>
+                                   </div>
+                               </div>
+                           </div>
+
                                 <a href="javascript:void(0);">
                                     <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
                                 </a>
@@ -638,8 +678,15 @@
                             ...</p>
                         <div class="content-card-product">
                             <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}"
-                                     alt="Selo Vinho">
+                             <div class="wrap-seal-card">
+                                 <div class="content-seal-card">
+                                   <div class="seal-score-card">
+                                       <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                       <span>92</span>
+                                   </div>
+                               </div>
+                           </div>
+
                                 <a href="javascript:void(0);">
                                     <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
                                 </a>
