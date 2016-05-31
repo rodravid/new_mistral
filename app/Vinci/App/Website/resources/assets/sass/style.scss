@@ -485,6 +485,51 @@ a.bt-default {
 
 }
 
+.featured-sub-menu {
+	.wrap-seal-card {
+		right: -22px;
+    top: -25px;
+	}	
+
+	.seal-score-card {
+		span {
+			color:#000 !important;
+		}
+	}
+}
+
+		.wrap-seal-card {
+			position:absolute;
+			top:0;
+			right:0;
+		}
+
+		.content-seal-card {
+			width:60px;
+			height:60px;
+			display:table;
+			text-align:center;
+			margin-bottom:20px;
+		}
+
+		.seal-score-card {
+			display: table-cell; 
+			vertical-align: middle;
+			
+			span {
+				font: 23px $robotobold;
+				position:relative;
+				color:#000;
+			}
+
+			img {
+				position:absolute;
+				top:0px;
+				left:0px;
+				width:60px;
+			}
+		}
+
 .title-card-wine {
 	font:18px $robotobold;
 	text-transform: uppercase;
