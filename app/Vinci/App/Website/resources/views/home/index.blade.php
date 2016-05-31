@@ -15,7 +15,7 @@
 
                     <div class="bg-slider-principal {{ $highlight->template }}">
                         <div class="conteudo-slider-principal"
-                             style="background: url({{ $highlight->getImage('desktop')->getWebPath() }}) no-repeat;">
+                             @if ($highlight->hasImage('desktop')) style="background: url({{ $highlight->getImage('desktop')->getWebPath() }}) no-repeat;" @endif>
                             <div class="descr-slider">
                                 <a href="{{ $highlight->url }}" target="{{ $highlight->target }}">
                                     <h3 class="title-slider">{!! $highlight->title !!}</h3>
