@@ -63,7 +63,7 @@
                             <li>
                                 <ul>
                                     <li><p class="item-info-wine">Produtor</p></li>
-                                    <li><a href="/produtor/catena-zapata"><p
+                                    <li><a href="{{ $product->producer->getWebUrl() }}"><p
                                                     class="info-vinho-template">{{ $product->producer->name }}</p></a>
                                     </li>
                                 </ul>
