@@ -93,7 +93,7 @@
                             <li ng-repeat="item in cart.items">
                                 <a href="/produto/vallontano-espumante-brut-vallontano">
                                     <div class="product-add">
-                                        <img src="https://mistral2015.s3.amazonaws.com/products/19446/img_s_19446.jpg"
+                                        <img src="{{ asset_web('images/no_photo.png') }}"
                                              width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
                                         <p class="product-name-cart">@{{ item.name }} <span ng-show="item.producer">(@{{ item.producer }})</span></p>
                                     </div>

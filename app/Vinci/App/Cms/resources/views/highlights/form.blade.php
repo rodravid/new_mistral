@@ -52,7 +52,7 @@
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtHighlightPasswordConfirmation">Banner versão desktop</label>
+            <label for="txtHighlightPasswordConfirmation">Foto do produto</label>
             {!! Form::file('image_desktop', ['id' => 'txtHighlightImageDesktop']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
         </div>
@@ -60,7 +60,7 @@
 
     <div class="col-lg-12">
         <div class="form-group has-feedback">
-            <label for="txtHighlightPasswordConfirmation">Banner versão mobile</label>
+            <label for="txtHighlightPasswordConfirmation">Imagem Selo</label>
             {!! Form::file('image_mobile', ['id' => 'txtHighlightImageMobile']) !!}
             <span class="glyphicon glyphicon-picture form-control-feedback"></span>
         </div>

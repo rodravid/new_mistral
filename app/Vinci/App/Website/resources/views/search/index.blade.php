@@ -438,7 +438,7 @@
                         <div class="wine-card">
                             <div class="thumb-wine">
                                 <a href="javascript:void(0);">
-                                    <img class="wine-bottle" src="{{ asset_web('images/no_photo.jpg') }}" alt="Vinho">
+                                    <img class="wine-bottle" src="{{ asset_web('images/no_photo.png') }}" alt="Vinho">
                                 </a>
                             </div>
                             <div class="colum-description-wine">
