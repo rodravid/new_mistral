@@ -1476,6 +1476,11 @@ ul.pagination{
 			}
 		}
 
+		.invert-mobile2 {
+			width:100%;
+			display:inline-block;
+		}
+
 		.bg-product {
 			width: 100%;
 			position: absolute;
@@ -1552,7 +1557,7 @@ ul.pagination{
 		.wrap-price-units {
 			width:220px;
 			float:right;
-			min-height:300px;
+			min-height:340px;
 			@media #{$screen767} { 
 				width:100%;
 				min-height:auto;
@@ -1821,7 +1826,7 @@ ul.pagination{
 
 			width: 100%;
 			display: inline-block;
-			margin: 40px 0 10px 0;
+			margin: 0px 0 10px 0;
 			@media #{$screen970} {
 				margin: 60px 0 10px 0;
 			}
