@@ -44,7 +44,7 @@
 
                 <div class="col-product-one">
                     <div class="height-bg-product">
-                        <span class="favorite-product"></span>
+                        <favorite-widget product="{{ $product->id }}"></favorite-widget>
 
                         <h1 class="tit-product show-desktop">{{ $product->title }}</h1>
                         @if($product->hasProducer())
@@ -139,7 +139,7 @@
 
                 <div class="col-product-two">
                     <div class="show-mobile">
-                        <span class="favorite-product"></span>
+                        <favorite-widget product="{{ $product->id }}"></favorite-widget>
                         <h1 class="tit-product">{{ $product->title }}</h1>
                         @if($product->hasProducer())
                             <span class="tit-product-producer">{{ $product->producer->name }}</span>
