@@ -25,7 +25,7 @@ class Customer extends User implements CustomerInterface, Presentable
     protected $presenter = CustomerPresenter::class;
 
     /**
-     * @ORM\Column(name="import_id", type="integer")
+     * @ORM\Column(name="import_id", type="integer", nullable=true)
      */
     protected $importId;
 
