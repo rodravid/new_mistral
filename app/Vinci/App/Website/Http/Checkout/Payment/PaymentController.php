@@ -9,6 +9,7 @@ use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\ShoppingCart\Presenters\ShoppingCartPresenter;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Customer\Address\AddressRepository;
+use Vinci\Domain\Payment\Services\InstallmentCaculator;
 use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
@@ -49,7 +50,9 @@ class PaymentController extends Controller
         $months = $this->getMonths();
         $years = $this->getYears();
 
-        return $this->view('checkout.payment.index', compact('shoppingCart', 'deliveryAddress', 'months', 'years'));
+        $installmentOptions = $this->getInstallmentOptions($shoppingCart->getTotal());
+
+        return $this->view('checkout.payment.index', compact('shoppingCart', 'deliveryAddress', 'months', 'years', 'installmentOptions'));
     }
 
     protected function getDeliveryAddress(PaymentRequest $request)
@@ -74,6 +77,18 @@ class PaymentController extends Controller
     protected function getMonths()
     {
         return getMonths();
+    }
+
+    protected function getInstallmentOptions($value)
+    {
+        $installments = with(app(InstallmentCaculator::class))->getInstallmentOptions($value);
+
+        $options = [];
+        foreach ($installments as $installment) {
+            $options[$installment['quantity']] = $installment['label'];
+        }
+
+        return $options;
     }
 
 }

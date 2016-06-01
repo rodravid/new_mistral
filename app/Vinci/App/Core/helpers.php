@@ -127,3 +127,8 @@ function getMonths()
         12 => 'Dezembro',
     ];
 }
+
+function money($number)
+{
+    return 'R$ ' . number_format($number, 2, ',', '.');
+}

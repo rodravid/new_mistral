@@ -102,7 +102,8 @@ class OrderService
 
         $payment
             ->setMethod($paymentMethod)
-            ->setCreditCard($creditCard);
+            ->setCreditCard($creditCard)
+            ->setInstallments($this->getPaymentInstallments($data));
 
         return $payment;
     }
@@ -129,6 +130,11 @@ class OrderService
     protected function getCustomer($data)
     {
         return array_get($data, 'customer');
+    }
+
+    protected function getPaymentInstallments(array $data)
+    {
+        return array_get($data, 'payment.installments');
     }
 
     protected function getPaymentMethod($data)
