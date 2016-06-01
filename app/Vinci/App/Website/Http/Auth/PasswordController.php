@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Website\Http\Auth;
 
+use Request;
 use Vinci\App\Core\Http\Controllers\Auth\PasswordController as BaseAuthController;
 
 class PasswordController extends BaseAuthController
@@ -15,6 +16,29 @@ class PasswordController extends BaseAuthController
 
     protected $resetView = 'website::auth.passwords.reset';
 
-    protected $redirectPath = '/minha-conta';
+    protected $redirectPath = '/minhaconta';
+
+    protected function getSendResetLinkEmailSuccessResponse($response)
+    {
+        if (Request::ajax() || Request::wantsJson()) {
+            return response()->json([
+                'message' => trans($response)
+            ]);
+        }
+
+        return redirect()->back()->with('status', trans($response));
+    }
+
+    protected function getSendResetLinkEmailFailureResponse($response)
+    {
+
+        if (Request::ajax() || Request::wantsJson()) {
+            return response()->json([
+                'message' => trans($response)
+            ], 422);
+        }
+
+        return redirect()->back()->withErrors(['email' => trans($response)]);
+    }
 
 }

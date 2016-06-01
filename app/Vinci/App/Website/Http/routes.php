@@ -147,8 +147,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     $route->get('login', 'Auth\\AuthController@showLoginForm')->name('login.show');
     $route->post('login', 'Auth\\AuthController@login')->name('login');
     $route->get('logout', 'Auth\\AuthController@logout')->name('logout');
-    $route->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-    $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-    $route->post('password/reset', 'Auth\PasswordController@reset');
+    $route->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm')->name('password.index');
+    $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail')->name('password.email');
+    $route->post('password/reset', 'Auth\PasswordController@reset')->name('password.reset');
 
 });

@@ -12,8 +12,8 @@
                     <input class="senha input-register full" type="password" name="password" ng-model="password" placeholder="Senha" id="senha-login">
                     <a class="forgot-pass call-recovery" href="javascript:void(0);">Esqueceu a senha ?</a>
                 </li>
-
             </ul>
+            <p class="box-error" style="font-size: 14px; color: #f00;"></p>
             <button class="bt-default-full bt-middle template1" type="submit">Entrar <span class="arrow-link">></span></button>
         </form>
     </div>

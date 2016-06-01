@@ -1,14 +1,16 @@
-<div class="modal-default modal-recovery">
+<div class="modal-default modal-recovery" ng-controller="ModalPasswordCtrl">
     <div class="content-modal">
         <h2 class="title-modal-default">Recuperar senha</h2>
-        <ul class="list-form-register">
-            <li>
-                <label for="">E-mail</label>
-                <input class="email input-register full" type="text">
-            </li>
-
-        </ul>
-        <a class="bt-default-full bt-middle template1" href="#">Enviar <span class="arrow-link">></span></a>
+        <form action="{{ route('password.email') }}" ng-submit="postReset($event)">
+            <ul class="list-form-register">
+                <li>
+                    <label for="txtPasswordResetEmail">E-mail</label>
+                    <input name="email" id="txtPasswordResetEmail" class="email input-register full" placeholder="E-mail" type="text" ng-model="email">
+                    <p class="box-error" style="font-size: 14px; color: #f00;"></p>
+                </li>
+            </ul>
+            <button type="submit" class="bt-default-full bt-middle template1">Enviar <span class="arrow-link">></span></button>
+        </form>
     </div>
     <div class="footer-modal">
         <div class="center-content-bt">

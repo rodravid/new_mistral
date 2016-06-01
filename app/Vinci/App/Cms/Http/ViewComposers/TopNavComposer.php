@@ -29,7 +29,7 @@ class TopNavComposer
         $dollar = $this->dollarRepository->getLast();
 
         if ($dollar && cmsUser()->canManageModule('dollar')) {
-            $dollar = $this->presenter->collection($dollar, DollarPresenter::class);
+            $dollar = $this->presenter->model($dollar, DollarPresenter::class);
             $view->with('currentDollar', $dollar);
         }
 
