@@ -705,7 +705,7 @@
                 </li>
 
             </ul>
-
+            @if(auth('website')->check())
             <ul class="menu">
 
                 <li class="menu-item">
@@ -715,6 +715,7 @@
                     </a>
                 </li>
             </ul>
+            @endif
         </nav>
     </div>
 </header>
