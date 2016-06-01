@@ -211,11 +211,11 @@
                            quantity-resolver="ctrl.getQuantityForCart()" href="#">Comprar <span
                                     class="arrow-link">></span></a>
 
-                        <div class="content-term-delivery show-desktop">
-                            <a href="javascript:void(0);">
-                                Prazo de entrega >
-                            </a>
-                        </div>
+                        {{--<div class="content-term-delivery show-desktop">--}}
+                            {{--<a href="javascript:void(0);">--}}
+                                {{--Prazo de entrega >--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
                     </div>
 
                     <ul class="details-wine show-mobile">
