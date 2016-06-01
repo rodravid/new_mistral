@@ -51,6 +51,7 @@
     <script src="{{ asset_web('app/js/controllers/address/addressModalController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/directives/cart/cartItem.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/directives/cart/cartAddButton.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('app/js/directives/product/favoriteWidget.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/cart/cartController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
 

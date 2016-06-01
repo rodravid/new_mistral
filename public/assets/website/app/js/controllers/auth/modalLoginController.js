@@ -38,7 +38,8 @@ angular.module('app')
             } else {
 
                 if (response.data.message) {
-                    swal('Não foi possível efetuar o login!', response.data.message, 'error');
+
+                    $('.modal-login').find('.box-error').text(response.data.message).fadeIn();
                 }
 
             }
