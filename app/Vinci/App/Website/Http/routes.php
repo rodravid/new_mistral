@@ -73,6 +73,20 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->post('/', 'Order\OrderController@store')->name('store');
         });
 
+        /**
+         * API
+         */
+        $route->group(['prefix' => 'api', 'as' => 'api.'], function() use ($route) {
+
+            /**
+             * Product
+             */
+            $route->group(['prefix' => 'product', 'as' => 'product.'], function() use ($route) {
+                $route->post('{product}/favorite', 'Product\ProductController@favorite')->name('favorite');
+            });
+
+        });
+
     });
 
     /*
@@ -108,6 +122,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     $route->group(['prefix' => 'p', 'as' => 'product.'], function() use ($route) {
         $route->get('/{type}/{slug}', 'Product\ProductController@show')->name('index');
     });
+
 
     /**
      * Shopping cart

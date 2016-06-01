@@ -16,9 +16,25 @@ angular.module('app')
 
         function handleLoginSuccess(response)
         {
-            if (response.url) {
-                $window.location.href = response.url;
+            var $modal = $('.modal-login');
+            var $overlay = $('.overlay');
+
+            if ($modal.data('callback')) {
+
+                var callback = $modal.data('callback');
+                callback();
+
+            } else {
+
+                if (response.url) {
+                    $window.location.href = response.url;
+                }
+
             }
+
+            $modal.fadeOut();
+            $overlay.fadeOut();
+
         }
 
         function handleLoginError(response)

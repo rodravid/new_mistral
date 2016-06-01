@@ -71,7 +71,7 @@
                     <h2 class="title-category">Compras Inteligentes</h2>
 
                     <div class="wine-card">
-                        <favorite-widget item="2"></favorite-widget>
+                        <favorite-widget product="2"></favorite-widget>
 
                         <h3 class="title-card-wine">
                             <a href="javascript:void(0);">

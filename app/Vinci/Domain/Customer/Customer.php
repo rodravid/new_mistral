@@ -4,13 +4,13 @@ namespace Vinci\Domain\Customer;
 
 use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping AS ORM;
 use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\App\Website\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\Domain\Auth\Authenticatable;
 use Vinci\Domain\Customer\Address\Address;
+use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 use Vinci\Domain\User\User;
 
@@ -124,6 +124,15 @@ class Customer extends User implements CustomerInterface, Presentable
      */
     protected $shoppingCarts;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product")
+     * @ORM\JoinTable(name="products_favorites",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $favoriteProducts;
+
     public function __construct()
     {
         parent::__construct();
@@ -131,6 +140,7 @@ class Customer extends User implements CustomerInterface, Presentable
         $this->orders = new ArrayCollection;
         $this->addresses = new ArrayCollection;
         $this->shoppingCarts = new ArrayCollection;
+        $this->favoriteProducts = new ArrayCollection;
     }
 
     public function getName()
@@ -465,6 +475,25 @@ class Customer extends User implements CustomerInterface, Presentable
     {
         $this->importId = $importId;
         return $this;
+    }
+
+    public function addProductToFavorites(ProductInterface $product)
+    {
+        if (! $this->isInFavorites($product)) {
+            $this->favoriteProducts->add($product);
+        }
+    }
+
+    public function removeProductFromFavorites(ProductInterface $product)
+    {
+        if ($this->isInFavorites($product)) {
+            $this->favoriteProducts->removeElement($product);
+        }
+    }
+
+    public function isInFavorites(ProductInterface $product)
+    {
+        return $this->favoriteProducts->contains($product);
     }
 
 }

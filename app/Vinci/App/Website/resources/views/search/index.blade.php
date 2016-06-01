@@ -448,7 +448,7 @@
                                             <span>{{ $product->producer->name }}</span>
                                         @endif
                                     </a>
-                                    <span class="favorite"></span>
+                                    <favorite-widget product="{{ $product->id }}"></favorite-widget>
                                 </h3>
                                 <a href="{{ $product->web_path }}">
                                     <p class="wine-intro">{{ $product->shortned_description }}</p>

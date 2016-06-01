@@ -26,6 +26,17 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $qb->getQuery()->getOneOrNullResult();
     }
 
+    public function getOneById($id)
+    {
+        $product = $this->find($id);
+
+        if (! $product) {
+            throw new EntityNotFoundException;
+        }
+
+        return $product;
+    }
+
     public function create(array $data)
     {
         $highlight = Product::make($data);
@@ -96,4 +107,5 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
         return $qb;
     }
+
 }

@@ -43,6 +43,7 @@
     <script src="{{ asset_web('app/js/app.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/services/auth.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/services/cart.js') }}" type="text/javascript"></script>
+    <script src="{{ asset_web('app/js/services/favorite.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/home/homeController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/auth/modalLoginController.js') }}" type="text/javascript"></script>
     <script src="{{ asset_web('app/js/controllers/auth/modalPasswordController.js') }}" type="text/javascript"></script>
@@ -58,7 +59,7 @@
     @if (Session::has('flash_notification.message'))
         <script>
 
-            (function(){
+            (function() {
 
                 var level = '{{ Session::get('flash_notification.level') }}';
                 var message = '{{ Session::get('flash_notification.message') }}';
