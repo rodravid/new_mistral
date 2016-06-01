@@ -5,6 +5,7 @@ namespace Vinci\App\Website\Http\Account\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\Order\Presenter\OrderPresenter;
+use Vinci\App\Website\Http\Presenters\DefaultPaginatorPresenter;
 use Vinci\Domain\Order\OrderRepository;
 
 class OrderController extends Controller
@@ -26,6 +27,8 @@ class OrderController extends Controller
         $orders = $this->orderRepository->getByCustomer($customer->getId());
 
         $orders = $this->presenter->paginator($orders, OrderPresenter::class);
+
+        $orders = $this->presenter->model($orders, DefaultPaginatorPresenter::class);
 
         return $this->view('account.orders.index', compact('orders'));
     }

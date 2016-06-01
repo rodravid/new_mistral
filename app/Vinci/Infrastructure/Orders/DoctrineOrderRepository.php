@@ -38,11 +38,12 @@ DQL;
         return $order;
     }
 
-    public function getByCustomer($customerId, $perPage = 10, $pageName = 'page')
+    public function getByCustomer($customerId, $perPage = 5, $pageName = 'page')
     {
         $qb = $this->getBaseQueryBuilder();
 
-        $qb->where($qb->expr()->eq('c.id', $customerId));
+        $qb->where($qb->expr()->eq('c.id', $customerId))
+            ->orderBy('o.createdAt', 'desc');
 
         return $this->paginate($qb->getQuery(), $perPage, $pageName);
     }

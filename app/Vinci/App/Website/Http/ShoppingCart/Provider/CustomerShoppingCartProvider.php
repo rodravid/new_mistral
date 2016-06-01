@@ -34,6 +34,9 @@ class CustomerShoppingCartProvider implements ShoppingCartProviderInterface
             $cart = $this->cartRepository->getLastByCustomer($customer);
 
             if ($cart) {
+
+                $this->setShoppingCart($cart);
+
                 return $cart;
             }
         }
