@@ -709,7 +709,7 @@
             <ul class="menu">
 
                 <li class="menu-item">
-                    <span class="name-log-mobile">Logado como Wellington</span>
+                    <span class="name-log-mobile">Logado como {{ $loggedUser->first_name }}</span>
                     <a class="menu-link" href="{{ route('logout') }}">
                         Sair
                     </a>
