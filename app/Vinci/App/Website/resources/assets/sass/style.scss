@@ -454,6 +454,11 @@ a.bt-default {
 	width:100%;
 	display:inline-block;
 	margin-top: 18px;
+	min-height: 150px;
+
+	@media #{$screen767} {
+		min-height:auto;
+	}
 }
 
 .thumb-wine {
@@ -1513,6 +1518,11 @@ ul.pagination{
 
 
 		/* PG LOGIN */
+
+		.pg-log {
+			max-width: 400px;
+			margin: 0 auto;
+		}
 
 		.center-content-bt {
 			max-width:245px;
