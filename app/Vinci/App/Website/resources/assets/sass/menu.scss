@@ -650,6 +650,9 @@
 
 		.menu {
 			width:830px;
+			@media #{$screen970}{ 
+				width:auto;
+			}
 		}
 
 		.menu{
