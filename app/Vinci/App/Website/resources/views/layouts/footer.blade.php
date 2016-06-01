@@ -28,29 +28,31 @@
 				<h4>Vinhos</h4>
 				<ul class="links-main-footer">
 
-					<li><a class="link-light" href="javascript:void(0);">Por País</a></li>
+					<li><a class="link-light" href="javascript:void(0);">País</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Ícones</a></li>
+					<li><a class="link-light" href="javascript:void(0);">Região</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Compras Inteligentes</a></li>
+					<li><a class="link-light" href="javascript:void(0);">Produtor</a></li>
 
 				</ul>
 
 				<ul class="links-main-footer">
 
-					<li><a class="link-light" href="javascript:void(0);">90 pontos ou  +</a></li>
+					<li><a class="link-light" href="javascript:void(0);">Tipo de vinho</a></li>
+
+					<li><a class="link-light" href="javascript:void(0);">Uva</a></li>
 
 					<li><a class="link-light" href="javascript:void(0);">Bons e baratos</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Presentes</a></li>
-
 				</ul>
 
 				<ul class="links-main-footer">
 
-					<li><a class="link-light" href="javascript:void(0);">Acessórios</a></li>
+					<li><a class="link-light" href="javascript:void(0);">Por preço</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Especiais</a></li>
+					<li><a class="link-light" href="javascript:void(0);">Meias garrafas</a></li>
+
+					<li><a class="link-light" href="javascript:void(0);">Vinhos pontuados</a></li>
 
 
 				</ul>
