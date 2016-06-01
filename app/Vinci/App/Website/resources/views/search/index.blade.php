@@ -452,8 +452,8 @@
                                 </h3>
                                 <a href="{{ $product->web_path }}">
                                     <p class="wine-intro">{{ $product->shortned_description }}</p>
-                                    <p class="info-details-wine">Tinto Pinot</p>
-                                    <p class="info-details-wine">Noir Chile</p>
+                                    {{--<p class="info-details-wine">Tinto Pinot</p>--}}
+                                    {{--<p class="info-details-wine">Noir Chile</p>--}}
                                 </a>
                             </div>
                             <div class="other-wine-info">
