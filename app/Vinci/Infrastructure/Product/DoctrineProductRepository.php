@@ -69,12 +69,14 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function getProductsForIndexing()
     {
+        $qb = $this->createQueryBuilder('p');
 
-        return $this->createQueryBuilder('p')->getQuery();
+        $qb->join('p.variants', 'v')
+            ->join('v.prices', 'vp')
+            ->where('v.stock > 0')
+            ->andWhere('vp.price > 0');
 
-//        $qb = $this->getBaseQueryBuilder();
-//
-//        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 
     public function getBaseQueryBuilder()

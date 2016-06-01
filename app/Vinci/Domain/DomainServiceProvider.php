@@ -17,12 +17,12 @@ use Vinci\Domain\Country\CountryService;
 use Vinci\Domain\Inventory\Checkers\AvailabilityChecker;
 use Vinci\Domain\Pricing\Calculator\PriceCalculatorProvider;
 use Vinci\Domain\Pricing\Calculator\StandardPriceCalculator;
+use Vinci\Domain\Product\Services\ProductUrlGenerator;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
 use Vinci\Domain\ProductType\ProductTypeService;
 use Vinci\Domain\Shipping\Services\ShippingCarrierLocator;
-use Vinci\Domain\ShoppingCart\Checkers\ProductVariantStockChecker;
 use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
 use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
 
@@ -151,6 +151,10 @@ class DomainServiceProvider extends ServiceProvider
 
         $this->app->singleton('Vinci\Domain\Product\Factories\Contracts\ProductFactory', function() {
             return $this->app->make('Vinci\Domain\Product\Factories\ProductFactory');
+        });
+
+        $this->app->singleton('product.url_generator', function() {
+            return new ProductUrlGenerator;
         });
 
         $this->app->singleton('Vinci\Domain\Channel\Contracts\ChannelContext', function() {

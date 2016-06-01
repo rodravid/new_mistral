@@ -115,11 +115,29 @@ class ShoppingCartService
 
             $quantity = $this->normalizeQuantity($quantity);
 
-            $productVariant = $this->getItem($item)->getProductVariant();
+            $item = $this->getItem($item);
 
-            $item = $this->itemResolver->resolve($this->cart, $productVariant, compact('quantity'));
+            $productVariant = $item->getProductVariant();
 
-            $item->syncQuantity($quantity);
+            $currentQuantity = $item->getQuantity();
+
+            if ($quantity > $currentQuantity) {
+
+                $quantity -= $currentQuantity;
+                $incrementing = true;
+
+            } elseif ($quantity < $currentQuantity) {
+                $incrementing = false;
+                $quantity = $currentQuantity - $quantity;
+            }
+
+            $item = $this->itemResolver->resolve($this->cart, $productVariant, ['quantity' => $quantity, 'checkStock' => $incrementing]);
+
+            if ($incrementing) {
+                $item->incrementQuantity($quantity);
+            } else {
+                $item->decrementQuantity($quantity);
+            }
 
             $this->save($this->cart);
 

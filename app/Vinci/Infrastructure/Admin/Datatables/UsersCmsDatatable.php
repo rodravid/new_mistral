@@ -32,7 +32,7 @@ class UsersCmsDatatable extends AbstractDatatables
     {
         $qb = $this->adminRepository->createQueryBuilder('o')
             ->select('o', 'r', 'p')
-            ->join('o.roles', 'r')
+            ->leftJoin('o.roles', 'r')
             ->leftJoin('o.profile_photo', 'p')
             ->setFirstResult($start)
             ->setMaxResults($perPage);

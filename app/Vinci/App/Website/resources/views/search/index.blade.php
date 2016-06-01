@@ -1,6 +1,5 @@
 @extends('website::layouts.master')
 
-
 @section('content')
     <div class="header-internal template1-bg">
         @include('website::layouts.menu')
@@ -437,13 +436,13 @@
 
                         <div class="wine-card">
                             <div class="thumb-wine">
-                                <a href="javascript:void(0);">
+                                <a href="{{ $product->web_path }}">
                                     <img class="wine-bottle" src="{{ asset_web('images/no_photo.png') }}" alt="Vinho">
                                 </a>
                             </div>
                             <div class="colum-description-wine">
                                 <h3 class="title-card-wine">
-                                    <a href="javascript:void(0);">
+                                    <a href="{{ $product->web_path }}">
                                         {{ $product->title }}
                                         @if($product->hasProducer())
                                             <span>{{ $product->producer->name }}</span>
@@ -451,7 +450,7 @@
                                     </a>
                                     <span class="favorite"></span>
                                 </h3>
-                                <a href="javascript:void(0);">
+                                <a href="{{ $product->web_path }}">
                                     <p class="wine-intro">{{ $product->shortned_description }}</p>
                                     <p class="info-details-wine">Tinto Pinot</p>
                                     <p class="info-details-wine">Noir Chile</p>

@@ -12,4 +12,9 @@ class ProductPresenter extends AbstractPresenter
         return $this->toRealCurrency($this->getSalePrice());
     }
 
+    public function presentWebPath()
+    {
+        return $this->getWebPath();
+    }
+
 }
