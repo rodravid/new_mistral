@@ -22,7 +22,19 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
 
     public function getLastByCustomer(CustomerInterface $customer)
     {
-        $result = $this->getAllByCustomer($customer);
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb
+            ->where($qb->expr()->eq('cs.id', $customer->getId()))
+            ->where($qb->expr()->in('c.status', [
+                ShoppingCartInterface::STATUS_ACTIVE,
+                ShoppingCartInterface::STATUS_EXPIRED_BY_SYSTEM
+            ]))
+            ->orderBy('c.createdAt', 'desc');
+
+        $query = $qb->getQuery();
+
+        $result = $query->getResult();
 
         return ! empty($result) ? $result[0] : null;
     }
@@ -33,10 +45,6 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
 
         $qb
             ->where($qb->expr()->eq('cs.id', $customer->getId()))
-            ->where($qb->expr()->in('c.status', [
-                ShoppingCartInterface::STATUS_ACTIVE,
-                ShoppingCartInterface::STATUS_EXPIRED_BY_SYSTEM
-            ]))
             ->orderBy('c.createdAt', 'desc');
 
         $query = $qb->getQuery();

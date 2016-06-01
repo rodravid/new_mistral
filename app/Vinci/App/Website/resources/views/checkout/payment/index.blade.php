@@ -124,7 +124,7 @@
                         <ul class="list-form-register">
                             <li>
                                 <div class="select-standard full form-control-white @if($errors->has('payment.installments')) error-field @endif">
-                                    {!! Form::select('payment[installments]', ['1' => '1x de R$154,56', '2' => '2x de R$ 77,28'], null) !!}
+                                    {!! Form::select('payment[installments]', $installmentOptions, null) !!}
                                 </div>
                             </li>
                             <li>

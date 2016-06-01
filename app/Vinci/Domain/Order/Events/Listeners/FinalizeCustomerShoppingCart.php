@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Order\Events\Listeners;
 
 use Vinci\Domain\Order\Events\NewOrderWasCreated;
+use Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
@@ -11,9 +12,12 @@ class FinalizeCustomerShoppingCart
 
     private $cartService;
 
-    public function __construct(ShoppingCartService $cartService)
+    private $cartContext;
+
+    public function __construct(ShoppingCartService $cartService, ShoppingCartContext $cartContext)
     {
         $this->cartService = $cartService;
+        $this->cartContext = $cartContext;
     }
 
     public function handle(NewOrderWasCreated $event)
@@ -27,6 +31,9 @@ class FinalizeCustomerShoppingCart
             $cart->setStatus(ShoppingCartInterface::STATUS_FINALIZED);
 
             $this->cartService->save($cart);
+
+            $this->cartContext->resetCurrentCartIdentifier();
+
         }
 
     }
