@@ -11,7 +11,7 @@
     @if($orders->count())
         <div class="wrap-pag-header">
             <div class="container-total-products">
-                <span class="total-products">1 - {{ $orders->perPage() }} de {{ $orders->total() }} pedidos</span>
+                <span class="total-products">{{ $orders->range_view }} pedidos</span>
             </div>
             <ul class="pagination">
                 {!! $orders->links() !!}
@@ -67,7 +67,7 @@
     @if($orders->count())
         <div class="wrap-pag-header">
             <div class="container-total-products show-desktop">
-                <span class="total-products ">1 - {{ $orders->perPage() }} de {{ $orders->total() }} pedidos</span>
+                <span class="total-products ">{{ $orders->range_view }} pedidos</span>
             </div>
 
             <ul class="pagination">

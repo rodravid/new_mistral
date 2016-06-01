@@ -9,6 +9,6 @@ interface OrderRepository extends RepositoryInterface
 
     public function getOneById($id);
 
-    public function getByCustomer($customerId);
+    public function getByCustomer($customerId, $perPage = 5, $pageName = 'page');
 
 }
