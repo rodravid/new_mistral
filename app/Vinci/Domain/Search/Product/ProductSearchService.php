@@ -40,7 +40,7 @@ class ProductSearchService extends SearchService
                 'query' => [
                     'multi_match' => [
                         'query' => $keyword,
-                        'fields' => ['title', 'description', 'country.title', 'region.title', 'producer.title']
+                        'fields' => ['title', 'country.title', 'region.title', 'producer.title', 'product_type.title', 'safra', 'bottle_size']
                     ]
                 ]
             ],

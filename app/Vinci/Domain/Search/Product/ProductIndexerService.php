@@ -84,6 +84,25 @@ class ProductIndexerService
                     ];
                 }
 
+                if ($product->hasProductType()) {
+                    $productType = $product->getProductType();
+
+                    $data['product_type'] = [
+                        'id' => $productType->getId(),
+                        'title' => $productType->getName()
+                    ];
+                }
+
+                if ($product->hasAttributes()) {
+                    $attributes = $product->getAttributes();
+
+                    foreach ($attributes as $attribute) {
+                        if (! empty($attribute->getValue())) {
+                            $data[$attribute->getAttribute()->getCode()] = $attribute->getValue();
+                        }
+                    }
+                }
+
             }
 
             $params['body'][] = $data;
