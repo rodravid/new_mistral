@@ -27,34 +27,40 @@
 
 @section('scripts')
 
-    <script src="{{ asset_web('js/angular/angular.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/angular/angular-locale_pt-br.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/angular/angular-counter.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/sweetalert/sweetalert.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/readmore.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/common/js/address-autocomplete.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
+    @if(app()->environment('local'))
 
-    <script src="{{ asset_web('app/js/app.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/services/auth.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/services/cart.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/services/favorite.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/home/homeController.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/auth/modalLoginController.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/auth/modalPasswordController.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/product/productPageController.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/register/registerController.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/address/addressModalController.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/directives/cart/cartItem.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/directives/cart/cartAddButton.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/directives/product/favoriteWidget.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/cart/cartController.js') }}" type="text/javascript"></script>
-    <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/angular/angular.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/angular/angular-locale_pt-br.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/angular/angular-counter.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/sweetalert/sweetalert.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/readmore.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/common/js/address-autocomplete.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
+
+        <script src="{{ asset_web('app/js/app.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/services/auth.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/services/cart.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/services/favorite.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/home/homeController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/auth/modalLoginController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/auth/modalPasswordController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/product/productPageController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/register/registerController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/address/addressModalController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/directives/cart/cartItem.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/directives/cart/cartAddButton.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/directives/product/favoriteWidget.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/cart/cartController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
+
+    @else
+        <script src="{{ asset_web('js/all.js') }}" type="text/javascript"></script>
+    @endif
 
     @if (Session::has('flash_notification.message'))
         <script>
