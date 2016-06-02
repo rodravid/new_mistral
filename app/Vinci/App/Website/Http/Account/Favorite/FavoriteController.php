@@ -4,73 +4,35 @@ namespace Vinci\App\Website\Http\Account\Favorite;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Vinci\App\Website\Http\Controller;
-use Vinci\Domain\Customer\CustomerService;
-use Vinci\Domain\Order\OrderRepository;
+use Vinci\App\Website\Http\Presenters\DefaultPaginatorPresenter;
+use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
+use Vinci\Domain\Product\Services\FavoriteService;
 
 class FavoriteController extends Controller
 {
     protected $customerService;
 
-    public function __construct(EntityManagerInterface $em, CustomerService $customerService)
+    protected $favoriteService;
+
+    public function __construct(EntityManagerInterface $em, FavoriteService $favoriteService)
     {
         parent::__construct($em);
 
-        $this->customerService = $customerService;
+        $this->favoriteService = $favoriteService;
     }
 
-    public function index(OrderRepository $orderRepository)
+    public function index(Request $request)
     {
-//        $customer = $this->auth->user();
-//
-//        //$orders = $customer->getOrders();
-//
-//        $orders = $orderRepository->getByCustomer($customer->getId());
+        $keyword = $request->get('termo');
 
-        return $this->view('account.favorite.index');
-    }
+        $favorites = $this->favoriteService->getCustomerFavoriteProducts($this->user, 12, $keyword);
 
-    public function create()
-    {
-        return $this->view('account.create');
-    }
+        $favorites = $this->presenter->paginator($favorites, ProductPresenter::class);
 
-    public function edit()
-    {
-        $user = $this->auth->user();
+        $favorites = $this->presenter->model($favorites, DefaultPaginatorPresenter::class);
 
-        return $this->view('account.create', compact('user'));
-    }
-
-    public function store(Request $request)
-    {
-        try {
-
-            $customer = $this->customerService->create($request->all());
-
-            $this->auth->login($customer);
-
-            return redirect()->route('account.index');
-
-        } catch (ValidationException $e) {
-
-            $this->throwValidationException($request, $e->validator);
-        }
-    }
-
-    public function update(Request $request, $customerId)
-    {
-        try {
-
-            $this->customerService->update($request->all(), $customerId);
-
-            return redirect()->route('account.index');
-
-        } catch (ValidationException $e) {
-
-            $this->throwValidationException($request, $e->validator);
-        }
+        return $this->view('account.favorite.index', compact('favorites', 'keyword'));
     }
 
 }

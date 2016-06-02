@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Core\Providers;
 
+use Blade;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Vinci\App\Core\Services\Presenter\Presenter;
@@ -12,6 +13,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerRamseyUuid();
+
+        Blade::directive('isProductFavorited', function($expression) {
+            return sprintf('<?php echo app("product.favorite.service")->productIsFavoritedByCustomer(with%s, auth("website")->getUser()); ?>', $expression);
+        });
+
     }
 
     /**

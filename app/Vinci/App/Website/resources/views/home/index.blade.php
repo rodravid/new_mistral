@@ -71,7 +71,7 @@
                     <h2 class="title-category">Compras Inteligentes</h2>
 
                     <div class="wine-card">
-                        <favorite-widget product="2"></favorite-widget>
+                        <favorite-widget product="2" favorited="@isProductFavorited(2)"></favorite-widget>
 
                         <h3 class="title-card-wine">
                             <a href="javascript:void(0);">
@@ -108,7 +108,7 @@
 
                         </div>
 
-                        <a href="javascript:void(0);" class="bt-default" cart-add-button variant-id="2" quantity="1">Comprar
+                        <a href="javascript:void(0);" class="bt-default" cart-add-button variant-id="16" quantity="1">Comprar
                             <span class="arrow-link">></span></a>
                     </div>
 

@@ -1,7 +1,7 @@
 @extends('website::layouts.master')
 
 @section('content')
-    <div class="page-wrapper" ng-controller="ProductPageController as ctrl">
+    <div class="page-product-wrapper" ng-controller="ProductPageController as ctrl">
         <div class="header-internal template1-bg">
             @include('website::layouts.menu')
             <div class="row">
@@ -44,7 +44,7 @@
 
                 <div class="col-product-one">
                     <div class="height-bg-product">
-                        <favorite-widget product="{{ $product->id }}"></favorite-widget>
+                        <favorite-widget product="{{ $product->id }}" favorited="@isProductFavorited($product->id)"></favorite-widget>
 
                         <h1 class="tit-product show-desktop">{{ $product->title }}</h1>
                         @if($product->hasProducer())
@@ -208,8 +208,7 @@
 
                         <a class="bt-default-full-template bt-big template-button" cart-add-button
                            variant-id="{{ $product->getMasterVariant()->getId() }}"
-                           quantity-resolver="ctrl.getQuantityForCart()" href="#">Comprar <span
-                                    class="arrow-link">></span></a>
+                           quantity-resolver="ctrl.getQuantityForCart()" href="#">Comprar <span class="arrow-link">></span></a>
 
                         {{--<div class="content-term-delivery show-desktop">--}}
                             {{--<a href="javascript:void(0);">--}}
@@ -224,8 +223,7 @@
                             <li>
                                 <ul>
                                     <li><p class="item-info-wine">Produtor</p></li>
-                                    <li><a href="{{ $product->producer->getWebUrl() }}"><p
-                                                    class="info-vinho-template">{{ $product->producer->name }}</p></a>
+                                    <li><a href="{{ $product->producer->getWebUrl() }}"><p class="info-vinho-template">{{ $product->producer->name }}</p></a>
                                     </li>
                                 </ul>
                             </li>

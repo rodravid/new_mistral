@@ -19,6 +19,8 @@ class FavoriteService
 
     private $eventDispatcher;
 
+    private $favoritedProductsIds = [];
+
     public function __construct(
         ProductRepository $productRepository,
         CustomerRepository $customerRepository,
@@ -56,6 +58,31 @@ class FavoriteService
         $this->eventDispatcher->fire(new ProductRemovedFromFavoritesEvent($product, $customer));
 
         return $this->customerRepository->save($customer);
+    }
+
+    public function getCustomerFavoriteProducts(CustomerInterface $customer, $perPage = 12, $keyword = null, $pageName = 'page')
+    {
+        return $this->productRepository->getFavoriteProductsByCustomer($customer, $perPage, $keyword, $pageName);
+    }
+
+    protected function getCustomerFavoriteProductsIds(CustomerInterface $customer)
+    {
+        if (empty($this->favoritedProductsIds)) {
+            $this->favoritedProductsIds = $this->productRepository->getFavoritesProductsIdsByCustomer($customer);
+        }
+
+        return $this->favoritedProductsIds;
+    }
+
+    public function productIsFavoritedByCustomer($product, $customer = null)
+    {
+        if (empty($customer)) {
+            return false;
+        }
+
+        $productsIds = $this->getCustomerFavoriteProductsIds($customer);
+
+        return isset($productsIds[$product]);
     }
 
 }

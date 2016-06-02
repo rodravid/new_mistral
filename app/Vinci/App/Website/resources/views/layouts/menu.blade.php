@@ -4,9 +4,12 @@
         <label for="control-nav" class="control-nav"></label>
         <label for="control-nav" class="control-nav-close"></label>
 
-        <h1 class="logo">
+
+        <?php $logoTagClass = Route::currentRouteName() == 'index' ? 'h1' : 'span'; ?>
+
+        <{{ $logoTagClass }} class="logo">
             <a class="logo-vinci sprite-icon" href="/" title="Vinci - Loucos por vinho">Vinci - Loucos por vinho</a>
-        </h1>
+        </{{ $logoTagClass }}>
 
         <div class="search">
             {!! Form::open(['route' => 'search.index', 'method' => 'GET']) !!}
@@ -90,10 +93,10 @@
                     <div class="ng-hide" ng-show="ctrl.hasItems()">
                         <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no carrinho de compras</p>
                         <ul class="lista-add" id="cartItems">
-                            <li ng-repeat="item in cart.items">
+                            <li ng-repeat="item in cart.items | limitTo:3 ">
                                 <a href="/produto/vallontano-espumante-brut-vallontano">
                                     <div class="product-add">
-                                        <img src="{{ asset_web('images/no_photo.png') }}"
+                                        <img src="@{{ item.image_url }}"
                                              width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
                                         <p class="product-name-cart">@{{ item.name }} <span ng-show="item.producer">(@{{ item.producer }})</span></p>
                                     </div>
