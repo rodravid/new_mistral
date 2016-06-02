@@ -2,6 +2,8 @@
 
 namespace Vinci\Infrastructure\Product;
 
+use Doctrine\ORM\Query\Expr\Join;
+use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Search\Product\ProductRepositoryInterface as ProductRepositoryIndexer;
@@ -106,6 +108,40 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         ;
 
         return $qb;
+    }
+
+    public function getFavoriteProductsByCustomer(CustomerInterface $customer, $perPage = 12, $keyword = null, $pageName = 'page')
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb->join('p.customers', 'cs')
+            ->where($qb->expr()->eq('cs.id', $customer->getId()));
+
+        if (! empty($keyword)) {
+            $qb->andWhere($qb->expr()->orX(
+                $qb->expr()->like('v.title', ':search')
+            ));
+
+            $qb->setParameter('search', '%' . $keyword . '%');
+        }
+
+        return $this->paginate($qb->getQuery(), $perPage, $pageName);
+    }
+
+    public function getFavoritesProductsIdsByCustomer(CustomerInterface $customer)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->select('p.id')
+            ->join('p.customers', 'cs')
+            ->where($qb->expr()->eq('cs.id', $customer->getId()));
+
+        $result = $qb->getQuery()->getArrayResult();
+
+        $ids = array_column($result, 'id');
+
+        return array_combine($ids, $ids);
     }
 
 }

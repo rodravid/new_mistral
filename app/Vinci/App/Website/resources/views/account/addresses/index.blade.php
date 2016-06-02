@@ -17,7 +17,7 @@
 
     <section class="adress-delivery adress-user">
 
-        @foreach($addresses as $address)
+        @forelse($addresses as $address)
 
             <div class="adress template4">
                 <div class="content-adress mbottom20">
@@ -27,7 +27,10 @@
                 <a class="bt-default-full template11 mtop20 call-adress" data-address-id="{{ $address->getId() }}" href="">Atualizar endereço <span class="arrow-link">&gt;</span></a>
             </div>
 
-        @endforeach
+        @empty
+
+            <h2>Nenhum endereço cadastrado.</h2>
+        @endforelse
 
     </section>
 

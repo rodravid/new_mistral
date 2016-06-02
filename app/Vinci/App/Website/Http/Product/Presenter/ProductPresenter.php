@@ -7,6 +7,15 @@ use Vinci\Domain\Product\Presenter\ProductPresenter as BaseProductPresenter;
 class ProductPresenter extends BaseProductPresenter
 {
 
+    public function presentImageUrl()
+    {
+        if ($this->hasImage('desktop')) {
+            return $this->getImage('desktop')->getWebPath();
+        }
+
+        return asset_web('images/no_photo.png');
+    }
+
     public function presentShortnedDescription()
     {
         return substr($this->getDescription(), 0, 80);

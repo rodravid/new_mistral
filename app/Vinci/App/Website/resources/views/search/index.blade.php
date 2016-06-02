@@ -437,7 +437,7 @@
                         <div class="wine-card">
                             <div class="thumb-wine">
                                 <a href="{{ $product->web_path }}">
-                                    <img class="wine-bottle" src="{{ asset_web('images/no_photo.png') }}" alt="Vinho">
+                                    <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
                                 </a>
                             </div>
                             <div class="colum-description-wine">
@@ -448,7 +448,7 @@
                                             <span>{{ $product->producer->name }}</span>
                                         @endif
                                     </a>
-                                    <favorite-widget product="{{ $product->id }}"></favorite-widget>
+                                    <favorite-widget product="{{ $product->id }}" favorited="@isProductFavorited($product->id)"></favorite-widget>
                                 </h3>
                                 <a href="{{ $product->web_path }}">
                                     <p class="wine-intro">{{ $product->shortned_description }}</p>

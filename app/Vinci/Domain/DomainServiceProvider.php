@@ -220,5 +220,7 @@ class DomainServiceProvider extends ServiceProvider
             return new PriceCalculatorProvider($this->app['Vinci\Domain\Pricing\PriceCalculator']);
         });
 
+        $this->app->alias('Vinci\Domain\Product\Services\FavoriteService', 'product.favorite.service');
+
     }
 }

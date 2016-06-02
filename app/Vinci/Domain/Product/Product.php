@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Channel\Contracts\Channel as ChannelInterface;
 use Vinci\Domain\Common\Status;
@@ -32,10 +34,12 @@ use Vinci\Domain\Region\Region;
  * @ORM\EntityListeners({"Vinci\Domain\Product\Events\Listeners\ProductListener"})
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-class Product extends Model implements ProductInterface
+class Product extends Model implements ProductInterface, Presentable
 {
 
-    use Timestamps, SoftDeletes, Schedulable;
+    use Timestamps, SoftDeletes, Schedulable, PresentableTrait;
+
+    protected $presenter = 'Vinci\App\Website\Http\Product\Presenter\ProductPresenter';
 
     /**
      * @ORM\Id
@@ -103,6 +107,11 @@ class Product extends Model implements ProductInterface
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Producer\Producer", inversedBy="products")
      */
     protected $producer;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Customer\Customer", mappedBy="favoriteProducts")
+     */
+    protected $customers;
 
     protected $currentChannel;
 

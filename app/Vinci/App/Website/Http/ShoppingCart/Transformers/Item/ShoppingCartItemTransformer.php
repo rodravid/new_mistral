@@ -15,7 +15,8 @@ class ShoppingCartItemTransformer extends TransformerAbstract
             'name' => $item->getTitle(),
             'sale_price' => $item->getSalePrice(),
             'quantity' => $item->getQuantity(),
-            'subtotal' => $item->getSubTotal()
+            'subtotal' => $item->getSubTotal(),
+            'image_url' => $item->getProduct()->present()->image_url
         ];
 
         if ($item->hasProducer()) {

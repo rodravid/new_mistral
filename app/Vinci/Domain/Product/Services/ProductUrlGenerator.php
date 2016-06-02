@@ -12,7 +12,7 @@ class ProductUrlGenerator
         switch($product->getType()) {
 
             case $product::TYPE_WINE:
-                return sprintf('p/vinho/%s', $product->getSlug());
+                return sprintf('/p/vinho/%s', $product->getSlug());
                 break;
         }
 

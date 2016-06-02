@@ -12,11 +12,15 @@ angular.module('app')
 
             scope: {
                 product: '@',
-                favorited: '@?',
+                favorited: '=?',
                 favoritedClass: '@?'
             },
 
             link: function($scope) {
+
+                if (typeof $scope.favorited === 'undefined') {
+                    $scope.favorited = false;
+                }
 
                 $scope.favorite = function() {
 

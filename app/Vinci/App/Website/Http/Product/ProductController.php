@@ -58,7 +58,7 @@ class ProductController extends Controller
         } catch (Exception $e) {
 
             return Response::json([
-                'message' => 'Não foi possível adicioanr o produto a sua lista de favoritos. Tente novamente mais tarde.'
+                'message' => 'Não foi possível adicionar o produto à sua lista de favoritos. Tente novamente mais tarde.'
             ], 500);
         }
 
