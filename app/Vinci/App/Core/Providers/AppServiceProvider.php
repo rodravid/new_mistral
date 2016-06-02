@@ -4,6 +4,7 @@ namespace Vinci\App\Core\Providers;
 
 use Blade;
 use Carbon\Carbon;
+use Doctrine\DBAL\Types\Type as DBALType;
 use Illuminate\Support\ServiceProvider;
 use Vinci\App\Core\Services\Presenter\Presenter;
 
@@ -43,7 +44,9 @@ class AppServiceProvider extends ServiceProvider
 
     private function registerRamseyUuid()
     {
-        \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+        if (! DBALType::hasType('uuid')) {
+            DBALType::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+        }
     }
 
 }
