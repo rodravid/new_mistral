@@ -231,6 +231,11 @@ class Product extends Model implements ProductInterface, Presentable
         }
     }
 
+    public function hasAttributeByName($name)
+    {
+        return (bool) $this->getAttribute($name);
+    }
+
     public function getMasterVariant()
     {
         foreach ($this->variants as $variant) {
