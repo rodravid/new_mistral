@@ -35,6 +35,14 @@ class SearchController extends Controller
         return $this->view('search.index', compact('result'));
     }
 
+    protected function getFilters($request)
+    {
+
+
+
+
+    }
+
     private function getAppends($request)
     {
         return [

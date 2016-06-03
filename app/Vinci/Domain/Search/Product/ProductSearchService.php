@@ -40,6 +40,8 @@ class ProductSearchService extends SearchService
 
         $result = $this->client->search($params);
 
+        //dd($result);
+
         $result['keyword'] = $keyword;
         $result['limit'] = $limit;
         $result['start'] = $start;
@@ -84,6 +86,45 @@ class ProductSearchService extends SearchService
             'from' => $start,
             'size' => $limit,
             'body' => [
+//                'filter' => [
+//                    'bool' => [
+//                        'should' => [
+//                            'term' => [
+//                                'country.title' => 'California'
+//                            ]
+//                        ]
+//                    ]
+//                ],
+//                'query' => [
+//                    'bool' => [
+//                        'should' => [
+//                            ['term' => ['title' => $keyword]],
+//                            ['term' => ['country.title' => $keyword]],
+//                            ['term' => ['region.title' => $keyword]],
+//                            ['term' => ['region.title' => $keyword]]
+//                        ],
+//                        'filter' => [
+//                            'term' => [
+//                                'country.title' => 'Portugal'
+//                            ]
+//                        ]
+//                    ],
+//                ],
+//                  'filter' => [
+//                      'bool' => [
+//                          'must' => [
+//                              'multi_match' => [
+//                                  'query' => $keyword,
+//                                  'fields' => ['title', 'country.title', 'region.title', 'producer.title', 'product_type.title', 'safra', 'bottle_size']
+//                              ]
+//                          ],
+//                          'filter' => [
+//                              'term' => [
+//                                  'country.title' => 'California'
+//                              ]
+//                          ]
+//                      ]
+//                  ],
                 'query' => [
                     'multi_match' => [
                         'query' => $keyword,
