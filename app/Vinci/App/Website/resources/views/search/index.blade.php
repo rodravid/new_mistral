@@ -42,323 +42,36 @@
 
                     </ul>
 
-                    <h3 class="title-filter">País</h3>
-                    <ul class="filter-search">
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
+                    @foreach($result->getVisibleFilters() as $filter)
 
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <h3 class="title-filter">{{ $filter->title }}</h3>
 
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
+                        <ul class="filter-search">
+                            @foreach($filter->getValues() as $value)
+                                <li class="filter-search-item">
+                                    <ul class="subitem-filter-search">
+                                        <li>
+                                            <a href="javascript:void(0);">{{ $value->title }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">{{ $value->count }}</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
+                            @endforeach
 
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
+                            <span class="see-more-filter">+ veja mais</span>
+                        </ul>
 
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França le baois frete da paroo gui</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">213</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <span class="see-more-filter">+ veja mais</span>
-                    </ul>
-
-                    <h3 class="title-filter">País</h3>
-                    <ul class="filter-search">
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França le baois frete da paroo gui</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">213</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <span class="see-more-filter">+ veja mais</span>
-                    </ul>
-
-                    <h3 class="title-filter">País</h3>
-                    <ul class="filter-search">
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França le baois frete da paroo gui</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">213</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">França</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">23</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <span class="see-more-filter">+ veja mais</span>
-                    </ul>
+                    @endforeach
 
                 </div>
 
                 <div class="column-products-search-inline template1">
 
-
                     <header class="header-content-internal">
 
-                        <span class="total-products show-mobile">1- 15 de {{ $result->getTotal() }} produtos</span>
+                        <span class="total-products show-mobile">{{ $result->items->range_view }} produtos</span>
 
 
                         <div class="display-filter float-right">
@@ -402,100 +115,28 @@
                         </ul>
 
                         <div class="wrap-pagination">
-
                             <div class="container-total-products">
-                                <span class="total-products show-desktop">1 - 15 de {{ $result->getTotal() }} produtos</span>
+                                <span class="total-products show-desktop">{{ $result->items->range_view }} produtos</span>
                             </div>
 
                             <ul class="pagination">
-                                <li>
-                                    <a href="javascript:void(0);" class="selected">1</a>
-                                </li>
-                                <li>
-                                    <a href="">2</a>
-                                </li>
-                                <li>
-                                    <a href="">3</a>
-                                </li>
-                                <li>
-                                    <a href="">4</a>
-                                </li>
-                                <li>
-                                    <a href="">5</a>
-                                </li>
-                                <li>
-                                    <a href="">></a>
-                                </li>
+                                {{ $result->items->links() }}
                             </ul>
-
                         </div>
 
                     </header>
 
-                    @foreach($result->getItems() as $product)
-
-                        <div class="wine-card">
-                            <div class="thumb-wine">
-                                <a href="{{ $product->web_path }}">
-                                    <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
-                                </a>
-                            </div>
-                            <div class="colum-description-wine">
-                                <h3 class="title-card-wine">
-                                    <a href="{{ $product->web_path }}">
-                                        {{ $product->title }}
-                                        @if($product->hasProducer())
-                                            <span>{{ $product->producer->name }}</span>
-                                        @endif
-                                    </a>
-                                    <favorite-widget product="{{ $product->id }}" favorited="@isProductFavorited($product->id)"></favorite-widget>
-                                </h3>
-                                <a href="{{ $product->web_path }}">
-                                    <p class="wine-intro">{{ $product->shortned_description }}</p>
-                                    {{--<p class="info-details-wine">Tinto Pinot</p>--}}
-                                    {{--<p class="info-details-wine">Noir Chile</p>--}}
-                                </a>
-                            </div>
-                            <div class="other-wine-info">
-                                {!! $product->original_sale_price_html !!}
-                                <p class="wine-price">{{ $product->sale_price }}</p>
-
-                                <a href="javascript:void(0);" class="bt-default" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1">Comprar <span class="arrow-link">></span></a>
-                            </div>
-                        </div>
-
-                    @endforeach
+                    @each('website::layouts.partials.product.cards.search', $result->getItems(), 'product')
 
                     <div class="wrap-pagination">
-
                         <div class="container-total-products">
-                            <span class="total-products show-desktop">1 - 15 de {{ $result->getTotal() }} produtos</span>
+                            <span class="total-products show-desktop">{{ $result->items->range_view }} produtos</span>
                         </div>
-
                         <ul class="pagination">
-                            <li>
-                                <a href="javascript:void(0);" class="selected">1</a>
-                            </li>
-                            <li>
-                                <a href="">2</a>
-                            </li>
-                            <li>
-                                <a href="">3</a>
-                            </li>
-                            <li>
-                                <a href="">4</a>
-                            </li>
-                            <li>
-                                <a href="">5</a>
-                            </li>
-                            <li>
-                                <a href="">></a>
-                            </li>
+                            {{ $result->items->links() }}
                         </ul>
-
                     </div>
                 </div>
-
 
             </article>
             @include('website::layouts.partials.featuredweek')

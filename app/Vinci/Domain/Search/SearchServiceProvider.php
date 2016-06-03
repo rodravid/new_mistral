@@ -16,6 +16,7 @@ class SearchServiceProvider extends ServiceProvider
             return new ProductSearchService(
                 $this->app->make('Elasticsearch\ClientBuilder'),
                 $this->app['config'],
+                $this->app->make('Vinci\Domain\Search\Filter\FilterFactory'),
                 $this->app['product.repository'],
                 $this->app->make('Vinci\App\Core\Services\Presenter\Presenter')
             );

@@ -24,11 +24,90 @@ class ProductIndexerService
 
     }
 
+    public function deleteIndex($name)
+    {
+        $this->client->indices()->delete(['index' => $name]);
+    }
+
+    public function indexExists($name)
+    {
+        return $this->client->indices()->exists(['index' => $name]);
+    }
+
+    public function createIndex()
+    {
+        $params = [
+            'index' => 'vinci',
+            'body' => [
+                'mappings' => [
+                    'product' => [
+                        'properties' => [
+                            'id' => [
+                                'type' => 'integer'
+                            ],
+                            'sku' => [
+                                'type' => 'integer'
+                            ],
+                            'title' => [
+                                'type' => 'string'
+                            ],
+                            'description' => [
+                                'type' => 'string'
+                            ],
+                            'price' => [
+                                'type' => 'double'
+                            ],
+                            'bottle_size' => [
+                                'type' => 'string'
+                            ],
+                            'country' => [
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer'
+                                    ],
+                                    'title' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ]
+                                ],
+                            ],
+                            'region' => [
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer'
+                                    ],
+                                    'title' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ]
+                                ],
+                            ],
+                            'producer' => [
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer'
+                                    ],
+                                    'title' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ]
+                                ],
+                            ],
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->client->indices()->create($params);
+    }
+
     public function indexAllProducts()
     {
 
-        if ($this->client->indices()->exists(['index' => 'vinci'])) {
-            $this->client->indices()->delete(['index' => 'vinci']);
+        if ($this->indexExists('vinci')) {
+            $this->deleteIndex('vinci');
+            $this->createIndex();
         }
 
         $query = $this->productRepository->getProductsForIndexing();
@@ -42,7 +121,7 @@ class ProductIndexerService
             $params['body'][] = [
                 'index' => [
                     '_index' => 'vinci',
-                    '_type' => 'products',
+                    '_type' => 'product',
                     '_id' => $product->getId()
                 ]
             ];
@@ -93,7 +172,11 @@ class ProductIndexerService
                     ];
                 }
 
-                if ($product->hasAttributes()) {
+                if ($product->hasAttributeByName('bottle_size')) {
+                    $data['bottle_size'] = $product->getAttribute('bottle_size');
+                }
+
+                /*if ($product->hasAttributes()) {
                     $attributes = $product->getAttributes();
 
                     foreach ($attributes as $attribute) {
@@ -101,7 +184,7 @@ class ProductIndexerService
                             $data[$attribute->getAttribute()->getCode()] = $attribute->getValue();
                         }
                     }
-                }
+                }*/
 
             }
 

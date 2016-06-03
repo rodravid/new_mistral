@@ -29,7 +29,18 @@ class SearchController extends Controller
 
         $result = $this->searchService->search($keyword);
 
+        $result->getItems()->setPath('busca');
+        $result->getItems()->appends($this->getAppends($request));
+
         return $this->view('search.index', compact('result'));
+    }
+
+    private function getAppends($request)
+    {
+        return [
+            'termo' => $request->get('termo')
+        ];
+
     }
 
 }
