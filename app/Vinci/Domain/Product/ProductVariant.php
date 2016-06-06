@@ -8,12 +8,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Channel\Channel;
+use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Image\Image;
+use Vinci\Domain\Inventory\Events\StockWasIncreased;
+use Vinci\Domain\Inventory\Events\StockWasReduced;
 
 /**
  * @ORM\Entity
@@ -22,7 +25,7 @@ use Vinci\Domain\Image\Image;
 class ProductVariant extends Model implements ProductVariantInterface
 {
 
-    use Timestampable, SoftDeletes, SEOable, Schedulable;
+    use Timestampable, SoftDeletes, SEOable, Schedulable, HasEvents;
 
     /**
      * @ORM\Id
@@ -160,6 +163,24 @@ class ProductVariant extends Model implements ProductVariantInterface
     {
         $this->stock = (int) $stock;
         return $this;
+    }
+
+    public function increaseStock($quantity = 1)
+    {
+        $newStock = $this->getStock() + intval($quantity);
+
+        $this->setStock($newStock);
+        
+        $this->raise(new StockWasIncreased($this, $newStock));
+    }
+
+    public function reduceStock($quantity = 1)
+    {
+        $newStock = $this->getStock() + intval($quantity);
+
+        $this->setStock($newStock);
+
+        $this->raise(new StockWasReduced($this, $newStock));
     }
 
     public function getSlug()
