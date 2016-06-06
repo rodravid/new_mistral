@@ -124,14 +124,14 @@
                     <div class="drop-menu">
                         <div class="division">
                             <ul class="list-sub-menu">
-                                <li><a href="javascript:void(0);">África do Sul</a></li>
-                                <li><a href="javascript:void(0);">Alemanha</a></li>
-                                <li><a href="javascript:void(0);">Argentina</a></li>
-                                <li><a href="javascript:void(0);">Austrália</a></li>
-                                <li><a href="javascript:void(0);">Brasil</a></li>
-                                <li><a href="javascript:void(0);">Chile</a></li>
-                                <li><a href="javascript:void(0);">Espanha</a></li>
-                                <li><a href="javascript:void(0);">Estados Unidos</a></li>
+                                <li><a href="/c/pais/africa-do-sul">África do Sul</a></li>
+                                <li><a href="/c/pais/alemanha">Alemanha</a></li>
+                                <li><a href="/c/pais/argentina">Argentina</a></li>
+                                <li><a href="/c/pais/australia">Austrália</a></li>
+                                <li><a href="/c/pais/brasil">Brasil</a></li>
+                                <li><a href="/c/pais/chile">Chile</a></li>
+                                <li><a href="/c/pais/espanha">Espanha</a></li>
+                                <li><a href="/c/pais/estados-unidos">Estados Unidos</a></li>
                             </ul>
                         </div>
                         <div class="division">

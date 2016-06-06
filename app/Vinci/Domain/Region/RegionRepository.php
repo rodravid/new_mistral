@@ -7,6 +7,8 @@ interface RegionRepository
 
     public function find($id);
 
+    public function getOneBySlug($slug);
+
     public function getAll();
 
     public function create(array $data);

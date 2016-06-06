@@ -1,6 +1,6 @@
 @extends('website::layouts.master')
 
-@section('title', 'Vinci - ' . $country->seo()->title())
+@section('title', 'Vinci - ' . $region->seo()->title())
 
 @section('content')
 <div class="header-internal template1-bg bg-color-category" style="background: url({{ asset_web('images/bg-pais.jpg') }}) no-repeat top right;">
@@ -11,17 +11,17 @@
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
 			</li>
             <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/c/paises"><span>Vinho por país</span></a> >
+                <a class="breadcrumb-link" href="/c/regioes"><span>Vinho por região</span></a> >
             </li>
 			<li class="breadcrumb-item">
-				<span>{{ $country->name }}</span>
+				<span>{{ $region->name }}</span>
 			</li>
 		</ul>
 
-		<h1 class="internal-subtitle-category">{{ $country->name }}</h1>
+		<h1 class="internal-subtitle-category">{{ $region->name }}</h1>
 		<div class="container-leia-mais">
 			<p class="category-description">
-                {{ $country->description }}
+                {{ $region->description }}
 			</p>
 		</div>
 	</div>

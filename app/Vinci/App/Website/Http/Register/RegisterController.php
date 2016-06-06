@@ -60,8 +60,6 @@ class RegisterController extends Controller
 
         } catch (Exception $e) {
 
-            throw $e;
-
             Log::error(sprintf('Register error: %s', $e->getMessage()));
 
             Flash::error(trans('register.failed'));
