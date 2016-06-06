@@ -128,6 +128,7 @@
                                 <li><a href="/c/pais/alemanha">Alemanha</a></li>
                                 <li><a href="/c/pais/argentina">Argentina</a></li>
                                 <li><a href="/c/pais/australia">Austrália</a></li>
+                                <li><a href="/c/pais/austria">Áustria</a></li>
                                 <li><a href="/c/pais/brasil">Brasil</a></li>
                                 <li><a href="/c/pais/chile">Chile</a></li>
                                 <li><a href="/c/pais/espanha">Espanha</a></li>
@@ -136,12 +137,15 @@
                         </div>
                         <div class="division">
                             <ul class="list-sub-menu">
-                                <li><a href="javascript:void(0);">África do Sul</a></li>
-                                <li><a href="javascript:void(0);">Alemanha</a></li>
-                                <li><a href="javascript:void(0);">Argentina</a></li>
-                                <li><a href="javascript:void(0);">Austrália</a></li>
-                                <li><a href="javascript:void(0);">Brasil</a></li>
-                                <li><a href="javascript:void(0);">Chile</a></li>
+                                <li><a href="/c/pais/franca">França</a></li>
+                                <li><a href="/c/pais/grecia">Grécia</a></li>
+                                <li><a href="/c/pais/holanda">Holanda</a></li>
+                                <li><a href="/c/pais/hungria">Hungria</a></li>
+                                <li><a href="/c/pais/italia">Itália</a></li>
+                                <li><a href="/c/pais/libano">Líbano</a></li>
+                                <li><a href="/c/pais/nova-zelandia">Nova Zelândia</a></li>
+                                <li><a href="/c/pais/portugal">Portugal</a></li>
+                                <li><a href="/c/pais/uruguai">Uruguai</a></li>
                             </ul>
                         </div>
                         <div class="division">
@@ -159,7 +163,7 @@
                                     </a>
                                 </div>
 
-                                <a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
+                                <a href="/c/pais/argentina" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
                             </div>
                         </div>
                     </div>
@@ -209,7 +213,7 @@
                         </div>
 
                         <div class="division">
-                            <a href="#">
+                            <a href="/regioes-produtoras-de-vinhos">
                                 <div class="every-category">
                                     <h3>Veja todos os vinhos dessa categoria</h3>
                                     <span>></span>
@@ -248,7 +252,7 @@
                                     </a>
                                 </div>
 
-                                <a href="#" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
+                                <a href="/produtores-de-vinhos" class="featured-sub-link mtop5 float-right">Todos os vinhos ></a>
                             </div>
                         </div>
 
@@ -273,12 +277,12 @@
 
                         <div class="division">
                             <ul class="list-sub-menu">
-                                <li><a href="javascript:void(0);">África do Sul</a></li>
-                                <li><a href="javascript:void(0);">Alemanha</a></li>
-                                <li><a href="javascript:void(0);">Argentina</a></li>
-                                <li><a href="javascript:void(0);">Austrália</a></li>
-                                <li><a href="javascript:void(0);">Brasil</a></li>
-                                <li><a href="javascript:void(0);">Chile</a></li>
+                                <li><a href="/c/pais/africa-do-sul">África do Sul</a></li>
+                                <li><a href="/c/pais/alemanha">Alemanha</a></li>
+                                <li><a href="/c/pais/argentina">Argentina</a></li>
+                                <li><a href="/c/pais/austrália">Austrália</a></li>
+                                <li><a href="/c/pais/brasil">Brasil</a></li>
+                                <li><a href="/c/pais/chile">Chile</a></li>
                             </ul>
                         </div>
 
@@ -287,7 +291,7 @@
 
                 <li class="menu-item larger760-right template4">
                     <a class="menu-link" href="javascript:void(0);">
-                        Tipo de Uva
+                        Tipo de vinho
                     </a>
                     <div class="drop-menu">
                         <div class="division">
@@ -329,7 +333,7 @@
                                 </div>
 
                                 <div class="division">
-                                    <a href="#">
+                                    <a href="/tipos-de-vinhos">
                                         <div class="every-category">
                                             <h3>Veja todos os vinhos dessa categoria</h3>
                                             <span>></span>
@@ -383,7 +387,7 @@
                         </div>
 
                         <div class="division">
-                            <a href="#">
+                            <a href="/tipos-de-uva">
                                 <div class="every-category">
                                     <h3>Veja todos os vinhos dessa categoria</h3>
                                     <span>></span>
@@ -446,7 +450,7 @@
                         </div>
 
                         <div class="division">
-                            <a href="#">
+                            <a href="/vinhos-bons-e-baratos">
                                 <div class="every-category">
                                     <h3>Veja todos os vinhos dessa categoria</h3>
                                     <span>></span>
@@ -618,7 +622,7 @@
                         </div>
 
                         <div class="division">
-                            <a href="#">
+                            <a href="/vinhos-pontuados">
                                 <div class="every-category">
                                     <h3>Veja todos os vinhos dessa categoria</h3>
                                     <span>></span>
