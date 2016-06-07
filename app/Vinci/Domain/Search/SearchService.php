@@ -59,6 +59,7 @@ class SearchService
 
     protected function parseResult(array $result)
     {
+
         $hits = $result['hits'];
 
         $searchResult = $this->getNewResultClassInstance();

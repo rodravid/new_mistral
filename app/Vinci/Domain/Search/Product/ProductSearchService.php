@@ -126,18 +126,63 @@ class ProductSearchService extends SearchService
 //                      ]
 //                  ],
                 'query' => [
-                    'multi_match' => [
-                        'query' => $keyword,
-                        'fields' => ['title', 'country.title', 'region.title', 'producer.title', 'product_type.title', 'safra', 'bottle_size']
+
+                    'filtered' => [
+                        'filter' => [
+                            'bool' => [
+                                'should' => [
+                                    ['term' => ['title' => $keyword]],
+                                    ['term' => ['country.title' => $keyword]],
+                                    ['term' => ['region.title' => $keyword]],
+                                    ['term' => ['producer.title' => $keyword]]
+                                ],
+//                                'must' => [
+//                                    [
+//                                        'terms' => [
+//                                            'country.title' => ['Itália'],
+//                                        ],
+//                                    ],
+////                                    [
+////                                        'terms' => [
+////                                            'region.title' => ['California']
+////                                        ],
+////                                    ]
+//                                ]
+                            ],
+                        ]
+                    ],
+
+
+//                    'multi_match' => [
+//                        'query' => $keyword,
+//                        'fields' => ['title', 'country.title', 'region.title', 'producer.title', 'product_type.title', 'safra', 'bottle_size']
+//                    ]
+                ],
+
+                'post_filter' => [
+                    'bool' => [
+                        'should' => [
+                            ['terms' => ['country.title' => ['Brasil', 'Chile']]],
+                            //['terms' => ['region.title' => ['Alenquer']]],
+                        ]
+                        //'country.title' => ['Brasil', 'Chile'],
+                        //['region.title' => ['Rio Grande do Sul']]
                     ]
                 ],
+
                 'aggs' => [
                     'countries' => [
                         'terms' => [
-                            "field" => 'country.title'
+                            "field" => 'country.title',
+                            'size' => 20
                         ]
                     ],
                     'regions' => [
+//                        'filters' => [
+//                            'filters' => [
+//                                ['term' => ['region.title' => 'California']]
+//                            ],
+//                        ],
                         'terms' => [
                             "field" => 'region.title'
                         ]

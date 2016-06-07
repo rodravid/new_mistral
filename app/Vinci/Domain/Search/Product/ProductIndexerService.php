@@ -150,7 +150,8 @@ class ProductIndexerService
 
                     $data['region'] = [
                         'id' => $region->getId(),
-                        'title' => $region->getName()
+                        'title' => $region->getName(),
+                        'country' => 'Brasil'
                     ];
                 }
 
