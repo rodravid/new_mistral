@@ -3,30 +3,50 @@
 namespace Vinci\App\Website\Http\Country;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Vinci\App\Website\Http\Controller;
+use Illuminate\Http\Request;
+use Vinci\App\Website\Http\Taxonomy\BaseTaxonomyController;
 use Vinci\Domain\Country\CountryRepository;
+use Vinci\Domain\Search\Product\ProductSearchService;
 
-class CountryController extends Controller
+class CountryController extends BaseTaxonomyController
 {
 
     private $countryRepository;
 
     public function __construct(
         EntityManagerInterface $em,
-        CountryRepository $countryRepository
+        CountryRepository $countryRepository,
+        ProductSearchService $searchService
     ) {
-        parent::__construct($em);
+        parent::__construct($em, $searchService);
 
         $this->countryRepository = $countryRepository;
     }
 
-    public function show($slug)
+    public function show($slug, Request $request)
+    {
+        $country = $this->getCountry($slug);
+
+        $filters = [
+            'filters' => [
+                'pais' => [$country->getName()]
+            ]
+        ];
+
+        $result = $this->search($request, $filters);
+
+        $result->setVisibleFilters(['regiao', 'produtor']);
+
+        return $this->view('country.index', compact('country', 'result'));
+    }
+
+    protected function getCountry($slug)
     {
         $country = $this->countryRepository->getOneBySlug($slug);
 
         $country = $this->presenter->model($country, CountryPresenter::class);
 
-        return $this->view('country.index', compact('country'));
+        return $country;
     }
 
 }

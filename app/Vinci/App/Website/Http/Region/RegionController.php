@@ -3,30 +3,50 @@
 namespace Vinci\App\Website\Http\Region;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Vinci\App\Website\Http\Controller;
+use Illuminate\Http\Request;
+use Vinci\App\Website\Http\Taxonomy\BaseTaxonomyController;
 use Vinci\Domain\Region\RegionRepository;
+use Vinci\Domain\Search\Product\ProductSearchService;
 
-class RegionController extends Controller
+class RegionController extends BaseTaxonomyController
 {
 
     private $regionRepository;
 
     public function __construct(
         EntityManagerInterface $em,
-        RegionRepository $regionRepository
+        RegionRepository $regionRepository,
+        ProductSearchService $searchService
     ) {
-        parent::__construct($em);
+        parent::__construct($em, $searchService);
 
         $this->regionRepository = $regionRepository;
     }
 
-    public function show($slug)
+    public function show($slug, Request $request)
     {
-        $region = $this->regionRepository->getOneBySlug($slug);
+        $region = $this->getRegion($slug);
 
-        $region = $this->presenter->model($region, RegionPresenter::class);
+        $filters = [
+            'filters' => [
+                'regiao' => [$region->getName()]
+            ]
+        ];
 
-        return $this->view('region.index', compact('region'));
+        $result = $this->search($request, $filters);
+
+        $result->setVisibleFilters(['produtor']);
+
+        return $this->view('region.index', compact('region', 'result'));
+    }
+
+    protected function getRegion($slug)
+    {
+        $country = $this->regionRepository->getOneBySlug($slug);
+
+        $country = $this->presenter->model($country, RegionPresenter::class);
+
+        return $country;
     }
 
 }

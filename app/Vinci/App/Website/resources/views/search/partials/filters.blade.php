@@ -21,7 +21,7 @@
                 </li>
             @endif
 
-            @foreach($filters as $key => $filter)
+            @foreach($result->getSelectedFilters() as $key => $filter)
 
                 @foreach($filter as $selectedValue)
                     <li class="filter-search-item">

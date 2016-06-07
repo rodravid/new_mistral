@@ -137,19 +137,38 @@ class ProductSearchService extends SearchService
 
         }
 
-
         if (! empty($filters)) {
 
-            if (! empty($countries = array_get($filters, 'pais'))) {
-                $this->addPostFilter($params, 'country.title', $countries);
+            if (isset($filters['post']) && ! empty($filters['post'])) {
+
+                if (! empty($countries = array_get($filters, 'post.pais'))) {
+                    $this->addPostFilter($params, 'country.title', $countries);
+                }
+
+                if (! empty($regions = array_get($filters, 'post.regiao'))) {
+                    $this->addPostFilter($params, 'region.title', $regions);
+                }
+
+                if (! empty($producers = array_get($filters, 'post.produtor'))) {
+                    $this->addPostFilter($params, 'producer.title', $producers);
+                }
+
             }
 
-            if (! empty($regions = array_get($filters, 'regiao'))) {
-                $this->addPostFilter($params, 'region.title', $regions);
-            }
+            if (isset($filters['filters']) && ! empty($filters['filters'])) {
 
-            if (! empty($producers = array_get($filters, 'produtor'))) {
-                $this->addPostFilter($params, 'producer.title', $producers);
+                if (! empty($countries = array_get($filters, 'filters.pais'))) {
+                    $this->addFilter($params, 'country.title', $countries);
+                }
+
+                if (! empty($regions = array_get($filters, 'filters.regiao'))) {
+                    $this->addFilter($params, 'region.title', $regions);
+                }
+
+                if (! empty($producers = array_get($filters, 'filters.produtor'))) {
+                    $this->addFilter($params, 'producer.title', $producers);
+                }
+
             }
 
         }
@@ -165,6 +184,27 @@ class ProductSearchService extends SearchService
                     'bool' => [
                         'should' => [
                             ['terms' => [$column => $values]],
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $params = array_merge_recursive($params, $search);
+    }
+
+    protected function addFilter(array &$params, $column, array $values)
+    {
+        $search = [
+            'body' => [
+                'query' => [
+                    'filtered' => [
+                        'filter' => [
+                            'bool' => [
+                                'must' => [
+                                    ['terms' => [$column => $values]],
+                                ]
+                            ]
                         ]
                     ]
                 ]

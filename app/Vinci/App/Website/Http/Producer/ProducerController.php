@@ -3,30 +3,50 @@
 namespace Vinci\App\Website\Http\Producer;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Vinci\App\Website\Http\Controller;
+use Illuminate\Http\Request;
+use Vinci\App\Website\Http\Taxonomy\BaseTaxonomyController;
 use Vinci\Domain\Producer\ProducerRepository;
+use Vinci\Domain\Search\Product\ProductSearchService;
 
-class ProducerController extends Controller
+class ProducerController extends BaseTaxonomyController
 {
 
     private $producerRepository;
 
     public function __construct(
         EntityManagerInterface $em,
-        ProducerRepository $producerRepository
+        ProducerRepository $producerRepository,
+        ProductSearchService $searchService
     ) {
-        parent::__construct($em);
+        parent::__construct($em, $searchService);
 
         $this->producerRepository = $producerRepository;
     }
 
-    public function show($slug)
+    public function show($slug, Request $request)
+    {
+        $producer = $this->getProducer($slug);
+
+        $filters = [
+            'filters' => [
+                'produtor' => [$producer->getName()]
+            ]
+        ];
+
+        $result = $this->search($request, $filters);
+
+        $result->setVisibleFilters([]);
+
+        return $this->view('producer.index', compact('producer', 'result'));
+    }
+
+    protected function getProducer($slug)
     {
         $producer = $this->producerRepository->getOneBySlug($slug);
 
         $producer = $this->presenter->model($producer, ProducerPresenter::class);
 
-        return $this->view('producer.index', compact('producer'));
+        return $producer;
     }
 
 }

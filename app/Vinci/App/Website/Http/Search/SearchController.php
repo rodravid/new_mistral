@@ -21,19 +21,31 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
+        $result = $this->search($request);
+
+        return $this->view('search.index', compact('result'));
+    }
+
+    protected function search($request, array $appendFilters = [])
+    {
         $keyword = $request->get('termo');
+
         $filters = $this->getFilters($request);
+
+        $filters = array_merge_recursive($filters, $appendFilters);
 
         list($limit, $start) = $this->getLimitStart($request);
 
         $result = $this->searchService->search($keyword, $filters, $limit, $start);
 
         if ($result->hasItems()) {
-            $result->getItems()->setPath('busca');
+            $result->getItems()->setPath($this->getSearchUrlPath($request));
             $result->getItems()->appends($this->getAppends($request));
         }
 
-        return $this->view('search.index', compact('result', 'filters'));
+        $result->setSelectedFilters($this->getSelectedFilters($request));
+
+        return $result;
     }
 
     protected function getFilters(Request $request)
@@ -51,6 +63,8 @@ class SearchController extends Controller
         if ($request->has('produtor')) {
             $filters['produtor'] = $request->get('produtor');
         }
+
+        $filters = ['post' => $filters];
 
         return $filters;
     }
@@ -78,6 +92,16 @@ class SearchController extends Controller
         $start = $page * $limit - $limit;
 
         return [$limit, $start];
+    }
+
+    protected function getSelectedFilters($request)
+    {
+        return $this->getFilters($request)['post'];
+    }
+
+    protected function getSearchUrlPath($request)
+    {
+        return 'busca';
     }
 
 }
