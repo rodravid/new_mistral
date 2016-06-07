@@ -18,7 +18,8 @@ class EventServiceProvider extends ServiceProvider
         ],
         'Vinci\Domain\Order\Events\NewOrderWasCreated' => [
             'Vinci\Domain\Order\Events\Listeners\FinalizeCustomerShoppingCart',
-            'Vinci\Domain\Order\Events\Listeners\CloseCustomerAbandonedCarts'
+            'Vinci\Domain\Order\Events\Listeners\CloseCustomerAbandonedCarts',
+            'Vinci\Domain\Order\Events\Listeners\ReduceStockOfProducts',
         ]
     ];
 

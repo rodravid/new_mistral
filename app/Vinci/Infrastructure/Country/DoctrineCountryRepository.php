@@ -5,6 +5,7 @@ namespace Vinci\Infrastructure\Country;
 use Vinci\Domain\Country\Country;
 use Vinci\Domain\Country\CountryRepository;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
+use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineCountryRepository extends DoctrineBaseRepository implements CountryRepository
 {
@@ -39,4 +40,20 @@ class DoctrineCountryRepository extends DoctrineBaseRepository implements Countr
         return $query->getResult();
     }
 
+    public function getOneBySlug($slug)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->where('c.slug = :slug');
+
+        $qb->setParameter('slug', $slug);
+
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if (! $result) {
+            throw new EntityNotFoundException;
+        }
+
+        return $result;
+    }
 }

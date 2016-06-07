@@ -12,4 +12,9 @@ class FilterPresenter extends AbstractPresenter
         return $this->getTitle();
     }
 
+    public function presentName()
+    {
+        return $this->getName();
+    }
+
 }

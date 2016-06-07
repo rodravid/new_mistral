@@ -5,6 +5,7 @@ namespace Vinci\Infrastructure\Region;
 use Vinci\Domain\Region\Region;
 use Vinci\Domain\Region\RegionRepository;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
+use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineRegionRepository extends DoctrineBaseRepository implements RegionRepository
 {
@@ -37,6 +38,23 @@ class DoctrineRegionRepository extends DoctrineBaseRepository implements RegionR
             ->getQuery();
 
         return $query->getResult();
+    }
+
+    public function getOneBySlug($slug)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->where('c.slug = :slug');
+
+        $qb->setParameter('slug', $slug);
+
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if (! $result) {
+            throw new EntityNotFoundException;
+        }
+
+        return $result;
     }
 
 }

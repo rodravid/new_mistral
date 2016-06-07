@@ -59,11 +59,16 @@ class SearchService
 
     protected function parseResult(array $result)
     {
+
         $hits = $result['hits'];
 
         $searchResult = $this->getNewResultClassInstance();
 
         $searchResult->setTerm($result['keyword']);
+
+        $searchResult->setLimit($result['limit']);
+        
+        $searchResult->setStart($result['start']);
 
         $searchResult->setTotal($hits['total']);
 

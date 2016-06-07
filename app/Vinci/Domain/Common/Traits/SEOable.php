@@ -3,9 +3,12 @@
 namespace Vinci\Domain\Common\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Common\SEO;
 
 trait SEOable
 {
+
+    protected $seoInstance;
 
     /**
      * @ORM\Column(name="seo_title", type="string", nullable=true)
@@ -53,6 +56,15 @@ trait SEOable
     {
         $this->seoKeywords = $seoKeywords;
         return $this;
+    }
+
+    public function seo()
+    {
+        if ($this->seoInstance) {
+            return $this->seoInstance;
+        }
+
+        return $this->seoInstance = new SEO($this);
     }
 
 }

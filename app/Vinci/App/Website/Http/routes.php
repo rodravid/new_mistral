@@ -103,13 +103,6 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     });
 
     /**
-     * Countries
-     */
-    $route->group(['prefix' => 'paises', 'as' => 'country.'], function() use ($route) {
-        $route->get('/', 'Country\CountryController@index')->name('index');
-    });
-
-    /**
      * Search
      */
     $route->group(['prefix' => 'busca', 'as' => 'search.'], function() use ($route) {
@@ -121,6 +114,25 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      */
     $route->group(['prefix' => 'p', 'as' => 'product.'], function() use ($route) {
         $route->get('/{type}/{slug}', 'Product\ProductController@show')->name('index');
+    });
+
+    /**
+     * Category
+     */
+    $route->group(['prefix' => 'c', 'as' => 'category.'], function() use ($route) {
+
+        $route->group(['prefix' => 'pais', 'as' => 'country.'], function() use ($route) {
+            $route->get('/{slug}', 'Country\CountryController@show')->name('show');
+        });
+
+        $route->group(['prefix' => 'regiao', 'as' => 'region.'], function() use ($route) {
+            $route->get('/{slug}', 'Region\RegionController@show')->name('show');
+        });
+
+        $route->group(['prefix' => 'produtor', 'as' => 'producer.'], function() use ($route) {
+            $route->get('/{slug}', 'Producer\ProducerController@show')->name('show');
+        });
+
     });
 
 

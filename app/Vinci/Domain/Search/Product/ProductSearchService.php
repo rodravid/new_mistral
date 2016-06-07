@@ -34,9 +34,9 @@ class ProductSearchService extends SearchService
         $this->filterFactory->setTitles($this->getFiltersTitles());
     }
 
-    public function search($keyword, $limit = 10, $start = 0)
+    public function search($keyword = null, array $filters = [], $limit = 10, $start = 0)
     {
-        $params = $this->getSearchParams($keyword, $limit, $start);
+        $params = $this->getSearchParams($keyword, $filters, $limit, $start);
 
         $result = $this->client->search($params);
 
@@ -72,44 +72,146 @@ class ProductSearchService extends SearchService
         return [
             'countries' => 'Países',
             'regions' => 'Regiões',
-            'producers' => 'Produtores'
+            'producers' => 'Produtores',
+            'pais' => 'Países',
+            'regiao' => 'Regiões',
+            'produtor' => 'Produtores',
         ];
     }
 
-    private function getSearchParams($keyword, $limit, $start)
+    private function getSearchParams($keyword = null, array $filters = [], $limit = 10, $start = 0)
     {
-        return [
+        $params = [
             'index' => 'vinci',
             'type' => 'product',
             'from' => $start,
             'size' => $limit,
             'body' => [
-                'query' => [
-                    'multi_match' => [
-                        'query' => $keyword,
-                        'fields' => ['title', 'country.title', 'region.title', 'producer.title', 'product_type.title', 'safra', 'bottle_size']
-                    ]
-                ],
                 'aggs' => [
-                    'countries' => [
+                    'pais' => [
                         'terms' => [
-                            "field" => 'country.title'
+                            'field' => 'country.title',
+                            'size' => 20
                         ]
                     ],
-                    'regions' => [
+                    'regiao' => [
                         'terms' => [
-                            "field" => 'region.title'
+                            'field' => 'region.title',
+                            'size' => 20
                         ]
                     ],
-                    'producers' => [
+                    'produtor' => [
                         'terms' => [
-                            "field" => 'producer.title'
+                            'field' => 'producer.title',
+                            'size' => 20
                         ]
                     ],
                 ],
             ],
             'sort' => ['price:desc']
         ];
+
+        if (! empty($keyword)) {
+
+            $params['body']['query'] = [
+                'filtered' => [
+                    'filter' => [
+                        'bool' => [
+                            'should' => [
+                                ['term' => ['title' => $keyword]],
+                                ['term' => ['country.title' => $keyword]],
+                                ['term' => ['region.title' => $keyword]],
+                                ['term' => ['producer.title' => $keyword]]
+                            ],
+//                            'must' => [
+//                                [
+//                                    'terms' => [
+//                                        'country.title' => ['Itália'],
+//                                    ],
+//                                ],
+//                            ]
+                        ],
+                    ]
+                ],
+            ];
+
+        }
+
+        if (! empty($filters)) {
+
+            if (isset($filters['post']) && ! empty($filters['post'])) {
+
+                if (! empty($countries = array_get($filters, 'post.pais'))) {
+                    $this->addPostFilter($params, 'country.title', $countries);
+                }
+
+                if (! empty($regions = array_get($filters, 'post.regiao'))) {
+                    $this->addPostFilter($params, 'region.title', $regions);
+                }
+
+                if (! empty($producers = array_get($filters, 'post.produtor'))) {
+                    $this->addPostFilter($params, 'producer.title', $producers);
+                }
+
+            }
+
+            if (isset($filters['filters']) && ! empty($filters['filters'])) {
+
+                if (! empty($countries = array_get($filters, 'filters.pais'))) {
+                    $this->addFilter($params, 'country.title', $countries);
+                }
+
+                if (! empty($regions = array_get($filters, 'filters.regiao'))) {
+                    $this->addFilter($params, 'region.title', $regions);
+                }
+
+                if (! empty($producers = array_get($filters, 'filters.produtor'))) {
+                    $this->addFilter($params, 'producer.title', $producers);
+                }
+
+            }
+
+        }
+
+        return $params;
+    }
+
+    protected function addPostFilter(array &$params, $column, array $values)
+    {
+        $search = [
+            'body' => [
+                'post_filter' => [
+                    'bool' => [
+                        'should' => [
+                            ['terms' => [$column => $values]],
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $params = array_merge_recursive($params, $search);
+    }
+
+    protected function addFilter(array &$params, $column, array $values)
+    {
+        $search = [
+            'body' => [
+                'query' => [
+                    'filtered' => [
+                        'filter' => [
+                            'bool' => [
+                                'must' => [
+                                    ['terms' => [$column => $values]],
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $params = array_merge_recursive($params, $search);
     }
 
 }
