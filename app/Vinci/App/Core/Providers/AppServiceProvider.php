@@ -6,6 +6,7 @@ use Blade;
 use Carbon\Carbon;
 use Doctrine\DBAL\Types\Type as DBALType;
 use Illuminate\Support\ServiceProvider;
+use Validator;
 use Vinci\App\Core\Services\Presenter\Presenter;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +18,14 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('isProductFavorited', function($expression) {
             return sprintf('<?php echo app("product.favorite.service")->productIsFavoritedByCustomer(with%s, auth("website")->getUser()); ?>', $expression);
+        });
+
+        Validator::extend('cpf', function($attribute, $value, $parameters) {
+            return validateCpf($value);
+        });
+
+        Validator::extend('cnpj', function($attribute, $value, $parameters) {
+            return validateCnpj($value);
         });
 
     }
