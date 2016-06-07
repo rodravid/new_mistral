@@ -66,6 +66,10 @@ class SearchService
 
         $searchResult->setTerm($result['keyword']);
 
+        $searchResult->setLimit($result['limit']);
+        
+        $searchResult->setStart($result['start']);
+
         $searchResult->setTotal($hits['total']);
 
         $filters = $this->filterFactory->makeCollection(array_get($result, 'aggregations'));

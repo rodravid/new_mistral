@@ -34,13 +34,11 @@ class ProductSearchService extends SearchService
         $this->filterFactory->setTitles($this->getFiltersTitles());
     }
 
-    public function search($keyword, $limit = 10, $start = 0)
+    public function search($keyword = null, array $filters = [], $limit = 10, $start = 0)
     {
-        $params = $this->getSearchParams($keyword, $limit, $start);
+        $params = $this->getSearchParams($keyword, $filters, $limit, $start);
 
         $result = $this->client->search($params);
-
-        //dd($result);
 
         $result['keyword'] = $keyword;
         $result['limit'] = $limit;
@@ -74,128 +72,106 @@ class ProductSearchService extends SearchService
         return [
             'countries' => 'Países',
             'regions' => 'Regiões',
-            'producers' => 'Produtores'
+            'producers' => 'Produtores',
+            'pais' => 'Países',
+            'regiao' => 'Regiões',
+            'produtor' => 'Produtores',
         ];
     }
 
-    private function getSearchParams($keyword, $limit, $start)
+    private function getSearchParams($keyword = null, array $filters = [], $limit = 10, $start = 0)
     {
-        return [
+        $params = [
             'index' => 'vinci',
             'type' => 'product',
             'from' => $start,
             'size' => $limit,
             'body' => [
-//                'filter' => [
-//                    'bool' => [
-//                        'should' => [
-//                            'term' => [
-//                                'country.title' => 'California'
-//                            ]
-//                        ]
-//                    ]
-//                ],
-//                'query' => [
-//                    'bool' => [
-//                        'should' => [
-//                            ['term' => ['title' => $keyword]],
-//                            ['term' => ['country.title' => $keyword]],
-//                            ['term' => ['region.title' => $keyword]],
-//                            ['term' => ['region.title' => $keyword]]
-//                        ],
-//                        'filter' => [
-//                            'term' => [
-//                                'country.title' => 'Portugal'
-//                            ]
-//                        ]
-//                    ],
-//                ],
-//                  'filter' => [
-//                      'bool' => [
-//                          'must' => [
-//                              'multi_match' => [
-//                                  'query' => $keyword,
-//                                  'fields' => ['title', 'country.title', 'region.title', 'producer.title', 'product_type.title', 'safra', 'bottle_size']
-//                              ]
-//                          ],
-//                          'filter' => [
-//                              'term' => [
-//                                  'country.title' => 'California'
-//                              ]
-//                          ]
-//                      ]
-//                  ],
-                'query' => [
-
-                    'filtered' => [
-                        'filter' => [
-                            'bool' => [
-                                'should' => [
-                                    ['term' => ['title' => $keyword]],
-                                    ['term' => ['country.title' => $keyword]],
-                                    ['term' => ['region.title' => $keyword]],
-                                    ['term' => ['producer.title' => $keyword]]
-                                ],
-//                                'must' => [
-//                                    [
-//                                        'terms' => [
-//                                            'country.title' => ['Itália'],
-//                                        ],
-//                                    ],
-////                                    [
-////                                        'terms' => [
-////                                            'region.title' => ['California']
-////                                        ],
-////                                    ]
-//                                ]
-                            ],
-                        ]
-                    ],
-
-
-//                    'multi_match' => [
-//                        'query' => $keyword,
-//                        'fields' => ['title', 'country.title', 'region.title', 'producer.title', 'product_type.title', 'safra', 'bottle_size']
-//                    ]
-                ],
-
-                'post_filter' => [
-                    'bool' => [
-                        'should' => [
-                            ['terms' => ['country.title' => ['Brasil', 'Chile']]],
-                            //['terms' => ['region.title' => ['Alenquer']]],
-                        ]
-                        //'country.title' => ['Brasil', 'Chile'],
-                        //['region.title' => ['Rio Grande do Sul']]
-                    ]
-                ],
-
                 'aggs' => [
-                    'countries' => [
+                    'pais' => [
                         'terms' => [
-                            "field" => 'country.title',
+                            'field' => 'country.title',
                             'size' => 20
                         ]
                     ],
-                    'regions' => [
-//                        'filters' => [
-//                            'filters' => [
-//                                ['term' => ['region.title' => 'California']]
-//                            ],
-//                        ],
+                    'regiao' => [
                         'terms' => [
-                            "field" => 'region.title'
+                            'field' => 'region.title',
+                            'size' => 20
                         ]
                     ],
-                    'producers' => [
+                    'produtor' => [
                         'terms' => [
-                            "field" => 'producer.title'
+                            'field' => 'producer.title',
+                            'size' => 20
                         ]
                     ],
                 ],
             ],
             'sort' => ['price:desc']
         ];
+
+        if (! empty($keyword)) {
+
+            $params['body']['query'] = [
+                'filtered' => [
+                    'filter' => [
+                        'bool' => [
+                            'should' => [
+                                ['term' => ['title' => $keyword]],
+                                ['term' => ['country.title' => $keyword]],
+                                ['term' => ['region.title' => $keyword]],
+                                ['term' => ['producer.title' => $keyword]]
+                            ],
+//                            'must' => [
+//                                [
+//                                    'terms' => [
+//                                        'country.title' => ['Itália'],
+//                                    ],
+//                                ],
+//                            ]
+                        ],
+                    ]
+                ],
+            ];
+
+        }
+
+
+        if (! empty($filters)) {
+
+            if (! empty($countries = array_get($filters, 'pais'))) {
+                $this->addPostFilter($params, 'country.title', $countries);
+            }
+
+            if (! empty($regions = array_get($filters, 'regiao'))) {
+                $this->addPostFilter($params, 'region.title', $regions);
+            }
+
+            if (! empty($producers = array_get($filters, 'produtor'))) {
+                $this->addPostFilter($params, 'producer.title', $producers);
+            }
+
+        }
+
+        return $params;
+    }
+
+    protected function addPostFilter(array &$params, $column, array $values)
+    {
+        $search = [
+            'body' => [
+                'post_filter' => [
+                    'bool' => [
+                        'should' => [
+                            ['terms' => [$column => $values]],
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $params = array_merge_recursive($params, $search);
     }
 
 }

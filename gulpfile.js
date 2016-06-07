@@ -16,6 +16,8 @@ elixir(function(mix) {
         'js/jquery.placeholder.js',
         '../../assets/common/js/address-autocomplete.js',
         'js/script.js',
+        'app/js/vendor/jquery.query-object.js',
+        'app/js/vendor/URI.min.js',
         'app/js/app.js',
         'app/js/services/auth.js',
         'app/js/services/cart.js',
@@ -30,7 +32,9 @@ elixir(function(mix) {
         'app/js/directives/cart/cartAddButton.js',
         'app/js/directives/product/favoriteWidget.js',
         'app/js/controllers/cart/cartController.js',
-        'app/js/controllers/cart/cartWidgetController.js'
+        'app/js/controllers/cart/cartWidgetController.js',
+        'app/js/controllers/search/search-filters-controller.js',
+        'app/js/directives/search/search-filters-directive.js'
     ],
         'public/assets/website/js', 'public/assets/website');
 });

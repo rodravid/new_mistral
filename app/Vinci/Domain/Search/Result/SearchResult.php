@@ -10,6 +10,10 @@ class SearchResult
 
     protected $term;
 
+    protected $limit;
+
+    protected $start;
+
     protected $total = 0;
 
     protected $items;
@@ -91,6 +95,28 @@ class SearchResult
     public function setVisibleFilters($visibleFilters)
     {
         $this->visibleFilters = $visibleFilters;
+    }
+
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+
+    public function setLimit($limit)
+    {
+        $this->limit = (int) $limit;
+        return $this;
+    }
+
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    public function setStart($start)
+    {
+        $this->start = (int) $start;
+        return $this;
     }
 
 }

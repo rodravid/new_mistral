@@ -42,6 +42,8 @@
         <script src="{{ asset('assets/common/js/address-autocomplete.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
 
+        <script src="{{ asset_web('app/js/vendor/jquery.query-object.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/vendor/URI.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/app.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/services/auth.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/services/cart.js') }}" type="text/javascript"></script>
@@ -57,6 +59,8 @@
         <script src="{{ asset_web('app/js/directives/product/favoriteWidget.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/controllers/cart/cartController.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/search/search-filters-controller.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/directives/search/search-filters-directive.js') }}" type="text/javascript"></script>
 
     @else
         <script src="{{ asset_web('js/all.js') }}" type="text/javascript"></script>

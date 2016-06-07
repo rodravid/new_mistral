@@ -17,7 +17,9 @@
             </ul>
             <span class="internal-subtitle">Resultado de busca</span>
 
-            <h1 class="search-item">{{ $result->getTerm() }}</h1>
+            @if(! empty($result->getTerm()))
+                <h1 class="search-item">{{ $result->getTerm() }}</h1>
+            @endif
         </div>
     </div>
 
@@ -25,47 +27,7 @@
         @if($result->hasItems())
             <article class="wrap-content-search">
 
-                <div class="search-column opacidade-coluna1">
-
-                    <h3 class="title-filter">Palavra Buscada</h3>
-                    <ul class="filter-search">
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">{{ $result->getTerm() }}</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">X</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-
-                    @foreach($result->getVisibleFilters() as $filter)
-
-                        <h3 class="title-filter">{{ $filter->title }}</h3>
-
-                        <ul class="filter-search">
-                            @foreach($filter->getValues() as $value)
-                                <li class="filter-search-item">
-                                    <ul class="subitem-filter-search">
-                                        <li>
-                                            <a href="javascript:void(0);">{{ $value->title }}</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">{{ $value->count }}</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            @endforeach
-
-                            <span class="see-more-filter">+ veja mais</span>
-                        </ul>
-
-                    @endforeach
-
-                </div>
+                @include('website::search.partials.filters')
 
                 <div class="column-products-search-inline template1">
 
@@ -90,11 +52,7 @@
                         <div class="display-filter float-left">
                             <span>Itens por página</span>
                             <div class="select-standard form-control-white float-right select-widthfull">
-                                <select name="" id="">
-                                    <option value="">15</option>
-                                    <option value="">30</option>
-                                    <option value="">45</option>
-                                </select>
+                                {!! Form::select('max', [15 => 15, 30 => 30, 45 => 45], $result->getLimit(), ['class' => 'changeLimit']) !!}
                             </div>
                         </div>
 
