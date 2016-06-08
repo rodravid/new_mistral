@@ -192,6 +192,9 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->post('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
                     });
 
+                    /**
+                     * Home banners
+                     */
                     $route->group(['prefix' => 'home-banners', 'as' => 'home-banners.'], function () use ($route) {
                         $route->get('/', 'Highlight\\HighlightController@index')->name('list');
                         $route->get('/create', 'Highlight\\HighlightController@create')->name('create');
@@ -201,6 +204,27 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->put('/{highlight}', 'Highlight\\HighlightController@update')->name('edit#update');
                         $route->delete('/{highlight}/photo/{photo}/delete', 'Highlight\\HighlightController@removeImage')->name('edit#remove-image');
                         $route->post('datatable', 'Highlight\\HighlightController@datatable')->name('list#datatable');
+                    });
+
+                });
+
+                /**
+                 * Showcases
+                 */
+                $route->group(['prefix' => 'showcases'], function () use ($route) {
+
+                    /**
+                     * Home showcases
+                     */
+                    $route->group(['prefix' => 'home-showcases', 'as' => 'home-showcases.'], function () use ($route) {
+                        $route->get('/', 'Showcase\\ShowcaseController@index')->name('list');
+                        $route->get('/create', 'Showcase\\ShowcaseController@create')->name('create');
+                        $route->post('/', 'Showcase\\ShowcaseController@store')->name('create#store');
+                        $route->get('/{showcase}/edit', 'Showcase\\ShowcaseController@edit')->name('edit');
+                        $route->delete('/{showcase}/delete', 'Showcase\\ShowcaseController@destroy')->name('destroy');
+                        $route->put('/{showcase}', 'Showcase\\ShowcaseController@update')->name('edit#update');
+                        $route->delete('/{showcase}/photo/{photo}/delete', 'Showcase\\ShowcaseController@removeImage')->name('edit#remove-image');
+                        $route->post('datatable', 'Showcase\\ShowcaseController@datatable')->name('list#datatable');
                     });
 
                 });

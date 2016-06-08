@@ -25,7 +25,13 @@ class DefaultUserPresenter extends AbstractPresenter
 
     public function presentGroupName()
     {
-        return $this->getRoles()->first()->getTitle();
+        $role = $this->getRoles()->first();
+
+        if ($role) {
+            return $role->getTitle();
+        }
+
+        return '--';
     }
 
     protected function getDefaultProfilePhoto()
