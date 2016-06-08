@@ -225,6 +225,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->put('/{showcase}', 'Showcase\\ShowcaseController@update')->name('edit#update');
                         $route->delete('/{showcase}/photo/{photo}/delete', 'Showcase\\ShowcaseController@removeImage')->name('edit#remove-image');
                         $route->post('datatable', 'Showcase\\ShowcaseController@datatable')->name('list#datatable');
+                        $route->post('/{showcase}/items/datatable', 'Showcase\\ShowcaseController@itemsDatatable')->name('edit#items-datatable');
                     });
 
                 });

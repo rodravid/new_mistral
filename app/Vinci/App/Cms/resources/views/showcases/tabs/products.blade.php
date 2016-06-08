@@ -3,7 +3,7 @@
         <div class="col-xs-12">
 
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" data-url="{{ $currentModule->getDatatableUrl() }}">
+                <table class="table table-bordered table-striped" data-url="{{ route('cms.home-showcases.edit#items-datatable', [$showcase->getId()]) }}">
                     <thead>
                     <tr>
                         <th>#ID</th>

@@ -42,7 +42,7 @@ class ShowcaseCmsDatatable extends AbstractDatatables
 
         if (! empty($search['value'])) {
 
-            $qb->where($qb->expr()->eq('n.id', ':id'));
+            $qb->andWhere($qb->expr()->eq('n.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
                 $qb->expr()->like('n.title', ':search')

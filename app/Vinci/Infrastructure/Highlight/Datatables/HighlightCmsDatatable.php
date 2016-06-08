@@ -44,7 +44,7 @@ class HighlightCmsDatatable extends AbstractDatatables
 
         if (! empty($search['value'])) {
 
-            $qb->where($qb->expr()->eq('n.id', ':id'));
+            $qb->andWhere($qb->expr()->eq('n.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
                 $qb->expr()->like('n.title', ':search')
@@ -61,14 +61,13 @@ class HighlightCmsDatatable extends AbstractDatatables
 
     public function parseSingleResult($highlight)
     {
-
         $presenter = new HighlightPresenter($highlight);
 
         return [
-            $highlight->getId(),
-            $highlight->position,
+            $presenter->id,
+            $presenter->position,
             $presenter->image_html,
-            $highlight->getTitle(),
+            $presenter->title,
             $presenter->created_at,
             $presenter->starts_at,
             $presenter->expiration_at,
