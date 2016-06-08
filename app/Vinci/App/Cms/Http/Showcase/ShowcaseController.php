@@ -15,6 +15,7 @@ use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Domain\Showcase\ShowcaseService;
 use Vinci\Domain\Image\ImageRepository;
 use Vinci\Infrastructure\Showcase\Datatables\ShowcaseCmsDatatable;
+use Vinci\Infrastructure\Showcase\Datatables\ShowcaseProductsCmsDatatable;
 
 class ShowcaseController extends Controller
 {
@@ -131,6 +132,11 @@ class ShowcaseController extends Controller
             Flash::error($e->getMessage());
             return Redirect::back();
         }
+    }
+
+    public function itemsDatatable(Request $request)
+    {
+        return $this->getDatatable(ShowcaseProductsCmsDatatable::class, $request);
     }
 
 }
