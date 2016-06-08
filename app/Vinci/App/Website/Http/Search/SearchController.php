@@ -81,7 +81,7 @@ class SearchController extends Controller
             $appends['max'] = intval($request->get('max'));
         }
 
-        return array_merge($appends, $this->getFilters($request));
+        return array_merge($appends, $this->getFilters($request)['post']);
     }
 
     protected function getLimitStart(Request $request)
