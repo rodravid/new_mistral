@@ -33,7 +33,7 @@ class HomeController extends Controller
         $banners = $this->highlightRepository->lists('home-banners');
 
         $showcases = $this->showcaseRepository->lists('home-showcases');
-        
+
         $this->presenter->collection($showcases, ShowcasePresenter::class);
         
         return $this->view('home.index', compact('highlights', 'banners', 'showcases'));

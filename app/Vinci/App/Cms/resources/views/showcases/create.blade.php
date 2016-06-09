@@ -23,10 +23,7 @@
                     </div>
 
                     <div class="box-body">
-                        @if($currentModule->getName() == "home-showcases")
-                            @include('cms::showcases.form')
-                        @endif
-
+                        @include('cms::showcases.form')
                     </div>
 
                 </div>
