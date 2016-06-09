@@ -90,6 +90,18 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\Showcase\ShowcaseRepository',
+            'Vinci\Infrastructure\Showcase\DoctrineShowcaseRepository',
+            'Vinci\Domain\Showcase\Showcase'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Template\TemplateRepository',
+            'Vinci\Infrastructure\Template\DoctrineTemplateRepository',
+            'Vinci\Domain\Template\Template'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\Country\CountryRepository',
             'Vinci\Infrastructure\Country\DoctrineCountryRepository',
             'Vinci\Domain\Country\Country'

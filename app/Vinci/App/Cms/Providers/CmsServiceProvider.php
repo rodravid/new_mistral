@@ -33,6 +33,11 @@ class CmsServiceProvider extends ServiceProvider
         $this->app['view']->composer('cms::layouts.partials.menu', 'Vinci\App\Cms\Http\ViewComposers\MenuComposer');
         $this->app['view']->composer('cms::layouts.master', 'Vinci\App\Cms\Http\ViewComposers\TopNavComposer');
         $this->app['view']->composer(['cms::products.create', 'cms::products.edit'], 'Vinci\App\Cms\Http\ViewComposers\ProductViewComposer');
+
+        $this->app['view']->composer([
+            'cms::showcases.form',
+            'cms::highlights.form',
+        ], 'Vinci\App\Cms\Http\ViewComposers\TemplateViewComposer');
     }
 
 }

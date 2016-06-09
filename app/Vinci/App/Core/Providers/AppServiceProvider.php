@@ -20,14 +20,15 @@ class AppServiceProvider extends ServiceProvider
             return sprintf('<?php echo app("product.favorite.service")->productIsFavoritedByCustomer(with%s, auth("website")->getUser()); ?>', $expression);
         });
 
-        Validator::extend('cpf', function($attribute, $value, $parameters) {
-            return validateCpf($value);
-        });
+        if (! $this->app->environment('local')) {
+            Validator::extend('cpf', function($attribute, $value, $parameters) {
+                return validateCpf($value);
+            });
 
-        Validator::extend('cnpj', function($attribute, $value, $parameters) {
-            return validateCnpj($value);
-        });
-
+            Validator::extend('cnpj', function($attribute, $value, $parameters) {
+                return validateCnpj($value);
+            });
+        }
     }
 
     /**
@@ -47,7 +48,6 @@ class AppServiceProvider extends ServiceProvider
 
     protected function configureLocale()
     {
-        //setlocale(LC_ALL, "pt_BR", "pt_BR.iso-8859-1", "pt_BR.utf-8", "portuguese");
         Carbon::setLocale($this->app->getLocale());
     }
 

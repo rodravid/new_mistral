@@ -7,6 +7,7 @@ use Exception;
 use Flash;
 use Illuminate\Http\Request;
 use Redirect;
+use Response;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
@@ -231,6 +232,33 @@ class ProductController extends Controller
         if ($product) {
             return $product->getScores();
         }
+    }
+
+    public function getProductsSelect(Request $request)
+    {
+        $keyword = $request->get('term');
+
+        $qb = $this->repository->createQueryBuilder('p');
+
+        $qb->select('p.id as id', 'CONCAT( CONCAT(v.sku, \' - \'),  v.title) as text')
+            ->join('p.variants', 'v')
+            ->join('v.prices', 'vp')
+            ->andWhere('v.stock > 0')
+            ->andWhere('vp.price > 0');
+
+        $qb->andWhere(
+            $qb->expr()->orX(
+                $qb->expr()->eq('v.sku', ':id'),
+                $qb->expr()->like('v.title', ':search')
+            )
+        );
+
+        $qb->setParameter('id', $keyword);
+        $qb->setParameter('search', '%' . $keyword . '%');
+
+        $results = $qb->getQuery()->getArrayResult();
+
+        return Response::json(['results' => $results]);
     }
 
 }

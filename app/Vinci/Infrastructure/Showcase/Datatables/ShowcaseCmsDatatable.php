@@ -1,18 +1,18 @@
 <?php
 
-namespace Vinci\Infrastructure\Highlight\Datatables;
+namespace Vinci\Infrastructure\Showcase\Datatables;
 
-use Vinci\App\Cms\Http\Highlight\Presenters\HighlightPresenter;
+use Vinci\App\Cms\Http\Showcase\Presenters\ShowcasePresenter;
 use Vinci\Domain\ACL\ACLService;
-use Vinci\Domain\Highlight\HighlightRepository;
+use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
-class HighlightCmsDatatable extends AbstractDatatables
+class ShowcaseCmsDatatable extends AbstractDatatables
 {
 
     protected $repository;
 
-    public function __construct(ACLService $aclService, HighlightRepository $repository)
+    public function __construct(ACLService $aclService, ShowcaseRepository $repository)
     {
         parent::__construct($aclService);
 
@@ -22,19 +22,17 @@ class HighlightCmsDatatable extends AbstractDatatables
     protected $sortMapping = [
         0 => 'n.id',
         1 => 'n.position',
-        2 => 'i.id',
-        3 => 'n.title',
-        4 => 'n.createdAt',
-        5 => 'n.startsAt',
-        6 => 'n.expirationAt',
-        7 => 'n.status',
+        2 => 'n.title',
+        3 => 'n.createdAt',
+        4 => 'n.startsAt',
+        5 => 'n.expirationAt',
+        6 => 'n.status',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->repository->getBySortableGroupsQueryBuilder()
             ->join('n.user', 'u')
-            ->leftJoin('n.images', 'i')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
@@ -61,12 +59,11 @@ class HighlightCmsDatatable extends AbstractDatatables
 
     public function parseSingleResult($highlight)
     {
-        $presenter = new HighlightPresenter($highlight);
+        $presenter = new ShowcasePresenter($highlight);
 
         return [
             $presenter->id,
             $presenter->position,
-            $presenter->image_html,
             $presenter->title,
             $presenter->created_at,
             $presenter->starts_at,
