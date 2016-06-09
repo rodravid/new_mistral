@@ -12,20 +12,20 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
 {
     public function lists($type, $max = 4)
     {
-        $qb = $this->createQueryBuilder('o');
+        $qb = $this->getBySortableGroupsQueryBuilder();
 
-        $qb->select('o', 'i', 't', 'p', 'v')
-            ->join('o.items', 'i')
-            ->join('o.template', 't')
+        $qb->select('n', 'i', 't', 'p', 'v')
+            ->join('n.items', 'i')
+            ->join('n.template', 't')
             ->join('i.product', 'p')
             ->join('p.variants', 'v')
-            ->where($qb->expr()->lte('o.startsAt', $qb->expr()->literal(Carbon::now())))
+            ->where($qb->expr()->lte('n.startsAt', $qb->expr()->literal(Carbon::now())))
             ->andWhere($qb->expr()->orX(
-                $qb->expr()->gte('o.expirationAt', $qb->expr()->literal(Carbon::now())),
-                $qb->expr()->isNull('o.expirationAt')
+                $qb->expr()->gte('n.expirationAt', $qb->expr()->literal(Carbon::now())),
+                $qb->expr()->isNull('n.expirationAt')
             ))
-            ->andWhere($qb->expr()->eq('o.status', 1))
-            ->andWhere($qb->expr()->eq('o.type',  $qb->expr()->literal($type)));
+            ->andWhere($qb->expr()->eq('n.status', 1))
+            ->andWhere($qb->expr()->eq('n.type',  $qb->expr()->literal($type)));
 
         return $qb->getQuery()->getResult();
     }
