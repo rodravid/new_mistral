@@ -35,6 +35,12 @@ class ShowcaseItem extends Model
      */
     protected $product;
 
+    /**
+     * @Gedmo\SortablePosition
+     * @ORM\Column(type="integer", options={"default" = 0})
+     */
+    protected $position = 0;
+
     public function getId()
     {
         return $this->id;
@@ -59,6 +65,17 @@ class ShowcaseItem extends Model
     public function setProduct(Product $product)
     {
         $this->product = $product;
+        return $this;
+    }
+
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    public function setPosition($position)
+    {
+        $this->position = (int) $position;
         return $this;
     }
 

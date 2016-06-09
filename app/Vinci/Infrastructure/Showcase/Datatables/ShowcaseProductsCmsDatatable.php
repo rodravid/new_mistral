@@ -2,8 +2,9 @@
 
 namespace Vinci\Infrastructure\Showcase\Datatables;
 
-use Vinci\App\Cms\Http\Showcase\Presenters\ShowcasePresenter;
+use Vinci\App\Cms\Http\Showcase\Presenters\ShowcaseItemPresenter;
 use Vinci\Domain\ACL\ACLService;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
@@ -20,32 +21,29 @@ class ShowcaseProductsCmsDatatable extends AbstractDatatables
     }
 
     protected $sortMapping = [
-        0 => 'n.id',
-        1 => 'n.position',
-        2 => 'n.title',
-        3 => 'n.createdAt',
-        4 => 'n.startsAt',
-        5 => 'n.expirationAt',
-        6 => 'n.status',
+        0 => 'v.sku',
+        1 => 'v.title',
+        2 => 'i.position',
+        3 => 'i.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
-        $qb = $this->repository->getBySortableGroupsQueryBuilder()
-            ->join('n.user', 'u')
+        $qb = $this->repository->getItemsQueryBuilder('i')
+            ->join('i.showcase', 's')
+            ->join('i.product', 'p')
+            ->join('p.variants', 'v')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
-        $qb->where($qb->expr()->eq('n.type', ':type'));
-
-        $qb->setParameter('type', $this->aclService->getCurrentModuleName());
+        $qb->where($qb->expr()->eq('s.id', array_get($search, 'showcase.id')));
 
         if (! empty($search['value'])) {
 
-            $qb->andWhere($qb->expr()->eq('n.id', ':id'));
+            $qb->andWhere($qb->expr()->eq('v.sku', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('n.title', ':search')
+                $qb->expr()->like('v.title', ':search')
             ));
 
             $qb->setParameter('id', $search['value']);
@@ -57,17 +55,33 @@ class ShowcaseProductsCmsDatatable extends AbstractDatatables
         return $this->makePaginator($qb->getQuery());
     }
 
-    public function parseSingleResult($highlight)
+    public function parseSingleResult($showcaseItem)
     {
-        $presenter = new ShowcasePresenter($highlight);
+        $presenter = new ShowcaseItemPresenter($showcaseItem);
 
         return [
-            $presenter->id,
-            $presenter->title,
+            $presenter->product->sku,
+            $presenter->product->title,
             $presenter->position,
             $presenter->created_at,
-            $this->buildActionsColumn($highlight)
+            $this->buildActionsColumn($showcaseItem)
         ];
+    }
+
+    protected function buildActionsColumn(Model $entity, array $params = [])
+    {
+        $actions = '<div class="btn-group btn-group-xs">';
+
+        $actions .= '<a href="javascript:void(0);" class="btn btn-danger"
+               data-remove-item
+               data-confirm-title="Confirmação de remoção"
+               data-confirm-text="Deseja realmente remover esse registro?"
+               data-method="DELETE"
+               data-action="' . route('cms.home-showcases.edit#remove-item', [$entity->showcase->id, $entity->id]) . '"><i class="fa fa-minus-circle"></i> Remover</a>';
+
+        $actions .= '</div>';
+
+        return $actions;
     }
 
 }

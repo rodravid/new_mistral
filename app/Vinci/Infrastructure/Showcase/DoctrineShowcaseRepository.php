@@ -6,15 +6,19 @@ use Carbon\Carbon;
 use Vinci\Domain\Showcase\Showcase;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Infrastructure\Common\DoctrineSortableRepository;
+use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineShowcaseRepository extends DoctrineSortableRepository implements ShowcaseRepository
 {
-    public function lists($type)
+    public function lists($type, $max = 4)
     {
         $qb = $this->createQueryBuilder('o');
 
-        $qb->select('o', 'i')
-            ->leftJoin('o.images', 'i')
+        $qb->select('o', 'i', 't', 'p', 'v')
+            ->join('o.items', 'i')
+            ->join('o.template', 't')
+            ->join('i.product', 'p')
+            ->join('p.variants', 'v')
             ->where($qb->expr()->lte('o.startsAt', $qb->expr()->literal(Carbon::now())))
             ->andWhere($qb->expr()->orX(
                 $qb->expr()->gte('o.expirationAt', $qb->expr()->literal(Carbon::now())),
@@ -44,4 +48,29 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
         return $showcase;
     }
 
+    public function getItems($showcaseId)
+    {
+
+    }
+
+    public function getItemsQueryBuilder($alias)
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        $qb->select($alias)
+            ->from('Vinci\Domain\Showcase\ShowcaseItem', $alias);
+
+        return $qb;
+    }
+
+    public function getOneById($id)
+    {
+        $showcase = $this->find($id);
+
+        if (! $showcase) {
+            throw new EntityNotFoundException;
+        }
+
+        return $showcase;
+    }
 }

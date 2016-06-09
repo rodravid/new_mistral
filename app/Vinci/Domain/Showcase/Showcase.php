@@ -64,7 +64,7 @@ class Showcase extends Model
     protected $status = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Showcase\ShowcaseItem", mappedBy="showcase", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Showcase\ShowcaseItem", mappedBy="showcase", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $items;
 
@@ -153,6 +153,37 @@ class Showcase extends Model
     {
         $this->template = $template;
         return $this;
+    }
+
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    public function addItem(ShowcaseItem $item)
+    {
+        if (! $this->hasItem($item)) {
+
+            $item->setShowcase($this);
+
+            $this->items->add($item);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(ShowcaseItem $item)
+    {
+        if ($this->hasItem($item)) {
+            $this->items->removeElement($item);
+        }
+
+        return $this;
+    }
+
+    public function hasItem(ShowcaseItem $item)
+    {
+        return $this->items->contains($item);
     }
 
 }

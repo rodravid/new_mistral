@@ -35,6 +35,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->put('/{product}', 'Product\\ProductController@update')->name('edit#update');
                     $route->delete('/{product}/image/{image}/delete', 'Product\\ProductController@removeImage')->name('edit#remove-image');
                     $route->post('datatable', 'Product\\ProductController@datatable')->name('list#datatable');
+                    $route->get('select', 'Product\\ProductController@getProductsSelect')->name('list#select');
                 });
 
                 /**
@@ -226,6 +227,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->delete('/{showcase}/photo/{photo}/delete', 'Showcase\\ShowcaseController@removeImage')->name('edit#remove-image');
                         $route->post('datatable', 'Showcase\\ShowcaseController@datatable')->name('list#datatable');
                         $route->post('/{showcase}/items/datatable', 'Showcase\\ShowcaseController@itemsDatatable')->name('edit#items-datatable');
+                        $route->delete('/{showcase}/items/{item}/delete', 'Showcase\\ShowcaseController@removeItem')->name('edit#remove-item');
+                        $route->post('/{showcase}/items', 'Showcase\\ShowcaseController@addItem')->name('edit#add-item');
                     });
 
                 });

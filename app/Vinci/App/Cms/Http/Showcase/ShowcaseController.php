@@ -7,10 +7,13 @@ use Exception;
 use Flash;
 use Illuminate\Http\Request;
 use Redirect;
+use Response;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\ACLService;
+use Vinci\Domain\Product\Product;
+use Vinci\Domain\Showcase\ShowcaseItem;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Domain\Showcase\ShowcaseService;
 use Vinci\Domain\Image\ImageRepository;
@@ -28,15 +31,12 @@ class ShowcaseController extends Controller
 
     protected $datatable = ShowcaseCmsDatatable::class;
 
-    protected $imageRepository;
-
     protected $aclService;
 
     public function __construct(
         EntityManagerInterface $em,
         ShowcaseService $service,
         ShowcaseRepository $repository,
-        ImageRepository $imageRepository,
         ACLService $aclService
     )
     {
@@ -44,7 +44,6 @@ class ShowcaseController extends Controller
 
         $this->service = $service;
         $this->repository = $repository;
-        $this->imageRepository = $imageRepository;
         $this->aclService = $aclService;
     }
 
@@ -137,6 +136,35 @@ class ShowcaseController extends Controller
     public function itemsDatatable(Request $request)
     {
         return $this->getDatatable(ShowcaseProductsCmsDatatable::class, $request);
+    }
+
+    public function addItem(Request $request)
+    {
+        try {
+
+            $this->service->addItemWithProductId($request->get('showcaseId'), $request->get('productId'));
+
+            return Response::json(['message' => 'Produto adicionado com sucesso!']);
+
+        } catch (Exception $e) {
+
+            return Response::json(['message' => 'Não foi possível adicionar o produto. Tente novamente.']);
+        }
+    }
+
+    public function removeItem($showcase, $item)
+    {
+        try {
+
+            $this->service->removeItem($showcase, $item);
+
+            return Response::json(['message' => 'Item removido com sucesso.']);
+
+        } catch (Exception $e) {
+
+            return Response::json(['message' => 'Não foi possível remover o item.'], 400);
+
+        }
     }
 
 }
