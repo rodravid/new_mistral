@@ -5,6 +5,7 @@ namespace Vinci\Domain\Showcase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\Common\Relationships\HasOneAdminUser;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\Timestampable;
@@ -160,6 +161,12 @@ class Showcase extends Model
         return $this->items;
     }
 
+    public function setItems(ArrayCollection $items)
+    {
+        $this->items = $items;
+        return $this;
+    }
+
     public function addItem(ShowcaseItem $item)
     {
         if (! $this->hasItem($item)) {
@@ -184,6 +191,19 @@ class Showcase extends Model
     public function hasItem(ShowcaseItem $item)
     {
         return $this->items->contains($item);
+    }
+
+    public function getProducts()
+    {
+        $products = [];
+
+        foreach ($this->getItems() as $item) {
+
+            $products[] = new ProductPresenter($item->getProduct());
+
+        }
+
+        return $products;
     }
 
 }

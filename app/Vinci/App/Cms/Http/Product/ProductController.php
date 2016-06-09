@@ -241,13 +241,17 @@ class ProductController extends Controller
         $qb = $this->repository->createQueryBuilder('p');
 
         $qb->select('p.id as id', 'CONCAT( CONCAT(v.sku, \' - \'),  v.title) as text')
-            ->join('p.variants', 'v');
+            ->join('p.variants', 'v')
+            ->join('v.prices', 'vp')
+            ->andWhere('v.stock > 0')
+            ->andWhere('vp.price > 0');
 
-        $qb->where($qb->expr()->eq('v.sku', ':id'));
-
-        $qb->orWhere($qb->expr()->orX(
-            $qb->expr()->like('v.title', ':search')
-        ));
+        $qb->andWhere(
+            $qb->expr()->orX(
+                $qb->expr()->eq('v.sku', ':id'),
+                $qb->expr()->like('v.title', ':search')
+            )
+        );
 
         $qb->setParameter('id', $keyword);
         $qb->setParameter('search', '%' . $keyword . '%');

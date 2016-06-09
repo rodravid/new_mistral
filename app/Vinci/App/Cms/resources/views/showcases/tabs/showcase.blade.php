@@ -1,4 +1,4 @@
-<div class="tab-pane {{ currentTabActive('#showcaseData') }}" id="showcaseData">
+<div class="tab-pane {{ currentTabActive('#showcaseData', 'active', true) }}" id="showcaseData">
     <div class="row">
         <div class="col-lg-12">
             <div class="row">

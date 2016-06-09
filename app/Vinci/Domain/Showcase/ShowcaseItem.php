@@ -79,4 +79,9 @@ class ShowcaseItem extends Model
         return $this;
     }
 
+    public function __call($name, array $params)
+    {
+        return call_user_func_array([$this->product, $name], $params);
+    }
+
 }

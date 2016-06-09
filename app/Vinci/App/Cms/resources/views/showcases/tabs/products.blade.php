@@ -1,10 +1,10 @@
-<div class="tab-pane {{ currentTabActive('#showcaseProducts', 'active', true) }}" id="showcaseProducts">
+<div class="tab-pane {{ currentTabActive('#showcaseProducts') }}" id="showcaseProducts">
     <div class="row">
 
         <div class="col-xs-12">
             <div class="form-group">
                 <label for="txtShowcasePosition">Adicionar produto à vitrine</label>
-                <select name="product" id="selectProduct" class="form-control"></select>
+                <select name="product" id="selectProduct" class="form-control" style="width: 100%;"></select>
             </div>
         </div>
 

@@ -7,4 +7,9 @@ use Vinci\App\Core\Services\Presenter\AbstractPresenter;
 class ShowcasePresenter extends AbstractPresenter
 {
 
+    public function presentItems()
+    {
+        return $this->getItems();
+    }
+
 }
