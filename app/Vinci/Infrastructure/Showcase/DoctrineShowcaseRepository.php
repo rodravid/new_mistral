@@ -12,7 +12,7 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
 {
     public function lists($type, $max = 4)
     {
-        $qb = $this->createQueryBuilder('n');
+        $qb = $this->getBySortableGroupsQueryBuilder();
 
         $qb->select('n', 'i', 't', 'p', 'v', 'vp', 'vi', 'c', 'co', 'pr', 're')
             ->join('n.items', 'i')
