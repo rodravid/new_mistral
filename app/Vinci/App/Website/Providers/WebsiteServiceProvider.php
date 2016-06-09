@@ -31,5 +31,8 @@ class WebsiteServiceProvider extends ServiceProvider
     protected function registerComposers()
     {
         $this->app['view']->composer('website::layouts.modals.address.default', 'Vinci\App\Website\Http\ViewComposers\ModalAddressComposer');
+
+
+        $this->app['view']->composer('website::layouts.partials.featuredweek', 'Vinci\App\Website\Http\ViewComposers\WeekHighlightsComposer');
     }
 }
