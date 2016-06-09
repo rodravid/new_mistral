@@ -14,11 +14,17 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
     {
         $qb = $this->getBySortableGroupsQueryBuilder();
 
-        $qb->select('n', 'i', 't', 'p', 'v')
+        $qb->select('n', 'i', 't', 'p', 'v', 'vp', 'vi', 'c', 'co', 'pr', 're')
             ->join('n.items', 'i')
-            ->join('n.template', 't')
-            ->join('i.product', 'p')
-            ->join('p.variants', 'v')
+            ->leftJoin('n.template', 't')
+            ->leftJoin('i.product', 'p')
+            ->leftJoin('p.variants', 'v')
+            ->leftJoin('v.prices', 'vp')
+            ->leftJoin('v.images', 'vi')
+            ->leftJoin('p.channels', 'c')
+            ->leftJoin('p.country', 'co')
+            ->leftJoin('p.producer', 'pr')
+            ->leftJoin('p.region', 're')
             ->where($qb->expr()->lte('n.startsAt', $qb->expr()->literal(Carbon::now())))
             ->andWhere($qb->expr()->orX(
                 $qb->expr()->gte('n.expirationAt', $qb->expr()->literal(Carbon::now())),
