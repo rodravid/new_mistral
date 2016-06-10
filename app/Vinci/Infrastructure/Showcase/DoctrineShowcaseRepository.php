@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Showcase;
 
 use Carbon\Carbon;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Showcase\Showcase;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Infrastructure\Common\DoctrineSortableRepository;
@@ -30,7 +31,7 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
                 $qb->expr()->gte('n.expirationAt', $qb->expr()->literal(Carbon::now())),
                 $qb->expr()->isNull('n.expirationAt')
             ))
-            ->andWhere($qb->expr()->eq('n.status', 1))
+            ->andWhere($qb->expr()->eq('n.status', Status::ACTIVE))
             ->andWhere($qb->expr()->eq('n.type',  $qb->expr()->literal($type)));
 
         return $qb->getQuery()->getResult();

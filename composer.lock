@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b480bd62770a56d9413c58cc09e6063b",
-    "content-hash": "85a998f8dd7bd4685d9893a4c0d75989",
+    "hash": "e728f8336eb1a7963582e1563ea90fde",
+    "content-hash": "b18fe7d0224859126d4ab3ff8958b0f9",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2291,6 +2291,58 @@
                 "rest"
             ],
             "time": "2015-10-07 14:48:58"
+        },
+        {
+            "name": "logentries/logentries-monolog-handler",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/logentries/logentries-monolog-handler.git",
+                "reference": "bff66b96cb2939f99838700f08c791aee1cb8a9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/logentries/logentries-monolog-handler/zipball/bff66b96cb2939f99838700f08c791aee1cb8a9d",
+                "reference": "bff66b96cb2939f99838700f08c791aee1cb8a9d",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": ">=1.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Logentries": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Schickling",
+                    "email": "schickling.j@gmail.com"
+                },
+                {
+                    "name": "Mark Lacomber",
+                    "email": "marklacomber@gmail.com"
+                }
+            ],
+            "description": "A handler for Monolog that sends messages to Logentries.com.",
+            "homepage": "https://github.com/logentries/le_monolog",
+            "keywords": [
+                "laravel",
+                "log",
+                "logentries",
+                "logging",
+                "monolog",
+                "symonfy"
+            ],
+            "time": "2013-08-12 23:04:45"
         },
         {
             "name": "maatwebsite/excel",

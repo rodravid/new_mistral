@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Highlight;
 
 use Carbon\Carbon;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Highlight\Highlight;
 use Vinci\Domain\Highlight\HighlightRepository;
 use Vinci\Infrastructure\Common\DoctrineSortableRepository;
@@ -11,7 +12,6 @@ class DoctrineHighlightRepository extends DoctrineSortableRepository implements 
 {
     public function lists($type)
     {
-
         $qb = $this->createQueryBuilder('o');
 
         $qb->select('o', 'i')
@@ -21,12 +21,10 @@ class DoctrineHighlightRepository extends DoctrineSortableRepository implements 
                 $qb->expr()->gte('o.expirationAt', $qb->expr()->literal(Carbon::now())),
                 $qb->expr()->isNull('o.expirationAt')
             ))
-            ->andWhere($qb->expr()->eq('o.status', 1))
+            ->andWhere($qb->expr()->eq('o.status', Status::ACTIVE))
             ->andWhere($qb->expr()->eq('o.type',  $qb->expr()->literal($type)));
 
         return $qb->getQuery()->getResult();
-
-
     }
 
     public function find($id)

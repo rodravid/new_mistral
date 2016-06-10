@@ -29,6 +29,9 @@ class HomeController extends Controller
 
     public function index(HighlightRepository $repo)
     {
+
+        \Log::error('Teste');
+
         $highlights = $this->highlightRepository->lists('home-main-slider');
         $banners = $this->highlightRepository->lists('home-banners');
 
