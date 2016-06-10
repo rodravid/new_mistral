@@ -7,6 +7,7 @@ use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Search\Product\ProductRepositoryInterface as ProductRepositoryIndexer;
+use Vinci\Domain\Showcase\Showcase;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
@@ -142,6 +143,23 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $ids = array_column($result, 'id');
 
         return array_combine($ids, $ids);
+    }
+
+    public function getProductsByShowcase(Showcase $showcase, $perPage = 10, $pageName = 'page')
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb->join('Vinci\Domain\Showcase\ShowcaseItem', 'si', Join::WITH, 'si.product = p')
+            ->join('Vinci\Domain\Showcase\Showcase', 's', Join::WITH, 'si.showcase = s')
+            ->where('s.id = :id')
+            ->orderBy('si.position', 'asc');
+
+        $qb->setParameter('id', $showcase->getId());
+
+        $result = $qb->getQuery()->getResult();
+
+        
+
     }
 
 }
