@@ -3,7 +3,6 @@
 namespace Vinci\Domain\Product\Repositories;
 
 use Vinci\Domain\Customer\CustomerInterface;
-use Vinci\Domain\Showcase\Showcase;
 
 interface ProductRepository
 {
@@ -19,6 +18,6 @@ interface ProductRepository
 
     public function getFavoritesProductsIdsByCustomer(CustomerInterface $customer);
 
-    public function getProductsByShowcase(Showcase $showcase, $perPage = 10);
+    public function getProductsByShowcase($showcase, $perPage = 10, $page = 1, $path = '/');
 
 }

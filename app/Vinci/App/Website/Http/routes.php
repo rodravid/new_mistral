@@ -135,7 +135,6 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
     });
 
-
     /**
      * Shopping cart
      */
@@ -151,6 +150,18 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
         });
     });
+
+    $route->group(['prefix' => 'api', 'as' => 'api.'], function() use ($route) {
+
+        /**
+         * Showcase
+         */
+        $route->group(['prefix' => 'showcase', 'as' => 'showcase.'], function() use ($route) {
+            $route->get('{showcase}/products', 'Showcase\ShowcaseController@getProducts')->name('products');
+        });
+
+    });
+
 
     /**
      * Contact

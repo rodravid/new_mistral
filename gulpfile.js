@@ -34,7 +34,9 @@ elixir(function(mix) {
         'app/js/controllers/cart/cartController.js',
         'app/js/controllers/cart/cartWidgetController.js',
         'app/js/controllers/search/search-filters-controller.js',
-        'app/js/directives/search/search-filters-directive.js'
+        'app/js/directives/search/search-filters-directive.js',
+        'app/js/showcase/directives/showcase-container-directive.js',
+        'app/js/showcase/directives/showcase-widget-directive.js',
     ],
         'public/assets/website/js', 'public/assets/website');
 });

@@ -15,9 +15,7 @@ class HomeController extends Controller
     private $highlightRepository;
 
     private $showcaseRepository;
-    /**
-     * @var ProductRepository
-     */
+
     private $productRepository;
 
     public function __construct(
@@ -34,14 +32,12 @@ class HomeController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function index(HighlightRepository $repo)
+    public function index()
     {
         $highlights = $this->highlightRepository->lists('home-main-slider');
         $banners = $this->highlightRepository->lists('home-banners');
 
         $showcases = $this->showcaseRepository->lists('home-showcases');
-        
-        $this->productRepository->getProductsByShowcase($showcases[0]);
 
         $this->presenter->collection($showcases, ShowcasePresenter::class);
         

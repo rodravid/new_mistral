@@ -145,7 +145,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return array_combine($ids, $ids);
     }
 
-    public function getProductsByShowcase(Showcase $showcase, $perPage = 10, $pageName = 'page')
+    public function getProductsByShowcase($showcase, $perPage = 10, $currentPage = 1, $path = '/')
     {
         $qb = $this->getBaseQueryBuilder();
 
@@ -154,12 +154,9 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->where('s.id = :id')
             ->orderBy('si.position', 'asc');
 
-        $qb->setParameter('id', $showcase->getId());
+        $qb->setParameter('id', $showcase);
 
-        $result = $qb->getQuery()->getResult();
-
-        
-
+        return $this->paginateRaw($qb->getQuery(), $perPage, $currentPage, $path);
     }
 
 }

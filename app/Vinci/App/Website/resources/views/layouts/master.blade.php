@@ -61,6 +61,8 @@
         <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/controllers/search/search-filters-controller.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/directives/search/search-filters-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/showcase/directives/showcase-container-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/showcase/directives/showcase-widget-directive.js') }}" type="text/javascript"></script>
 
     @else
         <script src="{{ asset_web('js/all.js') }}" type="text/javascript"></script>

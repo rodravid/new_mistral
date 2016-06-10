@@ -3,10 +3,13 @@
 namespace Vinci\Infrastructure\Common;
 
 use Gedmo\Sortable\Entity\Repository\SortableRepository;
+use Vinci\Infrastructure\Common\Traits\Paginatable;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineSortableRepository extends SortableRepository
 {
+
+    use Paginatable;
 
     public function findOrFail($id)
     {

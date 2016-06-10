@@ -25,6 +25,7 @@ class ShowcaseItem extends Model
     protected $id;
 
     /**
+     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Showcase\Showcase", inversedBy="items")
      * @ORM\JoinColumn(name="showcase_id", onDelete="CASCADE")
      */
