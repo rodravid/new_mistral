@@ -8,6 +8,7 @@ angular.module('app')
             scope: {
                 showcaseId: '@',
                 currentPage: '@?',
+                limit: '@?',
                 loadFirst: '='
             },
 
@@ -17,6 +18,10 @@ angular.module('app')
 
                 if(typeof $scope.currentPage === 'undefined') {
                     $scope.currentPage = 1;
+                }
+
+                if(typeof $scope.limit === 'undefined') {
+                    $scope.limit = 1;
                 }
 
                 var self = this;
@@ -29,20 +34,36 @@ angular.module('app')
                     loadProducts();
 
                 }
+                
+                $($el).find('.loadProducts').bind('click', function() {
+
+                    loadProducts();
+
+                });
+
+                $scope.loadProducts = function() {
+                    loadProducts();
+                };
 
                 function loadProducts() {
 
                     $http({
                         method: 'GET',
-                        url: '/api/showcase/' + $scope.showcaseId + '/products?page=' + $scope.currentPage,
+                        url: '/api/showcase/' + $scope.showcaseId + '/products?page=' + $scope.currentPage + '&limit=' + $scope.limit,
                         responseType: 'html'
                     }).then(function(response) {
 
-                        $($el).find('.container-products').append($compile(response.data)($scope));
+                        var $html = $($compile(response.data)($scope));
+
+                        $html.hide().appendTo($($el).find('.container-products')).fadeIn();
+
+                        $scope.currentPage++;
+
+                        //$($el).find('.container-products').append($compile(response.data)($scope));
 
                     });
 
-                };
+                }
 
             }
         }

@@ -71,17 +71,15 @@
                     <showcase-widget showcase-id="{{ $showcase->id }}" load-first="true" class="cols-products {{ $showcase->getTemplate()->getCode() }}">
                         <h2 class="title-category">{{ $showcase->title }}</h2>
 
-                        <div class="container-products" style="min-height: 500px;">
-
-                            {{--@each('website::layouts.partials.product.cards.default', $showcase->getProducts(), 'product')--}}
+                        <div class="container-products" style="min-height: 380px;">
 
                         </div>
 
-                        <a class="show-mobile template3 bt-default-full" href="#">Carregar mais vinhos <span class="arrow-link">v</span></a>
+                        <button type="button" class="show-mobile loadProducts {{ $showcase->getTemplate()->getCode() }} bt-default-full" ng-click="loadProducts()">Carregar mais vinhos <span class="arrow-link">v</span></button>
                     </showcase-widget>
                 @endforeach
 
-                <a class="bt-default-full template7 show-desktop" href="#">Carregar mais produtos <span class="arrow-link">v</span></a>
+                <button type="button" class="bt-default-full template7 show-desktop" ng-click="loadMore()">Carregar mais produtos <span class="arrow-link">v</span></button>
             </section>
             @include('website::layouts.partials.featuredweek')
         </div>

@@ -18,7 +18,15 @@ angular.module('app')
                         el:el,
                         scope:scope
                     });
-                }
+                };
+
+                $scope.loadMore = function() {
+
+                    angular.forEach(self.widgets, function(widget) {
+                        widget.scope.loadProducts();
+                    });
+
+                };
 
             }]
         }
