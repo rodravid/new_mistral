@@ -54,6 +54,13 @@
 
                     }
                 },
+                drawCallback: function(settings) {
+
+                    $table.find('.field-editable').editable("click", function(e){
+                        alert(e.value);
+                    });
+
+                },
                 searchDelay: 600,
                 order: [[ 1, "asc" ]],
                 columnDefs: [

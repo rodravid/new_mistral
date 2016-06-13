@@ -189,10 +189,12 @@
     <script src="{{ asset_cms('plugins/iCheck/icheck.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
-    <!-- Select2 -->
+    <!-- Sweet alert -->
     <script src="{{ asset_cms('plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
-    <!-- Select2 -->
+    <!-- Tags input -->
     <script src="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.js') }}"></script>
+    <!-- Jquery editable -->
+    <script src="{{ asset_cms('plugins/jquery-editable/jquery.editable.min.js') }}"></script>
     <!-- AngularJS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <!-- AdminLTE App -->
