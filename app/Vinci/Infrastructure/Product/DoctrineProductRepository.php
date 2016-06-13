@@ -7,7 +7,6 @@ use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Search\Product\ProductRepositoryInterface as ProductRepositoryIndexer;
-use Vinci\Domain\Showcase\Showcase;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
