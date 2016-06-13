@@ -28,7 +28,7 @@ class ShowcaseController extends Controller
         $page = $request->get('page', 1);
         $cacheKey = $this->getCacheKey([$showcase, $limit, $page]);
 
-        //return Cache::remember($cacheKey, 1, function() use ($showcase, $limit, $page) {
+        return Cache::remember($cacheKey, 1, function() use ($showcase, $limit, $page) {
 
             $products = $this->productRepository->getProductsByShowcase($showcase, $limit, $page);
 
@@ -36,7 +36,7 @@ class ShowcaseController extends Controller
 
             return View::renderEach('website::layouts.partials.product.cards.default', $products, 'product');
 
-        //});
+        });
     }
 
     protected function getCacheKey(array $keys)

@@ -154,9 +154,17 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->where('s.id = :id')
             ->orderBy('si.position', 'asc');
 
+        $this->applyDefaultConditions($qb);
+
         $qb->setParameter('id', $showcase);
 
         return $this->paginateRaw($qb->getQuery(), $perPage, $currentPage, $path);
+    }
+
+    public function applyDefaultConditions($queryBuilder)
+    {
+        $queryBuilder->andWhere('vp.price > 0')
+            ->andWhere('v.stock > 0');
     }
 
 }

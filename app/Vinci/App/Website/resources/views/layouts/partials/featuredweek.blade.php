@@ -14,6 +14,7 @@
                         @if($product->hasProducer())
                             <span>{{ $product->producer->name }}</span>
                         @endif
+                        <span>{{ $product->sale_price }}</span>
                     </a>
                 </li>
 
