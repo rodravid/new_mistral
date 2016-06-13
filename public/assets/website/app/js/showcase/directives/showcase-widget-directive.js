@@ -22,7 +22,7 @@ angular.module('app')
                 }
 
                 if(typeof $scope.limit === 'undefined') {
-                    $scope.limit = 1;
+                    $scope.limit = 3;
                 }
 
                 if(typeof $scope.initialLimit === 'undefined') {
@@ -32,9 +32,9 @@ angular.module('app')
                 $controller.registerShowcaseWidget($el, $scope);
 
                 if ($scope.loadFirst) {
-                    loadProducts($scope.showcaseId, $scope.currentPage, $scope.initialLimit);
+                    loadProducts($scope.showcaseId, $scope.currentPage, $scope.limit);
 
-                    $scope.currentPage = $scope.initialLimit;
+                    //$scope.currentPage = $scope.initialLimit;
                 }
                 
                 $($el).find('.loadProducts').bind('click', function() {
