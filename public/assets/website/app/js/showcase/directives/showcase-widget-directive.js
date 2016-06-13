@@ -9,6 +9,7 @@ angular.module('app')
                 showcaseId: '@',
                 currentPage: '@?',
                 limit: '@?',
+                initialLimit: '@?',
                 loadFirst: '='
             },
 
@@ -24,40 +25,47 @@ angular.module('app')
                     $scope.limit = 1;
                 }
 
-                var self = this;
+                if(typeof $scope.initialLimit === 'undefined') {
+                    $scope.initialLimit = 3;
+                }
 
                 $controller.registerShowcaseWidget($el, $scope);
 
-
                 if ($scope.loadFirst) {
+                    loadProducts($scope.showcaseId, $scope.currentPage, $scope.initialLimit);
 
-                    loadProducts();
-
+                    $scope.currentPage = $scope.initialLimit;
                 }
                 
                 $($el).find('.loadProducts').bind('click', function() {
-
-                    loadProducts();
-
+                    loadProducts($scope.showcaseId, $scope.currentPage, $scope.limit);
                 });
 
                 $scope.loadProducts = function() {
-                    loadProducts();
+                    loadProducts($scope.showcaseId, $scope.currentPage, $scope.limit);
                 };
 
-                function loadProducts() {
+                function loadProducts(showcase, page, limit) {
 
                     $http({
                         method: 'GET',
-                        url: '/api/showcase/' + $scope.showcaseId + '/products?page=' + $scope.currentPage + '&limit=' + $scope.limit,
+                        url: '/api/showcase/' + showcase + '/products?page=' + page + '&limit=' + limit,
                         responseType: 'html'
                     }).then(function(response) {
 
-                        var $html = $($compile(response.data)($scope));
+                        if (response.data != '') {
 
-                        $html.hide().appendTo($($el).find('.container-products')).fadeIn();
+                            var $html = $($compile(response.data)($scope));
 
-                        $scope.currentPage++;
+                            $html.hide().appendTo($($el).find('.container-products')).fadeIn();
+
+                            $scope.currentPage++;
+
+                        } else {
+
+                            $('body').find('#btnShowcaseLoadMore').fadeOut();
+
+                        }
 
                     });
 
