@@ -4,7 +4,6 @@
 @section('content')
     @include('website::layouts.menu')
 
-
     <div ng-controller="HomeController">
 
         <div class="wrap-slider-principal">
@@ -15,25 +14,21 @@
 
                     <div class="bg-slider-principal {{ $highlight->template }}">
                         <div class="conteudo-slider-principal"
-                             @if ($highlight->hasImage('desktop')) style="background: url({{ $highlight->getImage('desktop')->getWebPath() }}) no-repeat;" @endif>
+                             @if($highlight->hasImage('desktop')) style="background: url({{ $highlight->getImage('desktop')->getWebPath() }}) no-repeat;" @endif>
                             <div class="descr-slider">
                                 <a href="{{ $highlight->url }}" target="{{ $highlight->target }}">
                                     <h3 class="title-slider">{!! $highlight->title !!}</h3>
                                     <span class="sub-title-slider">{!! $highlight->subtitle !!}</span>
                                     <p class="txt-slider"{!! $highlight->description !!}</p>
                                 </a>
-                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique
-                                    aqui <span
-                                            class="arrow-link">></span></a>
-
+                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
                             </div>
-
-                            @if ($highlight->hasImage('mobile'))<a href="{{ $highlight->url }}" target="{{ $highlight->target }}"><img class="seal-slider" src="{{ $highlight->getImage('mobile')->getWebPath() }}" alt="" border="0"></a>@endif
-
+                            @if($highlight->hasImage('mobile'))
+                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}"><img class="seal-slider" src="{{ $highlight->getImage('mobile')->getWebPath() }}" alt="" border="0"></a>
+                            @endif
                         </div>
                     </div>
                 @endforeach
-
 
             </div>
         </div>
@@ -79,7 +74,7 @@
                     </showcase-widget>
                 @endforeach
 
-                <button type="button" class="bt-default-full template7 show-desktop" ng-click="loadMore()">Carregar mais produtos <span class="arrow-link">v</span></button>
+                <button id="btnShowcaseLoadMore" type="button" class="bt-default-full template7 show-desktop" ng-click="loadMore()">Carregar mais produtos <span class="arrow-link">v</span></button>
             </section>
             @include('website::layouts.partials.featuredweek')
         </div>

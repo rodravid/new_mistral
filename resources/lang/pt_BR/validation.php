@@ -43,10 +43,10 @@ return [
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
-        'numeric' => 'The :attribute may not be greater than :max.',
-        'file'    => 'The :attribute may not be greater than :max kilobytes.',
-        'string'  => 'The :attribute may not be greater than :max characters.',
-        'array'   => 'The :attribute may not have more than :max items.',
+        'numeric' => 'O campo :attribute deve conter no máximo :max caracteres.',
+        'file'    => 'O campo :attribute deve conter no máximo :max kilobytes.',
+        'string'  => 'O campo :attribute deve conter no máximo :max caracteres.',
+        'array'   => 'O campo :attribute deve conter no máximo :max items.',
     ],
     'mimes'                => 'The :attribute must be a file of type: :values.',
     'min'                  => [
@@ -56,7 +56,7 @@ return [
         'array'   => 'O campo :attribute deve conter no mínimo :min itens.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
-    'numeric'              => 'The :attribute must be a number.',
+    'numeric'              => 'O campo :attribute deve conter somente números.',
     'regex'                => 'The :attribute format is invalid.',
     'required'             => 'O campo :attribute é obrigatório.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
@@ -110,19 +110,23 @@ return [
             'required' => 'O campo Endereço é obrigatório.'
         ],
         'addresses.*.number' => [
-            'required' => 'O campo Número é obrigatório.'
+            'required' => 'O campo Número é obrigatório.',
+            'max' => 'O campo Número deve conter no máximo :max caracteres.'
         ],
         'addresses.*.district' => [
             'required' => 'O campo Bairro é obrigatório.'
         ],
         'addresses.*.country' => [
-            'required' => 'O campo País é obrigatório.'
+            'required' => 'O campo País é obrigatório.',
+            'exists' => 'País inválido.'
         ],
         'addresses.*.state' => [
-            'required' => 'O campo Estado é obrigatório.'
+            'required' => 'O campo Estado é obrigatório.',
+            'exists' => 'Estado inválido.'
         ],
         'addresses.*.city' => [
-            'required' => 'O campo Cidade é obrigatório.'
+            'required' => 'O campo Cidade é obrigatório.',
+            'exists' => 'Cidade inválida.'
         ],
         'line.*.initial_track' => [
             'required' => 'O campo CEP inicial é obrigatório.',
@@ -156,7 +160,10 @@ return [
         'password' => 'Senha',
         'password_confirmation' => 'Confirmação de Senha',
         'roles' => 'Grupo',
-        'position' => 'Ordem'
+        'position' => 'Ordem',
+        'phone' => 'Telefone',
+        'cell_phone' => 'Telefone celular',
+        'cellPhone' => 'Telefone celular'
     ],
 
 ];

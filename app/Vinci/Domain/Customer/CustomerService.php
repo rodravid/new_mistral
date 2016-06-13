@@ -143,7 +143,7 @@ class CustomerService
             'name' => 'trim|strtolower|ucwords',
             'email' => 'trim|strtolower',
             'cpf' => 'trim|only_numbers',
-            'rg' => 'trim|only_numbers',
+            'rg' => 'trim|only_alphanumeric',
             'issuingBody' => 'trim|strtoupper',
             'cnpj' => 'trim|only_numbers',
             'stateRegistration' => 'trim|only_numbers',

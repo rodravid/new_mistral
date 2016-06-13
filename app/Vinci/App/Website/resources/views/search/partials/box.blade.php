@@ -10,7 +10,6 @@
 
                     <span class="total-products show-mobile">{{ $result->items->range_view }} produtos</span>
 
-
                     <div class="display-filter float-right">
                         <span>Ordernar por</span>
                         <div class="select-standard form-control-white float-right select-widthfull">
@@ -52,9 +51,7 @@
                             <span class="total-products show-desktop">{{ $result->items->range_view }} produtos</span>
                         </div>
 
-                        <ul class="pagination">
-                            {{ $result->items->links() }}
-                        </ul>
+                        {{ $result->items->links() }}
                     </div>
 
                 </header>
@@ -65,9 +62,7 @@
                     <div class="container-total-products">
                         <span class="total-products show-desktop">{{ $result->items->range_view }} produtos</span>
                     </div>
-                    <ul class="pagination">
-                        {{ $result->items->links() }}
-                    </ul>
+                    {{ $result->items->links() }}
                 </div>
             </div>
 

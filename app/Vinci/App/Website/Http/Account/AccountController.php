@@ -53,6 +53,8 @@ class AccountController extends Controller
 
         } catch (Exception $e) {
 
+            throw $e;
+
             Log::error(sprintf('Erro ao atualizar dados da conta: %s', $e->getMessage()));
 
             Flash::error('Não foi possível atualizar seus dados. Tente novamente mais tarde.');
