@@ -18,4 +18,6 @@ interface ProductRepository
 
     public function getFavoritesProductsIdsByCustomer(CustomerInterface $customer);
 
+    public function getProductsByShowcase($showcase, $perPage = 10, $page = 1, $path = '/');
+
 }

@@ -3,7 +3,7 @@
 namespace Vinci\Infrastructure\Common;
 
 use Doctrine\ORM\EntityRepository;
-use LaravelDoctrine\ORM\Pagination\Paginatable;
+use Vinci\Infrastructure\Common\Traits\Paginatable;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineBaseRepository extends EntityRepository

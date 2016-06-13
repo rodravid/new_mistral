@@ -58,6 +58,7 @@ class Highlight extends Model
     protected $target;
 
     /**
+     * @Gedmo\SortableGroup
      * @ORM\Column(type="string")
      */
     protected $type;

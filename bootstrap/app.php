@@ -41,6 +41,11 @@ $app->singleton(
     Vinci\App\Core\Exceptions\Handler::class
 );
 
+$app->configureMonologUsing(function($monolog) {
+    $logEntriesHandler = new Monolog\Handler\LogEntriesHandler(env('LOGENTRIES_TOKEN'));
+    $monolog->pushHandler($logEntriesHandler);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

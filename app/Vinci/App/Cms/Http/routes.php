@@ -284,6 +284,14 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
             });
 
+            $route->group(['prefix' => 'api', 'as' => 'api.'], function() use ($route) {
+
+                $route->group(['prefix' => 'showcase', 'as' => 'showcase.'], function() use ($route) {
+                    $route->post('{showcase}/items/{item}/update-position', 'Showcase\ShowcaseController@updateItemPosition')->name('update-position');
+                });
+
+            });
+
         });
 
     });

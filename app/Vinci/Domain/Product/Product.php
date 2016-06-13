@@ -60,6 +60,7 @@ class Product extends Model implements ProductInterface, Presentable
 
     /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariant", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"id" = "asc"})
      */
     protected $variants;
 

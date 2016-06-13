@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Highlight;
 
 use Carbon\Carbon;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Highlight\Highlight;
 use Vinci\Domain\Highlight\HighlightRepository;
 use Vinci\Infrastructure\Common\DoctrineSortableRepository;
@@ -11,22 +12,18 @@ class DoctrineHighlightRepository extends DoctrineSortableRepository implements 
 {
     public function lists($type)
     {
+        $qb = $this->getBySortableGroupsQueryBuilder(['type' => $type]);
 
-        $qb = $this->createQueryBuilder('o');
-
-        $qb->select('o', 'i')
-            ->leftJoin('o.images', 'i')
-            ->where($qb->expr()->lte('o.startsAt', $qb->expr()->literal(Carbon::now())))
+        $qb->select('n', 'i')
+            ->leftJoin('n.images', 'i')
+            ->andWhere($qb->expr()->lte('n.startsAt', $qb->expr()->literal(Carbon::now())))
             ->andWhere($qb->expr()->orX(
-                $qb->expr()->gte('o.expirationAt', $qb->expr()->literal(Carbon::now())),
-                $qb->expr()->isNull('o.expirationAt')
+                $qb->expr()->gte('n.expirationAt', $qb->expr()->literal(Carbon::now())),
+                $qb->expr()->isNull('n.expirationAt')
             ))
-            ->andWhere($qb->expr()->eq('o.status', 1))
-            ->andWhere($qb->expr()->eq('o.type',  $qb->expr()->literal($type)));
+            ->andWhere($qb->expr()->eq('n.status', Status::ACTIVE));
 
         return $qb->getQuery()->getResult();
-
-
     }
 
     public function find($id)

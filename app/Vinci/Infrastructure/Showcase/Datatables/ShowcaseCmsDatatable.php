@@ -31,14 +31,10 @@ class ShowcaseCmsDatatable extends AbstractDatatables
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
-        $qb = $this->repository->getBySortableGroupsQueryBuilder()
+        $qb = $this->repository->getBySortableGroupsQueryBuilder(['type' => $this->aclService->getCurrentModuleName()])
             ->join('n.user', 'u')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
-
-        $qb->where($qb->expr()->eq('n.type', ':type'));
-
-        $qb->setParameter('type', $this->aclService->getCurrentModuleName());
 
         if (! empty($search['value'])) {
 

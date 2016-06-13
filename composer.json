@@ -26,7 +26,8 @@
         "ramsey/uuid-doctrine": "^1.2",
         "elasticsearch/elasticsearch": "^2.1",
         "guzzlehttp/guzzle": "^6.2",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "logentries/logentries-monolog-handler": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

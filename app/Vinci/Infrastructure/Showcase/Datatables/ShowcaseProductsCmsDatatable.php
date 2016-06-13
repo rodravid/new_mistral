@@ -62,7 +62,7 @@ class ShowcaseProductsCmsDatatable extends AbstractDatatables
         return [
             $presenter->product->sku,
             $presenter->product->title,
-            $presenter->position,
+            sprintf('<p class="field-editable" data-id="%s">%s</p>', $presenter->id, $presenter->position),
             $presenter->created_at,
             $this->buildActionsColumn($showcaseItem)
         ];

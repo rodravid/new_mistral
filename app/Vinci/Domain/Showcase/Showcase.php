@@ -49,6 +49,7 @@ class Showcase extends Model
     protected $template;
 
     /**
+     * @Gedmo\SortableGroup
      * @ORM\Column(type="string")
      */
     protected $type;

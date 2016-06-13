@@ -144,4 +144,26 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return array_combine($ids, $ids);
     }
 
+    public function getProductsByShowcase($showcase, $perPage = 10, $currentPage = 1, $path = '/')
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb->join('Vinci\Domain\Showcase\ShowcaseItem', 'si', Join::WITH, 'si.product = p')
+            ->join('Vinci\Domain\Showcase\Showcase', 's', Join::WITH, 'si.showcase = s')
+            ->where('s.id = :id')
+            ->orderBy('si.position', 'asc');
+
+        $this->applyDefaultConditions($qb);
+
+        $qb->setParameter('id', $showcase);
+
+        return $this->paginateRaw($qb->getQuery(), $perPage, $currentPage, $path);
+    }
+
+    public function applyDefaultConditions($queryBuilder)
+    {
+        $queryBuilder->andWhere('vp.price > 0')
+            ->andWhere('v.stock > 0');
+    }
+
 }

@@ -3,7 +3,7 @@
 namespace Vinci\Infrastructure\Common;
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
-use LaravelDoctrine\ORM\Pagination\Paginatable;
+use Vinci\Infrastructure\Common\Traits\Paginatable;
 
 class DoctrineNestedTreeRepository extends NestedTreeRepository
 {
