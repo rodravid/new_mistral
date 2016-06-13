@@ -437,6 +437,10 @@ a.bt-default {
 	a{
 		color:$black;
 	}
+
+	.old-price {
+		margin-top:20px;
+	}
 }
 .wine-bottle {
 	max-width:100%;
@@ -542,7 +546,7 @@ a.bt-default {
 	font:18px $robotobold;
 	text-transform: uppercase;
 	line-height: 18px;
-	width: 80%;
+	width: 90%;
 	min-height: 92px;
 	@media #{$screen767} {
 		min-height: auto;
@@ -707,6 +711,13 @@ a.bt-default {
 	font-size:25px;
 	color:#fff;
 	margin-top: -5px;
+}
+
+.container-products {
+	min-height: 380px;
+	@media #{$screen767} {
+		min-height:auto;
+	}
 }
 
 /* FIM MENU INTERNAL *********************/
@@ -996,32 +1007,36 @@ ul.pagination{
 	li{
 		display:inline-block;
 		margin-right: 2px;
-		a{
-			padding: 5px 10px 5px 10px;
-			color: #000;
-			border: 1px solid #fff;
+		
+		color: #000;
+		border: 1px solid #fff;
+		a, span{
+			color:#000;
 			display: inline-block; 
 			font-size:14px;
-			&:hover{
-				border: 1px solid #d6d6d6;
-				color: #323232;
-			}
+			padding: 5px 10px 5px 10px;
 		}
-		a.selected{
-			border: 1px solid #d6d6d6;
-			color: #000;
-		}
+
 	}
-	li:last-child {
-		a {
+	li:last-child, li:first-child  {
+		a,span {
 			font: 20px $robotobold;
 		}
 	}
 }
 
-.pagination li a.selected, .pagination li a:hover {
+.pagination li.active, .pagination li:hover {
 	border: 1px solid #d6d6d6;
 }
+.pagination li {
+	border: 1px solid #d6d6d6;
+	color: #323232;
+}
+
+		.active{
+			border: 1px solid #d6d6d6;
+			color: #000;
+		}
 
 
 

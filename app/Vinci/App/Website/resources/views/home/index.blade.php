@@ -71,7 +71,7 @@
                     <showcase-widget showcase-id="{{ $showcase->id }}" load-first="true" class="cols-products {{ $showcase->getTemplate()->getCode() }}">
                         <h2 class="title-category">{{ $showcase->title }}</h2>
 
-                        <div class="container-products" style="min-height: 380px;">
+                        <div class="container-products">
 
                         </div>
 
