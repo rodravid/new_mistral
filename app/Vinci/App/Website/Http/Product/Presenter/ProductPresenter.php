@@ -7,6 +7,11 @@ use Vinci\Domain\Product\Presenter\ProductPresenter as BaseProductPresenter;
 class ProductPresenter extends BaseProductPresenter
 {
 
+    public function presentCardTitle()
+    {
+        return $this->getTitle();
+    }
+
     public function presentImageUrl()
     {
         if ($this->hasImage('desktop')) {

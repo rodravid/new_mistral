@@ -3,7 +3,7 @@
 
     <h3 class="title-card-wine">
         <a href="{{ $product->web_path }}">
-            {{ $product->title }}
+            {{ $product->card_title }}
             @if ($product->hasProducer())
                 <span>{{ $product->producer->name }}</span>
             @endif
@@ -19,8 +19,12 @@
         </div>
         <div class="other-wine-info">
             <a href="javascript:void(0);">
-                {{--<p class="info-details-wine">Tinto Pinot</p>--}}
-                {{--<p class="info-details-wine">Noir Chile</p>--}}
+                @if($product->hasCountry())
+                    <p class="info-details-wine">{{ $product->country->name }}</p>
+                @endif
+                @if($product->hasProductType())
+                    <p class="info-details-wine">{{ $product->productType->name }}</p>
+                @endif
                 {{ $product->original_sale_price_html }}
                 <p class="wine-price">
                     {{ $product->sale_price }}
