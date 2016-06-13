@@ -59,9 +59,9 @@ class NewsletterCmsDatatable extends AbstractDatatables
         $presenter = new NewsletterPresenter($newsletter);
 
         return [
-            $presenter->getId(),
-            $presenter->getName(),
-            $presenter->getEmail(),
+            $presenter->id,
+            $presenter->name,
+            $presenter->email,
             $presenter->accept_promotions,
             $presenter->accept_events,
             $presenter->created_at
