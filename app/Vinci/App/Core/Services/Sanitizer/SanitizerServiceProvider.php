@@ -18,6 +18,10 @@ class SanitizerServiceProvider extends ServiceProvider
             return Str::upper($field);
         });
 
+        $this->app['sanitizer']->register('only_alphanumeric', function ($field) {
+            return preg_replace("/[^a-zA-Z0-9]+/", "", $field);
+        });
+
     }
 
     public function register()

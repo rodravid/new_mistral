@@ -132,7 +132,7 @@
                         <h2 class="title-form">Endereço de Entrega *</h2>
                         <ul class="list-form-register">
                             <input type="hidden" name="addresses[0][id]" value="0">
-                            <input type="hidden" name="addresses[0][country]" value="1">
+                            <input type="hidden" name="addresses[0][country]" value="{{ \Vinci\Domain\Address\Country\Country::BRAZIL }}">
                             <input type="hidden" name="main_address" value="0">
                             <li>
                                 <ul class="list-type-radio-3cols">
