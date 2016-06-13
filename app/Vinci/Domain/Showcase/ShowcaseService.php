@@ -88,6 +88,26 @@ class ShowcaseService
         $this->repository->save($showcase);
     }
 
+    public function updateItemPosition($showcase, $itemId, $position)
+    {
+        $showcase = $this->repository->getOneById($showcase);
+
+        foreach ($showcase->getItems() as $item) {
+
+            if ($item->getId() == $itemId) {
+                $item->setPosition(intval($position));
+
+                $this->entityManager->persist($item);
+                $this->entityManager->flush();
+
+                return true;
+
+            }
+
+        }
+
+    }
+
     public function addItemWithProductId($showcase, $product)
     {
         $showcase = $this->repository->getOneById($showcase);

@@ -59,8 +59,6 @@ angular.module('app')
 
                         $scope.currentPage++;
 
-                        //$($el).find('.container-products').append($compile(response.data)($scope));
-
                     });
 
                 }

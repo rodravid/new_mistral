@@ -12,11 +12,8 @@ use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\ACLService;
-use Vinci\Domain\Product\Product;
-use Vinci\Domain\Showcase\ShowcaseItem;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Domain\Showcase\ShowcaseService;
-use Vinci\Domain\Image\ImageRepository;
 use Vinci\Infrastructure\Showcase\Datatables\ShowcaseCmsDatatable;
 use Vinci\Infrastructure\Showcase\Datatables\ShowcaseProductsCmsDatatable;
 
@@ -165,6 +162,23 @@ class ShowcaseController extends Controller
             return Response::json(['message' => 'Não foi possível remover o item.'], 400);
 
         }
+    }
+
+    public function updateItemPosition($showcase, $item, Request $request)
+    {
+
+        try {
+
+            $this->service->updateItemPosition($showcase, $item, $request->get('position'));
+
+            return Response::json(['message' => 'Order atualizada com sucesso.']);
+
+        } catch (Exception $e) {
+
+            return Response::json(['message' => 'Não foi possível atualizar a ordem  do item.'], 400);
+
+        }
+
     }
 
 }

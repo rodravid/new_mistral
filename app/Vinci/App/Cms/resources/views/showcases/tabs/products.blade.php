@@ -56,13 +56,32 @@
                 },
                 drawCallback: function(settings) {
 
-                    $table.find('.field-editable').editable("click", function(e){
-                        alert(e.value);
+                    $table.find('.field-editable').each(function(i, el) {
+
+                        var $el = $(el);
+                        var itemId = $el.attr('data-id');
+
+                        $el.editable("click", function(e){
+
+                            $.ajax({
+                                type: 'POST',
+                                url: '/cms/api/showcase/{{ $showcase->id }}/items/' + itemId  + '/update-position',
+                                dataType: 'json',
+                                data: {position: e.value},
+                                success: function() {
+
+                                    reloadTable();
+
+                                }
+                            });
+
+                        });
+
                     });
 
                 },
                 searchDelay: 600,
-                order: [[ 1, "asc" ]],
+                order: [[ 2, "asc" ]],
                 columnDefs: [
                     {orderable: false, width: '92px', targets: -1 },
                     {className: 'hcenter vcenter', width: '20px', targets: 0 },
