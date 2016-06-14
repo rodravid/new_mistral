@@ -58,19 +58,16 @@
 				</ul>
 			</div>
 
-			<div class="newsletter show-desktop">
-
+			<div class="newsletter show-desktop" newsletter-widget>
 				<h4>Newsletter</h4>
-
-				<form action="">
+				<form action="{{ route('login') }}" method="POST" ng-submit="submitForm($event)">
 					<input class="input-newsletter" type="text" placeholder="NOME">
 					<input class="input-newsletter" type="text" placeholder="E-MAIL">
-					<button class="bt-newsletter" type="button">CADASTRAR</button>
+					<button class="bt-newsletter" type="submit">CADASTRAR</button>
 				</form>
 				<span class="error-newsletter" style="display: none">
 					Preencha corretamente os campos*
 				</span>
-
 			</div>
 		</div>
 

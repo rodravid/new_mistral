@@ -1,5 +1,4 @@
 var elixir = require('laravel-elixir');
-//var bowerDir = 'vendor/bower_components/';
 
 elixir(function(mix) {
 
@@ -37,6 +36,7 @@ elixir(function(mix) {
         'app/js/directives/search/search-filters-directive.js',
         'app/js/showcase/directives/showcase-container-directive.js',
         'app/js/showcase/directives/showcase-widget-directive.js',
+        'app/js/newsletter/directives/newsletter-widget-directive.js',
     ],
         'public/assets/website/js', 'public/assets/website');
 });
