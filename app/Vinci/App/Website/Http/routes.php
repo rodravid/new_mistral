@@ -151,6 +151,9 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         });
     });
 
+    /**
+     * API
+     */
     $route->group(['prefix' => 'api', 'as' => 'api.'], function() use ($route) {
 
         /**
@@ -158,6 +161,13 @@ $route->group(['middleware' => ['web']], function () use ($route) {
          */
         $route->group(['prefix' => 'showcase', 'as' => 'showcase.'], function() use ($route) {
             $route->get('{showcase}/products', 'Showcase\ShowcaseController@getProducts')->name('products');
+        });
+
+        /**
+         * Newsletter
+         */
+        $route->group(['prefix' => 'newsletter', 'as' => 'newsletter.'], function() use ($route) {
+            $route->post('register', 'Newsletter\NewsletterController@store')->name('register');
         });
 
     });
