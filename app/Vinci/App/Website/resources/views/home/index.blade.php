@@ -1,6 +1,5 @@
 @extends('website::layouts.master')
 
-
 @section('content')
     @include('website::layouts.menu')
 
@@ -19,7 +18,7 @@
                                 <a href="{{ $highlight->url }}" target="{{ $highlight->target }}">
                                     <h3 class="title-slider">{!! $highlight->title !!}</h3>
                                     <span class="sub-title-slider">{!! $highlight->subtitle !!}</span>
-                                    <p class="txt-slider"{!! $highlight->description !!}</p>
+                                    <p class="txt-slider">{!! $highlight->description !!}</p>
                                 </a>
                                 <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
                             </div>
@@ -208,9 +207,7 @@
 
             }).scroll();
 
-
         })($);
-
 
     </script>
 

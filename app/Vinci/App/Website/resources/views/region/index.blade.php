@@ -21,7 +21,7 @@
 		<h1 class="internal-subtitle-category">{{ $region->name }}</h1>
 		<div class="container-leia-mais">
 			<p class="category-description">
-                {{ $region->description }}
+				{!! $region->description !!}
 			</p>
 		</div>
 	</div>
@@ -33,4 +33,4 @@
 
 @include('website::layouts.footer')
 
-@stop
+@endsection
