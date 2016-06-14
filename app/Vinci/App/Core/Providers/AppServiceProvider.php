@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
             return sprintf('<?php echo app("product.favorite.service")->productIsFavoritedByCustomer(with%s, auth("website")->getUser()); ?>', $expression);
         });
 
-        //if (! $this->app->environment('local')) {
+        if (! $this->app->environment('local')) {
             Validator::extend('cpf', function($attribute, $value, $parameters) {
                 return validateCpf($value);
             });
@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
             Validator::extend('cnpj', function($attribute, $value, $parameters) {
                 return validateCnpj($value);
             });
-        //}
+        }
     }
 
     /**
