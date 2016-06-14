@@ -60,9 +60,9 @@
 
 			<div class="newsletter show-desktop" newsletter-widget>
 				<h4>Newsletter</h4>
-				<form action="{{ route('login') }}" method="POST" ng-submit="submitForm($event)">
-					<input class="input-newsletter" type="text" placeholder="NOME">
-					<input class="input-newsletter" type="text" placeholder="E-MAIL">
+				<form action="{{ route('api.newsletter.register') }}" method="POST" ng-submit="submitForm($event)">
+					<input class="input-newsletter" type="text" placeholder="NOME" name="newsletter_name" ng-model="name">
+					<input class="input-newsletter" type="text" placeholder="E-MAIL" name="newsletter_email" ng-model="email">
 					<button class="bt-newsletter" type="submit">CADASTRAR</button>
 				</form>
 				<span class="error-newsletter" style="display: none">

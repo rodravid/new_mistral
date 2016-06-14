@@ -43,7 +43,7 @@ class OrderService
     {
         $this->validator->with($data)->passesOrFail();
 
-        return $this->entityManager->transactional(function($em) use ($data) {
+        return $this->entityManager->transactional(function ($em) use ($data) {
 
             $order = $this->factory->make($data);
 
