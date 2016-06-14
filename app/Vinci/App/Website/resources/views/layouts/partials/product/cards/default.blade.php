@@ -9,7 +9,7 @@
             @endif
         </a>
     </h3>
-    <p class="wine-intro">{{ $product->shortned_description }}</p>
+    <p class="wine-intro">{!! $product->shortned_description !!}</p>
     <div class="content-card-product">
         <div class="thumb-wine">
             <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">

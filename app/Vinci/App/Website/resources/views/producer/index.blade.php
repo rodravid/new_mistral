@@ -21,7 +21,7 @@
 		<h1 class="internal-subtitle-category">{{ $producer->name }}</h1>
 		<div class="container-leia-mais">
 			<p class="category-description">
-                {{ $producer->description }}
+				{!! $producer->description !!}
 			</p>
 		</div>
 	</div>

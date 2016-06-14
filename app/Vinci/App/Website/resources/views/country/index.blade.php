@@ -21,7 +21,7 @@
 		<h1 class="internal-subtitle-category">{{ $country->name }}</h1>
 		<div class="container-leia-mais">
 			<p class="category-description">
-                {{ $country->description }}
+                {!! $country->description !!}
 			</p>
 		</div>
 	</div>
