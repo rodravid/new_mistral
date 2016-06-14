@@ -178,6 +178,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      */
     $route->group(['prefix' => 'fale-conosco', 'as' => 'contact.'], function() use ($route) {
         $route->get('/', 'Contact\ContactController@index')->name('index');
+        $route->post('/', 'Contact\ContactController@store')->name('store');
     });
 
     /**

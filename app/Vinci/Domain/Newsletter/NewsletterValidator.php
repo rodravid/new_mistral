@@ -1,5 +1,4 @@
 <?php
-
 namespace Vinci\Domain\Newsletter;
 
 use Vinci\App\Core\Services\Validation\LaravelValidator;
