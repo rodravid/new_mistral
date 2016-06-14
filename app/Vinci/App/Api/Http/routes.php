@@ -19,4 +19,4 @@ $route->group(['middleware' => ['api']], function () use ($route) {
 
     });
 
-});
+}); 
