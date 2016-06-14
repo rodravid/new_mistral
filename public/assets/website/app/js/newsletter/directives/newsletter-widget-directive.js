@@ -7,12 +7,17 @@ angular.module('app')
 
             scope: true,
 
-            link: function($scope, $el, $attributes) {
+            link: function($scope, $elements, $attributes) {
 
                 $scope.submitForm = function(e) {
 
                     newsService.create($scope.name, $scope.email).then(
                         function (response) {
+                            $scope.name = "";
+                            $scope.email = "";
+
+                            $($elements).find('input.error-field').removeClass('error-field');
+
                             swal('Cadastrado!', response.message, 'success');
                         },
                         function (response) {
