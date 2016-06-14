@@ -1,6 +1,5 @@
 @extends('website::layouts.master')
 
-
 @section('content')
     @include('website::layouts.menu')
 
@@ -208,9 +207,7 @@
 
             }).scroll();
 
-
         })($);
-
 
     </script>
 

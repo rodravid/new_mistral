@@ -33,4 +33,4 @@
 
 @include('website::layouts.footer')
 
-@stop
+@endsection
