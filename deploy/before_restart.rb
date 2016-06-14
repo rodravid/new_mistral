@@ -6,9 +6,13 @@ node[:deploy].each do |app_name, deploy|
       user "root"
       cwd "#{current_path}"
       code <<-EOH
-      chmod -R 777 storage
-      chmod -R 777 bootstrap/cache
+      rm -R storage/framework/cache
       ln -s #{current_path}/storage/app/public/ #{current_path}/public/storage
+      chmod -R 777 bootstrap/cache
+      /usr/bin/php artisan cache:clear
+      /usr/bin/php artisan route:cache
+      /usr/bin/php artisan config:cache
+      chmod -R 777 storage
       EOH
     end
   end
