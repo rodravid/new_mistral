@@ -21,7 +21,9 @@
                                     <span class="sub-title-slider">{!! $highlight->subtitle !!}</span>
                                     <p class="txt-slider"{!! $highlight->description !!}</p>
                                 </a>
-                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique aqui <span class="arrow-link">></span></a>
+                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique aqui 
+                                    <span class="arrow-link">></span>
+                                </a>
                             </div>
                             @if($highlight->hasImage('mobile'))
                                 <a href="{{ $highlight->url }}" target="{{ $highlight->target }}"><img class="seal-slider" src="{{ $highlight->getImage('mobile')->getWebPath() }}" alt="" border="0"></a>
@@ -64,8 +66,11 @@
                 @foreach($showcases as $showcase)
 
                     <showcase-widget showcase-id="{{ $showcase->id }}" load-first="true" class="cols-products {{ $showcase->getTemplate()->getCode() }}">
-                        <h2 class="title-category">{{ $showcase->title }}</h2>
-
+                        <div class="container-titlecat">
+                            <div class="center-height">
+                                <a href="#"><h2 class="title-category">{{ $showcase->title }}</h2></a>
+                            </div>
+                        </div>
                         <div class="container-products">
 
                         </div>
@@ -95,6 +100,7 @@
 
             var $window = $(window);
 
+
             function eDesktop() {
                 var larguraTela = $window.width();
 
@@ -115,14 +121,23 @@
                 return $('.featured-products').find('.cols-products:first').find('.wine-card:last').offset();
             }
 
-            var h = $(".title-category:first").height() + 16;
+            var h = $(".container-titlecat").height();
+            // alert(h);
+
+
+
+            // if (h <= 45) {
+            //     $(".titles-category-fixed").css({'height': '36px'});
+            // } else {
+            //     $(".titles-category-fixed").css({'height': '56px'});
+            // }
 
             function toggleTitleCategory(action) {
 
 
                 if (action == 'show') {
 
-                    $(".title-category").addClass('category-fixed');
+                    $(".container-titlecat").addClass('category-fixed');
                     $(".category-fixed").addClass('opacity1');
                     $(".titles-category-fixed").addClass('category-fixed').css("display", "inline-block");
 
@@ -131,8 +146,8 @@
                 } else {
 
 
-                    $(".title-category").removeClass('category-fixed');
-                    $(".title-category").removeClass('opacity1');
+                    $(".container-titlecat").removeClass('category-fixed');
+                    $(".container-titlecat").removeClass('opacity1');
                     $(".titles-category-fixed").removeClass('category-fixed').css("display", "none");
 
                     $('.cols-products').css({'margin-top': '0px'});

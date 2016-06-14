@@ -330,11 +330,11 @@
 
             <section class="also-recommend featured-products">
 
-                <h2 class="title-category">Também recomendamos</h2>
+                <h2 class="title-category mbottom20">Também recomendamos</h2>
 
-                <div class="cols-products">
+                <div class="cols-products bg-template template2">
 
-                    <div class="wine-card bg-template template2">
+                    <div class="wine-card">
                         <span class="favorite"></span>
 
                         <h3 class="title-card-wine">
@@ -372,9 +372,9 @@
 
                 </div>
 
-                <div class="cols-products">
+                <div class="cols-products bg-template template4">
 
-                    <div class="wine-card bg-template template4">
+                    <div class="wine-card ">
                         <span class="favorite"></span>
 
                         <h3 class="title-card-wine">
@@ -412,9 +412,9 @@
 
                 </div>
 
-                <div class="cols-products">
+                <div class="cols-products bg-template template7">
 
-                    <div class="wine-card bg-template template7">
+                    <div class="wine-card ">
                         <span class="favorite"></span>
 
                         <h3 class="title-card-wine">
@@ -452,9 +452,9 @@
 
                 </div>
 
-                <div class="cols-products">
+                <div class="cols-products bg-template template1">
 
-                    <div class="wine-card bg-template template1">
+                    <div class="wine-card">
                         <span class="favorite"></span>
 
                         <h3 class="title-card-wine">
