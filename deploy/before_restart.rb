@@ -6,6 +6,8 @@ node[:deploy].each do |app_name, deploy|
     cwd "#{current_path}"
     code <<-EOH
     ln -s #{current_path}/storage/app/public/ #{current_path}/public/storage
+    sudo npm install
+    gulp --production 
     EOH
   end
 end 
