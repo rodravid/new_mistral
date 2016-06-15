@@ -9,7 +9,7 @@ angular.module('app')
 
             var request = $http({
                 method: "post",
-                url: "/login",
+                url: "/api/newsletter/register",
                 data: {
                     name: name,
                     email: email
@@ -20,13 +20,21 @@ angular.module('app')
         }
 
         function handleError(response) {
-            if (
-                ! angular.isObject( response.data )
-            ) {
-                return( $q.reject("An unknown error occurred."));
+            if (response.data.email || response.data.name) {
+
+                $.each(response.data, function(field, messages) {
+
+                    var $field = $('input[name=' + field + ']');
+
+                    $field.addClass('error-field');
+
+                    $field.parent('li').find('label').text(messages[0]).fadeIn();
+
+                });
+
             }
 
-            return( $q.reject(response));
+            return( $q.reject(response.data) );
         }
 
         function handleSuccess( response ) {

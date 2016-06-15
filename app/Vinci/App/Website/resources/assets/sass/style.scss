@@ -177,6 +177,7 @@ strong {
 		}
 	}
 
+
 }
 
 h3.title-slider {
@@ -355,18 +356,32 @@ a.bt-default {
 
 .title-category {
 	font:22px $robotobold;
-	line-height: 23px;
-	margin: 0 0 17px 20px;
-	text-transform: uppercase;
-	width: 170px;
-	text-align: left;
-	min-height: 50px;
+  line-height: 23px;
+  text-transform: uppercase;
+  width: 170px;
+  text-align: left;
+
+  padding-left: 20px;
+
+	/* min-height: 50px; */
 
 	@media #{$screen767} {
 		margin:0 0 20px 0px;
 		min-height: auto;
 	}
 
+}
+
+.category-fixed {
+	.title-category {
+		display: table-cell;
+		vertical-align: middle;
+		height: 46px;
+	}
+}
+
+.container-titlecat{
+	min-height:50px;
 }
 
 .favorite {
@@ -412,6 +427,11 @@ a.bt-default {
 	transition: all 0.25s ease-in-out;
 }
 
+.bg-template {
+	.wine-card {
+		border:0;
+	}
+}
 
 
 .wine-card {
@@ -421,7 +441,7 @@ a.bt-default {
 	text-align:left;
 	margin-bottom:20px;
 	position:relative;
-	min-height: 385px;
+	min-height: 395px;
 
 	@media #{$screen767} { 
 		min-height: auto;
@@ -1655,6 +1675,9 @@ ul.pagination{
 			width:220px;
 			float:right;
 			min-height:340px;
+			@media #{$screen970} {
+				min-height:360px;
+			 }
 			@media #{$screen767} { 
 				width:100%;
 				min-height:auto;
@@ -3056,6 +3079,7 @@ ul.pagination{
 
 			@media #{$screen767} { 
 				margin-right:0;
+				margin-bottom: 20px;
 			}
 
 		} 
@@ -3607,6 +3631,11 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
 	@media #{$screen970} {
 		top: 62px;
 	}
+}
+
+.center-height {
+	height:56px;
+	display:table;
 }
 
 .titles-category-fixed {
