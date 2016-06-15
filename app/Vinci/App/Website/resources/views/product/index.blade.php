@@ -152,8 +152,7 @@
                     </div>
 
                     <div class="content-img-product">
-                        <img src="{{ asset_web('images/no_photo.png') }}" class="img-product"
-                             alt="{{ $product->title }}">
+                        <img src="{{ $product->image_url }}" class="img-product" alt="{{ $product->title }}">
 
                         @if($scores = $product->getHighlightedScores())
 
