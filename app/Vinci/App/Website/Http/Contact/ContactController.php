@@ -59,8 +59,8 @@ class ContactController extends Controller
     {
         $flashMessage = 'Preencha os campos corretamente! \n\n';
 
-        foreach ($e->getErrors() as $errorMessage) {
-            $flashMessage .= $errorMessage . '\n';
+        foreach ($e->getErrors()->getMessages() as $errorMessage) {
+            $flashMessage .= $errorMessage[0] . '\n';
         }
 
         return $flashMessage;

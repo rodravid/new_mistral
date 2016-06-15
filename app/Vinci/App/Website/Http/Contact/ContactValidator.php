@@ -12,5 +12,10 @@ class ContactValidator extends LaravelValidator
         'subject' => 'required',
         'message' => 'required',
     ];
+
+    protected $messages = [
+        'subject.required' => 'O campo assunto é obrigatório',
+        'message.required' => 'O campos mensagem é obrigatório'
+    ];
     
 }
