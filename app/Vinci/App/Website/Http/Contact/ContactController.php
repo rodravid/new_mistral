@@ -40,12 +40,12 @@ class ContactController extends Controller
             });
             
             Flash::success('Mensagem Enviada! Agradecemos o seu contato e retornaremos o mais breve possível.');
-
             return Redirect::back();
 
         } catch (ValidationException $e) {
+            $flashMessage = $this->getErrorsMessageFormated($e);
 
-            Flash::error('Preencha os campos corretamente! \n\n A');
+            Flash::error($flashMessage);
             return Redirect::back()->withErrors($e->getErrors())->withInput();
 
         } catch (Exception $e) {
@@ -55,9 +55,15 @@ class ContactController extends Controller
         }
     }
 
-    private function getErrorsMessageFormated(array $errors)
+    private function getErrorsMessageFormated($e)
     {
+        $flashMessage = 'Preencha os campos corretamente! \n\n';
 
+        foreach ($e->getErrors() as $errorMessage) {
+            $flashMessage .= $errorMessage . '\n';
+        }
+
+        return $flashMessage;
     }
 
 }
