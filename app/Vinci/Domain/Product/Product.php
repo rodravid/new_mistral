@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Product;
 
+use Closure;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -117,6 +118,8 @@ class Product extends Model implements ProductInterface, Presentable
     protected $currentChannel;
 
     protected $priceCalculator;
+
+    protected $priceConfigurationResolver;
 
     public function __construct()
     {
@@ -721,6 +724,22 @@ class Product extends Model implements ProductInterface, Presentable
     public function getType()
     {
         return self::TYPE_PRODUCT;
+    }
+
+    public function getPriceConfigurationResolver()
+    {
+        return $this->priceConfigurationResolver;
+    }
+
+    public function setPriceConfigurationResolver(Closure $priceConfigurationResolver)
+    {
+        $this->priceConfigurationResolver = $priceConfigurationResolver;
+        return $this;
+    }
+
+    public function canBePromoted()
+    {
+        return false;
     }
 
 }

@@ -12,6 +12,7 @@ use Vinci\Domain\Admin\AdminService;
 use Vinci\Domain\Customer\Address\AddressService;
 use Vinci\Domain\Customer\CustomerService;
 use Vinci\Domain\DeliveryTrack\DeliveryTrackService;
+use Vinci\Domain\Dollar\Providers\DefaultDollarProvider;
 use Vinci\Domain\Highlight\HighlightService;
 use Vinci\Domain\Country\CountryService;
 use Vinci\Domain\Inventory\Checkers\AvailabilityChecker;
@@ -212,12 +213,16 @@ class DomainServiceProvider extends ServiceProvider
             return new LinkCustomerToCurrentCart($cartProvider, $cartRepository);
         });
 
+        $this->app->singleton('Vinci\Domain\Dollar\DollarProvider', function() {
+            return new DefaultDollarProvider($this->app['Vinci\Domain\Dollar\DollarRepository']);
+        });
+
         $this->app->singleton('Vinci\Domain\Pricing\PriceCalculator', function() {
             return new StandardPriceCalculator();
         });
 
-        $this->app->singleton('Vinci\Domain\Pricing\Contracts\PriceCalculatorProvider', function() {
-            return new PriceCalculatorProvider($this->app['Vinci\Domain\Pricing\PriceCalculator']);
+        $this->app->singleton('Vinci\Domain\Pricing\Contracts\PriceCalculatorProvider', function($app) {
+            return new PriceCalculatorProvider($app);
         });
 
         $this->app->alias('Vinci\Domain\Product\Services\FavoriteService', 'product.favorite.service');

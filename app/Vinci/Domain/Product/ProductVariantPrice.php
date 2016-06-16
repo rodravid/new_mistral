@@ -4,24 +4,30 @@ namespace Vinci\Domain\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Channel\Channel;
+use Vinci\Domain\Pricing\Contracts\CalculablePrice;
 use Vinci\Domain\Pricing\Contracts\Price as PriceInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="products_variants_price")
  */
-class ProductVariantPrice implements PriceInterface
+class ProductVariantPrice implements PriceInterface, CalculablePrice
 {
 
     /**
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductVariant", inversedBy="prices")
      * @ORM\JoinColumn(name="variant_id", referencedColumnName="id", nullable=false)
      */
     protected $variant;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Channel\Channel")
      * @ORM\JoinColumn(name="channel_id", referencedColumnName="id", nullable=false)
      */
@@ -66,12 +72,22 @@ class ProductVariantPrice implements PriceInterface
 
     public function getId()
     {
-        return $this->getChannel()->getId();
+        return $this->id;
     }
 
     public function getPriceCalculator()
     {
-        return $this->getVariant()->getPriceCalculator();
+        $variant = $this->getVariant();
+        $product = $variant->getProduct();
+        $calculator = $variant->getPriceCalculator();
+
+        $providerResolver = $product->getPriceConfigurationResolver();
+
+        $calculator->setPriceConfigurationProvider(
+            $providerResolver($this)
+        );
+
+        return $calculator;
     }
 
     public function getVariant()
@@ -103,7 +119,7 @@ class ProductVariantPrice implements PriceInterface
 
     public function getPrice()
     {
-        return $this->price;
+        return (double) $this->price;
     }
 
     public function setPrice($price)
@@ -215,4 +231,8 @@ class ProductVariantPrice implements PriceInterface
         return $this;
     }
 
+    public function getAmount()
+    {
+        return $this->getPrice();
+    }
 }

@@ -9,4 +9,6 @@ interface ProductInterface
     const TYPE_WINE = 'wine';
     const TYPE_KIT = 'kit';
 
+    public function canBePromoted();
+
 }

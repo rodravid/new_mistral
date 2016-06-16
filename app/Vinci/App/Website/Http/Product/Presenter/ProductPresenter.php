@@ -34,7 +34,7 @@ class ProductPresenter extends BaseProductPresenter
     public function presentOriginalSalePriceHtml()
     {
         if ($price = $this->getOriginalSalePrice()) {
-            return sprintf('<p class="old-price">De <span>%s</span></p>', $this->sale_price);
+            return sprintf('<p class="old-price">De <span>%s</span></p>', $this->original_sale_price);
         }
     }
 

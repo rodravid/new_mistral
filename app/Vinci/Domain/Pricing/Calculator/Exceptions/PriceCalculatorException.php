@@ -2,7 +2,9 @@
 
 namespace Vinci\Domain\Pricing\Calculator\Exceptions;
 
-class PriceCalculatorException extends \Exception
+use Exception;
+
+class PriceCalculatorException extends Exception
 {
 
 }

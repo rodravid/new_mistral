@@ -2,13 +2,19 @@
 
 namespace Vinci\Domain\Pricing\Calculator;
 
-use Vinci\Domain\Product\ProductVariantPrice;
+use Vinci\Domain\Pricing\Contracts\CalculablePrice;
 
 interface PriceCalculator
 {
 
-    public function calculate(ProductVariantPrice $price);
+    public function skipDiscounts($skip = true);
 
-    public function calculateDiscounts(ProductVariantPrice $price);
+    public function shouldCalculateDiscounts();
+
+    public function getPriceConfigurationProvider();
+
+    public function calculate(CalculablePrice $subject);
+
+    public function calculateDiscounts(CalculablePrice $subject);
 
 }
