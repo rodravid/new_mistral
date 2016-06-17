@@ -3390,6 +3390,10 @@ ul.pagination{
 			}
 			@media #{$screen767} {
 				width:100%;
+
+				.half {
+					width:100%;
+				}
 			}
 		}
 
