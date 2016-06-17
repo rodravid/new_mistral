@@ -524,7 +524,7 @@
                     </li>
 
 
-                    <li class="menu-item larger760-right template2">
+                    <li class="menu-item larger760-right template12">
                         <a class="menu-link" href="javascript:void(0);">
                             Meias garrafas
                         </a>
@@ -578,7 +578,7 @@
                                 </div>
                             </li>
 
-                <li class="menu-item larger760-right template1">
+                <li class="menu-item larger760-right template9">
                     <a class="menu-link" href="javascript:void(0);">
                         Vinhos Pontuados
                     </a>
