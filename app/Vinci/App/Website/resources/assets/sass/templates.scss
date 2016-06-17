@@ -3558,42 +3558,7 @@
 		background: $dark-orange;
 	}
 
-	.bt-default.bt-default-blue {
-		background: $dark-orange;
-		color: #fff;
-		border: 2px solid $dark-orange;
-		position: relative;
-		padding-right: 38px;
-		text-align: center;
-		line-height: 24px;
-		transition: all .1s ease .05s;
-		&:hover{
-			background:#fff;
-			color:$dark-orange;
-			border:2px solid $dark-orange;
-			transition: all .1s ease .05s;
 
-			.arrow-link {
-				color:#fff;
-				background: $dark-orange;
-				transition: all .1s ease .05s;
-			}
-		}
-
-		.arrow-link {
-			color: $dark-orange;
-			background: #fff;
-			position: absolute;
-			top: -2px;
-			right: -2px;
-			line-height: 20px;
-			border: 2px solid $dark-orange;
-			height: 32px;
-			width: 30px;
-			transition: all .1s ease .05s;
-		}
-
-	}
 
 	.bt-default-full.template9 {
 		background: $dark-orange;
@@ -4702,42 +4667,7 @@
 		background: $lightpurple;
 	}
 
-	.bt-default.bt-default-blue {
-		background: $lightpurple;
-		color: #fff;
-		border: 2px solid $lightpurple;
-		position: relative;
-		padding-right: 38px;
-		text-align: center;
-		line-height: 24px;
-		transition: all .1s ease .05s;
-		&:hover{
-			background:#fff;
-			color:$lightpurple;
-			border:2px solid $lightpurple;
-			transition: all .1s ease .05s;
 
-			.arrow-link {
-				color:#fff;
-				background: $lightpurple;
-				transition: all .1s ease .05s;
-			}
-		}
-
-		.arrow-link {
-			color: $lightpurple;
-			background: #fff;
-			position: absolute;
-			top: -2px;
-			right: -2px;
-			line-height: 20px;
-			border: 2px solid $lightpurple;
-			height: 32px;
-			width: 30px;
-			transition: all .1s ease .05s;
-		}
-
-	}
 
 	.bt-default-full.template12 {
 		background: $lightpurple;
