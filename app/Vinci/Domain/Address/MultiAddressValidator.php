@@ -11,7 +11,7 @@ class MultiAddressValidator extends LaravelValidator
         'addresses.*.type' => 'required',
         'addresses.*.postal_code' => 'required|min:8|max:9',
         'addresses.*.nickname' => 'required_if:addresses.*.type,3',
-        'addresses.*.public_place' => 'required',
+        'addresses.*.public_place' => 'required|exists:Vinci\Domain\Address\PublicPlace,id',
         'addresses.*.address' => 'required',
         'addresses.*.number' => 'required|max:10',
         'addresses.*.district' => 'required',

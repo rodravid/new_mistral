@@ -177,6 +177,11 @@
                             </li>
                             <li>
                                 <div class="select-standard half form-control-white {{ $errors->has('addresses.0.public_place') ? 'error-field' : '' }}">
+                                    <select name="addresses[0][public_place]" id="selectPublicPlace" data-publicplace>
+                                        @foreach($publicPlaces as $publicPlace)
+                                            <option value="{{ $publicPlace->getId() }}" @if($publicPlace->getId() == old('addresses.0.public_place')) selected @endif>{{ $publicPlace->getTitle() }}</option>
+                                        @endforeach
+                                    </select>
                                     {{--{!! Form::select('addresses[0][public_place]', ['1' => 'Rua', '2' => 'Avenida'], null, ['id' => 'selectPublicPlace', 'data-publicplace']) !!}--}}
 
                                 </div>

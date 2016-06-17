@@ -45,7 +45,7 @@ class CustomerService
     public function create(array $data)
     {
         $this->sanitizeData($data);
-
+        
         $this->validator->with($data)->passesOrFail();
 
         if (isset($data['addresses'])) {
