@@ -4,24 +4,29 @@ namespace Vinci\Domain\Pricing\Calculator;
 
 use Vinci\Domain\Pricing\Calculator\Exceptions\PriceCalculatorException;
 use Vinci\Domain\Pricing\Contracts\CalculablePrice;
-use Vinci\Domain\Pricing\Contracts\PriceConfigurationProvider;
+use Vinci\Domain\Pricing\Contracts\DiscountType;
+use Vinci\Domain\Pricing\Contracts\PriceConfiguration;
 
 abstract class AbstractPriceCalculator implements PriceCalculator
 {
 
     protected $calcDiscounts = true;
 
-    protected $priceConfigurationProvider;
+    protected $priceConfiguration;
 
-    public function setPriceConfigurationProvider(PriceConfigurationProvider $provider)
+    public function setPriceConfiguration(PriceConfiguration $configuration)
     {
-        $this->priceConfigurationProvider = $provider;
+        $this->priceConfiguration = $configuration;
         return $this;
     }
 
-    public function getPriceConfigurationProvider()
+    public function getPriceConfiguration()
     {
-        return $this->priceConfigurationProvider;
+        if (! $this->priceConfiguration) {
+            throw new PriceCalculatorException('The PriceConfiguration is not defined.');
+        }
+
+        return $this->priceConfiguration;
     }
 
     public function skipDiscounts($skip = true)
@@ -35,28 +40,17 @@ abstract class AbstractPriceCalculator implements PriceCalculator
         return $this->calcDiscounts;
     }
 
-    public function calculateDiscounts(CalculablePrice $subject)
-    {
-        $config = $this->getPriceConfiguration();
-
-        return $this->calcDiscountByType(
-            $subject->getAmount(),
-            $config->getDiscountType(),
-            $config->getDiscountAmount()
-        );
-    }
-
     public function calcDiscountByType($amount, $type, $discountAmount)
     {
         $discountAmount = (double) $discountAmount;
 
         switch ($type) {
 
-            case 'percent':
+            case DiscountType::PERCENTAGE:
                 return $amount * ($discountAmount / 100);
                 break;
 
-            case 'fixed':
+            case DiscountType::FIXED:
                 return $discountAmount;
                 break;
         }
@@ -64,13 +58,10 @@ abstract class AbstractPriceCalculator implements PriceCalculator
         return 0;
     }
 
-    public function getPriceConfiguration()
+    public function parseValueAndReset($value)
     {
-        if (! $this->priceConfigurationProvider) {
-            throw new PriceCalculatorException('The PriceConfigurationProvider is not defined.');
-        }
-
-        return $this->priceConfigurationProvider->getConfiguration();
+        $this->calcDiscounts = true;
+        return (double) $value;
     }
 
 }

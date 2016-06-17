@@ -11,7 +11,7 @@ interface PriceCalculator
 
     public function shouldCalculateDiscounts();
 
-    public function getPriceConfigurationProvider();
+    public function getPriceConfiguration();
 
     public function calculate(CalculablePrice $subject);
 
