@@ -22,4 +22,13 @@ class ProductPresenter extends AbstractPresenter
         return $this->getWebPath();
     }
 
+    public function presentImageUrl()
+    {
+        if ($this->hasImage('desktop')) {
+            return $this->getImage('desktop')->getWebPath();
+        }
+
+        return asset_web('images/no_photo.png');
+    }
+
 }

@@ -2,9 +2,9 @@
 
 namespace Vinci\App\Cms\Http\Product\Presenters;
 
-use Vinci\App\Core\Services\Presenter\AbstractPresenter;
+use Vinci\Domain\Product\Presenter\ProductPresenter as BaseProductPresenter;
 
-class ProductPresenter extends AbstractPresenter
+class ProductPresenter extends BaseProductPresenter
 {
 
     public function presentImageHtml()

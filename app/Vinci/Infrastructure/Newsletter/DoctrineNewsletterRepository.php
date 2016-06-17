@@ -21,4 +21,9 @@ class DoctrineNewsletterRepository extends DoctrineBaseRepository implements New
     {
         return $this->createQueryBuilder('o')->getQuery()->getResult();
     }
+
+    public function countNewsletters()
+    {
+        return (int) $this->createQueryBuilder('n')->select('count(n.id)')->getQuery()->getSingleScalarResult();
+    }
 }

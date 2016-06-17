@@ -30,4 +30,9 @@ class DoctrineCustomerRepository extends DoctrineUserRepository implements Custo
         $this->_em->flush();
         return $customer;
     }
+
+    public function countCustomers()
+    {
+        return (int) $this->createQueryBuilder('c')->select('count(c.id)')->getQuery()->getSingleScalarResult();
+    }
 }

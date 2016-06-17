@@ -9,6 +9,15 @@ use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRepository
 {
 
+    public function getLastOrders($perPage, $currentPage = 1)
+    {
+        $query = $this->getBaseQueryBuilder()
+                      ->orderBy('o.id', 'desc')
+                      ->getQuery();
+
+        return $this->paginateRaw($query, $perPage, $currentPage);
+    }
+
     public function find($id)
     {
         $dql = <<<DQL
@@ -55,5 +64,10 @@ DQL;
             ->select('o', 'i', 'c')
             ->join('o.items', 'i')
             ->join('o.customer', 'c');
+    }
+
+    public function countOrders()
+    {
+        return (int) $this->createQueryBuilder('o')->select('count(o.id)')->getQuery()->getSingleScalarResult();
     }
 }
