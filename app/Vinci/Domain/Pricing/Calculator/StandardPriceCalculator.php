@@ -17,19 +17,43 @@ class StandardPriceCalculator extends AbstractPriceCalculator implements PriceCa
 
     public function calculate(CalculablePrice $subject)
     {
-        $discounts = 0;
+        $finalPrice = $this->convertAmountToReal($subject);
 
-        if ($this->shouldCalculateDiscounts()) {
-            $this->skipDiscounts();
-            $discounts = $this->calculateDiscounts($subject);
-        }
+        $this->applyDiscountsIfNecessary($subject, $finalPrice);
 
-        return $subject->getAmount();
+        return $this->parseValueAndReset($finalPrice);
     }
 
-    public function normalizeDollarAmount($amount)
+    protected function applyDiscountsIfNecessary(CalculablePrice $subject, &$finalPrice)
     {
-        return (double) ! empty($amount) ?
+        if ($this->shouldCalculateDiscounts()) {
+            $finalPrice -= $this->calculateDiscounts($subject);
+        }
+    }
+
+    public function calculateDiscounts(CalculablePrice $subject)
+    {
+        $config = $this->getPriceConfiguration();
+
+        $finalPrice = $this->convertAmountToReal($subject);
+
+        return $this->calcDiscountByType(
+            $finalPrice,
+            $config->getDiscountType(),
+            $config->getDiscountAmount()
+        );
+    }
+
+    protected function convertAmountToReal(CalculablePrice $subject)
+    {
+        $dollar = $this->normalizeDollarAmount($this->getPriceConfiguration()->getCurrencyAmount());
+
+        return (double) $subject->getAmount() * $dollar;
+    }
+
+    protected function normalizeDollarAmount($amount)
+    {
+        return (double) $amount > 0 ?
             $amount : $this->dollarProvider->getCurrentDollarAmount();
     }
 

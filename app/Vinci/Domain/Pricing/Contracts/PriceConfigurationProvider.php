@@ -2,8 +2,6 @@
 
 namespace Vinci\Domain\Pricing\Contracts;
 
-use Vinci\Domain\Pricing\PriceConfiguration;
-
 interface PriceConfigurationProvider
 {
 

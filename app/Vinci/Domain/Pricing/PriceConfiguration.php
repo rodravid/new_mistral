@@ -2,7 +2,9 @@
 
 namespace Vinci\Domain\Pricing;
 
-class PriceConfiguration
+use Vinci\Domain\Pricing\Contracts\PriceConfiguration as PriceConfigurationInterface;
+
+class PriceConfiguration implements PriceConfigurationInterface
 {
 
     protected $discountType;
