@@ -1,0 +1,3 @@
+suites:
+    Product: { namespace: Vinci\Domain\Product, psr4_prefix: Vinci\Domain\Product, spec_path: app/Vinci/Domain/Product, src_path: app/Vinci/Domain/Product }
+    Pricing: { namespace: Vinci\Domain\Pricing, psr4_prefix: Vinci\Domain\Pricing, spec_path: app/Vinci/Domain/Pricing, src_path: app/Vinci/Domain/Pricing }
