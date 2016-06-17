@@ -104,7 +104,8 @@ return [
             'required_if' => 'O campo Identificador do local é obrigatório.'
         ],
         'addresses.*.public_place' => [
-            'required' => 'O campo Tipo de logradouro é obrigatório.'
+            'required' => 'O campo Tipo de logradouro é obrigatório.',
+            'exists' => 'Tipo de logradouro Inválido.'
         ],
         'addresses.*.address' => [
             'required' => 'O campo Endereço é obrigatório.'

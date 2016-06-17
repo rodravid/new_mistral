@@ -41,9 +41,9 @@ class RegisterController extends Controller
     public function index()
     {
         $states = $this->stateRepository->getByCountry(Country::BRAZIL);
-        $publicPlace = $this->publicPlaceRepository->getAll();
+        $publicPlaces = $this->publicPlaceRepository->getAll();
 
-        return $this->view('register.index', compact('states', 'publicPlace'));
+        return $this->view('register.index', compact('states', 'publicPlaces'));
     }
 
     public function store(Request $request)
@@ -71,6 +71,7 @@ class RegisterController extends Controller
             Flash::error(trans('register.failed'));
 
             return Redirect::back()->withInput();
+
         }
     }
 
