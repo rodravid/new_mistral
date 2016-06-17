@@ -24,9 +24,7 @@
                                     <span class="arrow-link">></span>
                                 </a>
                             </div>
-                            @if($highlight->hasImage('mobile'))
-                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}"><img class="seal-slider" src="{{ $highlight->getImage('mobile')->getWebPath() }}" alt="" border="0"></a>
-                            @endif
+                         
                         </div>
                     </div>
                 @endforeach
