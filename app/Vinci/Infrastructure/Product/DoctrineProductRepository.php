@@ -166,4 +166,19 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->andWhere('v.stock > 0');
     }
 
+    public function countProducts()
+    {
+        return (int) $this->createQueryBuilder('p')->select('count(p.id)')->getQuery()->getSingleScalarResult();
+    }
+
+    public function getLastProducts($perPage, $currentPage = 1)
+    {
+        $query = $this->createQueryBuilder('p')
+                    ->select('p')
+                    ->orderBy('p.id', 'desc')
+                    ->getQuery();
+
+        return $this->paginateRaw($query, $perPage, $currentPage);
+    }
+
 }

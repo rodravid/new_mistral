@@ -12,15 +12,6 @@ class ProductPresenter extends BaseProductPresenter
         return $this->getTitle();
     }
 
-    public function presentImageUrl()
-    {
-        if ($this->hasImage('desktop')) {
-            return $this->getImage('desktop')->getWebPath();
-        }
-
-        return asset_web('images/no_photo.png');
-    }
-
     public function presentShortnedDescription()
     {
         return substr($this->getDescription(), 0, 80);
