@@ -2,27 +2,35 @@
 
 namespace Vinci\Domain\Pricing\Calculator;
 
-use Vinci\Domain\Pricing\Contracts\Price;
-use Vinci\Domain\Promotion\DiscountPromotion\Contracts\DiscountPromotion;
+use Vinci\Domain\Dollar\DollarProvider;
+use Vinci\Domain\Pricing\Contracts\CalculablePrice;
 
-class StandardPriceCalculator implements PriceCalculator
+class StandardPriceCalculator extends AbstractPriceCalculator implements PriceCalculator
 {
 
-    protected $promotion;
+    protected $dollarProvider;
 
-    public function withDiscountPromotion(DiscountPromotion $discountPromotion)
+    public function __construct(DollarProvider $dollarProvider)
     {
-        $this->promotion = $discountPromotion;
-        return $this;
+        $this->dollarProvider = $dollarProvider;
     }
 
-    public function skipDiscounts()
+    public function calculate(CalculablePrice $subject)
     {
-        return $this;
+        $discounts = 0;
+
+        if ($this->shouldCalculateDiscounts()) {
+            $this->skipDiscounts();
+            $discounts = $this->calculateDiscounts($subject);
+        }
+
+        return $subject->getAmount();
     }
 
-    public function calculate(Price $subject)
+    public function normalizeDollarAmount($amount)
     {
-        return (double) $subject->getPrice();
+        return (double) ! empty($amount) ?
+            $amount : $this->dollarProvider->getCurrentDollarAmount();
     }
+
 }

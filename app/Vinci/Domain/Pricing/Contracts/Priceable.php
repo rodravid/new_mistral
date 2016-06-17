@@ -6,6 +6,6 @@ interface Priceable
 {
 
     public function getPrice($channel = null);
-    
+
 
 }

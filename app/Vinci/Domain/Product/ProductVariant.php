@@ -105,7 +105,7 @@ class ProductVariant extends Model implements ProductVariantInterface
     protected $options;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant", cascade={"persist", "remove"}, indexBy="channel_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariantPrice", mappedBy="variant", cascade={"persist", "remove"}, indexBy="id", orphanRemoval=true)
      */
     protected $prices;
 
