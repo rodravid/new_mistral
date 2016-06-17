@@ -586,7 +586,10 @@ a.bt-default {
 
 .wine-price { font:27px $robotobold; }
 
-
+.product-unavailable {
+	font:20px $robotolight;
+	color:#A59E9E;
+}
 
 .wrap-banners {
 	width:100%;

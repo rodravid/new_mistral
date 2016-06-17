@@ -25,14 +25,23 @@
                 @if($product->hasProductType())
                     <p class="info-details-wine">{{ $product->productType->name }}</p>
                 @endif
+
+                 @if($product->isAvailable())
+
                 {{ $product->original_sale_price_html }}
                 <p class="wine-price">
                     {{ $product->sale_price }}
                 </p>
+                @else
+                <p class="product-unavailable mtop20">
+                    Produto indisponível no site
+                </p>
+                @endif
             </a>
         </div>
 
     </div>
-
+    @if($product->isAvailable())
     <a href="javascript:void(0);" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1" class="bt-default">Comprar <span class="arrow-link">></span></a>
+    @endif
 </div>
