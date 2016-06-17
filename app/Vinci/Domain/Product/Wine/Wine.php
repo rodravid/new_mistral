@@ -56,7 +56,11 @@ class Wine extends Product
 
     public function getScores()
     {
-        return $this->scores;
+        $criteria = Criteria::create();
+
+        $criteria->orderBy(['position' => 'asc']);
+
+        return $this->scores->matching($criteria);
     }
 
     public function getHighlightedScores()
@@ -64,7 +68,8 @@ class Wine extends Product
         $expr = Criteria::expr();
         $criteria = Criteria::create();
 
-        $criteria->where($expr->eq('highlight', true));
+        $criteria->where($expr->eq('highlight', true))
+            ->orderBy(['position' => 'asc']);
 
         return $this->scores->matching($criteria);
     }

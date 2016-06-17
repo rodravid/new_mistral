@@ -62,6 +62,11 @@ class Score extends Model implements Presentable
      */
     protected $description;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true, options={"default" = 0})
+     */
+    protected $position;
+
     public function getWine()
     {
         return $this->wine;
@@ -142,6 +147,17 @@ class Score extends Model implements Presentable
             ->setHighlight($score->isHighlighted())
             ->setDescription($score->getDescription());
 
+        return $this;
+    }
+
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    public function setPosition($position)
+    {
+        $this->position = (int) $position;
         return $this;
     }
 
