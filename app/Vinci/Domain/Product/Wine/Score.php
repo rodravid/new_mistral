@@ -33,6 +33,11 @@ class Score extends Model implements Presentable
     protected $wine;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Wine\CriticalAcclaim", inversedBy="scores")
+     */
+    protected $criticalAcclaim;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $title;
