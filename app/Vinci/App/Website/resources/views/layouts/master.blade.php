@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Vinci - Somos loucos por vinho')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="http://www.vinci.com.br/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset_web('images/vinci_ico.ico') }}">
     @section('styles')
         <link rel="stylesheet" href="{{ asset_web('css/style.min.css') }}">
         <link rel="stylesheet" href="{{ asset_web('js/sweetalert/sweetalert.css') }}">

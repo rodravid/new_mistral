@@ -21,6 +21,7 @@ use Vinci\Domain\Image\Image;
 use Vinci\Domain\Pricing\Calculator\PriceCalculator;
 use Vinci\Domain\Producer\Producer;
 use Vinci\Domain\Region\Region;
+use Vinci\Domain\Template\Template;
 
 /**
  * @ORM\Entity
@@ -114,6 +115,11 @@ class Product extends Model implements ProductInterface, Presentable
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\Customer\Customer", mappedBy="favoriteProducts")
      */
     protected $customers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Template\Template")
+     */
+    protected $template;
 
     protected $currentChannel;
 
@@ -742,4 +748,19 @@ class Product extends Model implements ProductInterface, Presentable
         return false;
     }
 
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(Template $template)
+    {
+        $this->template = $template;
+        return $this;
+    }
+
+    public function hasTemplate()
+    {
+        return ! empty($this->template);
+    }
 }

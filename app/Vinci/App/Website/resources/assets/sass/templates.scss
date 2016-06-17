@@ -2842,6 +2842,11 @@
 	/* Inicio templates BLACK ******************BLACK****************BLACK*******/
 	.template8 {
 
+		.title-slider {
+			color:$red; 
+		}
+
+
 		.template-button {
 			background: #fff;
 			border:2px solid $black;
@@ -2907,6 +2912,7 @@
 		.tit-product-info {
 			color:#fff;
 		}
+
 
 		.current-price {
 			color:$black;
