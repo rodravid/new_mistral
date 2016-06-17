@@ -13,6 +13,7 @@ use Vinci\App\Core\Console\Commands\MakeSlugGrapes;
 use Vinci\App\Core\Console\Commands\MakeSlugProducer;
 use Vinci\App\Core\Console\Commands\MakeSlugProductType;
 use Vinci\App\Core\Console\Commands\MakeSlugRegion;
+use Vinci\App\Core\Console\Commands\RandomizeProductTemplate;
 use Vinci\App\Website\Search\Console\Commands\IndexProducts;
 
 class Kernel extends ConsoleKernel
@@ -31,7 +32,8 @@ class Kernel extends ConsoleKernel
         MakeSlugRegion::class,
         MakeSlugProducer::class,
         MakeSlugProductType::class,
-        MakeSlugGrapes::class
+        MakeSlugGrapes::class,
+        RandomizeProductTemplate::class,
     ];
 
     /**

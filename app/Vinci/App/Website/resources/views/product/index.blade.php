@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-product-wrapper" ng-controller="ProductPageController as ctrl">
-        <div class="header-internal template1-bg">
+        <div class="header-internal {{ $product->template_css }}-bg">
             @include('website::layouts.menu')
             <div class="row">
                 <ul class="breadcrumb">
@@ -36,11 +36,11 @@
             </div>
         </div>
 
-        <div class="bg-product template1"></div>
+        <div class="bg-product {{ $product->template_css }}"></div>
 
         <div class="row relative">
 
-            <section class="wrap-content-product template1">
+            <section class="wrap-content-product {{ $product->template_css }}">
 
                 <div class="col-product-one">
                     <div class="height-bg-product">
@@ -451,7 +451,7 @@
 
                 </div>
 
-                <div class="cols-products bg-template template1">
+                <div class="cols-products bg-template {{ $product->template_css }}">
 
                     <div class="wine-card">
                         <span class="favorite"></span>
