@@ -21,7 +21,7 @@ class Wine extends Product
     protected $grapeContent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine", cascade={"persist", "remove"}, indexBy="id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine")
      */
     protected $scores;
 
@@ -56,14 +56,6 @@ class Wine extends Product
 
     public function getScores()
     {
-
-        $expr = Criteria::expr();
-        $criteria = Criteria::create();
-
-        $criteria->where($expr->eq('highlight', true));
-
-        return $this->scores->matching($criteria);
-
         return $this->scores;
     }
 
