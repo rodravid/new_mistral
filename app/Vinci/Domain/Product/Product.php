@@ -763,4 +763,16 @@ class Product extends Model implements ProductInterface, Presentable
     {
         return ! empty($this->template);
     }
+
+    public function hasStock()
+    {
+        return $this->getMasterVariant()->hasStock();
+    }
+
+    public function isAvailable()
+    {
+        return $this->hasStock() && $this->getSalePrice() > 0;
+    }
+
+
 }

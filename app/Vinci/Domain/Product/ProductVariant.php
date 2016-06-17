@@ -165,6 +165,11 @@ class ProductVariant extends Model implements ProductVariantInterface
         return $this;
     }
 
+    public function hasStock()
+    {
+        return $this->stock > 0;
+    }
+
     public function increaseStock($quantity = 1)
     {
         $newStock = $this->getStock() + intval($quantity);
