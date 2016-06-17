@@ -12,6 +12,7 @@ use Redirect;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\Address\Country\Country;
+use Vinci\Domain\Address\PublicPlaceRepository;
 use Vinci\Domain\Address\State\StateRepository;
 use Vinci\Domain\Customer\CustomerService;
 
@@ -21,23 +22,28 @@ class RegisterController extends Controller
 
     protected $stateRepository;
 
+    protected $publicPlaceRepository;
+
     public function __construct(
         EntityManagerInterface $em,
         CustomerService $customerService,
-        StateRepository $stateRepository
+        StateRepository $stateRepository,
+        PublicPlaceRepository $publicPlaceRepository
     )
     {
         parent::__construct($em);
 
         $this->customerService = $customerService;
         $this->stateRepository = $stateRepository;
+        $this->publicPlaceRepository = $publicPlaceRepository;
     }
 
     public function index()
     {
         $states = $this->stateRepository->getByCountry(Country::BRAZIL);
+        $publicPlace = $this->publicPlaceRepository->getAll();
 
-        return $this->view('register.index', compact('states'));
+        return $this->view('register.index', compact('states', 'publicPlace'));
     }
 
     public function store(Request $request)

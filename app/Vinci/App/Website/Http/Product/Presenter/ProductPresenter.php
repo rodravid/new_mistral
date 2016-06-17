@@ -38,4 +38,13 @@ class ProductPresenter extends BaseProductPresenter
         }
     }
 
+    public function presentTemplateCss()
+    {
+        if ($this->hasTemplate()) {
+            return $this->getTemplate()->getCode();
+        }
+
+        return 'template1';
+    }
+
 }
