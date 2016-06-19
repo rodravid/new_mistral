@@ -4,6 +4,7 @@
 /storage/proxies
 Homestead.yaml
 Homestead.json
+/bin
 .env
 .idea
 dump.rdb
