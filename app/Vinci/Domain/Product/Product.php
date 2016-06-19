@@ -121,6 +121,11 @@ class Product extends Model implements ProductInterface, Presentable
      */
     protected $template;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Promotion\Promotion", mappedBy="products")
+     */
+    protected $promotions;
+
     protected $currentChannel;
 
     protected $priceCalculator;
@@ -133,6 +138,7 @@ class Product extends Model implements ProductInterface, Presentable
         $this->attributes = new ArrayCollection;
         $this->options = new ArrayCollection;
         $this->channels = new ArrayCollection;
+        $this->promotions = new ArrayCollection;
     }
 
     public function getId()

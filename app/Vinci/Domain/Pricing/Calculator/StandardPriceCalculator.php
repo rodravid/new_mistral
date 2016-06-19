@@ -4,6 +4,7 @@ namespace Vinci\Domain\Pricing\Calculator;
 
 use Vinci\Domain\Dollar\DollarProvider;
 use Vinci\Domain\Pricing\Contracts\CalculablePrice;
+use Vinci\Domain\Pricing\Contracts\DiscountType;
 
 class StandardPriceCalculator extends AbstractPriceCalculator implements PriceCalculator
 {
@@ -46,9 +47,22 @@ class StandardPriceCalculator extends AbstractPriceCalculator implements PriceCa
 
     protected function convertAmountToReal(CalculablePrice $subject)
     {
-        $dollar = $this->normalizeDollarAmount($this->getPriceConfiguration()->getCurrencyAmount());
+        $dollar = $this->normalizeDollarAmount($this->getDollarValue());
 
         return (double) $subject->getAmount() * $dollar;
+    }
+
+    protected function getDollarValue()
+    {
+        if($this->shouldCalculateDiscounts() && $this->getPriceConfiguration()->getDiscountType() == DiscountType::EXCHANGE_RATE) {
+            return $this->getPriceConfiguration()->getDiscountAmount();
+        }
+
+        if(! $this->shouldCalculateDiscounts() && $this->getPriceConfiguration()->getDiscountType() == DiscountType::EXCHANGE_RATE) {
+            return $this->getPriceConfiguration()->getCurrencyOriginalAmount();
+        }
+
+        return $this->getPriceConfiguration()->getCurrencyAmount();
     }
 
     protected function normalizeDollarAmount($amount)
