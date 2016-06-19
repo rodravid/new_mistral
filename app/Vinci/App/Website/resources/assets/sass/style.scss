@@ -586,7 +586,10 @@ a.bt-default {
 
 .wine-price { font:27px $robotobold; }
 
-
+.product-unavailable {
+	font:20px $robotolight;
+	color:#A59E9E;
+}
 
 .wrap-banners {
 	width:100%;
@@ -3387,6 +3390,10 @@ ul.pagination{
 			}
 			@media #{$screen767} {
 				width:100%;
+
+				.half {
+					width:100%;
+				}
 			}
 		}
 

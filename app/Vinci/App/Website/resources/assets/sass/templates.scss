@@ -108,6 +108,19 @@
 	}
 }
 
+@-moz-document url-prefix() {
+button.bt-middle {
+	font-size: 16px;
+	line-height: 29px;
+}
+button.bt-default-full {
+    line-height: 22px;
+}
+button.bt-default-full.bt-middle {
+    line-height: 29px;
+}
+}
+
 .bt-normal {
 	font-size: 16px;
 	line-height: 31px;
@@ -1731,11 +1744,11 @@
 
 				&:hover{
 					background: #fff;
-					color:$pink;
+					color:#00E66C;
 					border:2px solid #00e667;
 					transition: all .1s ease .05s;
 					.arrow-link{
-						background: $pink;
+						background: #00E66C;
 						color:#fff;
 						transition: all .1s ease .05s;
 						border: 2px solid #00e667;
@@ -3252,6 +3265,10 @@
 		}
 	}
 
+	.txt-contact {
+		color: #ff5400;
+	}
+
 	.botoes-add {
 		background:$dark-orange;
 	}
@@ -3509,7 +3526,7 @@
 		
 		@media #{$screen767} {
 			.input-bt-search {
-				background-position: -209px -122px;
+				background-position: -209px -281px;
 
 			}
 			.input-search {
