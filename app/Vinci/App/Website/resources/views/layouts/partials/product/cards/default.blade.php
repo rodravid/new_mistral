@@ -25,7 +25,7 @@
                 @if($product->hasProductType())
                     <p class="info-details-wine">{{ $product->productType->name }}</p>
                 @endif
-                {{ $product->original_sale_price_html }}
+                {!! $product->original_sale_price_html !!}
                 <p class="wine-price">
                     {{ $product->sale_price }}
                 </p>
