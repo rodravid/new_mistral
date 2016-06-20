@@ -53,6 +53,19 @@ angular.module('app')
 
                 });
 
+                $('body').find('.changeOrder').bind('change', function() {
+
+                    var $self = $(this);
+                    var order = $self.val();
+
+                    var uri = getUri();
+
+                    uri.setSearch('ordem', order);
+
+                    $window.location.href = uri;
+
+                });
+
                 function getUri() {
                     return new URI($window.location.href);
                 }

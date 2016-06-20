@@ -34,15 +34,16 @@ class ProductSearchService extends SearchService
         $this->filterFactory->setTitles($this->getFiltersTitles());
     }
 
-    public function search($keyword = null, array $filters = [], $limit = 10, $start = 0)
+    public function search($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
-        $params = $this->getSearchParams($keyword, $filters, $limit, $start);
+        $params = $this->getSearchParams($keyword, $filters, $limit, $start, $sort);
 
         $result = $this->client->search($params);
 
         $result['keyword'] = $keyword;
         $result['limit'] = $limit;
         $result['start'] = $start;
+        $result['sort'] = $sort;
 
         $result = $this->presenter->model($this->parseResult($result), ProductSearchResultPresenter::class);
 
@@ -79,7 +80,7 @@ class ProductSearchService extends SearchService
         ];
     }
 
-    private function getSearchParams($keyword = null, array $filters = [], $limit = 10, $start = 0)
+    private function getSearchParams($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
         $params = [
             'index' => 'vinci',
@@ -108,20 +109,21 @@ class ProductSearchService extends SearchService
                     ],
                 ],
             ],
-            'sort' => ['price:desc']
+            'sort' => $this->getSort($sort)
         ];
 
         if (! empty($keyword)) {
 
             $params['body']['query'] = [
-                'filtered' => [
-                    'filter' => [
+//                'filtered' => [
+//                    'filter' => [
                         'bool' => [
                             'should' => [
-                                ['term' => ['title' => $keyword]],
-                                ['term' => ['country.title' => $keyword]],
-                                ['term' => ['region.title' => $keyword]],
-                                ['term' => ['producer.title' => $keyword]]
+                                ['term' => ['_id' => $keyword]],
+                                ['match' => ['title' => $keyword]],
+                                ['match' => ['country.title' => $keyword]],
+                                ['match' => ['region.title' => $keyword]],
+                                ['match' => ['producer.title' => $keyword]]
                             ],
 //                            'must' => [
 //                                [
@@ -131,8 +133,8 @@ class ProductSearchService extends SearchService
 //                                ],
 //                            ]
                         ],
-                    ]
-                ],
+//                    ]
+//                ],
             ];
 
         }
@@ -174,6 +176,36 @@ class ProductSearchService extends SearchService
         }
 
         return $params;
+    }
+
+    protected function getSort($order)
+    {
+
+        switch ($order) {
+
+            case 1:
+                return ['_score'];
+                break;
+
+            case 2:
+                return ['price:asc'];
+                break;
+
+            case 3:
+                return ['price:desc'];
+                break;
+
+            case 4:
+                return ['title:asc'];
+                break;
+
+            case 5:
+                return ['title:desc'];
+                break;
+
+        }
+
+        return ['_score'];
     }
 
     protected function addPostFilter(array &$params, $column, array $values)

@@ -34,9 +34,11 @@ class SearchController extends Controller
 
         $filters = array_merge_recursive($filters, $appendFilters);
 
+        $sort = $this->getSort($request);
+
         list($limit, $start) = $this->getLimitStart($request);
 
-        $result = $this->searchService->search($keyword, $filters, $limit, $start);
+        $result = $this->searchService->search($keyword, $filters, $limit, $start, $sort);
 
         if ($result->hasItems()) {
             $result->getItems()->setPath($this->getSearchUrlPath($request));
@@ -81,6 +83,10 @@ class SearchController extends Controller
             $appends['max'] = intval($request->get('max'));
         }
 
+        if ($request->has('ordem')) {
+            $appends['ordem'] = intval($request->get('ordem'));
+        }
+
         return array_merge($appends, $this->getFilters($request)['post']);
     }
 
@@ -102,6 +108,11 @@ class SearchController extends Controller
     protected function getSearchUrlPath($request)
     {
         return 'busca';
+    }
+
+    protected function getSort($request)
+    {
+        return $request->get('ordem', 1);
     }
 
 }
