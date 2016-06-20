@@ -13,7 +13,6 @@ use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Address\City\CityRepository;
 use Vinci\Domain\Address\Country\CountryRepository;
-use Vinci\Domain\Address\PublicPlaceRepository;
 use Vinci\Domain\Address\State\StateRepository;
 use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerRepository;
@@ -36,16 +35,13 @@ class CustomerController extends Controller
 
     protected $cityRepository;
 
-    protected $publicPlaceRepository;
-
     public function __construct(
         EntityManagerInterface $em,
         CustomerService $service,
         CustomerRepository $repository,
         CountryRepository $countryRepository,
         StateRepository $stateRepository,
-        CityRepository $cityRepository,
-        PublicPlaceRepository $publicPlaceRepository
+        CityRepository $cityRepository
     )
     {
         parent::__construct($em);
@@ -55,7 +51,6 @@ class CustomerController extends Controller
         $this->countryRepository = $countryRepository;
         $this->stateRepository = $stateRepository;
         $this->cityRepository = $cityRepository;
-        $this->publicPlaceRepository = $publicPlaceRepository;
     }
 
     public function index()
@@ -69,12 +64,9 @@ class CustomerController extends Controller
 
         $states = $this->stateRepository->getByCountry($country);
 
-        $publicPlaces = $this->publicPlaceRepository->getAll();
-
-        return $this->view('customers.create', compact('country', 'states', 'publicPlaces'));
-//            ->withCountry($country)
-//            ->withStates($states)
-//            ->withPublicPlaces($publicPlaces);
+        return $this->view('customers.create')
+            ->withCountry($country)
+            ->withStates($states);
     }
 
     public function edit($id)
