@@ -253,13 +253,16 @@ a.bt-default {
 
 	@media #{$screen970} {
 		max-width:700px;
-		background-position: 100% bottom !important;
+		background-position: 35% bottom !important;
 	}
 
 	@media #{$screen767} {
 		padding: 25px 15px;
 		background-size: 170px !important;
 		height: 400px;
+		padding: 25px 15px;
+		background-position: calc(100% + 114px) bottom !important;
+		background-size: 660px !important;
 	}
 
 }
@@ -423,6 +426,18 @@ a.bt-default {
 
 .height-bg-product .favorite.clicado {
 	background-position: -39px -312px !important;
+}
+
+.show-mobile {
+	.favorite {
+		background-position: 0px -312px;
+    width: 32px;
+    height: 32px;
+	}
+}
+
+.show-mobile .favorite.clicado{
+	    background-position: -39px -312px !important;
 }
 
 .opacity1 {
