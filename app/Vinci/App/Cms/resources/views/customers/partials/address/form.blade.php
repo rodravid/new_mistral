@@ -60,7 +60,9 @@
     <div class="form-group">
         <label>Tipo</label>
         <select name="addresses[{{ $address->getId() }}][public_place]" id="selectPublicPlace{{ $address->getId() }}" class="form-control select2" style="width: 100%;" data-publicplace>
-            <option value="1">Rua</option>
+            @foreach($publicPlaces as $publicPlace)
+                <option value="{{ $publicPlace->getId() }}" @if($publicPlace->getId() == old('addresses.0.public_place')) selected @endif>{{ $publicPlace->getTitle() }}</option>
+            @endforeach
         </select>
     </div>
 </div>
