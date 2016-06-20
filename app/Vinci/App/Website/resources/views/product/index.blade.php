@@ -232,20 +232,21 @@
                                 Me avise quando houver disponibilidade atráves do e-mail
                             </p>
 
-                            <form action="">
-
-                                <input type="email" class="email input-register full mbottom10 mtop10">
-
-                                <p class="error-email mbottom10">E-mail inválido</p>
+                            <form action="{{ route('product.register') }}" method="POST">
+                                {!! Form::hidden('productId', $product->getId()) !!}
+                                {!! Form::email('email', null, ['class' => 'email input-register full mbottom10 mtop10 ' . ($errors->has('email') ? 'error-field' : '')]) !!}
+                                @if($errors->has())
+                                    <p class="error-email mbottom10"><b>{{ $errors->first() }}</b></p>
+                                @endif
 
                                 <div class="receive-offers mbottom10">
                                     <input type="checkbox" name="" checked>
                                     <span>Deseja receber ofertas de produtos similares?</span>
                                 </div>
 
-                                 <a class="bt-default-full-template bt-big template-button" href="javascript:void(0);">
-                                 Enviar <span class="arrow-link">></span>
-                                 </a>
+                                 <button type="submit" class="bt-default-full-template bt-big template-button">
+                                     Enviar <span class="arrow-link">></span>
+                                 </button>
 
                             </form>
                         </div>

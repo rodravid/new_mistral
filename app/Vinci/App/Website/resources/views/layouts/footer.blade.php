@@ -54,7 +54,6 @@
 
 					<li><a class="link-light" href="javascript:void(0);">Vinhos pontuados</a></li>
 
-
 				</ul>
 			</div>
 
@@ -75,14 +74,14 @@
 			<ul class="address two-cols m-bottom20">
 				<li> 
 					<h4>
-						administração
+						Administração
 					</h4>
 					<p>
 						Rua Dr. Siqueira Cardoso, 205 / 227 - CEP 03163-020  - São Paulo - SP
 					</p>
 				</li>
 				<li>
-					<h4>escritório de vendas</h4>
+					<h4>Escritório de Vendas</h4>
 					<p>
 						Rua Pamplona, 917 - CEP 01405-200 - Jardim Paulista - São Paulo - SP
 					</p>

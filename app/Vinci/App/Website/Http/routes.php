@@ -114,6 +114,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      */
     $route->group(['prefix' => 'p', 'as' => 'product.'], function() use ($route) {
         $route->get('/{type}/{slug}', 'Product\ProductController@show')->name('index');
+        $route->post('/registerNotify', 'Product\ProductController@registerEmail')->name('register');
     });
 
     /**

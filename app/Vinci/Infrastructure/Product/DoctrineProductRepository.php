@@ -181,4 +181,17 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $this->paginateRaw($query, $perPage, $currentPage);
     }
 
+    public function registerNotify($data)
+    {
+        $fields = [
+            'product_id' => '?',
+            'customer_email' => '?'
+        ];
+
+        $query = $this->createQueryBuilder('notify')
+                      ->insert('notify')
+                      ->values($fields)
+                      ->setParameter();
+    }
+
 }
