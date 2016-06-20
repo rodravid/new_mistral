@@ -108,8 +108,16 @@ class ProductSearchService extends SearchService
                         ]
                     ],
                 ],
+                'suggest' => [
+                    'my-suggest-1' => [
+                        'text' => $keyword,
+                        'term' => [
+                            'field' => 'title'
+                        ]
+                    ]
+                ]
             ],
-            'sort' => $this->getSort($sort)
+           'sort' => $this->getSort($sort)
         ];
 
         if (! empty($keyword)) {
@@ -123,7 +131,15 @@ class ProductSearchService extends SearchService
                                 ['match' => ['title' => $keyword]],
                                 ['match' => ['country.title' => $keyword]],
                                 ['match' => ['region.title' => $keyword]],
-                                ['match' => ['producer.title' => $keyword]]
+                                ['match' => ['producer.title' => $keyword]],
+                                ['fuzzy' =>
+                                    [
+                                        'title' => [
+                                            'value' => $keyword,
+                                            'fuzziness' => 2
+                                        ]
+                                    ]
+                                ]
                             ],
 //                            'must' => [
 //                                [
@@ -135,6 +151,12 @@ class ProductSearchService extends SearchService
                         ],
 //                    ]
 //                ],
+//                'fuzzy' => [
+//                    'title' => [
+//                        'value' => 'title',
+//                        'fuzziness' => 2
+//                    ]
+//                ]
             ];
 
         }
