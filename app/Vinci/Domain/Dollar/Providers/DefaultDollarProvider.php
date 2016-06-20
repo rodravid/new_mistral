@@ -23,6 +23,6 @@ class DefaultDollarProvider implements DollarProvider
             return $this->dollar;
         }
 
-        return $this->dollar = $this->repository->getLast();
+        return $this->dollar = $this->repository->getLast()->getAmount();
     }
 }

@@ -68,8 +68,6 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
      */
     protected $aliquotIpi;
 
-    protected $priceCalculator;
-
     public function getId()
     {
         return $this->id;
@@ -83,8 +81,8 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
 
         $providerResolver = $product->getPriceConfigurationResolver();
 
-        $calculator->setPriceConfigurationProvider(
-            $providerResolver($this)
+        $calculator->setPriceConfiguration(
+            $providerResolver($this)->getConfiguration()
         );
 
         return $calculator;

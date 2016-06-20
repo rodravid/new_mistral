@@ -51,6 +51,8 @@
                             <span class="tit-product-producer show-desktop">{{ $product->producer->name }}</span>
                         @endif
 
+                        <p class="cod-product show-desktop">Cód 092234</p>
+
                         @if($product->hasShortDescription())
                             <h2 class="tit-product-info show-desktop">{!! $product->short_description !!}</h2>
                         @endif
@@ -145,6 +147,8 @@
                             <span class="tit-product-producer">{{ $product->producer->name }}</span>
                         @endif
 
+                        <p class="cod-product">Cód 092234</p>
+
                         @if($product->hasShortDescription())
                             <h2 class="tit-product-info">{!! $product->short_description !!}</h2>
                         @endif
@@ -174,6 +178,7 @@
 
                 <div class="col-product-tree">
 
+                    @if($product->isAvailable())
                     <div class="wrap-price-units">
 
                         <div class="box-price-units">
@@ -215,6 +220,37 @@
                             {{--</a>--}}
                         {{--</div>--}}
                     </div>
+
+                    @else
+                    
+                    <div class="wrap-product-unavailable">
+                        <div class="content-unavailable">
+                            <p>
+                                Produto temporariamente indisponivel no estoque.
+                            </p>
+                            <p>
+                                Me avise quando houver disponibilidade atráves do e-mail
+                            </p>
+
+                            <form action="">
+
+                                <input type="email" class="email input-register full mbottom10 mtop10">
+
+                                <p class="error-email mbottom10">E-mail inválido</p>
+
+                                <div class="receive-offers mbottom10">
+                                    <input type="checkbox" name="" checked>
+                                    <span>Deseja receber ofertas de produtos similares?</span>
+                                </div>
+
+                                 <a class="bt-default-full-template bt-big template-button" href="javascript:void(0);">
+                                 Enviar <span class="arrow-link">></span>
+                                 </a>
+
+                            </form>
+                        </div>
+                    </div>
+                    @endif
 
                     <ul class="details-wine show-mobile">
 

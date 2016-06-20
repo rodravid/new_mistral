@@ -56,7 +56,7 @@ class Dollar extends Model
 
     public function getAmount()
     {
-        return $this->amount;
+        return (double) $this->amount;
     }
 
 }

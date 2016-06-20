@@ -586,7 +586,10 @@ a.bt-default {
 
 .wine-price { font:27px $robotobold; }
 
-
+.product-unavailable {
+	font:20px $robotolight;
+	color:#A59E9E;
+}
 
 .wrap-banners {
 	width:100%;
@@ -1675,7 +1678,7 @@ ul.pagination{
 			}
 		}
 
-		.wrap-price-units {
+		.wrap-price-units, .wrap-product-unavailable {
 			width:220px;
 			float:right;
 			min-height:340px;
@@ -1686,6 +1689,35 @@ ul.pagination{
 				width:100%;
 				min-height:auto;
 			}
+		}
+
+		.wrap-product-unavailable {
+			color:#000;
+
+			p{
+				font-size:16px;
+			}
+		}
+
+		.content-unavailable {
+			background: #fff;
+			width: 100%;
+			display: inline-block;
+			padding: 10px;
+		}
+
+		.receive-offers {
+			width:100%;
+			display:inline-block;
+			span {
+				float:right;
+				width:90%;
+			}
+		}
+
+		.error-email {
+			color:$red;
+			text-align:center;
 		}
 
 		.box-price-units {
@@ -1799,7 +1831,7 @@ ul.pagination{
 				width:80%;
 			}
 		}
-		.tit-product-producer {
+		.tit-product-producer, .cod-product {
 			font-size: 18px;
 			color:#fff;
 		}
@@ -3358,6 +3390,10 @@ ul.pagination{
 			}
 			@media #{$screen767} {
 				width:100%;
+
+				.half {
+					width:100%;
+				}
 			}
 		}
 
