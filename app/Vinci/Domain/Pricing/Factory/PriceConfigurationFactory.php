@@ -20,7 +20,7 @@ class PriceConfigurationFactory
         if ($discountPromotion->getDiscountType() == 'exchange-rate') {
 
             $priceConfiguration
-                ->setCurrencyAmount($discountPromotion->getCurrencyAmount())
+                ->setCurrencyAmount($discountPromotion->getDiscountAmount())
                 ->setCurrencyOriginalAmount($discountPromotion->getCurrencyOriginalAmount());
         }
 

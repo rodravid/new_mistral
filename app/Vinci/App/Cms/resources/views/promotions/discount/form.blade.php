@@ -4,7 +4,7 @@
         <ul class="nav nav-tabs" style="margin-bottom: 20px;">
             <li class="{{ currentTabActive('#tabData', 'active', true) }}"><a href="#tabData" data-toggle="tab" aria-expanded="true"><i class="fa fa-money"></i> Promoção</a></li>
 
-            @if(isset($showcase))
+            @if(isset($promotion))
                 <li class="{{ currentTabActive('#tabProducts') }}"><a href="#tabProducts" data-toggle="tab" aria-expanded="true"><i class="fa fa-cubes"></i> Produtos</a></li>
             @endif
         </ul>
@@ -13,7 +13,7 @@
 
             @include('cms::promotions.discount.tabs.promotion')
 
-            @if(isset($showcase))
+            @if(isset($promotion))
                 @include('cms::promotions.discount.tabs.products')
             @endif
         </div>

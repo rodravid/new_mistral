@@ -174,25 +174,25 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 });
 
                 /**
-                 * Showcases
+                 * Promotions
                  */
                 $route->group(['prefix' => 'promotions', 'namespace' => 'Promotion'], function () use ($route) {
 
                     /**
-                     * Home showcases
+                     * Discount promotion
                      */
                     $route->group(['prefix' => 'discount-promotion', 'as' => 'discount-promotion.'], function () use ($route) {
                         $route->get('/', 'DiscountPromotion\\DiscountPromotionController@index')->name('list');
                         $route->get('/create', 'DiscountPromotion\\DiscountPromotionController@create')->name('create');
                         $route->post('/', 'DiscountPromotion\\DiscountPromotionController@store')->name('create#store');
-                        $route->get('/{showcase}/edit', 'DiscountPromotion\\DiscountPromotionController@edit')->name('edit');
-                        $route->delete('/{showcase}/delete', 'DiscountPromotion\\DiscountPromotionController@destroy')->name('destroy');
-                        $route->put('/{showcase}', 'DiscountPromotion\\DiscountPromotionController@update')->name('edit#update');
-                        $route->delete('/{showcase}/photo/{photo}/delete', 'DiscountPromotion\\DiscountPromotionController@removeImage')->name('edit#remove-image');
+                        $route->get('/{promotion}/edit', 'DiscountPromotion\\DiscountPromotionController@edit')->name('edit');
+                        $route->delete('/{promotion}/delete', 'DiscountPromotion\\DiscountPromotionController@destroy')->name('destroy');
+                        $route->put('/{promotion}', 'DiscountPromotion\\DiscountPromotionController@update')->name('edit#update');
+                        $route->delete('/{promotion}/photo/{photo}/delete', 'DiscountPromotion\\DiscountPromotionController@removeImage')->name('edit#remove-image');
                         $route->post('datatable', 'DiscountPromotion\\DiscountPromotionController@datatable')->name('list#datatable');
-                        $route->post('/{showcase}/items/datatable', 'DiscountPromotion\\DiscountPromotionController@itemsDatatable')->name('edit#items-datatable');
-                        $route->delete('/{showcase}/items/{item}/delete', 'DiscountPromotion\\DiscountPromotionController@removeItem')->name('edit#remove-item');
-                        $route->post('/{showcase}/items', 'DiscountPromotion\\DiscountPromotionController@addItem')->name('edit#add-item');
+                        $route->post('/{promotion}/items/datatable', 'DiscountPromotion\\DiscountPromotionController@itemsDatatable')->name('edit#items-datatable');
+                        $route->delete('/{promotion}/items/{item}/delete', 'DiscountPromotion\\DiscountPromotionController@removeItem')->name('edit#remove-item');
+                        $route->post('/{promotion}/items', 'DiscountPromotion\\DiscountPromotionController@addItem')->name('edit#add-item');
                     });
 
                 });

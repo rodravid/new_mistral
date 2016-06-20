@@ -19,6 +19,7 @@ use Vinci\Domain\Inventory\Checkers\AvailabilityChecker;
 use Vinci\Domain\Pricing\Calculator\PriceCalculatorProvider;
 use Vinci\Domain\Pricing\Calculator\StandardPriceCalculator;
 use Vinci\Domain\Product\Services\ProductUrlGenerator;
+use Vinci\Domain\Promotion\Types\Discount\Providers\DefaultDiscountPromotionProvider;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
@@ -26,6 +27,7 @@ use Vinci\Domain\ProductType\ProductTypeService;
 use Vinci\Domain\Shipping\Services\ShippingCarrierLocator;
 use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
 use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
+use Vinci\Infrastructure\Promotion\RedisPromotionRepository;
 
 class DomainServiceProvider extends ServiceProvider
 {
@@ -218,7 +220,7 @@ class DomainServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('Vinci\Domain\Pricing\PriceCalculator', function() {
-            return new StandardPriceCalculator();
+            return new StandardPriceCalculator($this->app['Vinci\Domain\Dollar\DollarProvider']);
         });
 
         $this->app->singleton('Vinci\Domain\Pricing\Contracts\PriceCalculatorProvider', function($app) {
@@ -226,6 +228,13 @@ class DomainServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('Vinci\Domain\Product\Services\FavoriteService', 'product.favorite.service');
+
+        $this->app->singleton('Vinci\Domain\Promotion\Types\Discount\DiscountPromotionProvider', function($app) {
+
+            $repository = $app['Vinci\Domain\Promotion\Types\Discount\DiscountPromotionRepository'];
+
+            return new DefaultDiscountPromotionProvider($repository, $app['cache']->driver());
+        });
 
     }
 }

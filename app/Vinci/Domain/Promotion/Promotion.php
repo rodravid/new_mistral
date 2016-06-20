@@ -7,11 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Channel\Contracts\Channel;
+use Vinci\Domain\Common\Model\DateRange;
 use Vinci\Domain\Common\Relationships\HasOneAdminUser;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
-use Vinci\Domain\Product\ProductInterface;
 
 /**
  * @ORM\Entity
@@ -21,6 +22,7 @@ use Vinci\Domain\Product\ProductInterface;
  * @ORM\DiscriminatorMap({
  *     PromotionInterface::TYPE_DISCOUNT = "Vinci\Domain\Promotion\Types\Discount\DiscountPromotion"
  * })
+ * @ORM\EntityListeners({"Vinci\Domain\Promotion\Events\Listeners\PromotionListener"})
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 abstract class Promotion extends Model
@@ -49,22 +51,27 @@ abstract class Promotion extends Model
     protected $sealImage;
 
     /**
+     * @ORM\Column(type="smallint")
+     */
+    protected $status = Status::DRAFT;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Channel\Channel")
      * @ORM\JoinColumn(name="channel_id", referencedColumnName="id", nullable=false)
      */
     protected $channel;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", inversedBy="promotions")
-     * @ORM\JoinTable(name="promotions_products")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Promotion\PromotionItem", mappedBy="promotion", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $products;
+    protected $items;
+
 
     public abstract function getType();
 
     public function __construct()
     {
-        $this->products = new ArrayCollection;
+        $this->items = new ArrayCollection;
     }
 
     public function getId()
@@ -105,30 +112,55 @@ abstract class Promotion extends Model
         return $this;
     }
 
-    public function getProducts()
+    public function getItems()
     {
-        return $this->products;
+        return $this->items;
     }
 
-    public function addProduct(ProductInterface $product)
+    public function addItem(PromotionItem $item)
     {
-        if (! $this->hasProduct($product)) {
-            $this->products->add($product);
+        if (! $this->hasItem($item)) {
+            
+            $item->setPromotion($this);
+            
+            $this->items->add($item);
         }
 
         return $this;
     }
 
-    public function removeProduct(ProductInterface $product)
+    public function removeItem(PromotionItem $item)
     {
-        if ($this->hasProduct($product)) {
-            $this->products->remove($product);
+        if ($this->hasItem($item)) {
+            $this->items->removeElement($item);
         }
     }
 
-    public function hasProduct(ProductInterface $product)
+    public function hasItem(PromotionItem $item)
     {
-        return $this->products->contains($product);
+        return $this->items->contains($item);
+    }
+
+    public function isValid()
+    {
+        return $this->status == Status::ACTIVE &&
+        (new DateRange($this->getStartsAt(), $this->getExpirationAt()))->isInRange();
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function isOfType($type)
+    {
+        return $this->getType() == $type;
     }
 
 }

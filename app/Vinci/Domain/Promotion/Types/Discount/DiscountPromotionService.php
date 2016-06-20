@@ -4,7 +4,9 @@ namespace Vinci\Domain\Promotion\Types\Discount;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
+use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Product\ProductInterface;
+use Vinci\Domain\Promotion\PromotionRepository;
 use Vinci\Domain\Promotion\PromotionService;
 
 class DiscountPromotionService extends PromotionService
@@ -14,24 +16,25 @@ class DiscountPromotionService extends PromotionService
 
     protected $validator;
 
+    protected $provider;
+
     public function __construct(
         EntityManagerInterface $em,
+        PromotionRepository $promotionRepository,
         DiscountPromotionRepository $repository,
-        DiscountPromotionValidator $validator
+        DiscountPromotionValidator $validator,
+        DiscountPromotionProvider $provider
     ) {
-        parent::__construct($em);
+        parent::__construct($em, $promotionRepository);
 
         $this->repository = $repository;
         $this->validator = $validator;
+        $this->provider = $provider;
     }
 
     public function findValidPromotionFor(ProductInterface $product)
     {
-        if ($product->canBePromoted()) {
-
-            //@TODO Procurar uma promocao de desconto válida para o produto.
-
-        }
+        return $this->provider->findValidPromotionFor($product);
     }
 
     public function create(array $data)
@@ -40,6 +43,8 @@ class DiscountPromotionService extends PromotionService
 
         return $this->savePromotion($data, function() {
             $promotion = new DiscountPromotion;
+
+            
             return $promotion;
         });
     }
@@ -60,6 +65,8 @@ class DiscountPromotionService extends PromotionService
         $promotion = $method($data);
 
         $promotion->setScheduleFieldsFromArray($data);
+
+        $data['channel'] = $this->entityManager->getReference(Channel::class, $data['channel']);
 
         $promotion->fill($data);
 

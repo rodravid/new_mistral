@@ -3,7 +3,9 @@
 namespace Vinci\Infrastructure\Promotion\Types\Discount;
 
 use Carbon\Carbon;
+use Doctrine\ORM\Query\Expr\Join;
 use Vinci\Domain\Common\Status;
+use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionRepository;
 use Vinci\Domain\Showcase\Showcase;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
@@ -69,5 +71,24 @@ class DoctrineDiscountPromotionRepository extends DoctrineBaseRepository impleme
         }
 
         return $showcase;
+    }
+
+    public function findOneByProduct(ProductInterface $product)
+    {
+        $qb = $this->createQueryBuilder('dp');
+
+        $qb
+            ->select('dp')
+            ->join('dp.items', 'i')
+            ->join('i.product', 'p')
+            ->where($qb->expr()->eq('p.id', $product->getId()))
+            ->andWhere($qb->expr()->eq('dp.status', Status::ACTIVE))
+            ->andWhere($qb->expr()->lte('dp.startsAt', $qb->expr()->literal(Carbon::now())))
+            ->andWhere($qb->expr()->orX(
+                $qb->expr()->gte('dp.expirationAt', $qb->expr()->literal(Carbon::now())),
+                $qb->expr()->isNull('dp.expirationAt')
+            ));
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }

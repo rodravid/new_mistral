@@ -6,6 +6,7 @@ use Doctrine\ORM\Query\Expr\Join;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
+use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionInterface;
 use Vinci\Domain\Search\Product\ProductRepositoryInterface as ProductRepositoryIndexer;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
@@ -181,4 +182,21 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $this->paginateRaw($query, $perPage, $currentPage);
     }
 
+    public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->select('p.id')
+            ->join('Vinci\Domain\Promotion\PromotionItem', 'pi', Join::WITH, 'pi.product = p')
+            ->where('pi.promotion = :promotionId');
+
+        $qb->setParameter('promotionId', $promotion->getId());
+
+        $result = $qb->getQuery()->getArrayResult();
+
+        $ids = array_column($result, 'id');
+
+        return array_combine($ids, $ids);
+    }
 }

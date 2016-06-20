@@ -9,6 +9,8 @@ class DiscountPromotionValidator extends LaravelValidator
 
     protected $rules = [
         'title' => 'required',
+        'discountType' => 'required',
+        'discountAmount' => 'required',
         'startsAt' => 'required|date_format:d/m/Y H:i',
         'expirationAt' => 'date_format:d/m/Y H:i'
     ];

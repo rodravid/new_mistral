@@ -2,10 +2,10 @@
 
 namespace Vinci\Infrastructure\Promotion\Datatables;
 
-use Vinci\App\Cms\Http\Showcase\Presenters\ShowcaseItemPresenter;
+use Vinci\App\Cms\Http\Promotion\DiscountPromotion\Presenters\PromotionItemPresenter;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Core\Model;
-use Vinci\Domain\Showcase\ShowcaseRepository;
+use Vinci\Domain\Promotion\PromotionRepository;
 use Vinci\Infrastructure\Datatables\AbstractDatatables;
 
 class PromotionProductsCmsDatatable extends AbstractDatatables
@@ -13,7 +13,7 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
 
     protected $repository;
 
-    public function __construct(ACLService $aclService, ShowcaseRepository $repository)
+    public function __construct(ACLService $aclService, PromotionRepository $repository)
     {
         parent::__construct($aclService);
 
@@ -23,20 +23,21 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
     protected $sortMapping = [
         0 => 'v.sku',
         1 => 'v.title',
-        2 => 'i.position',
+        2 => 'v.stock',
         3 => 'i.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
+
         $qb = $this->repository->getItemsQueryBuilder('i')
-            ->join('i.showcase', 's')
+            ->join('i.promotion', 'prm')
             ->join('i.product', 'p')
             ->join('p.variants', 'v')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
-        $qb->where($qb->expr()->eq('s.id', array_get($search, 'showcase.id')));
+        $qb->andWhere($qb->expr()->eq('prm.id', array_get($search, 'promotion.id')));
 
         if (! empty($search['value'])) {
 
@@ -55,16 +56,16 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
         return $this->makePaginator($qb->getQuery());
     }
 
-    public function parseSingleResult($showcaseItem)
+    public function parseSingleResult($item)
     {
-        $presenter = new ShowcaseItemPresenter($showcaseItem);
+        $presenter = new PromotionItemPresenter($item);
 
         return [
             $presenter->product->sku,
             $presenter->product->title,
-            sprintf('<p class="field-editable" data-id="%s">%s</p>', $presenter->id, $presenter->position),
+            $presenter->product->stock,
             $presenter->created_at,
-            $this->buildActionsColumn($showcaseItem)
+            $this->buildActionsColumn($item)
         ];
     }
 
@@ -77,7 +78,7 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
                data-confirm-title="Confirmação de remoção"
                data-confirm-text="Deseja realmente remover esse registro?"
                data-method="DELETE"
-               data-action="' . route('cms.home-showcases.edit#remove-item', [$entity->showcase->id, $entity->id]) . '"><i class="fa fa-minus-circle"></i> Remover</a>';
+               data-action="' . route('cms.discount-promotion.edit#remove-item', [$entity->promotion->id, $entity->id]) . '"><i class="fa fa-minus-circle"></i> Remover</a>';
 
         $actions .= '</div>';
 

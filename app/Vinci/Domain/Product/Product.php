@@ -61,6 +61,11 @@ class Product extends Model implements ProductInterface, Presentable
     protected $online = false;
 
     /**
+     * @ORM\Column(type="boolean", options={"default" = 0})
+     */
+    protected $enabledForPromotions = false;
+
+    /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\ProductVariant", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"id" = "asc"})
      */
@@ -121,11 +126,6 @@ class Product extends Model implements ProductInterface, Presentable
      */
     protected $template;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Vinci\Domain\Promotion\Promotion", mappedBy="products")
-     */
-    protected $promotions;
-
     protected $currentChannel;
 
     protected $priceCalculator;
@@ -138,7 +138,6 @@ class Product extends Model implements ProductInterface, Presentable
         $this->attributes = new ArrayCollection;
         $this->options = new ArrayCollection;
         $this->channels = new ArrayCollection;
-        $this->promotions = new ArrayCollection;
     }
 
     public function getId()
@@ -751,7 +750,13 @@ class Product extends Model implements ProductInterface, Presentable
 
     public function canBePromoted()
     {
-        return false;
+        return (bool) $this->enabledForPromotions;
+    }
+
+    public function setEnabledForPromotions($value)
+    {
+        $this->enabledForPromotions = (bool) $value;
+        return $this;
     }
 
     public function getTemplate()

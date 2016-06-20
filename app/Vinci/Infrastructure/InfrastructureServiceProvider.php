@@ -96,6 +96,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\Promotion\PromotionRepository',
+            'Vinci\Infrastructure\Promotion\DoctrinePromotionRepository',
+            'Vinci\Domain\Promotion\Promotion'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\Promotion\Types\Discount\DiscountPromotionRepository',
             'Vinci\Infrastructure\Promotion\Types\Discount\DoctrineDiscountPromotionRepository',
             'Vinci\Domain\Promotion\Types\Discount\DiscountPromotion'

@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li><a href="/cms"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{ $currentModule->getUrl() }}"><i class="{{ $currentModule->getIcon() }}"></i> {{ $currentModule->getTitle() }}</a></li>
-        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $showcase->getId() }}</li>
+        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $promotion->getId() }}</li>
     </ol>
 @endsection
 
@@ -13,20 +13,20 @@
     <section class="content">
         <div class="row">
 
-            {!! Form::model($showcase, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $showcase->getId()], 'method' => 'PUT', 'files' => true]) !!}
+            {!! Form::model($promotion, ['route' => ['cms.' . $currentModule->getName() . '.edit#update', $promotion->getId()], 'method' => 'PUT', 'files' => true]) !!}
 
             <div class="col-xs-12 col-lg-9">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $showcase->getId() }}</h3>
+                                <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $promotion->getId() }}</h3>
                             </div>
 
-                            {!! Form::hidden('id', $showcase->getId()) !!}
+                            {!! Form::hidden('id', $promotion->getId()) !!}
 
                             <div class="box-body">
-                                @include('cms::showcases.form')
+                                @include('cms::promotions.discount.form')
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
             <div class="col-xs-12 col-lg-3">
                 <div class="row">
                     <div class="col-xs-12">
-                        @include('cms::layouts.partials.publication.edit.default', ['model' => $showcase])
+                        @include('cms::layouts.partials.publication.edit.default', ['model' => $promotion])
                     </div>
 
 

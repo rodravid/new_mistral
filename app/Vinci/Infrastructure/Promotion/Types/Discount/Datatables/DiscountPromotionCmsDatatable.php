@@ -59,8 +59,8 @@ class DiscountPromotionCmsDatatable extends AbstractDatatables
 
         return [
             $presenter->id,
-            $presenter->user_name,
             $presenter->title,
+            $presenter->user_name,
             $presenter->created_at,
             $presenter->starts_at,
             $presenter->expiration_at,

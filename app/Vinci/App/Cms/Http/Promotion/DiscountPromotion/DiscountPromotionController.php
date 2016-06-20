@@ -59,7 +59,7 @@ class DiscountPromotionController extends Controller
         $promotion = $this->repository->findOrFail($id);
 
         return $this->view('promotions.discount.edit')
-            ->withDiscountPromotion($promotion);
+            ->withPromotion($promotion);
     }
 
     public function store(Request $request)
@@ -139,7 +139,7 @@ class DiscountPromotionController extends Controller
     {
         try {
 
-            $this->service->addItemWithProductId($request->get('promotionId'), $request->get('productId'));
+            $this->service->addItem($request->get('promotionId'), $request->get('productId'));
 
             return Response::json(['message' => 'Produto adicionado com sucesso!']);
 
@@ -155,11 +155,11 @@ class DiscountPromotionController extends Controller
 
             $this->service->removeItem($promotion, $item);
 
-            return Response::json(['message' => 'Item removido com sucesso.']);
+            return Response::json(['message' => 'Produto removido com sucesso.']);
 
         } catch (Exception $e) {
 
-            return Response::json(['message' => 'Não foi possível remover o item.'], 400);
+            return Response::json(['message' => 'Não foi possível remover o produto.'], 400);
 
         }
     }
