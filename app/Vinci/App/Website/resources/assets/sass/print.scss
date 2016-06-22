@@ -1,0 +1,37 @@
+@media print {
+	* {
+background:transparent !important;
+color:#000 !important;
+text-shadow:none !important;
+filter:none !important;
+-ms-filter:none !important;
+}
+ 
+
+
+.header-internal,
+.wrap-menu-account-data,
+footer,
+.border-footer{
+	display:none !important;
+}
+
+.section-confirmation .price-request {
+    float: left !important;
+}
+
+.no-print { 
+	display:none !important; 
+}
+
+.print {
+	display:inline-block !important;
+}
+
+
+}
+
+
+.print {
+	display:none;
+}

@@ -60,12 +60,14 @@
                                 {!! Form::email('email', null, ['id' => 'email', 'placeholder' => 'E-mail *', 'class' => 'email input-register full ' . ($errors->has('email') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
-                                <label for="password" class="label-input">Senha *</label>
-                                {!! Form::password('password', ['id' => 'password', 'placeholder' => 'Senha *', 'class' => 'email input-register half ' . ($errors->has('password') ? 'error-field' : '')]) !!}
+                                <label for="password" class="label-input left0">Senha *</label>
+                                {!! Form::password('password', ['id' => 'password', 'placeholder' => 'Senha *', 'class' => 'email float-left input-register half ' . ($errors->has('password') ? 'error-field' : '')]) !!}
+                                <p class="characters-pass">Mínimo 6 caracteres</p>
                             </li>
                             <li>
-                                <label for="passwordConfirmation" class="label-input">Confirmar senha *</label>
-                                {!! Form::password('password_confirmation', ['id' => 'passwordConfirmation', 'placeholder' => 'Confirmar senha *', 'class' => 'email input-register half ' . ($errors->has('password') ? 'error-field' : '')]) !!}
+                                <label for="passwordConfirmation" class="label-input left0">Confirmar senha *</label>
+                                {!! Form::password('password_confirmation', ['id' => 'passwordConfirmation', 'placeholder' => 'Confirmar senha *', 'class' => 'email float-left input-register half ' . ($errors->has('password') ? 'error-field' : '')]) !!}
+                                <p class="characters-pass">Mínimo 6 caracteres</p>
                             </li>
                         </ul>
 
