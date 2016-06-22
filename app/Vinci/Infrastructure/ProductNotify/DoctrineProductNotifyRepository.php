@@ -3,29 +3,33 @@
 namespace Vinci\Infrastructure\ProductNotify;
 
 use Vinci\Domain\Product\Notify\Repositories\ProductNotifyRepository;
+use Vinci\Domain\ProductNotify\ProductNotify;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
 class DoctrineProductNotifyRepository extends DoctrineBaseRepository implements ProductNotifyRepository
 {
     public function registerNotify($data)
     {
-        $data['product'] = $this->find($data['product']);
-
         $productNotify = ProductNotify::make($data);
 
-        $this->_em->persist($productNotify);
-        $this->_em->flush();
+        $this->persistAndFlush($productNotify);
     }
 
     public function hasntRegisteredYet($data)
     {
-        $query = $this->createQueryBuilder('pn');
+        $query = $this->createQueryBuilder('pn')
+                      ->select('pn')
+                      ->where('pn.product = ' . $data['product'])
+                      ->andWhere('pn.customer_email = \'' . (string) $data['customer_email'] . '\'');
 
-        $query = $query->where('product_id', '=', $data['product'])
-                       ->where('customer_email', '=', $data['customer_email']);
+        return $productNotify = $query->getQuery()->getOneOrNullResult();
+    }
 
-        $productNotify = $query->getQuery();
+    public function persistAndFlush($productNotify)
+    {
 
-        dd($productNotify);
+        $this->_em->persist($productNotify);
+        $this->_em->flush();
+
     }
 }

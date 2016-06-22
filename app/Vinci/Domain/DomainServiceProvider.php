@@ -149,7 +149,8 @@ class DomainServiceProvider extends ServiceProvider
         $this->app->singleton('Vinci\Domain\ProductNotify\Services\ProductNotifyService', function() {
             return new ProductNotifyService(
                 $this->app['Vinci\Domain\ProductNotify\Repositories\ProductNotifyRepository'],
-                $this->app->make('Vinci\Domain\ProductNotify\Validators\ProductNotifyValidator')
+                $this->app->make('Vinci\Domain\ProductNotify\Validators\ProductNotifyValidator'),
+                $this->app->make('Vinci\Domain\Product\Repositories\ProductRepository')
             );
         });
 
