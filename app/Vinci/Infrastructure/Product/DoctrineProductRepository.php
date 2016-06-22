@@ -189,28 +189,6 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $this->paginateRaw($query, $perPage, $currentPage);
     }
 
-    public function registerNotify($data)
-    {
-        $data['product'] = $this->find($data['product']);
-
-        $productNotify = ProductNotify::make($data);
-
-        $this->_em->persist($productNotify);
-        $this->_em->flush();
-    }
-
-    public function hasntRegisteredYet($data)
-    {
-        $query = $this->createQueryBuilder('pn');
-
-        $query = $query->where('product', '=', $data['product'])
-                       ->where('customer_email', '=', $data['customer_email']);
-
-        $productNotify = $query->getQuery();
-
-        dd($productNotify);
-    }
-
     public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion)
     {
         $qb = $this->createQueryBuilder('p');
