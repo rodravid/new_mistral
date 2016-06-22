@@ -233,14 +233,14 @@
                             </p>
 
                             <form action="{{ route('product.register') }}" method="POST">
-                                {!! Form::hidden('productId', $product->getId()) !!}
-                                {!! Form::email('email', null, ['class' => 'email input-register full mbottom10 mtop10 ' . ($errors->has('email') ? 'error-field' : '')]) !!}
+                                {!! Form::hidden('product', $product->getId()) !!}
+                                {!! Form::email('customer_email', null, ['class' => 'email input-register full mbottom10 mtop10 ' . ($errors->has('email') ? 'error-field' : '')]) !!}
                                 @if($errors->has())
                                     <p class="error-email mbottom10"><b>{{ $errors->first() }}</b></p>
                                 @endif
 
                                 <div class="receive-offers mbottom10">
-                                    <input type="checkbox" name="" checked>
+                                    {!! Form::checkbox('allowSimilarNotifications', true, true) !!}
                                     <span>Deseja receber ofertas de produtos similares?</span>
                                 </div>
 

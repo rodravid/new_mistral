@@ -9,7 +9,7 @@ use Vinci\Domain\Image\ImageVersion;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
-use Vinci\Domain\Product\Validators\ProductRegisterValidator;
+use Vinci\Domain\Product\Validators\ProductNotifyValidator;
 use Vinci\Domain\Product\Validators\ProductValidator;
 
 class ProductManagementService
@@ -22,7 +22,7 @@ class ProductManagementService
 
     private $validator;
 
-    private $registerValidator;
+    private $notifyRegisterValidator;
 
     private $imageService;
 
@@ -34,7 +34,7 @@ class ProductManagementService
         ProductValidator $validator,
         ProductImageService $imageService,
         ProductFactory $productFactory,
-        ProductRegisterValidator $productRegisterValidator
+        ProductNotifyValidator $productNotifyValidator
     )
     {
         $this->entityManager = $entityManager;
@@ -42,7 +42,7 @@ class ProductManagementService
         $this->validator = $validator;
         $this->imageService = $imageService;
         $this->productFactory = $productFactory;
-        $this->registerValidator = $productRegisterValidator;
+        $this->notifyRegisterValidator = $productNotifyValidator;
     }
 
     public function create(array $data)
@@ -110,7 +110,7 @@ class ProductManagementService
 
     public function registerNotify($data)
     {
-        $this->registerValidator->with($data)->passesOrFail();
+        $this->notifyRegisterValidator->with($data)->passesOrFail();
 
         $this->repository->registerNotify($data);
     }

@@ -35,6 +35,10 @@ class ProductNotify extends Model
      */
     protected $status = 0;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $allowSimilarNotifications = 0;
 
     public function getId()
     {
@@ -59,5 +63,15 @@ class ProductNotify extends Model
     public function setCustomerEmail($customer_email)
     {
         $this->customer_email = $customer_email;
+    }
+
+    public function getAllowSimilarNotifications()
+    {
+        return $this->allowSimilarNotifications;
+    }
+
+    public function setAllowSimilarNotifications($allowSimilarNotifications)
+    {
+        $this->allowSimilarNotifications = $allowSimilarNotifications;
     }
 }
