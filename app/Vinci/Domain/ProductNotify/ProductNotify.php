@@ -1,5 +1,5 @@
 <?php
-namespace Vinci\Domain\Product\Notify;
+namespace Vinci\Domain\ProductNotify;
 
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
@@ -73,5 +73,15 @@ class ProductNotify extends Model
     public function setAllowSimilarNotifications($allowSimilarNotifications)
     {
         $this->allowSimilarNotifications = $allowSimilarNotifications;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }

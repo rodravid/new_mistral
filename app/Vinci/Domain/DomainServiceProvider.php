@@ -19,6 +19,7 @@ use Vinci\Domain\Inventory\Checkers\AvailabilityChecker;
 use Vinci\Domain\Pricing\Calculator\PriceCalculatorProvider;
 use Vinci\Domain\Pricing\Calculator\StandardPriceCalculator;
 use Vinci\Domain\Product\Services\ProductUrlGenerator;
+use Vinci\Domain\ProductNotify\Services\ProductNotifyService;
 use Vinci\Domain\Promotion\Types\Discount\Providers\DefaultDiscountPromotionProvider;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
@@ -27,7 +28,6 @@ use Vinci\Domain\ProductType\ProductTypeService;
 use Vinci\Domain\Shipping\Services\ShippingCarrierLocator;
 use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
 use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
-use Vinci\Infrastructure\Promotion\RedisPromotionRepository;
 
 class DomainServiceProvider extends ServiceProvider
 {
@@ -143,6 +143,14 @@ class DomainServiceProvider extends ServiceProvider
                 $this->app->make('Vinci\Domain\ProductType\ProductTypeValidator'),
                 $this->app['Vinci\Infrastructure\Storage\StorageService'],
                 $this->app['Vinci\Domain\Image\ImageRepository']
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\ProductNotify\Services\ProductNotifyService', function() {
+            return new ProductNotifyService(
+                $this->app['Vinci\Domain\ProductNotify\Repositories\ProductNotifyRepository'],
+                $this->app->make('Vinci\Domain\ProductNotify\Validators\ProductNotifyValidator'),
+                $this->app->make('Vinci\Domain\Product\Repositories\ProductRepository')
             );
         });
 

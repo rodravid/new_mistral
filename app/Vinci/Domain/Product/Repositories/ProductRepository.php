@@ -21,8 +21,6 @@ interface ProductRepository
 
     public function getProductsByShowcase($showcase, $perPage = 10, $page = 1, $path = '/');
 
-    public function registerNotify($data);
-
     public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion);
     
 }
