@@ -7,7 +7,7 @@ use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="notify")
+ * @ORM\Table(name="products_notify")
  */
 class ProductNotify extends Model
 {
