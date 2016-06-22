@@ -66,6 +66,8 @@ class SearchService
 
         $searchResult->setTerm($result['keyword']);
 
+        $searchResult->setSort($result['sort']);
+
         $searchResult->setLimit($result['limit']);
         
         $searchResult->setStart($result['start']);

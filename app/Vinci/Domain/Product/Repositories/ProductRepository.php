@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Product\Repositories;
 
 use Vinci\Domain\Customer\CustomerInterface;
+use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionInterface;
 
 interface ProductRepository
 {
@@ -22,4 +23,6 @@ interface ProductRepository
 
     public function registerNotify($data);
 
+    public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion);
+    
 }

@@ -174,6 +174,30 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 });
 
                 /**
+                 * Promotions
+                 */
+                $route->group(['prefix' => 'promotions', 'namespace' => 'Promotion'], function () use ($route) {
+
+                    /**
+                     * Discount promotion
+                     */
+                    $route->group(['prefix' => 'discount-promotion', 'as' => 'discount-promotion.'], function () use ($route) {
+                        $route->get('/', 'DiscountPromotion\\DiscountPromotionController@index')->name('list');
+                        $route->get('/create', 'DiscountPromotion\\DiscountPromotionController@create')->name('create');
+                        $route->post('/', 'DiscountPromotion\\DiscountPromotionController@store')->name('create#store');
+                        $route->get('/{promotion}/edit', 'DiscountPromotion\\DiscountPromotionController@edit')->name('edit');
+                        $route->delete('/{promotion}/delete', 'DiscountPromotion\\DiscountPromotionController@destroy')->name('destroy');
+                        $route->put('/{promotion}', 'DiscountPromotion\\DiscountPromotionController@update')->name('edit#update');
+                        $route->delete('/{promotion}/photo/{photo}/delete', 'DiscountPromotion\\DiscountPromotionController@removeImage')->name('edit#remove-image');
+                        $route->post('datatable', 'DiscountPromotion\\DiscountPromotionController@datatable')->name('list#datatable');
+                        $route->post('/{promotion}/items/datatable', 'DiscountPromotion\\DiscountPromotionController@itemsDatatable')->name('edit#items-datatable');
+                        $route->delete('/{promotion}/items/{item}/delete', 'DiscountPromotion\\DiscountPromotionController@removeItem')->name('edit#remove-item');
+                        $route->post('/{promotion}/items', 'DiscountPromotion\\DiscountPromotionController@addItem')->name('edit#add-item');
+                    });
+
+                });
+
+                /**
                  * Highlights
                  */
 

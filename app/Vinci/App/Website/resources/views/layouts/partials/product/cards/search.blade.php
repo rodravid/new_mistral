@@ -16,8 +16,12 @@
         </h3>
         <a href="{{ $product->web_path }}">
             <p class="wine-intro">{!! $product->shortned_description !!}</p>
-            {{--<p class="info-details-wine">Tinto Pinot</p>--}}
-            {{--<p class="info-details-wine">Noir Chile</p>--}}
+            @if($product->hasCountry())
+                <p class="info-details-wine">{{ $product->country->name }}</p>
+            @endif
+            @if($product->hasProductType())
+                <p class="info-details-wine">{{ $product->productType->name }}</p>
+            @endif
         </a>
     </div>
     <div class="other-wine-info">

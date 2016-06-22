@@ -184,7 +184,7 @@ class Module extends Model
 
     public function hasParent()
     {
-        return $this->parent instanceof static;
+        return $this->getParent() instanceof Module;
     }
 
     public function setChildrens($childs)

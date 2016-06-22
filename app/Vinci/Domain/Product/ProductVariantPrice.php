@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Pricing\Contracts\CalculablePrice;
 use Vinci\Domain\Pricing\Contracts\Price as PriceInterface;
+use Vinci\Domain\Pricing\PriceConfiguration;
 
 /**
  * @ORM\Entity
@@ -233,4 +234,19 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
     {
         return $this->getPrice();
     }
+
+    public function getPriceConfiguration()
+    {
+
+        $configuration = new PriceConfiguration;
+
+        return
+            $configuration
+                ->setAliquotIpi($this->getAliquotIpi())
+                ->setCurrencyAmount($this->getCurrencyAmount())
+                ->setCurrencyOriginalAmount($this->getCurrencyOriginalAmount())
+                ->setDiscountType($this->getDiscountType())
+                ->setDiscountAmount($this->getDiscountAmount());
+    }
+
 }
