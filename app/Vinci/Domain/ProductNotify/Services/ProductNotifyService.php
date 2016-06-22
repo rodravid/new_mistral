@@ -13,7 +13,7 @@ class ProductNotifyService
     
     private $validator;
 
-    private $productNotifyrepository;
+    private $productNotifyRepository;
 
     private $productRepository;
 
@@ -22,7 +22,7 @@ class ProductNotifyService
         ProductNotifyValidator $productNotifyValidator,
         ProductRepository $productRepository
     ) {
-        $this->productNotifyrepository = $productNotifyRepository;
+        $this->productNotifyRepository = $productNotifyRepository;
         $this->validator = $productNotifyValidator;
         $this->productRepository = $productRepository;
     }
@@ -31,18 +31,18 @@ class ProductNotifyService
     {
         $this->validator->with($data)->passesOrFail();
 
-        $productNotify = $this->productNotifyrepository->hasntRegisteredYet($data);
+        $productNotify = $this->productNotifyRepository-> findOneByEmailAndProductId($data);
 
         if (empty($productNotify)) {
             $data['product'] = $this->productRepository->find($data['product']);
 
-            $this->repository->registerNotify($data);
+            $this->productNotifyRepository->registerNotify($data);
             return true;
         }
 
         $productNotify->setStatus(0);
 
-        $this->productNotifyrepository->persistAndFlush($productNotify);
+        $productNotify->save();
     }
 
 }

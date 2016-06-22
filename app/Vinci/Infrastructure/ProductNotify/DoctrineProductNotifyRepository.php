@@ -12,10 +12,10 @@ class DoctrineProductNotifyRepository extends DoctrineBaseRepository implements 
     {
         $productNotify = ProductNotify::make($data);
 
-        $this->persistAndFlush($productNotify);
+        $this->save($productNotify);
     }
 
-    public function hasntRegisteredYet($data)
+    public function  findOneByEmailAndProductId($data)
     {
         $query = $this->createQueryBuilder('pn')
                       ->select('pn')
@@ -23,13 +23,5 @@ class DoctrineProductNotifyRepository extends DoctrineBaseRepository implements 
                       ->andWhere('pn.customer_email = \'' . (string) $data['customer_email'] . '\'');
 
         return $productNotify = $query->getQuery()->getOneOrNullResult();
-    }
-
-    public function persistAndFlush($productNotify)
-    {
-
-        $this->_em->persist($productNotify);
-        $this->_em->flush();
-
     }
 }
