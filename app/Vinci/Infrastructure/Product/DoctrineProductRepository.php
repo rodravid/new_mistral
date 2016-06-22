@@ -193,6 +193,18 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $this->_em->flush();
     }
 
+    public function hasntRegisteredYet($data)
+    {
+        $query = $this->createQueryBuilder('pn');
+
+        $query = $query->where('product', '=', $data['product'])
+                       ->where('customer_email', '=', $data['customer_email']);
+
+        $productNotify = $query->getQuery();
+
+        dd($productNotify);
+    }
+
     public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion)
     {
         $qb = $this->createQueryBuilder('p');

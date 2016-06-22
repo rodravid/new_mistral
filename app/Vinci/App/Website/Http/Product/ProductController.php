@@ -11,11 +11,13 @@ use Response;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
+use Vinci\Domain\Product\Notify\Repositories\ProductNotifyRepository;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Services\FavoriteService;
 use Vinci\Domain\Product\Services\ProductManagementService;
 use Vinci\Domain\Product\Wine\Wine;
+use Vinci\Domain\ProductNotify\Services\ProductNotifyService;
 
 class ProductController extends Controller
 {
@@ -26,13 +28,22 @@ class ProductController extends Controller
 
     private $productService;
 
-    public function __construct(EntityManagerInterface $em, ProductRepository $productRepository, FavoriteService $favoriteService, ProductManagementService $productService)
-    {
+    private $productNotifyService;
+
+    public function __construct(
+        EntityManagerInterface $em,
+        ProductRepository $productRepository,
+        FavoriteService $favoriteService,
+        ProductManagementService $productService,
+        ProductNotifyService $productNotifyService
+    ) {
         parent::__construct($em);
 
         $this->productRepository = $productRepository;
         $this->favoriteService = $favoriteService;
         $this->productService = $productService;
+        $this->productNotifyService = $productNotifyService;
+
     }
 
     public function show($type, $slug)
@@ -97,7 +108,7 @@ class ProductController extends Controller
 
             $data = $request->all();
 
-            $this->productService->registerNotify($data);
+            $this->productNotifyService->registerNotify($data);
 
             Flash::success('Seu contato foi cadastrado com succeso! Avisaremos assim que o produto estiver disponível');
 

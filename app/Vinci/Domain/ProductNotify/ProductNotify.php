@@ -1,5 +1,5 @@
 <?php
-namespace Vinci\Domain\Product\Notify;
+namespace Vinci\Domain\ProductNotify;
 
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;

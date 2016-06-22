@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinci\Domain\Product\Validators;
+namespace Vinci\Domain\ProductNotify\Validators;
 
 use Vinci\App\Core\Services\Validation\LaravelValidator;
 
