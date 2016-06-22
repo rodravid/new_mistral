@@ -31,10 +31,14 @@
     <div class="row">
 
         <section class="wrap-payment">
+        
+    <div class="print mbottom20">
+        <img src="{{ asset_web('images/logo-impressao.jpg') }}" alt="">
+    </div>
 
             <div class="wrap-content-bt mbottom10">
                 <span class="title-internal-confirmation uppercase float-left">Pedido concluído com sucesso!</span>
-                <div class="content-bt-big hide-mobile">
+                <div class="content-bt-big hide-mobile no-print">
                     <a class="bt-default-full bt-middle bt-color" href="#">Continuar comprando <span class="arrow-link">&gt;</span></a>
                 </div>
             </div>
@@ -52,9 +56,9 @@
                 </div>
             </article>
 
-            <div class="wrap-content-bt mbottom10 show-desktop hide-tablet">
+            <div class="wrap-content-bt mbottom10 show-desktop hide-tablet no-print">
                 <div class="content-bt-middle ">
-                    <a class="bt-default-full template1 bt-middle" href="#">Imprimir pedido <span class="arrow-link">&gt;</span></a>
+                    <a class="bt-default-full template1 bt-middle" href="javascript:void(0);" onClick="window.print();">Imprimir pedido <span class="arrow-link">&gt;</span></a>
                 </div>
             </div>
 
@@ -132,7 +136,7 @@
                 </div>
             </article>
 
-            <div class="wrap-content-bt mbottom20 show-mobile">
+            <div class="wrap-content-bt mbottom20 show-mobile no-print">
                 <div class="content-bt-middle ">
                     <a class="bt-default-full bt-big bt-color" href="#">Continuar comprando <span class="arrow-link">&gt;</span></a>
                 </div>

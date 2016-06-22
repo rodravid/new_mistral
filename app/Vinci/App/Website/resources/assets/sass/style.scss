@@ -5,6 +5,7 @@
 @import "menu";
 @import "templates"; 
 @import "footer";
+@import "print";
 
 body {
 	font-family: $robotolight;
@@ -22,7 +23,7 @@ strong {
 	@media #{$screen970} {
 		display:none !important;
 	} 
-}
+} 
 .hide-mobile {
 	@media #{$screen767} {
 		display:none !important;
@@ -1164,6 +1165,10 @@ ul.pagination{
 	font-size:14px;
 }
 
+.label-input.left0 {
+	left:0;
+}
+
 .ie9 {
 	.label-input {
 		display:block !important;
@@ -1189,6 +1194,12 @@ ul.pagination{
 	color: #111;
 	padding: 8px 10px;
 	font-family: "roboto_condensedlight";
+}
+
+.characters-pass{
+	font-size: 13px;
+	float: left;
+	margin: 10px 0 0 10px;
 }
 
 .error-field{
