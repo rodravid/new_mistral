@@ -85,10 +85,12 @@ class CustomerController extends Controller
 
         $states = $this->stateRepository->getByCountry($country);
 
-        return $this->view('customers.edit')
-            ->withCustomer($customer)
-            ->withCountry($country)
-            ->withStates($states);
+        $publicPlaces = $this->publicPlaceRepository->getAll();
+
+        return $this->view('customers.edit', compact('customer', 'country', 'states', 'publicPlaces'));
+//            ->withCustomer($customer)
+//            ->withCountry($country)
+//            ->withStates($states);
     }
 
     public function show($id)

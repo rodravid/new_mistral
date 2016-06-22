@@ -4,13 +4,17 @@ namespace Vinci\App\Website\Http\Product;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Response;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Services\FavoriteService;
+use Vinci\Domain\Product\Services\ProductManagementService;
 use Vinci\Domain\Product\Wine\Wine;
 
 class ProductController extends Controller
@@ -20,12 +24,15 @@ class ProductController extends Controller
 
     private $favoriteService;
 
-    public function __construct(EntityManagerInterface $em, ProductRepository $productRepository, FavoriteService $favoriteService)
+    private $productService;
+
+    public function __construct(EntityManagerInterface $em, ProductRepository $productRepository, FavoriteService $favoriteService, ProductManagementService $productService)
     {
         parent::__construct($em);
 
         $this->productRepository = $productRepository;
         $this->favoriteService = $favoriteService;
+        $this->productService = $productService;
     }
 
     public function show($type, $slug)
@@ -82,6 +89,30 @@ class ProductController extends Controller
     private function parseProductSlug($slug)
     {
         return trim($slug);
+    }
+
+    public function registerNotify(Request $request)
+    {
+        try {
+
+            $data = $request->all();
+
+            $this->productService->registerNotify($data);
+
+            Flash::success('Seu contato foi cadastrado com succeso! Avisaremos assim que o produto estiver disponível');
+
+            return Redirect::back();
+
+        } catch (ValidationException $e) {
+
+            return Redirect::back()->withErrors($e->getErrors())->withInput();
+
+        } catch (Exception $e) {
+
+            Flash::error('Ops! Não foi possível adicionar seu contato para notificação!');
+
+            return Redirect::back()->withInput();
+        }
     }
 
 }
