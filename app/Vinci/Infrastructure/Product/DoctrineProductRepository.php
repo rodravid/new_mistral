@@ -183,15 +183,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function registerNotify($data)
     {
-        $fields = [
-            'product_id' => '?',
-            'customer_email' => '?'
-        ];
-
-        $query = $this->createQueryBuilder('notify')
-                      ->insert('notify')
-                      ->values($fields)
-                      ->setParameter();
+        //Registrar Notificação
     }
 
 }

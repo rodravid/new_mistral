@@ -41,12 +41,12 @@ class ProductNotify extends Model
         return $this->id;
     }
 
-    public function getProductId()
+    public function getProduct()
     {
         return $this->product;
     }
 
-    public function setProductId($product)
+    public function setProduct($product)
     {
         $this->product = $product;
     }

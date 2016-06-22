@@ -91,7 +91,7 @@ class ProductController extends Controller
         return trim($slug);
     }
 
-    public function registerEmail(Request $request)
+    public function registerNotify(Request $request)
     {
         try {
 
