@@ -3,7 +3,7 @@
         <div class="content-modal">
             {!! Form::open(['route' => $address->getId() > 0 ? ['api.customers.addresses.update', $address->getId()] : 'api.customers.addresses.store', 'method' => 'POST', 'id' => 'frmNewAddress']) !!}
                 <input type="hidden" name="addresses[{{ $address->getId() }}][id]" value="{{ $address->getId() }}">
-                <input type="hidden" name="addresses[{{ $address->getId() }}][country]" value="1">
+                <input type="hidden" name="addresses[{{ $address->getId() }}][country]" value="{{ \Vinci\Domain\Address\Country\Country::BRAZIL }}">
                 <input type="hidden" name="main_address" value="0">
                 <input type="hidden" name="customer" value="{{ $loggedUser->getId() }}">
                 <h2 class="title-modal-default">@if($address->getId() > 0) Atualizar endereço @else Novo Endereço @endif</h2>
