@@ -63,7 +63,7 @@
                 @if(auth('website')->check())
                     <li class="nav-item nav-item-user-logged">
                         <a class="nav-link" href="javascript:void(0);">
-                            Seja bem vindo, {{ $loggedUser->first_name }}!
+                            {{ $loggedUser->salutation }}
                         </a>
                         <div class="drop-user">
                             <a href="{{ route('account.edit') }}">Meus dados</a>

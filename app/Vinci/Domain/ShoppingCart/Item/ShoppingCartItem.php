@@ -57,7 +57,7 @@ class ShoppingCartItem extends Model implements ShoppingCartItemInterface
     protected $inClearanceSale = false;
 
     /**
-     * @ORM\Column(type="smallint", options={"defalut" = 1})
+     * @ORM\Column(type="smallint")
      */
     protected $status = 1;
 

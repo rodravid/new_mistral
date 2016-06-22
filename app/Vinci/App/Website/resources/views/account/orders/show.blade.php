@@ -13,16 +13,22 @@
 
     <section class="wrap-payment template4">
 
-        <div class="wrap-content-bt mbottom20 show-mobile">
+    
+
+    <div class="print mbottom20">
+        <img src="{{ asset_web('images/logo-impressao.jpg') }}" alt="">
+    </div>
+
+        <div class="wrap-content-bt mbottom20 show-mobile no-print">
             <div class="content-bt-small ">
                 <a class="bt-default-full template11 bt-middle" href="{{ route('account.orders.index') }}">Voltar <span class="arrow-link">></span></a>
             </div>
         </div>
 
-        <div class="wrap-content-bt mbottom10">
+        <div class="wrap-content-bt mbottom10 ">
             <p class="title-info-req">Número do pedido</p>
             <span class="num-request-cod">{{ $order->number }}</span>
-            <div class="content-bt-small hide-mobile">
+            <div class="content-bt-small hide-mobile no-print">
                 <a class="bt-default-full bt-middle template11" href="{{ route('account.orders.index') }}">Voltar <span class="arrow-link">></span></a>
             </div>
         </div>
@@ -38,9 +44,9 @@
             </div>
         </article>
 
-        <div class="wrap-content-bt mbottom10 show-desktop hide-tablet">
+        <div class="wrap-content-bt mbottom10 show-desktop hide-tablet no-print">
             <div class="content-bt-middle">
-                <a class="bt-default-full template11 bt-middle" href="#">Imprimir pedido <span class="arrow-link">></span></a>
+                <a class="bt-default-full template11 bt-middle" href="javascript:void(0);" onClick="window.print();">Imprimir pedido <span class="arrow-link">></span></a>
             </div>
         </div>
 
@@ -93,7 +99,7 @@
 
         </article>
 
-        <div class="wrap-content-bt mbottom10">
+        <div class="wrap-content-bt mbottom10 no-print">
             <div class="content-bt-middle ">
                 <a class="bt-default-full template11 bt-middle" href="#">Repetir pedido <span class="arrow-link">></span></a>
             </div>
@@ -123,7 +129,7 @@
             </div>
         </article>
 
-        <div class="wrap-content-bt mbottom10">
+        <div class="wrap-content-bt mbottom10 no-print">
             <div class="content-bt-small">
                 <a class="bt-default-full template11 bt-middle" href="{{ route('account.orders.index') }}">Voltar <span class="arrow-link">></span></a>
             </div>

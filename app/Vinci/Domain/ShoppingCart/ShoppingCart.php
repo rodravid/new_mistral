@@ -36,7 +36,7 @@ class ShoppingCart implements ShoppingCartInterface
     protected $customer;
 
     /**
-     * @ORM\Column(type="smallint", options={"defalut" = 1})
+     * @ORM\Column(type="smallint")
      */
     protected $status = 1;
 

@@ -75,9 +75,15 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function getProductsById(array $productsIds)
     {
+        $doctrineConfig = $this->_em->getConfiguration();
+        $doctrineConfig->addCustomStringFunction('FIELD', 'DoctrineExtensions\Query\Mysql\Field');
+
         $qb = $this->getBaseQueryBuilder();
 
-        $qb->where($qb->expr()->in('p.id', $productsIds));
+        $qb->addSelect("field(p.id, " . implode(", ", $productsIds) . ") as HIDDEN field");
+
+        $qb->where($qb->expr()->in('p.id', $productsIds))
+            ->orderBy('field');
 
         return $qb->getQuery()->getResult();
     }

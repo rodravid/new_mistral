@@ -108,14 +108,6 @@ class ProductSearchService extends SearchService
                         ]
                     ],
                 ],
-                'suggest' => [
-                    'my-suggest-1' => [
-                        'text' => $keyword,
-                        'term' => [
-                            'field' => 'title'
-                        ]
-                    ]
-                ]
             ],
            'sort' => $this->getSort($sort)
         ];
@@ -123,40 +115,32 @@ class ProductSearchService extends SearchService
         if (! empty($keyword)) {
 
             $params['body']['query'] = [
-//                'filtered' => [
-//                    'filter' => [
-                        'bool' => [
-                            'should' => [
-                                ['term' => ['_id' => $keyword]],
-                                ['match' => ['title' => $keyword]],
-                                ['match' => ['country.title' => $keyword]],
-                                ['match' => ['region.title' => $keyword]],
-                                ['match' => ['producer.title' => $keyword]],
-                                ['fuzzy' =>
-                                    [
-                                        'title' => [
-                                            'value' => $keyword,
-                                            'fuzziness' => 2
-                                        ]
-                                    ]
+                'bool' => [
+                    'should' => [
+                        ['term' => ['_id' => $keyword]],
+                        ['match' => ['title' => $keyword]],
+                        ['match' => ['country.title' => $keyword]],
+                        ['match' => ['region.title' => $keyword]],
+                        ['match' => ['producer.title' => $keyword]],
+                        ['fuzzy' =>
+                            [
+                                'title' => [
+                                    'value' => $keyword,
+                                    'fuzziness' => 2
                                 ]
-                            ],
-//                            'must' => [
-//                                [
-//                                    'terms' => [
-//                                        'country.title' => ['Itália'],
-//                                    ],
-//                                ],
-//                            ]
-                        ],
-//                    ]
-//                ],
-//                'fuzzy' => [
-//                    'title' => [
-//                        'value' => 'title',
-//                        'fuzziness' => 2
-//                    ]
-//                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ];
+
+            $params['body']['suggest'] = [
+                'my-suggest-1' => [
+                    'text' => $keyword,
+                    'term' => [
+                        'field' => 'title'
+                    ]
+                ]
             ];
 
         }
@@ -218,11 +202,11 @@ class ProductSearchService extends SearchService
                 break;
 
             case 4:
-                return ['title:asc'];
+                return ['title.raw:asc'];
                 break;
 
             case 5:
-                return ['title:desc'];
+                return ['title.raw:desc'];
                 break;
 
         }
