@@ -40,4 +40,8 @@ elixir(function(mix) {
         'app/js/newsletter/services/newsletter-service.js',
     ],
         'public/assets/website/js', 'public/assets/website');
+
+
+    mix.phpSpec(elixir.config.testing.phpSpec.path + '/**/*Spec.php', 'bin/phpspec run');
+
 });

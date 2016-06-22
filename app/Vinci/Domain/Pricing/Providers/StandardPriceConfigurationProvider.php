@@ -3,7 +3,6 @@
 namespace Vinci\Domain\Pricing\Providers;
 
 use Vinci\Domain\Pricing\Contracts\PriceConfigurationProvider;
-use Vinci\Domain\Pricing\Factory\PriceConfigurationFactory;
 use Vinci\Domain\Product\ProductVariantPrice;
 use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionService;
 
@@ -14,10 +13,8 @@ class StandardPriceConfigurationProvider extends AbstractPriceConfigurationProvi
 
     protected $productVariantPrice;
 
-    public function __construct(PriceConfigurationFactory $priceConfigurationFactory, DiscountPromotionService $discountPromotionService)
+    public function __construct(DiscountPromotionService $discountPromotionService)
     {
-        parent::__construct($priceConfigurationFactory);
-
         $this->discountPromotionService = $discountPromotionService;
     }
 
@@ -32,14 +29,15 @@ class StandardPriceConfigurationProvider extends AbstractPriceConfigurationProvi
         $product = $variant->getProduct();
 
         if ($promotion = $this->discountPromotionService->findValidPromotionFor($product)) {
-            $configuration =  $this->configurationFactory->makeFromDiscountPromotion($promotion);
+
+            $configuration = $promotion->getPriceConfiguration();
 
             $configuration->setAliquotIpi($this->productVariantPrice->getAliquotIpi());
 
             return $configuration;
         }
 
-        return $this->configurationFactory->makeFromProductVariantPrice($this->productVariantPrice);
+        return $this->productVariantPrice->getPriceConfiguration();
     }
 
 }

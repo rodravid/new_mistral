@@ -22,20 +22,20 @@
                 @if($product->hasCountry())
                     <p class="info-details-wine">{{ $product->country->name }}</p>
                 @endif
+
                 @if($product->hasProductType())
                     <p class="info-details-wine">{{ $product->productType->name }}</p>
                 @endif
 
-                 @if($product->isAvailable())
-
-                {{ $product->original_sale_price_html }}
-                <p class="wine-price">
-                    {{ $product->sale_price }}
-                </p>
+                @if($product->isAvailable())
+                    {!! $product->original_sale_price_html !!}
+                    <p class="wine-price">
+                        {{ $product->sale_price }}
+                    </p>
                 @else
-                <p class="product-unavailable mtop20">
-                    Produto indisponível no site
-                </p>
+                    <p class="product-unavailable mtop20">
+                        Produto indisponível no site
+                    </p>
                 @endif
             </a>
         </div>

@@ -3,7 +3,6 @@
 namespace Vinci\Domain\Pricing\Calculator;
 
 use Vinci\Domain\Pricing\Calculator\Exceptions\PriceCalculatorException;
-use Vinci\Domain\Pricing\Contracts\CalculablePrice;
 use Vinci\Domain\Pricing\Contracts\DiscountType;
 use Vinci\Domain\Pricing\Contracts\PriceConfiguration;
 

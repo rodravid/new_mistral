@@ -13,13 +13,13 @@
                     <div class="display-filter float-right">
                         <span>Ordernar por</span>
                         <div class="select-standard form-control-white float-right select-widthfull">
-                            <select name="" id="">
-                                <option value="">Relevância</option>
-                                <option value="">Menor preço</option>
-                                <option value="">Maior preço</option>
-                                <option value="">Ordem Alfabética (A-Z)</option>
-                                <option value="">Ordem Alfabética (Z-A)</option>
-                            </select>
+                            {!! Form::select('max', [
+                                1 => 'Relevância',
+                                2 => 'Menor preço',
+                                3 => 'Maior preço',
+                                4 => 'Ordem Alfabética (A-Z)',
+                                5 => 'Ordem Alfabética (Z-A)',
+                            ], $result->getSort(), ['class' => 'changeOrder']) !!}
                         </div>
                     </div>
 

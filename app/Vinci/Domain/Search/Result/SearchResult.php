@@ -10,6 +10,8 @@ class SearchResult
 
     protected $term;
 
+    protected $sort;
+
     protected $limit;
 
     protected $start;
@@ -130,6 +132,17 @@ class SearchResult
     public function setSelectedFilters($selectedFilters)
     {
         $this->selectedFilters = $selectedFilters;
+        return $this;
+    }
+
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
         return $this;
     }
 
