@@ -49,7 +49,13 @@ class ProductIndexerService
                                 'type' => 'integer'
                             ],
                             'title' => [
-                                'type' => 'string'
+                                'type' => 'string',
+                                'fields' => [
+                                    'raw' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ]
+                                ]
                             ],
                             'description' => [
                                 'type' => 'string'
