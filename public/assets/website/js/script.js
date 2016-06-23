@@ -361,6 +361,10 @@ jQuery(document).ready(function ($) {
         lessLink: '<a href="javascript:void(0);" class="less-txt">- Veja menos </a>'
     });
 
+    $('#paymentTabs').responsiveTabs({
+        startCollapsed: 'accordion'
+    });
+
 
 });
 

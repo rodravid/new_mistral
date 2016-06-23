@@ -13,8 +13,8 @@
                             <div class="row item" style="position: relative; margin-top: 20px;">
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
-                                        <label>Título</label>
-                                        {!! Form::text('scores[' . $key . '][title]', $score['title'], ['class' => 'form-control']) !!}
+                                        <label>Crítico</label>
+                                        {!! Form::select('scores[' . $key . '][critical_acclaim_id]', $wineCriticalAcclaims, is_object($score) ? [$score->getCriticalAcclaim()->getId()] : $score['critical_acclaim_id'], ['class' => 'form-control']) !!}
                                         {!! Form::hidden('scores[' . $key . '][id]', $score['id']) !!}
                                     </div>
                                 </div>
@@ -35,8 +35,8 @@
                                         <div class="checkbox" style="margin-top: 30px;">
                                             <input type="hidden" name="scores[{{ $key }}][highlighted]" value="0">
                                             <label for="ckbScoreHighlight">
-                                                <input type="checkbox" name="scores[{{ $key }}][highlighted]" value="1" @if(old('scores.0.highlighted', is_object($score) ? $score->isHighlighted() : $score['highlighted'])) checked @endif>
-                                                Destaque?
+                                                <input id="highlited{{ $key }}" type="checkbox" name="scores[{{ $key }}][highlighted]" value="1" @if(old('scores.0.highlighted', is_object($score) ? $score->isHighlighted() : $score['highlighted'])) checked @endif>
+                                                <label for="highlited{{ $key }}">Destaque?</label>
                                             </label>
                                         </div>
                                     </div>
@@ -72,8 +72,8 @@
                 var $itemHtml = $('<div class="row item" style="position: relative; margin-top: 20px;">' +
                 '<div class="col-xs-12 col-sm-4">' +
                 '<div class="form-group">' +
-                '<label>Título</label>' +
-                '<input type="text" name="scores[i' + index + '][title]" class="form-control" value="">' +
+                '<label>Crítico</label>' +
+                '<select class="form-control" name="scores[i' + index + '][critical_acclaim_id]">@foreach($wineCriticalAcclaims as $key => $criticalAcclaim) <option value="{{ $key }}">{{ $criticalAcclaim }}</option> @endforeach</select>' +
                 '<input type="hidden" name="scores[i' + index + '][id]" value="">' +
                 '</div>' +
                 '</div>' +

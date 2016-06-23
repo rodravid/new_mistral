@@ -169,6 +169,7 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Infrastructure\Carrier\DoctrineCarrierRepository',
             'Vinci\Domain\Carrier\Carrier'
         );
+
         $this->app->alias('Vinci\Domain\Carrier\CarrierRepository', 'carrier.repository');
 
 //        $this->registerRepository(
@@ -247,6 +248,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         $this->app->singleton('Vinci\Infrastructure\Storage\StorageService', function() {
             return new StorageService($this->app['filesystem'], $this->app['config']);
         });
+
+        $this->registerRepository(
+            'Vinci\Domain\Product\Wine\Repositories\CriticalAcclaimsRepository',
+            'Vinci\Infrastructure\Wine\DoctrineCriticalAcclaimsRepository',
+            'Vinci\Domain\Product\Wine\CriticalAcclaim'
+        );
 
     }
 

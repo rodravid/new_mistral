@@ -4,6 +4,7 @@ namespace Vinci\Domain\Product\Wine\Score;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Vinci\Domain\Product\Wine\CriticalAcclaim;
 use Vinci\Domain\Product\Wine\Score;
 
 class ScoreFactory
@@ -19,9 +20,10 @@ class ScoreFactory
     public function make(array $data)
     {
         $score = $this->getNewInstance($data);
-
+        $data['critical_acclaim'] = $this->entityManager->getReference(CriticalAcclaim::class, $data['critical_acclaim_id']);
+        
         $score
-            ->setTitle($data['title'])
+            ->setCriticalAcclaim($data['critical_acclaim'])
             ->setDescription($data['description'])
             ->setHighlight($data['highlighted'])
             ->setValue($data['value'])

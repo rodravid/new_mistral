@@ -682,6 +682,12 @@
                         Favoritos
                     </a>
                 </li>
+                
+                <li class="menu-item">
+                    <a class="menu-link" href="{{ route('account.addresses.index') }}">
+                        Endereços
+                    </a>
+                </li>
 
             </ul>
 

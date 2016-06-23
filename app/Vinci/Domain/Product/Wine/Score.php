@@ -33,14 +33,9 @@ class Score extends Model implements Presentable
     protected $wine;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Wine\CriticalAcclaim", inversedBy="scores")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Wine\CriticalAcclaim", cascade={"persist"})
      */
     protected $criticalAcclaim;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    protected $title;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -81,17 +76,6 @@ class Score extends Model implements Presentable
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
     }
 
     public function getYear()
@@ -141,11 +125,11 @@ class Score extends Model implements Presentable
     public function override(Score $score)
     {
         $this
-            ->setTitle($score->getTitle())
             ->setYear($score->getYear())
             ->setValue($score->getValue())
             ->setHighlight($score->isHighlighted())
-            ->setDescription($score->getDescription());
+            ->setDescription($score->getDescription())
+            ->setCriticalAcclaim($score->getCriticalAcclaim());
 
         return $this;
     }
@@ -158,6 +142,17 @@ class Score extends Model implements Presentable
     public function setPosition($position)
     {
         $this->position = (int) $position;
+        return $this;
+    }
+
+    public function getCriticalAcclaim()
+    {
+        return $this->criticalAcclaim;
+    }
+
+    public function setCriticalAcclaim(CriticalAcclaim $criticalAcclaim)
+    {
+        $this->criticalAcclaim = $criticalAcclaim;
         return $this;
     }
 
