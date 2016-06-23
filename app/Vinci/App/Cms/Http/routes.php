@@ -178,6 +178,11 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                  */
                 $route->group(['prefix' => 'promotions', 'namespace' => 'Promotion'], function () use ($route) {
 
+                    $route->post('{promotion}/items/add', 'PromotionController@addProducts');
+                    $route->post('{promotion}/items/add-all', 'PromotionController@addAllProducts');
+                    $route->post('{promotion}/items/add-from-filters', 'PromotionController@addProductsFromFilters');
+                    $route->post('{promotion}/items/add-from-file', 'PromotionController@addProductsFromFile');
+
                     /**
                      * Discount promotion
                      */

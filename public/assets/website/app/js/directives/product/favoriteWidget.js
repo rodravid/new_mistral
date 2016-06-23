@@ -32,7 +32,7 @@ angular.module('app')
                 $scope.getFavoriteClass = function() {
 
                     if ($scope.favorited) {
-                        return $scope.favoritedClass ? $scope.favoritedClass : 'clicado';
+                        return $scope.favoritedClass ? $scope.favoritedClass : 'clicado opacity1';
                     }
 
                     return '';

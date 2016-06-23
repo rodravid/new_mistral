@@ -103,7 +103,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     level = 'error';
                 }
 
-                swal('', message, level);
+                swal({
+                    title: '',
+                    text: message,
+                    type: level,
+                    html: true
+                });
 
             })();
 

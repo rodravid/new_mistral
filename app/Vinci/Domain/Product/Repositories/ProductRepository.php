@@ -11,6 +11,8 @@ interface ProductRepository
 
     public function getOneById($id);
 
+    public function getAllValidForSelectArray();
+
     public function findOneByIdAndChannel($id, $channel);
 
     public function getProductsById(array $productsIds);
@@ -22,5 +24,5 @@ interface ProductRepository
     public function getProductsByShowcase($showcase, $perPage = 10, $page = 1, $path = '/');
 
     public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion);
-    
+
 }
