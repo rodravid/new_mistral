@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\ProductNotify\Services;
 
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Product\Notify\Repositories\ProductNotifyRepository;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\ProductNotify\Validators\ProductNotifyValidator;
@@ -40,9 +41,9 @@ class ProductNotifyService
             return true;
         }
 
-        $productNotify->setStatus(0);
+        $productNotify->setStatus(Status::EMAIL_NOT_SENDED);
 
-        $productNotify->save();
+        $this->productNotifyRepository->save($productNotify);
     }
 
 }
