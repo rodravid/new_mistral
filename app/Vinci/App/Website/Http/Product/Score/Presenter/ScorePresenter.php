@@ -9,6 +9,6 @@ class ScorePresenter extends AbstractPresenter
 
     public function presentFeaturedText()
     {
-        return $this->getTitle() . ' ' . $this->getValue() . ' PTS / ' . $this->getYear();
+        return $this->getCriticalAcclaim()->getTitle() . ' ' . $this->getValue() . ' PTS / ' . $this->getYear();
     }
 }

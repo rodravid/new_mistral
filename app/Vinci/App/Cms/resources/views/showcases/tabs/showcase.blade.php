@@ -48,5 +48,13 @@
                 <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
             </div>
         </div>
+
+        <div class="col-lg-12">
+            <div class="form-group has-feedback">
+                <label for="txtKeyWords">Palavras-Chaves</label>
+                {!! Form::text('key_words', null, ['id' => 'txtKeyWords', 'class' => 'form-control ', 'placeholder' => 'Digite a URL de destino']) !!}
+                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+            </div>
+        </div>
     </div>
 </div>
