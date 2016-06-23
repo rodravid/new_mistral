@@ -55,6 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="{{ asset_web('js/angular/angular-counter.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/slick.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/jquery.responsiveTabs.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/sweetalert/sweetalert.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/readmore.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
