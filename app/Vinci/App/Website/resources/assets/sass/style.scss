@@ -40,7 +40,7 @@ strong {
 .uppercase { text-transform:uppercase;}
 
 .relative { position: relative;}
-
+.mbottom30 { margin-bottom: 30px;}
 .mbottom20 { margin-bottom: 20px;}
 .mbottom10 { margin-bottom: 10px;}
 
@@ -2648,7 +2648,15 @@ ul.pagination{
 			padding: 20px 20px 0px 20px;
 			margin-bottom: 30px;
 			width:100%;
-			display:inline-block;
+			/* display:inline-block; */
+			float:left; 
+		}
+		.height-fix {
+			min-height:415px;
+			@media #{$screen767} {
+				min-height:auto;
+				margin-top: -5px;
+			}
 		}
 		.to-deliver {
 			padding-bottom:20px;
@@ -2791,6 +2799,12 @@ ul.pagination{
 					margin-bottom: 35px;
 				}
 			}
+
+			.remove-mbttom20 {
+				@media #{$screen767} {
+					margin-bottom:0;
+				 }
+			}
 		}
 
 		.img-cod-seg {
@@ -2810,29 +2824,34 @@ ul.pagination{
 			display:inline-block;
 			margin-bottom:30px;
 		}
-		.flags-list {
+		.flags-list, .flag-list2 {
 			display:inline-block;
 			margin-right:40px;
 			text-align:center;
-			width:70px;
 			@media #{$screen767} {
-				margin-right:0px;
-				width:55px;
+				margin-right: 25px;
+				width: 30%;
+				margin-bottom: 15px;
+			}
+
+
+		}
+		@media #{$screen767} {
+			.flags-list+.flags-list+.flags-list+.flags-list {
+				margin-right:0;
 			}
 		}
 
-		.flags {
-			width:70px;
-			height:38px;
-			display:inline-block;
-			margin-bottom:5px;
-			background: url($imgPath + "bandeira-cartoes.png") no-repeat;
+		.flags, .flags-transfer {
+/* 			width:70px;
+			height:38px; */
+			display:block;
+			margin: 0 auto 5px;
 			@media #{$screen767} {
-				width:50px;
-				height:28px;
+			max-width:100%;
 			}
 		}
-		.flags.visa {
+/* 		.flags.visa {
 			background-position:-2px 0;
 
 			@media #{$screen767} {
@@ -2860,7 +2879,146 @@ ul.pagination{
 				background-position: -197px 3px;
 				background-size: 236px;
 			}
+		} */
+
+		.payment-methods {
+			display: inline-block;
+			margin-bottom: -5px;
+			height: 30px;
+
+			li {
+				display: inline-block;
+				margin-right: -4px;
+				width:215px;
+				a {
+
+					background: #fff;
+					border: 1px solid #adbfc6;
+					/* border-bottom: 1px solid #fff; */
+					padding: 8px 40px 8px 40px;
+					margin-bottom: 0px;
+					text-transform:uppercase;
+					color:$blue;
+				}
+			}
 		}
+
+		.selected-methods {
+			position:relative;
+			z-index:9999;
+		}
+
+		.r-tabs .r-tabs-nav {
+			margin: 0;
+			padding: 0;
+		}
+
+/* 		.r-tabs .r-tabs-tab {
+			display: inline-block;
+			margin: 0;
+			list-style: none;
+		} */
+
+		.r-tabs .r-tabs-panel {
+			display: none;
+		}
+
+		.r-tabs .r-tabs-accordion-title {
+			display: none;
+		}
+
+		.r-tabs .r-tabs-panel.r-tabs-state-active {
+			display: block;
+		}
+
+		.r-tabs-state-active {
+			a {
+				border-bottom:1px solid #fff !important;
+				padding: 15px 40px 8px 40px !important;
+				@media #{$screen767} {
+					border-bottom:none !important;
+					padding: 8px 10px 8px 10px !important;
+				}
+			}
+		}
+
+		/* Accordion responsive breakpoint */
+		@media only screen and (max-width: 768px) {
+			.r-tabs .r-tabs-nav {
+				display: none;
+			}
+
+			.r-tabs .r-tabs-accordion-title {
+				display: block;
+				margin-bottom:5px;
+			}
+
+			.r-tabs-accordion-title {
+				a {
+					width:100%;
+					display:inline-block;
+					background:#ededed;
+					text-transform:uppercase;
+					color:$blue;
+					padding:10px;
+					font: 17px "roboto_condensedbold";
+				}
+			}
+
+			.r-tabs-accordion-title.r-tabs-state-active {
+				a {
+					width: 100%;
+					display: inline-block;
+					background: #11b6f0;
+					text-transform: uppercase;
+					color: #fff;
+					padding: 10px;
+				}
+			}
+
+		}
+
+		.resp-arrow {
+			display:none;
+					border-left: 0px solid transparent;
+		border-right: 0px solid transparent;
+		border-bottom: 0px solid #fff;
+		}
+		.r-tabs-accordion-title.r-tabs-state-active {
+	.resp-arrow {
+		border: none;
+		border-left: 0px solid transparent;
+		border-right: 0px solid transparent;
+		border-bottom: 0px solid #fff;
+		display:none;
+	}			
+}
+@media #{$screen767} {
+		.resp-arrow {
+    width: 0;
+    height: 0;
+    float: right;
+    margin-top: 3px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid $blue;
+		display:inline-block;
+  
+}
+
+.r-tabs-accordion-title.r-tabs-state-active {
+	.resp-arrow {
+		border: none;
+		border-left: 12px solid transparent;
+		border-right: 12px solid transparent;
+		border-bottom: 12px solid #fff;
+		display:inline-block;
+	}			
+}
+
+}
+
+
 
 		/*PG PAGAMENTO*/
 
