@@ -32,7 +32,7 @@ class ProductNotifyService
     {
         $this->validator->with($data)->passesOrFail();
 
-        $productNotify = $this->productNotifyRepository-> findOneByEmailAndProductId($data);
+        $productNotify = $this->productNotifyRepository->findOneByEmailAndProductId($data);
 
         if (empty($productNotify)) {
             $data['product'] = $this->productRepository->find($data['product']);
