@@ -116,7 +116,7 @@
                 </li>    
             </ul>
 
-            <div class="" id="tab-card">
+            <div class="height-fix" id="tab-card">
                 <section class="form-payment section-payment height-fix">
                     @if($errors->has())
                     <p class="error-message">{{ $errors->first() }}</p>
@@ -220,9 +220,9 @@
                 </div>
             </div> <!-- Fim tab-card -->
 
-            <div class="" id="tab-transfer">
+            <div class="height-fix" id="tab-transfer">
 
-                <section class="form-payment section-payment template1 height-fix" >
+                <section class="form-payment section-payment template1" >
                  <ul class="flags-card">
                           <li class="flags-list">
                             <img class="flags master" src="{{ asset_web('images/img-flag-visa.jpg') }}" alt="">
