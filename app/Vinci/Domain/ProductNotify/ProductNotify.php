@@ -3,7 +3,9 @@ namespace Vinci\Domain\ProductNotify;
 
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Product\Product;
 
 /**
  * @ORM\Entity
@@ -33,12 +35,12 @@ class ProductNotify extends Model
     /**
      * @ORM\Column(type="integer")
      */
-    protected $status = 0;
+    protected $status = Status::EMAIL_NOT_SENDED;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $allowSimilarNotifications = 0;
+    protected $allowSimilarNotifications = Status::ALLOWED;
 
     public function getId()
     {
@@ -50,7 +52,7 @@ class ProductNotify extends Model
         return $this->product;
     }
 
-    public function setProduct($product)
+    public function setProduct(Product $product)
     {
         $this->product = $product;
     }

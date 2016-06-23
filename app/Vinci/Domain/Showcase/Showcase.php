@@ -55,6 +55,11 @@ class Showcase extends Model
     protected $type;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $url;
+
+    /**
      * @Gedmo\SortablePosition
      * @ORM\Column(type="integer", options={"default" = 0})
      */
@@ -69,6 +74,11 @@ class Showcase extends Model
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Showcase\ShowcaseItem", mappedBy="showcase", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $items;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $keywords;
 
     public function __construct()
     {
@@ -146,6 +156,17 @@ class Showcase extends Model
         return $this;
     }
 
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
     public function getTemplate()
     {
         return $this->template;
@@ -205,6 +226,16 @@ class Showcase extends Model
         }
 
         return $products;
+    }
+
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
     }
 
 }

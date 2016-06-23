@@ -25,6 +25,6 @@ class DoctrineProductNotifyRepository extends DoctrineBaseRepository implements 
         $query->setParameter('product_id', $data['product'])
               ->setParameter('customer_email', $data['customer_email']);
 
-        return $productNotify = $query->getQuery()->getOneOrNullResult();
+        return $query->getQuery()->getOneOrNullResult();
     }
 }

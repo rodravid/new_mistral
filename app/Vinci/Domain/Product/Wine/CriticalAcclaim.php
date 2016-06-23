@@ -21,11 +21,6 @@ class CriticalAcclaim extends Model
      * @ORM\Column(type="integer")
      */
     protected $id;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="criticalAcclaim", cascade={"persist", "remove"}, indexBy="id", orphanRemoval=true)
-     */
-    protected $scores;
     
     /**
      * @ORM\Column(type="string")
@@ -36,7 +31,7 @@ class CriticalAcclaim extends Model
      * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
-
+    
     public function getId()
     {
         return $this->id;
