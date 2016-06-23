@@ -55,6 +55,11 @@ class Showcase extends Model
     protected $type;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $url;
+
+    /**
      * @Gedmo\SortablePosition
      * @ORM\Column(type="integer", options={"default" = 0})
      */
