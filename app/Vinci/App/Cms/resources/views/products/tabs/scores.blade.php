@@ -35,8 +35,8 @@
                                         <div class="checkbox" style="margin-top: 30px;">
                                             <input type="hidden" name="scores[{{ $key }}][highlighted]" value="0">
                                             <label for="ckbScoreHighlight">
-                                                <input type="checkbox" name="scores[{{ $key }}][highlighted]" value="1" @if(old('scores.0.highlighted', is_object($score) ? $score->isHighlighted() : $score['highlighted'])) checked @endif>
-                                                Destaque?
+                                                <input id="highlited{{ $key }}" type="checkbox" name="scores[{{ $key }}][highlighted]" value="1" @if(old('scores.0.highlighted', is_object($score) ? $score->isHighlighted() : $score['highlighted'])) checked @endif>
+                                                <label for="highlited{{ $key }}">Destaque?</label>
                                             </label>
                                         </div>
                                     </div>

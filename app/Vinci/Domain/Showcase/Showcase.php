@@ -75,6 +75,11 @@ class Showcase extends Model
      */
     protected $items;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $keywords;
+
     public function __construct()
     {
         $this->items = new ArrayCollection;
@@ -221,6 +226,16 @@ class Showcase extends Model
         }
 
         return $products;
+    }
+
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
     }
 
 }

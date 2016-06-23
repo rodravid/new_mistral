@@ -50,10 +50,9 @@
         </div>
 
         <div class="col-lg-12">
-            <div class="form-group has-feedback">
-                <label for="txtKeyWords">Palavras-Chaves</label>
-                {!! Form::text('key_words', null, ['id' => 'txtKeyWords', 'class' => 'form-control ', 'placeholder' => 'Digite a URL de destino']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+            <div class="form-group">
+                <label for="txtKeywords">Palavras chave</label>
+                {!! Form::text('keywords', null, ['id' => 'txtKeywords', 'class' => 'form-control', 'placeholder' => 'Palavras chave', 'data-keywords']) !!}
             </div>
         </div>
     </div>
