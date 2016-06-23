@@ -40,5 +40,13 @@
                 <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
             </div>
         </div>
+
+        <div class="col-lg-12">
+            <div class="form-group has-feedback">
+                <label for="txtRedirectUrl">URL de destino</label>
+                {!! Form::text('url', null, ['id' => 'txtRedurectUrl', 'class' => 'form-control', 'placeholder' => 'Digite a URL de destino']) !!}
+                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+            </div>
+        </div>
     </div>
 </div>
