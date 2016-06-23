@@ -2823,6 +2823,10 @@ ul.pagination{
 			width:100%;
 			display:inline-block;
 			margin-bottom:30px;
+
+			@media #{$screen767} {
+					margin-bottom:10px;
+			 }
 		}
 		.flags-list, .flag-list2 {
 			display:inline-block;
