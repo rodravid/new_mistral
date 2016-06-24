@@ -23,7 +23,7 @@ class ShoppingCartContextSession implements ShoppingCartContext
 
     public function setCurrentCartIdentifier(ShoppingCartInterface $shoppingCart)
     {
-        $this->session->set(self::STORAGE_KEY, $shoppingCart->getId());
+        $this->session->set(self::STORAGE_KEY, (string) $shoppingCart->getId());
     }
 
     public function resetCurrentCartIdentifier()
