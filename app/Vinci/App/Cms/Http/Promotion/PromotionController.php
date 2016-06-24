@@ -108,7 +108,7 @@ class PromotionController extends Controller
 
             Flash::success("Selo excluído com sucesso!");
 
-            return Redirect::route($this->getEditRouteName(), [$promotion->getId()]);
+            return Redirect::back();
 
         } catch (Exception $e) {
 
