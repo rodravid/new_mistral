@@ -6,9 +6,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Order\Validators\OrderCreditCardValidator;
+use Vinci\Domain\Order\Validators\OrderValidator;
 use Vinci\Domain\Payment\CreditCard;
 use Vinci\Domain\Payment\Payment;
 use Vinci\Domain\Payment\PaymentMethod;
+use Vinci\Domain\Payment\Repositories\PaymentMethodsRepository;
 use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\Shipping\Shipment;
 
@@ -17,7 +20,9 @@ class OrderService
 
     protected $entityManager;
 
-    protected $validator;
+    protected $orderValidator;
+
+    protected $creditCardValidator;
 
     protected $factory;
 
@@ -25,23 +30,35 @@ class OrderService
 
     protected $eventDispatcher;
 
+    private $paymentMethodRepository;
+
     public function __construct(
         EntityManagerInterface $entityManager,
-        OrderValidator $validator,
+        OrderValidator $orderValidator,
+        OrderCreditCardValidator $creditCardValidator,
         OrderFactory $factory,
         ShippingService $shippingService,
-        Dispatcher $eventDispatcher
+        Dispatcher $eventDispatcher,
+        PaymentMethodsRepository $paymentMethodsRepository
     ) {
         $this->entityManager = $entityManager;
-        $this->validator = $validator;
+        $this->orderValidator = $orderValidator;
+        $this->creditCardValidator = $creditCardValidator;
         $this->factory = $factory;
         $this->shippingService = $shippingService;
         $this->eventDispatcher = $eventDispatcher;
+        $this->paymentMethodRepository = $paymentMethodsRepository;
     }
 
     public function create(array $data)
     {
-        $this->validator->with($data)->passesOrFail();
+        $this->orderValidator->with($data)->passesOrFail();
+
+        $data = $this->getPaymentMethodType($data);
+
+        if (array_get($data, 'payment.method_type') == "credit_card") {
+            $this->creditCardValidator->with($data)->passesOrFail();
+        }
 
         return $this->entityManager->transactional(function ($em) use ($data) {
 
@@ -96,14 +113,18 @@ class OrderService
 
         $paymentMethod = $this->getPaymentMethod($data);
 
-        $creditCard = $this->getCreditCard($data);
+        $payment->setMethod($paymentMethod);
 
-        $creditCard->setBrand($paymentMethod->getCode());
+        if ($data['payment']['method_type'] == "credit_card"){
 
-        $payment
-            ->setMethod($paymentMethod)
-            ->setCreditCard($creditCard)
-            ->setInstallments($this->getPaymentInstallments($data));
+            $creditCard = $this->getCreditCard($data);
+            $creditCard->setBrand($paymentMethod->getCode());
+
+            $payment = $payment
+                ->setCreditCard($creditCard)
+                ->setInstallments($this->getPaymentInstallments($data));
+
+        }
 
         return $payment;
     }
@@ -140,6 +161,12 @@ class OrderService
     protected function getPaymentMethod($data)
     {
         return $this->entityManager->getReference(PaymentMethod::class, array_get($data, 'payment.method'));
+    }
+
+    protected function getPaymentMethodType($data)
+    {
+        $data['payment']['method_type'] = $this->paymentMethodRepository->findOneById($data['payment']['method'])[0]->getDescription();
+        return $data;
     }
 
 }

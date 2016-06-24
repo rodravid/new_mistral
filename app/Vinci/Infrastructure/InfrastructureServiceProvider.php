@@ -256,6 +256,12 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Product\Wine\CriticalAcclaim'
         );
 
+        $this->registerRepository(
+            'Vinci\Domain\Payment\Repositories\PaymentMethodsRepository',
+            'Vinci\Infrastructure\PaymentMethods\DoctrinePaymentMethodsRepository',
+            'Vinci\Domain\Payment\PaymentMethod'
+        );
+
     }
 
     protected function registerRepository($repositoryInterfaceClass, $concreteRepository, $entityClass)

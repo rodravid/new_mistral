@@ -17,4 +17,8 @@ interface PaymentMethodInterface
 
     public function setGateway($gateway);
 
+    public function getStatus();
+
+    public function setStatus($status);
+
 }

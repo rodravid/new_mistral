@@ -545,7 +545,7 @@ a.bt-default {
 
 	.seal-score-card {
 		span {
-			color:#000 !important;
+			color:#6b0f45 !important;
 		}
 	}
 }
@@ -571,7 +571,7 @@ a.bt-default {
 			span {
 				font: 23px $robotobold;
 				position:relative;
-				color:#000;
+				color:#6b0f45;
 			}
 
 			img {
@@ -1908,6 +1908,7 @@ ul.pagination{
 			span {
 				font: 33px $robotobold;
 				position:relative;
+				color:#6c0f46;
 				@media #{$screen970} {
 					font: 23px $robotobold;
 				}
@@ -2823,6 +2824,10 @@ ul.pagination{
 			width:100%;
 			display:inline-block;
 			margin-bottom:30px;
+
+			@media #{$screen767} {
+					margin-bottom:10px;
+			 }
 		}
 		.flags-list, .flag-list2 {
 			display:inline-block;
