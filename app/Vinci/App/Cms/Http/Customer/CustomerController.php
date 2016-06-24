@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Cms\Http\Customer\Presenters\CustomerPresenter;
+use Vinci\App\Cms\Http\Order\Presenters\OrderPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Address\City\CityRepository;
@@ -16,8 +17,10 @@ use Vinci\Domain\Address\Country\CountryRepository;
 use Vinci\Domain\Address\PublicPlaceRepository;
 use Vinci\Domain\Address\State\StateRepository;
 use Vinci\Domain\Country\Country;
+use Vinci\Domain\Customer\Address\AddressRepository;
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Domain\Customer\CustomerService;
+use Vinci\Domain\Order\OrderRepository;
 
 class CustomerController extends Controller
 {
@@ -38,16 +41,21 @@ class CustomerController extends Controller
 
     protected $publicPlaceRepository;
 
+    protected $addressRepository;
+
+    protected $orderRepository;
+
     public function __construct(
         EntityManagerInterface $em,
         CustomerService $service,
         CustomerRepository $repository,
+        AddressRepository $addressRepository,
         CountryRepository $countryRepository,
         StateRepository $stateRepository,
         CityRepository $cityRepository,
-        PublicPlaceRepository $publicPlaceRepository
-    )
-    {
+        PublicPlaceRepository $publicPlaceRepository,
+        OrderRepository $orderRepository
+    ) {
         parent::__construct($em);
 
         $this->service = $service;
@@ -56,6 +64,8 @@ class CustomerController extends Controller
         $this->stateRepository = $stateRepository;
         $this->cityRepository = $cityRepository;
         $this->publicPlaceRepository = $publicPlaceRepository;
+        $this->addressRepository = $addressRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     public function index()
@@ -72,9 +82,6 @@ class CustomerController extends Controller
         $publicPlaces = $this->publicPlaceRepository->getAll();
 
         return $this->view('customers.create', compact('country', 'states', 'publicPlaces'));
-//            ->withCountry($country)
-//            ->withStates($states)
-//            ->withPublicPlaces($publicPlaces);
     }
 
     public function edit($id)
@@ -88,19 +95,19 @@ class CustomerController extends Controller
         $publicPlaces = $this->publicPlaceRepository->getAll();
 
         return $this->view('customers.edit', compact('customer', 'country', 'states', 'publicPlaces'));
-//            ->withCustomer($customer)
-//            ->withCountry($country)
-//            ->withStates($states);
     }
 
     public function show($id)
     {
         $customer = $this->repository->findOrFail($id);
-
         $customer = $this->presenter->model($customer, CustomerPresenter::class);
 
-        return $this->view('customers.show')
-            ->withCustomer($customer);
+        $addresses = $this->addressRepository->getAllByCustomer($id);
+
+        $orders = $this->orderRepository->getByCustomer($id, 10);
+        $orders = $this->presenter->paginator($orders, OrderPresenter::class);
+
+        return $this->view('customers.show', compact('customer', 'addresses', 'orders'));
     }
 
     public function store(Request $request)

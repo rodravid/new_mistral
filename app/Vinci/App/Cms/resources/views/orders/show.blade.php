@@ -10,7 +10,6 @@
 
 @section('module.content')
 
-
     <section class="content">
         <div class="box box-primary">
             <div class="box-body">
