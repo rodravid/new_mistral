@@ -159,7 +159,7 @@ class Payment  extends Model implements PaymentInterface, Presentable
 
     public function wasMadeWithCredidCard()
     {
-        return $this->getMethod()->getDescription() == 'credit-card';
+        return $this->getMethod()->getDescription() == 'credit_card';
     }
 
 }
