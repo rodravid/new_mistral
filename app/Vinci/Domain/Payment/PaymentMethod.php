@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Payment;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Timestampable;
 
 /**
@@ -40,6 +41,11 @@ class PaymentMethod implements PaymentMethodInterface
      * @ORM\Column(name="gateway", type="string", nullable=true)
      */
     protected $gateway;
+
+    /**
+     * @ORM\Column(name="status", type="boolean")
+     */
+    protected $status = Status::ACTIVE;
 
     public function getId()
     {
@@ -88,6 +94,16 @@ class PaymentMethod implements PaymentMethodInterface
     {
         $this->gateway = $gateway;
         return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
 }
