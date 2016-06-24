@@ -3,7 +3,6 @@
 namespace Vinci\App\Website\Http\ShoppingCart\Context;
 
 use Illuminate\Session\SessionInterface;
-use Vinci\Domain\ShoppingCart\Context\Contracts\CartInterface;
 use Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
