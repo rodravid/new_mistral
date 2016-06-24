@@ -156,4 +156,10 @@ class Payment  extends Model implements PaymentInterface, Presentable
 
         $this->setInstallmentAmount($amount);
     }
+
+    public function wasMadeWithCredidCard()
+    {
+        return $this->getMethod()->getDescription() == 'credit-card';
+    }
+
 }

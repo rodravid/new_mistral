@@ -125,7 +125,7 @@
 
             <article class="purchase-data section-payment">
                     <div class="content-img-card float-left">
-                        <img src="{{ asset_web('images/payment_methods/icon_' . $order->getPayment()->getMethod()->getName() . '.png') }}" alt="">
+                        <img src="{{ $order->payment->method->icon_image_url }}" alt="">
                     </div>
                     <div class="info-card-payment">
                         <p class="amount-paid">{{ $order->payment->installment_text }}</p>

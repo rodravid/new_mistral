@@ -59,6 +59,7 @@
                             <tr>
                                 <th>#SKU</th>
                                 <th>Produto</th>
+                                <th>Valor unitário</th>
                                 <th>Quantidade</th>
                                 <th>Subtotal</th>
                             </tr>
@@ -69,6 +70,7 @@
                                 <tr>
                                     <td>{{ $item->product->sku }}</td>
                                     <td>{{ $item->product->title }}</td>
+                                    <td>{{ $item->price }}</td>
                                     <td>{{ $item->quantity_units }}</td>
                                     <td>{{ $item->total }}</td>
                                 </tr>
@@ -83,14 +85,20 @@
                     <!-- accepted payments column -->
                     <div class="col-xs-6">
                         <p class="lead">Forma de pagamento:</p>
-                        <img src="/assets/cms/dist/img/credit/visa.png" alt="Visa">
+                        <p class="lead">{{ $order->payment->method->code }}</p>
+                        <img src="{{ $order->payment->method->icon_image_url }}" alt="Visa">
 
                         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                             <strong>{{ $order->payment->installment_text }}</strong><br /><br >
-                            <strong>Titular do cartão:</strong> {{ $order->payment->credit_card->holdername }}<br >
-                            <strong>Número:</strong> {{ $order->payment->credit_card->number }}<br >
-                            <strong>Data de expiração:</strong> {{ $order->payment->credit_card->expiry_date }}<br >
-                            <strong>Código de segurança:</strong> {{ $order->payment->credit_card->securityCode }}<br >
+
+                            @if($order->payment->wasMadeWithCredidCard())
+
+                                <strong>Titular do cartão:</strong> {{ $order->payment->credit_card->holdername }}<br >
+                                <strong>Número:</strong> {{ $order->payment->credit_card->number }}<br >
+                                <strong>Data de expiração:</strong> {{ $order->payment->credit_card->expiry_date }}<br >
+                                <strong>Código de segurança:</strong> {{ $order->payment->credit_card->securityCode }}<br >
+
+                            @endif
                         </p>
                     </div>
                     <!-- /.col -->
