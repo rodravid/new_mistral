@@ -10,8 +10,10 @@ interface ShowcaseRepository
 
     public function getOneById($id);
 
+    public function getOneBySlug($slug);
+
     public function create(array $data);
 
-    public function getItems($showcaseId);
+    public function getByProduct($product);
     
 }

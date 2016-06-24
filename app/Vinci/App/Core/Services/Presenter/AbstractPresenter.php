@@ -162,4 +162,18 @@ abstract class AbstractPresenter extends BasePresenter
         return $this->toRealCurrency($this->getPrice());
     }
 
+    public function presentWebPath()
+    {
+        return $this->getWebPath();
+    }
+
+    public function presentTemplateCss()
+    {
+        if ($this->hasTemplate()) {
+            return $this->getTemplate()->getCode();
+        }
+
+        return 'template1';
+    }
+
 }

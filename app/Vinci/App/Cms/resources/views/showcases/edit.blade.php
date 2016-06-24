@@ -39,7 +39,15 @@
                         @include('cms::layouts.partials.publication.edit.default', ['model' => $showcase])
                     </div>
 
-
+                    @if ($showcase->hasImage('banner'))
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Banner',
+                            'image' => $showcase->getImage('banner'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$showcase->getId(), $showcase->getImage('banner')->getId()])
+                            ])
+                        </div>
+                    @endif
 
                 </div>
             </div>

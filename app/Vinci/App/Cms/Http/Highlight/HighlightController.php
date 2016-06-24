@@ -159,14 +159,4 @@ class HighlightController extends Controller
         }
     }
 
-    protected function getEditRouteName()
-    {
-        return 'cms.' . $this->aclService->getCurrentModuleName() . '.edit';
-    }
-
-    protected function getListRouteName()
-    {
-        return 'cms.' . $this->aclService->getCurrentModuleName() . '.list';
-    }
-
 }

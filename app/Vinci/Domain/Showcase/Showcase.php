@@ -10,6 +10,7 @@ use Vinci\Domain\Common\Relationships\HasOneAdminUser;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Image\Image;
 use Vinci\Domain\Template\Template;
 
 /**
@@ -55,6 +56,12 @@ class Showcase extends Model
     protected $type;
 
     /**
+     * @Gedmo\Slug(fields={"title"}, unique=true, updatable=true)
+     * @ORM\Column(length=255, nullable=true)
+     */
+    protected $slug;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $url;
@@ -76,6 +83,11 @@ class Showcase extends Model
     protected $items;
 
     /**
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Showcase\ShowcaseImage", mappedBy="showcase", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
+     */
+    protected $images;
+
+    /**
      * @ORM\Column(type="text", nullable=true)
      */
     protected $keywords;
@@ -83,6 +95,7 @@ class Showcase extends Model
     public function __construct()
     {
         $this->items = new ArrayCollection;
+        $this->images = new ArrayCollection;
     }
 
     public function getId()
@@ -178,6 +191,11 @@ class Showcase extends Model
         return $this;
     }
 
+    public function hasTemplate()
+    {
+        return ! empty($this->template);
+    }
+
     public function getItems()
     {
         return $this->items;
@@ -236,6 +254,71 @@ class Showcase extends Model
     public function setKeywords($keywords)
     {
         $this->keywords = $keywords;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = ! empty($slug) ? $slug : null;
+        return $this;
+    }
+
+    public function getWebPath()
+    {
+        return sprintf('/c/vitrine/%s', $this->getSlug());
+    }
+
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function setImages(ArrayCollection $images)
+    {
+        $this->images = $images;
+        return $this;
+    }
+
+    public function getImagesUploadPath()
+    {
+        return 'showcases/' . $this->getId() . '/images';
+    }
+
+    public function addImage(Image $image, $version)
+    {
+        $showcaseImage = new ShowcaseImage;
+        $showcaseImage->setImage($image);
+        $showcaseImage->setShowcase($this);
+        $showcaseImage->setImageVersion($version);
+        $this->images->remove($version);
+        $this->images->set($version, $showcaseImage);
+    }
+
+    public function removeImage(Image $image)
+    {
+        foreach ($this->images as $img) {
+            if ($image == $img->getImage()) {
+                $this->images->removeElement($img);
+            }
+        }
+    }
+
+    public function getImage($version)
+    {
+        foreach ($this->images as $relation) {
+            if ($relation->getImageVersion() == $version) {
+                return $relation->getImage();
+            }
+        }
+    }
+
+    public function hasImage($version)
+    {
+        return !! $this->getImage($version);
     }
 
 }

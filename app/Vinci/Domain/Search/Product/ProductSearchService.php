@@ -119,6 +119,7 @@ class ProductSearchService extends SearchService
                     'should' => [
                         ['term' => ['_id' => $keyword]],
                         ['match' => ['title' => $keyword]],
+                        ['match' => ['keywords' => $keyword]],
                         ['match' => ['country.title' => $keyword]],
                         ['match' => ['region.title' => $keyword]],
                         ['match' => ['producer.title' => $keyword]],
@@ -175,6 +176,10 @@ class ProductSearchService extends SearchService
 
                 if (! empty($producers = array_get($filters, 'filters.produtor'))) {
                     $this->addFilter($params, 'producer.title', $producers);
+                }
+
+                if (! empty($showcases = array_get($filters, 'filters.showcase'))) {
+                    $this->addFilter($params, 'showcases.id', $showcases);
                 }
 
             }
