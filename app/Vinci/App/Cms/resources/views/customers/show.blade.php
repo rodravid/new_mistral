@@ -9,7 +9,6 @@
 @endsection
 
 @section('module.content')
-
     <section class="content">
         <div class="row">
             <div class="col-md-3">
@@ -81,10 +80,57 @@
                     </ul>
                     <div class="tab-content">
                         <div class="active tab-pane" id="addresses">
-
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tipo</th>
+                                    <th>Logradouro</th>
+                                    <th>Número</th>
+                                    <th>Complemento</th>
+                                    <th>Bairro</th>
+                                    <th>UF</th>
+                                    <th>Cidade</th>
+                                </tr>
+                                @foreach($addresses as $address)
+                                    <tr>
+                                        <td>{{ $address->getId() }}</td>
+                                        <td>{{ $address->getNickname() }}</td>
+                                        <td>{{ $address->getPublicPlace()->getTitle() . " " . $address->getAddress() }}</td>
+                                        <td>{{ $address->getNumber() }}</td>
+                                        <td>{{ $address->getComplement() }}</td>
+                                        <td>{{ $address->getDistrict() }}</td>
+                                        <td>{{ $address->getCity()->getUf() }}</td>
+                                        <td>{{ $address->getCity()->getName() }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
                         </div>
                         <div class="tab-pane" id="orders">
-
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th><i class="fa fa-tag"></i> Número</th>
+                                        <th><i class="fa fa-money"></i> Valor</th>
+                                        <th><i class="fa fa-calendar"></i> Criado em</th>
+                                        <th><i class="fa fa-edit"></i> Status</th>
+                                    </tr>
+                                </thead>
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('cms.orders.show', $order->id) }}">
+                                                {{ $order->id }}
+                                            </a>
+                                        </td>
+                                        <td>{{ $order->number }}</td>
+                                        <td>{{ $order->total }}</td>
+                                        <td>{{ $order->created_at }}</td>
+                                        <td>{{ $order->status }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            {!! $orders->links() !!}
                         </div>
                     </div>
                 </div>
