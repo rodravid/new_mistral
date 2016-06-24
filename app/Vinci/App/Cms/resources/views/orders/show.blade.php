@@ -10,7 +10,6 @@
 
 @section('module.content')
 
-
     <section class="content">
         <div class="box box-primary">
             <div class="box-body">
@@ -20,6 +19,8 @@
                         <h2 class="page-header">
                             <i class="fa fa-globe"></i> Pedido #{{ $order->number }}.
                             <small class="pull-right">Data: {{ $order->creation_date }}</small>
+                            <small class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;" onClick="window.print()"> <i class="fa fa-print"></i> Imprimir</small>
+                            
                         </h2>
                     </div>
                 </div>
@@ -46,7 +47,7 @@
                         </address>
                     </div>
                     <!-- /.col -->
-                    <div class="col-sm-3 invoice-col">
+                    <div class="col-sm-3 invoice-col print-full">
                         <b>Número do pedido:</b> {{ $order->number }}<br>
                         <b>Realizado em:</b> {{ $order->created_at }}<br>
                     </div>

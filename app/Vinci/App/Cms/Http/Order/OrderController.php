@@ -24,8 +24,7 @@ class OrderController extends Controller
         EntityManagerInterface $em,
         OrderService $service,
         OrderRepository $repository
-    )
-    {
+    ) {
         parent::__construct($em);
 
         $this->service = $service;
