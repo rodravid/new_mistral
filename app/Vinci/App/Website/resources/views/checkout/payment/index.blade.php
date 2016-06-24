@@ -96,9 +96,6 @@
         <p class="title-internal-blue mbottom30">Forma de pagamento</p>
 
 
-
-
-
         <div id="paymentTabs">
 
             <ul class="payment-methods">
@@ -118,9 +115,6 @@
 
             <div class="height-fix" id="tab-card">
                 <section class="form-payment section-payment height-fix">
-                    @if($errors->has())
-                    <p class="error-message">{{ $errors->first() }}</p>
-                    @endif
                     <ul class="flags-card">
                         <!-- <div class="flags visa"></div> -->
                         @foreach ($paymentMethods as $paymentMethod)
@@ -130,7 +124,6 @@
                                         <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
                                     </label>
                                     {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
-                                    {!! Form::input('hidden', 'payment[method_type]', $paymentMethod->getDescription(), null) !!}
                                 </li>
                             @endif
                         @endforeach
@@ -153,6 +146,10 @@
                                 </li>
                             </ul>
 
+                            @if($errors->has())
+                                <p class="error-message"><b>{{ $errors->first() }}</b></p>
+                            @endif
+
                         </div>
 
                     </div>
@@ -172,7 +169,7 @@
                                 </li>
                                 <li>
                                     <label class="label-input" for="txtDocument">CPF / CNPJ *</label>
-                                    {!! Form::text('document', null, ['id' => 'txtDocument', 'placeholder' => 'CPF / CNPJ *', 'class' => 'input-register full ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
+                                    {!! Form::text('document', null, ['id' => 'txtDocument', 'placeholder' => 'CPF / CNPJ *', 'class' => 'input-register full ' . ($errors->has('document') ? 'error-field' : '')]) !!}
                                 </li>
                             </ul>
                         </div>
@@ -192,7 +189,7 @@
                                 </li>
                                 <li>
                                     <label class="label-above" for="">Código de segurança *</label>
-                                    {!! Form::text('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
+                                    {!! Form::text('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.security_code') ? 'error-field' : ''), 'placeholder' => '3 dígitos']) !!}
                                     <img class="float-left img-cod-seg" src="{{ asset_web('images/img-cod-seg.jpg') }}" alt="">
                                 </li>
                             </ul>
@@ -217,7 +214,6 @@
                                         <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
                                     </label>
                                     {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
-                                    {!! Form::input('hidden', 'payment[method_type]', $paymentMethod->getDescription(), null) !!}
                                     <p>Deposito Bancário</p>
                                 </li>
                             @endif
@@ -237,7 +233,6 @@
 
             </div> <!-- Fim tab-transfer -->
         </div><!-- paymentTabs -->
-
 
     </section>
 
