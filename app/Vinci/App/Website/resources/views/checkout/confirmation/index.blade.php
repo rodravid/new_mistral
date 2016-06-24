@@ -124,16 +124,22 @@
             <p class="title-internal-blue mbottom20">Forma de pagamento</p>
 
             <article class="purchase-data section-payment">
-                <div class="content-img-card float-left">
-                    <img src="{{ asset_web('images/img-cartao-credito.jpg') }}" alt="">
-                </div>
-                <div class="info-card-payment">
-                    <p class="amount-paid">{{ $order->payment->installment_text }}</p>
-                    <p class="card-used">
-                        {{ $order->payment->getCreditCard()->getHoldername() }}
-                        <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
-                    </p>
-                </div>
+                    <div class="content-img-card float-left">
+                        <img src="{{ asset_web('images/payment_methods/icon_' . $order->getPayment()->getMethod()->getName() . '.png') }}" alt="">
+                    </div>
+                    <div class="info-card-payment">
+                        <p class="amount-paid">{{ $order->payment->installment_text }}</p>
+                        @if ($order->getPayment()->getMethod()->getDescription() == "credit_card")
+                            <p class="card-used">
+                                {{ $order->payment->getCreditCard()->getHoldername() }}
+                                <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
+                            </p>
+                        @else
+                            <p class="card-used">
+                                Pago via depósito bancário
+                            </p>
+                        @endif
+                    </div>
             </article>
 
             <div class="wrap-content-bt mbottom20 show-mobile no-print">

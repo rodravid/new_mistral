@@ -41,6 +41,7 @@ class OrderService
 
     public function create(array $data)
     {
+
         $this->validator->with($data)->passesOrFail();
 
         return $this->entityManager->transactional(function ($em) use ($data) {
@@ -96,14 +97,18 @@ class OrderService
 
         $paymentMethod = $this->getPaymentMethod($data);
 
-        $creditCard = $this->getCreditCard($data);
+        $payment->setMethod($paymentMethod);
 
-        $creditCard->setBrand($paymentMethod->getCode());
+        if ($data['payment']['method_type'] == "credit_card"){
 
-        $payment
-            ->setMethod($paymentMethod)
-            ->setCreditCard($creditCard)
-            ->setInstallments($this->getPaymentInstallments($data));
+            $creditCard = $this->getCreditCard($data);
+            $creditCard->setBrand($paymentMethod->getCode());
+
+            $payment = $payment
+                ->setCreditCard($creditCard)
+                ->setInstallments($this->getPaymentInstallments($data));
+
+        }
 
         return $payment;
     }

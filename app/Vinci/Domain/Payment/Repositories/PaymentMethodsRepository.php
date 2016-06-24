@@ -8,4 +8,6 @@ interface PaymentMethodsRepository
 
     public function getAll();
 
+    public function findOneById($id);
+
 }

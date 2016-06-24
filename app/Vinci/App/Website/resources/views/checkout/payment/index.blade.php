@@ -123,13 +123,14 @@
                     @endif
                     <ul class="flags-card">
                         <!-- <div class="flags visa"></div> -->
-                        @foreach($paymentMethods as $paymentMethod)
+                        @foreach ($paymentMethods as $paymentMethod)
                             @if ($paymentMethod->getDescription() == "credit_card")
                                 <li class="flags-list">
                                     <label for="{{ $paymentMethod->getName() }}">
                                         <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
                                     </label>
                                     {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
+                                    {!! Form::input('hidden', 'payment[method_type]', $paymentMethod->getDescription(), null) !!}
                                 </li>
                             @endif
                         @endforeach
@@ -198,8 +199,6 @@
                         </div>
                     </div>
 
-
-
                 </section>
 
                 <div class="wrap-content-bt remove-mbttom20">
@@ -218,6 +217,7 @@
                                         <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
                                     </label>
                                     {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
+                                    {!! Form::input('hidden', 'payment[method_type]', $paymentMethod->getDescription(), null) !!}
                                     <p>Deposito Bancário</p>
                                 </li>
                             @endif
