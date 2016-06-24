@@ -8,6 +8,7 @@ elixir(function(mix) {
         'js/angular/angular-counter.min.js',
         'js/jquery-1.9.1.min.js',
         'js/slick.js',
+        'js/jquery.responsiveTabs.min.js',
         'js/sweetalert/sweetalert.min.js',
         'js/readmore.min.js',
         'js/input-mask/jquery.inputmask.js',
