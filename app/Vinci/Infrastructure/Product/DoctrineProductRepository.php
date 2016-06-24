@@ -226,4 +226,48 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
         return $products;
     }
+
+    public function getProductsFromCountries(array $countries)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.country', 'c')
+            ->where($qb->expr()->in('c.id', $countries));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getProductsFromRegions(array $regions)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.region', 'r')
+            ->where($qb->expr()->in('r.id', $regions));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getProductsFromProducers(array $producers)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.producer', 'pr')
+            ->where($qb->expr()->in('pr.id', $producers));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getProductsFromTypes(array $types)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.productType', 'pt')
+            ->where($qb->expr()->in('pt.id', $types));
+
+        return $qb->getQuery()->getResult();
+    }
 }

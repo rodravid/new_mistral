@@ -8,7 +8,8 @@
                 <table class="table table-bordered table-striped" data-url="{{ route('cms.' . $currentModule->getName() . '.edit#items-datatable', [$promotion->getId()]) }}">
                     <thead>
                     <tr>
-                        <th>#SKU</th>
+                        <th>#ID</th>
+                        <th>SKU</th>
                         <th><i class="fa fa-pencil"></i> Título</th>
                         <th><i class="fa fa-cube"></i> Estoque</th>
                         <th><i class="fa fa-calendar"></i> Adicinado em</th>
@@ -48,16 +49,16 @@
                 return false;
             });
 
-            $body.delegate('.pagination li a[data-value]', 'click', function () {
-
-                setPage($(this).data('value'));
-                loadTab(currentTabTarget);
-
-            });
-
-            if (promotion_id > 0) {
-                loadTab('#all-products');
-            }
+//            $body.delegate('.pagination li a[data-value]', 'click', function () {
+//
+//                setPage($(this).data('value'));
+//                loadTab(currentTabTarget);
+//
+//            });
+//
+//            if (promotion_id > 0) {
+//                loadTab('#all-products');
+//            }
 
             var dropzone;
             var oldFile;
@@ -93,7 +94,7 @@
 
                     if (! response.error) {
 
-                        loadFirstTab();
+                        reloadTable();
 
                         swal({
                             title: "Pronto!",
@@ -148,7 +149,7 @@
                 }
 
                 swal({
-                    title: "Adicionando produtos na promoção...<br /><center><img src='/images/loading.gif' align='center' style='margin-top: 20px;'></center>",
+                    title: "Adicionando produtos na promoção...<br /><center><img src='/assets/cms/dist/img/loading.gif' align='center' style='margin-top: 20px;'></center>",
                     text: "Por favor aguarde, isso pode levar alguns minutos.",
                     html: true,
                     showConfirmButton: false
@@ -197,7 +198,7 @@
                 }
 
                 swal({
-                    title: "Adicionando produtos na promoção...<br /><center><img src='/images/loading.gif' align='center' style='margin-top: 20px;'></center>",
+                    title: "Adicionando produtos na promoção...<br /><center><img src='/assets/cms/dist/img/loading.gif' align='center' style='margin-top: 20px;'></center>",
                     text: "Por favor aguarde, isso pode levar alguns minutos.",
                     html: true,
                     showConfirmButton: false
@@ -213,7 +214,7 @@
                         if (! response.error) {
 
                             resetSelects();
-                            loadFirstTab();
+                            reloadTable();
 
                             swal({
                                 title: "Pronto!",
@@ -247,7 +248,7 @@
                 }, function() {
 
                     swal({
-                        title: "Adicionando todos os produtos do site na promoção...<br /><center><img src='/images/loading.gif' align='center' style='margin-top: 20px;'></center>",
+                        title: "Adicionando todos os produtos do site na promoção...<br /><center><img src='/assets/cms/dist/img/loading.gif' align='center' style='margin-top: 20px;'></center>",
                         text: "Por favor aguarde, isso pode levar alguns minutos.",
                         html: true,
                         showConfirmButton: false
@@ -262,7 +263,7 @@
 
                             if (!response.error) {
 
-                                resetSelects();
+                                reloadTable();
                                 loadFirstTab();
 
                                 swal({
@@ -289,6 +290,7 @@
             function resetSelects() {
                 $selectCountries.select2('val', '');
                 $selectRegions.select2('val', '');
+                $selectProducers.select2('val', '');
                 $selectTypes.select2('val', '');
             }
 
@@ -424,9 +426,7 @@
                 columnDefs: [
                     {orderable: false, width: '92px', targets: -1 },
                     {className: 'hcenter vcenter', width: '20px', targets: 0 },
-                    {className: 'hcenter vcenter', width: '70px', targets: 2 },
-                    {className: 'hcenter vcenter', width: '120px', targets: 3 },
-                    {className: 'vcenter', targets: [2,3] }
+                    {className: 'vcenter', targets: [1,2,3,4,5] }
                 ]
             });
 
@@ -557,7 +557,7 @@
                     targ = $tab.attr('data-target'),
                     $target = $(targ);
 
-            $target.html("<center><img src='/images/loading.gif' align='center' style='margin-top: 20px;'></center>");
+            $target.html("<center><img src='/assets/cms/dist/img/loading.gif' align='center' style='margin-top: 20px;'></center>");
             $tab.tab('show');
 
             $tabs.removeClass('active');

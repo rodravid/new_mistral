@@ -25,4 +25,12 @@ interface ProductRepository
 
     public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion);
 
+    public function getProductsFromCountries(array $countries);
+
+    public function getProductsFromRegions(array $regions);
+
+    public function getProductsFromProducers(array $producers);
+
+    public function getProductsFromTypes(array $types);
+
 }

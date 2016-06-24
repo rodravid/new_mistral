@@ -21,10 +21,11 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
     }
 
     protected $sortMapping = [
-        0 => 'v.sku',
-        1 => 'v.title',
-        2 => 'v.stock',
-        3 => 'i.createdAt',
+        0 => 'p.id',
+        1 => 'v.sku',
+        2 => 'v.title',
+        3 => 'v.stock',
+        4 => 'i.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -42,6 +43,8 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
         if (! empty($search['value'])) {
 
             $qb->andWhere($qb->expr()->eq('v.sku', ':id'));
+
+            $qb->orWhere($qb->expr()->eq('p.id', ':id'));
 
             $qb->orWhere($qb->expr()->orX(
                 $qb->expr()->like('v.title', ':search')
@@ -61,6 +64,7 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
         $presenter = new PromotionItemPresenter($item);
 
         return [
+            sprintf('<a href="%s">%s</a>', route('cms.products.edit', $presenter->product->id), $presenter->product->id),
             $presenter->product->sku,
             $presenter->product->title,
             $presenter->product->stock,

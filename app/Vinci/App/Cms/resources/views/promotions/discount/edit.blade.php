@@ -39,7 +39,15 @@
                         @include('cms::layouts.partials.publication.edit.default', ['model' => $promotion])
                     </div>
 
-
+                    @if ($promotion->hasSealImage())
+                        <div class="col-xs-12">
+                            @include('cms::layouts.partials.image.default', [
+                            'box_title' => 'Selo da promoção',
+                            'image' => $promotion->getSealImage(),
+                            'delete_url' => route('cms.promotions.edit#remove-seal', [$promotion->getId()])
+                            ])
+                        </div>
+                    @endif
 
                 </div>
             </div>
