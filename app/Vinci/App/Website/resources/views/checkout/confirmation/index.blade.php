@@ -39,7 +39,7 @@
             <div class="wrap-content-bt mbottom10">
                 <span class="title-internal-confirmation uppercase float-left">Pedido concluído com sucesso!</span>
                 <div class="content-bt-big hide-mobile no-print">
-                    <a class="bt-default-full bt-middle bt-color" href="#">Continuar comprando <span class="arrow-link">&gt;</span></a>
+                    <a class="bt-default-full bt-middle bt-color" href="/">Continuar comprando <span class="arrow-link">&gt;</span></a>
                 </div>
             </div>
 

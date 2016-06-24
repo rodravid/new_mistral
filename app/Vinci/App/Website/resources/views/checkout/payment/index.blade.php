@@ -122,26 +122,19 @@
                     <p class="error-message">{{ $errors->first() }}</p>
                     @endif
                     <ul class="flags-card">
-                        <li class="flags-list">
-                            <!-- <div class="flags visa"></div> -->
-                            <img class="flags visa" src="{{ asset_web('images/img-flag-visa.jpg') }}" alt="">
-                            {!! Form::radio('payment[method]', 1, null, ['class' => 'visa']) !!}
-                        </li>
-                        <li class="flags-list">
-                            <img class="flags master" src="{{ asset_web('images/img-flag-visa.jpg') }}" alt="">
-                            {!! Form::radio('payment[method]', 2, null, ['class' => 'master']) !!}
-                        </li>
-                        <li class="flags-list">
-                            <img class="flags american" src="{{ asset_web('images/img-flag-visa.jpg') }}" alt="">
-                            {!! Form::radio('payment[method]', 3, null, ['class' => 'american']) !!}
-                        </li>
-                        <li class="flags-list">
-                            <img class="flags diners" src="{{ asset_web('images/img-flag-visa.jpg') }}" alt="">
-                            {!! Form::radio('payment[method]', 4, null, ['class' => 'diners']) !!}
-                        </li>
+                        <!-- <div class="flags visa"></div> -->
+                        @foreach($paymentMethods as $paymentMethod)
+                            @if ($paymentMethod->getDescription() == "credit_card")
+                                <li class="flags-list">
+                                    <label for="{{ $paymentMethod->getName() }}">
+                                        <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
+                                    </label>
+                                    {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                     <div class="col-register1 template1">
-
                         <div class="user-data">
                             <h2 class="title-form">Parcelamento</h2>
                             <ul class="list-form-register">
@@ -185,7 +178,6 @@
                     </div>
 
                     <div class="col-register3 template1">
-
                         <div class="card-validity template1">
                             <ul class="list-form-register">
                                 <li>
@@ -202,11 +194,8 @@
                                     {!! Form::text('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
                                     <img class="float-left img-cod-seg" src="{{ asset_web('images/img-cod-seg.jpg') }}" alt="">
                                 </li>
-
                             </ul>
-
                         </div>
-
                     </div>
 
 
@@ -219,21 +208,25 @@
                     </div>
                 </div>
             </div> <!-- Fim tab-card -->
-
             <div class="height-fix" id="tab-transfer">
-
                 <section class="form-payment section-payment template1" >
-                 <ul class="flags-card">
-                          <li class="flags-list">
-                            <img class="flags master" src="{{ asset_web('images/img-flag-visa.jpg') }}" alt="">
-                            {!! Form::radio('payment[method]', 2, null, ['class' => 'master']) !!}
-                            <p>Deposito Bancário</p>
-                        </li>
-                </ul>
+                    <ul class="flags-card">
+                        @foreach ($paymentMethods as $paymentMethod)
+                            @if ($paymentMethod->getDescription() == "account_deposit")
+                                <li class="flags-list">
+                                    <label for="{{ $paymentMethod->getName() }}">
+                                        <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
+                                    </label>
+                                    {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
+                                    <p>Deposito Bancário</p>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
 
-               <p class="mbottom20"> CLIQUE NO BOTÃO ABAIXO PARA CONFIRMAR e receber as informações de depósito por e-mail.</p>
+                    <p class="mbottom20"> CLIQUE NO BOTÃO ABAIXO PARA CONFIRMAR e receber as informações de depósito por e-mail.</p>
 
-<p class="mbottom20"><strong>Atenção:</strong> Não efetue depósito sem nossa confirmação, os dados podem mudar conforme a expedição de envio de mercadorias, o que atrasaria seu processo em caso de divergência fiscal. É importante aguardar o recebimento do email com as instruções para o o depósito bancário.</p>
+                    <p class="mbottom20"><strong>Atenção:</strong> Não efetue depósito sem nossa confirmação, os dados podem mudar conforme a expedição de envio de mercadorias, o que atrasaria seu processo em caso de divergência fiscal. É importante aguardar o recebimento do email com as instruções para o o depósito bancário.</p>
                 </section>
 
                 <div class="wrap-content-bt remove-mbttom20">
@@ -243,9 +236,6 @@
                 </div>
 
             </div> <!-- Fim tab-transfer -->
-            
-
-
         </div><!-- paymentTabs -->
 
 
