@@ -13,6 +13,8 @@ use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Image\Image;
+use Vinci\Domain\Product\ProductInterface;
 
 /**
  * @ORM\Entity
@@ -47,7 +49,9 @@ abstract class Promotion extends Model
      */
     protected $description;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Image\Image")
+     */
     protected $sealImage;
 
     /**
@@ -161,6 +165,43 @@ abstract class Promotion extends Model
     public function isOfType($type)
     {
         return $this->getType() == $type;
+    }
+
+    public function hasProduct(ProductInterface $product)
+    {
+        foreach ($this->getItems() as $item) {
+            if($item->getProduct()->getId() == $product->getId()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getSealImage()
+    {
+        return $this->sealImage;
+    }
+
+    public function setSealImage(Image $sealImage)
+    {
+        $this->sealImage = $sealImage;
+        return $this;
+    }
+
+    public function hasSealImage()
+    {
+        return $this->sealImage instanceof Image;
+    }
+
+    public function removeSealImage()
+    {
+        $this->sealImage = null;
+    }
+
+    public function getImagesUploadPath()
+    {
+        return 'promotions/' . $this->getId() . '/images';
     }
 
 }

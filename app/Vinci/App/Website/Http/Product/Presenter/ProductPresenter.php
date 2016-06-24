@@ -3,6 +3,7 @@
 namespace Vinci\App\Website\Http\Product\Presenter;
 
 use Vinci\Domain\Product\Presenter\ProductPresenter as BaseProductPresenter;
+use Vinci\Domain\Promotion\PromotionSealProvider;
 
 class ProductPresenter extends BaseProductPresenter
 {
@@ -29,13 +30,9 @@ class ProductPresenter extends BaseProductPresenter
         }
     }
 
-    public function presentTemplateCss()
+    public function getPromotionSeal()
     {
-        if ($this->hasTemplate()) {
-            return $this->getTemplate()->getCode();
-        }
-
-        return 'template1';
+        return app(PromotionSealProvider::class)->provideFor($this->getObject());
     }
 
 }

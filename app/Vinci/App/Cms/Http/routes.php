@@ -178,6 +178,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                  */
                 $route->group(['prefix' => 'promotions', 'namespace' => 'Promotion'], function () use ($route) {
 
+                    $route->post('{promotion}/items/add', 'PromotionController@addProducts');
+                    $route->post('{promotion}/items/add-all', 'PromotionController@addAllProducts');
+                    $route->post('{promotion}/items/add-from-filters', 'PromotionController@addProductsFromFilters');
+                    $route->post('{promotion}/items/add-from-file', 'PromotionController@addProductsFromFile');
+                    $route->delete('/{promotion}/remove-seal', 'PromotionController@removeSeal')->name('promotions.edit#remove-seal');
+
                     /**
                      * Discount promotion
                      */
@@ -192,7 +198,6 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->post('datatable', 'DiscountPromotion\\DiscountPromotionController@datatable')->name('list#datatable');
                         $route->post('/{promotion}/items/datatable', 'DiscountPromotion\\DiscountPromotionController@itemsDatatable')->name('edit#items-datatable');
                         $route->delete('/{promotion}/items/{item}/delete', 'DiscountPromotion\\DiscountPromotionController@removeItem')->name('edit#remove-item');
-                        $route->post('/{promotion}/items', 'DiscountPromotion\\DiscountPromotionController@addItem')->name('edit#add-item');
                     });
 
                 });

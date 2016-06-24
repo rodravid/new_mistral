@@ -9,4 +9,6 @@ interface ProductTypeRepository
 
     public function create(array $data);
 
+    public function getAllValidForSelectArray();
+
 }

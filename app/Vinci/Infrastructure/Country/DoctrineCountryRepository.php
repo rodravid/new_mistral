@@ -56,4 +56,20 @@ class DoctrineCountryRepository extends DoctrineBaseRepository implements Countr
 
         return $result;
     }
+
+    public function getAllValidForSelectArray()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c.id', 'c.name');
+
+        $result = $qb->getQuery()->getArrayResult();
+
+        $countries = [];
+
+        foreach ($result as $c) {
+            $countries[$c['id']] = $c['name'];
+        }
+
+        return $countries;
+    }
 }

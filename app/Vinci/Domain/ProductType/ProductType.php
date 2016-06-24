@@ -14,6 +14,10 @@ use Vinci\Domain\Image\Image;
 class ProductType extends BaseTaxonomy
 {
 
+    const TYPE_ACCESSORY = 1;
+    const TYPE_ALIMENTARY = 3;
+    const TYPE_PACKING = 9;
+
     /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\ProductType\ProductTypeImage", mappedBy="product_type", cascade={"persist", "remove"}, indexBy="imageVersion", orphanRemoval=true)
      */

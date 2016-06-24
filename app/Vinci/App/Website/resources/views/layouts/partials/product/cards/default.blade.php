@@ -12,7 +12,9 @@
     <p class="wine-intro">{!! $product->shortned_description !!}</p>
     <div class="content-card-product">
         <div class="thumb-wine">
-            <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
+            @if($promotionSeal = $product->getPromotionSeal())
+                <img class="label-wine" src="{{ $promotionSeal }}" alt="Selo Vinho">
+            @endif
             <a href="javascript:void(0);">
                 <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
             </a>

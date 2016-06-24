@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Image;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Vinci\Infrastructure\Storage\StorageService;
 

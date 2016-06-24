@@ -94,6 +94,7 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Infrastructure\Showcase\DoctrineShowcaseRepository',
             'Vinci\Domain\Showcase\Showcase'
         );
+        $this->app->alias('Vinci\Domain\Showcase\ShowcaseRepository', 'showcase.repository');
 
         $this->registerRepository(
             'Vinci\Domain\Promotion\PromotionRepository',

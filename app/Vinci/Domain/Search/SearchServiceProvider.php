@@ -27,7 +27,8 @@ class SearchServiceProvider extends ServiceProvider
         $this->app->singleton('Vinci\Domain\Search\Product\ProductIndexerService', function() {
             return new ProductIndexerService(
                 $this->app['elasticsearch.products']->getClient(),
-                $this->app['product.repository']
+                $this->app['product.repository'],
+                $this->app['showcase.repository']
             );
         });
 

@@ -2,7 +2,9 @@
 
 namespace Vinci\Domain\Promotion\Types\Discount;
 
-interface DiscountPromotionInterface
+use Vinci\Domain\Promotion\PromotionInterface;
+
+interface DiscountPromotionInterface extends PromotionInterface
 {
 
     public function getPriceConfiguration();

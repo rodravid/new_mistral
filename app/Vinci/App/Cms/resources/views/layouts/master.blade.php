@@ -39,6 +39,8 @@
         <link rel="stylesheet" href="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.css') }}">
         <!-- Sweet alert -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/sweetalert/dist/sweetalert.css') }}">
+        <!-- Dropzone -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/dropzone/dropzone.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset_cms('dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -46,13 +48,11 @@
         <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
 
         <style>
-            td.vcenter {
-                vertical-align: middle !important;
-            }
-
-            td.hcenter {
-                text-align: center !important;
-            }
+            td.vcenter { vertical-align: middle !important; }
+            td.hcenter { text-align: center !important; }
+            .mgTop15 { margin-top: 15px; }
+            .dz-success-mark, .dz-error-mark { display: none; }
+            .dz-file-preview, .dz-details, .dz-filename { float: left; }
         </style>
 
     @show
@@ -191,6 +191,8 @@
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
     <!-- Sweet alert -->
     <script src="{{ asset_cms('plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <!-- Dropzone -->
+    <script src="{{ asset_cms('plugins/dropzone/dropzone.js') }}"></script>
     <!-- Tags input -->
     <script src="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.js') }}"></script>
     <!-- Jquery editable -->

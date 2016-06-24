@@ -4,6 +4,7 @@ namespace Vinci\Domain\Product\Services;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\ImageVersion;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory;

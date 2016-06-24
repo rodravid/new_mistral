@@ -55,5 +55,14 @@
                 {!! Form::text('keywords', null, ['id' => 'txtKeywords', 'class' => 'form-control', 'placeholder' => 'Palavras chave', 'data-keywords']) !!}
             </div>
         </div>
+
+        <div class="col-lg-12">
+            <div class="form-group has-feedback">
+                <label for="txtCountryImageBanner">Imagem do banner</label>
+                {!! Form::file('image_banner', ['id' => 'txtCountryImageBanner']) !!}
+                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
+            </div>
+        </div>
+
     </div>
 </div>

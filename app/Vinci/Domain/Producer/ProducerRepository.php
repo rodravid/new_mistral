@@ -9,6 +9,8 @@ interface ProducerRepository
 
     public function getOneBySlug($slug);
 
+    public function getAllValidForSelectArray();
+
     public function create(array $data);
 
 }

@@ -134,6 +134,10 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/{slug}', 'Producer\ProducerController@show')->name('show');
         });
 
+        $route->group(['prefix' => 'vitrine', 'as' => 'showcase.'], function() use ($route) {
+            $route->get('/{slug}', 'Showcase\ShowcaseController@show')->name('show');
+        });
+
     });
 
     /**
