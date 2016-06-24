@@ -11,6 +11,8 @@
 
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="{{ asset_cms('bootstrap/css/bootstrap.min.css') }}">
+        <!-- Print -->
+        <link rel="stylesheet" href="{{ asset_cms('bootstrap/css/print.css') }}" media="print">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Animate -->
