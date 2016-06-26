@@ -207,9 +207,12 @@ class ProductIndexerService
 
             }
 
+            $suggestInput = explode(' ', $product->getTitle());
+
+            $suggestInput = array_merge($suggestInput, explode(',', $data['keywords']));
 
             $data['suggest'] = [
-                'input' => explode(' ', $product->getTitle()),
+                'input' => $suggestInput,
                 'output' => $product->getTitle(),
                 'payload' => [
                     'productId' => $product->getId(),

@@ -9,6 +9,8 @@ jQuery(document).ready(function ($) {
 
         hint: true,
 
+        filter: false,
+
         resultContainer: '#suggestion-result',
 
         source: {
