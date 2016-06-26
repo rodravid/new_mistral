@@ -20,13 +20,13 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
             ->getOneOrNullResult();
     }
 
-    public function getLastByCustomer(CustomerInterface $customer)
+    public function findLastOfCustomer(CustomerInterface $customer)
     {
         $qb = $this->getBaseQueryBuilder();
 
         $qb
             ->where($qb->expr()->eq('cs.id', $customer->getId()))
-            ->where($qb->expr()->in('c.status', [
+            ->andWhere($qb->expr()->in('c.status', [
                 ShoppingCartInterface::STATUS_ACTIVE,
                 ShoppingCartInterface::STATUS_EXPIRED_BY_SYSTEM
             ]))

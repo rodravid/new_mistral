@@ -3,7 +3,6 @@
 namespace Vinci\App\Website\Http\ShoppingCart\Context;
 
 use Illuminate\Session\SessionInterface;
-use Vinci\Domain\ShoppingCart\Context\Contracts\CartInterface;
 use Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
@@ -24,7 +23,7 @@ class ShoppingCartContextSession implements ShoppingCartContext
 
     public function setCurrentCartIdentifier(ShoppingCartInterface $shoppingCart)
     {
-        $this->session->set(self::STORAGE_KEY, $shoppingCart->getId());
+        $this->session->set(self::STORAGE_KEY, (string) $shoppingCart->getId());
     }
 
     public function resetCurrentCartIdentifier()
