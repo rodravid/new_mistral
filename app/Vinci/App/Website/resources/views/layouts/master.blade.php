@@ -61,6 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('js/jquery-typeahead/dist/jquery.typeahead.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/common/js/address-autocomplete.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
 
@@ -83,10 +84,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/controllers/search/search-filters-controller.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/directives/search/search-filters-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/directives/search/search-suggestion-directive.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/showcase/directives/showcase-container-directive.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/showcase/directives/showcase-widget-directive.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/newsletter/directives/newsletter-widget-directive.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/newsletter/services/newsletter-service.js') }}" type="text/javascript"></script>
+
 
     @else
         <script src="{{ asset_web('js/all.js') }}" type="text/javascript"></script>

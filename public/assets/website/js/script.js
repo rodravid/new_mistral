@@ -1,5 +1,58 @@
 jQuery(document).ready(function ($) {
 
+
+    $('.js-typeahead').typeahead({
+
+        dynamic: true,
+
+        minLength: 0,
+
+        hint: true,
+
+        filter: false,
+
+        resultContainer: '#suggestion-result',
+
+        source: {
+            products: {
+                display: ["title", "country", "producer", 'url'],
+                ajax: {
+                    url: '/api/search/suggest',
+                    data: {
+                        q: '{{query}}'
+                    }
+                },
+                template: function(query, item) {
+
+                    return '<a href="{{url|raw}}" class="suggestions-link">' +
+                        '{{title|raw}}' +
+                        '<p>{{producer|raw}} / {{country|raw}}</p>' +
+                        '</a>';
+                }
+            }
+        },
+
+        selector: {
+            result: 'results-suggestions',
+            list: 'suggestions-list'
+        },
+
+        callback: {
+            onResult: function (node, query, result, resultCount, resultCountPerGroup) {
+
+                if (resultCount > 0) {
+
+                    $('.results-suggestions').fadeIn();
+
+                } else {
+                    $('.results-suggestions').hide();
+                }
+            }
+        }
+
+    });
+
+
     $('.slider-principal').slick({
         dots: true,
         autoplay: true,

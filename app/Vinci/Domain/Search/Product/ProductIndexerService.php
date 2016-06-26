@@ -106,6 +106,12 @@ class ProductIndexerService
                                     ]
                                 ],
                             ],
+                            'suggest' => [
+                                'type' => 'completion',
+                                'index_analyzer' => 'simple',
+                                'search_analyzer' => 'simple',
+                                'payloads' => true,
+                            ]
                         ]
                     ]
                 ]
@@ -201,6 +207,20 @@ class ProductIndexerService
 
             }
 
+            $suggestInput = explode(' ', $product->getTitle());
+
+            $suggestInput = array_merge($suggestInput, explode(',', $data['keywords']));
+
+            $data['suggest'] = [
+                'input' => $suggestInput,
+                'output' => $product->getTitle(),
+                'payload' => [
+                    'productId' => $product->getId(),
+                    'url' => $product->getWebPath(),
+                    'producer' => ($product->hasProducer() ? $product->getProducer()->getName() : ''),
+                    'country' => $product->getCountry()->getName()
+                ]
+            ];
 
 
             /*if ($product->hasAttributes()) {
