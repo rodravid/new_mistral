@@ -85,10 +85,12 @@ class SearchService
         $filters = $this->filterFactory->makeCollection(array_get($result, 'aggregations'));
 
         $searchResult->setFilters($filters);
+        
+        if (isset($result['suggest'])) {
+            $suggesters = $this->suggesterFactory->makeCollection(array_get($result, 'suggest'));
 
-        $suggesters = $this->suggesterFactory->makeCollection(array_get($result, 'suggest'));
-
-        $searchResult->setSuggesters($suggesters);
+            $searchResult->setSuggesters($suggesters);
+        }
 
         if ($hits['total'] > 0) {
 
