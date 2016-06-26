@@ -21,6 +21,7 @@ use Vinci\Domain\Pricing\Calculator\StandardPriceCalculator;
 use Vinci\Domain\Product\Services\ProductUrlGenerator;
 use Vinci\Domain\ProductNotify\Services\ProductNotifyService;
 use Vinci\Domain\Promotion\Types\Discount\Providers\DefaultDiscountPromotionProvider;
+use Vinci\Domain\Promotion\Types\Shipping\DefaultShippingPromotionLocator;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
@@ -157,6 +158,12 @@ class DomainServiceProvider extends ServiceProvider
         $this->app->singleton('Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator', function() {
             return new ShippingCarrierLocator(
                 $this->app['carrier.repository']
+            );
+        });
+
+        $this->app->singleton('Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionLocator', function() {
+            return new DefaultShippingPromotionLocator(
+                $this->app['shipping_promotion.repository']
             );
         });
 

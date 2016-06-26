@@ -9,6 +9,11 @@ use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 class DoctrineDeliveryTrackRepository extends DoctrineBaseRepository implements DeliveryTrackRepository
 {
 
+    public function getAll()
+    {
+        return $this->createQueryBuilder('d')->select('d')->getQuery()->getResult();
+    }
+
     public function find($id)
     {
         $qb = $this->createQueryBuilder('o');
@@ -25,5 +30,4 @@ class DoctrineDeliveryTrackRepository extends DoctrineBaseRepository implements 
         $this->_em->flush();
         return $deliveryTrack;
     }
-
 }

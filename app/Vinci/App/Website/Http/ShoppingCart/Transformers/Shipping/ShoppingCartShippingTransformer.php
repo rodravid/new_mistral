@@ -12,7 +12,7 @@ class ShoppingCartShippingTransformer extends TransformerAbstract
         if (! empty($shipping)) {
 
             return [
-                'price' => $shipping->getPrice(),
+                'price' => $shipping->present()->price,
                 'deadline' => $shipping->getDeadline()
             ];
 

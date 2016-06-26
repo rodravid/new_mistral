@@ -68,7 +68,7 @@
             <div class="row-request">
                 <div class="info-request float-left">Frete</div>
                 <div class="price-final float-right">
-                    <span class="title-internal-15">{{ $shoppingCart->getShipping()->price }}</span>
+                    <span class="title-internal-15">{{ $shoppingCart->shipping->price }}</span>
                 </div>
             </div>
 

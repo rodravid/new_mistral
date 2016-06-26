@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Shipping\ShippingOption;
@@ -20,7 +21,7 @@ use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
  * @ORM\Entity
  * @ORM\Table(name="shopping_cart")
  */
-class ShoppingCart implements ShoppingCartInterface
+class ShoppingCart extends Model implements ShoppingCartInterface
 {
     use Timestampable, HasEvents;
 

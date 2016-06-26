@@ -109,6 +109,13 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionRepository',
+            'Vinci\Infrastructure\Promotion\Types\Shipping\DoctrineShippingPromotionRepository',
+            'Vinci\Domain\Promotion\Types\Shipping\ShippingPromotion'
+        );
+        $this->app->alias('Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionRepository', 'shipping_promotion.repository');
+
+        $this->registerRepository(
             'Vinci\Domain\Template\TemplateRepository',
             'Vinci\Infrastructure\Template\DoctrineTemplateRepository',
             'Vinci\Domain\Template\Template'
