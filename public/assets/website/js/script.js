@@ -5,6 +5,8 @@ jQuery(document).ready(function ($) {
 
         dynamic: true,
 
+        minLength: 0,
+
         hint: true,
 
         resultContainer: '#suggestion-result',
@@ -31,6 +33,19 @@ jQuery(document).ready(function ($) {
         selector: {
             result: 'results-suggestions',
             list: 'suggestions-list'
+        },
+
+        callback: {
+            onResult: function (node, query, result, resultCount, resultCountPerGroup) {
+
+                if (resultCount > 0) {
+
+                    $('.results-suggestions').fadeIn();
+
+                } else {
+                    $('.results-suggestions').hide();
+                }
+            }
         }
 
     });

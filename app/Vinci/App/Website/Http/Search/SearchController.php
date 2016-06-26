@@ -117,6 +117,13 @@ class SearchController extends Controller
 
     public function suggest(Request $request)
     {
+
+        $keyword = $request->get('q');
+
+        if (empty($keyword)) {
+            return [];
+        }
+
         $result = $this->searchService->search($request->get('q'));
 
         $suggester = $result->getSuggester('title-suggester');

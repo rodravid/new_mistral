@@ -16,7 +16,7 @@
                 <div class="typeahead__container">
                     <div class="wrap-input-search">
                         <div class="typeahead__field">
-                            <input class="input-search js-typeahead" type="text" name="termo">
+                            <input class="input-search js-typeahead" type="search" name="termo" autocomplete="off">
                         </div>
                         <div class="results-suggestions">
                             <span class="bt-close-suggestions sprite-icon"></span>

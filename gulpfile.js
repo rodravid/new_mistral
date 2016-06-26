@@ -2,6 +2,10 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
 
+    mix.sass([
+        './app/Vinci/App/Website/resources/assets/sass/style.scss'
+    ], 'public/assets/website/css/style.min.css');
+
     mix.scripts([
         'js/angular/angular.min.js',
         'js/angular/angular-locale_pt-br.js',
