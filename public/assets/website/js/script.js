@@ -1,5 +1,41 @@
 jQuery(document).ready(function ($) {
 
+
+    $('.js-typeahead').typeahead({
+
+        dynamic: true,
+
+        hint: true,
+
+        resultContainer: '#suggestion-result',
+
+        source: {
+            products: {
+                display: ["title", "country", "producer", 'url'],
+                ajax: {
+                    url: '/api/search/suggest',
+                    data: {
+                        q: '{{query}}'
+                    }
+                },
+                template: function(query, item) {
+
+                    return '<a href="{{url|raw}}" class="suggestions-link">' +
+                        '{{title|raw}}' +
+                        '<p>{{producer|raw}} / {{country|raw}}</p>' +
+                        '</a>';
+                }
+            }
+        },
+
+        selector: {
+            result: 'results-suggestions',
+            list: 'suggestions-list'
+        }
+
+    });
+
+
     $('.slider-principal').slick({
         dots: true,
         autoplay: true,

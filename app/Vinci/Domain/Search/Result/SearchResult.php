@@ -26,10 +26,13 @@ class SearchResult
 
     protected $selectedFilters;
 
+    protected $suggesters;
+
     public function __construct()
     {
         $this->items = [];
         $this->filters = new ArrayCollection;
+        $this->suggesters = new ArrayCollection;
         $this->visibleFilters = '*';
         $this->selectedFilters = [];
     }
@@ -144,6 +147,26 @@ class SearchResult
     {
         $this->sort = $sort;
         return $this;
+    }
+
+    public function getSuggesters()
+    {
+        return $this->suggesters;
+    }
+
+    public function setSuggesters(ArrayCollection $suggesters)
+    {
+        $this->suggesters = $suggesters;
+        return $this;
+    }
+
+    public function getSuggester($name)
+    {
+        $criteria = Criteria::create();
+
+        $criteria->where($criteria->expr()->eq('name', $name));
+
+        return $this->suggesters->matching($criteria)->first();
     }
 
 }

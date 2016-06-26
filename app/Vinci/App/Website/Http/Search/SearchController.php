@@ -115,4 +115,25 @@ class SearchController extends Controller
         return $request->get('ordem', 1);
     }
 
+    public function suggest(Request $request)
+    {
+        $result = $this->searchService->search($request->get('q'));
+
+        $suggester = $result->getSuggester('title-suggester');
+
+        $data = [];
+        foreach ($suggester->getOptions() as $option) {
+
+            $data[] = [
+                'title' => $option->getText(),
+                'producer' => $option->getPayload('producer'),
+                'country' => $option->getPayload('country'),
+                'url' => $option->getPayload('url')
+            ];
+
+        }
+
+        return $data;
+    }
+
 }

@@ -175,6 +175,13 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->post('register', 'Newsletter\NewsletterController@store')->name('register');
         });
 
+        /**
+         * Search
+         */
+        $route->group(['prefix' => 'search', 'as' => 'search.'], function() use ($route) {
+            $route->get('suggest', 'Search\SearchController@suggest')->name('suggest');
+        });
+
     });
 
 

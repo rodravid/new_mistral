@@ -13,27 +13,33 @@
 
         <div class="search">
             {!! Form::open(['route' => 'search.index', 'method' => 'GET']) !!}
-                <div class="wrap-input-search">
-                        <input class="input-search" type="search" name="termo">
-                    <div class="results-suggestions">
-                        <span class="bt-close-suggestions sprite-icon"></span>
-                        <ul class="suggestions-list">
-                            <li class="suggestions-item">
-                                <a href="" class="suggestions-link">
-                                    Anjou <span>Cabernet</span> 2009
-                                    <p>Domain Chupin / Argentina</p>
-                                </a>
-                            </li>
-                            <li class="suggestions-item">
-                                <a href="" class="suggestions-link">
-                                    <span>Cabernet</span> Arquata rosso dellumbria 2004
-                                    <p>Adanti / Austrália</p>
-                                </a>
-                            </li>
-                        </ul>
+                <div class="typeahead__container">
+                    <div class="wrap-input-search">
+                        <div class="typeahead__field">
+                            <input class="input-search js-typeahead" type="text" name="termo">
+                        </div>
+                        <div class="results-suggestions">
+                            <span class="bt-close-suggestions sprite-icon"></span>
+
+                            <div id="suggestion-result"></div>
+                            {{--<ul class="suggestions-list">--}}
+                                {{--<li class="suggestions-item">--}}
+                                    {{--<a href="" class="suggestions-link">--}}
+                                        {{--Anjou <span>Cabernet</span> 2009--}}
+                                        {{--<p>Domain Chupin / Argentina</p>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                                {{--<li class="suggestions-item">--}}
+                                    {{--<a href="" class="suggestions-link">--}}
+                                        {{--<span>Cabernet</span> Arquata rosso dellumbria 2004--}}
+                                        {{--<p>Adanti / Austrália</p>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        </div>
                     </div>
+                    <input class="input-bt-search sprite-icon" type="submit" value="">
                 </div>
-                <input class="input-bt-search sprite-icon" type="submit" value="">
             {{ Form::close() }}
         </div>
 
