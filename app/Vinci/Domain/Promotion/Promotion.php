@@ -22,7 +22,8 @@ use Vinci\Domain\Product\ProductInterface;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
- *     PromotionInterface::TYPE_DISCOUNT = "Vinci\Domain\Promotion\Types\Discount\DiscountPromotion"
+ *     PromotionInterface::TYPE_DISCOUNT = "Vinci\Domain\Promotion\Types\Discount\DiscountPromotion",
+ *     PromotionInterface::TYPE_SHIPPING = "Vinci\Domain\Promotion\Types\Shipping\ShippingPromotion"
  * })
  * @ORM\EntityListeners({"Vinci\Domain\Promotion\Events\Listeners\PromotionListener"})
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)

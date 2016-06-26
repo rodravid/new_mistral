@@ -119,7 +119,7 @@
 
                         <li id="shipping-info ng-hide" ng-show="ctrl.cart.shipping.price">
                             <article class="wrap-compra-dados-venda">
-                                <span>Frete @{{ ctrl.cart.shipping.price | currency }}</span>
+                                <span>Frete @{{ ctrl.cart.shipping.price }}</span>
                                 <div class="container-info-compra">
                                     <span id="shipping-value"></span>
                                 </div>

@@ -200,6 +200,19 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->delete('/{promotion}/items/{item}/delete', 'DiscountPromotion\\DiscountPromotionController@removeItem')->name('edit#remove-item');
                     });
 
+                    /**
+                     * Shipping promotion
+                     */
+                    $route->group(['prefix' => 'shipping-promotion', 'as' => 'shipping-promotion.'], function () use ($route) {
+                        $route->get('/', 'ShippingPromotion\\ShippingPromotionController@index')->name('list');
+                        $route->get('/create', 'ShippingPromotion\\ShippingPromotionController@create')->name('create');
+                        $route->post('/', 'ShippingPromotion\\ShippingPromotionController@store')->name('create#store');
+                        $route->get('/{promotion}/edit', 'ShippingPromotion\\ShippingPromotionController@edit')->name('edit');
+                        $route->delete('/{promotion}/delete', 'ShippingPromotion\\ShippingPromotionController@destroy')->name('destroy');
+                        $route->put('/{promotion}', 'ShippingPromotion\\ShippingPromotionController@update')->name('edit#update');
+                        $route->post('datatable', 'ShippingPromotion\\ShippingPromotionController@datatable')->name('list#datatable');
+                    });
+
                 });
 
                 /**
