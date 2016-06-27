@@ -9,7 +9,7 @@ use Vinci\Domain\Carrier\CarrierInterface;
 use Vinci\Domain\Carrier\CarrierMetric;
 use Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionLocator;
 use Vinci\Domain\Shipping\Calculator\ShippingCalculatorFactory;
-use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator;
+use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator as CarrierLocator;
 use Vinci\Domain\Shipping\ShippableInterface;
 use Vinci\Domain\Shipping\ShippingOption;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
@@ -26,7 +26,7 @@ class ShippingService
     protected $cartService;
 
     public function __construct(
-        ShippingCarrierLocator $carrierLocator,
+        CarrierLocator $carrierLocator,
         ShippingPromotionLocator $shippingPromotionLocator,
         ShippingCalculatorFactory $calculatorFactory,
         ShoppingCartService $cartService
