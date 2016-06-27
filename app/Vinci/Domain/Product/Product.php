@@ -2,7 +2,6 @@
 
 namespace Vinci\Domain\Product;
 
-use Closure;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
