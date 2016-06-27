@@ -21,16 +21,16 @@ class ConfirmationController extends Controller
         $this->orderRepository = $orderRepository;
     }
 
-    public function index($orderId)
+    public function index($orderNumber)
     {
-        $order = $this->presenter->model($this->getOrder($orderId), OrderPresenter::class);
+        $order = $this->presenter->model($this->getOrder($orderNumber), OrderPresenter::class);
 
         return $this->view('checkout.confirmation.index', compact('order'));
     }
 
-    protected function getOrder($id)
+    protected function getOrder($number)
     {
-        return $this->orderRepository->getOneById($id);
+        return $this->orderRepository->getOneByNumber($number);
     }
 
 }

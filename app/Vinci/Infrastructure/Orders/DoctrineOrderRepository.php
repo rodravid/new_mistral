@@ -70,4 +70,28 @@ DQL;
     {
         return (int) $this->createQueryBuilder('o')->select('count(o.id)')->getQuery()->getSingleScalarResult();
     }
+
+    public function getOneByNumber($number)
+    {
+        $dql = <<<DQL
+        SELECT o, c, i, sa, ba FROM Vinci\Domain\Order\Order o
+        LEFT JOIN o.customer c
+        LEFT JOIN o.items i
+        LEFT JOIN o.shippingAddress sa
+        LEFT JOIN o.billingAddress ba
+        WHERE o.number = :number
+DQL;
+
+        $query = $this->_em->createQuery($dql);
+
+        $query->setParameter('number', $number);
+
+        $order = $query->getOneOrNullResult();
+
+        if (! $order) {
+            throw new EntityNotFoundException;
+        }
+
+        return $order;
+    }
 }
