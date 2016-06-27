@@ -4,7 +4,6 @@ namespace Vinci\Domain\Order;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
-use Ramsey\Uuid\Uuid;
 use Vinci\Domain\Channel\Contracts\Channel;
 use Vinci\Domain\Common\AggregateRoot;
 use Vinci\Domain\Common\Event\HasEvents;
@@ -25,6 +24,7 @@ use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
  * @ORM\Entity
  * @ORM\Table(name="orders")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ORM\HasLifecycleCallbacks
  */
 class Order extends Model implements OrderInterface, AggregateRoot
 {
@@ -33,13 +33,13 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="uuid")
+     * @ORM\Column(type="string", length=11, options={"fixed" = true}, unique=true)
      */
     protected $number;
 
@@ -102,7 +102,6 @@ class Order extends Model implements OrderInterface, AggregateRoot
     {
         $this->payments = new ArrayCollection;
         $this->items = new ArrayCollection;
-        $this->number = Uuid::uuid4();
 
         $this->raise(new NewOrderWasCreated($this));
     }
@@ -321,4 +320,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
     {
         return $this->customer->getId() == $customer->getId();
     }
+
+    /** @ORM\PrePersist */
+    public function generateOrderNumber()
+    {
+        $this->number = app(OrderNumberGenerator::class)->generate();
+    }
+
 }
