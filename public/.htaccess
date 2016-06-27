@@ -4,7 +4,6 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteBase /
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -15,21 +14,21 @@
     RewriteCond %{REQUEST_FILENAME} !-f
 
     # Países
-    RewriteRule ^CountryList.aspx /redirect [L,R=301]
+    RewriteRule ^CountryList.aspx$ /redirect [L,R=301]
 
     # Home E-commerce
-    RewriteRule ^(default|contentindex).aspx / [L,R=301]
+    RewriteRule ^(default|contentindex).aspx$ / [L,R=301]
 
     # Página de Categoria e Produto
-    RewriteRule ^(dept|Product|contentpageitem|(content|product)recommend).aspx.* / [L,R=301]
+    RewriteRule ^(dept|Product|contentpageitem|(content|product)recommend).aspx.*$ / [L,R=301]
 
     # Páginas Institucionais
-    RewriteRule ^contact.aspx /atendimento/ [L,R=301]
-    RewriteRule ^statictext.aspx /institucional/sobre-a-vinci [L,QSA,R=301]
-    RewriteRule ^phonesell.aspx /institucional/revendedores [L,QSA,R=301]
+    RewriteRule ^contact.aspx$ /atendimento/ [L,R=301]
+    RewriteRule ^statictext.aspx$ /institucional/sobre-a-vinci [L,QSA,R=301]
+    RewriteRule ^phonesell.aspx$ /institucional/revendedores [L,QSA,R=301]
 
     # Outras Páginas
-    RewriteRule ^(basket|newsletter|wishlistsearch|OrderCustomer|Login|searchresults).aspx.* / [L,R=301]
+    RewriteRule ^(basket|newsletter|wishlistsearch|OrderCustomer|Login|searchresults).aspx.*$ / [L,R=301]
 
     RewriteRule ^ index.php
 
