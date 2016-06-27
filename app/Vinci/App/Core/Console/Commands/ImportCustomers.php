@@ -54,7 +54,7 @@ class ImportCustomers extends Command
     {
         $conn = $this->em->getConnection();
 
-        $stmt = $conn->prepare('select * from bkp_customers where imported=0 limit ' . $this->argument('limit'));
+        $stmt = $conn->prepare('select * from bkp_customers_vinci where imported=0 limit ' . $this->argument('limit'));
         $stmt->execute();
 
         $customers = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -70,25 +70,25 @@ class ImportCustomers extends Command
             foreach ($customers as $customer) {
                 $data = [];
                 $data["importId"] = $customer["id"];
-                $data["customerType"] = $customer["customer_type"];
-                $data["name"] = $this->normalizeValue($customer["name"]);
+                $data["customerType"] = $customer["tipo"];
+                $data["name"] = $this->normalizeValue($customer["nome"]);
                 $data["email"] = $this->normalizeValue($customer["email"]);
-                $data["gender"] = $this->normalizeValue($customer["gender"]);
-                $data["birthday"] = date("d/m/Y", strtotime($customer["birthday"]));
+                $data["gender"] = $this->normalizeValue($customer["sexo"]);
+                $data["birthday"] = date("d/m/Y", strtotime($customer["data_nascimento"]));
                 $data["cpf"] = $this->normalizeValue($customer["cpf"]);
                 $data["rg"] = $this->normalizeValue($customer["rg"]);
 
-                $data["issuingBody"] = $this->normalizeValue($customer["issuing_body"]);
+                $data["issuingBody"] = $this->normalizeValue($customer["orgao_emissor"]);
                 $data["companyName"] = "";
-                $data["companyContact"] = $this->normalizeValue($customer["company_contact"]);
+                $data["companyContact"] = $this->normalizeValue($customer["contato_empresa"]);
                 $data["cnpj"] = $this->normalizeValue($customer["cnpj"]);
-                $data["stateRegistration"] = $this->normalizeValue($customer["state_registration"]);
-                $data["phone"] = $this->normalizeValue($customer["phone"]);
-                $data["cellPhone"] = $this->normalizeValue($customer["cell_phone"]);
-                $data["commercialPhone"] = $this->normalizeValue($customer["commercial_phone"]);
+                $data["stateRegistration"] = $this->normalizeValue($customer["inscricao"]);
+                $data["phone"] = $this->normalizeValue($customer["telefone"]);
+                $data["cellPhone"] = $this->normalizeValue($customer["celular"]);
+                $data["commercialPhone"] = $this->normalizeValue($customer["comercial"]);
 
-                $data["password"] = $this->normalizeValue($customer["password"]);
-                $data["password_confirmation"] = $this->normalizeValue($customer["password"]);
+                $data["password"] = $this->normalizeValue($customer["senha"]);
+                $data["password_confirmation"] = $this->normalizeValue($customer["senha"]);
 
                 $data["main_address"] = "0";
                 $data["status"] = "1";
@@ -100,7 +100,7 @@ class ImportCustomers extends Command
                 foreach ($addresses as $key => $address) {
                     $postmon = $this->getDataPostmon($this->normalizeValue($address["postal_code"]));
 
-                    if(isset($postmon["cidade_info"])) {
+                    if (isset($postmon["cidade_info"])) {
                         $data["addresses"][$key]["id"] = "";
                         $data["addresses"][$key]["type"] = $address["type_id"];
                         $data["addresses"][$key]["postal_code"] = $this->normalizeValue($address["postal_code"]);
@@ -117,10 +117,10 @@ class ImportCustomers extends Command
                         $data["addresses"][$key]["landmark"] = $this->normalizeValue($address["landmark"]);
                         $data["addresses"][$key]["receiver"] = $this->normalizeValue($address["receiver"]);
 
-                        $stmt_upd = $conn->prepare('update bkp_customers_address set city_id="'.$postmon["cidade_info"]["codigo_ibge"].'", imported=1 where id = ' . $address["id"]);
+                        $stmt_upd = $conn->prepare('update bkp_customers_address set city_id="' . $postmon["cidade_info"]["codigo_ibge"] . '", imported=1 where id = ' . $address["id"]);
                         $stmt_upd->execute();
 
-                    }else{
+                    } else {
                         $stmt_upd = $conn->prepare('update bkp_customers_address set imported=2 where id = ' . $address["id"]);
                         $stmt_upd->execute();
                     }
@@ -183,16 +183,16 @@ class ImportCustomers extends Command
     public function getDataPostmon($cep)
     {
         try {
-            $url = "http://api.postmon.com.br/v1/cep/".$cep;
+            $url = "http://api.postmon.com.br/v1/cep/" . $cep;
             $client = new Client([
                 'base_uri' => $url,
-                'timeout'  => 2.0,
+                'timeout' => 2.0,
             ]);
 
             $response = $client->get($url)->getBody()->getContents();
             return json_decode($response, true);
         } catch (\Exception $e) {
-            
+
         }
 
     }
