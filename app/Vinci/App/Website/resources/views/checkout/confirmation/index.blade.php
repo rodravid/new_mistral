@@ -129,7 +129,7 @@
                     </div>
                     <div class="info-card-payment">
                         <p class="amount-paid">{{ $order->payment->installment_text }}</p>
-                        @if ($order->getPayment()->getMethod()->getDescription() == "credit_card")
+                        @if ($order->payment->wasMadeWithCredidCard())
                             <p class="card-used">
                                 {{ $order->payment->getCreditCard()->getHoldername() }}
                                 <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
