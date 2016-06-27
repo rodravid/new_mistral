@@ -737,17 +737,6 @@ class Product extends Model implements ProductInterface, Presentable
         return self::TYPE_PRODUCT;
     }
 
-    public function getPriceConfigurationResolver()
-    {
-        return $this->priceConfigurationResolver;
-    }
-
-    public function setPriceConfigurationResolver(Closure $priceConfigurationResolver)
-    {
-        $this->priceConfigurationResolver = $priceConfigurationResolver;
-        return $this;
-    }
-
     public function canBePromoted()
     {
         return (bool) $this->enabledForPromotions;

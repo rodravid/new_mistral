@@ -76,9 +76,9 @@ class OrderService
 
             $order->addPayment($payment);
 
-            $this->dispatchOrderEvents($order);
-
             $em->persist($order);
+
+            $this->dispatchOrderEvents($order);
 
             return $order;
         });
