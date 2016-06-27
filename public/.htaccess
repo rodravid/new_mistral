@@ -4,6 +4,7 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteBase /
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -12,9 +13,22 @@
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+
+    RewriteRule ^CountryList.aspx /redirect [L,R=301]
+
+    RewriteRule ^(basket|newsletter|wishlistsearch|OrderCustomer|Login|searchresults).aspx.* / [L,R=301]
+
+    RewriteRule ^(default|contentindex).aspx / [L,R=301]
+    RewriteRule ^(dept|Product|contentpageitem|(content|product)recommend).aspx.* / [L,R=301]
+
+    RewriteRule ^contact.aspx /fale-conosco/ [L,R=301]
+    RewriteRule ^statictext.aspx /sobre-vinci [L,QSA,R=301]
+    RewriteRule ^phonesell.aspx /revendedores [L,QSA,R=301]
+
+    RewriteRule ^ index.php
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
 </IfModule>
