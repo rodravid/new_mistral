@@ -11,13 +11,12 @@ use Response;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
-use Vinci\Domain\Product\Notify\Repositories\ProductNotifyRepository;
+use Vinci\Domain\ProductNotify\Services\ProductNotifyService;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Services\FavoriteService;
 use Vinci\Domain\Product\Services\ProductManagementService;
 use Vinci\Domain\Product\Wine\Wine;
-use Vinci\Domain\ProductNotify\Services\ProductNotifyService;
 
 class ProductController extends Controller
 {
@@ -52,10 +51,19 @@ class ProductController extends Controller
         $slug = $this->parseProductSlug($slug);
 
         $product = $this->productRepository->getOneByTypeAndSlug($type, $slug);
-
         $product = $this->presenter->model($product, ProductPresenter::class);
 
-        return $this->view('product.index', compact('product'));
+        $productsRecommended = $this->productRepository->getProductsByCountryAndType($product->country, $product->productType, [$product->getId()]);
+        $productsRecommended = $this->presenter->paginator($productsRecommended, ProductPresenter::class);
+
+        $templates = [
+            0 => 'template2',
+            1 => 'template4',
+            2 => 'template7',
+            3 => 'template1',
+        ];
+
+        return $this->view('product.index', compact('product', 'productsRecommended', 'templates'));
     }
 
     public function favorite($product, Request $request)
@@ -70,13 +78,13 @@ class ProductController extends Controller
             $this->favoriteService->toggle($product, $this->user, $toggle);
 
             return Response::json([
-                'message' => sprintf('O produto foi %s sua lista de favoritos.', $toggle ? 'adicionado à' : 'removido da')
+                'message' => sprintf('O produto foi %s sua lista de favoritos.', $toggle ? 'adicionado à' : 'removido da'),
             ]);
 
         } catch (Exception $e) {
 
             return Response::json([
-                'message' => 'Não foi possível adicionar o produto à sua lista de favoritos. Tente novamente mais tarde.'
+                'message' => 'Não foi possível adicionar o produto à sua lista de favoritos. Tente novamente mais tarde.',
             ], 500);
         }
 
@@ -84,7 +92,7 @@ class ProductController extends Controller
 
     private function parseProductType($type)
     {
-        switch($type) {
+        switch ($type) {
             case 'vinho':
                 return Wine::class;
                 break;

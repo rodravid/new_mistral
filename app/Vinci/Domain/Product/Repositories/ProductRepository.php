@@ -2,7 +2,9 @@
 
 namespace Vinci\Domain\Product\Repositories;
 
+use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerInterface;
+use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionInterface;
 
 interface ProductRepository
@@ -22,6 +24,8 @@ interface ProductRepository
     public function getFavoritesProductsIdsByCustomer(CustomerInterface $customer);
 
     public function getProductsByShowcase($showcase, $perPage = 10, $page = 1, $path = '/');
+
+    public function getProductsByCountryAndType(Country $country, ProductType $type);
 
     public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion);
 
