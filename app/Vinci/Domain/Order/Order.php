@@ -12,6 +12,7 @@ use Vinci\Domain\Core\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Customer\Customer;
+use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Order\Address\Address;
 use Vinci\Domain\Order\Events\NewOrderWasCreated;
 use Vinci\Domain\Order\Item\OrderItem;
@@ -313,6 +314,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
     {
         $this->status = $status;
         return $this;
+    }
+
+    public function isOwnedBy(CustomerInterface $customer)
+    {
+        return $this->customer->getId() == $customer->getId();
     }
 
     /** @ORM\PrePersist */
