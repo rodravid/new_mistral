@@ -17,10 +17,9 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h2 class="page-header">
-                            <i class="fa fa-globe"></i> Pedido #{{ $order->number }}.
+                            <i class="fa fa-globe"></i> Pedido #{{ $order->number }} <small>{{ $order->status }}</small>
                             <small class="pull-right">Data: {{ $order->creation_date }}</small>
                             <small class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;" onClick="window.print()"> <i class="fa fa-print"></i> Imprimir</small>
-                            
                         </h2>
                     </div>
                 </div>
