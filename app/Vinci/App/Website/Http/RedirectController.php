@@ -26,8 +26,9 @@ class RedirectController extends Controller
 
     public function redirectWithStatus301()
     {
-
-        return Redirect::to($this->urls[$_REQUEST['idCountry']], 301);
+        
+        $country = empty($_REQUEST['idCountry']) ? '008' : $_REQUEST['idCountry'];
+        return Redirect::to($this->urls[$country], 301);
 
     }
 }
