@@ -189,6 +189,12 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return $this->items;
     }
 
+    public function setItems(ArrayCollection $items)
+    {
+        $this->items = $items;
+        return $this;
+    }
+
     public function addItem(OrderItem $item)
     {
         if (! $this->hasItem($item)) {
@@ -294,7 +300,7 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return $this->shoppingCart;
     }
 
-    public function setShoppingCart(ShoppingCartInterface $cart)
+    public function setShoppingCart(ShoppingCartInterface $cart = null)
     {
         $this->shoppingCart = $cart;
         return $this;
@@ -325,6 +331,17 @@ class Order extends Model implements OrderInterface, AggregateRoot
     public function generateOrderNumber()
     {
         $this->number = app(OrderNumberGenerator::class)->generate();
+    }
+
+    public function getPayments()
+    {
+        return $this->payments;
+    }
+
+    public function setPayments(ArrayCollection $payments)
+    {
+        $this->payments = $payments;
+        return $this;
     }
 
 }

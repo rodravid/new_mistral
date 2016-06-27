@@ -19,6 +19,6 @@ interface OrderInterface extends ShippableInterface
 
     public function getShoppingCart();
 
-    public function setShoppingCart(ShoppingCartInterface $cart);
+    public function setShoppingCart(ShoppingCartInterface $cart = null);
 
 }
