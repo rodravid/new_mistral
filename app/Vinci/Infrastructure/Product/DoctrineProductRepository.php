@@ -3,10 +3,12 @@
 namespace Vinci\Infrastructure\Product;
 
 use Doctrine\ORM\Query\Expr\Join;
+use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Product\Notify\ProductNotify;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
+use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionInterface;
 use Vinci\Domain\Search\Product\ProductRepositoryInterface as ProductRepositoryIndexer;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
@@ -165,6 +167,25 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $qb->setParameter('id', $showcase);
 
         return $this->paginateRaw($qb->getQuery(), $perPage, $currentPage, $path);
+    }
+
+    public function getProductsByCountryAndType(Country $country, ProductType $type, array $except = [])
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb->where('p.productType = :type')
+           ->andWhere('p.country = :country')
+           ->andWhere('v.stock > 0')
+           ->andWhere('vp.price > 0');
+
+        $qb->setParameter('type', $type->getId())
+           ->setParameter('country', $country->getId());
+
+        if (! empty($except)) {
+            $qb->andWhere($qb->expr()->notIn('p.id', $except));
+        }
+
+        return $this->paginateRaw($qb->getQuery(), 4);
     }
 
     public function applyDefaultConditions($queryBuilder)

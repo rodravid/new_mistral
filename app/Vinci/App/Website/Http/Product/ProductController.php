@@ -52,10 +52,19 @@ class ProductController extends Controller
         $slug = $this->parseProductSlug($slug);
 
         $product = $this->productRepository->getOneByTypeAndSlug($type, $slug);
-
         $product = $this->presenter->model($product, ProductPresenter::class);
 
-        return $this->view('product.index', compact('product'));
+        $productsRecommended = $this->productRepository->getProductsByCountryAndType($product->country, $product->productType, [$product->getId()]);
+        $productsRecommended = $this->presenter->paginator($productsRecommended, ProductPresenter::class);
+
+        $templates = [
+            0 => 'template2',
+            1 => 'template4',
+            2 => 'template7',
+            3 => 'template2'
+        ];
+
+        return $this->view('product.index', compact('product', 'productsRecommended', 'templates'));
     }
 
     public function favorite($product, Request $request)
