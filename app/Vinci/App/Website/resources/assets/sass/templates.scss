@@ -174,6 +174,9 @@ button.bt-default-full.bt-middle {
 
 .template1 {
 
+
+
+
 					.every-category {
 			background: $blue;
 			border:2px solid $blue;
@@ -490,6 +493,13 @@ button.bt-default-full.bt-middle {
 			}
 		}
 
+		.suggestions-link:hover {
+			color:$blue;
+			span {
+				color:$blue;
+			}
+		}
+
 
 
 	}
@@ -621,6 +631,8 @@ button.bt-default-full.bt-middle {
 
 
 	.template2 {
+
+
 
 		.template-button {
 			background: $orange;
@@ -902,6 +914,13 @@ button.bt-default-full.bt-middle {
 			}
 		}
 
+				.suggestions-link:hover {
+			color:$red;
+			span {
+				color:$red;
+			}
+		}
+
 	}
 
 	.template2.bg-slider-principal {
@@ -988,7 +1007,8 @@ button.bt-default-full.bt-middle {
 
 
 	/* Inicio templates GREEN ****************GREEN******************GREEN*******/
-	.template3{
+	.template3 {
+
 
 		.template-button {
 			background: #0c2401;
@@ -1279,6 +1299,13 @@ button.bt-default-full.bt-middle {
 					color:$green;
 				}
 			}
+
+					.suggestions-link:hover {
+			color:$green;
+			span {
+				color:$green;
+			}
+		}
 		}
 
 		.template3.bg-slider-principal{
@@ -1648,6 +1675,13 @@ button.bt-default-full.bt-middle {
 					color:$purple;
 				}
 			}
+
+			.suggestions-link:hover {
+				color:$purple;
+				span {
+					color:$purple;
+				}
+			}
 		}
 
 		.wine-card.template4 {
@@ -1736,6 +1770,7 @@ button.bt-default-full.bt-middle {
 
 		/* Inicio templates PINK ******************PINK****************PINK*******/
 		.template5 {
+
 
 	.template-button {
 		background: $purple;
@@ -2068,6 +2103,13 @@ button.bt-default-full.bt-middle {
 					color:$pink;
 				}
 			}
+
+			.suggestions-link:hover {
+				color:$pink;
+				span {
+					color:$pink;
+				}
+			}
 		}
 
 
@@ -2114,6 +2156,8 @@ button.bt-default-full.bt-middle {
 
 		/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 		.template6 {
+
+
 
 			.template-button {
 				background: #e929d9;
@@ -2404,6 +2448,13 @@ button.bt-default-full.bt-middle {
 				color:$darkblue;
 			}
 		}
+
+		.suggestions-link:hover {
+			color:$darkblue;
+			span {
+				color:$darkblue;
+			}
+		}
 	}
 
 	.bt-default-full.template6 {
@@ -2486,6 +2537,8 @@ button.bt-default-full.bt-middle {
 
 	/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 	.template7 {
+
+
 
 		.template-button {
 			background: #a0015f;
@@ -2767,6 +2820,13 @@ button.bt-default-full.bt-middle {
 				color:$orange;
 			}
 		}
+
+		.suggestions-link:hover {
+			color:$orange;
+			span {
+				color:$orange;
+			}
+		}
 	}
 
 
@@ -2854,6 +2914,8 @@ button.bt-default-full.bt-middle {
 
 	/* Inicio templates BLACK ******************BLACK****************BLACK*******/
 	.template8 {
+
+
 
 		.title-slider {
 			color:$red; 
@@ -3118,6 +3180,13 @@ button.bt-default-full.bt-middle {
 				background-position: -209px -314px;
 			}
 			.input-search {
+				color:$black;
+			}
+		}
+
+		.suggestions-link:hover {
+			color:$black;
+			span {
 				color:$black;
 			}
 		}
@@ -3534,7 +3603,12 @@ button.bt-default-full.bt-middle {
 			}
 		}
 
-
+		.suggestions-link:hover {
+			color:$dark-orange;
+			span {
+				color:$dark-orange;
+			}
+		}
 
 	}
 
@@ -3846,6 +3920,13 @@ button.bt-default-full.bt-middle {
 				background-position: -209px -314px;
 			}
 			.input-search {
+				color:$dark-pink;
+			}
+		}
+
+		.suggestions-link:hover {
+			color:$dark-pink;
+			span {
 				color:$dark-pink;
 			}
 		}
@@ -4195,6 +4276,12 @@ button.bt-default-full.bt-middle {
 			}
 		}
 
+		.suggestions-link:hover {
+			color:$dark-pink-heavy;
+			span {
+				color:$dark-pink-heavy;
+			}
+		}
 
 /* 	.internal-subtitle{
 		color:#5d003b;
@@ -4643,7 +4730,12 @@ button.bt-default-full.bt-middle {
 			}
 		}
 
-
+		.suggestions-link:hover {
+			color:$lightpurple;
+			span {
+				color:$lightpurple;
+			}
+		}
 
 	}
 

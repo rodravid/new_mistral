@@ -41,15 +41,13 @@ class OrderController extends Controller
 
             $order = $this->service->create($this->getData($request));
 
-            return Redirect::route('checkout.confirmation.index', $order->getId());
+            return Redirect::route('checkout.confirmation.index', $order->getNumber());
 
         } catch (ValidationException $e) {
 
             return Redirect::back()->withErrors($e->getErrors())->withInput();
 
         } catch (Exception $e) {
-
-            throw $e;
 
             Log::error(sprintf('Erro ao finalizar pedido: ', $e->getMessage()));
 
