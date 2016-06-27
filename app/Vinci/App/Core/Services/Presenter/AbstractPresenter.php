@@ -176,4 +176,9 @@ abstract class AbstractPresenter extends BasePresenter
         return 'template1';
     }
 
+    protected function limitTo($text, $max, $suffix = '...')
+    {
+        return substr($text, 0, $max) . (strlen($text) > $max ? $suffix : '');
+    }
+
 }

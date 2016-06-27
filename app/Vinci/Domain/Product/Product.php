@@ -772,6 +772,5 @@ class Product extends Model implements ProductInterface, Presentable
     {
         return $this->hasStock() && $this->getSalePrice() > 0;
     }
-
-
+    
 }
