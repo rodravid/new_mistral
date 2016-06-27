@@ -25,6 +25,10 @@ class ConfirmationController extends Controller
     {
         $order = $this->presenter->model($this->getOrder($orderId), OrderPresenter::class);
 
+        if (! $order->isOwnedBy($this->user)) {
+            abort(404);
+        }
+
         return $this->view('checkout.confirmation.index', compact('order'));
     }
 

@@ -75,11 +75,38 @@
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#addresses" data-toggle="tab">Endereços cadastrados</a></li>
-                        <li><a href="#orders" data-toggle="tab">Pedidos realizados</a></li>
+                        <li class="active"><a href="#orders" data-toggle="tab">Pedidos realizados</a></li>
+                        <li><a href="#addresses" data-toggle="tab">Endereços cadastrados</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="active tab-pane" id="addresses">
+                        <div class="active tab-pane" id="orders">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th><i class="fa fa-tag"></i> Número</th>
+                                    <th><i class="fa fa-money"></i> Valor</th>
+                                    <th><i class="fa fa-calendar"></i> Criado em</th>
+                                    <th><i class="fa fa-edit"></i> Status</th>
+                                </tr>
+                                </thead>
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('cms.orders.show', $order->id) }}">
+                                                {{ $order->id }}
+                                            </a>
+                                        </td>
+                                        <td>{{ $order->number }}</td>
+                                        <td>{{ $order->total }}</td>
+                                        <td>{{ $order->created_at }}</td>
+                                        <td>{{ $order->status }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            {!! $orders->links() !!}
+                        </div>
+                        <div class="tab-pane" id="addresses">
                             <table class="table table-bordered table-striped">
                                 <tr>
                                     <th>ID</th>
@@ -104,33 +131,6 @@
                                     </tr>
                                 @endforeach
                             </table>
-                        </div>
-                        <div class="tab-pane" id="orders">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#ID</th>
-                                        <th><i class="fa fa-tag"></i> Número</th>
-                                        <th><i class="fa fa-money"></i> Valor</th>
-                                        <th><i class="fa fa-calendar"></i> Criado em</th>
-                                        <th><i class="fa fa-edit"></i> Status</th>
-                                    </tr>
-                                </thead>
-                                @foreach ($orders as $order)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('cms.orders.show', $order->id) }}">
-                                                {{ $order->id }}
-                                            </a>
-                                        </td>
-                                        <td>{{ $order->number }}</td>
-                                        <td>{{ $order->total }}</td>
-                                        <td>{{ $order->created_at }}</td>
-                                        <td>{{ $order->status }}</td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                            {!! $orders->links() !!}
                         </div>
                     </div>
                 </div>
