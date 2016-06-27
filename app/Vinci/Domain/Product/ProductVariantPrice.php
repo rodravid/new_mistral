@@ -7,6 +7,7 @@ use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Pricing\Contracts\CalculablePrice;
 use Vinci\Domain\Pricing\Contracts\Price as PriceInterface;
 use Vinci\Domain\Pricing\PriceConfiguration;
+use Vinci\Domain\Pricing\Providers\StandardPriceConfigurationProvider;
 
 /**
  * @ORM\Entity
@@ -77,13 +78,14 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
     public function getPriceCalculator()
     {
         $variant = $this->getVariant();
-        $product = $variant->getProduct();
         $calculator = $variant->getPriceCalculator();
 
-        $providerResolver = $product->getPriceConfigurationResolver();
+        $provider = app(StandardPriceConfigurationProvider::class);
+
+        $provider->setProductVariantPrice($this);
 
         $calculator->setPriceConfiguration(
-            $providerResolver($this)->getConfiguration()
+            $provider->getConfiguration()
         );
 
         return $calculator;
