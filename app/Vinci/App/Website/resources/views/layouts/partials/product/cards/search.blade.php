@@ -3,6 +3,20 @@
         <a href="{{ $product->web_path }}">
             <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
         </a>
+        @if($promotionSeal = $product->getPromotionSeal())
+            <img class="label-wine" src="{{ $promotionSeal }}" alt="Selo Vinho">
+        @else
+            @if($product->isType('wine') && ($score = $product->getHighlitedScore()))
+                <div class="wrap-seal-card">
+                    <div class="content-seal-card">
+                        <div class="seal-score-card">
+                            <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                            <span>{{ $score->value }}</span>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endif
     </div>
     <div class="colum-description-wine">
         <h3 class="title-card-wine">

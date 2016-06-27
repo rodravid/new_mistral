@@ -10,12 +10,12 @@ class ProductPresenter extends BaseProductPresenter
 
     public function presentCardTitle()
     {
-        return $this->getTitle();
+        return $this->limitTo($this->getTitle(), 47);
     }
 
     public function presentShortnedDescription()
     {
-        return substr($this->getDescription(), 0, 80);
+        return $this->limitTo($this->getDescription(), 80);
     }
 
     public function presentShortDescription()

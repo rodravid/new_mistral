@@ -3,7 +3,7 @@
 
     <h3 class="title-card-wine">
         <a href="{{ $product->web_path }}">
-            {{ $product->card_title }}
+            {!! $product->card_title !!}
             @if ($product->hasProducer())
                 <span>{{ $product->producer->name }}</span>
             @endif
@@ -14,6 +14,17 @@
         <div class="thumb-wine">
             @if($promotionSeal = $product->getPromotionSeal())
                 <img class="label-wine" src="{{ $promotionSeal }}" alt="Selo Vinho">
+            @else
+                @if($product->isType('wine') && ($score = $product->getHighlitedScore()))
+                    <div class="wrap-seal-card">
+                        <div class="content-seal-card">
+                            <div class="seal-score-card">
+                                <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                <span>{{ $score->value }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endif
             <a href="javascript:void(0);">
                 <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
