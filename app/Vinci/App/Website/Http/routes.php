@@ -2,6 +2,8 @@
 
 $route->group(['middleware' => ['web']], function () use ($route) {
 
+    $route->get('/redirect', 'RedirectController@redirectWithStatus301');
+
     $route->group(['middleware' => ['auth:website']], function() use ($route) {
 
         /**
@@ -188,7 +190,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     /**
      * Contact
      */
-    $route->group(['prefix' => 'fale-conosco', 'as' => 'contact.'], function() use ($route) {
+    $route->group(['prefix' => 'atendimento', 'as' => 'contact.'], function() use ($route) {
         $route->get('/', 'Contact\ContactController@index')->name('index');
         $route->post('/', 'Contact\ContactController@store')->name('store');
     });
@@ -199,8 +201,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     $route->get('/paginas', 'Pages\PagesController@index');
     $route->get('/privacidade', 'Pages\PagesController@privacy')->name('privacy.index');
     $route->get('/duvidas-frequentes', 'Pages\PagesController@frequentDoubts')->name('frequent-doubts.index');
-    $route->get('/sobre-vinci', 'Pages\PagesController@about')->name('about.index');
-    $route->get('/revendedores', 'Pages\PagesController@dealers')->name('dealers.index');
+    $route->get('/institucional/sobre-a-vinci', 'Pages\PagesController@about')->name('about.index');
+    $route->get('/institucional/revendedores', 'Pages\PagesController@dealers')->name('dealers.index');
 
     /**
      * Auth
