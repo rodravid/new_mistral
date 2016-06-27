@@ -31,7 +31,7 @@
     # Outras Páginas
     RewriteRule ^(basket|newsletter|wishlistsearch|OrderCustomer|Login|searchresults).aspx.* / [L,R=301]
 
-    RewriteRule ^ / [L,R=301]
+    RewriteRule ^ index.php
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
