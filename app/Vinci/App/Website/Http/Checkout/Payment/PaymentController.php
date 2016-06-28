@@ -3,6 +3,8 @@
 namespace Vinci\App\Website\Http\Checkout\Payment;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Http\Request;
+use Response;
 use Vinci\App\Website\Http\Checkout\Payment\Request\PaymentRequest;
 use Vinci\App\Website\Http\Checkout\Presenters\AddressPresenter;
 use Vinci\App\Website\Http\Controller;
@@ -50,7 +52,9 @@ class PaymentController extends Controller
         $months = $this->getMonths();
         $years = $this->getYears();
 
-        $installmentOptions = $this->getInstallmentOptions($shoppingCart->getTotal());
+        $installmentOptions = [
+            1 => '1x de ' . $shoppingCart->total
+        ];
 
         return $this->view('checkout.payment.index', compact('shoppingCart', 'deliveryAddress', 'months', 'years', 'installmentOptions'));
     }
@@ -79,16 +83,22 @@ class PaymentController extends Controller
         return getMonths();
     }
 
-    protected function getInstallmentOptions($value)
+    public function getInstallmentOptions(Request $request)
     {
-        $installments = with(app(InstallmentCaculator::class))->getInstallmentOptions($value);
+        $data = $request->all();
+
+        $shoppingCart = $this->cartService->getCart();
+
+        $installments = with(app(InstallmentCaculator::class))->getInstallmentOptions($shoppingCart->getTotal(), $data['paymentMethod']);
 
         $options = [];
         foreach ($installments as $installment) {
+
             $options[$installment['quantity']] = $installment['label'];
+
         }
 
-        return $options;
+        return Response::json($options);
     }
 
 }

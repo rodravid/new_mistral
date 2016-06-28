@@ -2,32 +2,37 @@
 
 namespace Vinci\Domain\Payment\Services;
 
+use Vinci\Domain\Payment\Repositories\PaymentInstallmentRepository;
+
 class InstallmentCaculator
 {
+    protected $paymentInstallmentRepository;
 
-    public function getInstallmentOptions($value)
+    public function __construct(PaymentInstallmentRepository $paymentInstallmentRepository)
+    {
+        $this->paymentInstallmentRepository = $paymentInstallmentRepository;
+    }
+
+    public function getInstallmentOptions($amount, $paymentMethod)
     {
         $installments = [];
-        for ($i = 1; $i <= $this->getInstallmentQuantity($value); $i++) {
-            $installments[] = $this->getInstallment($i, $value);
+        for ($i = 1; $i <= $this->getInstallmentQuantity($amount, $paymentMethod); $i++) {
+            $installments[] = $this->getInstallment($i, $amount);
         }
 
         return $installments;
     }
 
-    public function getInstallmentQuantity($value)
+    public function getInstallmentQuantity($amount, $paymentMethod)
     {
-        if ($value < 70) {
+        $installmentOptions = $this->paymentInstallmentRepository->getInstallmentQuantityBy($amount, $paymentMethod);
+
+        if (empty($installmentOptions)) {
             return 1;
-        } else if ($value >= 70 && $value < 110) {
-            return 2;
-        } else if ($value >= 110 && $value < 180) {
-            return 3;
-        } else if ($value >= 180 && $value < 300) {
-            return 4;
-        } else {
-            return 5;
         }
+
+        return $installmentOptions->getQuantity();
+
     }
 
     public function getInstallment($number, $value)

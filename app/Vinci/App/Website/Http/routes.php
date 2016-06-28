@@ -57,6 +57,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
              */
             $route->group(['prefix' => 'pagamento', 'as' => 'payment.'], function() use ($route) {
                 $route->get('/', 'Checkout\Payment\PaymentController@index')->name('index');
+                $route->post('/getInstallments', 'Checkout\Payment\PaymentController@getInstallmentOptions')->name('getInstallmentsOptions');
             });
 
             /**

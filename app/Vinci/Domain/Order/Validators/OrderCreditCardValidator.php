@@ -8,6 +8,7 @@ use Vinci\App\Core\Services\Validation\LaravelValidator;
 class OrderCreditCardValidator extends LaravelValidator
 {
     protected $rules = [
+        'payment.installments' => 'required_if:payment.method_type,credit_card',
         'payment.method_type' => 'exists:Vinci\Domain\Payment\PaymentMethod,description',
         'card.holdername' => 'required_if:payment.method_type,==,credit_card',
         'card.number' => 'required_if:payment.method_type,==,credit_card',
@@ -25,5 +26,6 @@ class OrderCreditCardValidator extends LaravelValidator
         'card.expiry_year.required_if' => 'Selecione o ano de validade do cartão.',
         'card.security_code.required_if' => 'Informe o código de segurança do cartão.',
         'card.security_code.size' => 'Código de segurança do cartão neccesita ter 3 dígitos.',
+        'payment.installments.required_if' => 'Selecione o parcelamento.'
     ];
 }

@@ -128,13 +128,18 @@
                             @endif
                         @endforeach
                     </ul>
+
+                    @if($errors->has())
+                        <p class="error-message"><b>{{ $errors->first() }}</b></p>
+                    @endif
+
                     <div class="col-register1 template1">
                         <div class="user-data">
                             <h2 class="title-form">Parcelamento</h2>
                             <ul class="list-form-register">
                                 <li>
                                     <div class="select-standard full form-control-white @if($errors->has('payment.installments')) error-field @endif">
-                                        {!! Form::select('payment[installments]', $installmentOptions, null) !!}
+                                        {!! Form::select('payment[installments]', $installmentOptions, null, ['id' => 'paymentInstallments']) !!}
                                     </div>
                                 </li>
                                 <li>
@@ -145,10 +150,6 @@
                                     </p>
                                 </li>
                             </ul>
-
-                            @if($errors->has())
-                                <p class="error-message"><b>{{ $errors->first() }}</b></p>
-                            @endif
 
                         </div>
 
@@ -240,6 +241,5 @@
 </div>
 
 @include('website::layouts.partials.checkoutfooter')
-
 
 @stop
