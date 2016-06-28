@@ -40,7 +40,7 @@ class AddressService
         $this->sanitize($data['addresses']);
         $this->validate($data);
 
-        return $this->saveAddress($data, $customerId, function($addressData) {
+        return $this->saveAddress($data, $customerId, function ($addressData) {
             return $this->addressFactory->makeFromArray($addressData);
         });
     }
@@ -51,7 +51,7 @@ class AddressService
 
         $this->validate($data);
 
-        return $this->saveAddress($data, $customerId, function($addressData) use ($addressId) {
+        return $this->saveAddress($data, $customerId, function ($addressData) use ($addressId) {
             $address = $this->addressRepository->getOneById($addressId);
 
             $newAddress = $this->addressFactory->makeFromArray($addressData);
@@ -62,7 +62,7 @@ class AddressService
         });
     }
 
-    protected function saveAddress($data, $customerId,  Closure $method)
+    protected function saveAddress($data, $customerId, Closure $method)
     {
         $address = $method(array_first($data['addresses']));
 
@@ -99,12 +99,12 @@ class AddressService
         $customer->syncAddress($addressCollection);
 
         if (empty($mainAddressId)) {
-            $mainAddress = $addressCollection->filter(function($address) {
-                return ! $address->getId();
+            $mainAddress = $addressCollection->filter(function ($address) {
+                return !$address->getId();
             })->first();
 
         } else {
-            $mainAddress = $addressCollection->filter(function($address) use ($mainAddressId) {
+            $mainAddress = $addressCollection->filter(function ($address) use ($mainAddressId) {
                 return $address->getId() == $mainAddressId;
             })->first();
         }

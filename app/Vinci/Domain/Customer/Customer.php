@@ -105,6 +105,11 @@ class Customer extends User implements CustomerInterface, Presentable
     protected $commercialPhone;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $cryptKey;
+
+    /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\Order\Order", mappedBy="customer")
      */
     protected $orders;
@@ -264,7 +269,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function hasCellPhone()
     {
-        return ! empty($this->cellPhone);
+        return !empty($this->cellPhone);
     }
 
     public function getCommercialPhone()
@@ -280,7 +285,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function hasCommercialPhone()
     {
-        return ! empty($this->commercialPhone);
+        return !empty($this->commercialPhone);
     }
 
     public function getCompanyName()
@@ -334,7 +339,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function addAddress(Address $address)
     {
-        if (! $this->addresses->containsKey($address->getId())) {
+        if (!$this->addresses->containsKey($address->getId())) {
             $address->setCustomer($this);
             $this->addresses->add($address);
         }
@@ -353,7 +358,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function syncAddress(ArrayCollection $addresses)
     {
-        $toRemove = $this->addresses->filter(function($address) use ($addresses) {
+        $toRemove = $this->addresses->filter(function ($address) use ($addresses) {
             if ($addresses->contains($address)) {
                 return false;
             }
@@ -447,7 +452,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function addShoppingCart(ShoppingCartInterface $shoppingCart)
     {
-        if (! $this->shoppingCarts->contains($shoppingCart)) {
+        if (!$this->shoppingCarts->contains($shoppingCart)) {
             $shoppingCart->setCustomer($this);
 
             if ($this->shoppingCarts->isEmpty()) {
@@ -476,7 +481,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function addProductToFavorites(ProductInterface $product)
     {
-        if (! $this->isInFavorites($product)) {
+        if (!$this->isInFavorites($product)) {
             $this->favoriteProducts->add($product);
         }
     }
@@ -493,4 +498,14 @@ class Customer extends User implements CustomerInterface, Presentable
         return $this->favoriteProducts->contains($product);
     }
 
+    public function getCryptKey()
+    {
+        return $this->cryptKey;
+    }
+
+    public function setCryptKey($cryptKey)
+    {
+        $this->cryptKey = $cryptKey;
+        return $this;
+    }
 }
