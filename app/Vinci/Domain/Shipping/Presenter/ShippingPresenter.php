@@ -16,4 +16,13 @@ class ShippingPresenter extends AbstractPresenter
         return 'Grátis';
     }
 
+    public function presentDeadline()
+    {
+        if ($this->getDeadline() > 1) {
+            return $this->getDeadline() . " dias úteis para entrega";
+        }
+
+        return $this->getDeadline() . " dia útil para entrega";
+    }
+
 }

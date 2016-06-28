@@ -268,8 +268,7 @@ jQuery(document).ready(function ($) {
 
 
     $('body').delegate(".gift",'click', function () {
-            // $modal.fadeIn();
-                $('body').find('.overlay, .modal-larger, .global-modal, .modal-gift').fadeIn();
+        $('body').find('.overlay, .modal-larger, .global-modal, .modal-gift').fadeIn();
     });
 
     $('.slider-gift').slick({

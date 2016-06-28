@@ -184,6 +184,13 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('suggest', 'Search\SearchController@suggest')->name('suggest');
         });
 
+        /**
+         * Shipping Deadline
+         */
+        $route->group(['prefix' => 'shippingDeadline', 'as' => 'shippingDeadline.'], function() use ($route) {
+            $route->post('calculate', 'Shipping\ShippingController@getShippingPriceAndDeadlines')->name('calculate');
+        });
+
     });
 
 

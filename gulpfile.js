@@ -45,6 +45,8 @@ elixir(function(mix) {
         'app/js/showcase/directives/showcase-widget-directive.js',
         'app/js/newsletter/directives/newsletter-widget-directive.js',
         'app/js/newsletter/services/newsletter-service.js',
+        'app/js/shipping/directives/shippingDeadline-widget-directive.js',
+        'app/js/shipping/services/shippingDeadline-service.js',
     ],
         'public/assets/website/js', 'public/assets/website');
 
