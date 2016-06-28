@@ -9,7 +9,7 @@
                     <input type="hidden" name="product" ng-init="product = {{ $product->getId() }}">
                 </li>
             </ul>
-            <button class="bt-default-full bt-middle template1" ng-click="">Consultar <span class="arrow-link">></span></button>
+            <button class="bt-default-full bt-middle template1" type="submit">Consultar <span class="arrow-link">></span></button>
         </form>
         <p class="answer-delivery"></p>
     </div>
