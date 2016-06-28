@@ -18,6 +18,9 @@
             @endif
         @endif
     </div>
+    
+    <div class="container-max-line">
+
     <div class="colum-description-wine">
         <h3 class="title-card-wine">
             <a href="{{ $product->web_path }}">
@@ -50,5 +53,6 @@
             Produto indisponível no site
         </p>
         @endif
+    </div>
     </div>
 </div>
