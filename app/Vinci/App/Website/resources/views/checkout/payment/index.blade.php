@@ -128,9 +128,12 @@
                             @endif
                         @endforeach
                     </ul>
-
                     @if($errors->has())
-                        <p class="error-message"><b>{{ $errors->first() }}</b></p>
+                        <ul class="error-message" style="margin: 0px 0px 10px 20px;">
+                            @foreach ($errors->getMessages() as $error)
+                                <li style="list-style-type: disc;"><b> {{ $error[0] }} </b></li>
+                            @endforeach
+                        </ul>
                     @endif
 
                     <div class="col-register1 template1">
@@ -243,3 +246,41 @@
 @include('website::layouts.partials.checkoutfooter')
 
 @stop
+
+@section('scripts')
+    @parent
+
+    <script>
+        $(document).ready(function () {
+            var paymentMethod = $("input[name='payment[method]']:first").prop('checked', true).val();
+
+            submitAjaxRequest(paymentMethod);
+
+            $("input[name='payment[method]']").change(function () {
+                var paymentMethod = $(this).val();
+
+                if (paymentMethod != 5) {
+                    submitAjaxRequest(paymentMethod);
+                }
+            })
+        });
+
+        function submitAjaxRequest(paymentMethod) {
+            $.ajax({
+                url: 'pagamento/getInstallments',
+                method: 'POST',
+                data: 'paymentMethod=' + paymentMethod + "&address_id={{ $deliveryAddress->id }}",
+                dataType: 'json',
+                success: function (dataReturn) {
+                    var html = "<option value='' selected>Selecione...</option>";
+
+                    $.each(dataReturn, function (index, value) {
+                        html += "<option value='" + index + "'>" + value + "</option>";
+                    });
+
+                    $("#paymentInstallments").html(html);
+                }
+            });
+        }
+    </script>
+@endsection
