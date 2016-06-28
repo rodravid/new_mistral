@@ -490,6 +490,10 @@ a.bt-default {
 	font:13px $robotolight;
 	margin:5px 0 0 0;
 	line-height: 13px;
+	min-height:40px;
+	@media #{$screen767} {
+		min-height:auto;
+	}
 }
 .info-details-wine {
 	font:13px $robotolight;
@@ -961,6 +965,7 @@ a.bt-default {
 
 	.wine-intro {
 		margin-bottom:10px;
+		min-height:auto;
 	}
 
 
@@ -990,6 +995,23 @@ a.bt-default {
 		width: 70%;
 	}
 }
+
+.container-max-line {
+	float:left;
+	width:90%;
+	@media #{$screen970} {
+		width:85%;
+	}
+	@media #{$screen767} {
+		width: 81%;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.container-max-line { 
+		width:75.5%;
+	}
+ }
 
 
 .bg-layer-filtro{
