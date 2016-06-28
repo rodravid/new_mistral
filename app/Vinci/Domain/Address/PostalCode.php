@@ -9,7 +9,7 @@ class PostalCode
 
     public function __construct($postalCode)
     {
-        $this->code = $postalCode;
+        $this->code = only_numbers($postalCode);
     }
 
     public function getCode()

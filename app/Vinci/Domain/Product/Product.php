@@ -772,5 +772,27 @@ class Product extends Model implements ProductInterface, Presentable
     {
         return $this->hasStock() && $this->getSalePrice() > 0;
     }
+
+    public function getPackSize()
+    {
+        return $this->getMasterVariant()->getPackSize();
+    }
+
+    public function setPackSize($packSize)
+    {
+        $this->getMasterVariant()->setPackSize($packSize);
+        return $this;
+    }
+
+    public function getDimension()
+    {
+        return $this->getMasterVariant()->getDimension();
+    }
+
+    public function setDimension(Dimension $dimension)
+    {
+        $this->getMasterVariant()->getDimension($dimension);
+        return $this;
+    }
     
 }

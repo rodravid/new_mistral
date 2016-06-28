@@ -28,6 +28,14 @@
 
         <div class="col-lg-12">
             <div class="form-group has-feedback">
+                <label for="txtPackSize">Tamanho da Caixa</label>
+                {!! Form::number('packSize', null, ['id' => 'txtPackSize', 'class' => 'form-control']) !!}
+                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="form-group has-feedback">
                 <label for="txtCountryDescription">Descrição</label>
                 {!! Form::textarea('description', null, ['id' => 'txtCountryDescription', 'class' => 'form-control html-editor', 'rows' => 7, 'placeholder' => 'Digite a descrição']) !!}
                 <span class="glyphicon glyphicon-pencil form-control-feedback"></span>

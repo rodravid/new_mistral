@@ -64,9 +64,6 @@
 					<input class="input-newsletter" type="text" placeholder="E-MAIL" name="newsletter_email" ng-model="email">
 					<button class="bt-newsletter" type="submit">CADASTRAR</button>
 				</form>
-				<span class="error-newsletter" style="display: none">
-					Preencha corretamente os campos*
-				</span>
 			</div>
 		</div>
 
