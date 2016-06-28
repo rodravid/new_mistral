@@ -9,8 +9,7 @@ class OrderValidator extends LaravelValidator
 
     protected $rules = [
         'shipping.address' => 'required',
-        'payment.method' => 'required',
-        'payment.installments' => 'requiredif:payment.method_type,credit_card',
+        'payment.method' => 'required'
     ];
 
     protected $messages = [
