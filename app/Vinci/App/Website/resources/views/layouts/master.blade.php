@@ -93,6 +93,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="{{ asset_web('app/js/shipping/directives/shippingDeadline-widget-directive.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/shipping/services/shippingDeadline-service.js') }}" type="text/javascript"></script>
 
+        <script src="{{ asset_web('js/angular/angular-input-masks/releases/angular-input-masks-standalone.min.js') }}"></script>
+
 
     @else
         <script src="{{ asset_web('js/all.js') }}" type="text/javascript"></script>

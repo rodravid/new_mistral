@@ -5,7 +5,7 @@
             <ul class="list-form-register">
                 <li>
                     <label for="cep" class="label-input">CEP</label>
-                    <input class="cep input-register full" type="text" name="shippingDeadline_cep" ng-model="cep" placeholder="Cep" id="cep">
+                    <input class="cep input-register full" type="text" name="shippingDeadline_cep" ng-model="cep" placeholder="Cep" id="cep" ui-br-cep-mask>
                     <input type="hidden" name="product" ng-init="product = {{ $product->getId() }}">
                 </li>
             </ul>
