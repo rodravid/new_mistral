@@ -1013,6 +1013,19 @@ a.bt-default {
 	}
  }
 
+ ul.error-message{
+ 	color: #a94442 ;
+   background-color: #f2dede ;
+   border: 1px solid #ebccd1 ;
+   padding: 15px;
+   border-radius: 4px;
+   margin-bottom: 27px;
+ }
+
+ul.error-message li {
+   margin-bottom: 5px;
+}
+
 
 .bg-layer-filtro{
 	position: fixed;
