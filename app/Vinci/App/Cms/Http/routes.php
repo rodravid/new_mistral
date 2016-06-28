@@ -59,6 +59,9 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/', 'Order\\OrderController@index')->name('list');
                     $route->post('datatable', 'Order\\OrderController@datatable')->name('list#datatable');
                     $route->get('/{order}', 'Order\\OrderController@show')->name('show');
+                    $route->get('/{order}/edit', 'Order\\OrderController@edit')->name('edit');
+                    $route->put('/{order}/change-status', 'Order\\OrderController@changeStatus')->name('edit#change-status');
+                    $route->get('/tracking-status/load-mail-template', 'Order\\OrderController@loadMailTemplate')->name('edit#load-mail-template');
                 });
 
                 /**

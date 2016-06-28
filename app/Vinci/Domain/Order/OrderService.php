@@ -4,8 +4,10 @@ namespace Vinci\Domain\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Vinci\Domain\Address\PostalCode;
+use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\Validators\OrderCreditCardValidator;
 use Vinci\Domain\Order\Validators\OrderValidator;
 use Vinci\Domain\Payment\CreditCard;
@@ -141,6 +143,21 @@ class OrderService
             ->setSecurityCode(array_get($data, 'card.security_code'));
 
         return $card;
+    }
+
+    public function changeOrderStatus(ChangeOrderStatusCommand $command)
+    {
+        $order = $command->getOrder();
+
+        $orderTtackingStatus = $this->entityManager->getReference(OrderTrackingStatus::class, $command->getOrderTrackingStatus());
+
+        $order->changeStatus($command->getOrderStatus());
+        $order->changePaymentStatus($command->getPaymentStatus());
+        $order->changeTrackingStatus($orderTtackingStatus);
+
+
+        $this->entityManager->persist($order);
+        $this->entityManager->flush();
     }
 
     protected function getShoppingCart(array $data)

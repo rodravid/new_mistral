@@ -11,31 +11,38 @@
 @section('module.content')
 
     <section class="content">
-        <div class="box box-primary">
+
+        <div class="box box-primary collapsed-box">
             <div class="box-header with-border">
                 <div class="row">
                     <div class="col-xs-12">
                         <h2 class="page-header">
                             <i class="fa fa-globe"></i> Pedido #{{ $order->number }} <small>{{ $order->status }}</small>
                             <small class="pull-right">Data: {{ $order->creation_date }}</small>
-                            <small class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;" onClick="window.print()"> <i class="fa fa-print"></i> Imprimir</small>
                         </h2>
                     </div>
+                </div>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                 </div>
             </div>
             <div class="box-body">
                 @include('cms::orders.partials.info')
-
-                @if ($loggedUser->hasPermissionTo('cms.orders.edit'))
-                    <div class="row no-print">
-                        <div class="col-xs-12">
-                            <a href="{{ route($currentModule->getEditRouteName(), $order->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
-                        </div>
-                    </div>
-                @endif
-
             </div>
         </div>
+
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {!! Form::open(['route' => ['cms.orders.edit#change-status', $order->getId()], 'method' => 'PUT']) !!}
+                            @include('cms::orders.form.status')
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
 @endsection

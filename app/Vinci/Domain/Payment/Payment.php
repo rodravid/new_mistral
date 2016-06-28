@@ -50,7 +50,7 @@ class Payment  extends Model implements PaymentInterface, Presentable
     /**
      * @ORM\Column(type="string")
      */
-    protected $status = PaymentInterface::STATUS_NEW;
+    protected $status = PaymentStatus::STATUS_NEW;
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Payment\CreditCard", cascade={"persist"})

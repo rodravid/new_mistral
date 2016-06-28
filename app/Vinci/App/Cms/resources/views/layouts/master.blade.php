@@ -173,7 +173,8 @@
     <script src="{{ asset_cms('plugins/datepicker/bootstrap-datetimepicker.js') }}"></script>
     <script src="{{ asset_cms('plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js') }}"></script>
     <!-- Bootstrap WYSIHTML5 -->
-    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
+    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js') }}"></script>
     <!-- Slimscroll -->
     <script src="{{ asset_cms('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <!-- DataTables -->
@@ -224,7 +225,9 @@
                 radioClass: 'iradio_flat-green'
             });
 
-            $('.html-editor').wysihtml5();
+            $('.html-editor').wysihtml5({
+                stylesheets: null
+            });
 
             $('.html-editor-especial').wysihtml5({
                 "font-styles": false, //Font styling, e.g. h1, h2, etc.

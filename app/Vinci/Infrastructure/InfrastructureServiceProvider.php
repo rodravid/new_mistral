@@ -30,6 +30,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository',
+            'Vinci\Infrastructure\Orders\DoctrineOrderTrackingStatusRepository',
+            'Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\Admin\AdminRepository',
             'Vinci\Infrastructure\Admin\DoctrineAdminRepository',
             'Vinci\Domain\Admin\Admin'
