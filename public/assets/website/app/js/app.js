@@ -7,7 +7,7 @@ var delay = (function(){
     };
 })();
 
-angular.module('app', [])
+angular.module('app', ['ui.utils.masks'])
     .run(['$rootScope', '$cacheFactory', 'CartService', function($rootScope, $cacheFactory, cartService) {
 
         $rootScope.$on('cart.update', function() {

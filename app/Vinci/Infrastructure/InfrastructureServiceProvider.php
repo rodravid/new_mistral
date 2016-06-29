@@ -271,8 +271,14 @@ class InfrastructureServiceProvider extends ServiceProvider
 
         $this->registerRepository(
             'Vinci\Domain\Payment\Repositories\PaymentMethodsRepository',
-            'Vinci\Infrastructure\PaymentMethods\DoctrinePaymentMethodsRepository',
+            'Vinci\Infrastructure\Payment\DoctrinePaymentMethodsRepository',
             'Vinci\Domain\Payment\PaymentMethod'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Payment\Repositories\PaymentInstallmentRepository',
+            'Vinci\Infrastructure\Payment\DoctrinePaymentInstallmentRepository',
+            'Vinci\Domain\Payment\PaymentInstallment'
         );
 
     }
