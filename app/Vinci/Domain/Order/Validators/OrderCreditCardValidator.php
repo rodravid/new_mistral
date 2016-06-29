@@ -15,7 +15,7 @@ class OrderCreditCardValidator extends LaravelValidator
         'document' => 'required_if:payment.method_type,==,credit_card',
         'card.expiry_month' => 'required_if:payment.method_type,==,credit_card',
         'card.expiry_year' => 'required_if:payment.method_type,==,credit_card',
-        'card.security_code' => 'required_if:payment.method_type,==,credit_card|size:3',
+        'card.security_code' => 'required_if:payment.method_type,==,credit_card|min:3|max:4',
     ];
 
     protected $messages = [
