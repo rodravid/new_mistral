@@ -2,33 +2,28 @@
 
 @section('content')
     <div class="header-internal header-checkout template1-bg">
-
         <div class="row">
-
             <div class="wrap-content-bt mbottom20 mtop20">
-               <span class="logo">
-                <a class="logo-vinci sprite-icon" href="/" title="Vinci - Loucos por vinho">Vinci - Loucos por vinho</a>
-            </span>
+                <span class="logo">
+                    <a class="logo-vinci sprite-icon" href="/" title="Vinci - Loucos por vinho">Vinci - Loucos por vinho</a>
+                </span>
+            </div>
+            <h1 class="internal-subtitle">Meu Carrinho</h1>
+            <nav class="nav-status float-right">
+                <ul class="list-status">
+                    <li class="show-desktop">
+                        <span>Entrega</span>
+                    </li>
+                    <li class="current-status">
+                        <span>Pagamento</span>
+                        <img class="cup-status" src="{{ asset_web('images/taca.png') }}" alt="">
+                    </li>
+                    <li class="show-desktop">
+                        <span>Confirmação</span>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-        <h1 class="internal-subtitle">Meu Carrinho</h1>
-
-        <nav class="nav-status float-right">
-            <ul class="list-status">
-                <li class="show-desktop">
-                    <span>Entrega</span>
-                </li>
-                <li class="current-status">
-                    <span>Pagamento</span>
-                    <img class="cup-status" src="{{ asset_web('images/taca.png') }}" alt="">
-                </li>
-                <li class="show-desktop">
-                    <span>Confirmação</span>
-                </li>
-            </ul>
-        </nav>
-
-    </div>
     </div>
 
     <div class="row">
@@ -43,25 +38,25 @@
 
                 <div class="cart-items-wrapper">
                     @foreach($shoppingCart->getItems() as $item)
-                    <div class="row-request template1">
-                        <div class="col-request">
-                            <div class="name-product-request">
-                                <h3 class="title-card-wine">
-                                    {{ $item->getTitle() }}
-                                    @if($item->hasProducer())
-                                    <span>{{ $item->getProducer()->getName() }}</span>
-                                    @endif
-                                </h3>
+                        <div class="row-request template1">
+                            <div class="col-request">
+                                <div class="name-product-request">
+                                    <h3 class="title-card-wine">
+                                        {{ $item->getTitle() }}
+                                        @if($item->hasProducer())
+                                            <span>{{ $item->getProducer()->getName() }}</span>
+                                        @endif
+                                    </h3>
+                                </div>
+                                <div class="qtd-request">{{ $item->quantity_units }}</div>
+                                <div class="price-request">
+                                    <span class="title-internal-15">{{ $item->subtotal }}</span>
+                                </div>
                             </div>
-                            <div class="qtd-request">{{ $item->quantity_units }}</div>
-                            <div class="price-request">
-                                <span class="title-internal-15">{{ $item->subtotal }}</span>
+                            <div class="bt-request">
+                                <a class="bt-arrow-action" href="/carrinho"> > </a>
                             </div>
                         </div>
-                        <div class="bt-request">
-                            <a class="bt-arrow-action" href="/carrinho"> > </a>
-                        </div>
-                    </div>
                     @endforeach
                 </div>
 
@@ -129,9 +124,10 @@
                             @endforeach
                         </ul>
                         @if($errors->has())
-                            <ul class="error-message" style="margin: 0px 0px 10px 20px;">
+                            <ul class="error-message">
+                                <li><strong>Problemas com os dados no formulário</strong></li>
                                 @foreach ($errors->getMessages() as $error)
-                                    <li style="list-style-type: disc;"><b> {{ $error[0] }} </b></li>
+                                    <li>{{ $error[0] }}</li>
                                 @endforeach
                             </ul>
                         @endif
@@ -184,16 +180,16 @@
                                 <ul class="list-form-register">
                                     <li>
                                         <label class="label-above">Data de validade</label>
-                                        <div class="select-standard width120 form-control-white @if ($errors->has('card.expiry_month')) error-field @endif">
+                                        <div class="select-standard width120 form-control-white @if($errors->has('card.expiry_month')) error-field @endif">
                                             {!! Form::select('card[expiry_month]', ['' => 'Mês'] + $months, null) !!}
                                         </div>
-                                        <div class="select-standard width120 form-control-white @if ($errors->has('card.expiry_year')) error-field @endif">
+                                        <div class="select-standard width120 form-control-white @if($errors->has('card.expiry_year')) error-field @endif">
                                             {!! Form::select('card[expiry_year]', ['' => 'Ano'] + $years, null) !!}
                                         </div>
                                     </li>
                                     <li>
                                         <label class="label-above" for="">Código de segurança *</label>
-                                        {!! Form::number('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.security_code') ? 'error-field' : ''), 'placeholder' => 'Cód. de Seg.']) !!}
+                                        {!! Form::text('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.security_code') ? 'error-field' : ''), 'placeholder' => 'Cód. de Seg.', 'credit_card_security_cod' => '']) !!}
                                         <img class="float-left img-cod-seg" src="{{ asset_web('images/img-cod-seg.jpg') }}" alt="">
                                     </li>
                                 </ul>
@@ -223,10 +219,13 @@
                                 @endif
                             @endforeach
                         </ul>
+                        <p class="mbottom20"> CLIQUE NO BOTÃO ABAIXO PARA CONFIRMAR e receber as informações de depósito
+                            por e-mail.</p>
 
-                        <p class="mbottom20"> CLIQUE NO BOTÃO ABAIXO PARA CONFIRMAR e receber as informações de depósito por e-mail.</p>
-
-                        <p class="mbottom20"><strong>Atenção:</strong> Não efetue depósito sem nossa confirmação, os dados podem mudar conforme a expedição de envio de mercadorias, o que atrasaria seu processo em caso de divergência fiscal. É importante aguardar o recebimento do email com as instruções para o o depósito bancário.</p>
+                        <p class="mbottom20"><strong>Atenção:</strong> Não efetue depósito sem nossa confirmação, os
+                            dados podem mudar conforme a expedição de envio de mercadorias, o que atrasaria seu processo
+                            em caso de divergência fiscal. É importante aguardar o recebimento do email com as
+                            instruções para o o depósito bancário.</p>
                     </section>
 
                     <div class="wrap-content-bt remove-mbttom20">
@@ -277,7 +276,7 @@
                     data: 'paymentMethod=' + paymentMethod + "&address_id={{ $deliveryAddress->id }}",
                     dataType: 'json',
                     success: function (dataReturn) {
-                        var html = "<option value='' selected>Selecione...</option>";
+                        var html = "<option value='' selected>Selecione o parcelamento</option>";
 
                         $.each(dataReturn, function (index, value) {
                             html += "<option value='" + index + "'" + ((paymentInstallment != 0 && paymentInstallment != null) ? "selected='selected'" : "") + ">" + value + "</option>";
@@ -310,6 +309,24 @@
                 if (cpf_cnpj != '0') {
                     $("#txtDocument").val(cpf_cnpj);
                 }
+            }
+
+            function submitAjaxRequest(paymentMethod) {
+                $.ajax({
+                    url: 'pagamento/getInstallments',
+                    method: 'POST',
+                    data: 'paymentMethod=' + paymentMethod + "&address_id={{ $deliveryAddress->id }}",
+                    dataType: 'json',
+                    success: function (dataReturn) {
+                        var html = "<option value='' selected>Selecione o parcelamento</option>";
+
+                        $.each(dataReturn, function (index, value) {
+                            html += "<option value='" + index + "'>" + value + "</option>";
+                        });
+
+                        $("#paymentInstallments").html(html);
+                    }
+                });
             }
         </script>
 @endsection

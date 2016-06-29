@@ -206,19 +206,13 @@ jQuery(document).ready(function ($) {
 
     $('input, textarea').placeholder();
 
-    // $(".data").mask("99/99/9999");
-    // $(".cpf").mask("999.999.999-99");
-    // $(".birth-date").mask("99/99/9999");
-    // $(".phone").mask("(99) 9999-9999");
-    // $(".cel").mask("(99) 99999-9999");
-    // $(".cep").mask("99999-999");
-
     $("[date]").inputmask("99/99/9999");
     $("[cpf]").inputmask("999.999.999-99");
     $("[cnpj]").inputmask("99.999.999/9999-99");
     $("[phone-mask]").inputmask("(99) 9999-9999[9]");  //static mask
     $("[cep]").inputmask("99999-999");
     $("[credit_card]").inputmask("9999-9999-9999-9999");
+    $("[credit_card_security_cod]").inputmask("999[9]");
 
 
     $('.call-login').on('click', function () {
