@@ -2,15 +2,19 @@
 
 namespace Vinci\Domain\Order\Events;
 
+use Vinci\Domain\Admin\Admin;
 use Vinci\Domain\Common\Event\Event;
+use Vinci\Domain\Common\Event\FiredByAdminUser;
 use Vinci\Domain\Payment\PaymentInterface;
 
-class PaymentStatusWasChanged extends Event
+class PaymentStatusWasChanged extends Event implements FiredByAdminUser
 {
 
     private $payment;
 
     private $oldStatus;
+
+    private $user;
 
     public function __construct(PaymentInterface $payment, $oldStatus)
     {
@@ -26,6 +30,16 @@ class PaymentStatusWasChanged extends Event
     public function getOldStatus()
     {
         return $this->oldStatus;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser(Admin $user)
+    {
+        $this->user = $user;
     }
 
 }

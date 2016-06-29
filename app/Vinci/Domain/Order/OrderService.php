@@ -2,11 +2,15 @@
 
 namespace Vinci\Domain\Order;
 
+use Auth;
 use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use Vinci\Domain\Address\PostalCode;
+use Vinci\Domain\Common\Event\FiredByAdminUser;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Order\Jobs\SendOrderStatusMail;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\Validators\OrderCreditCardValidator;
 use Vinci\Domain\Order\Validators\OrderValidator;
@@ -32,7 +36,9 @@ class OrderService
 
     protected $eventDispatcher;
 
-    private $paymentMethodRepository;
+    protected $paymentMethodRepository;
+
+    protected $bus;
 
     public function __construct(
         EntityManagerInterface $entityManager,
@@ -41,6 +47,7 @@ class OrderService
         OrderFactory $factory,
         ShippingService $shippingService,
         Dispatcher $eventDispatcher,
+        BusDispatcher $bus,
         PaymentMethodsRepository $paymentMethodsRepository
     ) {
         $this->entityManager = $entityManager;
@@ -49,6 +56,7 @@ class OrderService
         $this->factory = $factory;
         $this->shippingService = $shippingService;
         $this->eventDispatcher = $eventDispatcher;
+        $this->bus = $bus;
         $this->paymentMethodRepository = $paymentMethodsRepository;
     }
 
@@ -89,6 +97,11 @@ class OrderService
     protected function dispatchOrderEvents(OrderInterface $order)
     {
         foreach ($order->releaseEvents() as $event) {
+
+            if ($event instanceof FiredByAdminUser) {
+                $event->setUser(Auth::guard('cms')->user());
+            }
+
             $this->eventDispatcher->fire($event);
         }
     }
@@ -147,17 +160,31 @@ class OrderService
 
     public function changeOrderStatus(ChangeOrderStatusCommand $command)
     {
-        $order = $command->getOrder();
+        $this->entityManager->transactional(function($em) use ($command) {
 
-        $orderTtackingStatus = $this->entityManager->getReference(OrderTrackingStatus::class, $command->getOrderTrackingStatus());
+            $order = $command->getOrder();
 
-        $order->changeStatus($command->getOrderStatus());
-        $order->changePaymentStatus($command->getPaymentStatus());
-        $order->changeTrackingStatus($orderTtackingStatus);
+            $orderTtackingStatus = $this->normalizeTrackingStatus($command->getOrderTrackingStatus());
 
+            $order->changeStatus($command->getOrderStatus());
+            $order->changePaymentStatus($command->getPaymentStatus());
+            $order->changeTrackingStatus($orderTtackingStatus);
 
-        $this->entityManager->persist($order);
-        $this->entityManager->flush();
+            $em->persist($order);
+
+            $this->dispatchOrderEvents($order);
+
+        });
+
+        if ($command->shouldSendMail()) {
+            $this->bus->dispatchNow(new SendOrderStatusMail($command->getOrder(), $command->getMailSubject(), $command->getMailBody()));
+        }
+    }
+
+    protected function normalizeTrackingStatus($status)
+    {
+        return is_object($status)
+            ? $status : $this->entityManager->getReference(OrderTrackingStatus::class, $status);
     }
 
     protected function getShoppingCart(array $data)

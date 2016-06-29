@@ -35,7 +35,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        {!! Form::open(['route' => ['cms.orders.edit#change-status', $order->getId()], 'method' => 'PUT']) !!}
+                        {!! Form::open(['route' => ['cms.orders.edit#change-status', $order->getId()], 'method' => 'PUT', 'id' => 'frmChangeOrderStatus']) !!}
                             @include('cms::orders.form.status')
                         {!! Form::close() !!}
                     </div>

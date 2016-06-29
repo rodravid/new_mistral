@@ -173,6 +173,7 @@
     <script src="{{ asset_cms('plugins/datepicker/bootstrap-datetimepicker.js') }}"></script>
     <script src="{{ asset_cms('plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js') }}"></script>
     <!-- Bootstrap WYSIHTML5 -->
+    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/parser_rules/advanced.js') }}"></script>
     <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
     <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js') }}"></script>
     <!-- Slimscroll -->
@@ -226,7 +227,8 @@
             });
 
             $('.html-editor').wysihtml5({
-                stylesheets: null
+                stylesheets: null,
+                html: true
             });
 
             $('.html-editor-especial').wysihtml5({

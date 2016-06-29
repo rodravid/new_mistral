@@ -66,7 +66,7 @@
         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
             <strong>{{ $order->payment->installment_text }}</strong><br /><br >
 
-            @if($order->payment->wasMadeWithCredidCard())
+            @if($order->payment->wasMadeWithCreditCard())
 
                 <strong>Titular do cartão:</strong> {{ $order->payment->credit_card->holdername }}<br >
                 <strong>Número:</strong> {{ $order->payment->credit_card->number }}<br >

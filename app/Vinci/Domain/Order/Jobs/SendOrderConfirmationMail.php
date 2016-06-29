@@ -32,7 +32,7 @@ class SendOrderConfirmationMail extends Job implements ShouldQueue
 
             $order = $presenter->model($order, OrderPresenter::class);
 
-            $mailer->send('website::layouts.emails.order.created.default', compact('order'), function ($message) use ($order) {
+            $mailer->send('website::layouts.emails.order.default.created', compact('order'), function ($message) use ($order) {
                 $message
                     ->subject(sprintf('Confirmação de Pedido - Pedido nº %s', $order->getNumber()))
                     ->to($order->getCustomer()->getEmail(), $order->getCustomer()->getName());

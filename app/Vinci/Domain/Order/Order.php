@@ -3,7 +3,6 @@
 namespace Vinci\Domain\Order;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use InvalidArgumentException;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Channel\Contracts\Channel;
 use Vinci\Domain\Common\AggregateRoot;
@@ -23,7 +22,6 @@ use Vinci\Domain\Order\History\OrderHistory;
 use Vinci\Domain\Order\Item\OrderItem;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Payment\PaymentInterface;
-use Vinci\Domain\Payment\PaymentStatus;
 use Vinci\Domain\Shipping\ShipmentInterface;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
@@ -386,46 +384,31 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     public function changeStatus($status)
     {
-        if (! in_array($status, OrderStatus::values())) {
-            throw new InvalidArgumentException('The given order status not is valid.');
-        }
+        $oldStatus = $this->getStatus();
 
-        if (! empty($status) && $this->getStatus() !== $status) {
-            $oldStatus = $this->getStatus();
+        $this->setStatus($status);
 
-            $this->setStatus($status);
-
-            $this->raise(new OrderStatusWasChanged($this, $oldStatus));
-        }
+        $this->raise(new OrderStatusWasChanged($this, $oldStatus));
     }
 
     public function changePaymentStatus($status)
     {
-        if (! in_array($status, PaymentStatus::values())) {
-            throw new InvalidArgumentException('The given payment status not is valid.');
-        }
+        $payment = $this->getPayment();
 
-        if (! empty($status) && $this->getStatus() !== $status) {
+        $oldStatus = $payment->getStatus();
 
-            $payment = $this->getPayment();
+        $payment->setStatus($status);
 
-            $oldStatus = $payment->getStatus();
-
-            $payment->setStatus($status);
-
-            $this->raise(new PaymentStatusWasChanged($payment, $oldStatus));
-        }
+        $this->raise(new PaymentStatusWasChanged($payment, $oldStatus));
     }
 
     public function changeTrackingStatus(OrderTrackingStatus $status)
     {
-        if (! empty($status) && $this->getTrackingStatus()->getId() !== $status->getId()) {
-            $oldStatus = $this->getTrackingStatus();
+        $oldStatus = $this->getTrackingStatus();
 
-            $this->setStatus($status);
+        $this->setTrackingStatus($status);
 
-            $this->raise(new OrderTrackingStatusWasChanged($this, $oldStatus));
-        }
+        $this->raise(new OrderTrackingStatusWasChanged($this, $oldStatus));
     }
 
 }

@@ -22,4 +22,9 @@ class OrderPresenter extends AbstractPresenter
         return $this->toDefaultDate($this->getCreatedAt());
     }
 
+    public function presentShippingAddress()
+    {
+        return $this->getShippingAddress();
+    }
+
 }
