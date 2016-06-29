@@ -3,7 +3,6 @@
 namespace Vinci\Domain\Order\Presenter;
 
 use Vinci\App\Core\Services\Presenter\AbstractPresenter;
-use Vinci\Domain\Order\OrderInterface;
 
 class OrderPresenter extends AbstractPresenter
 {
@@ -15,16 +14,17 @@ class OrderPresenter extends AbstractPresenter
 
     public function presentStatus()
     {
-        switch ($this->getStatus()) {
-            case OrderInterface::STATUS_NEW:
-                return 'Aguardando pagamento';
-                break;
-        }
+        return $this->getTrackingStatus()->getTitle();
     }
 
     public function presentCreationDate()
     {
         return $this->toDefaultDate($this->getCreatedAt());
+    }
+
+    public function presentShippingAddress()
+    {
+        return $this->getShippingAddress();
     }
 
 }

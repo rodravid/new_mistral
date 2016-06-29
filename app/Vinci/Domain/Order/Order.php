@@ -15,7 +15,12 @@ use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Order\Address\Address;
 use Vinci\Domain\Order\Events\NewOrderWasCreated;
+use Vinci\Domain\Order\Events\OrderStatusWasChanged;
+use Vinci\Domain\Order\Events\OrderTrackingStatusWasChanged;
+use Vinci\Domain\Order\Events\PaymentStatusWasChanged;
+use Vinci\Domain\Order\History\OrderHistory;
 use Vinci\Domain\Order\Item\OrderItem;
+use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Payment\PaymentInterface;
 use Vinci\Domain\Shipping\ShipmentInterface;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
@@ -96,12 +101,23 @@ class Order extends Model implements OrderInterface, AggregateRoot
     /**
      * @ORM\Column(type="string")
      */
-    protected $status = OrderInterface::STATUS_NEW;
+    protected $status = OrderStatus::STATUS_NEW;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus")
+     */
+    protected $trackingStatus;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Vinci\Domain\Order\History\OrderHistory", mappedBy="order", cascade={"persist"})
+     */
+    protected $history;
 
     public function __construct()
     {
         $this->payments = new ArrayCollection;
         $this->items = new ArrayCollection;
+        $this->history = new OrderHistory($this);
 
         $this->raise(new NewOrderWasCreated($this));
     }
@@ -342,6 +358,57 @@ class Order extends Model implements OrderInterface, AggregateRoot
     {
         $this->payments = $payments;
         return $this;
+    }
+
+    public function getTrackingStatus()
+    {
+        return $this->trackingStatus;
+    }
+
+    public function setTrackingStatus(OrderTrackingStatus $trackingStatus)
+    {
+        $this->trackingStatus = $trackingStatus;
+        return $this;
+    }
+
+    public function getHistory()
+    {
+        return $this->history;
+    }
+
+    public function setHistory(OrderHistory $history)
+    {
+        $this->history = $history;
+        return $this;
+    }
+
+    public function changeStatus($status)
+    {
+        $oldStatus = $this->getStatus();
+
+        $this->setStatus($status);
+
+        $this->raise(new OrderStatusWasChanged($this, $oldStatus));
+    }
+
+    public function changePaymentStatus($status)
+    {
+        $payment = $this->getPayment();
+
+        $oldStatus = $payment->getStatus();
+
+        $payment->setStatus($status);
+
+        $this->raise(new PaymentStatusWasChanged($payment, $oldStatus));
+    }
+
+    public function changeTrackingStatus(OrderTrackingStatus $status)
+    {
+        $oldStatus = $this->getTrackingStatus();
+
+        $this->setTrackingStatus($status);
+
+        $this->raise(new OrderTrackingStatusWasChanged($this, $oldStatus));
     }
 
 }

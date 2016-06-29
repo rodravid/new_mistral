@@ -33,9 +33,13 @@ class OrderController extends Controller
         return $this->view('account.orders.index', compact('orders'));
     }
 
-    public function show($id)
+    public function show($number)
     {
-        $order = $this->orderRepository->getOneById($id);
+        $order = $this->orderRepository->getOneByNumber($number);
+
+        if (! $order->isOwnedBy($this->user)) {
+            abort(404);
+        }
 
         $order = $this->presenter->model($order, OrderPresenter::class);
 
