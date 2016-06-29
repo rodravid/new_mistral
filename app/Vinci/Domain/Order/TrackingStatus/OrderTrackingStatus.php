@@ -13,6 +13,8 @@ use Vinci\Domain\Core\Model;
 class OrderTrackingStatus extends Model
 {
 
+    const STATUS_NEW = 'new';
+
     use Timestampable;
 
     /**
