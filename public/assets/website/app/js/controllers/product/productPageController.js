@@ -10,8 +10,7 @@ angular.module('app')
         self.getQuantityForCart = function () {
             if (typeof self.boxQuantity !== 'undefined') {
 
-                return self.itemQuantity + (self.boxQuantity * self.boxQuantityFactor);
-
+                return self.itemQuantity  (self.boxQuantity * self.boxQuantityFactor);
             }
 
             return self.itemQuantity;

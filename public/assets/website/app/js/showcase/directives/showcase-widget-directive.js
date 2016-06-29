@@ -33,8 +33,6 @@ angular.module('app')
 
                 if ($scope.loadFirst) {
                     loadProducts($scope.showcaseId, $scope.currentPage, $scope.limit);
-
-                    //$scope.currentPage = $scope.initialLimit;
                 }
                 
                 $($el).find('.loadProducts').bind('click', function() {
@@ -47,11 +45,15 @@ angular.module('app')
 
                 function loadProducts(showcase, page, limit) {
 
+                    $(".loading_gif").prop('style', 'display: block;');
+
                     $http({
                         method: 'GET',
                         url: '/api/showcase/' + showcase + '/products?page=' + page + '&limit=' + limit,
                         responseType: 'html'
                     }).then(function(response) {
+
+                        $(".loading_gif").prop('style', 'display: none;');
 
                         if (response.data != '') {
 
