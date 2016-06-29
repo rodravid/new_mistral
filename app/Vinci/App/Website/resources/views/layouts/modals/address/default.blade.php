@@ -144,6 +144,8 @@
 
         $(document).ready(function() {
 
+            $("[cep]").inputmask("99999-999");
+
             $('#frmNewAddress').bind('submit', function(e) {
 
                 var $form = $(this);
