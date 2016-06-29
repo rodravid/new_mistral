@@ -4,7 +4,9 @@ namespace Vinci\Domain\Order;
 
 use Auth;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
+use InvalidArgumentException;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Common\Event\FiredByAdminUser;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
@@ -12,6 +14,7 @@ use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
 use Vinci\Domain\Order\Jobs\SendOrderStatusMail;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
+use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
 use Vinci\Domain\Order\Validators\OrderCreditCardValidator;
 use Vinci\Domain\Order\Validators\OrderValidator;
 use Vinci\Domain\Payment\CreditCard;
@@ -40,6 +43,8 @@ class OrderService
 
     protected $bus;
 
+    protected $trackingStatusRepository;
+
     public function __construct(
         EntityManagerInterface $entityManager,
         OrderValidator $orderValidator,
@@ -48,7 +53,8 @@ class OrderService
         ShippingService $shippingService,
         Dispatcher $eventDispatcher,
         BusDispatcher $bus,
-        PaymentMethodsRepository $paymentMethodsRepository
+        PaymentMethodsRepository $paymentMethodsRepository,
+        OrderTrackingStatusRepository $trackingStatusRepository
     ) {
         $this->entityManager = $entityManager;
         $this->orderValidator = $orderValidator;
@@ -58,6 +64,7 @@ class OrderService
         $this->eventDispatcher = $eventDispatcher;
         $this->bus = $bus;
         $this->paymentMethodRepository = $paymentMethodsRepository;
+        $this->trackingStatusRepository = $trackingStatusRepository;
     }
 
     public function create(array $data)
@@ -85,6 +92,8 @@ class OrderService
             $payment->setAmount($order->getTotal());
 
             $order->addPayment($payment);
+
+            $order->setTrackingStatus($this->getTrackingStatus());
 
             $em->persist($order);
 
@@ -211,6 +220,20 @@ class OrderService
     {
         $data['payment']['method_type'] = $this->paymentMethodRepository->findOneById($data['payment']['method'])[0]->getDescription();
         return $data;
+    }
+
+    protected function getTrackingStatus()
+    {
+        try {
+
+            return $this->trackingStatusRepository->getOneByCode(OrderTrackingStatus::STATUS_NEW);
+
+        } catch (Exception $e) {
+
+            throw new InvalidArgumentException(sprintf('Order tracking status not found by code: %s', OrderTrackingStatus::STATUS_NEW));
+
+        }
+
     }
 
 }

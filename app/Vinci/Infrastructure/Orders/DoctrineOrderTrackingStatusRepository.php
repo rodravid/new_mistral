@@ -4,6 +4,7 @@ namespace Vinci\Infrastructure\Orders;
 
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
+use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineOrderTrackingStatusRepository extends DoctrineBaseRepository implements OrderTrackingStatusRepository
 {
@@ -22,5 +23,22 @@ class DoctrineOrderTrackingStatusRepository extends DoctrineBaseRepository imple
         $qb->setParameter('id', $id);
 
         return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function getOneByCode($code)
+    {
+        $qb = $this->createQueryBuilder('o');
+
+        $qb->where('o.code = :code');
+
+        $qb->setParameter('code', $code);
+
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if (! $result) {
+            throw new EntityNotFoundException('Order tracking status not found.');
+        }
+
+        return $result;
     }
 }
