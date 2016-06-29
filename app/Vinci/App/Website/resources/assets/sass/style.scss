@@ -992,9 +992,9 @@ a.bt-default {
 		width: 42%;
 	}
 	@media #{$screen767} {
-		width: 70%;
+		width: 100%;
 	}
-}
+} 
 
 .container-max-line {
 	float:left;
@@ -1012,6 +1012,19 @@ a.bt-default {
 		width:75.5%;
 	}
  }
+
+ ul.error-message{
+ 	color: #a94442 ;
+   background-color: #f2dede ;
+   border: 1px solid #ebccd1 ;
+   padding: 15px;
+   border-radius: 4px;
+   margin-bottom: 27px;
+ }
+
+ul.error-message li {
+   margin-bottom: 5px;
+}
 
 
 .bg-layer-filtro{

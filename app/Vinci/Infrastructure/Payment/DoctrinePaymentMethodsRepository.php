@@ -1,7 +1,6 @@
 <?php
 
-namespace Vinci\Infrastructure\PaymentMethods;
-
+namespace Vinci\Infrastructure\Payment;
 
 use Vinci\Domain\Payment\Repositories\PaymentMethodsRepository;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
