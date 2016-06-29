@@ -218,6 +218,7 @@ jQuery(document).ready(function ($) {
     $("[cnpj]").inputmask("99.999.999/9999-99");
     $("[phone-mask]").inputmask("(99) 9999-9999[9]");  //static mask
     $("[cep]").inputmask("99999-999");
+    $("[credit_card]").inputmask("9999-9999-9999-9999");
 
 
     $('.call-login').on('click', function () {

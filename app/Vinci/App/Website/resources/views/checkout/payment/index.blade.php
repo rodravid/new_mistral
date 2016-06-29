@@ -169,7 +169,7 @@
                                     </li>
                                     <li>
                                         <label class="label-input" for="txtCardNumber">Número do cartão *</label>
-                                        {!! Form::text('card[number]', null, ['id' => 'txtCardNumber', 'placeholder' => 'Número do cartão *', 'class' => 'input-register full ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
+                                        {!! Form::text('card[number]', null, ['credit_card' => '', 'id' => 'txtCardNumber', 'placeholder' => 'Número do cartão *', 'class' => 'input-register full ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
                                     </li>
                                     <li>
                                         <label class="label-input" for="txtDocument">CPF / CNPJ *</label>
