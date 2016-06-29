@@ -189,7 +189,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
          * Shipping Deadline
          */
         $route->group(['prefix' => 'shippingDeadline', 'as' => 'shippingDeadline.'], function() use ($route) {
-            $route->post('calculate', 'Shipping\ShippingController@getShippingPriceAndDeadlines')->name('calculate');
+            $route->post('calculate', 'Shipping\ShippingController@getShippingDeadline')->name('calculate');
         });
 
     });

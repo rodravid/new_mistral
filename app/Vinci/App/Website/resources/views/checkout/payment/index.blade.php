@@ -2,17 +2,13 @@
 
 @section('content')
     <div class="header-internal header-checkout template1-bg">
-
         <div class="row">
-
             <div class="wrap-content-bt mbottom20 mtop20">
-           <span class="logo">
-            <a class="logo-vinci sprite-icon" href="/" title="Vinci - Loucos por vinho">Vinci - Loucos por vinho</a>
-        </span>
+                <span class="logo">
+                    <a class="logo-vinci sprite-icon" href="/" title="Vinci - Loucos por vinho">Vinci - Loucos por vinho</a>
+                </span>
             </div>
-
             <h1 class="internal-subtitle">Meu Carrinho</h1>
-
             <nav class="nav-status float-right">
                 <ul class="list-status">
                     <li class="show-desktop">
@@ -27,7 +23,6 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
     </div>
 
@@ -121,9 +116,7 @@
                                 @if ($paymentMethod->getDescription() == "credit_card")
                                     <li class="flags-list">
                                         <label for="{{ $paymentMethod->getName() }}">
-                                            <img class="flags"
-                                                 src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}"
-                                                 alt="">
+                                            <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
                                         </label>
                                         {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
                                     </li>
@@ -167,17 +160,16 @@
                                 <h2 class="title-form">Dados do cartão</h2>
                                 <ul class="list-form-register">
                                     <li>
-                                        <label class="label-input" for="txtCardHoldername">Nome impresso do cartão
-                                            *</label>
+                                        <label class="label-input" for="txtCardHoldername">Nome impresso do cartão *</label>
                                         {!! Form::text('card[holdername]', null, ['id' => 'txtCardHoldername', 'placeholder' => 'Nome impresso no cartão *', 'class' => 'input-register full ' . ($errors->has('card.holdername') ? 'error-field' : '')]) !!}
                                     </li>
                                     <li>
                                         <label class="label-input" for="txtCardNumber">Número do cartão *</label>
-                                        {!! Form::text('card[number]', null, ['id' => 'txtCardNumber', 'placeholder' => 'Número do cartão *', 'class' => 'input-register full ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
+                                        {!! Form::text('card[number]', null, ['credit_card' => '', 'id' => 'txtCardNumber', 'placeholder' => 'Número do cartão *', 'class' => 'input-register full ' . ($errors->has('card.number') ? 'error-field' : '')]) !!}
                                     </li>
                                     <li>
                                         <label class="label-input" for="txtDocument">CPF / CNPJ *</label>
-                                        {!! Form::text('document', null, ['id' => 'txtDocument', 'placeholder' => 'CPF / CNPJ *', 'class' => 'input-register full ' . ($errors->has('document') ? 'error-field' : '')]) !!}
+                                        {!! Form::text('document', null, ['id' => 'txtDocument', 'placeholder' => 'CPF / CNPJ *', 'class' => 'input-register full ' . ($errors->has('document') ? 'error-field' : ''), 'ui-br-cpfcnpj-mask' => '', 'ng-model' => 'cpfcnpj']) !!}
                                     </li>
                                 </ul>
                             </div>
@@ -197,9 +189,8 @@
                                     </li>
                                     <li>
                                         <label class="label-above" for="">Código de segurança *</label>
-                                        {!! Form::text('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.security_code') ? 'error-field' : ''), 'placeholder' => '3 dígitos']) !!}
-                                        <img class="float-left img-cod-seg"
-                                             src="{{ asset_web('images/img-cod-seg.jpg') }}" alt="">
+                                        {!! Form::text('card[security_code]', null, ['id' => 'txtCardSecurityCode', 'class' => 'number input-register width120 ' . ($errors->has('card.security_code') ? 'error-field' : ''), 'placeholder' => 'Cód. de Seg.', 'credit_card_security_cod' => '']) !!}
+                                        <img class="float-left img-cod-seg" src="{{ asset_web('images/img-cod-seg.jpg') }}" alt="">
                                     </li>
                                 </ul>
                             </div>
@@ -209,21 +200,18 @@
 
                     <div class="wrap-content-bt remove-mbttom20">
                         <div class="content-bt-big">
-                            <button class="bt-default-full bt-middle bt-color" href="#">Pagar <span class="arrow-link">&gt;</span>
-                            </button>
+                            <button class="bt-default-full bt-middle bt-color" href="#">Pagar <span class="arrow-link">&gt;</span></button>
                         </div>
                     </div>
                 </div> <!-- Fim tab-card -->
                 <div class="height-fix" id="tab-transfer">
-                    <section class="form-payment section-payment template1">
+                    <section class="form-payment section-payment template1" >
                         <ul class="flags-card">
                             @foreach ($paymentMethods as $paymentMethod)
                                 @if ($paymentMethod->getDescription() == "account_deposit")
                                     <li class="flags-list">
                                         <label for="{{ $paymentMethod->getName() }}">
-                                            <img class="flags"
-                                                 src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}"
-                                                 alt="">
+                                            <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
                                         </label>
                                         {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
                                         <p>Deposito Bancário</p>
@@ -231,7 +219,6 @@
                                 @endif
                             @endforeach
                         </ul>
-
                         <p class="mbottom20"> CLIQUE NO BOTÃO ABAIXO PARA CONFIRMAR e receber as informações de depósito
                             por e-mail.</p>
 
@@ -243,8 +230,7 @@
 
                     <div class="wrap-content-bt remove-mbttom20">
                         <div class="content-bt-big">
-                            <button class="bt-default-full bt-middle bt-color" href="#">Pagar <span class="arrow-link">&gt;</span>
-                            </button>
+                            <button class="bt-default-full bt-middle bt-color" href="#">Pagar <span class="arrow-link">&gt;</span></button>
                         </div>
                     </div>
 
@@ -261,39 +247,86 @@
 @stop
 
 @section('scripts')
-    @parent
+        @parent
 
-    <script>
-        $(document).ready(function () {
-            var paymentMethod = $("input[name='payment[method]']:first").prop('checked', true).val();
+        <script>
+            var paymentInstallment = {{ !empty(old('payment.installments')) ? old('payment.installments') : '0' }};
 
-            submitAjaxRequest(paymentMethod);
+            $(document).ready(function () {
+                var paymentMethod = {{ !empty(old('payment.method')) ? old('payment.method') : '0' }};
 
-            $("input[name='payment[method]']").change(function () {
-                var paymentMethod = $(this).val();
+                paymentMethod = setPaymentMethod(paymentMethod);
+                setDocumentInput();
 
-                if (paymentMethod != 5) {
-                    submitAjaxRequest(paymentMethod);
-                }
-            })
-        });
+                requestPaymentInstallmentOptions(paymentMethod);
 
-        function submitAjaxRequest(paymentMethod) {
-            $.ajax({
-                url: 'pagamento/getInstallments',
-                method: 'POST',
-                data: 'paymentMethod=' + paymentMethod + "&address_id={{ $deliveryAddress->id }}",
-                dataType: 'json',
-                success: function (dataReturn) {
-                    var html = "<option value='' selected>Selecione o parcelamento</option>";
+                $("input[name='payment[method]']").change(function () {
+                    var paymentMethod = $(this).val();
 
-                    $.each(dataReturn, function (index, value) {
-                        html += "<option value='" + index + "'>" + value + "</option>";
-                    });
-
-                    $("#paymentInstallments").html(html);
-                }
+                    if (isNotPaidWithCreditCard(paymentMethod)) {
+                        requestPaymentInstallmentOptions(paymentMethod);
+                    }
+                })
             });
-        }
-    </script>
+
+            function requestPaymentInstallmentOptions(paymentMethod) {
+                $.ajax({
+                    url: 'pagamento/getInstallments',
+                    method: 'POST',
+                    data: 'paymentMethod=' + paymentMethod + "&address_id={{ $deliveryAddress->id }}",
+                    dataType: 'json',
+                    success: function (dataReturn) {
+                        var html = "<option value='' selected>Selecione o parcelamento</option>";
+
+                        $.each(dataReturn, function (index, value) {
+                            html += "<option value='" + index + "'" + ((paymentInstallment != 0 && paymentInstallment != null) ? "selected='selected'" : "") + ">" + value + "</option>";
+                        });
+
+                        $("#paymentInstallments").html(html);
+
+                        paymentInstallment = 0;
+                    }
+                });
+            }
+
+            function setPaymentMethod(paymentMethod) {
+                if (!! paymentMethod) {
+                    $("input[name='payment[method]'][value='" + paymentMethod + "']").prop('checked', true).val();
+                } else {
+                    paymentMethod = $("input[name='payment[method]']:first").prop('checked', true).val();
+                }
+
+                return paymentMethod;
+            }
+
+            function isNotPaidWithCreditCard(paymentMethod) {
+                return (paymentMethod != 5 || paymentMethod != 6);
+            }
+
+            function setDocumentInput() {
+                var cpf_cnpj = ('{{ !empty(old('document')) ? old('document') : '0' }}');
+
+                if (cpf_cnpj != '0') {
+                    $("#txtDocument").val(cpf_cnpj);
+                }
+            }
+
+            function submitAjaxRequest(paymentMethod) {
+                $.ajax({
+                    url: 'pagamento/getInstallments',
+                    method: 'POST',
+                    data: 'paymentMethod=' + paymentMethod + "&address_id={{ $deliveryAddress->id }}",
+                    dataType: 'json',
+                    success: function (dataReturn) {
+                        var html = "<option value='' selected>Selecione o parcelamento</option>";
+
+                        $.each(dataReturn, function (index, value) {
+                            html += "<option value='" + index + "'>" + value + "</option>";
+                        });
+
+                        $("#paymentInstallments").html(html);
+                    }
+                });
+            }
+        </script>
 @endsection

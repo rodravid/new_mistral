@@ -3700,6 +3700,8 @@ input#control-nav {
     background: #8a25d8; }
     .template12 .bt-default-full .arrow-link {
       color: #8a25d8; }
+  .template12 .txt-contact {
+    color: #8a25d8; }
 
 .header-internal.template12-bg {
   background: #8a25d8; }
@@ -3721,7 +3723,7 @@ input#control-nav {
     color: #11b6f0; }
   @media only screen and (max-width: 767px) {
     .header-internal.template12-bg .input-bt-search {
-      background-position: -209px -122px; }
+      background-position: -209px -347px; }
     .header-internal.template12-bg .input-search {
       color: #8a25d8; } }
   .header-internal.template12-bg .suggestions-link:hover {
@@ -4110,6 +4112,9 @@ strong {
 @media only screen and (max-width: 970px) {
   .hide-tablet {
     display: none !important; } }
+
+.f18 {
+  font-size: 18px; }
 
 @media only screen and (max-width: 767px) {
   .hide-mobile {
@@ -6999,6 +7004,22 @@ span.title-txt-req {
     width: 100%; }
 
 /* SOBRE A VINCI  */
+/* REVENDEDORES  */
+.colum-dealers {
+  width: 50%; }
+  @media only screen and (max-width: 767px) {
+    .colum-dealers {
+      width: 40%; } }
+  .colum-dealers li {
+    margin-bottom: 20px; }
+    @media only screen and (max-width: 970px) {
+      .colum-dealers li {
+        padding-right: 15px; } }
+    @media only screen and (max-width: 767px) {
+      .colum-dealers li {
+        padding-right: 0px; } }
+
+/* REVENDEDORES  */
 .internal-subtitle-category {
   font: 40px "roboto_condensedbold";
   text-transform: uppercase;

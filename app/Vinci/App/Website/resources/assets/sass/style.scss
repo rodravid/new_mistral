@@ -23,7 +23,10 @@ strong {
 	@media #{$screen970} {
 		display:none !important;
 	} 
-} 
+}
+.f18{
+	font-size:18px;
+}
 .hide-mobile {
 	@media #{$screen767} {
 		display:none !important;
@@ -3735,6 +3738,28 @@ ul.pagination{
 
 
 		/* SOBRE A VINCI  */
+
+		/* REVENDEDORES  */
+		.colum-dealers {
+			width:50%;
+
+			@media #{$screen767} {
+				width:40%;
+			}
+
+			li {
+				margin-bottom:20px;
+				@media #{$screen970} {
+					padding-right:15px;
+				}
+
+				@media #{$screen767} {
+					padding-right:0px;
+				}
+			}
+		}
+
+		/* REVENDEDORES  */
 
 
 		.internal-subtitle-category {
