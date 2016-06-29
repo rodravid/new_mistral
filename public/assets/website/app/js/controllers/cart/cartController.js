@@ -7,9 +7,28 @@ angular.module('app')
 
         self.cart = {};
 
+        self.showLoadingGif = function() {
+            $(".loading_gif").prop('style', 'display: block;');
+        };
+
+        self.hideLoadingGif = function() {
+            $(".loading_gif").prop('style', 'display: none;');
+
+            if (self.hasItems()) {
+                $("#emptyCartMessage").prop('style', 'display: none;');
+            } else {
+                $("#emptyCartMessage").prop('style', 'text-align: center; display: block;');
+            }
+        };
+
         self.getCart = function() {
+            self.showLoadingGif();
+
             cartService.getCart().then(function(cart) {
                 self.cart = cart;
+
+                self.hideLoadingGif();
+
             });
         };
 

@@ -51,6 +51,7 @@
                                 <img src="{{ $banner->getImage('desktop')->getWebPath() }}" alt="{{ $banner->title }}">
                             </li>
                         @endif
+
                     @endforeach
 
                 </ul>
@@ -68,9 +69,10 @@
                                 <a href="{{ $showcase->link }}"><h2 class="title-category">{{ $showcase->title }}</h2></a>
                             </div>
                         </div>
-                        <div class="container-products">
 
-                        </div>
+                        <div class="container-products"></div>
+
+                        <img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif">
 
                         <button type="button" class="show-mobile loadProducts {{ $showcase->getTemplate()->getCode() }} bt-default-full" ng-click="loadProducts()">Carregar mais vinhos <span class="arrow-link">v</span></button>
                     </showcase-widget>
@@ -119,15 +121,6 @@
             }
 
             var h = $(".container-titlecat").height();
-            // alert(h);
-
-
-
-            // if (h <= 45) {
-            //     $(".titles-category-fixed").css({'height': '36px'});
-            // } else {
-            //     $(".titles-category-fixed").css({'height': '56px'});
-            // }
 
             function toggleTitleCategory(action) {
 

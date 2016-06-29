@@ -23,7 +23,9 @@
 
         <div class="row">
 
-            <h2 class="ng-hide" style="text-align: center;" ng-show="!ctrl.hasItems()">Não há produtos em seu carrinho.</h2>
+            <h2 id="emptyCartMessage" style="text-align: center; display: none;">Não há produtos em seu carrinho.</h2>
+
+            <img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif">
 
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
