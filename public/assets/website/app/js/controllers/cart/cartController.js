@@ -2,17 +2,26 @@ angular.module('app')
     .controller('CartController', ['$rootScope', '$cacheFactory', 'CartService', function($rootScope, $cacheFactory, cartService) {
 
         var self = this;
+        var $loadingContainer = $('#loading-container');
+        var $loadingImg = $('<img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif">');
+
+        function showLoading() {
+            $loadingContainer.html($loadingImg);
+        }
+        function hideLoading() {
+            $loadingContainer.html('');
+        }
 
         $rootScope.postalCode = '';
 
         self.cart = {};
 
         self.showLoadingGif = function() {
-            $(".loading_gif").prop('style', 'display: block;');
+           showLoading();
         };
 
         self.hideLoadingGif = function() {
-            $(".loading_gif").prop('style', 'display: none;');
+            hideLoading();
 
             if (self.hasItems()) {
                 $("#emptyCartMessage").prop('style', 'display: none;');
