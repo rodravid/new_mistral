@@ -53,7 +53,6 @@
                                    data-target-city="#selectCity"
                                    data-target-number="#txtNumber"
                                    data-target-complement="#txtComplement">
-                            <input type="text" class="input-register half" cep>
 
                             <div class="search-cep">
                                 <p>Não sei o meu CEP.</p>
