@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Criteria;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Carrier\CarrierInterface;
 use Vinci\Domain\Carrier\CarrierMetric;
+use Vinci\Domain\Deadline\Deadline;
+use Vinci\Domain\Deadline\DeadlineRepository;
 use Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionLocator;
 use Vinci\Domain\Shipping\Calculator\ShippingCalculatorFactory;
 use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator as CarrierLocator;
@@ -25,16 +27,20 @@ class ShippingService
 
     protected $cartService;
 
+    protected $deadlineRepository;
+
     public function __construct(
         CarrierLocator $carrierLocator,
         ShippingPromotionLocator $shippingPromotionLocator,
         ShippingCalculatorFactory $calculatorFactory,
-        ShoppingCartService $cartService
+        ShoppingCartService $cartService,
+        DeadlineRepository $deadlineRepository
     ) {
         $this->carrierLocator = $carrierLocator;
         $this->shippingPromotionLocator = $shippingPromotionLocator;
         $this->calculatorFactory = $calculatorFactory;
         $this->cartService = $cartService;
+        $this->deadlineRepository = $deadlineRepository;
     }
 
     public function getShippingOptionsFor(PostalCode $postalCode, ShippableInterface $shippable)
@@ -83,7 +89,9 @@ class ShippingService
 
         $price = $calculator->calculatePrice($shippable, $metric);
 
-        $deadline = $calculator->calculateDeadline($shippable, $metric);
+        $deadline = $this->getDeadline($shippable, $metric, $calculator);
+
+        
 
         return new ShippingOption($price, $deadline, $carrier);
     }
@@ -96,6 +104,17 @@ class ShippingService
     protected function chooseShippingMetric(CarrierInterface $carrier)
     {
         return $carrier->getMetrics()->first();
+    }
+
+    protected function getDeadline($shippable, $metric, $calculator)
+    {
+        $deadline = $calculator->calculateDeadline($shippable, $metric);
+
+        $deadlineEntity = $this->deadlineRepository->getLast();
+
+        $deadline += $deadlineEntity->getDays();
+
+        return $deadline;
     }
 
 }
