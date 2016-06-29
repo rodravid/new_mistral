@@ -90,7 +90,6 @@
 
             <p class="title-internal-blue mbottom30">Forma de pagamento</p>
 
-
             <div id="paymentTabs">
 
                 <ul class="payment-methods">
@@ -250,10 +249,20 @@
         @parent
 
         <script>
-            var paymentInstallment = {{ !empty(old('payment.installments')) ? old('payment.installments') : '0' }};
+            var paymentInstallment = '{{ !empty(old('payment.installments')) ? old('payment.installments') : '0' }}';
 
             $(document).ready(function () {
-                var paymentMethod = {{ !empty(old('payment.method')) ? old('payment.method') : '0' }};
+
+                @if(Session::has('scroll'))
+
+                        $('html, body').animate({
+                            scrollTop: $("#paymentTabs").offset().top - 70
+                        }, 800);
+
+                @endif
+
+
+                var paymentMethod = '{{ !empty(old('payment.method')) ? old('payment.method') : '0' }}';
 
                 paymentMethod = setPaymentMethod(paymentMethod);
                 setDocumentInput();
