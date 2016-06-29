@@ -39,9 +39,9 @@
 				</li>
 
 				<li>
-					<strong class="txt-contact">BRASÍLIA E GOIÁS </strong>
-					<p> MARLY MAIA </p>
-					<strong>(61) 3248-7311 / (61) 9304-0653 </strong>
+					<strong class="txt-contact">INTERIOR / SP  </strong>
+					<p> FLAVIO ROBERTO   </p>
+					<strong>(19) 99603-6423 / (19) 7806-9292 </strong>
 				</li>
 
 				<li>
@@ -49,6 +49,20 @@
 					<p>PEDRO CUNHA    </p>
 					<strong>(18) 98133-5552</strong>
 				</li>
+
+				<li>
+					<strong class="txt-contact">VALE DO PARAÍBA E LITORAL NORTE / SP </strong>
+					<p>GENESIO FILHO   </p>
+					<strong>(12) 98230-6747</strong>
+				</li>
+
+				<li>
+					<strong class="txt-contact">BRASÍLIA E GOIÁS </strong>
+					<p> MARLY MAIA </p>
+					<strong>(61) 3248-7311 / (61) 9304-0653 </strong>
+				</li>
+
+
 
 				<li>
 					<strong class="txt-contact">CURITIBA / PR   </strong>
@@ -63,27 +77,9 @@
 					<strong> (85) 3267-8038 / (85) 8845-1823</strong>
 				</li>
 
-				<li>
-					<strong class="txt-contact">INTERIOR / RJ  </strong>
-					<p>  JULIO CESAR 
-					</p>
-					<strong>(21) 98660-1909 / (21) 99843-9956 </strong>
-				</li>
-
-				<li>
-					<strong class="txt-contact">INTERIOR / SP  </strong>
-					<p> FLAVIO ROBERTO   </p>
-					<strong>(19) 99603-6423 / (19) 7806-9292 </strong>
-				</li>
-
-
-
-
-
 			</ul>
 
 			<ul class="colum-dealers float-right">
-
 
 				<li>
 					<strong class="txt-contact">MANAUS / AM </strong>
@@ -91,11 +87,6 @@
 					<strong>(92) 98238-8492</strong>
 				</li>
 
-				<li>
-					<strong class="txt-contact">RECIFE / PE </strong>
-					<p>TIAGO EMERY  </p>
-					<strong> (81) 8889-3609</strong>
-				</li>
 
 				<li>
 					<strong class="txt-contact"> RIO DE JANEIRO / RJ</strong>
@@ -104,17 +95,28 @@
 				</li>
 
 				<li>
+					<strong class="txt-contact">INTERIOR / RJ  </strong>
+					<p>  JULIO CESAR 
+					</p>
+					<strong>(21) 98660-1909 / (21) 99843-9956 </strong>
+				</li>
+
+				<li>
+					<strong class="txt-contact">RECIFE / PE </strong>
+					<p>TIAGO EMERY  </p>
+					<strong> (81) 8889-3609</strong>
+				</li>
+
+
+
+				<li>
 					<strong class="txt-contact"> SALVADOR / BA</strong>
 					<p> ALEXANDRE BRAULT </p>
 					<strong> (71) 99169-8809/ (71) 99224-9880</strong>
 				</li>
 
 
-				<li>
-					<strong class="txt-contact">VALE DO PARAÍBA E LITORAL NORTE / SP </strong>
-					<p>GENESIO FILHO   </p>
-					<strong>(12) 98230-6747</strong>
-				</li>
+
 
 				<li>
 					<strong class="txt-contact"> VITÓRIA / ES</strong>
