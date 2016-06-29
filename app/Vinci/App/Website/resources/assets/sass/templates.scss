@@ -4678,6 +4678,11 @@ button.bt-default-full.bt-middle {
 		}
 
 
+		.txt-contact {
+			color: $lightpurple;
+		}
+
+
 
 	}
 
@@ -4722,7 +4727,7 @@ button.bt-default-full.bt-middle {
 		
 		@media #{$screen767} {
 			.input-bt-search {
-				background-position: -209px -122px;
+				background-position: -209px -347px;
 
 			}
 			.input-search {
