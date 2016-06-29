@@ -218,10 +218,10 @@
                                 @endif
                             </div>
 
-                            <a class="bt-default-full-template bt-big template-button" cart-add-button
+                            <button type="button" class="bt-default-full-template bt-big template-button" style="cursor:pointer;" cart-add-button
                                variant-id="{{ $product->getMasterVariant()->getId() }}"
-                               quantity-resolver="ctrl.getQuantityForCart()" href="#">Comprar <span
-                                        class="arrow-link">></span></a>
+                               quantity-resolver="ctrl.getQuantityForCart()">Comprar <span
+                                        class="arrow-link">></span></button>
 
                             <div class="content-term-delivery show-desktop">
                                 <a href="javascript:void(0);">

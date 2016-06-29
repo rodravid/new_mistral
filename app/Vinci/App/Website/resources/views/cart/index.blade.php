@@ -25,7 +25,7 @@
 
             <h2 id="emptyCartMessage" style="text-align: center; display: none;">Não há produtos em seu carrinho.</h2>
 
-            <img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif">
+            <div id="loading-container"><img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif"></div>
 
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
@@ -52,8 +52,8 @@
                         <div class="col-cart1">
                             <div class="col-product-cart">
                                 <div class="thumb-wine">
-                                    <a href="javascript:void(0);">
-                                        <img class="wine-bottle" src="{{ asset_web('images/no_photo.png') }}" alt="Vinho">
+                                    <a href="@{{ item.web_path }}">
+                                        <img class="wine-bottle" src="@{{ item.image_url }}" alt="Vinho">
                                     </a>
                                 </div>
                                 <div class="colum-description-cart">

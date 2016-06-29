@@ -19,7 +19,7 @@ class OrderStatus extends Enum
         self::STATUS_PENDING => 'Pendente',
         self::STATUS_PROCESSING => 'Processando',
         self::STATUS_COMPLETED => 'Completo',
-        self::STATUS_CANCELLED => 'Aprovado',
+        self::STATUS_CANCELLED => 'Cancelado',
         self::STATUS_REFUNDED => 'Reembolsado',
         self::STATUS_UNKNOWN => 'Desconhecido'
     ];

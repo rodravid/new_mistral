@@ -22,20 +22,6 @@
                             <span class="bt-close-suggestions sprite-icon"></span>
 
                             <div id="suggestion-result"></div>
-                            {{--<ul class="suggestions-list">--}}
-                                {{--<li class="suggestions-item">--}}
-                                    {{--<a href="" class="suggestions-link">--}}
-                                        {{--Anjou <span>Cabernet</span> 2009--}}
-                                        {{--<p>Domain Chupin / Argentina</p>--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
-                                {{--<li class="suggestions-item">--}}
-                                    {{--<a href="" class="suggestions-link">--}}
-                                        {{--<span>Cabernet</span> Arquata rosso dellumbria 2004--}}
-                                        {{--<p>Adanti / Austrália</p>--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
                         </div>
                     </div>
                     <input class="input-bt-search sprite-icon" type="submit" value="">
@@ -100,7 +86,7 @@
                         <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no carrinho de compras</p>
                         <ul class="lista-add" id="cartItems">
                             <li ng-repeat="item in cart.items | limitTo:3 ">
-                                <a href="/produto/vallontano-espumante-brut-vallontano">
+                                <a href="@{{ item.web_path }}">
                                     <div class="product-add">
                                         <img src="@{{ item.image_url }}"
                                              width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
