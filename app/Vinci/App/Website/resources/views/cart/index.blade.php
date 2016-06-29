@@ -52,8 +52,8 @@
                         <div class="col-cart1">
                             <div class="col-product-cart">
                                 <div class="thumb-wine">
-                                    <a href="javascript:void(0);">
-                                        <img class="wine-bottle" src="{{ asset_web('images/no_photo.png') }}" alt="Vinho">
+                                    <a href="@{{ item.web_path }}">
+                                        <img class="wine-bottle" src="@{{ item.image_url }}" alt="Vinho">
                                     </a>
                                 </div>
                                 <div class="colum-description-cart">
