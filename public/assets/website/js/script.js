@@ -125,27 +125,6 @@ jQuery(document).ready(function ($) {
         $(".ver-mais-det-vinhos").show();
     });
 
-
-    // $('.details-wine').each(function () {
-    //   if ($(this).children('li').length > 9) {
-    //     $(this).find("li:nth-child(1n+11)").css("display", "none");
-    //     $(this).find(".see-more-filter").show();
-    //   }
-    //   else {
-    //     $(this).find(".see-more-filter").hide();
-    //   }
-    // });
-
-    //     $(".see-more-info").click(function (event) {
-    //   if ($(this).hasClass('see-less-info')) {
-    //     $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "none");
-    //     $(this).text('Veja mais').addClass('see-more-info').removeClass('see-less-info');
-    //   } else {
-    //     $(this).siblings(".details-wine li:nth-child(1n+11)").css("display", "inline-block");
-    //     $(this).text('Veja menos').addClass('see-less-info').removeClass('see-more-info');
-    //   }
-    // });
-
     $(".see-more-info").click(function (event) {
         if ($(this).hasClass('see-less-info')) {
             $(this).text('Veja mais').addClass('see-more-info').removeClass('see-less-info');
@@ -209,7 +188,7 @@ jQuery(document).ready(function ($) {
     $("[date]").inputmask("99/99/9999");
     $("[cpf]").inputmask("999.999.999-99");
     $("[cnpj]").inputmask("99.999.999/9999-99");
-    $("[phone-mask]").inputmask("(99) 9999-9999[9]");  //static mask
+    $("[phone-mask]").inputmask("(99) 9999-9999[9]");
     $("[cep]").inputmask("99999-999");
     $("[credit_card]").inputmask("9999-9999-9999-9999");
     $("[credit_card_security_cod]").inputmask("999[9]");

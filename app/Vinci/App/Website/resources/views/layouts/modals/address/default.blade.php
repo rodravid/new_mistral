@@ -1,4 +1,4 @@
-<div class="global-modal" ng-controller="AddressModalController">
+<div class="global-modal">
     <div class="modal-larger modal-adress template1">
         <div class="content-modal">
             {!! Form::open(['route' => $address->getId() > 0 ? ['api.customers.addresses.update', $address->getId()] : 'api.customers.addresses.store', 'method' => 'POST', 'id' => 'frmNewAddress']) !!}
@@ -40,12 +40,12 @@
                         </li>
                         <li>
                             <label for="txtPostalCode" class="label-input">CEP</label>
-                            <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="cep input-register half"
+                            <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="input-register half"
                                    id="txtPostalCode"
                                    value="{{ old('addresses.' . $address->getId() . '.postal_code', ($address->getId() > 0 ? $address->getPostalCode() : null)) }}"
                                    placeholder="CEP"
                                    cep
-                                   data-mask data-postalcode
+                                   data-postalcode
                                    data-target-publicplace="#selectPublicPlace"
                                    data-target-address="#txtAddress"
                                    data-target-district="#txtDistrict"
@@ -53,11 +53,11 @@
                                    data-target-city="#selectCity"
                                    data-target-number="#txtNumber"
                                    data-target-complement="#txtComplement">
+                            <input type="text" class="input-register half" cep>
 
                             <div class="search-cep">
                                 <p>Não sei o meu CEP.</p>
-                                <a href="http://m.correios.com.br/movel/buscaCep.do" target="_blank">Faça a pesquisa
-                                    aqui ></a>
+                                <a href="http://m.correios.com.br/movel/buscaCep.do" target="_blank">Faça a pesquisa aqui ></a>
                             </div>
                         </li>
                         <li>
