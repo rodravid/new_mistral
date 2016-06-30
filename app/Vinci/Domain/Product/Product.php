@@ -794,5 +794,16 @@ class Product extends Model implements ProductInterface, Presentable
         $this->getMasterVariant()->getDimension($dimension);
         return $this;
     }
+
+    public function getShippingMetrics()
+    {
+        return $this->getMasterVariant()->getShippingMetrics();
+    }
+
+    public function setShippingMetrics(ShippingMetrics $shippingMetrics)
+    {
+        $this->getMasterVariant()->setShippingMetrics($shippingMetrics);
+        return $this;
+    }
     
 }
