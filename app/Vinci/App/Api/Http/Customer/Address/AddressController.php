@@ -35,10 +35,11 @@ class AddressController extends Controller
             ]);
 
         } catch (ValidationException $e) {
-            
+
             return Response::json([
                 'success' => false,
-                'message' => $e->getErrors()->first()
+                'message' => $e->getErrors()->first(),
+                'fields' => $e->getErrors()->getMessages()
             ]);
 
         } catch (Exception $e) {

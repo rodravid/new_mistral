@@ -25,7 +25,8 @@ class ShowcaseController extends SearchController
         ProductSearchService $searchService,
         ShowcaseRepository $showcaseRepository,
         ProductRepository $productRepository
-    ) {
+    )
+    {
         parent::__construct($em, $searchService);
 
         $this->showcaseRepository = $showcaseRepository;
@@ -46,7 +47,7 @@ class ShowcaseController extends SearchController
 
         return $this->view('showcase.index', compact('showcase', 'result'));
     }
-
+    
     protected function getShowcase($slug)
     {
         $showcase = $this->showcaseRepository->getOneBySlug($slug);
@@ -62,7 +63,7 @@ class ShowcaseController extends SearchController
         $page = $request->get('page', 1);
         $cacheKey = $this->getCacheKey([$showcase, $limit, $page]);
 
-        return Cache::remember($cacheKey, 1, function() use ($showcase, $limit, $page) {
+        return Cache::remember($cacheKey, 1, function () use ($showcase, $limit, $page) {
 
             $products = $this->productRepository->getProductsByShowcase($showcase, $limit, $page);
 
