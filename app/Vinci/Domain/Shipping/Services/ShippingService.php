@@ -27,20 +27,16 @@ class ShippingService
 
     protected $cartService;
 
-    protected $deadlineRepository;
-
     public function __construct(
         CarrierLocator $carrierLocator,
         ShippingPromotionLocator $shippingPromotionLocator,
         ShippingCalculatorFactory $calculatorFactory,
-        ShoppingCartService $cartService,
-        DeadlineRepository $deadlineRepository
+        ShoppingCartService $cartService
     ) {
         $this->carrierLocator = $carrierLocator;
         $this->shippingPromotionLocator = $shippingPromotionLocator;
         $this->calculatorFactory = $calculatorFactory;
         $this->cartService = $cartService;
-        $this->deadlineRepository = $deadlineRepository;
     }
 
     public function getShippingOptionsFor(PostalCode $postalCode, ShippableInterface $shippable)
@@ -89,9 +85,7 @@ class ShippingService
 
         $price = $calculator->calculatePrice($shippable, $metric);
 
-        $deadline = $this->getDeadline($shippable, $metric, $calculator);
-
-        
+        $deadline = $calculator->calculateDeadline($shippable, $metric);
 
         return new ShippingOption($price, $deadline, $carrier);
     }
@@ -104,17 +98,6 @@ class ShippingService
     protected function chooseShippingMetric(CarrierInterface $carrier)
     {
         return $carrier->getMetrics()->first();
-    }
-
-    protected function getDeadline($shippable, $metric, $calculator)
-    {
-        $deadline = $calculator->calculateDeadline($shippable, $metric);
-
-        $deadlineEntity = $this->deadlineRepository->getLast();
-
-        $deadline += $deadlineEntity->getDays();
-
-        return $deadline;
     }
 
 }

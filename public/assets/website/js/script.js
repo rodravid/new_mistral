@@ -390,6 +390,11 @@ jQuery(document).ready(function ($) {
         startCollapsed: 'accordion'
     });
 
+      $('.bt-close-suggestions').click( function () {
+             $('.input-search').val(""); 
+             $(".results-suggestions").hide();
+       });
+
 
 });
 

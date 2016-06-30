@@ -110,9 +110,14 @@ class ProductVariant extends Model implements ProductVariantInterface
     protected $prices;
 
     /**
-     * @ORM\Embedded(class="Vinci\Domain\Product\Dimension", columnPrefix=false)
+     * @ORM\Embedded(class="Vinci\Domain\Product\Dimension", columnPrefix = false)
      */
     protected $dimension;
+
+    /**
+     * @ORM\Embedded(class="Vinci\Domain\Product\ShippingMetrics", columnPrefix = false)
+     */
+    protected $shippingMetrics;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -130,6 +135,8 @@ class ProductVariant extends Model implements ProductVariantInterface
         $this->options = new ArrayCollection;
         $this->images = new ArrayCollection;
         $this->prices = new ArrayCollection;
+        $this->dimension = new Dimension;
+        $this->shippingMetrics = new ShippingMetrics;
     }
 
     public function getId()
@@ -498,6 +505,17 @@ class ProductVariant extends Model implements ProductVariantInterface
     public function setDimension(Dimension $dimension)
     {
         $this->dimension = $dimension;
+        return $this;
+    }
+
+    public function getShippingMetrics()
+    {
+        return $this->shippingMetrics;
+    }
+
+    public function setShippingMetrics(ShippingMetrics $shippingMetrics)
+    {
+        $this->shippingMetrics = $shippingMetrics;
         return $this;
     }
 

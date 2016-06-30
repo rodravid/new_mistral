@@ -254,7 +254,7 @@ class ShoppingCart extends Model implements ShoppingCartInterface
     {
         return ! empty($this->getShipping());
     }
-
+    
     public function hasOnlyProductsOfType($type)
     {
         $return = true;
@@ -271,6 +271,24 @@ class ShoppingCart extends Model implements ShoppingCartInterface
     public function clear()
     {
         $this->items->clear();
+    }
+
+    public function getDeadline()
+    {
+        $maxDeadline = 0;
+
+        foreach ($this->getItems() as $item) {
+
+            $variant = $item->getProductVariant();
+            $deadline = $variant->getShippingMetrics()->getDeadline();
+
+            if ($deadline > $maxDeadline) {
+                $maxDeadline = $deadline;
+            }
+
+        }
+
+        return $maxDeadline;
     }
 
 }
