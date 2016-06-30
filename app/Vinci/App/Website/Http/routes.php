@@ -21,6 +21,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->group(['prefix' => 'pedidos', 'as' => 'orders.'], function() use ($route) {
                 $route->get('/', 'Account\Order\OrderController@index')->name('index');
                 $route->get('/{order}', 'Account\Order\OrderController@show')->name('show');
+                $route->get('/{order}/repeat', 'Account\Order\OrderController@repeat')->name('repeat');
             });
 
             /**
