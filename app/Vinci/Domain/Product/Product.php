@@ -19,6 +19,7 @@ use Vinci\Domain\Country\Country;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Pricing\Calculator\PriceCalculator;
 use Vinci\Domain\Producer\Producer;
+use Vinci\Domain\Product\ProductType as ProductArchType;
 use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\Region\Region;
 use Vinci\Domain\Template\Template;
@@ -549,7 +550,7 @@ class Product extends Model implements ProductInterface, Presentable
         return $this->archType;
     }
 
-    public function setArchType(ProductType $archType)
+    public function setArchType(ProductArchType $archType)
     {
         $this->archType = $archType;
         return $this;
