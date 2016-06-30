@@ -62,7 +62,12 @@
                         <li>
                             <div class="select-standard half form-control-white">
                                 <select name="addresses[{{ $address->getId() }}][public_place]" id="selectPublicPlace" data-publicplace>
-                                    <option value="1">Rua</option>
+                                    <option value="">Selecione o tipo de logradouro</option>
+                                    @foreach ($publicPlaces as $publicPlace)
+                                        <option value="{{ $publicPlace->getId() }}" @if($publicPlace->getId() == old('addresses.' . $address->getId() . '.public_place', ($address->getId() > 0 ? $address->getPublicPlace()->getId() : null))) selected @endif>
+                                            {{ $publicPlace->getTitle() }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </li>
@@ -173,7 +178,7 @@
 
                         } else {
 
-                            $('.error-message').text(response.message);
+                            $('.error-message').html('<ul class="error-message">' + response.message + '</ul>');
 
                         }
 

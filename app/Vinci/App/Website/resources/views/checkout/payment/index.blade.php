@@ -262,7 +262,7 @@
                 @endif
 
 
-                var paymentMethod = '{{ !empty(old('payment.method')) ? old('payment.method') : '0' }}';
+                var paymentMethod = parseInt('{{ !empty(old('payment.method')) ? old('payment.method') : 0 }}');
 
                 paymentMethod = setPaymentMethod(paymentMethod);
                 setDocumentInput();
