@@ -2,6 +2,8 @@
 
 namespace Vinci\Domain\ShoppingCart\Events\Subscribers;
 
+use Vinci\Domain\ShoppingCart\Events\ItemWasRemoved;
+
 class ShoppingCartEventSubscriber
 {
 
@@ -20,9 +22,11 @@ class ShoppingCartEventSubscriber
         //
     }
 
-    public function onItemIsRemoved($event)
+    public function onItemIsRemoved(ItemWasRemoved $event)
     {
-        //
+        $cart = $event->item->getShoppingCart();
+
+
     }
 
     public function subscribe($events)
