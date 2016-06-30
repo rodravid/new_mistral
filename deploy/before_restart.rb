@@ -6,6 +6,7 @@ node[:deploy].each do |app_name, deploy|
     cwd "#{current_path}"
     code <<-EOH
     ln -s #{current_path}/storage/app/public/ #{current_path}/public/storage
+    php artisan queue:work --queue=emails --daemon --tries=3
     sudo npm install
     gulp --production 
     EOH
