@@ -101,7 +101,7 @@
 
         <div class="wrap-content-bt mbottom10 no-print">
             <div class="content-bt-middle ">
-                <a class="bt-default-full template11 bt-middle" href="#">Repetir pedido <span class="arrow-link">></span></a>
+                <a class="bt-default-full template11 bt-middle" href="{{ route('account.orders.repeat', $order->number) }}">Repetir pedido <span class="arrow-link">></span></a>
             </div>
         </div>
 

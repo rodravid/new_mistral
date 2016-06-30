@@ -1,6 +1,7 @@
 @extends('website::layouts.master')
 
 @section('content')
+
     <div class="header-internal template1-bg">
         @include('website::layouts.menu')
         <div class="row">
@@ -26,14 +27,23 @@
             <div class="container-total-products">
                 <span class="title-internal-15">Para criar a sua conta basta preencher os dados abaixo</span>
                 <p>* Campos obrigatórios</p>
-                @if($errors->has())
-                    <p>{{ $errors->first() }}</p>
-                @endif
             </div>
 
         </header>
 
         <article class="wrap-content-register">
+
+            @if($errors->has())
+                <ul class="error-message">
+                    @if($errors->count() > 10)
+                        <li>{{ $errors->first() }}</li>
+                    @else
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    @endif
+                </ul>
+            @endif
 
             {!! Form::open(['route' => 'register.store', 'method' => 'post']) !!}
 
@@ -159,7 +169,7 @@
                             <li>
                                 <label for="cep" class="label-input">CEP *</label>
 
-                                <input type="text" name="addresses[0][postal_code]" class="input-register half" placeholder="CEP *"
+                                <input type="text" name="addresses[0][postal_code]" class="input-register half {{ $errors->has('addresses.0.postal_code') ? 'error-field' : '' }}" placeholder="CEP *"
                                        value="{{ old('addresses.0.postal_code') }}"
                                        cep
                                        data-postalcode
@@ -203,7 +213,7 @@
                                 {!! Form::text('addresses[0][district]', null, ['id' => 'txtDistrict', 'placeholder' => 'Bairro *', 'class' => 'input-register full ' . ($errors->has('addresses.0.district') ? 'error-field' : '')]) !!}
                             </li>
                             <li>
-                                <div class="select-standard half form-control-white">
+                                <div class="select-standard half form-control-white {{ $errors->has('addresses.0.state') ? 'error-field' : '' }}">
                                     <select name="addresses[0][state]" id="selectState" class="form-control select2" style="width: 100%;" data-state data-target="#selectCity" data-value="{{ old('addresses.0.state') }}">
                                         <option value="">Estado</option>
                                         @foreach($states as $state)
@@ -216,7 +226,7 @@
                             </li>
 
                             <li>
-                                <div class="select-standard full form-control-white">
+                                <div class="select-standard full form-control-white {{ $errors->has('addresses.0.city') ? 'error-field' : '' }}">
                                     <select name="addresses[0][city]" id="selectCity" class="form-control select2" style="width: 100%;" data-city data-value="{{ old('addresses.0.city') }}">
                                         <option value="">Cidade</option>
                                     </select>
