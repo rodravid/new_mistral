@@ -35,7 +35,13 @@
 
             @if($errors->has())
                 <ul class="error-message">
-                    <li>{{ $errors->first() }}</li>
+                    @if($errors->count() > 10)
+                        <li>{{ $errors->first() }}</li>
+                    @else
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    @endif
                 </ul>
             @endif
 
