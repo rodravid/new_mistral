@@ -255,4 +255,21 @@ class ShoppingCart extends Model implements ShoppingCartInterface
         return ! empty($this->getShipping());
     }
 
+    public function getDeadline()
+    {
+        $maxDeadline = 0;
+
+        foreach ($this->getItems() as $item) {
+
+            $product = $item->getProduct();
+            $deadline = $product->getShippingMetrics()->getDeadline();
+
+            if ($deadline > $maxDeadline) {
+                $maxDeadline = $deadline;
+            }
+
+        }
+
+        return $maxDeadline;
+    }
 }

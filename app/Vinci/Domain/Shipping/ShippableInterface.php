@@ -7,4 +7,6 @@ interface ShippableInterface
 
     public function getShippingWeight();
 
+    public function getDeadline();
+
 }

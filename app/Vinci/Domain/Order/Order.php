@@ -306,6 +306,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return (double) $totalWeight;
     }
 
+    public function getDeadline()
+    {
+        return $this->getShipment()->getDeadline();
+    }
+
     public function getPayment()
     {
         return $this->payments->first();

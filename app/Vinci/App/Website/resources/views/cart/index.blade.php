@@ -112,7 +112,7 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Digite o CEP</span>
                                 <div class="container-info-compra">
-                                    <input type="text" class="cep" ng-model="$root.postalCode" maxlength="8" id="txtPostalCode">
+                                    <input type="text" class="cep" ng-model="$root.postalCode" maxlength="9" id="txtPostalCode" ui-br-cep-mask>
                                     <button type="button" ng-click="ctrl.getShipping()" class="btn-submit">OK ></button>
                                 </div>
                             </article>
