@@ -4,7 +4,7 @@
 
     @include('website::layouts.emails.order.default.layouts.partials.salutation')
 
-    Informamos que seu pedido nº. <span style="font-size: 13px; color: #14a68f !important;"><b>{{ $order->number }}</b></span> realizado no dia {{ $order->creation_date }} no valor de {{ $order->total }} foi confirmado, separado e emitido a Nota Fiscal com sucesso.<br /><br />
+    Informamos que seu pedido nº. <span style="font-size: 13px; color: #11b6f0 !important;"><b>{{ $order->number }}</b></span> realizado no dia {{ $order->creation_date }} no valor de {{ $order->total }} foi confirmado, separado e emitido a Nota Fiscal com sucesso.<br /><br />
 
     Entregue na transportadora, com o prazo de entrega de até {{ $order->shipment->deadline }}.<br /><br />
 
