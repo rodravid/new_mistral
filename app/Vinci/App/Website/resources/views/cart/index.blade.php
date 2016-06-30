@@ -61,7 +61,7 @@
                                         @{{ item.name }}
                                         <span ng-show="item.producer">@{{ item.producer }}</span>
                                     </h3>
-                                    <a class="link-cart gift" href="javascript:void(0);">
+                                    <a class="link-cart gift" href="javascript:void(0);" ng-hide="item.is_gift_package">
                                         Embalagem para presente >
                                     </a>
                                 </div>

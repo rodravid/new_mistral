@@ -255,4 +255,22 @@ class ShoppingCart extends Model implements ShoppingCartInterface
         return ! empty($this->getShipping());
     }
 
+    public function hasOnlyProductsOfType($type)
+    {
+        $return = true;
+
+        foreach ($this->getItems() as $item) {
+            if ($item->getProduct()->getProductType()->getId() != $type) {
+                $return = false;
+            }
+        }
+
+        return $return;
+    }
+
+    public function clear()
+    {
+        $this->items->clear();
+    }
+
 }

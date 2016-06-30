@@ -35,5 +35,7 @@ class WebsiteServiceProvider extends ServiceProvider
         $this->app['view']->composer('website::layouts.partials.featuredweek', 'Vinci\App\Website\Http\ViewComposers\WeekHighlightsComposer');
 
         $this->app['view']->composer('website::checkout.payment.index', 'Vinci\App\Website\Http\ViewComposers\PaymentMethodsComposer');
+
+        $this->app['view']->composer('website::layouts.modals.gift-packaging.default', 'Vinci\App\Website\Http\ViewComposers\ModalGiftPackagingComposer');
     }
 }

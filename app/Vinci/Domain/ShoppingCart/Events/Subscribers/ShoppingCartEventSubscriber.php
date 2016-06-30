@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\ShoppingCart\Events\Subscribers;
 
+use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\ShoppingCart\Events\ItemWasRemoved;
 
 class ShoppingCartEventSubscriber
@@ -26,6 +27,9 @@ class ShoppingCartEventSubscriber
     {
         $cart = $event->item->getShoppingCart();
 
+        if ($cart->hasOnlyProductsOfType(ProductType::TYPE_PACKING)) {
+            $cart->clear();
+        }
 
     }
 

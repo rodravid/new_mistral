@@ -37,4 +37,6 @@ interface ProductRepository
 
     public function getProductsFromTypes(array $types);
 
+    public function getAvailableProductsFromTypes(array $types);
+
 }

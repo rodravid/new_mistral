@@ -8,79 +8,21 @@
             <p class="txt-modal-gift mbottom20">Nesta área poderá selecionar quais embalagens deseja comprar e como serão as combinações dos produtos com as embalagens adquiridas. Caso não queira nehuma das embalagens especiais estas serão enviadas com as embalagens gratuitas.</p>
 
             <div class="slider-gift">
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
+                @foreach ($giftPackages as $giftPackage)
+                    <div>
 
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
+                        <img src="{{ $giftPackage->image_url }}" alt="{{ $giftPackage->title }}">
+                        <p class="description-gift">{{ $giftPackage->title }}</p>
+                        <p class="price-gift">{{ $giftPackage->sale_price }}</p>
+
+                        <div class="content-button-gift">
+                            <button class="bt-default-full template1" type="button" cart-add-button variant-id="{{ $giftPackage->getMasterVariant()->getId() }}">
+                                Adicionar <span class="arrow-link">&gt;</span>
+                            </button>
+                        </div>
+
                     </div>
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://mistraldev.s3.amazonaws.com/products/149/img_m_149.png" alt="">
-                    <p class="description-gift">Caixa Vinci com Alça de Fita p 03 garrafas</p>
-                    <p class="price-gift">R$ 15,00</p>
-                    <div class="content-button-gift">
-                        <button  class="bt-default-full template1">Adicionar <span class="arrow-link">&gt;</span></button>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>

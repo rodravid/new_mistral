@@ -26,6 +26,7 @@ class ModalAddressComposer
 
     public function compose(View $view)
     {
+        
         $country = $this->countryRepository->find(Country::BRAZIL);
         $states = $this->stateRepository->getByCountry($country);
         $publicPlaces = $this->publicPlaceRepository->getAll();
