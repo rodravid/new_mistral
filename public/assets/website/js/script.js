@@ -242,28 +242,27 @@ jQuery(document).ready(function ($) {
 
 
     $('body').delegate(".gift",'click', function () {
-        $('body').find('.overlay, .modal-larger, .global-modal, .modal-gift').fadeIn();
+        $('body').find('.overlay, .modal-larger, .global-modal, .modal-gift').fadeIn(300, function () {
+            $('.slider-gift').slick({
+                slidesToShow: 3,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 800,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
     });
-
-    $('.slider-gift').slick({
-     slidesToShow: 3,
-     dots: true,
-      responsive: [
-    {
-      breakpoint: 800,
-      settings: {
-        slidesToShow: 2
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1
-      }
-    }
-  ]
- });
-
 
     $('.flags-list .flags').bind('click', function() {
         var $self = $(this);

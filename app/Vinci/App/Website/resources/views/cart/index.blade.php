@@ -323,7 +323,7 @@
             </section>
 
         </div>
-    @include('website::layouts.modals.gift-packaging.default')
+        @include('website::layouts.modals.gift-packaging.default')
     </div>
     
     @include('website::layouts.footer')
