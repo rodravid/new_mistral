@@ -14,7 +14,6 @@
                 <table width="600" border="0" align="center" bgcolor="#FFFFFF">
                     <tbody>
                         <tr>
-                            <!-- <td><img alt="Vinci" src="http://vinci.web11.com.br/assets/website/images/sprite-icons.png"/></td> -->
                             <td style="padding:14px 0 14px 14px; background: #11b6f0;">
                                 <img alt="Vinci" src="{{ asset_web('images/logo-vinci.png') }}"/>
                             </td>
