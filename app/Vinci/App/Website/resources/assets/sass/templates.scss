@@ -2918,32 +2918,46 @@ button.bt-default-full.bt-middle {
 
 
 		.title-slider {
-			color:$red; 
+			color:#00e667; 
+		}
+
+		.descr-slider{
+			.bt-default{
+				background:#00e667;
+				border: 2px solid #00e667;
+			}
+			.arrow-link{
+				color:#00e667;
+				background: #000;
+				border: 2px solid #00e667;
+			}
 		}
 
 
+
 		.template-button {
-			background: #fff;
-			border:2px solid $black;
+			background: #00e667;
+			border:2px solid #00e667;
 			transition: all .1s ease .05s;
-			color:$black;
+			color:#fff;
 			&:hover{
-				background: #fff;
-				color:$black;
-				border:2px solid $black;
+				background: #000;
+				color:#fff;
+				border:2px solid #000;
 				transition: all .1s ease .05s;
 				.arrow-link{
-					background: #fff;
+					background: #00e667;
 					color:$black;
 					transition: all .1s ease .05s;
-					border: 2px solid $black; 
+					border: 2px solid #000; 
 				}
 			}
 
 			.arrow-link{
-				color:$black;
+				color:#00e667;
 				transition: all .1s ease .05s;
-				border: 2px solid $black;
+				border: 2px solid #00e667;
+				background:#000;
 			}
 		}
 

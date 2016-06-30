@@ -756,6 +756,11 @@ html[xmlns] .clearfix {
   width: 100%;
   right: 9px; }
 
+.ie9 .larger760-right .drop-menu {
+  max-width: 670px;
+  width: 100%;
+  right: 9px; }
+
 .drop-menu {
   padding: 18px 20px;
   position: absolute;
@@ -780,7 +785,11 @@ html[xmlns] .clearfix {
   .menu-link {
     -moz-osx-font-smoothing: antialiased !important; }
   .nav-link {
-    font-weight: 400 !important; } }
+    font-weight: 400 !important; }
+  .larger760-right .drop-menu {
+    right: 10px; }
+  .wind .larger760-right .drop-menu {
+    right: 8px; } }
 
 .mac .menu-link {
   -webkit-font-smoothing: antialiased;
@@ -958,11 +967,14 @@ html[xmlns] .clearfix {
   top: 0;
   bottom: 0;
   left: 0;
-  display: block;
+  display: none;
   z-index: 1;
   background: rgba(0, 0, 0, 0.4);
   transition: all 500ms ease;
   transform: translate(100%, 0); }
+  @media only screen and (max-width: 970px) {
+    .control-nav-close {
+      display: block; } }
 
 #control-nav:checked ~ .control-nav-close {
   transform: translate(0, 0); }
@@ -2678,26 +2690,34 @@ input#control-nav {
 .template8 {
   /*card produto*/ }
   .template8 .title-slider {
-    color: #e02d50; }
+    color: #00e667; }
+  .template8 .descr-slider .bt-default {
+    background: #00e667;
+    border: 2px solid #00e667; }
+  .template8 .descr-slider .arrow-link {
+    color: #00e667;
+    background: #000;
+    border: 2px solid #00e667; }
   .template8 .template-button {
-    background: #fff;
-    border: 2px solid #111111;
+    background: #00e667;
+    border: 2px solid #00e667;
     transition: all .1s ease .05s;
-    color: #111111; }
+    color: #fff; }
     .template8 .template-button:hover {
-      background: #fff;
-      color: #111111;
-      border: 2px solid #111111;
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
       transition: all .1s ease .05s; }
       .template8 .template-button:hover .arrow-link {
-        background: #fff;
+        background: #00e667;
         color: #111111;
         transition: all .1s ease .05s;
-        border: 2px solid #111111; }
+        border: 2px solid #000; }
     .template8 .template-button .arrow-link {
-      color: #111111;
+      color: #00e667;
       transition: all .1s ease .05s;
-      border: 2px solid #111111; }
+      border: 2px solid #00e667;
+      background: #000; }
   .template8 .botoes-add {
     background: #111111; }
   .template8 .see-more-info,
@@ -7166,5 +7186,11 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
   opacity: 1 !important;
   filter: alpha(opacity=100) !important;
   transition: all .25s ease-in-out; }
+
+.loading-container {
+  text-align: center; }
+
+.loading_gif {
+  margin: 0 auto; }
 
 /*# sourceMappingURL=style.min.css.map */
