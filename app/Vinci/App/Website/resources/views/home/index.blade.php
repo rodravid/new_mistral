@@ -71,14 +71,14 @@
                         </div>
 
                         <div class="container-products"></div>
-
-                        <img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif">
-
+                        <div class="loading-container mbottom10">
+                            <img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif">
+                        </div>
                         <button type="button" class="show-mobile loadProducts {{ $showcase->getTemplate()->getCode() }} bt-default-full" ng-click="loadProducts()">Carregar mais vinhos <span class="arrow-link">v</span></button>
                     </showcase-widget>
                 @endforeach
 
-                <button id="btnShowcaseLoadMore" type="button" class="bt-default-full template7 show-desktop" ng-click="loadMore()">Carregar mais produtos <span class="arrow-link">v</span></button>
+                <button id="btnShowcaseLoadMore" type="button" class="bt-default-full template7 show-desktop mtop10" ng-click="loadMore()">Carregar mais produtos <span class="arrow-link">v</span></button>
             </section>
             @include('website::layouts.partials.featuredweek')
         </div>

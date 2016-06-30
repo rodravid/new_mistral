@@ -25,7 +25,7 @@
 
             <h2 id="emptyCartMessage" style="text-align: center; display: none;">Não há produtos em seu carrinho.</h2>
 
-            <div id="loading-container"><img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif"></div>
+            <div id="loading-container" class="loading-container"><img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif"></div>
 
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
