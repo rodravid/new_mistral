@@ -308,7 +308,19 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     public function getDeadline()
     {
-        return $this->getShipment()->getDeadline();
+        $maxDeadline = 0;
+
+        foreach ($this->getItems() as $item) {
+
+            $variant = $item->getProductVariant();
+            $deadline = $variant->getShippingMetrics()->getDeadline();
+
+            if ($deadline > $maxDeadline) {
+                $maxDeadline = $deadline;
+            }
+        }
+
+        return $maxDeadline;
     }
 
     public function getPayment()

@@ -261,8 +261,8 @@ class ShoppingCart extends Model implements ShoppingCartInterface
 
         foreach ($this->getItems() as $item) {
 
-            $product = $item->getProduct();
-            $deadline = $product->getShippingMetrics()->getDeadline();
+            $variant = $item->getProductVariant();
+            $deadline = $variant->getShippingMetrics()->getDeadline();
 
             if ($deadline > $maxDeadline) {
                 $maxDeadline = $deadline;
