@@ -178,6 +178,8 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
            ->andWhere('v.stock > 0')
            ->andWhere('vp.price > 0');
 
+        $this->applyDefaultConditions($qb);
+
         $qb->setParameter('type', $type->getId())
            ->setParameter('country', $country->getId());
 
@@ -191,7 +193,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
     public function applyDefaultConditions($queryBuilder)
     {
         $queryBuilder->andWhere('vp.price > 0')
-            ->andWhere('v.stock > 0');
+                     ->andWhere('v.stock > 0');
     }
 
     public function countProducts()
@@ -286,8 +288,21 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $qb = $this->createQueryBuilder('p');
 
         $qb->select('p')
-            ->join('p.productType', 'pt')
-            ->where($qb->expr()->in('pt.id', $types));
+           ->join('p.productType', 'pt')
+           ->where($qb->expr()->in('pt.id', $types));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getAvailableProductsFromTypes(array $types)
+    {
+        $qb = $this->getBaseQueryBuilder('p');
+
+        $qb->select('p')
+           ->join('p.productType', 'pt')
+           ->where($qb->expr()->in('pt.id', $types));
+
+        $this->applyDefaultConditions($qb);
 
         return $qb->getQuery()->getResult();
     }
