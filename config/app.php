@@ -163,6 +163,7 @@ return [
         Vinci\App\Website\Providers\WebsiteServiceProvider::class,
         Vinci\App\Cms\Providers\CmsServiceProvider::class,
         Vinci\App\Api\Providers\ApiServiceProvider::class,
+        Vinci\App\Integration\ERP\IntegrationServiceProvider::class,
         Vinci\App\Core\Services\Sanitizer\SanitizerServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
