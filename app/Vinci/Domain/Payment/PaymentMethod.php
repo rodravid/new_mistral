@@ -3,16 +3,23 @@
 namespace Vinci\Domain\Payment;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
+use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
+use Vinci\Domain\Payment\Presenter\PaymentMethodPresenter;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="payment_methods")
  */
-class PaymentMethod implements PaymentMethodInterface
+class PaymentMethod extends Model implements PaymentMethodInterface, Presentable
 {
 
-    use Timestampable;
+    use Timestampable, PresentableTrait;
+    
+    protected $presenter = PaymentMethodPresenter::class;
 
     /**
      * @ORM\Id
@@ -40,6 +47,11 @@ class PaymentMethod implements PaymentMethodInterface
      * @ORM\Column(name="gateway", type="string", nullable=true)
      */
     protected $gateway;
+
+    /**
+     * @ORM\Column(name="status", type="boolean")
+     */
+    protected $status = Status::ACTIVE;
 
     public function getId()
     {
@@ -88,6 +100,16 @@ class PaymentMethod implements PaymentMethodInterface
     {
         $this->gateway = $gateway;
         return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
 }

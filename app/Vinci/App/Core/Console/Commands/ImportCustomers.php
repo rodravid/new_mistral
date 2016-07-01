@@ -54,7 +54,7 @@ class ImportCustomers extends Command
     {
         $conn = $this->em->getConnection();
 
-        $stmt = $conn->prepare('select * from bkp_customers where imported=0 limit ' . $this->argument('limit'));
+        $stmt = $conn->prepare('select * from bkp_customers_vinci where imported=0 limit ' . $this->argument('limit'));
         $stmt->execute();
 
         $customers = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -68,39 +68,47 @@ class ImportCustomers extends Command
 
             $progressBar = $this->output->createProgressBar($total);
             foreach ($customers as $customer) {
+
                 $data = [];
                 $data["importId"] = $customer["id"];
-                $data["customerType"] = $customer["customer_type"];
-                $data["name"] = $this->normalizeValue($customer["name"]);
+                $data["customerType"] = $customer["tipo"];
+                $data["name"] = $this->normalizeValue($customer["nome"]);
                 $data["email"] = $this->normalizeValue($customer["email"]);
-                $data["gender"] = $this->normalizeValue($customer["gender"]);
-                $data["birthday"] = date("d/m/Y", strtotime($customer["birthday"]));
-                $data["cpf"] = $this->normalizeValue($customer["cpf"]);
-                $data["rg"] = $this->normalizeValue($customer["rg"]);
+                $data["gender"] = $this->normalizeValue($customer["sexo"]);
+                $data["birthday"] = date("d/m/Y", strtotime($customer["data_nascimento"]));
 
-                $data["issuingBody"] = $this->normalizeValue($customer["issuing_body"]);
+                $cpf = strlen($this->normalizeValue($customer["cpf"])) < 11 ? str_pad($this->normalizeValue($customer["cpf"]), 11, "0", STR_PAD_LEFT) : $this->normalizeValue($customer["cpf"]);
+                $data["cpf"] = $cpf;
+
+                $rg = strlen($this->normalizeValue($customer["rg"])) > 12 ? substr($this->normalizeValue($customer["cpf"]), 0, 12) : $this->normalizeValue($customer["cpf"]);
+                $data["rg"] = $rg;
+
+                $data["issuingBody"] = $this->normalizeValue($customer["orgao_emissor"]);
                 $data["companyName"] = "";
-                $data["companyContact"] = $this->normalizeValue($customer["company_contact"]);
+                $data["companyContact"] = $this->normalizeValue($customer["contato_empresa"]);
                 $data["cnpj"] = $this->normalizeValue($customer["cnpj"]);
-                $data["stateRegistration"] = $this->normalizeValue($customer["state_registration"]);
-                $data["phone"] = $this->normalizeValue($customer["phone"]);
-                $data["cellPhone"] = $this->normalizeValue($customer["cell_phone"]);
-                $data["commercialPhone"] = $this->normalizeValue($customer["commercial_phone"]);
+                $data["stateRegistration"] = $this->normalizeValue($customer["inscricao"]);
+                $data["phone"] = $this->normalizeValue($customer["telefone"]);
+                $data["cellPhone"] = $this->normalizeValue($customer["celular"]);
+                $data["commercialPhone"] = $this->normalizeValue($customer["comercial"]);
 
-                $data["password"] = $this->normalizeValue($customer["password"]);
-                $data["password_confirmation"] = $this->normalizeValue($customer["password"]);
+                $data["password"] = $this->normalizeValue($customer["senha"]);
+                $data["password_confirmation"] = $this->normalizeValue($customer["senha"]);
+
+                $data["crypt_key"] = $this->normalizeValue($customer["senhaCrypto"]);
 
                 $data["main_address"] = "0";
                 $data["status"] = "1";
 
-                $stmt_address = $conn->prepare('select * from bkp_customers_address where imported=0 and customer_id =' . $customer["id"]);
+                $stmt_address = $conn->prepare('select * from bkp_customers_address_vinci where customer_id =' . $customer["id"]);
                 $stmt_address->execute();
                 $addresses = $stmt_address->fetchAll(\PDO::FETCH_ASSOC);
 
                 foreach ($addresses as $key => $address) {
+
                     $postmon = $this->getDataPostmon($this->normalizeValue($address["postal_code"]));
 
-                    if(isset($postmon["cidade_info"])) {
+                    if (isset($postmon["cidade_info"])) {
                         $data["addresses"][$key]["id"] = "";
                         $data["addresses"][$key]["type"] = $address["type_id"];
                         $data["addresses"][$key]["postal_code"] = $this->normalizeValue($address["postal_code"]);
@@ -112,29 +120,27 @@ class ImportCustomers extends Command
                         $data["addresses"][$key]["district"] = $this->normalizeValue($address["district"]);
 
                         $data["addresses"][$key]["country"] = "30";
-                        $data["addresses"][$key]["state"] = $postmon["estado_info"]["codigo_ibge"];
+                        $data["addresses"][$key]["state"] = isset($postmon["estado_info"]["codigo_ibge"]) ? $postmon["estado_info"]["codigo_ibge"] : null;
                         $data["addresses"][$key]["city"] = $postmon["cidade_info"]["codigo_ibge"];
                         $data["addresses"][$key]["landmark"] = $this->normalizeValue($address["landmark"]);
                         $data["addresses"][$key]["receiver"] = $this->normalizeValue($address["receiver"]);
 
-                        $stmt_upd = $conn->prepare('update bkp_customers_address set city_id="'.$postmon["cidade_info"]["codigo_ibge"].'", imported=1 where id = ' . $address["id"]);
+                        $stmt_upd = $conn->prepare('update bkp_customers_address_vinci set city_id="' . $postmon["cidade_info"]["codigo_ibge"] . '" where id = ' . $address["id"]);
                         $stmt_upd->execute();
 
-                    }else{
-                        $stmt_upd = $conn->prepare('update bkp_customers_address set imported=2 where id = ' . $address["id"]);
-                        $stmt_upd->execute();
                     }
 
                 }
 
+                //dd($data);
 
                 try {
                     $result = $this->service->create($data);
-                    $stmt = $conn->prepare('update bkp_customers_address set imported=1 where id = ' . $customer["id"]);
+                    $stmt = $conn->prepare('update bkp_customers_vinci set imported=1 where id = ' . $customer["id"]);
                     $stmt->execute();
 
                 } catch (ValidationException $e) {
-                    $stmt = $conn->prepare('update bkp_customers set imported=2 where id = ' . $customer["id"]);
+                    $stmt = $conn->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
                     $stmt->execute();
 
                     $this->line('');
@@ -145,7 +151,7 @@ class ImportCustomers extends Command
                     $error++;
 
                 } catch (\Exception $e) {
-                    $stmt = $conn->prepare('update bkp_customers set imported=2 where id = ' . $customer["id"]);
+                    $stmt = $conn->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
                     $stmt->execute();
 
                     $this->line('');
@@ -154,6 +160,7 @@ class ImportCustomers extends Command
                     $this->line('');
 
                     $error++;
+
 
                 }
 
@@ -183,16 +190,16 @@ class ImportCustomers extends Command
     public function getDataPostmon($cep)
     {
         try {
-            $url = "http://api.postmon.com.br/v1/cep/".$cep;
+            $url = "http://api.postmon.com.br/v1/cep/" . $cep;
             $client = new Client([
                 'base_uri' => $url,
-                'timeout'  => 2.0,
+                'timeout' => 2.0,
             ]);
 
             $response = $client->get($url)->getBody()->getContents();
             return json_decode($response, true);
         } catch (\Exception $e) {
-            
+
         }
 
     }

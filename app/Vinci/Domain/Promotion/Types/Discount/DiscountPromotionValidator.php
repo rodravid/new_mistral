@@ -10,7 +10,7 @@ class DiscountPromotionValidator extends LaravelValidator
     protected $rules = [
         'title' => 'required',
         'discountType' => 'required',
-        'discountAmount' => 'required',
+        'discountAmount' => 'required|numeric',
         'startsAt' => 'required|date_format:d/m/Y H:i',
         'expirationAt' => 'date_format:d/m/Y H:i'
     ];
@@ -19,6 +19,8 @@ class DiscountPromotionValidator extends LaravelValidator
         'startsAt.required' => 'É necessário selecionar a data de inicío da publicação.',
         'startsAt.date_format' => 'Data de início da publicação inválida.',
         'expirationAt.date_format' => 'Data de expiração inválida.',
+        'discountAmount.required' => 'O valor do desconto é obrigatório.',
+        'discountAmount.numeric' => 'O valor do desconto deve ser numérico.'
     ];
 
 }

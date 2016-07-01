@@ -74,6 +74,16 @@ class Wine extends Product
         return $this->scores->matching($criteria);
     }
 
+    public function hasHighlightScore()
+    {
+        return (bool) $this->getHighlitedScore();
+    }
+
+    public function getHighlitedScore()
+    {
+        return $this->getHighlightedScores()->first();
+    }
+
     public function addScore(Score $score)
     {
         if (! $this->hasScore($score)) {

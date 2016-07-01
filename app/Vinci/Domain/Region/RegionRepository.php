@@ -11,6 +11,8 @@ interface RegionRepository
 
     public function getAll();
 
+    public function getAllValidForSelectArray();
+
     public function create(array $data);
 
 }

@@ -5,7 +5,9 @@ namespace Vinci\Domain\Customer;
 use Carbon\Carbon;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Support\MessageBag;
 use Vinci\App\Core\Services\Sanitizer\Contracts\Sanitizer;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Customer\Address\AddressService;
 use Illuminate\Contracts\Events\Dispatcher as Event;
 use Vinci\Domain\Customer\Events\CustomerWasCreated;
@@ -45,12 +47,8 @@ class CustomerService
     public function create(array $data)
     {
         $this->sanitizeData($data);
-        
-        $this->validator->with($data)->passesOrFail();
 
-        if (isset($data['addresses'])) {
-            $this->addressService->validate($data);
-        }
+        $this->validate($data);
 
         return $this->saveCustomer($data, function() {
             return new Customer;
@@ -132,8 +130,35 @@ class CustomerService
     {
         if (isset($data['addresses'])) {
             $this->addressService->hydrateCustomerAddresses($customer, $data['addresses'], $data['main_address']);
-        } else {
-            //$customer->getAddresses()->clear();
+        }
+    }
+
+    protected function validate(array $data)
+    {
+        try {
+
+            $this->validator->with($data)->passesOrFail();
+
+        } catch (ValidationException $e) {
+
+            $customerErrors = $e->getErrors()->messages();
+            $addressesErrors = [];
+
+            try {
+
+                if (isset($data['addresses'])) {
+                    $this->addressService->validate($data);
+                }
+
+            } catch (ValidationException $e) {
+                $addressesErrors = $e->getErrors()->messages();
+            }
+
+            $messages = array_merge($customerErrors, $addressesErrors);
+
+            $errors = new MessageBag($messages);
+
+            throw new ValidationException($errors);
         }
     }
 

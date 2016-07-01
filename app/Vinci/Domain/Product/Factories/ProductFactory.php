@@ -163,7 +163,7 @@ class ProductFactory implements ProductFactoryInterface
             ->setOnline($newProduct->isOnline())
             ->setImportStock($newProduct->shouldImportStock())
             ->setImportPrice($newProduct->shouldImportPrice())
-        ;
+            ->setPackSize($newProduct->getPackSize());
 
         if ($product->isType(ProductType::TYPE_WINE)) {
             $product->syncScores($newProduct->getScores());

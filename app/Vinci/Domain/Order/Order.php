@@ -4,7 +4,6 @@ namespace Vinci\Domain\Order;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
-use Ramsey\Uuid\Uuid;
 use Vinci\Domain\Channel\Contracts\Channel;
 use Vinci\Domain\Common\AggregateRoot;
 use Vinci\Domain\Common\Event\HasEvents;
@@ -13,9 +12,15 @@ use Vinci\Domain\Core\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vinci\Domain\Customer\Customer;
+use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Order\Address\Address;
 use Vinci\Domain\Order\Events\NewOrderWasCreated;
+use Vinci\Domain\Order\Events\OrderStatusWasChanged;
+use Vinci\Domain\Order\Events\OrderTrackingStatusWasChanged;
+use Vinci\Domain\Order\Events\PaymentStatusWasChanged;
+use Vinci\Domain\Order\History\OrderHistory;
 use Vinci\Domain\Order\Item\OrderItem;
+use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Payment\PaymentInterface;
 use Vinci\Domain\Shipping\ShipmentInterface;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
@@ -24,6 +29,7 @@ use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
  * @ORM\Entity
  * @ORM\Table(name="orders")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ORM\HasLifecycleCallbacks
  */
 class Order extends Model implements OrderInterface, AggregateRoot
 {
@@ -32,13 +38,13 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="uuid")
+     * @ORM\Column(type="string", length=11, options={"fixed" = true}, unique=true)
      */
     protected $number;
 
@@ -95,13 +101,23 @@ class Order extends Model implements OrderInterface, AggregateRoot
     /**
      * @ORM\Column(type="string")
      */
-    protected $status = OrderInterface::STATUS_NEW;
+    protected $status = OrderStatus::STATUS_NEW;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus")
+     */
+    protected $trackingStatus;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Vinci\Domain\Order\History\OrderHistory", mappedBy="order", cascade={"persist"})
+     */
+    protected $history;
 
     public function __construct()
     {
         $this->payments = new ArrayCollection;
         $this->items = new ArrayCollection;
-        $this->number = Uuid::uuid4();
+        $this->history = new OrderHistory($this);
 
         $this->raise(new NewOrderWasCreated($this));
     }
@@ -187,6 +203,12 @@ class Order extends Model implements OrderInterface, AggregateRoot
     public function getItems()
     {
         return $this->items;
+    }
+
+    public function setItems(ArrayCollection $items)
+    {
+        $this->items = $items;
+        return $this;
     }
 
     public function addItem(OrderItem $item)
@@ -284,6 +306,23 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return (double) $totalWeight;
     }
 
+    public function getDeadline()
+    {
+        $maxDeadline = 0;
+
+        foreach ($this->getItems() as $item) {
+
+            $variant = $item->getProductVariant();
+            $deadline = $variant->getShippingMetrics()->getDeadline();
+
+            if ($deadline > $maxDeadline) {
+                $maxDeadline = $deadline;
+            }
+        }
+
+        return $maxDeadline;
+    }
+
     public function getPayment()
     {
         return $this->payments->first();
@@ -294,7 +333,7 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return $this->shoppingCart;
     }
 
-    public function setShoppingCart(ShoppingCartInterface $cart)
+    public function setShoppingCart(ShoppingCartInterface $cart = null)
     {
         $this->shoppingCart = $cart;
         return $this;
@@ -315,4 +354,78 @@ class Order extends Model implements OrderInterface, AggregateRoot
         $this->status = $status;
         return $this;
     }
+
+    public function isOwnedBy(CustomerInterface $customer)
+    {
+        return $this->customer->getId() == $customer->getId();
+    }
+
+    /** @ORM\PrePersist */
+    public function generateOrderNumber()
+    {
+        $this->number = app(OrderNumberGenerator::class)->generate();
+    }
+
+    public function getPayments()
+    {
+        return $this->payments;
+    }
+
+    public function setPayments(ArrayCollection $payments)
+    {
+        $this->payments = $payments;
+        return $this;
+    }
+
+    public function getTrackingStatus()
+    {
+        return $this->trackingStatus;
+    }
+
+    public function setTrackingStatus(OrderTrackingStatus $trackingStatus)
+    {
+        $this->trackingStatus = $trackingStatus;
+        return $this;
+    }
+
+    public function getHistory()
+    {
+        return $this->history;
+    }
+
+    public function setHistory(OrderHistory $history)
+    {
+        $this->history = $history;
+        return $this;
+    }
+
+    public function changeStatus($status)
+    {
+        $oldStatus = $this->getStatus();
+
+        $this->setStatus($status);
+
+        $this->raise(new OrderStatusWasChanged($this, $oldStatus));
+    }
+
+    public function changePaymentStatus($status)
+    {
+        $payment = $this->getPayment();
+
+        $oldStatus = $payment->getStatus();
+
+        $payment->setStatus($status);
+
+        $this->raise(new PaymentStatusWasChanged($payment, $oldStatus));
+    }
+
+    public function changeTrackingStatus(OrderTrackingStatus $status)
+    {
+        $oldStatus = $this->getTrackingStatus();
+
+        $this->setTrackingStatus($status);
+
+        $this->raise(new OrderTrackingStatusWasChanged($this, $oldStatus));
+    }
+
 }

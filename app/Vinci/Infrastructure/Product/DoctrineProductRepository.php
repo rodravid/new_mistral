@@ -3,10 +3,12 @@
 namespace Vinci\Infrastructure\Product;
 
 use Doctrine\ORM\Query\Expr\Join;
+use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Product\Notify\ProductNotify;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\Repositories\ProductRepository;
+use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionInterface;
 use Vinci\Domain\Search\Product\ProductRepositoryInterface as ProductRepositoryIndexer;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
@@ -17,15 +19,9 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function find($id)
     {
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->getBaseQueryBuilder();
 
-        $qb->select('p', 'v', 'i', 'vp', 'c', 'a')
-            ->join('p.variants', 'v')
-            ->leftJoin('p.channels', 'c')
-            ->leftJoin('v.images', 'i')
-            ->leftJoin('v.prices', 'vp')
-            ->leftJoin('p.attributes', 'a')
-            ->where($qb->expr()->eq('p.id', $id));
+        $qb->where($qb->expr()->eq('p.id', $id));
 
         return $qb->getQuery()->getOneOrNullResult();
     }
@@ -51,7 +47,12 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function findOneByIdAndChannel($id, $channel)
     {
+        $qb = $this->getBaseQueryBuilder();
 
+        $qb->where($qb->expr()->eq('p.id', $id))
+            ->andWhere($qb->expr()->eq('c.id', $channel));
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     public function getOneByTypeAndSlug($type, $slug)
@@ -168,10 +169,31 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $this->paginateRaw($qb->getQuery(), $perPage, $currentPage, $path);
     }
 
+    public function getProductsByCountryAndType(Country $country, ProductType $type, array $except = [])
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb->where('p.productType = :type')
+           ->andWhere('p.country = :country')
+           ->andWhere('v.stock > 0')
+           ->andWhere('vp.price > 0');
+
+        $this->applyDefaultConditions($qb);
+
+        $qb->setParameter('type', $type->getId())
+           ->setParameter('country', $country->getId());
+
+        if (! empty($except)) {
+            $qb->andWhere($qb->expr()->notIn('p.id', $except));
+        }
+
+        return $this->paginateRaw($qb->getQuery(), 4);
+    }
+
     public function applyDefaultConditions($queryBuilder)
     {
         $queryBuilder->andWhere('vp.price > 0')
-            ->andWhere('v.stock > 0');
+                     ->andWhere('v.stock > 0');
     }
 
     public function countProducts()
@@ -205,5 +227,83 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $ids = array_column($result, 'id');
 
         return array_combine($ids, $ids);
+    }
+
+    public function getAllValidForSelectArray()
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb
+            ->where('v.stock > 0')
+            ->andWhere('vp.price > 0');
+
+        $qb->select('p.id as id', 'CONCAT( CONCAT(v.sku, \' - \'),  v.title) as text');
+
+        $result = $qb->getQuery()->getArrayResult();
+
+        $products = [];
+
+        foreach ($result as $p) {
+            $products[$p['id']] = $p['text'];
+        }
+
+        return $products;
+    }
+
+    public function getProductsFromCountries(array $countries)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.country', 'c')
+            ->where($qb->expr()->in('c.id', $countries));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getProductsFromRegions(array $regions)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.region', 'r')
+            ->where($qb->expr()->in('r.id', $regions));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getProductsFromProducers(array $producers)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.producer', 'pr')
+            ->where($qb->expr()->in('pr.id', $producers));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getProductsFromTypes(array $types)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+           ->join('p.productType', 'pt')
+           ->where($qb->expr()->in('pt.id', $types));
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getAvailableProductsFromTypes(array $types)
+    {
+        $qb = $this->getBaseQueryBuilder('p');
+
+        $qb->select('p')
+           ->join('p.productType', 'pt')
+           ->where($qb->expr()->in('pt.id', $types));
+
+        $this->applyDefaultConditions($qb);
+
+        return $qb->getQuery()->getResult();
     }
 }

@@ -256,4 +256,9 @@ class Module extends Model
         return $this;
     }
 
+    public function getEditRouteName()
+    {
+        return sprintf('cms.%s.edit', $this->getName());
+    }
+
 }

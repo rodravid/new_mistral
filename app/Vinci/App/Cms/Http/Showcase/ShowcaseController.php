@@ -12,6 +12,7 @@ use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\ACL\ACLService;
+use Vinci\Domain\Image\ImageRepository;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Domain\Showcase\ShowcaseService;
 use Vinci\Infrastructure\Showcase\Datatables\ShowcaseCmsDatatable;
@@ -26,14 +27,17 @@ class ShowcaseController extends Controller
 
     protected $repository;
 
-    protected $datatable = ShowcaseCmsDatatable::class;
+    private $imageRepository;
 
     protected $aclService;
+
+    protected $datatable = ShowcaseCmsDatatable::class;
 
     public function __construct(
         EntityManagerInterface $em,
         ShowcaseService $service,
         ShowcaseRepository $repository,
+        ImageRepository $imageRepository,
         ACLService $aclService
     )
     {
@@ -42,6 +46,7 @@ class ShowcaseController extends Controller
         $this->service = $service;
         $this->repository = $repository;
         $this->aclService = $aclService;
+        $this->imageRepository = $imageRepository;
     }
 
     public function index()
@@ -179,6 +184,26 @@ class ShowcaseController extends Controller
 
         }
 
+    }
+
+    public function removeImage($showcaseId, $imageId)
+    {
+        try {
+
+            $showcase = $this->repository->find($showcaseId);
+            $image = $this->imageRepository->find($imageId);
+
+            $this->service->removeImage($image, $showcase);
+
+            Flash::success("Imagem excluída com sucesso!");
+
+            return Redirect::route($this->getEditRouteName(), [$showcaseId]);
+
+        } catch (Exception $e) {
+
+            Flash::error($e->getMessage());
+            return Redirect::back();
+        }
     }
 
 }

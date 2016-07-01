@@ -2,13 +2,25 @@
 
 namespace Vinci\Domain\Order;
 
+use Auth;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
+use InvalidArgumentException;
 use Vinci\Domain\Address\PostalCode;
+use Vinci\Domain\Common\Event\FiredByAdminUser;
+use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Order\Jobs\SendOrderStatusMail;
+use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
+use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
+use Vinci\Domain\Order\Validators\OrderCreditCardValidator;
+use Vinci\Domain\Order\Validators\OrderValidator;
 use Vinci\Domain\Payment\CreditCard;
 use Vinci\Domain\Payment\Payment;
 use Vinci\Domain\Payment\PaymentMethod;
+use Vinci\Domain\Payment\Repositories\PaymentMethodsRepository;
 use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\Shipping\Shipment;
 
@@ -17,7 +29,9 @@ class OrderService
 
     protected $entityManager;
 
-    protected $validator;
+    protected $orderValidator;
+
+    protected $creditCardValidator;
 
     protected $factory;
 
@@ -25,23 +39,43 @@ class OrderService
 
     protected $eventDispatcher;
 
+    protected $paymentMethodRepository;
+
+    protected $bus;
+
+    protected $trackingStatusRepository;
+
     public function __construct(
         EntityManagerInterface $entityManager,
-        OrderValidator $validator,
+        OrderValidator $orderValidator,
+        OrderCreditCardValidator $creditCardValidator,
         OrderFactory $factory,
         ShippingService $shippingService,
-        Dispatcher $eventDispatcher
+        Dispatcher $eventDispatcher,
+        BusDispatcher $bus,
+        PaymentMethodsRepository $paymentMethodsRepository,
+        OrderTrackingStatusRepository $trackingStatusRepository
     ) {
         $this->entityManager = $entityManager;
-        $this->validator = $validator;
+        $this->orderValidator = $orderValidator;
+        $this->creditCardValidator = $creditCardValidator;
         $this->factory = $factory;
         $this->shippingService = $shippingService;
         $this->eventDispatcher = $eventDispatcher;
+        $this->bus = $bus;
+        $this->paymentMethodRepository = $paymentMethodsRepository;
+        $this->trackingStatusRepository = $trackingStatusRepository;
     }
 
     public function create(array $data)
     {
-        $this->validator->with($data)->passesOrFail();
+        $this->orderValidator->with($data)->passesOrFail();
+
+        $data = $this->getPaymentMethodType($data);
+
+        if (array_get($data, 'payment.method_type') == "credit_card") {
+            $this->creditCardValidator->with($data)->passesOrFail();
+        }
 
         return $this->entityManager->transactional(function ($em) use ($data) {
 
@@ -59,9 +93,11 @@ class OrderService
 
             $order->addPayment($payment);
 
-            $this->dispatchOrderEvents($order);
+            $order->setTrackingStatus($this->getTrackingStatus());
 
             $em->persist($order);
+
+            $this->dispatchOrderEvents($order);
 
             return $order;
         });
@@ -70,6 +106,11 @@ class OrderService
     protected function dispatchOrderEvents(OrderInterface $order)
     {
         foreach ($order->releaseEvents() as $event) {
+
+            if ($event instanceof FiredByAdminUser) {
+                $event->setUser(Auth::guard('cms')->user());
+            }
+
             $this->eventDispatcher->fire($event);
         }
     }
@@ -96,14 +137,18 @@ class OrderService
 
         $paymentMethod = $this->getPaymentMethod($data);
 
-        $creditCard = $this->getCreditCard($data);
+        $payment->setMethod($paymentMethod);
 
-        $creditCard->setBrand($paymentMethod->getCode());
+        if ($data['payment']['method_type'] == "credit_card"){
 
-        $payment
-            ->setMethod($paymentMethod)
-            ->setCreditCard($creditCard)
-            ->setInstallments($this->getPaymentInstallments($data));
+            $creditCard = $this->getCreditCard($data);
+            $creditCard->setBrand($paymentMethod->getCode());
+
+            $payment = $payment
+                ->setCreditCard($creditCard)
+                ->setInstallments($this->getPaymentInstallments($data));
+
+        }
 
         return $payment;
     }
@@ -120,6 +165,35 @@ class OrderService
             ->setSecurityCode(array_get($data, 'card.security_code'));
 
         return $card;
+    }
+
+    public function changeOrderStatus(ChangeOrderStatusCommand $command)
+    {
+        $this->entityManager->transactional(function($em) use ($command) {
+
+            $order = $command->getOrder();
+
+            $orderTtackingStatus = $this->normalizeTrackingStatus($command->getOrderTrackingStatus());
+
+            $order->changeStatus($command->getOrderStatus());
+            $order->changePaymentStatus($command->getPaymentStatus());
+            $order->changeTrackingStatus($orderTtackingStatus);
+
+            $em->persist($order);
+
+            $this->dispatchOrderEvents($order);
+
+        });
+
+        if ($command->shouldSendMail()) {
+            $this->bus->dispatchNow(new SendOrderStatusMail($command->getOrder(), $command->getMailSubject(), $command->getMailBody()));
+        }
+    }
+
+    protected function normalizeTrackingStatus($status)
+    {
+        return is_object($status)
+            ? $status : $this->entityManager->getReference(OrderTrackingStatus::class, $status);
     }
 
     protected function getShoppingCart(array $data)
@@ -140,6 +214,26 @@ class OrderService
     protected function getPaymentMethod($data)
     {
         return $this->entityManager->getReference(PaymentMethod::class, array_get($data, 'payment.method'));
+    }
+
+    protected function getPaymentMethodType($data)
+    {
+        $data['payment']['method_type'] = $this->paymentMethodRepository->findOneById($data['payment']['method'])[0]->getDescription();
+        return $data;
+    }
+
+    protected function getTrackingStatus()
+    {
+        try {
+
+            return $this->trackingStatusRepository->getOneByCode(OrderTrackingStatus::STATUS_NEW);
+
+        } catch (Exception $e) {
+
+            throw new InvalidArgumentException(sprintf('Order tracking status not found by code: %s', OrderTrackingStatus::STATUS_NEW));
+
+        }
+
     }
 
 }

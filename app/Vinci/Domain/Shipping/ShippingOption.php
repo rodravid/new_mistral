@@ -6,6 +6,8 @@ use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Carrier\CarrierInterface;
 use Vinci\Domain\Core\Model;
+use Vinci\Domain\Pricing\Contracts\DiscountType;
+use Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionInterface;
 use Vinci\Domain\Shipping\Presenter\ShippingPresenter;
 
 class ShippingOption extends Model implements Presentable
@@ -41,6 +43,33 @@ class ShippingOption extends Model implements Presentable
     public function getCarrier()
     {
         return $this->carrier;
+    }
+
+    public function applyPromotion(ShippingPromotionInterface $promotion)
+    {
+
+        switch ($promotion->getDiscountType()) {
+
+            case DiscountType::NEW_VALUE:
+
+                $this->price = $promotion->getDiscountAmount();
+
+                break;
+
+            case DiscountType::FIXED:
+
+                $this->price -= $promotion->getDiscountAmount();
+
+                break;
+
+            case DiscountType::PERCENTAGE:
+
+                $this->price -= $this->price * $promotion->getDiscountAmount() / 100;
+
+                break;
+        }
+
+
     }
 
 }

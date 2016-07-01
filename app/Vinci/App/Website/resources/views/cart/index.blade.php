@@ -23,7 +23,9 @@
 
         <div class="row">
 
-            <h2 class="ng-hide" style="text-align: center;" ng-show="!ctrl.hasItems()">Não há produtos em seu carrinho.</h2>
+            <h2 id="emptyCartMessage" style="text-align: center; display: none;">Não há produtos em seu carrinho.</h2>
+
+            <div id="loading-container" class="loading-container"><img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif"></div>
 
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
@@ -50,8 +52,8 @@
                         <div class="col-cart1">
                             <div class="col-product-cart">
                                 <div class="thumb-wine">
-                                    <a href="javascript:void(0);">
-                                        <img class="wine-bottle" src="{{ asset_web('images/no_photo.png') }}" alt="Vinho">
+                                    <a href="@{{ item.web_path }}">
+                                        <img class="wine-bottle" src="@{{ item.image_url }}" alt="Vinho">
                                     </a>
                                 </div>
                                 <div class="colum-description-cart">
@@ -59,7 +61,7 @@
                                         @{{ item.name }}
                                         <span ng-show="item.producer">@{{ item.producer }}</span>
                                     </h3>
-                                    <a class="link-cart gift" href="javascript:void(0);">
+                                    <a class="link-cart gift" href="javascript:void(0);" ng-hide="item.is_gift_package">
                                         Embalagem para presente >
                                     </a>
                                 </div>
@@ -110,7 +112,7 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Digite o CEP</span>
                                 <div class="container-info-compra">
-                                    <input type="text" class="cep" ng-model="$root.postalCode" maxlength="8" id="txtPostalCode">
+                                    <input type="text" class="cep" ng-model="$root.postalCode" maxlength="9" id="txtPostalCode" ui-br-cep-mask>
                                     <button type="button" ng-click="ctrl.getShipping()" class="btn-submit">OK ></button>
                                 </div>
                             </article>
@@ -119,7 +121,7 @@
 
                         <li id="shipping-info ng-hide" ng-show="ctrl.cart.shipping.price">
                             <article class="wrap-compra-dados-venda">
-                                <span>Frete @{{ ctrl.cart.shipping.price | currency }}</span>
+                                <span>Frete @{{ ctrl.cart.shipping.price }}</span>
                                 <div class="container-info-compra">
                                     <span id="shipping-value"></span>
                                 </div>
@@ -321,7 +323,7 @@
             </section>
 
         </div>
-    @include('website::layouts.modals.gift-packaging.default')
+        @include('website::layouts.modals.gift-packaging.default')
     </div>
     
     @include('website::layouts.footer')

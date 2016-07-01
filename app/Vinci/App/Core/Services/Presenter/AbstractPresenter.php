@@ -3,6 +3,7 @@
 namespace Vinci\App\Core\Services\Presenter;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Robbo\Presenter\Presenter as BasePresenter;
 use Vinci\App\Core\Utils\Mask;
 use Vinci\Domain\Common\Gender;
@@ -42,6 +43,11 @@ abstract class AbstractPresenter extends BasePresenter
     protected function toRealCurrency($amount)
     {
         return 'R$ ' . $this->toReal($amount);
+    }
+
+    public function limitTo($text, $max, $suffix = '...')
+    {
+        return Str::limit($text, $max, $suffix);
     }
 
     public function presentAmount()
@@ -160,6 +166,20 @@ abstract class AbstractPresenter extends BasePresenter
     public function presentPrice()
     {
         return $this->toRealCurrency($this->getPrice());
+    }
+
+    public function presentWebPath()
+    {
+        return $this->getWebPath();
+    }
+
+    public function presentTemplateCss()
+    {
+        if ($this->hasTemplate()) {
+            return $this->getTemplate()->getCode();
+        }
+
+        return 'template1';
     }
 
 }

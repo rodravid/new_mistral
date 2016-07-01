@@ -4,10 +4,16 @@ namespace Vinci\Domain\Showcase;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use Illuminate\Http\UploadedFile;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Core\Validation\ValidationTrait;
+use Vinci\Domain\Image\Image;
+use Vinci\Domain\Image\ImageService;
+use Vinci\Domain\Image\ImageVersion;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Template\Template;
+use Vinci\Infrastructure\Storage\StorageService;
 
 class ShowcaseService
 {
@@ -21,10 +27,16 @@ class ShowcaseService
 
     private $aclService;
 
+    private $imageService;
+
+    private $storage;
+
     public function __construct(
         EntityManagerInterface $entityManager,
         ShowcaseRepository $repository,
         ShowcaseValidator $validator,
+        ImageService $imageService,
+        StorageService $storage,
         ACLService $aclService
     )
     {
@@ -32,14 +44,22 @@ class ShowcaseService
         $this->repository = $repository;
         $this->validator = $validator;
         $this->aclService = $aclService;
+        $this->imageService = $imageService;
+        $this->storage = $storage;
     }
 
     public function create(array $data)
     {
         $this->validator->with($data)->passesOrFail();
 
-        return $this->saveShowcase($data, function() {
+        return $this->saveShowcase($data, function($data) {
             $showcase = new Showcase;
+
+            $this->includeTemplate($data);
+            $showcase->setScheduleFieldsFromArray($data);
+
+            $showcase->fill($data);
+
             return $showcase;
         });
     }
@@ -48,9 +68,13 @@ class ShowcaseService
     {
         $this->validator->with($data)->setId($id)->passesOrFail();
 
-        return $this->saveShowcase($data, function() use ($id) {
+        return $this->saveShowcase($data, function($data) use ($id) {
 
             $showcase = $this->repository->find($id);
+            $this->includeTemplate($data);
+            $showcase->setScheduleFieldsFromArray($data);
+            $showcase->fill($data);
+
             return $showcase;
         });
     }
@@ -59,15 +83,11 @@ class ShowcaseService
     {
         $showcase = $method($data);
 
-        $showcase->setScheduleFieldsFromArray($data);
-
-        $this->includeTemplate($data);
-
-        $showcase->fill($data);
-
         $showcase->setType($this->aclService->getCurrentModuleName());
 
         $this->repository->save($showcase);
+
+        $this->saveImages($data, $showcase);
 
         return $showcase;
     }
@@ -121,6 +141,25 @@ class ShowcaseService
         $showcase->addItem($item);
 
         $this->repository->save($showcase);
+    }
+
+    protected function saveImages($data, Showcase $showcase)
+    {
+        if (isset($data['image_banner']) && ! empty($imageBanner = $data['image_banner'])) {
+            $this->imageService->storeAndAttach($imageBanner, $showcase, ImageVersion::BANNER);
+        }
+
+        $this->repository->save($showcase);
+    }
+
+    public function removeImage(Image $image, Showcase $showcase)
+    {
+        $showcase->removeImage($image);
+        $this->storage->deleteImage($image);
+
+        $this->entityManager->persist($showcase);
+        $this->entityManager->remove($image);
+        $this->entityManager->flush();
     }
 
 }

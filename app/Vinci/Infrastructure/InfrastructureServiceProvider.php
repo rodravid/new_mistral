@@ -30,6 +30,12 @@ class InfrastructureServiceProvider extends ServiceProvider
         );
 
         $this->registerRepository(
+            'Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository',
+            'Vinci\Infrastructure\Orders\DoctrineOrderTrackingStatusRepository',
+            'Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus'
+        );
+
+        $this->registerRepository(
             'Vinci\Domain\Admin\AdminRepository',
             'Vinci\Infrastructure\Admin\DoctrineAdminRepository',
             'Vinci\Domain\Admin\Admin'
@@ -94,6 +100,7 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Infrastructure\Showcase\DoctrineShowcaseRepository',
             'Vinci\Domain\Showcase\Showcase'
         );
+        $this->app->alias('Vinci\Domain\Showcase\ShowcaseRepository', 'showcase.repository');
 
         $this->registerRepository(
             'Vinci\Domain\Promotion\PromotionRepository',
@@ -106,6 +113,13 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Infrastructure\Promotion\Types\Discount\DoctrineDiscountPromotionRepository',
             'Vinci\Domain\Promotion\Types\Discount\DiscountPromotion'
         );
+
+        $this->registerRepository(
+            'Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionRepository',
+            'Vinci\Infrastructure\Promotion\Types\Shipping\DoctrineShippingPromotionRepository',
+            'Vinci\Domain\Promotion\Types\Shipping\ShippingPromotion'
+        );
+        $this->app->alias('Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionRepository', 'shipping_promotion.repository');
 
         $this->registerRepository(
             'Vinci\Domain\Template\TemplateRepository',
@@ -253,6 +267,18 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Product\Wine\Repositories\CriticalAcclaimsRepository',
             'Vinci\Infrastructure\Wine\DoctrineCriticalAcclaimsRepository',
             'Vinci\Domain\Product\Wine\CriticalAcclaim'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Payment\Repositories\PaymentMethodsRepository',
+            'Vinci\Infrastructure\Payment\DoctrinePaymentMethodsRepository',
+            'Vinci\Domain\Payment\PaymentMethod'
+        );
+
+        $this->registerRepository(
+            'Vinci\Domain\Payment\Repositories\PaymentInstallmentRepository',
+            'Vinci\Infrastructure\Payment\DoctrinePaymentInstallmentRepository',
+            'Vinci\Domain\Payment\PaymentInstallment'
         );
 
     }

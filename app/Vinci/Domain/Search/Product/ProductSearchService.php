@@ -11,6 +11,7 @@ use Vinci\Domain\Search\Product\Result\ProductSearchResult;
 use Vinci\Domain\Search\SearchService;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Contracts\Config\Repository;
+use Vinci\Domain\Search\Suggester\SuggesterFactory;
 
 class ProductSearchService extends SearchService
 {
@@ -23,10 +24,11 @@ class ProductSearchService extends SearchService
         ClientBuilder $builder,
         Repository $config,
         FilterFactory $filterFactory,
+        SuggesterFactory $suggesterFactory,
         ProductRepository $productRepository,
         Presenter $presenter
     ) {
-        parent::__construct($builder, $config, $filterFactory);
+        parent::__construct($builder, $config, $filterFactory, $suggesterFactory);
 
         $this->productRepository = $productRepository;
         $this->presenter = $presenter;
@@ -119,6 +121,7 @@ class ProductSearchService extends SearchService
                     'should' => [
                         ['term' => ['_id' => $keyword]],
                         ['match' => ['title' => $keyword]],
+                        ['match' => ['keywords' => $keyword]],
                         ['match' => ['country.title' => $keyword]],
                         ['match' => ['region.title' => $keyword]],
                         ['match' => ['producer.title' => $keyword]],
@@ -135,10 +138,13 @@ class ProductSearchService extends SearchService
             ];
 
             $params['body']['suggest'] = [
-                'my-suggest-1' => [
+                'title-suggester' => [
                     'text' => $keyword,
-                    'term' => [
-                        'field' => 'title'
+                    'completion' => [
+                        'field' => 'suggest',
+                        'fuzzy' => [
+                            'fuzziness' => 2
+                        ]
                     ]
                 ]
             ];
@@ -175,6 +181,10 @@ class ProductSearchService extends SearchService
 
                 if (! empty($producers = array_get($filters, 'filters.produtor'))) {
                     $this->addFilter($params, 'producer.title', $producers);
+                }
+
+                if (! empty($showcases = array_get($filters, 'filters.showcase'))) {
+                    $this->addFilter($params, 'showcases.id', $showcases);
                 }
 
             }

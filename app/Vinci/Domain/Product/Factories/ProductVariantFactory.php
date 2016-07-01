@@ -32,7 +32,8 @@ class ProductVariantFactory
             ->setImportPrice($data['should_import_price'])
             ->setImportStock($data['should_import_stock'])
             ->setStartsAtFromFormat($data['startsAt'])
-            ->setExpirationAtFromFormat($data['expirationAt']);
+            ->setExpirationAtFromFormat($data['expirationAt'])
+            ->setPackSize($data['packSize']);
 
         return $variant;
     }

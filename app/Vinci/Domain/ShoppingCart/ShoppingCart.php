@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Shipping\ShippingOption;
@@ -20,7 +21,7 @@ use Vinci\Domain\ShoppingCart\Item\ShoppingCartItem;
  * @ORM\Entity
  * @ORM\Table(name="shopping_cart")
  */
-class ShoppingCart implements ShoppingCartInterface
+class ShoppingCart extends Model implements ShoppingCartInterface
 {
     use Timestampable, HasEvents;
 
@@ -252,6 +253,42 @@ class ShoppingCart implements ShoppingCartInterface
     public function hasShipping()
     {
         return ! empty($this->getShipping());
+    }
+    
+    public function hasOnlyProductsOfType($type)
+    {
+        $return = true;
+
+        foreach ($this->getItems() as $item) {
+            if ($item->getProduct()->getProductType()->getId() != $type) {
+                $return = false;
+            }
+        }
+
+        return $return;
+    }
+
+    public function clear()
+    {
+        $this->items->clear();
+    }
+
+    public function getDeadline()
+    {
+        $maxDeadline = 0;
+
+        foreach ($this->getItems() as $item) {
+
+            $variant = $item->getProductVariant();
+            $deadline = $variant->getShippingMetrics()->getDeadline();
+
+            if ($deadline > $maxDeadline) {
+                $maxDeadline = $deadline;
+            }
+
+        }
+
+        return $maxDeadline;
     }
 
 }

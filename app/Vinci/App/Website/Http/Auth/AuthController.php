@@ -2,10 +2,13 @@
 
 namespace Vinci\App\Website\Http\Auth;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
 use URL;
 use Vinci\App\Core\Http\Controllers\Auth\AuthController as BaseAuthController;
+use Vinci\App\Website\Auth\OldAuthService;
+use Vinci\Domain\Customer\CustomerRepository;
 
 class AuthController extends BaseAuthController
 {
@@ -47,6 +50,37 @@ class AuthController extends BaseAuthController
             ->withErrors([
                 $this->loginUsername() => $this->getFailedLoginMessage(),
             ]);
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        $customerRepository = app(CustomerRepository::class);
+
+        $customer = $customerRepository->findByEmail($request->get('email'));
+
+        if (! $customer) {
+            return $this->sendFailedLoginResponse($request);
+        }
+
+        if ($customer->isOldCustomer()) {
+
+            try {
+
+                $oldAuthService = app(OldAuthService::class);
+
+                $oldAuthService->auth($customer, $request->get('password'));
+
+            } catch (Exception $e) {
+
+                return $this->sendFailedLoginResponse($request);
+
+            }
+
+        }
+
+        return parent::login($request);
     }
 
 }

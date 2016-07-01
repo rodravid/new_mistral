@@ -11,6 +11,8 @@
 
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="{{ asset_cms('bootstrap/css/bootstrap.min.css') }}">
+        <!-- Print -->
+        <link rel="stylesheet" href="{{ asset_cms('bootstrap/css/print.css') }}" media="print">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Animate -->
@@ -39,6 +41,8 @@
         <link rel="stylesheet" href="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.css') }}">
         <!-- Sweet alert -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/sweetalert/dist/sweetalert.css') }}">
+        <!-- Dropzone -->
+        <link rel="stylesheet" href="{{ asset_cms('plugins/dropzone/dropzone.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset_cms('dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -46,13 +50,11 @@
         <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
 
         <style>
-            td.vcenter {
-                vertical-align: middle !important;
-            }
-
-            td.hcenter {
-                text-align: center !important;
-            }
+            td.vcenter { vertical-align: middle !important; }
+            td.hcenter { text-align: center !important; }
+            .mgTop15 { margin-top: 15px; }
+            .dz-success-mark, .dz-error-mark { display: none; }
+            .dz-file-preview, .dz-details, .dz-filename { float: left; }
         </style>
 
     @show
@@ -171,7 +173,9 @@
     <script src="{{ asset_cms('plugins/datepicker/bootstrap-datetimepicker.js') }}"></script>
     <script src="{{ asset_cms('plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js') }}"></script>
     <!-- Bootstrap WYSIHTML5 -->
-    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/parser_rules/advanced.js') }}"></script>
+    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
+    <script src="{{ asset_cms('plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js') }}"></script>
     <!-- Slimscroll -->
     <script src="{{ asset_cms('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <!-- DataTables -->
@@ -191,6 +195,8 @@
     <script src="{{ asset_cms('plugins/select2/select2.full.min.js') }}"></script>
     <!-- Sweet alert -->
     <script src="{{ asset_cms('plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <!-- Dropzone -->
+    <script src="{{ asset_cms('plugins/dropzone/dropzone.js') }}"></script>
     <!-- Tags input -->
     <script src="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.js') }}"></script>
     <!-- Jquery editable -->
@@ -220,7 +226,10 @@
                 radioClass: 'iradio_flat-green'
             });
 
-            $('.html-editor').wysihtml5();
+            $('.html-editor').wysihtml5({
+                stylesheets: null,
+                html: true
+            });
 
             $('.html-editor-especial').wysihtml5({
                 "font-styles": false, //Font styling, e.g. h1, h2, etc.

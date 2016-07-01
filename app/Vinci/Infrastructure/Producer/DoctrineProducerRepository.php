@@ -46,4 +46,20 @@ class DoctrineProducerRepository extends DoctrineBaseRepository implements Produ
         return $result;
     }
 
+    public function getAllValidForSelectArray()
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o.id', 'o.name');
+
+        $result = $qb->getQuery()->getArrayResult();
+
+        $countries = [];
+
+        foreach ($result as $o) {
+            $countries[$o['id']] = $o['name'];
+        }
+
+        return $countries;
+    }
+
 }

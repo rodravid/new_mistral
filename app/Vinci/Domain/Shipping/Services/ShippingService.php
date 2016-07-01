@@ -7,10 +7,14 @@ use Doctrine\Common\Collections\Criteria;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Carrier\CarrierInterface;
 use Vinci\Domain\Carrier\CarrierMetric;
+use Vinci\Domain\Deadline\Deadline;
+use Vinci\Domain\Deadline\DeadlineRepository;
+use Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionLocator;
 use Vinci\Domain\Shipping\Calculator\ShippingCalculatorFactory;
-use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator as Locator;
+use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator as CarrierLocator;
 use Vinci\Domain\Shipping\ShippableInterface;
 use Vinci\Domain\Shipping\ShippingOption;
+use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 
 class ShippingService
 {
@@ -19,12 +23,20 @@ class ShippingService
 
     protected $calculatorFactory;
 
+    protected $shippingPromotionLocator;
+
+    protected $cartService;
+
     public function __construct(
-        Locator $carrierLocator,
-        ShippingCalculatorFactory $calculatorFactory
+        CarrierLocator $carrierLocator,
+        ShippingPromotionLocator $shippingPromotionLocator,
+        ShippingCalculatorFactory $calculatorFactory,
+        ShoppingCartService $cartService
     ) {
         $this->carrierLocator = $carrierLocator;
+        $this->shippingPromotionLocator = $shippingPromotionLocator;
         $this->calculatorFactory = $calculatorFactory;
+        $this->cartService = $cartService;
     }
 
     public function getShippingOptionsFor(PostalCode $postalCode, ShippableInterface $shippable)
@@ -51,7 +63,15 @@ class ShippingService
 
         $criteria = Criteria::create()->orderBy(['price' => Criteria::ASC]);
 
-        return $options->matching($criteria)->first();
+        $shippingOption = $options->matching($criteria)->first();
+
+        $cart = $this->cartService->getCart();
+
+        if ($promotion = $this->shippingPromotionLocator->findOneForShoppingCart($cart, $postalCode)) {
+            $shippingOption->applyPromotion($promotion);
+        }
+
+        return $shippingOption;
     }
 
     public function locateCarriers(PostalCode $postalCode, ShippableInterface $shippable)

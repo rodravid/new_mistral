@@ -9,8 +9,8 @@ class CustomerValidator extends LaravelValidator
 
     protected $rules = [
         'customerType' => 'required',
-        'name' => 'required_if:customerType,1',
         'email' => 'required|email|unique:Vinci\Domain\Customer\Customer,email',
+        'name' => 'required_if:customerType,1',
         'gender' => 'required_if:customerType,1',
         'birthday' => 'required_if:customerType,1|date_format:d/m/Y|after:1915-01-01',
         'cpf' => 'required_if:customerType,1|cpf|unique:Vinci\Domain\Customer\Customer,cpf',
@@ -21,7 +21,7 @@ class CustomerValidator extends LaravelValidator
         'main_address' => 'required_with:addresses',
         'cellPhone' => 'required_without:phone|min:10|max:11',
         'phone' => 'required_without:cellPhone|min:10|max:11',
-        'password' => 'required_without:id|min:6|confirmed',
+        'password' => 'required_without:id|min:6|confirmed'
     ];
 
     protected $messages = [

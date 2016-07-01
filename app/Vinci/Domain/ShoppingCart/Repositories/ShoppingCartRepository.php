@@ -9,7 +9,7 @@ interface ShoppingCartRepository
 
     public function find($id);
 
-    public function getLastByCustomer(CustomerInterface $customer);
+    public function findLastOfCustomer(CustomerInterface $customer);
 
     public function getAllByCustomer(CustomerInterface $customer);
 

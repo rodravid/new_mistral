@@ -39,7 +39,7 @@
             <div class="wrap-content-bt mbottom10">
                 <span class="title-internal-confirmation uppercase float-left">Pedido concluído com sucesso!</span>
                 <div class="content-bt-big hide-mobile no-print">
-                    <a class="bt-default-full bt-middle bt-color" href="#">Continuar comprando <span class="arrow-link">&gt;</span></a>
+                    <a class="bt-default-full bt-middle bt-color" href="/">Continuar comprando <span class="arrow-link">&gt;</span></a>
                 </div>
             </div>
 
@@ -124,16 +124,22 @@
             <p class="title-internal-blue mbottom20">Forma de pagamento</p>
 
             <article class="purchase-data section-payment">
-                <div class="content-img-card float-left">
-                    <img src="{{ asset_web('images/img-cartao-credito.jpg') }}" alt="">
-                </div>
-                <div class="info-card-payment">
-                    <p class="amount-paid">{{ $order->payment->installment_text }}</p>
-                    <p class="card-used">
-                        {{ $order->payment->getCreditCard()->getHoldername() }}
-                        <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
-                    </p>
-                </div>
+                    <div class="content-img-card float-left">
+                        <img src="{{ $order->payment->method->icon_image_url }}" alt="">
+                    </div>
+                    <div class="info-card-payment">
+                        <p class="amount-paid">{{ $order->payment->installment_text }}</p>
+                        @if ($order->payment->wasMadeWithCreditCard())
+                            <p class="card-used">
+                                {{ $order->payment->getCreditCard()->getHoldername() }}
+                                <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
+                            </p>
+                        @else
+                            <p class="card-used">
+                                Pago via depósito bancário
+                            </p>
+                        @endif
+                    </div>
             </article>
 
             <div class="wrap-content-bt mbottom20 show-mobile no-print">

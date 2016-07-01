@@ -222,8 +222,12 @@
 	}
 }
 
+.input-search+.input-search {
+	display:none !important;
+}
+
 .results-suggestions {
-	display:none; 
+	display:none;
 	width:100%;
 	background:#fff;
 	padding:0 20px 20px 20px;
@@ -231,6 +235,9 @@
 	left: 0;
 	top: 31px;
 	z-index:999;
+	@media #{$screen767} {
+		width:125%; 
+	}
 }
 
 .bt-close-suggestions {
@@ -245,6 +252,20 @@
 
 .suggestions-list {
 	width:100%;
+	padding-top:15px;
+
+	li {
+		margin-bottom:10px;
+	}
+
+/* 	li + li {
+		.suggestions-link {
+			color:$black !important;
+			span {
+				color:$black !important;
+			}
+		}
+	} */
 }
 
 .suggestions-item { 
@@ -253,10 +274,11 @@
 
 .suggestions-link {
 	font:15px $robotobold;
-	color:$blue;
 	text-transform:uppercase;
+	color:$black;
+	display:inline-block;
 	span {
-		color:$blue;
+		color:$black;
 	}
 	p{
 		font:14px $robotolight;
@@ -264,12 +286,18 @@
 	}
 }
 
-.suggestions-item + .suggestions-item  .suggestions-link{
+		.suggestions-link:hover {
+			color:$blue;
+			span {
+				color:$blue;
+			}
+		}
+
+
+
+/* .suggestions-item + .suggestions-item  .suggestions-link{
 	color:$black;
-}
-
-
-
+} */
 
 .input-bt-search {
 	background-position: 0px -73px;
@@ -644,7 +672,10 @@
 				transform: translate(-100%, 0);
 				padding:29px 20px 20px 20px;
 				display: inline-block !important;
+				z-index: 99999999;
 			}
+
+
 
 		}
 
@@ -741,9 +772,21 @@
 			.drop-menu {
 				max-width: 670px;
 				width: 100%;
-				right: 0px;
+				right: 9px;
 			}
 		}
+
+		.ie9 {
+			.larger760-right {
+				.drop-menu {
+					max-width: 670px;
+					width: 100%;
+					right: 9px;
+				}
+			}
+		}
+
+
 
 		.drop-menu{
 			padding: 18px 20px;
@@ -778,6 +821,20 @@
 			}
 			.nav-link{
 				font-weight:400 !important;
+			}
+
+			.larger760-right {
+				.drop-menu {
+					right: 10px;
+				}
+			}
+
+			.wind {
+				.larger760-right {
+					.drop-menu {
+						right: 8px;
+					}
+				}
 			}
 		}
 
@@ -988,7 +1045,7 @@
 			top: 0;
 			bottom: 0;
 			left: 0;
-			display: block;
+			display: none;
 			z-index: 1;
 			background: rgba(0,0,0,0.4);
 			-webkit-transition: all 500ms ease;
@@ -996,6 +1053,10 @@
 			-webkit-transform: translate(100%, 0);
 			-ms-transform: translate(100%, 0);
 			transform: translate(100%, 0);
+
+			@media #{$screen970}{
+				display:block;
+			 }
 		}
 
 

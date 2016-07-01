@@ -2,7 +2,6 @@
 
 namespace Vinci\Domain\Product;
 
-use Closure;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +19,8 @@ use Vinci\Domain\Country\Country;
 use Vinci\Domain\Image\Image;
 use Vinci\Domain\Pricing\Calculator\PriceCalculator;
 use Vinci\Domain\Producer\Producer;
+use Vinci\Domain\Product\ProductType as ProductArchType;
+use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\Region\Region;
 use Vinci\Domain\Template\Template;
 
@@ -549,7 +550,7 @@ class Product extends Model implements ProductInterface, Presentable
         return $this->archType;
     }
 
-    public function setArchType(ProductType $archType)
+    public function setArchType(ProductArchType $archType)
     {
         $this->archType = $archType;
         return $this;
@@ -737,17 +738,6 @@ class Product extends Model implements ProductInterface, Presentable
         return self::TYPE_PRODUCT;
     }
 
-    public function getPriceConfigurationResolver()
-    {
-        return $this->priceConfigurationResolver;
-    }
-
-    public function setPriceConfigurationResolver(Closure $priceConfigurationResolver)
-    {
-        $this->priceConfigurationResolver = $priceConfigurationResolver;
-        return $this;
-    }
-
     public function canBePromoted()
     {
         return (bool) $this->enabledForPromotions;
@@ -785,5 +775,42 @@ class Product extends Model implements ProductInterface, Presentable
         return $this->hasStock() && $this->getSalePrice() > 0;
     }
 
+    public function getPackSize()
+    {
+        return $this->getMasterVariant()->getPackSize();
+    }
 
+    public function setPackSize($packSize)
+    {
+        $this->getMasterVariant()->setPackSize($packSize);
+        return $this;
+    }
+
+    public function getDimension()
+    {
+        return $this->getMasterVariant()->getDimension();
+    }
+
+    public function setDimension(Dimension $dimension)
+    {
+        $this->getMasterVariant()->getDimension($dimension);
+        return $this;
+    }
+    
+    public function isGiftPackage()
+    {
+        return $this->getProductType()->getId() == ProductType::TYPE_PACKING;
+    }
+
+    public function getShippingMetrics()
+    {
+        return $this->getMasterVariant()->getShippingMetrics();
+    }
+
+    public function setShippingMetrics(ShippingMetrics $shippingMetrics)
+    {
+        $this->getMasterVariant()->setShippingMetrics($shippingMetrics);
+        return $this;
+    }
+    
 }

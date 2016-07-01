@@ -8,6 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Vinci\App\Website\Http\Presenters\DefaultPaginatorPresenter;
 use Vinci\Domain\Search\Filter\FilterFactory;
 use Vinci\Domain\Search\Result\SearchResult;
+use Vinci\Domain\Search\Suggester\SuggesterFactory;
 
 class SearchService
 {
@@ -20,11 +21,18 @@ class SearchService
 
     protected $filterFactory;
 
-    public function __construct(ClientBuilder $builder, Repository $config, FilterFactory $filterFactory)
-    {
+    protected $suggesterFactory;
+
+    public function __construct(
+        ClientBuilder $builder,
+        Repository $config,
+        FilterFactory $filterFactory,
+        SuggesterFactory $suggesterFactory
+    ) {
         $this->builder = $builder;
         $this->config = $config;
         $this->filterFactory = $filterFactory;
+        $this->suggesterFactory = $suggesterFactory;
 
         $this->buildClient();
     }
@@ -77,6 +85,12 @@ class SearchService
         $filters = $this->filterFactory->makeCollection(array_get($result, 'aggregations'));
 
         $searchResult->setFilters($filters);
+        
+        if (isset($result['suggest'])) {
+            $suggesters = $this->suggesterFactory->makeCollection(array_get($result, 'suggest'));
+
+            $searchResult->setSuggesters($suggesters);
+        }
 
         if ($hits['total'] > 0) {
 

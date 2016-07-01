@@ -5,6 +5,7 @@ namespace Vinci\Domain\Search\Product;
 use Elasticsearch\Client;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Product\Wine\Wine;
+use Vinci\Domain\Showcase\ShowcaseRepository;
 
 class ProductIndexerService
 {
@@ -13,10 +14,16 @@ class ProductIndexerService
 
     private $productRepository;
 
-    public function __construct(Client $client, ProductRepositoryInterface $productRepository)
-    {
+    private $showcaseRepository;
+
+    public function __construct(
+        Client $client,
+        ProductRepositoryInterface $productRepository,
+        ShowcaseRepository $showcaseRepository
+    ) {
         $this->client = $client;
         $this->productRepository = $productRepository;
+        $this->showcaseRepository = $showcaseRepository;
     }
 
     public function index(ProductInterface $product)
@@ -99,6 +106,12 @@ class ProductIndexerService
                                     ]
                                 ],
                             ],
+                            'suggest' => [
+                                'type' => 'completion',
+                                'index_analyzer' => 'simple',
+                                'search_analyzer' => 'simple',
+                                'payloads' => true,
+                            ]
                         ]
                     ]
                 ]
@@ -117,8 +130,6 @@ class ProductIndexerService
         }
 
         $query = $this->productRepository->getProductsForIndexing();
-
-        //$iterable = $query->iterate();
 
         foreach ($query as $item) {
 
@@ -140,60 +151,88 @@ class ProductIndexerService
                 'price' => $product->getSalePrice()
             ];
 
-            if ($product instanceof Wine) {
+            if ($product->hasCountry()) {
+                $country = $product->getCountry();
 
-                if ($product->hasCountry()) {
-                    $country = $product->getCountry();
+                $data['country'] = [
+                    'id' => $country->getId(),
+                    'title' => $country->getName()
+                ];
+            }
 
-                    $data['country'] = [
-                        'id' => $country->getId(),
-                        'title' => $country->getName()
-                    ];
-                }
+            if ($product->hasRegion()) {
+                $region = $product->getRegion();
 
-                if ($product->hasRegion()) {
-                    $region = $product->getRegion();
+                $data['region'] = [
+                    'id' => $region->getId(),
+                    'title' => $region->getName(),
+                    'country' => 'Brasil'
+                ];
+            }
 
-                    $data['region'] = [
-                        'id' => $region->getId(),
-                        'title' => $region->getName(),
-                        'country' => 'Brasil'
-                    ];
-                }
+            if ($product->hasProducer()) {
+                $producer = $product->getProducer();
 
-                if ($product->hasProducer()) {
-                    $producer = $product->getProducer();
+                $data['producer'] = [
+                    'id' => $producer->getId(),
+                    'title' => $producer->getName()
+                ];
+            }
 
-                    $data['producer'] = [
-                        'id' => $producer->getId(),
-                        'title' => $producer->getName()
-                    ];
-                }
+            if ($product->hasProductType()) {
+                $productType = $product->getProductType();
 
-                if ($product->hasProductType()) {
-                    $productType = $product->getProductType();
+                $data['product_type'] = [
+                    'id' => $productType->getId(),
+                    'title' => $productType->getName()
+                ];
+            }
 
-                    $data['product_type'] = [
-                        'id' => $productType->getId(),
-                        'title' => $productType->getName()
-                    ];
-                }
+            if ($product->hasAttributeByName('bottle_size')) {
+                $data['bottle_size'] = $product->getAttribute('bottle_size');
+            }
 
-                if ($product->hasAttributeByName('bottle_size')) {
-                    $data['bottle_size'] = $product->getAttribute('bottle_size');
-                }
 
-                /*if ($product->hasAttributes()) {
-                    $attributes = $product->getAttributes();
+            $data['keywords'] = $product->getSeoKeywords();
 
-                    foreach ($attributes as $attribute) {
-                        if (! empty($attribute->getValue())) {
-                            $data[$attribute->getAttribute()->getCode()] = $attribute->getValue();
-                        }
-                    }
-                }*/
+
+            foreach ($this->showcaseRepository->getByProduct($product) as $showcase) {
+                $data['keywords'] .= $showcase->getKeywords();
+
+                $data['showcases'][] = [
+                    'id' => $showcase->getId(),
+                    'title' => $showcase->getTitle(),
+                    'keywords' => $showcase->getKeywords()
+                ];
 
             }
+
+            $suggestInput = explode(' ', $product->getTitle());
+
+            $suggestInput = array_merge($suggestInput, explode(',', $data['keywords']));
+
+            $data['suggest'] = [
+                'input' => $suggestInput,
+                'output' => $product->getTitle(),
+                'payload' => [
+                    'productId' => $product->getId(),
+                    'url' => $product->getWebPath(),
+                    'producer' => ($product->hasProducer() ? $product->getProducer()->getName() : ''),
+                    'country' => $product->getCountry()->getName()
+                ]
+            ];
+
+
+            /*if ($product->hasAttributes()) {
+                $attributes = $product->getAttributes();
+
+                foreach ($attributes as $attribute) {
+                    if (! empty($attribute->getValue())) {
+                        $data[$attribute->getAttribute()->getCode()] = $attribute->getValue();
+                    }
+                }
+            }*/
+
 
             $params['body'][] = $data;
         }

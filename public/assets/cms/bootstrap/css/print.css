@@ -1,0 +1,37 @@
+
+	* {
+background:transparent !important;
+color:#000 !important;
+text-shadow:none !important;
+filter:none !important;
+-ms-filter:none !important;
+}
+ 
+.content {
+margin-left:-230px !important;
+}
+
+
+.main-sidebar, .sidebar {
+	display:none !important;
+}
+
+  a[href]:after {
+    content: none !important;
+  }
+
+  .main-footer {
+  	display:none !important;
+  }
+
+  .print-full {
+  	width:100% !important;
+  }
+
+  .bt-print {
+  	display:none !important;
+  }
+
+.print {
+	display:none;
+}

@@ -2,9 +2,10 @@
 
 namespace Vinci\Domain\Promotion;
 
-class PromotionInterface
+interface PromotionInterface
 {
 
     const TYPE_DISCOUNT = 'discount';
-
+    const TYPE_SHIPPING = 'shipping';
+    
 }

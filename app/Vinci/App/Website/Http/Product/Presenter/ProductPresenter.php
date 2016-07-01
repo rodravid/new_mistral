@@ -3,18 +3,20 @@
 namespace Vinci\App\Website\Http\Product\Presenter;
 
 use Vinci\Domain\Product\Presenter\ProductPresenter as BaseProductPresenter;
+use Vinci\Domain\Promotion\PromotionSealProvider;
 
 class ProductPresenter extends BaseProductPresenter
 {
 
     public function presentCardTitle()
     {
-        return $this->getTitle();
+        return $this->limitTo($this->getTitle(), 47);
     }
 
     public function presentShortnedDescription()
     {
-        return substr($this->getDescription(), 0, 80);
+        $text = !empty($this->getShortDescription()) ? $this->getShortDescription() : strip_tags($this->getDescription());
+        return $this->limitTo($text, 80);
     }
 
     public function presentShortDescription()
@@ -29,13 +31,9 @@ class ProductPresenter extends BaseProductPresenter
         }
     }
 
-    public function presentTemplateCss()
+    public function getPromotionSeal()
     {
-        if ($this->hasTemplate()) {
-            return $this->getTemplate()->getCode();
-        }
-
-        return 'template1';
+        return app(PromotionSealProvider::class)->provideFor($this->getObject());
     }
 
 }

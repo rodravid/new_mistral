@@ -4,8 +4,12 @@ namespace Vinci\Domain\Promotion\Types\Discount;
 
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
+use Maatwebsite\Excel\Excel;
 use Vinci\Domain\Channel\Channel;
+use Vinci\Domain\Image\ImageService;
 use Vinci\Domain\Product\ProductInterface;
+use Vinci\Domain\Product\Repositories\ProductRepository;
+use Vinci\Domain\Promotion\PromotionInterface;
 use Vinci\Domain\Promotion\PromotionRepository;
 use Vinci\Domain\Promotion\PromotionService;
 
@@ -18,18 +22,24 @@ class DiscountPromotionService extends PromotionService
 
     protected $provider;
 
+    protected $imageService;
+
     public function __construct(
         EntityManagerInterface $em,
         PromotionRepository $promotionRepository,
         DiscountPromotionRepository $repository,
         DiscountPromotionValidator $validator,
-        DiscountPromotionProvider $provider
+        DiscountPromotionProvider $provider,
+        ImageService $imageService,
+        ProductRepository $productRepository,
+        Excel $excel
     ) {
-        parent::__construct($em, $promotionRepository);
+        parent::__construct($em, $promotionRepository, $productRepository, $imageService, $excel);
 
         $this->repository = $repository;
         $this->validator = $validator;
         $this->provider = $provider;
+        $this->imageService = $imageService;
     }
 
     public function findValidPromotionFor(ProductInterface $product)
@@ -68,9 +78,15 @@ class DiscountPromotionService extends PromotionService
 
         $data['channel'] = $this->entityManager->getReference(Channel::class, $data['channel']);
 
+        $sealImage = array_get($data, 'seal_image');
+
+        unset($data['seal_image']);
+
         $promotion->fill($data);
 
         $this->repository->save($promotion);
+
+        $this->saveSealImage($promotion, $sealImage);
 
         return $promotion;
     }

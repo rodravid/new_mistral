@@ -20,11 +20,13 @@ class EventServiceProvider extends ServiceProvider
             'Vinci\Domain\Order\Events\Listeners\FinalizeCustomerShoppingCart',
             'Vinci\Domain\Order\Events\Listeners\CloseCustomerAbandonedCarts',
             'Vinci\Domain\Order\Events\Listeners\ReduceStockOfProducts',
+            'Vinci\Domain\Order\Events\Listeners\SendOrderConfirmationMail',
         ]
     ];
 
     protected $subscribe = [
-        'Vinci\Domain\ShoppingCart\Events\Subscribers\ShoppingCartEventSubscriber'
+        'Vinci\Domain\ShoppingCart\Events\Subscribers\ShoppingCartEventSubscriber',
+        'Vinci\Domain\Order\Events\Subscribers\OrderStatusSubscriber',
     ];
 
     /**

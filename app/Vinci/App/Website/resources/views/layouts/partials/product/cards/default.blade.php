@@ -3,22 +3,39 @@
 
     <h3 class="title-card-wine">
         <a href="{{ $product->web_path }}">
-            {{ $product->card_title }}
+            {!! $product->card_title !!}
             @if ($product->hasProducer())
                 <span>{{ $product->producer->name }}</span>
             @endif
         </a>
     </h3>
-    <p class="wine-intro">{!! $product->shortned_description !!}</p>
+    <p class="wine-intro">{{ $product->shortned_description }}</p>
     <div class="content-card-product">
         <div class="thumb-wine">
-            <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
-            <a href="javascript:void(0);">
+            @if($promotionSeal = $product->getPromotionSeal())
+            <a href="{{ $product->web_path }}">
+                <img class="label-wine" src="{{ $promotionSeal }}" alt="Selo Vinho">
+            </a>
+            @else
+                @if($product->isType('wine') && ($score = $product->getHighlitedScore()))
+                    <div class="wrap-seal-card">
+                        <div class="content-seal-card">
+                            <div class="seal-score-card">
+                            <a href="{{ $product->web_path }}">
+                                <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                <span>{{ $score->value }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endif
+            <a href="{{ $product->web_path }}">
                 <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
             </a>
         </div>
         <div class="other-wine-info">
-            <a href="javascript:void(0);">
+            <a href="{{ $product->web_path }}">
                 @if($product->hasCountry())
                     <p class="info-details-wine">{{ $product->country->name }}</p>
                 @endif
@@ -42,6 +59,6 @@
 
     </div>
     @if($product->isAvailable())
-    <a href="javascript:void(0);" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1" class="bt-default">Comprar <span class="arrow-link">></span></a>
+        <a href="javascript:void(0);" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1" class="bt-default">Comprar <span class="arrow-link">></span></a>
     @endif
 </div>

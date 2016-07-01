@@ -1,4 +1,4 @@
-<div class="global-modal" ng-controller="AddressModalController">
+<div class="global-modal">
     <div class="modal-larger modal-adress template1">
         <div class="content-modal">
             {!! Form::open(['route' => $address->getId() > 0 ? ['api.customers.addresses.update', $address->getId()] : 'api.customers.addresses.store', 'method' => 'POST', 'id' => 'frmNewAddress']) !!}
@@ -40,12 +40,12 @@
                         </li>
                         <li>
                             <label for="txtPostalCode" class="label-input">CEP</label>
-                            <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="cep input-register half"
+                            <input type="text" name="addresses[{{ $address->getId() }}][postal_code]" class="input-register half"
                                    id="txtPostalCode"
                                    value="{{ old('addresses.' . $address->getId() . '.postal_code', ($address->getId() > 0 ? $address->getPostalCode() : null)) }}"
                                    placeholder="CEP"
                                    cep
-                                   data-mask data-postalcode
+                                   data-postalcode
                                    data-target-publicplace="#selectPublicPlace"
                                    data-target-address="#txtAddress"
                                    data-target-district="#txtDistrict"
@@ -56,14 +56,18 @@
 
                             <div class="search-cep">
                                 <p>Não sei o meu CEP.</p>
-                                <a href="http://m.correios.com.br/movel/buscaCep.do" target="_blank">Faça a pesquisa
-                                    aqui ></a>
+                                <a href="http://m.correios.com.br/movel/buscaCep.do" target="_blank">Faça a pesquisa aqui ></a>
                             </div>
                         </li>
                         <li>
                             <div class="select-standard half form-control-white">
                                 <select name="addresses[{{ $address->getId() }}][public_place]" id="selectPublicPlace" data-publicplace>
-                                    <option value="1">Rua</option>
+                                    <option value="">Selecione o tipo de logradouro</option>
+                                    @foreach ($publicPlaces as $publicPlace)
+                                        <option value="{{ $publicPlace->getId() }}" @if($publicPlace->getId() == old('addresses.' . $address->getId() . '.public_place', ($address->getId() > 0 ? $address->getPublicPlace()->getId() : null))) selected @endif>
+                                            {{ $publicPlace->getTitle() }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </li>
@@ -145,6 +149,8 @@
 
         $(document).ready(function() {
 
+            $("[cep]").inputmask("99999-999");
+
             $('#frmNewAddress').bind('submit', function(e) {
 
                 var $form = $(this);
@@ -172,7 +178,7 @@
 
                         } else {
 
-                            $('.error-message').text(response.message);
+                            $('.error-message').html('<ul class="error-message">' + response.message + '</ul>');
 
                         }
 

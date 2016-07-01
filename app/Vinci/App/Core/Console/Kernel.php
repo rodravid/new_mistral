@@ -14,6 +14,7 @@ use Vinci\App\Core\Console\Commands\MakeSlugProducer;
 use Vinci\App\Core\Console\Commands\MakeSlugProductType;
 use Vinci\App\Core\Console\Commands\MakeSlugRegion;
 use Vinci\App\Core\Console\Commands\RandomizeProductTemplate;
+use Vinci\App\Core\Console\Commands\UniqueIdTest;
 use Vinci\App\Website\Search\Console\Commands\IndexProducts;
 
 class Kernel extends ConsoleKernel
@@ -34,6 +35,7 @@ class Kernel extends ConsoleKernel
         MakeSlugProductType::class,
         MakeSlugGrapes::class,
         RandomizeProductTemplate::class,
+        UniqueIdTest::class
     ];
 
     /**
@@ -44,6 +46,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        $schedule->command('search:index-products')
+            ->everyThirtyMinutes();
     }
 }

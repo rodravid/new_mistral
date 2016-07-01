@@ -101,7 +101,7 @@
 
         <div class="wrap-content-bt mbottom10 no-print">
             <div class="content-bt-middle ">
-                <a class="bt-default-full template11 bt-middle" href="#">Repetir pedido <span class="arrow-link">></span></a>
+                <a class="bt-default-full template11 bt-middle" href="{{ route('account.orders.repeat', $order->number) }}">Repetir pedido <span class="arrow-link">></span></a>
             </div>
         </div>
 
@@ -118,14 +118,17 @@
 
         <article class="purchase-data section-payment">
             <div class="content-img-card float-left">
-                <img src="{{ asset_web('images/img-cartao-credito.jpg') }}" alt="">
+                <img src="{{ $order->payment->method->icon_image_url }}" alt="">
             </div>
             <div class="info-card-payment">
                 <p class="amount-paid">{{ $order->payment->installment_text }}</p>
-                <p class="card-used">
-                    {{ $order->payment->getCreditCard()->getHoldername() }}
-                    <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
-                </p>
+
+                @if($order->payment->wasMadeWithCreditCard())
+                    <p class="card-used">
+                        {{ $order->payment->getCreditCard()->getHoldername() }}
+                        <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
+                    </p>
+                @endif
             </div>
         </article>
 

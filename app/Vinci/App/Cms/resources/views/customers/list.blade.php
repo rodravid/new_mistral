@@ -31,6 +31,7 @@
                     "type": "POST"
                 },
                 searchDelay: 600,
+                order: [[ 0, "desc" ]],
                 columnDefs: [
                     {orderable: false, targets: [4,5] },
                     {orderable: false, width: '170px', targets: -1 },

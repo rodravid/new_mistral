@@ -45,11 +45,6 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
         return $showcase;
     }
 
-    public function getItems($showcaseId)
-    {
-
-    }
-
     public function getItemsQueryBuilder($alias)
     {
         $qb = $this->_em->createQueryBuilder();
@@ -69,5 +64,35 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
         }
 
         return $showcase;
+    }
+
+    public function getOneBySlug($slug)
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        $qb->where($qb->expr()->eq('s.slug', $qb->expr()->literal($slug)));
+
+        $showcase = $qb->getQuery()->getOneOrNullResult();
+
+        if (! $showcase) {
+            throw new EntityNotFoundException;
+        }
+
+        return $showcase;
+    }
+
+    public function getByProduct($product)
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        $qb
+            ->select('s')
+            ->join('s.items', 'i')
+            ->join('i.product', 'p')
+            ->where('p.id = :productId');
+
+        $qb->setParameter('productId', $product);
+
+        return $qb->getQuery()->getResult();
     }
 }

@@ -23,7 +23,6 @@ class ProductListener
     {
         $product->setCurrentChannel($this->channelProvider->getChannel());
         $product->setPriceCalculator($this->calculatorProvider->getCalculator());
-        $product->setPriceConfigurationResolver($this->calculatorProvider->getPriceConfigurationResolver());
     }
 
 }

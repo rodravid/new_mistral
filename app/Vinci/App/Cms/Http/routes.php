@@ -59,6 +59,9 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/', 'Order\\OrderController@index')->name('list');
                     $route->post('datatable', 'Order\\OrderController@datatable')->name('list#datatable');
                     $route->get('/{order}', 'Order\\OrderController@show')->name('show');
+                    $route->get('/{order}/edit', 'Order\\OrderController@edit')->name('edit');
+                    $route->put('/{order}/change-status', 'Order\\OrderController@changeStatus')->name('edit#change-status');
+                    $route->get('/tracking-status/load-mail-template', 'Order\\OrderController@loadMailTemplate')->name('edit#load-mail-template');
                 });
 
                 /**
@@ -178,6 +181,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                  */
                 $route->group(['prefix' => 'promotions', 'namespace' => 'Promotion'], function () use ($route) {
 
+                    $route->post('{promotion}/items/add', 'PromotionController@addProducts');
+                    $route->post('{promotion}/items/add-all', 'PromotionController@addAllProducts');
+                    $route->post('{promotion}/items/add-from-filters', 'PromotionController@addProductsFromFilters');
+                    $route->post('{promotion}/items/add-from-file', 'PromotionController@addProductsFromFile');
+                    $route->delete('/{promotion}/remove-seal', 'PromotionController@removeSeal')->name('promotions.edit#remove-seal');
+
                     /**
                      * Discount promotion
                      */
@@ -192,7 +201,19 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->post('datatable', 'DiscountPromotion\\DiscountPromotionController@datatable')->name('list#datatable');
                         $route->post('/{promotion}/items/datatable', 'DiscountPromotion\\DiscountPromotionController@itemsDatatable')->name('edit#items-datatable');
                         $route->delete('/{promotion}/items/{item}/delete', 'DiscountPromotion\\DiscountPromotionController@removeItem')->name('edit#remove-item');
-                        $route->post('/{promotion}/items', 'DiscountPromotion\\DiscountPromotionController@addItem')->name('edit#add-item');
+                    });
+
+                    /**
+                     * Shipping promotion
+                     */
+                    $route->group(['prefix' => 'shipping-promotion', 'as' => 'shipping-promotion.'], function () use ($route) {
+                        $route->get('/', 'ShippingPromotion\\ShippingPromotionController@index')->name('list');
+                        $route->get('/create', 'ShippingPromotion\\ShippingPromotionController@create')->name('create');
+                        $route->post('/', 'ShippingPromotion\\ShippingPromotionController@store')->name('create#store');
+                        $route->get('/{promotion}/edit', 'ShippingPromotion\\ShippingPromotionController@edit')->name('edit');
+                        $route->delete('/{promotion}/delete', 'ShippingPromotion\\ShippingPromotionController@destroy')->name('destroy');
+                        $route->put('/{promotion}', 'ShippingPromotion\\ShippingPromotionController@update')->name('edit#update');
+                        $route->post('datatable', 'ShippingPromotion\\ShippingPromotionController@datatable')->name('list#datatable');
                     });
 
                 });
@@ -237,6 +258,23 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                  * Showcases
                  */
                 $route->group(['prefix' => 'showcases'], function () use ($route) {
+
+                    /**
+                     * Default showcases
+                     */
+                    $route->group(['prefix' => 'default-showcases', 'as' => 'default-showcases.'], function () use ($route) {
+                        $route->get('/', 'Showcase\\ShowcaseController@index')->name('list');
+                        $route->get('/create', 'Showcase\\ShowcaseController@create')->name('create');
+                        $route->post('/', 'Showcase\\ShowcaseController@store')->name('create#store');
+                        $route->get('/{showcase}/edit', 'Showcase\\ShowcaseController@edit')->name('edit');
+                        $route->delete('/{showcase}/delete', 'Showcase\\ShowcaseController@destroy')->name('destroy');
+                        $route->put('/{showcase}', 'Showcase\\ShowcaseController@update')->name('edit#update');
+                        $route->delete('/{showcase}/photo/{photo}/delete', 'Showcase\\ShowcaseController@removeImage')->name('edit#remove-image');
+                        $route->post('datatable', 'Showcase\\ShowcaseController@datatable')->name('list#datatable');
+                        $route->post('/{showcase}/items/datatable', 'Showcase\\ShowcaseController@itemsDatatable')->name('edit#items-datatable');
+                        $route->delete('/{showcase}/items/{item}/delete', 'Showcase\\ShowcaseController@removeItem')->name('edit#remove-item');
+                        $route->post('/{showcase}/items', 'Showcase\\ShowcaseController@addItem')->name('edit#add-item');
+                    });
 
                     /**
                      * Home showcases
@@ -315,6 +353,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 });
 
             });
+
+        });
+
+        $route->group(['prefix' => 'tests', 'as' => 'test.', 'namespace' => 'Tests'], function() use ($route) {
+
+            $route->get('order-mail-template/{namespace}/{name}/{order}', 'OrderMailTemplateController@render');
 
         });
 
