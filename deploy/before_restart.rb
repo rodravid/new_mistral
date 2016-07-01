@@ -10,4 +10,19 @@ node[:deploy].each do |app_name, deploy|
     gulp --production 
     EOH
   end
+  
+#  include_recipe "supervisor"
+  
+#  # http://supervisord.org/configuration.html#program-x-section-values
+#  supervisor_service "laravel_worker" do
+#    action :enable
+#    process_name "%(program_name)s_%(process_num)02d"
+#    command "php #{current_path} queue:work --queue=emails --daemon --tries=3"
+#    autostart true
+#    autorestart true
+#    numprocs 4
+#    redirect_stderr true
+#    stdout_logfile "/tmp/worker.log"
+#  end
+  
 end 
