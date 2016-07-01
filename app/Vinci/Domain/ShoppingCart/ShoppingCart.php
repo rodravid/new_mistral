@@ -291,4 +291,19 @@ class ShoppingCart extends Model implements ShoppingCartInterface
         return $maxDeadline;
     }
 
+    public function randomizeCartItems()
+    {
+        return $this->getItems()->getValues();;
+    }
+
+    public function getRandomItem()
+    {
+        return $this->getItemByIndex(array_rand($this->getItems()->getValues()));
+    }
+
+    public function getItemByIndex($index)
+    {
+        return $this->getItems()[$index];
+    }
+
 }

@@ -1095,6 +1095,8 @@ input#control-nav {
   button.bt-default-full {
     line-height: 22px; }
   button.bt-default-full.bt-middle {
+    line-height: 29px; }
+  .bt-big {
     line-height: 29px; } }
 
 .bt-normal {
