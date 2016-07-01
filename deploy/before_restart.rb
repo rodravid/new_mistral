@@ -13,8 +13,8 @@ node[:deploy].each do |app_name, deploy|
   
   run_context.include_recipe "supervisor"
   
-#  # http://supervisord.org/configuration.html#program-x-section-values
-#  # https://serversforhackers.com/monitoring-processes-with-supervisord
+  # http://supervisord.org/configuration.html#program-x-section-values
+  # https://serversforhackers.com/monitoring-processes-with-supervisord
   supervisor_service "laravel_worker" do
     action :enable
     process_name "%(program_name)s_%(process_num)02d"
