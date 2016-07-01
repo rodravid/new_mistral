@@ -29,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
                 return validateCnpj($value);
             });
         }
+
+        $this->registerCustomDoctrineFunctions();
+
     }
 
     /**
@@ -56,6 +59,14 @@ class AppServiceProvider extends ServiceProvider
         if (! DBALType::hasType('uuid')) {
             DBALType::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
         }
+    }
+
+    private function registerCustomDoctrineFunctions()
+    {
+        $doctrineConfig = $this->app['em']->getConfiguration();
+        
+        $doctrineConfig->addCustomStringFunction('RAND', 'DoctrineExtensions\Query\Mysql\Rand');
+        $doctrineConfig->addCustomStringFunction('FIELD', 'DoctrineExtensions\Query\Mysql\Field');
     }
 
 }

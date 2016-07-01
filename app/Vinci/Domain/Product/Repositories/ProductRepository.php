@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Product\Repositories;
 
+use Doctrine\ORM\QueryBuilder;
 use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\ProductType\ProductType;
@@ -25,7 +26,7 @@ interface ProductRepository
 
     public function getProductsByShowcase($showcase, $perPage = 10, $page = 1, $path = '/');
 
-    public function getProductsByCountryAndType(Country $country, ProductType $type);
+    public function getProductsByCountryAndType(Country $country, ProductType $type, $quantity = 4, array $except = [], $randomize = false);
 
     public function getProductsIdsFromPromotion(DiscountPromotionInterface $promotion);
 
@@ -38,5 +39,7 @@ interface ProductRepository
     public function getProductsFromTypes(array $types);
 
     public function getAvailableProductsFromTypes(array $types);
+
+    public function getRandomProducts($quantity = 4);
 
 }

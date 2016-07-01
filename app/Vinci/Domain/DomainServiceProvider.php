@@ -3,6 +3,7 @@
 namespace Vinci\Domain;
 
 use Illuminate\Support\ServiceProvider;
+use Vinci\App\Core\Services\Presenter\Presenter;
 use Vinci\App\Website\Auth\Events\Listeners\LinkCustomerToCurrentCart;
 use Vinci\App\Website\Channel\ChannelProvider;
 use Vinci\App\Website\Http\ShoppingCart\Provider\CustomerShoppingCartProvider;
@@ -22,6 +23,7 @@ use Vinci\Domain\Product\Services\ProductUrlGenerator;
 use Vinci\Domain\ProductNotify\Services\ProductNotifyService;
 use Vinci\Domain\Promotion\Types\Discount\Providers\DefaultDiscountPromotionProvider;
 use Vinci\Domain\Promotion\Types\Shipping\DefaultShippingPromotionLocator;
+use Vinci\Domain\Recomendations\Products\Service\DefaultProductRecommendedService;
 use Vinci\Domain\Region\RegionService;
 use Vinci\Domain\Producer\ProducerService;
 use Vinci\Domain\Grape\GrapeService;
@@ -249,6 +251,12 @@ class DomainServiceProvider extends ServiceProvider
             $repository = $app['Vinci\Domain\Promotion\Types\Discount\DiscountPromotionRepository'];
 
             return new DefaultDiscountPromotionProvider($repository, $app['cache']->driver());
+        });
+
+        $this->app->singleton('Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService', function ($app) {
+
+            return new DefaultProductRecommendedService($app['product.repository'], $app[Presenter::class]);
+
         });
 
     }

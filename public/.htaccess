@@ -16,7 +16,7 @@
 
     # Páginas Institucionais
     RewriteRule ^contact\.aspx$ /atendimento/ [L,R=301]
-    RewriteRule ^statictext\.aspx$ /institucional/sobre-a-vinci [L,QSA,R=301]
+    RewriteRule ^statictext\.aspx$ /institucional/sobre-a-vinci? [L,R=301]
     RewriteRule ^phonesell\.aspx$ /institucional/revendedores [L,QSA,R=301]
 
     # Outras Páginas
