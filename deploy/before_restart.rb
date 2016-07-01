@@ -11,6 +11,9 @@ node[:deploy].each do |app_name, deploy|
     EOH
   end
   
+  include_recipe "supervisor"
+  
+  # http://supervisord.org/configuration.html#program-x-section-values
   supervisor_service "laravel_worker" do
     action :enable
     process_name "%(program_name)s_%(process_num)02d"
