@@ -55,8 +55,7 @@ abstract class User extends Model implements
     protected $status = 0;
 
     /**
-     * @ACL\HasRoles()
-     * @var \Doctrine\Common\Collections\ArrayCollection|\LaravelDoctrine\ACL\Contracts\Role[]
+     * @ACL\HasRoles(inversedBy=null)
      */
     protected $roles;
 

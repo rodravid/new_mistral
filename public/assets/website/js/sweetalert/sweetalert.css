@@ -30,7 +30,7 @@ body.stop-scrolling {
   margin-top: -200px;
   overflow: hidden;
   display: none;
-  z-index: 99999; }
+  z-index: 99999999999; }
   @media all and (max-width: 540px) {
     .sweet-alert {
       width: auto;

@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Product;
 
 use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
 use Vinci\Domain\Country\Country;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Product\Notify\ProductNotify;
@@ -30,7 +31,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
     {
         $product = $this->find($id);
 
-        if (! $product) {
+        if (!$product) {
             throw new EntityNotFoundException;
         }
 
@@ -40,8 +41,11 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
     public function create(array $data)
     {
         $highlight = Product::make($data);
+
         $this->_em->persist($highlight);
+
         $this->_em->flush();
+
         return $highlight;
     }
 
@@ -53,6 +57,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->andWhere($qb->expr()->eq('c.id', $channel));
 
         return $qb->getQuery()->getOneOrNullResult();
+
     }
 
     public function getOneByTypeAndSlug($type, $slug)
@@ -67,7 +72,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
         $product = $qb->getQuery()->getOneOrNullResult();
 
-        if (! $product) {
+        if (!$product) {
             throw new EntityNotFoundException;
         }
 
@@ -76,9 +81,6 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function getProductsById(array $productsIds)
     {
-        $doctrineConfig = $this->_em->getConfiguration();
-        $doctrineConfig->addCustomStringFunction('FIELD', 'DoctrineExtensions\Query\Mysql\Field');
-
         $qb = $this->getBaseQueryBuilder();
 
         $qb->addSelect("field(p.id, " . implode(", ", $productsIds) . ") as HIDDEN field");
@@ -99,6 +101,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->andWhere('vp.price > 0');
 
         return $qb->getQuery()->getResult();
+
     }
 
     public function getBaseQueryBuilder()
@@ -113,8 +116,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->leftJoin('av.attribute', 'a')
             ->leftJoin('p.country', 'co')
             ->leftJoin('p.producer', 'pr')
-            ->leftJoin('p.region', 're')
-        ;
+            ->leftJoin('p.region', 're');
 
         return $qb;
     }
@@ -126,12 +128,13 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $qb->join('p.customers', 'cs')
             ->where($qb->expr()->eq('cs.id', $customer->getId()));
 
-        if (! empty($keyword)) {
+        if (!empty($keyword)) {
             $qb->andWhere($qb->expr()->orX(
                 $qb->expr()->like('v.title', ':search')
             ));
 
             $qb->setParameter('search', '%' . $keyword . '%');
+
         }
 
         return $this->paginate($qb->getQuery(), $perPage, $pageName);
@@ -151,6 +154,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $ids = array_column($result, 'id');
 
         return array_combine($ids, $ids);
+
     }
 
     public function getProductsByShowcase($showcase, $perPage = 10, $currentPage = 1, $path = '/')
@@ -169,42 +173,48 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $this->paginateRaw($qb->getQuery(), $perPage, $currentPage, $path);
     }
 
-    public function getProductsByCountryAndType(Country $country, ProductType $type, array $except = [])
+    public function getProductsByCountryAndType(Country $country, ProductType $type, $quantity = 4, array $except = [], $randomize = false)
     {
-        $qb = $this->getBaseQueryBuilder();
+        $queryBuilder = $this->getBaseQueryBuilder();
 
-        $qb->where('p.productType = :type')
-           ->andWhere('p.country = :country')
-           ->andWhere('v.stock > 0')
-           ->andWhere('vp.price > 0');
+        $queryBuilder->where('p.productType = :type')
+                     ->andWhere('p.country = :country')
+                     ->andWhere('v.stock > 0')
+                     ->andWhere('vp.price > 0');
 
-        $qb->setParameter('type', $type->getId())
-           ->setParameter('country', $country->getId());
+        $this->applyDefaultConditions($queryBuilder);
 
-        if (! empty($except)) {
-            $qb->andWhere($qb->expr()->notIn('p.id', $except));
+        $queryBuilder->setParameter('type', $type->getId())
+                     ->setParameter('country', $country->getId());
+
+        if (!empty($except)) {
+            $queryBuilder->andWhere($queryBuilder->expr()->notIn('p.id', $except));
         }
 
-        return $this->paginateRaw($qb->getQuery(), 4);
+        if ($randomize) {
+            $queryBuilder = $this->randomize($queryBuilder);
+        }
+
+        return $this->paginateRaw($queryBuilder->getQuery(), $quantity);
     }
 
     public function applyDefaultConditions($queryBuilder)
     {
         $queryBuilder->andWhere('vp.price > 0')
-            ->andWhere('v.stock > 0');
+                     ->andWhere('v.stock > 0');
     }
 
     public function countProducts()
     {
-        return (int) $this->createQueryBuilder('p')->select('count(p.id)')->getQuery()->getSingleScalarResult();
+        return (int)$this->createQueryBuilder('p')->select('count(p.id)')->getQuery()->getSingleScalarResult();
     }
 
     public function getLastProducts($perPage, $currentPage = 1)
     {
         $query = $this->createQueryBuilder('p')
-                    ->select('p')
-                    ->orderBy('p.id', 'desc')
-                    ->getQuery();
+            ->select('p')
+            ->orderBy('p.id', 'desc')
+            ->getQuery();
 
         return $this->paginateRaw($query, $perPage, $currentPage);
     }
@@ -225,6 +235,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $ids = array_column($result, 'id');
 
         return array_combine($ids, $ids);
+
     }
 
     public function getAllValidForSelectArray()
@@ -234,13 +245,11 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $qb
             ->where('v.stock > 0')
             ->andWhere('vp.price > 0');
-
         $qb->select('p.id as id', 'CONCAT( CONCAT(v.sku, \' - \'),  v.title) as text');
 
         $result = $qb->getQuery()->getArrayResult();
 
         $products = [];
-
         foreach ($result as $p) {
             $products[$p['id']] = $p['text'];
         }
@@ -291,4 +300,34 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
         return $qb->getQuery()->getResult();
     }
+
+    public function getAvailableProductsFromTypes(array $types)
+    {
+        $qb = $this->getBaseQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.productType', 'pt')
+            ->where($qb->expr()->in('pt.id', $types));
+
+        $this->applyDefaultConditions($qb);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getRandomProducts($quantity = 4)
+    {
+        $qb = $this->getBaseQueryBuilder('p');
+
+        $qb->where('vp.price > 0')
+           ->andWhere('v.stock > 0')
+           ->orderBy('RAND()');
+
+        return $this->paginateRaw($qb->getQuery(), $quantity);
+    }
+
+    protected function randomize(QueryBuilder $queryBuilder)
+    {
+        return $queryBuilder->addOrderBy('RAND()');
+    }
+
 }

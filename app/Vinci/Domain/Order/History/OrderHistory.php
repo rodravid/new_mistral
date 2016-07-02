@@ -84,4 +84,17 @@ class OrderHistory extends Model
         return $this->entries->contains($entry);
     }
 
+    public function logEntry($type, $user, $oldStatus, $newStatus, $description = null)
+    {
+        $entry = new OrderHistoryEntry;
+
+        $entry
+            ->setType($type)
+            ->setOldStatus($oldStatus)
+            ->setNewStatus($newStatus)
+            ->setDescription($description);
+
+        $this->addEntry($entry);
+    }
+
 }

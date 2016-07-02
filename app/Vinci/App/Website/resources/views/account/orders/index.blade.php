@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="float-right mtop10">
-                        <a class="bt-arrow-action" href="{{ route('account.orders.show', [$order->id]) }}"> > </a>
+                        <a class="bt-arrow-action" href="{{ route('account.orders.show', [$order->number]) }}"> > </a>
                     </div>
 
                 </div>

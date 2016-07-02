@@ -101,7 +101,7 @@
 
         <div class="wrap-content-bt mbottom10 no-print">
             <div class="content-bt-middle ">
-                <a class="bt-default-full template11 bt-middle" href="#">Repetir pedido <span class="arrow-link">></span></a>
+                <a class="bt-default-full template11 bt-middle" href="{{ route('account.orders.repeat', $order->number) }}">Repetir pedido <span class="arrow-link">></span></a>
             </div>
         </div>
 
@@ -123,7 +123,7 @@
             <div class="info-card-payment">
                 <p class="amount-paid">{{ $order->payment->installment_text }}</p>
 
-                @if($order->payment->wasMadeWithCredidCard())
+                @if($order->payment->wasMadeWithCreditCard())
                     <p class="card-used">
                         {{ $order->payment->getCreditCard()->getHoldername() }}
                         <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>

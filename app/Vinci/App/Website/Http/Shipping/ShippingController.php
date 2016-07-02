@@ -23,7 +23,7 @@ class ShippingController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function getShippingPriceAndDeadlines(Request $request)
+    public function getShippingDeadline(Request $request)
     {
         try {
             $data = $request->all();
@@ -36,8 +36,8 @@ class ShippingController extends Controller
 
             return Response::json([$shippingOption->present()->deadline]);
         } catch (Exception $e) {
-
-            return Response::json(['message' => 'Não foi possível calcular o prazo de entrega'], 400);
+            
+            return Response::json(['message' => 'Não foi possível calcular o prazo de entrega. Por favor, verifique o CEP inserido!'], 400);
 
         }
     }

@@ -47,4 +47,9 @@ class AddressPresenter extends AbstractPresenter
              <p>CEP {$this->postal_code}</p>";
     }
 
+    public function presentFullAddress()
+    {
+        return sprintf('%s %s, %s', $this->public_place, $this->address, $this->number);
+    }
+
 }

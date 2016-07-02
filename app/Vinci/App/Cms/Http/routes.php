@@ -260,6 +260,23 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 $route->group(['prefix' => 'showcases'], function () use ($route) {
 
                     /**
+                     * Default showcases
+                     */
+                    $route->group(['prefix' => 'default-showcases', 'as' => 'default-showcases.'], function () use ($route) {
+                        $route->get('/', 'Showcase\\ShowcaseController@index')->name('list');
+                        $route->get('/create', 'Showcase\\ShowcaseController@create')->name('create');
+                        $route->post('/', 'Showcase\\ShowcaseController@store')->name('create#store');
+                        $route->get('/{showcase}/edit', 'Showcase\\ShowcaseController@edit')->name('edit');
+                        $route->delete('/{showcase}/delete', 'Showcase\\ShowcaseController@destroy')->name('destroy');
+                        $route->put('/{showcase}', 'Showcase\\ShowcaseController@update')->name('edit#update');
+                        $route->delete('/{showcase}/photo/{photo}/delete', 'Showcase\\ShowcaseController@removeImage')->name('edit#remove-image');
+                        $route->post('datatable', 'Showcase\\ShowcaseController@datatable')->name('list#datatable');
+                        $route->post('/{showcase}/items/datatable', 'Showcase\\ShowcaseController@itemsDatatable')->name('edit#items-datatable');
+                        $route->delete('/{showcase}/items/{item}/delete', 'Showcase\\ShowcaseController@removeItem')->name('edit#remove-item');
+                        $route->post('/{showcase}/items', 'Showcase\\ShowcaseController@addItem')->name('edit#add-item');
+                    });
+
+                    /**
                      * Home showcases
                      */
                     $route->group(['prefix' => 'home-showcases', 'as' => 'home-showcases.'], function () use ($route) {
@@ -336,6 +353,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 });
 
             });
+
+        });
+
+        $route->group(['prefix' => 'tests', 'as' => 'test.', 'namespace' => 'Tests'], function() use ($route) {
+
+            $route->get('order-mail-template/{namespace}/{name}/{order}', 'OrderMailTemplateController@render');
 
         });
 

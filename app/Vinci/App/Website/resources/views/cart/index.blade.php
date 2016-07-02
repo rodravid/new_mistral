@@ -23,7 +23,9 @@
 
         <div class="row">
 
-            <h2 class="ng-hide" style="text-align: center;" ng-show="!ctrl.hasItems()">Não há produtos em seu carrinho.</h2>
+            <h2 id="emptyCartMessage" style="text-align: center; display: none;">Não há produtos em seu carrinho.</h2>
+
+            <div id="loading-container" class="loading-container"><img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif"></div>
 
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
@@ -50,8 +52,8 @@
                         <div class="col-cart1">
                             <div class="col-product-cart">
                                 <div class="thumb-wine">
-                                    <a href="javascript:void(0);">
-                                        <img class="wine-bottle" src="{{ asset_web('images/no_photo.png') }}" alt="Vinho">
+                                    <a href="@{{ item.web_path }}">
+                                        <img class="wine-bottle" src="@{{ item.image_url }}" alt="Vinho">
                                     </a>
                                 </div>
                                 <div class="colum-description-cart">
@@ -59,7 +61,7 @@
                                         @{{ item.name }}
                                         <span ng-show="item.producer">@{{ item.producer }}</span>
                                     </h3>
-                                    <a class="link-cart gift" href="javascript:void(0);">
+                                    <a class="link-cart gift" href="javascript:void(0);" ng-hide="item.is_gift_package">
                                         Embalagem para presente >
                                     </a>
                                 </div>
@@ -110,7 +112,7 @@
                             <article class="wrap-compra-dados-venda">
                                 <span>Digite o CEP</span>
                                 <div class="container-info-compra">
-                                    <input type="text" class="cep" ng-model="$root.postalCode" maxlength="8" id="txtPostalCode">
+                                    <input type="text" class="cep" ng-model="$root.postalCode" maxlength="9" id="txtPostalCode" ui-br-cep-mask>
                                     <button type="button" ng-click="ctrl.getShipping()" class="btn-submit">OK ></button>
                                 </div>
                             </article>
@@ -125,7 +127,6 @@
                                 </div>
                             </article>
                             <article class="wrap-compra-dados-venda">
-
                                 <div class="container-info-compra">
                                     <span id="shipping-delivery"></span>
                                 </div>
@@ -167,161 +168,17 @@
             </div>
 
             <section class="also-recommend featured-products hide-tablet">
-
-                <h2 class="title-category">Também recomendamos</h2>
-
-                <div class="cols-products">
-
-                    <div class="wine-card bg-template template2">
-                        <span class="favorite"></span>
-
-                        <h3 class="title-card-wine">
-                            <a href="javascript:void(0);">
-                                Kaiken terroir series Corte 2012
-                                <span>Kaiken</span>
-                            </a>
-                        </h3>
-                        <p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para
-                            ...</p>
-                        <div class="content-card-product">
-                            <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
-                                <a href="javascript:void(0);">
-                                    <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
-                                </a>
-                            </div>
-                            <div class="other-wine-info">
-                                <a href="javascript:void(0);">
-                                    <span class="wine-intro">Tinto Pinot Noir Chile</span>
-                                    <p class="in"> De <span>R$ 38,50</span></p>
-                                    <p class="wine-price">
-                                        R$ 72,26
-                                    </p>
-                                </a>
-                            </div>
-
+                    <h2 class="title-category mbottom20">Também recomendamos</h2>
+                    @foreach($productsRecommended as $key => $product)
+                        <div class="cols-products {{ $templates[$key] }}">
+                            @include('website::layouts.partials.product.cards.default', ['product' => $product])
                         </div>
-
-                        <a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
-                    </div>
-
-                </div>
-
-                <div class="cols-products">
-
-                    <div class="wine-card bg-template template4">
-                        <span class="favorite"></span>
-
-                        <h3 class="title-card-wine">
-                            <a href="javascript:void(0);">
-                                Kaiken terroir series Corte 2012
-                                <span>Kaiken</span>
-                            </a>
-                        </h3>
-                        <p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para
-                            ...</p>
-                        <div class="content-card-product">
-                            <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
-                                <a href="javascript:void(0);">
-                                    <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
-                                </a>
-                            </div>
-                            <div class="other-wine-info">
-                                <a href="javascript:void(0);">
-                                    <span class="wine-intro">Tinto Pinot Noir Chile</span>
-                                    <p class="in"> De <span>R$ 38,50</span></p>
-                                    <p class="wine-price">
-                                        R$ 72,26
-                                    </p>
-                                </a>
-                            </div>
-
-                        </div>
-
-                        <a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
-                    </div>
-
-                </div>
-
-                <div class="cols-products">
-
-                    <div class="wine-card bg-template template7">
-                        <span class="favorite"></span>
-
-                        <h3 class="title-card-wine">
-                            <a href="javascript:void(0);">
-                                Kaiken terroir series Corte 2012
-                                <span>Kaiken</span>
-                            </a>
-                        </h3>
-                        <p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para
-                            ...</p>
-                        <div class="content-card-product">
-                            <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
-                                <a href="javascript:void(0);">
-                                    <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
-                                </a>
-                            </div>
-                            <div class="other-wine-info">
-                                <a href="javascript:void(0);">
-                                    <span class="wine-intro">Tinto Pinot Noir Chile</span>
-                                    <p class="in"> De <span>R$ 38,50</span></p>
-                                    <p class="wine-price">
-                                        R$ 72,26
-                                    </p>
-                                </a>
-                            </div>
-
-                        </div>
-
-                        <a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
-                    </div>
-
-                </div>
-
-                <div class="cols-products">
-
-                    <div class="wine-card bg-template template1">
-                        <span class="favorite"></span>
-
-                        <h3 class="title-card-wine">
-                            <a href="javascript:void(0);">
-                                Kaiken terroir series Corte 2012
-                                <span>Kaiken</span>
-                            </a>
-                        </h3>
-                        <p class="wine-intro">Aurelio Montes de Campo combinou as castas Malbec, Bonarda e Petit verdot para
-                            ...</p>
-                        <div class="content-card-product">
-                            <div class="thumb-wine">
-                                <img class="label-wine" src="{{ asset_web('images/selo-pontos.png') }}" alt="Selo Vinho">
-                                <a href="javascript:void(0);">
-                                    <img class="wine-bottle" src="{{ asset_web('images/img-vinho.jpg') }}" alt="Vinho">
-                                </a>
-                            </div>
-                            <div class="other-wine-info">
-                                <a href="javascript:void(0);">
-                                    <span class="wine-intro">Tinto Pinot Noir Chile</span>
-                                    <p class="in"> De <span>R$ 38,50</span></p>
-                                    <p class="wine-price">
-                                        R$ 72,26
-                                    </p>
-                                </a>
-                            </div>
-
-                        </div>
-
-                        <a href="javascript:void(0);" class="bt-default">Comprar <span class="arrow-link">></span></a>
-                    </div>
-
-                </div>
+                    @endforeach
 
             </section>
 
         </div>
-    @include('website::layouts.modals.gift-packaging.default')
+        @include('website::layouts.modals.gift-packaging.default')
     </div>
     
     @include('website::layouts.footer')

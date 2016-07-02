@@ -51,6 +51,7 @@
                                 <img src="{{ $banner->getImage('desktop')->getWebPath() }}" alt="{{ $banner->title }}">
                             </li>
                         @endif
+
                     @endforeach
 
                 </ul>
@@ -68,15 +69,16 @@
                                 <a href="{{ $showcase->link }}"><h2 class="title-category">{{ $showcase->title }}</h2></a>
                             </div>
                         </div>
-                        <div class="container-products">
 
+                        <div class="container-products"></div>
+                        <div class="loading-container mbottom10">
+                            <img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif">
                         </div>
-
                         <button type="button" class="show-mobile loadProducts {{ $showcase->getTemplate()->getCode() }} bt-default-full" ng-click="loadProducts()">Carregar mais vinhos <span class="arrow-link">v</span></button>
                     </showcase-widget>
                 @endforeach
 
-                <button id="btnShowcaseLoadMore" type="button" class="bt-default-full template7 show-desktop" ng-click="loadMore()">Carregar mais produtos <span class="arrow-link">v</span></button>
+                <button id="btnShowcaseLoadMore" type="button" class="bt-default-full template7 show-desktop mtop10" ng-click="loadMore()">Carregar mais produtos <span class="arrow-link">v</span></button>
             </section>
             @include('website::layouts.partials.featuredweek')
         </div>
@@ -119,15 +121,6 @@
             }
 
             var h = $(".container-titlecat").height();
-            // alert(h);
-
-
-
-            // if (h <= 45) {
-            //     $(".titles-category-fixed").css({'height': '36px'});
-            // } else {
-            //     $(".titles-category-fixed").css({'height': '56px'});
-            // }
 
             function toggleTitleCategory(action) {
 

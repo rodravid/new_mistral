@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Criteria;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Carrier\CarrierInterface;
 use Vinci\Domain\Carrier\CarrierMetric;
+use Vinci\Domain\Deadline\Deadline;
+use Vinci\Domain\Deadline\DeadlineRepository;
 use Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionLocator;
 use Vinci\Domain\Shipping\Calculator\ShippingCalculatorFactory;
 use Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator as CarrierLocator;

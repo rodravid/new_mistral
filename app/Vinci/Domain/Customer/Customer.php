@@ -503,9 +503,20 @@ class Customer extends User implements CustomerInterface, Presentable
         return $this->cryptKey;
     }
 
-    public function setCryptKey($cryptKey)
+    public function setCryptKey($cryptKey = null)
     {
         $this->cryptKey = $cryptKey;
         return $this;
     }
+
+    public function clearCryptKey()
+    {
+        return $this->setCryptKey(null);
+    }
+
+    public function isOldCustomer()
+    {
+        return ! empty($this->getCryptKey());
+    }
+
 }

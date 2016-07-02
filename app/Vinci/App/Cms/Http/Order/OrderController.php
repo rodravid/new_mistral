@@ -19,6 +19,7 @@ use Vinci\Domain\Order\OrderService;
 use Vinci\Domain\Order\OrderStatus;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
 use Vinci\Domain\Payment\PaymentStatus;
+use Vinci\Infrastructure\Exceptions\MailingException;
 
 class OrderController extends Controller
 {
@@ -97,8 +98,13 @@ class OrderController extends Controller
 
             return Redirect::route('cms.orders.edit', $order->getId());
 
-        } catch (Exception $e) {
+        } catch (MailingException $e) {
 
+            Flash::error(sprintf('ATENÇÃO! O Status do pedido foi alterado com sucesso, entretanto não foi possível enviar o e-mail ao cliente. Tente novamente mais tarde.'));
+
+            return Redirect::back()->withInput();
+
+        } catch (Exception $e) {
 
             throw $e;
 
@@ -117,6 +123,15 @@ class OrderController extends Controller
 
         $subject = str_replace('@NUMBER', $order->getNumber(), $template->getSubject());
         $body = View::make($template->getName(), compact('order'))->render();
+
+        $body = str_replace("<head","{w11HD}",$body);
+        $body = str_replace("</head","{/w11HD}",$body);
+        $body = str_replace("<meta","{w11MTA}",$body);
+        $body = str_replace("<body","{w11BD}",$body);
+        $body = str_replace("<style","{w11ST}",$body);
+        $body = str_replace("</style","{/w11ST}",$body);
+
+        $body = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $body);
 
         return Response::json(compact('subject', 'body'));
     }

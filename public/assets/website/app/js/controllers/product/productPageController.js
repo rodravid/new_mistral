@@ -8,7 +8,13 @@ angular.module('app')
         $rootScope.itemQuantity = 1;
 
         self.getQuantityForCart = function () {
-            return self.itemQuantity + (self.boxQuantity * self.boxQuantityFactor);
+            if (typeof self.boxQuantity !== 'undefined') {
+
+                return self.itemQuantity + (self.boxQuantity * self.boxQuantityFactor);
+            }
+
+            return self.itemQuantity;
+
         };
 
         self.incrementItemQuantity = function() {

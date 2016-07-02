@@ -30,4 +30,9 @@ class ProductShippable implements ShippableInterface
 
         return $quantity * $this->product->getDimension()->getWeight();
     }
+
+    public function getDeadline()
+    {
+        return $this->product->getShippingMetrics()->getDeadline();
+    }
 }

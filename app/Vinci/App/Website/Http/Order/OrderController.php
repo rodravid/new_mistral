@@ -8,6 +8,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Log;
 use Redirect;
+use Session;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\Channel\Contracts\ChannelProvider;
@@ -45,11 +46,15 @@ class OrderController extends Controller
 
         } catch (ValidationException $e) {
 
+            Session::flash('scroll', true);
+
             return Redirect::back()->withErrors($e->getErrors())->withInput();
 
         } catch (Exception $e) {
 
             Log::error(sprintf('Erro ao finalizar pedido: ', $e->getMessage()));
+
+            Session::flash('scroll', true);
 
             Flash::error('Não foi possível finalizar seu pedido, por gentileza entrar em contato através do email ' . env('CONTACT_MAIL'));
 

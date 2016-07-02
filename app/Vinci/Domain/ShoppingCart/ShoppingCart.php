@@ -254,5 +254,56 @@ class ShoppingCart extends Model implements ShoppingCartInterface
     {
         return ! empty($this->getShipping());
     }
+    
+    public function hasOnlyProductsOfType($type)
+    {
+        $return = true;
+
+        foreach ($this->getItems() as $item) {
+            if ($item->getProduct()->getProductType()->getId() != $type) {
+                $return = false;
+            }
+        }
+
+        return $return;
+    }
+
+    public function clear()
+    {
+        $this->items->clear();
+    }
+
+    public function getDeadline()
+    {
+        $maxDeadline = 0;
+
+        foreach ($this->getItems() as $item) {
+
+            $variant = $item->getProductVariant();
+            $deadline = $variant->getShippingMetrics()->getDeadline();
+
+            if ($deadline > $maxDeadline) {
+                $maxDeadline = $deadline;
+            }
+
+        }
+
+        return $maxDeadline;
+    }
+
+    public function randomizeCartItems()
+    {
+        return $this->getItems()->getValues();;
+    }
+
+    public function getRandomItem()
+    {
+        return $this->getItemByIndex(array_rand($this->getItems()->getValues()));
+    }
+
+    public function getItemByIndex($index)
+    {
+        return $this->getItems()[$index];
+    }
 
 }
