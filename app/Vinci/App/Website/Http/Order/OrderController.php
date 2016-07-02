@@ -46,19 +46,18 @@ class OrderController extends Controller
 
         } catch (ValidationException $e) {
 
-            Session::flash('scroll', true);
-
             return Redirect::back()->withErrors($e->getErrors())->withInput();
 
         } catch (Exception $e) {
 
-            Log::error(sprintf('Erro ao finalizar pedido: ', $e->getMessage()));
-
-            Session::flash('scroll', true);
+            Log::error(sprintf('Erro ao finalizar pedido: %s | Trace: %s', $e->getMessage(), $e->getTraceAsString()));
 
             Flash::error('Não foi possível finalizar seu pedido, por gentileza entrar em contato através do email ' . env('CONTACT_MAIL'));
 
             return Redirect::back()->withInput();
+
+        } finally {
+            Session::flash('scroll', true);
         }
 
     }
