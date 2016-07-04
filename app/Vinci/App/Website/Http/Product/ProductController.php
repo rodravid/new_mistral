@@ -17,6 +17,7 @@ use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Services\FavoriteService;
 use Vinci\Domain\Product\Services\ProductManagementService;
 use Vinci\Domain\Product\Wine\Wine;
+use Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService;
 
 class ProductController extends Controller
 {
@@ -29,12 +30,15 @@ class ProductController extends Controller
 
     private $productNotifyService;
 
+    private $recommendedService;
+
     public function __construct(
         EntityManagerInterface $em,
         ProductRepository $productRepository,
         FavoriteService $favoriteService,
         ProductManagementService $productService,
-        ProductNotifyService $productNotifyService
+        ProductNotifyService $productNotifyService,
+        ProductRecommendedService $recommendedService
     ) {
         parent::__construct($em);
 
@@ -42,7 +46,7 @@ class ProductController extends Controller
         $this->favoriteService = $favoriteService;
         $this->productService = $productService;
         $this->productNotifyService = $productNotifyService;
-
+        $this->recommendedService = $recommendedService;
     }
 
     public function show($type, $slug)
@@ -51,10 +55,8 @@ class ProductController extends Controller
         $slug = $this->parseProductSlug($slug);
 
         $product = $this->productRepository->getOneByTypeAndSlug($type, $slug);
+        $productsRecommended = $this->recommendedService->getRecommendedByProduct($product);
         $product = $this->presenter->model($product, ProductPresenter::class);
-
-        $productsRecommended = $this->productRepository->getProductsByCountryAndType($product->country, $product->productType, [$product->getId()]);
-        $productsRecommended = $this->presenter->paginator($productsRecommended, ProductPresenter::class);
 
         $templates = [
             0 => 'template2',

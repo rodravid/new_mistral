@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 use Log;
 use Response;
 use Vinci\App\Website\Http\Controller;
+use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\App\Website\Http\ShoppingCart\Transformers\ShoppingCartTransformer;
 use Vinci\Domain\Address\PostalCode;
+use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Repositories\ProductVariantRepository;
+use Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService;
+use Vinci\Domain\Recomendations\Products\Service\ProductRecommendedServiceInterface;
 use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\ShoppingCart\Services\ShoppingCartService;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
@@ -24,22 +28,41 @@ class ShoppingCartController extends Controller
 
     private $variantRepository;
 
+    private $productRecommendedService;
+
     public function __construct(
         EntityManagerInterface $em,
         ShoppingCartService $cartService,
         ShippingService $shippingService,
-        ProductVariantRepository $variantRepository
+        ProductVariantRepository $variantRepository,
+        ProductRecommendedService $productRecommendedService
     ) {
         parent::__construct($em);
 
         $this->cartService = $cartService;
         $this->shippingService = $shippingService;
         $this->variantRepository = $variantRepository;
+        $this->productRecommendedService = $productRecommendedService;
     }
 
     public function index()
     {
-        return $this->view('cart.index');
+        $templates = [
+            0 => 'template2',
+            1 => 'template4',
+            2 => 'template7',
+            3 => 'template1'
+        ];
+
+        $currentCart = $this->cartService->getCart();
+
+        if ($currentCart->isEmpty()) {
+            $productsRecommended = $this->productRecommendedService->getRecommendedProducts();
+            return $this->view('cart.index', compact('productsRecommended', 'templates'));
+        }
+
+        $productsRecommended = $this->productRecommendedService->getRecommendedByShoppingCart($currentCart);
+        return $this->view('cart.index', compact('productsRecommended', 'templates'));
     }
 
     public function getItems(Request $request)

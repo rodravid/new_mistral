@@ -13,25 +13,29 @@
     <div class="content-card-product">
         <div class="thumb-wine">
             @if($promotionSeal = $product->getPromotionSeal())
+            <a href="{{ $product->web_path }}">
                 <img class="label-wine" src="{{ $promotionSeal }}" alt="Selo Vinho">
+            </a>
             @else
                 @if($product->isType('wine') && ($score = $product->getHighlitedScore()))
                     <div class="wrap-seal-card">
                         <div class="content-seal-card">
                             <div class="seal-score-card">
+                            <a href="{{ $product->web_path }}">
                                 <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
                                 <span>{{ $score->value }}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 @endif
             @endif
-            <a href="javascript:void(0);">
+            <a href="{{ $product->web_path }}">
                 <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
             </a>
         </div>
         <div class="other-wine-info">
-            <a href="javascript:void(0);">
+            <a href="{{ $product->web_path }}">
                 @if($product->hasCountry())
                     <p class="info-details-wine">{{ $product->country->name }}</p>
                 @endif
