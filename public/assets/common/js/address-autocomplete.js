@@ -76,7 +76,7 @@
                 $selectState.trigger('change');
 
                 if (typeof addressInfo.logradouro !== 'undefined') {
-                    var addressPublicPlace = addressInfo.logradouro.split(" ")[0];
+                    var addressPublicPlace = addressInfo.logradouro.split(" ")[0].trim();
 
                     var inputPublicPlace = $selectPublicPlace.find('option').filter(function () {
                         return $(this).text().trim() == addressPublicPlace;
@@ -84,7 +84,7 @@
 
                     if (inputPublicPlace.length) {
                         inputPublicPlace.prop('selected', true);
-                        addressInfo.logradouro = addressInfo.logradouro.replace(addressPublicPlace, "");
+                        addressInfo.logradouro = addressInfo.logradouro.replace(addressPublicPlace, "").trim();
                     } else {
                         $selectPublicPlace.find('option[value=""]').prop('selected', true);
                     }
