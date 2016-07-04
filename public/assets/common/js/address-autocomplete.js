@@ -86,16 +86,12 @@
                         inputPublicPlace.prop('selected', true);
                         addressInfo.logradouro = addressInfo.logradouro.replace(addressPublicPlace, "");
                     } else {
-                        $selectPublicPlace.find('option').filter(function () {
-                            return $(this).text().trim() == "Outro";
-                        }).prop('selected', true);
+                        $selectPublicPlace.find('option[value=""]').prop('selected', true);
                     }
 
                     $txtAddress.val(addressInfo.logradouro);
                 } else {
-                    $selectPublicPlace.find('option').filter(function () {
-                        return $(this).text().trim() == "Outro";
-                    }).prop('selected', true);
+                    $selectPublicPlace.find('option[value=""]').prop('selected', true);
 
                     $txtAddress.val('');
                 }
