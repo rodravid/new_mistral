@@ -794,7 +794,7 @@ input[type="search"]::-webkit-search-decoration {
   .nav-link {
     font-weight: 400 !important; }
   .larger760-right .drop-menu {
-    right: 10px; }
+    right: 9px; }
   .wind .larger760-right .drop-menu {
     right: 8px; } }
 
@@ -5511,7 +5511,11 @@ ul.pagination {
       margin-top: 20px; } }
 
 .img-product {
+  width: 100%;
   max-width: 100%; }
+  @media only screen and (max-width: 767px) {
+    .img-product {
+      width: auto; } }
 
 .height-bg-product {
   min-height: 300px; }
@@ -6133,6 +6137,9 @@ ul.pagination {
 .content-button-gift {
   width: 80%;
   margin: 10px auto; }
+
+.cart-content {
+  position: relative; }
 
 /* PG ENTREGA */
 .nav-status {
@@ -7198,6 +7205,19 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
 
 .loading-container {
   text-align: center; }
+
+@media only screen and (max-width: 767px) {
+  .loading-container-cart {
+    margin-bottom: 10px; } }
+
+.loading-container-cart img {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -30px; }
+  @media only screen and (max-width: 767px) {
+    .loading-container-cart img {
+      top: -40px; } }
 
 .loading_gif {
   margin: 0 auto; }
