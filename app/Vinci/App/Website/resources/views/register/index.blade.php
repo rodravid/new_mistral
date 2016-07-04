@@ -248,7 +248,7 @@
                         <ul class="list-form-register">
                             <li>
                                 <label for="txtCellPhone" class="label-input">Telefone celular *</label>
-                                {!! Form::tel('cellPhone', null, ['id' => 'txtCellPhone', 'placeholder' => 'Telefone celular *', 'class' => 'cel input-register full ' . ($errors->has('cellPhone') ? 'error-field' : ''), 'phone-mask']) !!}
+                                {!! Form::tel('cellPhone', null, ['id' => 'txtCellPhone', 'placeholder' => 'Telefone celular *', 'class' => 'cel input-register full ' . ($errors->has('cellPhone') ? 'error-field' : ''), 'cel-phone-mask']) !!}
                             </li>
                             <li>
                                 <label for="txtPhone" class="label-input">Telefone fixo</label>
