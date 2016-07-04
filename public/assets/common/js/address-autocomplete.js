@@ -69,6 +69,20 @@
 
                 var stateIbgeCode = addressInfo.estado_info.codigo_ibge;
                 var cityIbgeCode = addressInfo.cidade_info.codigo_ibge;
+                var addressPublicPlace = addressInfo.logradouro.split(" ")[0];
+
+                var inputPublicPlace = $selectPublicPlace.find('option').filter(function () {
+                    return $(this).text().trim() == addressPublicPlace;
+                });
+
+                if (inputPublicPlace.length) {
+                    inputPublicPlace.prop('selected', true);
+                    addressInfo.logradouro = addressInfo.logradouro.replace(addressPublicPlace, "");
+                } else {
+                    $selectPublicPlace.find('option').filter(function () {
+                        return $(this).text().trim() == "Outro";
+                    }).prop('selected', true);
+                }
 
                 $txtAddress.val(addressInfo.logradouro);
                 $txtDistrict.val(addressInfo.bairro);
