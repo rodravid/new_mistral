@@ -35,7 +35,7 @@ class Dimension
         return $this->width;
     }
 
-    public function setWidth($width)
+    public function setWidth($width = null)
     {
         $this->width = (double) $width;
         return $this;
@@ -46,7 +46,7 @@ class Dimension
         return $this->height;
     }
 
-    public function setHeight($height)
+    public function setHeight($height = null)
     {
         $this->height = (double) $height;
         return $this;
@@ -57,7 +57,7 @@ class Dimension
         return $this->weight;
     }
 
-    public function setWeight($weight)
+    public function setWeight($weight = null)
     {
         $this->weight = (double) $weight;
         return $this;
@@ -68,7 +68,7 @@ class Dimension
         return $this->length;
     }
 
-    public function setLength($length)
+    public function setLength($length = null)
     {
         $this->length = (double) $length;
         return $this;

@@ -12,6 +12,8 @@ interface ProductRepository
 {
     public function find($id);
 
+    public function findOneBySKU($sku);
+
     public function getOneById($id);
 
     public function getAllValidForSelectArray();

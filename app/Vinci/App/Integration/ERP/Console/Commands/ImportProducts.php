@@ -3,6 +3,7 @@
 namespace Vinci\App\Integration\ERP\Console\Commands;
 
 use Illuminate\Console\Command;
+use Vinci\App\Integration\ERP\Product\ProductImporter;
 
 class ImportProducts extends Command
 {
@@ -12,7 +13,7 @@ class ImportProducts extends Command
      *
      * @var string
      */
-    protected $signature = 'erp:integration:products:import';
+    protected $signature = 'erp:integration:products:import {product? : The SKU of the product}';
 
     /**
      * The console command description.
@@ -21,17 +22,31 @@ class ImportProducts extends Command
      */
     protected $description = 'Import products from ERP.';
 
-    public function __construct()
+
+    protected $productImporter;
+
+    public function __construct(ProductImporter $productImporter)
     {
         parent::__construct();
 
+        $this->productImporter = $productImporter;
     }
 
     public function handle()
     {
 
-        $this->info('teste');
+        $productSku = $this->getProductSku();
 
+        if ($productSku) {
+            $this->productImporter->importOneBySKU($productSku);
+        }
+
+
+    }
+
+    public function getProductSku()
+    {
+        return $this->argument('product');
     }
 
 }

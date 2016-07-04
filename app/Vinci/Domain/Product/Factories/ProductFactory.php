@@ -7,6 +7,7 @@ use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Country\Country;
 use Vinci\Domain\Grape\GrapeFactory;
 use Vinci\Domain\Producer\Producer;
+use Vinci\Domain\Product\Dimension;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory as ProductFactoryInterface;
 use Vinci\Domain\Product\Kit\Kit;
 use Vinci\Domain\Product\Product;
@@ -56,6 +57,7 @@ class ProductFactory implements ProductFactoryInterface
         $product = $this->getInstanceFromType($productType->getCode());
 
         $product
+            ->setOnline(array_get($data, 'online', false))
             ->setArchType($productType)
             ->setMasterVariant($variant)
             ->setSku($data['sku'])
@@ -68,6 +70,7 @@ class ProductFactory implements ProductFactoryInterface
         $this->includeProducer($product, $data);
         $this->includeAttributes($product, $data);
         $this->includeChannels($product, $data);
+        $this->includeDimension($product, $data);
 
         if ($product->isType(ProductType::TYPE_WINE)) {
 
@@ -115,6 +118,21 @@ class ProductFactory implements ProductFactoryInterface
             foreach ($data['channels'] as $channel) {
                 $product->addChannel($this->entityManager->getReference(Channel::class, $channel));
             }
+        }
+    }
+
+    protected function includeDimension(Product $product, $data)
+    {
+        if (isset($data['dimension'])) {
+
+            $dimension = new Dimension;
+            
+            $dimension->setWidth(array_get($data, 'width', $product->getDimension()->getWidth()));
+            $dimension->setHeight(array_get($data, 'height', $product->getDimension()->getHeight()));
+            $dimension->setWeight(array_get($data, 'weight', $product->getDimension()->getWeight()));
+            $dimension->setLength(array_get($data, 'length', $product->getDimension()->getLength()));
+
+            $product->setDimension($dimension);
         }
     }
 

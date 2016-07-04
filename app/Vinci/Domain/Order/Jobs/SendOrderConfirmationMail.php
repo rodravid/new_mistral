@@ -28,6 +28,8 @@ class SendOrderConfirmationMail extends Job implements ShouldQueue
     {
         try {
 
+            throw new Exception('teste erro');
+
             $order = $orderRepository->getOneById($this->orderId);
 
             $order = $presenter->model($order, OrderPresenter::class);
@@ -41,6 +43,9 @@ class SendOrderConfirmationMail extends Job implements ShouldQueue
         } catch (Exception $e) {
 
             Log::error(sprintf('Erro ao enviar email de confirmacao de pedido: %s', $e->getMessage()));
+
+
+            dd($e->getMessage());
 
             throw $e;
         }
