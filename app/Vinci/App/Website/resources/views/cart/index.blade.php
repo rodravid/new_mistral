@@ -21,11 +21,11 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row relative">
 
             <h2 id="emptyCartMessage" style="text-align: center; display: none;">Não há produtos em seu carrinho.</h2>
 
-            <div id="loading-container" class="loading-container"><img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif"></div>
+            <div id="loading-container" class="loading-container-cart"><img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif"></div>
 
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
@@ -131,7 +131,7 @@
                                     <span id="shipping-delivery"></span>
                                 </div>
                             </article>
-                            <article class="wrap-compra-dados-venda">
+<!--                             <article class="wrap-compra-dados-venda">
                                 <div class="wrap-select-convencional select-standard half form-control-white">
                                     <select name="" id="" class="select-standard" style="">
                                         <option value="">convencional</option>
@@ -140,7 +140,7 @@
                                 <div class="container-info-remover">
                                     <a href="javascript:void(0);" class="remover-carrinho" id="removeShipping" ng-click="ctrl.removeShipping()">remover</a>
                                 </div>
-                            </article>
+                            </article> -->
                         </li>
                         <li>
                             <article class="wrap-compra-dados-venda">
