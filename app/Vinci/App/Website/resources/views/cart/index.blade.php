@@ -121,16 +121,17 @@
 
                         <li id="shipping-info ng-hide" ng-show="ctrl.cart.shipping.price">
                             <article class="wrap-compra-dados-venda">
-                                <span>Frete @{{ ctrl.cart.shipping.price }}</span>
+                                
                                 <div class="container-info-compra">
-                                    <span id="shipping-value"></span>
+                                    <!-- <span id="shipping-value"></span> -->
+                                    <span>Frete @{{ ctrl.cart.shipping.price }}</span>
                                 </div>
                             </article>
-                            <article class="wrap-compra-dados-venda">
+<!--                             <article class="wrap-compra-dados-venda">
                                 <div class="container-info-compra">
                                     <span id="shipping-delivery"></span>
                                 </div>
-                            </article>
+                            </article> -->
 <!--                             <article class="wrap-compra-dados-venda">
                                 <div class="wrap-select-convencional select-standard half form-control-white">
                                     <select name="" id="" class="select-standard" style="">
