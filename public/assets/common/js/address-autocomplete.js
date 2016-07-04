@@ -70,15 +70,40 @@
                 var stateIbgeCode = addressInfo.estado_info.codigo_ibge;
                 var cityIbgeCode = addressInfo.cidade_info.codigo_ibge;
 
-                $txtAddress.val(addressInfo.logradouro);
-                $txtDistrict.val(addressInfo.bairro);
-                $txtNumber.val('');
-                $txtComplement.val('');
-
                 $selectState.find('option[value="' + stateIbgeCode + '"]').prop('selected', true);
                 $selectCity.data('value', cityIbgeCode);
 
                 $selectState.trigger('change');
+
+                if (typeof addressInfo.logradouro !== 'undefined') {
+                    var addressPublicPlace = addressInfo.logradouro.split(" ")[0];
+
+                    var inputPublicPlace = $selectPublicPlace.find('option').filter(function () {
+                        return $(this).text().trim() == addressPublicPlace;
+                    });
+
+                    if (inputPublicPlace.length) {
+                        inputPublicPlace.prop('selected', true);
+                        addressInfo.logradouro = addressInfo.logradouro.replace(addressPublicPlace, "");
+                    } else {
+                        $selectPublicPlace.find('option[value=""]').prop('selected', true);
+                    }
+
+                    $txtAddress.val(addressInfo.logradouro);
+                } else {
+                    $selectPublicPlace.find('option[value=""]').prop('selected', true);
+
+                    $txtAddress.val('');
+                }
+
+                if (typeof addressInfo.bairro !== 'undefined') {
+                    $txtDistrict.val(addressInfo.bairro);
+                } else {
+                    $txtDistrict.val('');
+                }
+
+                $txtNumber.val('');
+                $txtComplement.val('');
             });
 
         });
