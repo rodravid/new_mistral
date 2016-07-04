@@ -190,6 +190,7 @@
                             <li>
                                 <div class="select-standard half form-control-white {{ $errors->has('addresses.0.public_place') ? 'error-field' : '' }}">
                                     <select name="addresses[0][public_place]" id="selectPublicPlace" data-publicplace>
+                                        <option value="">Selecione o tipo de logradouro</option>
                                         @foreach($publicPlaces as $publicPlace)
                                             <option value="{{ $publicPlace->getId() }}" @if($publicPlace->getId() == old('addresses.0.public_place')) selected @endif>{{ $publicPlace->getTitle() }}</option>
                                         @endforeach
@@ -248,7 +249,7 @@
                         <ul class="list-form-register">
                             <li>
                                 <label for="txtCellPhone" class="label-input">Telefone celular *</label>
-                                {!! Form::tel('cellPhone', null, ['id' => 'txtCellPhone', 'placeholder' => 'Telefone celular *', 'class' => 'cel input-register full ' . ($errors->has('cellPhone') ? 'error-field' : ''), 'phone-mask']) !!}
+                                {!! Form::tel('cellPhone', null, ['id' => 'txtCellPhone', 'placeholder' => 'Telefone celular *', 'class' => 'cel input-register full ' . ($errors->has('cellPhone') ? 'error-field' : ''), 'cel-phone-mask']) !!}
                             </li>
                             <li>
                                 <label for="txtPhone" class="label-input">Telefone fixo</label>
