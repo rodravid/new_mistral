@@ -2,7 +2,6 @@
 
 namespace Vinci\App\Core\Console\Commands;
 
-use Carbon\Carbon;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Console\Command;
@@ -151,8 +150,7 @@ class ImportCustomers extends Command
 
                     $error++;
 
-                }
-                catch (UniqueConstraintViolationException $e) {
+                } catch (UniqueConstraintViolationException $e) {
 
                     if (! $this->em->isOpen()) {
                         $this->entityManager = $this->em->create(
