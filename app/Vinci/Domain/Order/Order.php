@@ -428,4 +428,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
         $this->raise(new OrderTrackingStatusWasChanged($this, $oldStatus));
     }
 
+    public function __sleep()
+    {
+        app('em')->detach($this);
+
+        return ['id', 'number', 'customer', 'channel', 'total', 'itemsTotal', 'shippingAddress', 'billingAddress', 'payments', 'shipment'];
+    }
+
 }

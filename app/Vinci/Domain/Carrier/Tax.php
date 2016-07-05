@@ -4,12 +4,13 @@ namespace Vinci\Domain\Carrier;
 
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="carriers_metrics_taxes")
  */
-class Tax implements TaxInterface
+class Tax extends Model implements TaxInterface
 {
 
     use Timestampable;

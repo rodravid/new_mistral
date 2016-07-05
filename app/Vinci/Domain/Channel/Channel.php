@@ -6,13 +6,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Channel\Contracts\Channel as ChannelInterface;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Product\ProductInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="channels")
  */
-class Channel implements ChannelInterface
+class Channel extends Model implements ChannelInterface
 {
 
     use Timestampable;
