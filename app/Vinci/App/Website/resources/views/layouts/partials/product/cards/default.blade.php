@@ -22,7 +22,7 @@
                         <div class="content-seal-card">
                             <div class="seal-score-card">
                             <a href="{{ $product->web_path }}">
-                                <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                <img src="{{ $score->seal_img }}" alt="">
                                 <span>{{ $score->value }}</span>
                                 </a>
                             </div>
@@ -36,6 +36,11 @@
         </div>
         <div class="other-wine-info">
             <a href="{{ $product->web_path }}">
+
+                @if($product->hasAttributeByName('bottle_size'))
+                    <p class="info-details-wine">{{ $product->getAttribute('bottle_size')->getValue() }}</p>
+                @endif
+
                 @if($product->hasCountry())
                     <p class="info-details-wine">{{ $product->country->name }}</p>
                 @endif
