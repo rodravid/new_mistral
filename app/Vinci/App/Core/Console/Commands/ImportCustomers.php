@@ -3,6 +3,7 @@
 namespace Vinci\App\Core\Console\Commands;
 
 use Carbon\Carbon;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Console\Command;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
@@ -149,6 +150,16 @@ class ImportCustomers extends Command
                     $this->line('');
 
                     $error++;
+
+                }
+                catch (UniqueConstraintViolationException $e) {
+
+                    if (! $this->em->isOpen()) {
+                        $this->entityManager = $this->em->create(
+                            $this->em->getConnection(),
+                            $this->em->getConfiguration()
+                        );
+                    }
 
                 } catch (\Exception $e) {
                     $stmt = $conn->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
