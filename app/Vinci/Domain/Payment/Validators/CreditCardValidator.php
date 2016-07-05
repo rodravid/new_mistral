@@ -1,11 +1,10 @@
 <?php
 
-namespace Vinci\Domain\Order\Validators;
-
+namespace Vinci\Domain\Payment\Validators;
 
 use Vinci\App\Core\Services\Validation\LaravelValidator;
 
-class OrderCreditCardValidator extends LaravelValidator
+class CreditCardValidator extends LaravelValidator
 {
     protected $rules = [
         'payment.installments' => 'required_if:payment.method_type,credit_card',

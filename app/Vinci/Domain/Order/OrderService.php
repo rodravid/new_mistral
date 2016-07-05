@@ -3,26 +3,27 @@
 namespace Vinci\Domain\Order;
 
 use Auth;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
+use Illuminate\Support\MessageBag;
+use Inacho\CreditCard as CreditCardNumberValidator;
 use InvalidArgumentException;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Common\Event\FiredByAdminUser;
-use Vinci\Domain\Core\Model;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
 use Vinci\Domain\Order\Jobs\SendOrderStatusMail;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
-use Vinci\Domain\Order\Validators\OrderCreditCardValidator;
 use Vinci\Domain\Order\Validators\OrderValidator;
 use Vinci\Domain\Payment\CreditCard;
 use Vinci\Domain\Payment\Payment;
 use Vinci\Domain\Payment\PaymentMethod;
 use Vinci\Domain\Payment\Repositories\PaymentMethodsRepository;
+use Vinci\Domain\Payment\Validators\CreditCardValidator;
 use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\Shipping\Shipment;
 
@@ -50,7 +51,7 @@ class OrderService
     public function __construct(
         EntityManagerInterface $entityManager,
         OrderValidator $orderValidator,
-        OrderCreditCardValidator $creditCardValidator,
+        CreditCardValidator $creditCardValidator,
         OrderFactory $factory,
         ShippingService $shippingService,
         Dispatcher $eventDispatcher,
@@ -74,9 +75,9 @@ class OrderService
         $this->orderValidator->with($data)->passesOrFail();
 
         $data = $this->getPaymentMethodType($data);
-
+        
         if (array_get($data, 'payment.method_type') == "credit_card") {
-            $this->creditCardValidator->with($data)->passesOrFail();
+            $this->validateCreditCard($data);
         }
 
         return $this->entityManager->transactional(function ($em) use ($data) {
@@ -227,15 +228,24 @@ class OrderService
     protected function getTrackingStatus()
     {
         try {
-
             return $this->trackingStatusRepository->getOneByCode(OrderTrackingStatus::STATUS_NEW);
 
         } catch (Exception $e) {
-
             throw new InvalidArgumentException(sprintf('Order tracking status not found by code: %s', OrderTrackingStatus::STATUS_NEW));
-
         }
+    }
 
+    private function validateCreditCard(array $data)
+    {
+        $paymentMethod = $this->getPaymentMethod($data);
+
+        $this->creditCardValidator->with($data)->passesOrFail();
+
+        if(! CreditCardNumberValidator::validCreditCard(only_numbers(array_get($data, 'card.number')), $paymentMethod->getName())['valid']) {
+            throw new ValidationException(new MessageBag([
+                'card.number' => 'Cartão de crédito inválido para a bandeira selecionada.'
+            ]));
+        }
     }
 
 }
