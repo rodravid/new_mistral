@@ -4,7 +4,7 @@
 
             @include('website::search.partials.filters')
 
-            <div class="column-products-search-inline template1">
+            <div class="@yield('box_class') template1">
 
                 <header class="header-content-internal">
 
@@ -33,17 +33,20 @@
                     <a class="filtro-mobile show-mobile" href="javascript:void(0);">Filtro<span>></span></a>
 
                     <ul class="filter-search show-mobile">
-                        <li class="filter-search-item">
-                            <ul class="subitem-filter-search">
-                                <li>
-                                    <a href="javascript:void(0);">Cabernet</a>
+                        @foreach($result->getSelectedFilters() as $key => $filter)
+                            @foreach($filter as $selectedValue)
+                                <li class="filter-search-item">
+                                    <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $key }}[]" data-value="{{ $selectedValue }}">
+                                        <li>
+                                            <a href="javascript:void(0);">{{ $selectedValue }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">X</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a href="javascript:void(0);">X</a>
-                                </li>
-                            </ul>
-                        </li>
-
+                            @endforeach
+                        @endforeach
                     </ul>
 
                     <div class="wrap-pagination">
@@ -69,10 +72,8 @@
         </article>
         @include('website::layouts.partials.featuredweek')
     @else
-
         <div style="text-align: center;">
             <h2>Nenhum resultado encontrado.</h2>
         </div>
-
     @endif
 </div>

@@ -2,7 +2,6 @@
 
 namespace Vinci\App\Core\Console\Commands;
 
-use Carbon\Carbon;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Console\Command;
