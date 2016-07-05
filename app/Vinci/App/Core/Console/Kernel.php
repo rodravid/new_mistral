@@ -8,7 +8,6 @@ use Vinci\App\Core\Console\Commands\DoctrineTruncateTable;
 use Vinci\App\Core\Console\Commands\ImportCustomers;
 use Vinci\App\Core\Console\Commands\ImportProduct;
 use Vinci\App\Core\Console\Commands\MakeSlugCountry;
-use Vinci\App\Core\Console\Commands\MakeSlugGrape;
 use Vinci\App\Core\Console\Commands\MakeSlugGrapes;
 use Vinci\App\Core\Console\Commands\MakeSlugProducer;
 use Vinci\App\Core\Console\Commands\MakeSlugProductType;
@@ -35,7 +34,8 @@ class Kernel extends ConsoleKernel
         MakeSlugProductType::class,
         MakeSlugGrapes::class,
         RandomizeProductTemplate::class,
-        UniqueIdTest::class
+        UniqueIdTest::class,
+        'Vinci\App\Integration\ERP\Console\Commands\ImportProducts'
     ];
 
     /**
@@ -47,6 +47,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('search:index-products')
-            ->everyThirtyMinutes();
+            ->everyTenMinutes();
     }
 }

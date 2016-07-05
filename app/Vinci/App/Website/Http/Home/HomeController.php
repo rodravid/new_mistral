@@ -35,6 +35,7 @@ class HomeController extends Controller
     public function index()
     {
         $highlights = $this->highlightRepository->lists('home-main-slider');
+        
         $banners = $this->highlightRepository->lists('home-banners');
 
         $showcases = $this->showcaseRepository->lists('home-showcases');

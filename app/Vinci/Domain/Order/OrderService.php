@@ -3,12 +3,14 @@
 namespace Vinci\Domain\Order;
 
 use Auth;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use InvalidArgumentException;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Common\Event\FiredByAdminUser;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
