@@ -11,5 +11,6 @@ Homestead.json
 dump.rdb
 npm-debug.log
 _ide_helper.php
+/storage/debugbar
 =======
 .DS_Store
