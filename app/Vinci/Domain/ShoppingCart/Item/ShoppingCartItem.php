@@ -3,7 +3,6 @@
 namespace Vinci\Domain\ShoppingCart\Item;
 
 use Doctrine\ORM\Mapping as ORM;
-use Robbo\Presenter\Robbo;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
@@ -185,15 +184,5 @@ class ShoppingCartItem extends Model implements ShoppingCartItemInterface
     public function __call($name, array $args = [])
     {
         return call_user_func_array([$this->productVariant, $name], $args);
-    }
-
-    public function __get($name)
-    {
-        dd($name);
-    }
-
-    public function getPresenter()
-    {
-        return $this->present();
     }
 }
