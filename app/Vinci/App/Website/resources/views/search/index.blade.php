@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    @include('website::search.box')
+    @include('website::search.box_search')
 
     <div class="bg-layer-filtro"></div>
 

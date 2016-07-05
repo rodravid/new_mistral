@@ -30,7 +30,7 @@ class CriticalAcclaim extends Model
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    protected $description;
+    protected $code;
     
     public function getId()
     {
@@ -48,23 +48,14 @@ class CriticalAcclaim extends Model
         return $this;
     }
 
-    public function getDescription()
+    public function getCode()
     {
-        return $this->description;
+        return $this->code;
     }
 
-    public function setDescription($description)
+    public function setCode($code)
     {
-        $this->description = $description;
-        return $this;
-    }
-
-    public function override(Score $score)
-    {
-        $this
-            ->setTitle($score->getTitle())
-            ->setDescription($score->getDescription());
-
+        $this->code = $code;
         return $this;
     }
 

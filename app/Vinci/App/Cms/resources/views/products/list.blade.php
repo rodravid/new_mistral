@@ -6,7 +6,7 @@
         <th>SKU</th>
         <th><i class="fa fa-picture-o"></i> Imagem</th>
         <th><i class="fa fa-pencil"></i> Título</th>
-        <th><i class="fa fa-envelope"></i> Estoque</th>
+        <th><i class="fa fa-cubes"></i> Estoque</th>
         <th><i class="fa fa-file-text-o"></i> Importa estoque</th>
         <th><i class="fa fa-file-text-o"></i> Importa preço</th>
         <th><i class="fa fa-eye"></i> Visível no site</th>

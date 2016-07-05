@@ -168,7 +168,7 @@
                                 <div class="wrap-seal-product">
                                     <div class="content-seal-product">
                                         <div class="seal-score">
-                                            <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                            <img src="{{ $score->seal_img }}" alt="">
                                             <span>{{ $score->value }}</span>
                                         </div>
                                     </div>
