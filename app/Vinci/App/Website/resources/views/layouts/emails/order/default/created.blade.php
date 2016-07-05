@@ -6,7 +6,7 @@
 
     Obrigado por preferir a Vinci.<br/><br/>
 
-    Sua solicitação de pedido N°: <span style="font-size: 13px; color: #000 !important;"><b>{{ $order->number }}</b></span>, no valor total de
+    Sua solicitação de pedido N° <span style="font-size: 13px; color: #000 !important;"><b>{{ $order->number }}</b></span>, no valor total de
     <b>{{ $order->total }}</b> foi recebido em nosso sistema de comércio eletrônico e está em processamento.<br/><br/>
 
     <font style="font-size:15px; color: #14a68f !important;">Produtos Solicitados:</font><br/><br/>
@@ -41,7 +41,7 @@
 
     @if($order->payment->wasMadeWithCreditCard())
 
-        <b>Cartão de Crédito {{ $order->payment->method->code }} </b> - {{ $order->payment->isntallment_text }}
+        <b>Cartão de Crédito {{ $order->payment->method->code }} </b> - {{ $order->payment->installment_text }}
 
     @else
 
