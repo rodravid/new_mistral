@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "db913f8ce2230e311e179f9d4458cbf2",
-    "content-hash": "a5fa13dc03a7e1447dbddc10cad413d1",
+    "hash": "ce1bf71a036afa7d02725ff15d86cf74",
+    "content-hash": "b90a0c76801df640dfa3ac88d72a9a68",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.24",
+            "version": "3.18.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c74f6f316282b0ac6a3cd8a681171343c0e07ec3"
+                "reference": "37a8ce927a69de3d821c21b64674a2b3b9d1d247"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c74f6f316282b0ac6a3cd8a681171343c0e07ec3",
-                "reference": "c74f6f316282b0ac6a3cd8a681171343c0e07ec3",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/37a8ce927a69de3d821c21b64674a2b3b9d1d247",
+                "reference": "37a8ce927a69de3d821c21b64674a2b3b9d1d247",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-07-01 21:27:27"
+            "time": "2016-07-05 19:25:06"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -258,16 +258,16 @@
         },
         {
             "name": "beberlei/DoctrineExtensions",
-            "version": "v1.0.10",
+            "version": "v1.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/DoctrineExtensions.git",
-                "reference": "8ceb10aed56d017c851403e6fb5fc899db4a6689"
+                "reference": "6dbe65e469e8bdcfe165ea16636b7049af479a24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/8ceb10aed56d017c851403e6fb5fc899db4a6689",
-                "reference": "8ceb10aed56d017c851403e6fb5fc899db4a6689",
+                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/6dbe65e469e8bdcfe165ea16636b7049af479a24",
+                "reference": "6dbe65e469e8bdcfe165ea16636b7049af479a24",
                 "shasum": ""
             },
             "require": {
@@ -316,7 +316,7 @@
                 "doctrine",
                 "orm"
             ],
-            "time": "2016-07-03 22:46:48"
+            "time": "2016-07-06 17:12:30"
         },
         {
             "name": "behat/transliterator",
