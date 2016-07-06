@@ -823,5 +823,5 @@ class Product extends Model implements ProductInterface, Presentable
         $this->getMasterVariant()->setShippingMetrics($shippingMetrics);
         return $this;
     }
-    
+
 }

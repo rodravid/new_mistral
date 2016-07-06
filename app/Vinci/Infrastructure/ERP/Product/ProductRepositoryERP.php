@@ -48,7 +48,75 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
         } catch (Exception $e) {
             throw $e;
         }
+    }
 
+    public function getStock($sku)
+    {
+
+        try {
+
+            $client = $this->buildClient('products.get_stock');
+
+            $response = $client->call('CONSULTASALDOESTOQUE', [
+                'CONSULTASALDOESTOQUEInput' => [
+                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->config->get('erp.products_price_list'),
+                    'PCODMATERIAL-VARCHAR2-IN' => $sku,
+                    'PXML-XMLTYPE-OUT' => '',
+                ]
+            ]);
+
+            try {
+
+                $stock = $this->parseResponse($response);
+
+                return intval($stock);
+
+            } catch (Exception $e) {
+                throw new IntegrationException(sprintf('Error when importing stock of the product #%s: %s', $sku, $e->getMessage()));
+            }
+
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+    }
+
+    public function getAll()
+    {
+        try {
+
+            $client = $this->buildClient('products.get_current_products');
+
+            $response = $client->call('GETPRODUTOS', [
+                'GETPRODUTOSInput' => [
+                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->config->get('erp.products_price_list'),
+                    'PXML-XMLTYPE-OUT' => '',
+                ]
+            ]);
+
+            try {
+
+                $product = $this->parseResponse($response);
+
+                return $this->factory->makeFromXmlObject($product);
+
+            } catch (Exception $e) {
+                throw new IntegrationException(sprintf('Error when importing the product #%s: %s', $sku, $e->getMessage()));
+            }
+
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function getNew()
+    {
+        return [];
+    }
+
+    public function getChanged()
+    {
+        return [];
     }
 
     protected function parseResponse($response)
@@ -57,6 +125,10 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
         if(isset($response->ERRO)) {
             throw new IntegrationException($response->ERRO);
+        }
+
+        if(isset($response->PERRO)) {
+            throw new IntegrationException($response->PERRO);
         }
 
         return $response;

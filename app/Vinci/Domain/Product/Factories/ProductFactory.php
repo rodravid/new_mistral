@@ -179,8 +179,6 @@ class ProductFactory implements ProductFactoryInterface
             ->setStatus($newProduct->getStatus())
             ->syncAttributes($newProduct->getAttributes())
             ->syncChannels($newProduct->getChannels())
-            ->syncPrices($newProduct->getPrices())
-            ->setStock($newProduct->getStock())
             ->setSeoTitle($newProduct->getSeoTitle())
             ->setSeoDescription($newProduct->getSeoDescription())
             ->setSeoKeywords($newProduct->getSeoKeywords())
@@ -189,9 +187,23 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAt($newProduct->getStartsAt())
             ->setExpirationAt($newProduct->getExpirationAt())
             ->setOnline($newProduct->isOnline())
-            ->setImportStock($newProduct->shouldImportStock())
-            ->setImportPrice($newProduct->shouldImportPrice())
             ->setPackSize($newProduct->getPackSize());
+
+        if (array_has($data, 'stock')) {
+            $product->setStock($newProduct->getStock());
+        }
+
+        if (array_has($data, 'should_import_stock')) {
+            $product->setImportStock($newProduct->shouldImportStock());
+        }
+
+        if (array_has($data, 'price')) {
+            $product->syncPrices($newProduct->getPrices());
+        }
+
+        if (array_has($data, 'should_import_price')) {
+            $product->setImportPrice($newProduct->shouldImportPrice());
+        }
 
         if ($product->isType(ProductArchType::TYPE_WINE)) {
             $product->syncScores($newProduct->getScores());

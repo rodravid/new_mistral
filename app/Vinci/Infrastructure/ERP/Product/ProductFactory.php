@@ -55,7 +55,6 @@ class ProductFactory implements ProductFactoryInterface
         /**
          * Stock
          */
-        $data["stock"] = 0;
         $data["should_import_stock"] = 1;
 
         /**
