@@ -1364,18 +1364,34 @@ ul.pagination{
 
 	@media #{$screen970} {
 		width:68.9%;
+
+		.title-card-wine {
+			min-height:auto;
+		}
+		.content-card-product {
+    min-height: auto;
+}
 	}
 
 	@media #{$screen767} {
 		width:100%;
 	}
+
+	.wine-card:nth-child(3n+4) {
+		margin-right: 0px;
+
+		@media #{$screen970} { 
+			margin-right: 0px;
+		}
+	}
 	
 	.wine-card {
-		width: 217px;
+		width: 223px;
 		display: inline-table;
-		margin-right: 20px;
+		margin-right: 15px;
 		@media #{$screen970} {
 			width:100%;
+			min-height:auto;
 		}
 
 		@media #{$screen767} {
@@ -1384,20 +1400,7 @@ ul.pagination{
 		}
 	}
 
-	.wine-card:nth-child(3n+2) {
-		margin-right: 0px;
 
-
-
-		@media #{$screen970} { 
-			margin-right: 0px;
-		}
-
-/* 			@media #{$screen767} { 
-				margin-right:0;
-				} */
-
-			}
 
 /* 		@media #{$screen970} { 
 
@@ -1430,6 +1433,8 @@ ul.pagination{
 				width:100%;
 			}
 		}
+
+
 
 
 		} /* fim column-products-search-category */
@@ -3895,6 +3900,10 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
     margin-top: 1px;
     background-position: 10px 10px;
 }
+}
+
+option {
+	font-family: $robotolight;
 }
 
 /* Hack select*/
