@@ -186,6 +186,17 @@ class Product extends Model implements ProductInterface, Presentable
         return $this->attributes;
     }
 
+    public function getAttributesSorted()
+    {
+        $attributes = $this->attributes->toArray();
+
+        usort($attributes, function($a1, $a2) {
+            return $a1->getAttribute()->getCreatedAt() > $a2->getAttribute()->getCreatedAt();
+        });
+
+        return new ArrayCollection($attributes);
+    }
+
     public function setAttributes(Collection $attributes)
     {
         $this->attributes->clear();
@@ -712,7 +723,7 @@ class Product extends Model implements ProductInterface, Presentable
         return $this->productType;
     }
 
-    public function setProductType($productType)
+    public function setProductType(ProductType $productType)
     {
         $this->productType = $productType;
         return $this;

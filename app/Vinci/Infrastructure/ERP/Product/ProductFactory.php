@@ -13,10 +13,11 @@ class ProductFactory implements ProductFactoryInterface
     {
         $data = [];
         $data["channels"][0] = 1;
-        $data["type"]["id"] = $this->normalizeValue($xmlObject->COD_TIPO);
+        $data["type"]["id"] = 2;
         $data["country_id"] = $this->normalizeValue($xmlObject->COD_PAIS);
         $data["region_id"] = $this->normalizeValue($xmlObject->COD_REGIAO);
         $data["producer_id"] = $this->normalizeValue($xmlObject->COD_PRODUTOR);
+        $data['product_type_id'] = $this->normalizeValue($xmlObject->COD_TIPO);
         $data["sku"] = $this->normalizeValue($xmlObject->CODIGO_PRODUTO);
         $data["title"] = $this->normalizeValue($xmlObject->NOME_NO_SITE);
         $data["shortDescription"] = $this->normalizeValue($xmlObject->DESCRICAO_SITE_MARKETING);
@@ -97,16 +98,16 @@ class ProductFactory implements ProductFactoryInterface
         $data["attributes"][8]["value"] = $this->normalizeValue($xmlObject->MATURACAO);
 
         //full_bodied
-        $data["attributes"][8]["attribute_id"] = 10;
-        $data["attributes"][8]["value"] = $this->normalizeValue($xmlObject->CORPO);
+        $data["attributes"][9]["attribute_id"] = 10;
+        $data["attributes"][9]["value"] = $this->normalizeValue($xmlObject->CORPO);
 
         //aging_potential
-        $data["attributes"][8]["attribute_id"] = 11;
-        $data["attributes"][8]["value"] = $this->normalizeValue($xmlObject->CORPO);
+        $data["attributes"][10]["attribute_id"] = 11;
+        $data["attributes"][10]["value"] = $this->normalizeValue($xmlObject->CORPO);
 
         //bottle_size
-        $data["attributes"][8]["attribute_id"] = 12;
-        $data["attributes"][8]["value"] = $this->normalizeValue($xmlObject->TIPO_GFA);
+        $data["attributes"][11]["attribute_id"] = 12;
+        $data["attributes"][11]["value"] = $this->normalizeValue($xmlObject->TIPO_GFA);
 
         return $this->newInstance($data);
     }

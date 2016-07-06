@@ -2,7 +2,6 @@
 
 namespace Vinci\Domain\Product;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Vinci\Domain\Common\Traits\Timestampable;
 
@@ -37,19 +36,9 @@ class Attribute
     protected $type = 'text';
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\AttributeValue", mappedBy="attribute", cascade={"persist", "remove"}, orphanRemoval=true)
-     */
-    protected $values;
-
-    /**
      * @ORM\Column(type="string")
      */
     protected $storageType;
-
-    public function __construct()
-    {
-        $this->values = new ArrayCollection;
-    }
 
     public function getId()
     {
@@ -86,11 +75,6 @@ class Attribute
     {
         $this->type = $type;
         return $this;
-    }
-
-    public function getValues()
-    {
-        return $this->values;
     }
 
     public function getStorageType()

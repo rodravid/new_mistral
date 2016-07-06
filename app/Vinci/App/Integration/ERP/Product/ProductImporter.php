@@ -2,8 +2,10 @@
 
 namespace Vinci\App\Integration\ERP\Product;
 
+use Exception;
 use Vinci\Domain\ERP\Product\Product;
 use Vinci\Domain\ERP\Product\ProductService;
+use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Services\ProductManagementService;
 
@@ -16,8 +18,11 @@ class ProductImporter
 
     protected $localProductRepository;
 
-    public function __construct(ProductService $erpProductService, ProductManagementService $localProductService, ProductRepository $localProductRepository)
-    {
+    public function __construct(
+        ProductService $erpProductService,
+        ProductManagementService $localProductService,
+        ProductRepository $localProductRepository
+    ) {
         $this->erpProductService = $erpProductService;
         $this->localProductService = $localProductService;
         $this->localProductRepository = $localProductRepository;
@@ -25,16 +30,24 @@ class ProductImporter
 
     public function importOneBySKU($sku)
     {
-        $localProduct = $this->localProductRepository->findOneBySKU($sku);
-        $erpProduct = $this->erpProductService->getOneBySKU($sku);
+        try {
 
-        dd($erpProduct);
+            $localProduct = $this->localProductRepository->findOneBySKU($sku);
+            $erpProduct = $this->erpProductService->getOneBySKU($sku);
 
-        if (! $localProduct) {
-            return $this->createProduct($erpProduct);
+            if (! $localProduct) {
+                return $this->createProduct($erpProduct);
+            }
+
+            return $this->updateProduct($erpProduct, $localProduct);
+
+        } catch (Exception $e) {
+
+            $this->log($e->getMessage());
+
+            throw $e;
         }
 
-        return $this->updateProduct($erpProduct, $localProduct->getId());
     }
 
     protected function createProduct(Product $product)
@@ -42,26 +55,16 @@ class ProductImporter
         return $this->localProductService->create($product->toArray());
     }
 
-    protected function updateProduct(Product $product, $id)
+    protected function updateProduct(Product $product, ProductInterface $localProduct)
     {
-        return $this->localProductService->update($product->toArray(), $id);
+        $data = $product->toArray();
+
+        return $this->localProductService->update($data, $localProduct->getId());
     }
 
-    public function importAllProducts()
+    public function log($message)
     {
 
-        $product = $this->erpProductService->getOneBySKU(28776);
-
-
-
-
-        dd($product);
-
-        //$this->localProductService->create([]);
-
-
     }
-
-
 
 }
