@@ -25,6 +25,15 @@ class DefaultProductRecommendedService implements ProductRecommendedService
         $this->presenter = $presenter;
     }
 
+    public function getRecommendedForShoppingCartPage(ShoppingCart $currentCart, $quantity = 4)
+    {
+        if ($currentCart->isEmpty()) {
+            return $this->getRecommendedProducts();
+        }
+
+        return $this->getRecommendedByShoppingCart($currentCart);
+    }
+
     public function getRecommendedByShoppingCart(ShoppingCart $currentCart, $quantity = 4)
     {
         $randomProduct = $currentCart->getRandomItem()->getProduct();
@@ -45,6 +54,8 @@ class DefaultProductRecommendedService implements ProductRecommendedService
 
     public function getRecommendedProducts()
     {
-        return $this->productRepository->getRandomProducts();
+        $products = $this->productRepository->getRandomProducts();
+
+        return $this->presenter->paginator($products, ProductPresenter::class);
     }
 }

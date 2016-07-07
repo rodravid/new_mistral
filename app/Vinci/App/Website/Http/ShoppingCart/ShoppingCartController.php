@@ -56,12 +56,8 @@ class ShoppingCartController extends Controller
 
         $currentCart = $this->cartService->getCart();
 
-        if ($currentCart->isEmpty()) {
-            $productsRecommended = $this->productRecommendedService->getRecommendedProducts();
-            return $this->view('cart.index', compact('productsRecommended', 'templates'));
-        }
+        $productsRecommended = $this->productRecommendedService->getRecommendedForShoppingCartPage($currentCart);
 
-        $productsRecommended = $this->productRecommendedService->getRecommendedByShoppingCart($currentCart);
         return $this->view('cart.index', compact('productsRecommended', 'templates'));
     }
 
