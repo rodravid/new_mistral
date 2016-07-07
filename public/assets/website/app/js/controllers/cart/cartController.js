@@ -45,6 +45,10 @@ angular.module('app')
             return self.cart.items && self.cart.items.length > 0;
         };
 
+        self.isInvalid = function() {
+            return self.hasItems() && self.cart.valid_items_count == 0;
+        }
+
         self.refreshCart = function() {
             var cache = $cacheFactory.get('$http');
             cache.removeAll();
