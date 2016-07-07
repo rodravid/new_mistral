@@ -279,7 +279,7 @@ class OrderService
         $message = 'A validade do cartão de crédito está expirada.';
 
         if ($installments > 1) {
-            $message = 'O mês de validade do cartão não pode ser menor que o mês da última parcela.';
+            $message = 'O mês de validade do cartão não pode ser menor ou igual ao mês da última parcela.';
             $now->addMonths($installments);
         }
 
