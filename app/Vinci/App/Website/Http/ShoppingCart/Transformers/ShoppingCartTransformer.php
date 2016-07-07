@@ -5,6 +5,7 @@ namespace Vinci\App\Website\Http\ShoppingCart\Transformers;
 use League\Fractal\TransformerAbstract;
 use Vinci\App\Website\Http\ShoppingCart\Transformers\Item\ShoppingCartItemTransformer;
 use Vinci\App\Website\Http\ShoppingCart\Transformers\Shipping\ShoppingCartShippingTransformer;
+use Vinci\Domain\Order\Item\ValidItemsFilter;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 
 class ShoppingCartTransformer extends TransformerAbstract
@@ -21,7 +22,8 @@ class ShoppingCartTransformer extends TransformerAbstract
             'id' => (string) $shoppingCart->getId(),
             'subtotal' => $shoppingCart->getSubtotal(),
             'total' => $shoppingCart->getTotal(),
-            'count_items' => $shoppingCart->countItems()
+            'count_items' => $shoppingCart->countItems(),
+            'valid_items_count' => app(ValidItemsFilter::class)->filter($shoppingCart->getItems())->count()
         ];
     }
 

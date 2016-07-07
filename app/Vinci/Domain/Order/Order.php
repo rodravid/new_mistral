@@ -207,7 +207,12 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     public function setItems(ArrayCollection $items)
     {
-        $this->items = $items;
+        $this->items->clear();
+
+        foreach ($items as $item) {
+            $this->addItem($item);
+        }
+
         return $this;
     }
 

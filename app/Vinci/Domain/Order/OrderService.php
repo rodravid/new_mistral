@@ -13,8 +13,11 @@ use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Common\Event\FiredByAdminUser;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
+use Vinci\Domain\Order\Exceptions\InvalidItemsException;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Order\Factory\OrderItemFactory;
+use Vinci\Domain\Order\Item\ValidItemsFilter;
 use Vinci\Domain\Order\Jobs\SendOrderStatusMail;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
@@ -26,6 +29,7 @@ use Vinci\Domain\Payment\Repositories\PaymentMethodsRepository;
 use Vinci\Domain\Payment\Validators\CreditCardValidator;
 use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\Shipping\Shipment;
+use Vinci\Domain\ShoppingCart\Exceptions\InvalidShoppingCartException;
 
 class OrderService
 {
@@ -37,6 +41,8 @@ class OrderService
     protected $creditCardValidator;
 
     protected $factory;
+
+    protected $orderItemFactory;
 
     protected $shippingService;
 
@@ -53,6 +59,7 @@ class OrderService
         OrderValidator $orderValidator,
         CreditCardValidator $creditCardValidator,
         OrderFactory $factory,
+        OrderItemFactory $orderItemFactory,
         ShippingService $shippingService,
         Dispatcher $eventDispatcher,
         BusDispatcher $bus,
@@ -63,6 +70,7 @@ class OrderService
         $this->orderValidator = $orderValidator;
         $this->creditCardValidator = $creditCardValidator;
         $this->factory = $factory;
+        $this->orderItemFactory = $orderItemFactory;
         $this->shippingService = $shippingService;
         $this->eventDispatcher = $eventDispatcher;
         $this->bus = $bus;
@@ -80,9 +88,13 @@ class OrderService
             $this->validateCreditCard($data);
         }
 
-        return $this->entityManager->transactional(function ($em) use ($data) {
+        $items = $this->getOrderItems($data);
+
+        return $this->entityManager->transactional(function ($em) use ($data, $items) {
 
             $order = $this->factory->make($data);
+
+            $order->setItems($items);
 
             $shipment = $this->getShipment($order);
 
@@ -104,6 +116,19 @@ class OrderService
 
             return $order;
         });
+    }
+
+    protected function getOrderItems(array $data)
+    {
+        $items = $this->orderItemFactory->makeFromShoppingCart($this->getShoppingCart($data));
+
+        $items = (new ValidItemsFilter())->filter($items);
+
+        if (! $items->count()) {
+            throw new InvalidShoppingCartException('The shopping cart given does not contains valid items.');
+        }
+
+        return $items;
     }
 
     protected function dispatchOrderEvents(OrderInterface $order)
