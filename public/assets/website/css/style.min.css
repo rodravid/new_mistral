@@ -5850,6 +5850,34 @@ ul.pagination {
   padding-bottom: 20px; }
 
 /* PG CARRINHO */
+.alert-purchase {
+  border-radius: 3px;
+  width: 100%;
+  display: inline-block;
+  padding: 15px; }
+
+.alert-red {
+  border: 1px solid #f7e2e2;
+  background: #f6e2e2; }
+  .alert-red .alert-msg {
+    color: #be494d; }
+  .alert-red span {
+    border-radius: 5px;
+    background-color: #bb2a2f;
+    color: #9a7749;
+    padding: 5px; }
+
+.alert-yellow {
+  border: 1px solid #feedd5;
+  background: #fef9e8; }
+  .alert-yellow .alert-msg {
+    color: #99776b; }
+  .alert-yellow span {
+    border-radius: 5px;
+    background-color: #e7d1af;
+    color: #9a7749;
+    padding: 5px; }
+
 .link-cart {
   color: #11b6f0;
   text-transform: uppercase;
@@ -7226,5 +7254,19 @@ option {
 
 .loading_gif {
   margin: 0 auto; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important; }
+
+ng\:form {
+  display: block; }
+
+.ng-animate-shim {
+  visibility: hidden; }
+
+.ng-anchor {
+  position: absolute; }
 
 /*# sourceMappingURL=style.min.css.map */
