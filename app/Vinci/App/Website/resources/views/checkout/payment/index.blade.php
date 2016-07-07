@@ -117,7 +117,7 @@
                                         <label for="{{ $paymentMethod->getName() }}">
                                             <img class="flags" src="{{ asset_web('images/payment_methods/icon_' . $paymentMethod->getName() . '.png') }}" alt="">
                                         </label>
-                                        {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName()]) !!}
+                                        {!! Form::radio('payment[method]', $paymentMethod->getId(), null, ['id' => $paymentMethod->getName(), 'paymentType' => $paymentMethod->getDescription()]) !!}
                                     </li>
                                 @endif
                             @endforeach
@@ -270,10 +270,10 @@
                 requestPaymentInstallmentOptions(paymentMethod);
 
                 $("input[name='payment[method]']").change(function () {
-                    var paymentMethod = $(this).val();
+                    var paymentMethod = $(this);
 
-                    if (isNotPaidWithCreditCard(paymentMethod)) {
-                        requestPaymentInstallmentOptions(paymentMethod);
+                    if (isPaidWithCreditCard(paymentMethod)) {
+                        requestPaymentInstallmentOptions(paymentMethod.val());
                     }
                 })
             });
@@ -308,12 +308,12 @@
                 return paymentMethod;
             }
 
-            function isNotPaidWithCreditCard(paymentMethod) {
-                return (paymentMethod != 5 || paymentMethod != 6);
+            function isPaidWithCreditCard(paymentMethod) {
+                return (paymentMethod.attr('paymentType') == 'credit_card');
             }
 
-            function setDocumentInput() {
-                var cpf_cnpj = ('{{ !empty(old('document')) ? old('document') : '0' }}');
+            function setDocumentInput(cpf_cnpj) {
+                cpf_cnpj = ('{{ !empty(old('document')) ? old('document') : '0' }}');
 
                 if (cpf_cnpj != '0') {
                     $("#txtDocument").val(cpf_cnpj);
@@ -338,4 +338,6 @@
                 });
             }
         </script>
+
+        <script src="{{ asset_web('js/checkout/payment/paymentPage.js') }}"></script>
 @endsection

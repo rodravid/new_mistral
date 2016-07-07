@@ -53,7 +53,7 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="txtBirthday">Data de nascimento</label>
-                                    {!! Form::text('birthday', isset($customer) ? $customer->getBirthday()->format('d/m/Y') : null, ['id' => 'txtBirthday', 'class' => 'form-control']) !!}
+                                    {!! Form::text('birthday', isset($customer) && $customer->getBirthday() ? $customer->getBirthday()->format('d/m/Y') : null, ['id' => 'txtBirthday', 'class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-lg-3">
