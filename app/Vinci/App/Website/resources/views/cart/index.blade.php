@@ -27,7 +27,7 @@
 
             <div id="loading-container" class="loading-container-cart"><img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif"></div>
 
-            <div class="alert-purchase alert-red ng-hide" ng-show="ctrl.cart.valid_items_count == 0">
+            <div class="alert-purchase alert-red ng-hide" ng-show="ctrl.hasItems() && ctrl.cart.valid_items_count == 0">
                 <p class="alert-msg">Sua compra não pode ser processada. Os produtos no carrinho, estão indisponíveis no momento.</p>
             </div>
 
