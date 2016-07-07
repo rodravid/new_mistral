@@ -90,7 +90,7 @@
                                 </li>
                                 <li>
                                     <label for="cpf" class="label-input">CPF *</label>
-                                    {!! Form::text('cpf', null, ['id' => 'cpf', 'placeholder' => 'CPF *', 'class' => 'input-register full ' . ($errors->has('cpf') ? 'error-field' : ''), 'cpf']) !!}
+                                    {!! Form::text('cpf', null, ['id' => 'cpf', 'placeholder' => 'CPF *', 'class' => 'input-register full ' . ($errors->has('cpf') ? 'error-field' : ''), 'ui-br-cpf-mask', 'ng-model' => 'cpf']) !!}
                                 </li>
                                 <li>
                                     <label for="rg" class="label-input">RG</label>
