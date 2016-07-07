@@ -27,6 +27,15 @@
 
             <div id="loading-container" class="loading-container-cart"><img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif"></div>
 
+            <div class="alert-purchase alert-red ng-hide" ng-show="ctrl.cart.valid_items_count == 0">
+                <p class="alert-msg">Sua compra não pode ser processada. Os produtos no carrinho, estão indisponíveis no momento.</p>
+            </div>
+
+            <div class="alert-purchase alert-yellow ng-hide" ng-show="ctrl.cart.valid_items_count > 0">
+                <span >Importante</span>
+                <p class="alert-msg">Há produtos indisponíveis no momento, em seu carrinho. Estes itens serão automaticamente removidos ao finalizar seu pedido.</p>
+            </div>
+
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
                 <div class="wrap-content-bt mbottom20">
@@ -71,6 +80,7 @@
                                 <p class="wine-price">
                                     @{{ item.sale_price | currency }}
                                 </p>
+                                <p ng-show="! item.is_stock_available">Indisponível</p>
                             </div>
                             <div class="col-cart2" ng-init="quantity = item.quantity">
                                 <div class="botoes-add">
