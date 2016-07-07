@@ -2454,6 +2454,9 @@ ul.pagination{
 
 			.content-bt-middle {
 				margin-left: 40px;
+				@media #{$screen767} {
+					margin-left:0px;
+				}
 			}
 
 			@media #{$screen767} {
@@ -2473,7 +2476,6 @@ ul.pagination{
 			.content-bt-middle {
 				order: 1;
 				-webkit-order: 1;
-				margin-left:0px;
 			}
 
 			.keep-buying {
@@ -2493,6 +2495,11 @@ ul.pagination{
 			&:hover {
 				text-decoration: underline;
 			}
+		}
+
+		.unavailable {
+			font: 15px $robotobold;
+			color:$red;
 		}
 
 

@@ -6067,6 +6067,9 @@ ul.pagination {
   float: right; }
   .box-two-links .content-bt-middle {
     margin-left: 40px; }
+    @media only screen and (max-width: 767px) {
+      .box-two-links .content-bt-middle {
+        margin-left: 0px; } }
   @media only screen and (max-width: 767px) {
     .box-two-links {
       display: -ms-flexbox;
@@ -6080,8 +6083,7 @@ ul.pagination {
   .content-bt-middle {
     -ms-flex-order: 1;
     order: 1;
-    -webkit-order: 1;
-    margin-left: 0px; }
+    -webkit-order: 1; }
   .keep-buying {
     -ms-flex-order: 2;
     order: 2;
@@ -6096,6 +6098,10 @@ ul.pagination {
   float: right; }
   .keep-buying:hover {
     text-decoration: underline; }
+
+.unavailable {
+  font: 15px "roboto_condensedbold";
+  color: #e02d50; }
 
 /* PG CARRINHO */
 .slider-gift {
