@@ -15,6 +15,7 @@ use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Image\Image;
+use Vinci\Domain\Inventory\Events\StockWasChanged;
 use Vinci\Domain\Inventory\Events\StockWasIncreased;
 use Vinci\Domain\Inventory\Events\StockWasReduced;
 
@@ -175,6 +176,15 @@ class ProductVariant extends Model implements ProductVariantInterface
     {
         $this->stock = (int) $stock;
         return $this;
+    }
+
+    public function changeStock($stock)
+    {
+        $oldStock = $this->getStock();
+
+        $this->setStock($stock);
+
+        $this->raise(new StockWasChanged($this, $oldStock));
     }
 
     public function hasStock()
@@ -529,5 +539,4 @@ class ProductVariant extends Model implements ProductVariantInterface
         $this->packSize = (int) $packSize;
         return $this;
     }
-
 }

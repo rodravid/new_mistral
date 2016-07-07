@@ -19,4 +19,9 @@ class StockModifier
         $stockable->setStock($quantity);
     }
 
+    public function changeStock(Stockable $stockable, $quantity)
+    {
+        $stockable->changeStock(intval($quantity));
+    }
+
 }

@@ -111,7 +111,7 @@
                         $i = 1;
                         $div = false;
                         ?>
-                        @foreach($product->getAttributes() as $attribute)
+                        @foreach($product->getAttributesSorted() as $attribute)
 
                             @if (! empty($attribute->getValue()))
 
@@ -313,7 +313,7 @@
                             $i = 1;
                             $div = false;
                         ?>
-                        @foreach($product->getAttributes() as $attribute)
+                        @foreach($product->getAttributesSorted() as $attribute)
 
                             @if (! empty($attribute->getValue()))
 

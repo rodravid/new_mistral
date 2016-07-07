@@ -18,10 +18,22 @@ class ProductService
 
     public function getAllProducts()
     {
+        return collect($this->repository->getAll());
+    }
 
-        return [];
+    public function getNewProducts()
+    {
+        return collect($this->repository->getNew());
+    }
 
+    public function getChangedProducts()
+    {
+        return collect($this->repository->getChanged());
+    }
 
+    public function getStock($sku)
+    {
+        return $this->repository->getStock($sku);
     }
 
 }
