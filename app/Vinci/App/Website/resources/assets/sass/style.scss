@@ -574,7 +574,7 @@ a.bt-default {
 .seal-score-card {
 	display: table-cell; 
 	vertical-align: middle;
-	
+
 	span {
 		font: 23px $robotobold;
 		position:relative;
@@ -2168,6 +2168,7 @@ ul.pagination{
 			width:100%;
 			display:inline-block;
 			padding:15px;
+			margin-bottom:20px;
 		}
 
 		.alert-red {
@@ -3103,7 +3104,7 @@ margin: 0 auto 5px;
 					border-right: 12px solid transparent;
 					border-top: 12px solid $blue;
 					display:inline-block;
-					
+
 				}
 
 				.r-tabs-accordion-title.r-tabs-state-active {

@@ -5854,7 +5854,8 @@ ul.pagination {
   border-radius: 3px;
   width: 100%;
   display: inline-block;
-  padding: 15px; }
+  padding: 15px;
+  margin-bottom: 20px; }
 
 .alert-red {
   border: 1px solid #f7e2e2;
@@ -5865,7 +5866,9 @@ ul.pagination {
     border-radius: 5px;
     background-color: #bb2a2f;
     color: #9a7749;
-    padding: 5px; }
+    padding: 1px 3px;
+    margin-bottom: 2px;
+    display: inline-block; }
 
 .alert-yellow {
   border: 1px solid #feedd5;
@@ -5876,7 +5879,9 @@ ul.pagination {
     border-radius: 5px;
     background-color: #e7d1af;
     color: #9a7749;
-    padding: 5px; }
+    padding: 1px 3px;
+    margin-bottom: 2px;
+    display: inline-block; }
 
 .link-cart {
   color: #11b6f0;
@@ -6440,7 +6445,7 @@ ul.pagination {
 
 .flags, .flags-transfer {
   /* 			width:70px;
-			height:38px; */
+height:38px; */
   display: block;
   margin: 0 auto 5px; }
   @media only screen and (max-width: 767px) {
@@ -6475,7 +6480,7 @@ ul.pagination {
 				background-position: -197px 3px;
 				background-size: 236px;
 			}
-		} */
+			} */
 .payment-methods {
   display: inline-block;
   margin-bottom: -5px;
@@ -6505,7 +6510,7 @@ ul.pagination {
 			display: inline-block;
 			margin: 0;
 			list-style: none;
-		} */
+			} */
 .r-tabs .r-tabs-panel {
   display: none; }
 
