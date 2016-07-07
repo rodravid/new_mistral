@@ -42,7 +42,7 @@
                             <div class="col-request">
                                 <div class="name-product-request">
                                     <h3 class="title-card-wine">
-                                        {{ $item->getTitle() }}
+                                        {{ $item->product->title }}
                                         @if($item->hasProducer())
                                             <span>{{ $item->getProducer()->getName() }}</span>
                                         @endif

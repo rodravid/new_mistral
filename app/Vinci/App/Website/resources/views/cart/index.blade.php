@@ -31,7 +31,7 @@
                 <p class="alert-msg">Sua compra não pode ser processada. Os produtos no carrinho, estão indisponíveis no momento.</p>
             </div>
 
-            <div class="alert-purchase alert-yellow ng-hide" ng-show="ctrl.cart.valid_items_count != ctrl.cart.count_items && ctrl.cart.valid_items_count != 0">
+            <div class="alert-purchase alert-yellow ng-hide" ng-show="ctrl.cart.valid_items_count != ctrl.cart.count_products && ctrl.cart.valid_items_count != 0">
                 <span >Importante</span>
                 <p class="alert-msg">Há produtos indisponíveis no momento, em seu carrinho. Estes itens serão automaticamente removidos ao finalizar seu pedido.</p>
             </div>
@@ -83,7 +83,7 @@
                                 <p class="unavailable" ng-show="! item.is_stock_available">Indisponível</p>
                             </div>
                             <div class="col-cart2" ng-init="quantity = item.quantity">
-                                <div class="botoes-add">
+                                <div class="botoes-add" ng-show="item.is_stock_available">
                                     <a href="javascript:void(0);" class="bt-remove" ng-click="decrementQuantity()">-</a>
                                     <input type="text" class="input-quantity txtQuantity" value="@{{ item.quantity }}" ng-model="quantity" ng-blur="syncQuantity()">
                                     <a href="javascript:void(0);" class="bt-add" ng-click="incrementQuantity()">+</a>
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="col-cart3 show-desktop">
-                            <h3 class="current-price">
+                            <h3 class="current-price" ng-show="item.is_stock_available">
                                 @{{ item.subtotal | currency }}
                             </h3>
                         </div>

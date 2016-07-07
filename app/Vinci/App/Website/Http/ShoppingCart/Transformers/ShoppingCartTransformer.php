@@ -23,6 +23,7 @@ class ShoppingCartTransformer extends TransformerAbstract
             'subtotal' => $shoppingCart->getSubtotal(),
             'total' => $shoppingCart->getTotal(),
             'count_items' => $shoppingCart->countItems(),
+            'count_products' => $shoppingCart->getItems()->count(),
             'valid_items_count' => app(ValidItemsFilter::class)->filter($shoppingCart->getItems())->count()
         ];
     }
