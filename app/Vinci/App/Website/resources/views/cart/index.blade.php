@@ -152,7 +152,7 @@
             <section class="also-recommend featured-products hide-tablet">
                     <h2 class="title-category mbottom20">Também recomendamos</h2>
                     @foreach($productsRecommended as $key => $product)
-                        <div class="cols-products {{ $templates[$key] }}">
+                        <div class="cols-products bg-template {{ $templates[$key] }}">
                             @include('website::layouts.partials.product.cards.default', ['product' => $product])
                         </div>
                     @endforeach
