@@ -3,6 +3,7 @@
 namespace Vinci\App\Cms\Http\Dashboard;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Http\Request;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Cms\Http\Order\Presenters\OrderPresenter;
 use Vinci\App\Cms\Http\Product\Presenters\ProductPresenter;
@@ -25,7 +26,6 @@ class DashboardController extends Controller
         if ($this->user->cannotManageModule('dashboard')) {
             return $this->view('dashboard.default');
         }
-
 
         $totalOrders = $this->dashboardMetricsService->countOrders();
         $lastOrders = $this->dashboardMetricsService->getLastOrders(10);

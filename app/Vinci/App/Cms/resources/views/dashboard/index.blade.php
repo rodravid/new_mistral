@@ -6,7 +6,7 @@
     <section class="content-header">
         <h1>
             Dashboard
-            <small>Control panel</small>
+            <small>Painel de Controle</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('cms.dashboard.show') }}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -30,7 +30,8 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <label class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></label>
+                        <label class="small-box-footer">Mais informações <i
+                                    class="fa fa-arrow-circle-right"></i></label>
                     </a>
                 </div>
                 <!-- ./col -->
@@ -47,7 +48,8 @@
                         <div class="icon">
                             <i class="fa fa-cubes"></i>
                         </div>
-                        <label class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></label>
+                        <label class="small-box-footer">Mais informações <i
+                                    class="fa fa-arrow-circle-right"></i></label>
                     </a>
                 </div>
                 <!-- ./col -->
@@ -66,7 +68,8 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <label class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></label>
+                        <label class="small-box-footer">Mais informações <i
+                                    class="fa fa-arrow-circle-right"></i></label>
                     </a>
                 </div>
                 <!-- ./col -->
@@ -83,7 +86,8 @@
                         <div class="icon">
                             <i class="fa fa-newspaper-o"></i>
                         </div>
-                        <label class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></label>
+                        <label class="small-box-footer">Mais informações <i
+                                    class="fa fa-arrow-circle-right"></i></label>
                     </a>
                 </div>
                 <!-- ./col -->
@@ -92,34 +96,84 @@
         <!-- /.row -->
         <!-- Main row -->
         <div class="row">
+            <section class="col-lg-12">
+                <!-- Custom tabs (Charts with tabs)-->
+            {{--<div class="nav-tabs-custom">--}}
+            {{--<!-- Tabs within a box -->--}}
+            {{--<ul class="nav nav-tabs pull-right">--}}
+            {{--<li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>--}}
+            {{--<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>--}}
+            {{--<li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>--}}
+            {{--</ul>--}}
+            {{--<div class="tab-content no-padding">--}}
+            {{--<!-- Morris chart - Sales -->--}}
+            {{--<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>--}}
+            {{--<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            <!-- /.nav-tabs-custom -->
+                <!-- solid sales graph -->
+                <div class="box box-solid bg-teal-gradient">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+
+                        <h3 class="box-title">Gráfico de vendas</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn bg-teal btn-sm" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn bg-teal btn-sm" data-widget="remove">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <div class="chart tab-pane" id="line-chart" style="height: 250px;"></div>
+                    </div>
+                    <!-- /.box-body -->
+                    {{--<div class="box-footer no-border">--}}
+                    {{--<div class="row">--}}
+                    {{--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">--}}
+                    {{--<input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">--}}
+
+                    {{--<div class="knob-label">Mail-Orders</div>--}}
+                    {{--</div>--}}
+                    {{--<!-- ./col -->--}}
+                    {{--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">--}}
+                    {{--<input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">--}}
+
+                    {{--<div class="knob-label">Online</div>--}}
+                    {{--</div>--}}
+                    {{--<!-- ./col -->--}}
+                    {{--<div class="col-xs-4 text-center">--}}
+                    {{--<input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">--}}
+
+                    {{--<div class="knob-label">In-Store</div>--}}
+                    {{--</div>--}}
+                    {{--<!-- ./col -->--}}
+                    {{--</div>--}}
+                    {{--<!-- /.row -->--}}
+                    {{--</div>--}}
+                    {{--<!-- /.box-footer -->--}}
+                </div>
+                <!-- /.box -->
+            </section>
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
-                <!-- Custom tabs (Charts with tabs)-->
-                <div class="nav-tabs-custom">
-                    <!-- Tabs within a box -->
-                    <ul class="nav nav-tabs pull-right">
-                        <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                        <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                        <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-                    </ul>
-                    <div class="tab-content no-padding">
-                        <!-- Morris chart - Sales -->
-                        <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-                    </div>
-                </div>
-                <!-- /.nav-tabs-custom -->
 
-                @if ($loggedUser->canManageModule('orders'))
-                    <!-- TABLE: LATEST ORDERS -->
+            @if ($loggedUser->canManageModule('orders'))
+                <!-- TABLE: LATEST ORDERS -->
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">Ultimos Pedidos</h3>
 
                             <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
                                 </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
                             </div>
                         </div>
                         <!-- /.box-header -->
@@ -136,23 +190,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($lastOrders as $order)
-                                            <tr>
-                                                <td>
-                                                    <a href="{{ route('cms.orders.show', $order->id) }}">
-                                                        {{ $order->id }}
-                                                    </a>
-                                                </td>
-                                                <td>{{ $order->number }}</td>
-                                                <td>{{ $order->customer->name }}</td>
-                                                <td>{{ $order->total }}</td>
-                                                <td>
-                                                    <div class="sparkbar" data-color="#00a65a" data-height="20">
-                                                        {{ $order->created_at }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach ($lastOrders as $order)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('cms.orders.show', $order->id) }}">
+                                                    {{ $order->id }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $order->number }}</td>
+                                            <td>{{ $order->customer->name }}</td>
+                                            <td>{{ $order->total }}</td>
+                                            <td>
+                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                    {{ $order->created_at }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -160,86 +214,45 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer clearfix">
-                            <a href="{{ route('cms.orders.list') }}" class="btn btn-sm btn-info btn-flat pull-right">Ver todos</a>
+                            <a href="{{ route('cms.orders.list') }}" class="btn btn-sm btn-info btn-flat pull-right">Ver
+                                todos</a>
                         </div>
                         <!-- /.box-footer -->
-                        </div>
+                    </div>
                     <!-- /.box -->
                 @endif
             </section>
             <!-- /.Left col -->
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
             <section class="col-lg-5 connectedSortable">
-                <!-- solid sales graph -->
-                <div class="box box-solid bg-teal-gradient">
-                    <div class="box-header">
-                        <i class="fa fa-th"></i>
-
-                        <h3 class="box-title">Gráfico de vendas</h3>
-
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="box-body border-radius-none">
-                        <div class="chart" id="line-chart" style="height: 250px;"></div>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer no-border">
-                        <div class="row">
-                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                <div class="knob-label">Mail-Orders</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                <div class="knob-label">Online</div>
-                            </div>
-                            <!-- ./col -->
-                            <div class="col-xs-4 text-center">
-                                <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                <div class="knob-label">In-Store</div>
-                            </div>
-                            <!-- ./col -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.box-footer -->
-                </div>
-                <!-- /.box -->
-
-                @if ($loggedUser->canManageModule('products'))
-                    <!-- PRODUCT LIST -->
+            @if ($loggedUser->canManageModule('products'))
+                <!-- PRODUCT LIST -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Produtos Adicionados Recentemente</h3>
 
                             <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
                                 </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
                             </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <ul class="products-list product-list-in-box">
-                                @foreach ($lastProductsAdded as $product)
-                                    <!-- title, producer, image, estoque, price -->
-                                        <li class="item">
-                                            <div class="product-img">
-                                                <img src="{{ $product->image_url }}" alt="{{ $product->title }}">
-                                            </div>
-                                            <div class="product-info" style="margin-top: 15px">
-                                                <a href="{{ route('cms.products.edit', $product->id) }}" class="product-title">
-                                                    {{ $product->title }}
-                                                </a>
+                            @foreach ($lastProductsAdded as $product)
+                                <!-- title, producer, image, estoque, price -->
+                                    <li class="item">
+                                        <div class="product-img">
+                                            <img src="{{ $product->image_url }}" alt="{{ $product->title }}">
+                                        </div>
+                                        <div class="product-info" style="margin-top: 15px">
+                                            <a href="{{ route('cms.products.edit', $product->id) }}"
+                                               class="product-title">
+                                                {{ $product->title }}
+                                            </a>
                                                 <span class="product-description">
                                                     @if ($product->hasProducer())
                                                         {{ $product->producer->name }}<br>
@@ -250,8 +263,8 @@
                                                         {{ $product->sale_price }}
                                                     </span>
                                                 </span>
-                                            </div>
-                                        </li>
+                                        </div>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>

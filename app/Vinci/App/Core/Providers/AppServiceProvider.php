@@ -65,6 +65,9 @@ class AppServiceProvider extends ServiceProvider
         
         $doctrineConfig->addCustomStringFunction('RAND', 'DoctrineExtensions\Query\Mysql\Rand');
         $doctrineConfig->addCustomStringFunction('FIELD', 'DoctrineExtensions\Query\Mysql\Field');
+        $doctrineConfig->addCustomStringFunction('DAY', 'DoctrineExtensions\Query\Mysql\Day');
+        $doctrineConfig->addCustomStringFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
+        $doctrineConfig->addCustomStringFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
     }
 
 }
