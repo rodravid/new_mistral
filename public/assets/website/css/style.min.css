@@ -6065,6 +6065,8 @@ ul.pagination {
 .box-two-links {
   width: 420px;
   float: right; }
+  .box-two-links .content-bt-middle {
+    margin-left: 40px; }
   @media only screen and (max-width: 767px) {
     .box-two-links {
       display: -ms-flexbox;
@@ -6078,7 +6080,8 @@ ul.pagination {
   .content-bt-middle {
     -ms-flex-order: 1;
     order: 1;
-    -webkit-order: 1; }
+    -webkit-order: 1;
+    margin-left: 0px; }
   .keep-buying {
     -ms-flex-order: 2;
     order: 2;
@@ -6090,7 +6093,7 @@ ul.pagination {
   font: 15px "roboto_condensedbold";
   text-transform: uppercase;
   margin-top: 10px;
-  float: left; }
+  float: right; }
   .keep-buying:hover {
     text-decoration: underline; }
 
