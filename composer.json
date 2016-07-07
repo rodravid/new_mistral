@@ -29,7 +29,9 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "logentries/logentries-monolog-handler": "^2.0",
         "phpspec/phpspec": "^2.5",
-        "beberlei/DoctrineExtensions": "^1.0"
+        "beberlei/DoctrineExtensions": "^1.0",
+        "inacho/php-credit-card-validator": "1.*",
+        "aws/aws-sdk-php": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

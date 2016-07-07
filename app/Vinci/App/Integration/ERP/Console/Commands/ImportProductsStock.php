@@ -3,12 +3,10 @@
 namespace Vinci\App\Integration\ERP\Console\Commands;
 
 use Exception;
-use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 use Vinci\App\Integration\ERP\Product\ProductImporter;
 use Vinci\Domain\ERP\Product\ProductService;
 
-class ImportProducts extends Command
+class ImportProductsStock extends ImportProducts
 {
 
     /**
@@ -16,7 +14,7 @@ class ImportProducts extends Command
      *
      * @var string
      */
-    protected $signature = 'erp:integration:products:import 
+    protected $signature = 'erp:integration:products:import-stock 
                             {products?* : IDs array of products}
                             {--all : Import all products from ERP}
                             {--new : Import only new products from ERP}
@@ -28,18 +26,11 @@ class ImportProducts extends Command
      *
      * @var string
      */
-    protected $description = 'Import products from ERP.';
-
-    protected $productImporter;
-
-    protected $productService;
+    protected $description = 'Import products stock from ERP.';
 
     public function __construct(ProductImporter $productImporter, ProductService $productService)
     {
-        parent::__construct();
-
-        $this->productImporter = $productImporter;
-        $this->productService = $productService;
+        parent::__construct($productImporter, $productService);
     }
 
     public function handle()
@@ -49,10 +40,10 @@ class ImportProducts extends Command
         if($productsSKU->count()) {
 
            if ($productsSKU->count() == 1) {
-               $this->importOne($productsSKU->first(), false, $this->option('exceptions'));
+               $this->importStockOfOne($productsSKU->first(), false, $this->option('exceptions'));
 
            } else {
-               $this->importMany($productsSKU);
+               $this->importStockOfMany($productsSKU);
            }
 
         } else {
@@ -60,17 +51,19 @@ class ImportProducts extends Command
         }
     }
 
-    public function importOne($productSKU, $silent = false, $exceptions = false)
+    public function importStockOfOne($productSKU, $silent = false, $exceptions = false)
     {
         if (! $silent) {
-            $this->info(sprintf('Importing product #%s from ERP...', $productSKU));
+            $this->info(sprintf('Importing stock of product #%s from ERP...', $productSKU));
         }
 
         try {
 
-            $this->productImporter->importOneBySKU($productSKU);
+            $stock = $this->productImporter->importStock($productSKU);
 
-            $this->info('Done!');
+            if (! $silent) {
+                $this->info(sprintf('Done! Current stock is: %s', $stock));
+            }
 
         } catch (Exception $e) {
 
@@ -85,11 +78,11 @@ class ImportProducts extends Command
         }
     }
 
-    public function importMany($productsSKU)
+    public function importStockOfMany($productsSKU)
     {
         $progressBar = $this->output->createProgressBar($productsSKU->count());
 
-        $this->info(sprintf('Importing %s products from ERP...', $productsSKU->count()));
+        $this->info(sprintf('Importing stock of %s products from ERP...', $productsSKU->count()));
         $success = [];
         $error = [];
 
@@ -97,7 +90,7 @@ class ImportProducts extends Command
 
             try {
 
-                $this->importOne($productSKU, true, true);
+                $this->importStockOfOne($productSKU, true, true);
 
                 $success[] = $productSKU;
 
@@ -118,43 +111,6 @@ class ImportProducts extends Command
 
         if (! empty($error)) {
             $this->error(sprintf("\n%s products were not imported!", count($error)));
-        }
-    }
-
-    public function getProductsSKU()
-    {
-        $productsInput = collect($this->argument('products'));
-
-        if ($productsInput->count()) {
-            return $productsInput;
-        }
-
-        $products = collect();
-
-        if ($this->option('all')) {
-            $all = $this->productService->getAllProducts();
-            $this->appendToCollection($products, $all);
-        }
-
-        if ($this->option('new')) {
-            $new = $this->productService->getNewProducts();
-            $this->appendToCollection($products, $new);
-        }
-
-        if ($this->option('changed')) {
-            $changed = $this->productService->getChangedProducts();
-            $this->appendToCollection($products, $changed);
-        }
-
-        return $products;
-    }
-
-    protected function appendToCollection(Collection $collection, $values)
-    {
-        foreach ($values as $value) {
-            if (! $collection->contains($value)) {
-                $collection->push($value);
-            }
         }
     }
 

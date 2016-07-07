@@ -24,7 +24,7 @@ class AttributeValue
     protected $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Attribute", inversedBy="values")
+     * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Attribute")
      */
     protected $attribute;
 

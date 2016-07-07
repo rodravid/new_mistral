@@ -11,10 +11,12 @@ use Vinci\Domain\Product\Dimension;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory as ProductFactoryInterface;
 use Vinci\Domain\Product\Kit\Kit;
 use Vinci\Domain\Product\Product;
-use Vinci\Domain\Product\ProductType;
+use Vinci\Domain\Product\ProductType as ProductArchType;
 use Vinci\Domain\Product\Wine\Score\ScoreFactory;
 use Vinci\Domain\Product\Wine\Wine;
+use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\Region\Region;
+use Vinci\Domain\Product\Factories\ProductTypeFactory as ProductArchTypeFactory;
 
 class ProductFactory implements ProductFactoryInterface
 {
@@ -23,7 +25,7 @@ class ProductFactory implements ProductFactoryInterface
 
     private $variantFactory;
 
-    private $productTypeFactory;
+    private $productArchTypeFactory;
 
     private $grapeFactory;
 
@@ -34,7 +36,7 @@ class ProductFactory implements ProductFactoryInterface
     public function __construct(
         EntityManagerInterface $entityManager,
         ProductVariantFactory $variantFactory,
-        ProductTypeFactory $productTypeFactory,
+        ProductArchTypeFactory $productArchTypeFactory,
         GrapeFactory $grapeFactory,
         ScoreFactory $scoreFactory,
         AttributeFactory $attributeFactory
@@ -42,7 +44,7 @@ class ProductFactory implements ProductFactoryInterface
     {
         $this->entityManager = $entityManager;
         $this->variantFactory = $variantFactory;
-        $this->productTypeFactory = $productTypeFactory;
+        $this->productArchTypeFactory = $productArchTypeFactory;
         $this->grapeFactory = $grapeFactory;
         $this->scoreFactory = $scoreFactory;
         $this->attributeFactory = $attributeFactory;
@@ -50,7 +52,7 @@ class ProductFactory implements ProductFactoryInterface
 
     public function make(array $data)
     {
-        $productType = $this->productTypeFactory->make($data['type']);
+        $productType = $this->productArchTypeFactory->make($data['type']);
 
         $variant = $this->variantFactory->make($data);
 
@@ -68,11 +70,12 @@ class ProductFactory implements ProductFactoryInterface
         $this->includeCountry($product, $data);
         $this->includeRegion($product, $data);
         $this->includeProducer($product, $data);
+        $this->includeProductType($product, $data);
         $this->includeAttributes($product, $data);
         $this->includeChannels($product, $data);
         $this->includeDimension($product, $data);
 
-        if ($product->isType(ProductType::TYPE_WINE)) {
+        if ($product->isType(ProductArchType::TYPE_WINE)) {
 
             $this->includeGrapes($product, $data);
 
@@ -157,6 +160,13 @@ class ProductFactory implements ProductFactoryInterface
         }
     }
 
+    protected function includeProductType(Product $product, $data)
+    {
+        if (isset($data['product_type_id']) && ! empty($data['product_type_id'])) {
+            $product->setProductType($this->entityManager->getReference(ProductType::class, $data['product_type_id']));
+        }
+    }
+
     public function override(Product $product, array $data)
     {
         $newProduct = $this->make($data);
@@ -169,8 +179,6 @@ class ProductFactory implements ProductFactoryInterface
             ->setStatus($newProduct->getStatus())
             ->syncAttributes($newProduct->getAttributes())
             ->syncChannels($newProduct->getChannels())
-            ->syncPrices($newProduct->getPrices())
-            ->setStock($newProduct->getStock())
             ->setSeoTitle($newProduct->getSeoTitle())
             ->setSeoDescription($newProduct->getSeoDescription())
             ->setSeoKeywords($newProduct->getSeoKeywords())
@@ -179,11 +187,25 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAt($newProduct->getStartsAt())
             ->setExpirationAt($newProduct->getExpirationAt())
             ->setOnline($newProduct->isOnline())
-            ->setImportStock($newProduct->shouldImportStock())
-            ->setImportPrice($newProduct->shouldImportPrice())
             ->setPackSize($newProduct->getPackSize());
 
-        if ($product->isType(ProductType::TYPE_WINE)) {
+        if (array_has($data, 'stock')) {
+            $product->setStock($newProduct->getStock());
+        }
+
+        if (array_has($data, 'should_import_stock')) {
+            $product->setImportStock($newProduct->shouldImportStock());
+        }
+
+        if (array_has($data, 'price')) {
+            $product->syncPrices($newProduct->getPrices());
+        }
+
+        if (array_has($data, 'should_import_price')) {
+            $product->setImportPrice($newProduct->shouldImportPrice());
+        }
+
+        if ($product->isType(ProductArchType::TYPE_WINE)) {
             $product->syncScores($newProduct->getScores());
             $product->syncGrapeContent($newProduct->getGrapes());
         }
@@ -195,15 +217,15 @@ class ProductFactory implements ProductFactoryInterface
     {
         switch ($type) {
 
-            case ProductType::TYPE_WINE:
+            case ProductArchType::TYPE_WINE:
                 return new Wine;
                 break;
 
-            case ProductType::TYPE_PRODUCT:
+            case ProductArchType::TYPE_PRODUCT:
                 return new Product;
                 break;
 
-            case ProductType::TYPE_KIT:
+            case ProductArchType::TYPE_KIT:
                 return new Kit;
                 break;
 

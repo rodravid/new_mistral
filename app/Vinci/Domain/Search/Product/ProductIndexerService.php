@@ -146,7 +146,7 @@ class ProductIndexerService
             $data = [
                 'id' => $product->getId(),
                 'sku' => $product->getSku(),
-                'title' => $product->getTitle(),
+                'title' => $product->present()->title,
                 'description' => $product->getDescription(),
                 'price' => $product->getSalePrice()
             ];

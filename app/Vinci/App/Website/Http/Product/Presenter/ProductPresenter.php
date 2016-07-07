@@ -8,9 +8,16 @@ use Vinci\Domain\Promotion\PromotionSealProvider;
 class ProductPresenter extends BaseProductPresenter
 {
 
+    public function presentTitle()
+    {
+       return preg_replace('/\(.*\)/', '', $this->getTitle());
+    }
+
     public function presentCardTitle()
     {
-        return $this->limitTo($this->getTitle(), 47);
+        $title = preg_replace('/\(.*\)/', '', $this->getTitle());
+
+        return $this->limitTo($title, 47);
     }
 
     public function presentShortnedDescription()

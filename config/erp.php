@@ -4,6 +4,7 @@ return [
 
     'username' => env('ERP_USERNAME', 'WSGW'),
     'password' => env('ERP_PASSWORD', 'PEOP2987WS'),
+    'products_price_list' => env('ERP_PRODUCTS_PRICE_LIST', 'EMVNTV'),
 
     'wsdl' => [
 

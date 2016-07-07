@@ -7,13 +7,14 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Shipping\Calculator\ShippingCalculatorInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="carriers")
  */
-class Carrier implements CarrierInterface
+class Carrier extends Model implements CarrierInterface
 {
 
     use Timestampable, SoftDeletes;
