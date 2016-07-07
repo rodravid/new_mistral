@@ -120,6 +120,7 @@ class ProductSearchService extends SearchService
                 'bool' => [
                     'should' => [
                         ['term' => ['_id' => $keyword]],
+                        ['term' => ['sku' => $keyword]],
                         ['match' => ['title' => $keyword]],
                         ['match' => ['keywords' => $keyword]],
                         ['match' => ['country.title' => $keyword]],
