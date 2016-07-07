@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Order;
 
 use Auth;
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
@@ -271,6 +272,23 @@ class OrderService
                 'card.number' => 'Cartão de crédito inválido para a bandeira selecionada.'
             ]));
         }
+
+        $installments = array_get($data, 'payment.installments');
+        $creditcardExpires = Carbon::createFromDate(array_get($data, 'card.expiry_year'), array_get($data, 'card.expiry_month'));
+        $now = Carbon::now();
+        $message = 'A validade do cartão de crédito está expirada.';
+
+        if ($installments > 1) {
+            $message = 'O mês de validade do cartão não pode ser menor que o mês da última parcela.';
+            $now->addMonths($installments);
+        }
+
+        if ($creditcardExpires < $now) {
+            throw new ValidationException(new MessageBag([
+                'card.expiry_month' => $message,
+            ]));
+        }
+
     }
 
 }
