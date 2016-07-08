@@ -35,4 +35,15 @@ class DoctrineCustomerRepository extends DoctrineUserRepository implements Custo
     {
         return (int) $this->createQueryBuilder('c')->select('count(c.id)')->getQuery()->getSingleScalarResult();
     }
+
+    public function findByDocument($document)
+    {
+        $qb = $this->createQueryBuilder('o');
+
+        $qb->where('o.cpf = :cpf');
+
+        $qb->setParameter('cpf', $document);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }
