@@ -178,7 +178,7 @@
                         $(".header-main").addClass('menu-fixo');
 
                         $(".menu-fixo").fadeIn(400, function () {
-                            $("body").css("margin-top", "100px");
+                            // $("body").css("margin-top", "100px");
                         });
 
                         $(".category-fixed").css("top", "70px");
