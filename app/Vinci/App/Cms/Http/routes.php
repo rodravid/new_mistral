@@ -360,6 +360,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
         $route->group(['prefix' => 'tests', 'as' => 'test.', 'namespace' => 'Tests'], function() use ($route) {
 
             $route->get('order-mail-template/{namespace}/{name}/{order}', 'OrderMailTemplateController@render');
+            $route->get('customer-mail-template/{namespace}/{name}/{customer}', 'CustomerMailTemplateController@render');
 
         });
 
