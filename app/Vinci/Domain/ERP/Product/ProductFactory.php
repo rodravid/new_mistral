@@ -7,4 +7,6 @@ interface ProductFactory
 
     public function makeFromXmlObject($xmlObject);
 
+    public function makeListFromXmlObject($xmlObject);
+
 }

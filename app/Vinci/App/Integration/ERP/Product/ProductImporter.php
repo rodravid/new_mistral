@@ -4,6 +4,7 @@ namespace Vinci\App\Integration\ERP\Product;
 
 use Exception;
 use Log;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Integration\Exceptions\IntegrationException;
 use Vinci\Domain\ERP\Product\Product;
 use Vinci\Domain\ERP\Product\ProductService;
@@ -50,7 +51,7 @@ class ProductImporter
 
         } catch (Exception $e) {
 
-            $this->log($e->getMessage());
+            $this->log($e);
 
             throw $e;
         }
@@ -108,9 +109,15 @@ class ProductImporter
         return $this->localProductService->update($data, $localProduct->getId());
     }
 
-    public function log($message)
+    public function log(Exception $e)
     {
-        Log::error($message);
+        if ($e instanceof ValidationException) {
+
+            Log::error(sprintf('Validation exception: %s', serialize($e->getErrors())));
+
+        } else {
+            Log::error($e->getMessage());
+        }
     }
 
 }

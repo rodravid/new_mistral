@@ -111,6 +111,17 @@ class ProductFactory implements ProductFactoryInterface
         return $this->newInstance($data);
     }
 
+    public function makeListFromXmlObject($xmlObject)
+    {
+        $list = [];
+
+        foreach ($xmlObject as $item) {
+            $list[] = (string) $item->CODIGO_PRODUTO;
+        }
+
+        return $list;
+    }
+
     private function normalizeValue($value)
     {
         if ($value == "NULL" || empty($value)) {

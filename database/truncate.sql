@@ -1,0 +1,33 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE jobs;
+TRUNCATE failed_jobs;
+TRUNCATE orders;
+TRUNCATE order_addresses;
+TRUNCATE order_payments;
+TRUNCATE order_shipments;
+TRUNCATE order_tracking_status;
+TRUNCATE orders_history;
+TRUNCATE orders_history_entries;
+TRUNCATE orders_items;
+TRUNCATE password_resets;
+TRUNCATE products;
+TRUNCATE products_attributes_values;
+TRUNCATE products_channels;
+TRUNCATE products_favorites;
+TRUNCATE products_notify;
+TRUNCATE products_showcases_items;
+TRUNCATE products_variants;
+TRUNCATE products_variants_images;
+TRUNCATE products_variants_price;
+TRUNCATE promotions;
+TRUNCATE discount_promotions;
+TRUNCATE promotions_items;
+TRUNCATE shopping_cart;
+TRUNCATE shopping_cart_items;
+TRUNCATE wines;
+TRUNCATE wines_grapes;
+TRUNCATE wines_scores;
+TRUNCATE wines_scores;
+
+SET FOREIGN_KEY_CHECKS = 1;
