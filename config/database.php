@@ -65,6 +65,32 @@ return [
             'engine'    => null,
         ],
 
+        'web11' => [
+            'driver'    => 'mysql',
+            'host'      => '10.10.10.4',
+            'database'  => 'vinci',
+            'username'  => 'root',
+            'password'  => 'r6Hs8cLj60citK',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+            'engine'    => null,
+        ],
+
+        'homolog' => [
+            'driver'    => 'mysql',
+            'host'      => 'web11-homolog.cpeuehgmouqy.sa-east-1.rds.amazonaws.com',
+            'database'  => 'vinci',
+            'username'  => 'homolog_admin',
+            'password'  => 'w3biihom0i0g',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+            'engine'    => null,
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
