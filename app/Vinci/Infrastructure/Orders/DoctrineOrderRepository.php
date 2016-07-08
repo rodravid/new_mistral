@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Orders;
 
 use Vinci\Domain\Order\OrderRepository;
+use Vinci\Domain\Payment\PaymentStatus;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
@@ -93,26 +94,5 @@ DQL;
         }
 
         return $order;
-    }
-
-    public function getByPeriod($dateStart, $dateStop)
-    {
-        $queryBuilder = $this->createQueryBuilder('o');
-
-        $queryBuilder->select('count(o.id) AS orders, DAY(o.createdAt) as day, MONTH(o.createdAt) as month, YEAR(o.createdAt) as year')
-                     ->where(
-                         $queryBuilder->expr()->between(
-                             'o.createdAt',
-                             ':dateStart',
-                             ':dateStop'
-                         )
-                     )
-                     ->orderBy('year, month, day')
-                     ->groupBy('day');
-
-        $queryBuilder->setParameter('dateStart', $dateStart)
-                     ->setParameter('dateStop', $dateStop);
-
-        return $queryBuilder->getQuery()->getResult();
     }
 }

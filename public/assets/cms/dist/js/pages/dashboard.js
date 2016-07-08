@@ -1,45 +1,83 @@
-/*
- * Author: Abdullah A Almsaeed
- * Date: 4 Jan 2014
- * Description:
- *      This is a demo file used only for the main dashboard (index.html)
- **/
-
 $(document).ready(function () {
+    buildLineChartGraphic();
+    buildBarChartGraphic();
+});
+
+function buildLineChartGraphic() {
     $.ajax({
-        url: '/cms/GraficoDePedidos',
+        url: '/cms/LineChartPedidos',
         success: function (response) {
-
-            var $data = [];
-
-            $.each(response, function (index, value) {
-                $.merge($data, [{ date: value.year + '-' + value.month + '-' + value.day, orders: value.orders }]);
-            });
-
-            var line = new Morris.Line({
-                element: 'line-chart',
-                resize: false,
-                data: $data,
-                xkey: 'date',
-                ykeys: ['orders'],
-                xLabelFormat: function (date) {
-                    return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
-                },
-                labels: ['Pedidos'],
-                lineColors: ['#efefef'],
-                lineWidth: 2,
-                hideHover: 'auto',
-                gridTextColor: "#fff",
-                gridStrokeWidth: 0.4,
-                pointSize: 4,
-                pointStrokeColors: ["#efefef"],
-                gridLineColor: "#efefef",
-                gridTextFamily: "Open Sans",
-                gridTextSize: 10
-            });
+            buildLineChartData(response);
         }
     });
-});
+}
+function buildLineChartData(response) {
+    var $data = [];
+
+    $.each(response, function (index, values) {
+        $.merge($data, [{ date: values.year + '-' + values.month + '-' + values.day, orders: values.orders }]);
+    });
+
+    var line = new Morris.Line({
+        element: 'line-chart',
+        resize: true,
+        data: $data,
+        xkey: 'date',
+        ykeys: ['orders'],
+        xLabelFormat: function (date) {
+            return ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
+        },
+        labels: ['Pedidos'],
+        lineColors: ['#efefef'],
+        lineWidth: 2,
+        hoverCallback: function (index, options, content, row) {
+            var arrayDate = row.date.split("-");
+
+            return  "<div class='morris-hover-row-label'>" +
+                        ('0' + arrayDate[2]).slice(-2) + "/" + ('0' + arrayDate[1]).slice(-2) + "/" + arrayDate[0] +
+                    "</div>" +
+                    "<div class='morris-hover-point' style='color: #efefef'> Pedidos: " + row.orders + "</div>";
+        },
+        hideHover: 'auto',
+        gridTextColor: "#fff",
+        gridStrokeWidth: 0.4,
+        pointSize: 4,
+        pointStrokeColors: ["#efefef"],
+        gridLineColor: "#efefef",
+        gridTextFamily: "Open Sans",
+        gridTextSize: 10
+    });
+}
+
+
+
+function buildBarChartGraphic() {
+    $.ajax({
+        url: '/cms/BarChartPedidos',
+        success: function (response) {
+            buildBarChartData(response)
+
+        }
+    });
+}
+function buildBarChartData(response) {
+    var $data = [];
+
+    $.each(response, function (index, values) {
+        $.merge($data, [{ date: ('0' + values.day).slice(-2) + '/' + ('0' + values.month).slice(-2) + '/' + values.year, allOrders: values.orders, paidOrders: values.paidOrders }]);
+    });
+
+    var area = new Morris.Bar({
+        element: 'bar-chart',
+        resize: true,
+        data: $data,
+        xkey: 'date',
+        ykeys: ['allOrders', 'paidOrders'],
+        labels: ['Total', 'Pagos'],
+        barColors: ['#a0d0e0', '#3c8dbc'],
+        hideHover: 'auto'
+    });
+}
 
 $(function () {
 
@@ -160,28 +198,28 @@ $(function () {
     });
 
     /* Morris.js Charts */
-    // Sales chart
-    var area = new Morris.Area({
-      element: 'revenue-chart',
-      resize: true,
-      data: [
-        {y: '2011 Q1', item1: 2666, item2: 2666},
-        {y: '2011 Q2', item1: 2778, item2: 2294},
-        {y: '2011 Q3', item1: 4912, item2: 1969},
-        {y: '2011 Q4', item1: 3767, item2: 3597},
-        {y: '2012 Q1', item1: 6810, item2: 1914},
-        {y: '2012 Q2', item1: 5670, item2: 4293},
-        {y: '2012 Q3', item1: 4820, item2: 3795},
-        {y: '2012 Q4', item1: 15073, item2: 5967},
-        {y: '2013 Q1', item1: 10687, item2: 4460},
-        {y: '2013 Q2', item1: 8432, item2: 5713}
-      ],
-      xkey: 'y',
-      ykeys: ['item1', 'item2'],
-      labels: ['Item 1', 'Item 2'],
-      lineColors: ['#a0d0e0', '#3c8dbc'],
-      hideHover: 'auto'
-    });
+    // // Sales chart
+    // var area = new Morris.Area({
+    //   element: 'revenue-chart',
+    //   resize: true,
+    //   data: [
+    //     {y: '2011 Q1', item1: 2666, item2: 2666},
+    //     {y: '2011 Q2', item1: 2778, item2: 2294},
+    //     {y: '2011 Q3', item1: 4912, item2: 1969},
+    //     {y: '2011 Q4', item1: 3767, item2: 3597},
+    //     {y: '2012 Q1', item1: 6810, item2: 1914},
+    //     {y: '2012 Q2', item1: 5670, item2: 4293},
+    //     {y: '2012 Q3', item1: 4820, item2: 3795},
+    //     {y: '2012 Q4', item1: 15073, item2: 5967},
+    //     {y: '2013 Q1', item1: 10687, item2: 4460},
+    //     {y: '2013 Q2', item1: 8432, item2: 5713}
+    //   ],
+    //   xkey: 'y',
+    //   ykeys: ['item1', 'item2'],
+    //   labels: ['Item 1', 'Item 2'],
+    //   lineColors: ['#a0d0e0', '#3c8dbc'],
+    //   hideHover: 'auto'
+    // });
     //Donut Chart
     // var donut = new Morris.Donut({
     //   element: 'sales-chart',

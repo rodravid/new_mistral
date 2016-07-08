@@ -13,6 +13,4 @@ interface OrderRepository extends RepositoryInterface
 
     public function getByCustomer($customerId, $perPage = 5, $pageName = 'page');
 
-    public function getByPeriod($dateStart, $dateStop);
-
 }

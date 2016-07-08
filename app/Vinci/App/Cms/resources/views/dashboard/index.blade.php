@@ -30,8 +30,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <label class="small-box-footer">Mais informações <i
-                                    class="fa fa-arrow-circle-right"></i></label>
+                        <label class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></label>
                     </a>
                 </div>
                 <!-- ./col -->
@@ -97,67 +96,70 @@
         <!-- Main row -->
         <div class="row">
             <section class="col-lg-12">
-                <!-- Custom tabs (Charts with tabs)-->
-            {{--<div class="nav-tabs-custom">--}}
-            {{--<!-- Tabs within a box -->--}}
-            {{--<ul class="nav nav-tabs pull-right">--}}
-            {{--<li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>--}}
-            {{--<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>--}}
-            {{--<li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>--}}
-            {{--</ul>--}}
-            {{--<div class="tab-content no-padding">--}}
-            {{--<!-- Morris chart - Sales -->--}}
-            {{--<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>--}}
-            {{--<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            <!-- /.nav-tabs-custom -->
-                <!-- solid sales graph -->
-                <div class="box box-solid bg-teal-gradient">
-                    <div class="box-header">
-                        <i class="fa fa-th"></i>
-
-                        <h3 class="box-title">Gráfico de vendas</h3>
-
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn bg-teal btn-sm" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn bg-teal btn-sm" data-widget="remove">
-                                <i class="fa fa-times"></i>
-                            </button>
+                @if ($loggedUser->canManageModule('orders'))
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="nav-tabs-custom">
+                        <!-- Tabs within a box -->
+                        <ul class="nav nav-tabs pull-right">
+                            <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+                            {{--<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>--}}
+                            <li class="pull-left"><a href="{{ route('cms.orders.list') }}"><h3 class="box-title"><i class="fa fa-th"></i> Gráfico de vendas <small>/ Totais Detalhados</small></h3></a></li>
+                        </ul>
+                        <div class="tab-content no-padding">
+                            <!-- Morris chart - Sales -->
+                            <div class="chart tab-pane active" id="bar-chart" style="position: relative; height: 300px;"></div>
+                            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
                         </div>
+                        <div class="box-footer no-border">
+                            <div class="row">
+                                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrders }}" value="100" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+
+                                    <div class="knob-label">Pedidos Pagos</div>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrders }}" value="50" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+
+                                    <div class="knob-label">Concluídos</div>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-xs-4 text-center">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrders }}" value="30" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+
+                                    <div class="knob-label">Aguardando Pagamento</div>
+                                </div>
+                                <!-- ./col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.box-footer -->
                     </div>
-                    <div class="box-body border-radius-none">
-                        <div class="chart tab-pane" id="line-chart" style="height: 250px;"></div>
+                    <!-- /.nav-tabs-custom -->
+                @endif
+                @if ($loggedUser->canManageModule('orders'))
+                    <!-- solid sales graph -->
+                    <div class="box box-solid bg-teal-gradient">
+                        <div class="box-header">
+
+                            <h3 class="box-title"><i class="fa fa-shopping-bag"></i> Gráfico de vendas <small>/ Totais Diários</small></h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn bg-teal btn-sm" data-widget="remove">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div class="chart tab-pane" id="line-chart" style="height: 250px;width: 100%;"></div>
+                        </div>
+                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box-body -->
-                    {{--<div class="box-footer no-border">--}}
-                    {{--<div class="row">--}}
-                    {{--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">--}}
-                    {{--<input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">--}}
-
-                    {{--<div class="knob-label">Mail-Orders</div>--}}
-                    {{--</div>--}}
-                    {{--<!-- ./col -->--}}
-                    {{--<div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">--}}
-                    {{--<input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">--}}
-
-                    {{--<div class="knob-label">Online</div>--}}
-                    {{--</div>--}}
-                    {{--<!-- ./col -->--}}
-                    {{--<div class="col-xs-4 text-center">--}}
-                    {{--<input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">--}}
-
-                    {{--<div class="knob-label">In-Store</div>--}}
-                    {{--</div>--}}
-                    {{--<!-- ./col -->--}}
-                    {{--</div>--}}
-                    {{--<!-- /.row -->--}}
-                    {{--</div>--}}
-                    {{--<!-- /.box-footer -->--}}
-                </div>
-                <!-- /.box -->
+                    <!-- /.box -->
+                @endif
             </section>
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">

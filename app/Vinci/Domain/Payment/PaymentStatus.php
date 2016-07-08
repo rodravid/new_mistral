@@ -25,7 +25,7 @@ class PaymentStatus extends Enum
         self::STATUS_COMPLETED => 'Completo',
         self::STATUS_AUTHORIZED => 'Autorizado',
         self::STATUS_FAILED => 'Falhou',
-        self::STATUS_CANCELLED => 'Aprovado',
+        self::STATUS_CANCELLED => 'Cancelado',
         self::STATUS_REFUNDED => 'Reembolsado',
         self::STATUS_UNKNOWN => 'Desconhecido'
     ];
