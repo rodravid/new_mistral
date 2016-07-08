@@ -64,7 +64,7 @@ function buildBarChartData(response) {
     var $data = [];
 
     $.each(response, function (index, values) {
-        $.merge($data, [{ date: ('0' + values.day).slice(-2) + '/' + ('0' + values.month).slice(-2) + '/' + values.year, allOrders: values.orders, paidOrders: values.paidOrders }]);
+        $.merge($data, [{ date: ('0' + values.day).slice(-2) + '/' + ('0' + values.month).slice(-2) + '/' + values.year, allOrders: values.orders, paidOrders: values.paidOrders, completedOrders: values.completedOrders }]);
     });
 
     var area = new Morris.Bar({
@@ -72,9 +72,9 @@ function buildBarChartData(response) {
         resize: true,
         data: $data,
         xkey: 'date',
-        ykeys: ['allOrders', 'paidOrders'],
-        labels: ['Total', 'Pagos'],
-        barColors: ['#a0d0e0', '#3c8dbc'],
+        ykeys: ['allOrders', 'paidOrders', 'completedOrders'],
+        labels: ['Total', 'Pagos', 'Concluídos'],
+        barColors: ['#a0d0e0', '#3c8dbc', '#4da74d'],
         hideHover: 'auto'
     });
 }

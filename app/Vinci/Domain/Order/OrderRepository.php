@@ -13,4 +13,12 @@ interface OrderRepository extends RepositoryInterface
 
     public function getByCustomer($customerId, $perPage = 5, $pageName = 'page');
 
+    public function countOrdersByPeriod($startAt, $endAt);
+
+    public function countPaidOrdersByPeriod($startAt, $endAt);
+
+    public function countWaitingPaymentOrdersByPeriod($startAt, $endAt);
+
+    public function countCompletedOrdersByPeriod($startAt, $endAt);
+
 }

@@ -5,6 +5,7 @@ namespace Vinci\Infrastructure\Graphic\Order;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Vinci\Domain\Graphic\Order\OrderGraphicsRepository;
+use Vinci\Domain\Order\OrderStatus;
 use Vinci\Domain\Payment\PaymentStatus;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
 
@@ -44,14 +45,25 @@ DQL;
     {
         $dql = <<<DQL
         
-        SELECT count(o.id) AS orders, DAY(o.createdAt) as day, MONTH(o.createdAt) as month, YEAR(o.createdAt) as year,
+        SELECT count(o.id) AS orders, 
+            DAY(o.createdAt) as day, 
+            MONTH(o.createdAt) as month, 
+            YEAR(o.createdAt) as year,
+            
             (SELECT count(o2.id)
              FROM Vinci\Domain\Order\Order o2
                   INNER JOIN o2.payments p
              WHERE p.status IN (:statuses)
-              AND DAY(o2.createdAt) = DAY(o.createdAt)
-              AND MONTH(o2.createdAt) = MONTH(o.createdAt)
-              AND YEAR(o2.createdAt) = YEAR(o.createdAt)) AS paidOrders
+                 AND DAY(o2.createdAt) = DAY(o.createdAt)
+                 AND MONTH(o2.createdAt) = MONTH(o.createdAt)
+                 AND YEAR(o2.createdAt) = YEAR(o.createdAt)) AS paidOrders,
+                 
+            (SELECT count(o3.id)
+             FROM Vinci\Domain\Order\Order o3
+             WHERE o3.status IN (:completed)
+                 AND DAY(o3.createdAt) = DAY(o.createdAt)
+                 AND MONTH(o3.createdAt) = MONTH(o.createdAt)
+                 AND YEAR(o3.createdAt) = YEAR(o.createdAt)) AS completedOrders
               
         FROM Vinci\Domain\Order\Order o
         WHERE o.createdAt BETWEEN :startAt AND :endAt
@@ -63,7 +75,8 @@ DQL;
 
         $query->setParameter('startAt', $startAt)
               ->setParameter('endAt', $endAt)
-              ->setParameter('statuses', [PaymentStatus::STATUS_AUTHORIZED, PaymentStatus::STATUS_COMPLETED]);
+              ->setParameter('statuses', [PaymentStatus::STATUS_AUTHORIZED, PaymentStatus::STATUS_COMPLETED])
+              ->setParameter('completed', [OrderStatus::STATUS_COMPLETED]);
 
         return $query->getResult();
     }

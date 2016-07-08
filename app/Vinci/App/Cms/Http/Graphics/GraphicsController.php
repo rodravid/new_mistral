@@ -22,10 +22,10 @@ class GraphicsController extends Controller
 
     public function getDataForOrdersLineChart()
     {
-        $dateStart = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days')));
-        $dateStop = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59'));
+        $startAt = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days')));
+        $stopAt = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59'));
 
-        $data = $this->orderGraphicsRepository->countAllByPeriod($dateStart, $dateStop);
+        $data = $this->orderGraphicsRepository->countAllByPeriod($startAt, $stopAt);
 
         return Response::json($data);
     }

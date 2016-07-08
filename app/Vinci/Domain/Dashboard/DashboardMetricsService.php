@@ -8,6 +8,7 @@
 
 namespace Vinci\Domain\Dashboard;
 
+use Carbon\Carbon;
 use Vinci\Domain\Order\OrderRepository;
 use Vinci\Domain\Customer\CustomerRepository;
 use Vinci\Domain\Newsletter\NewsletterRepository;
@@ -35,6 +36,43 @@ class DashboardMetricsService
     public function countOrders()
     {
         return $this->orderRepository->countOrders();
+    }
+
+    public function countOrdersByPeriod($startAt = null, $endAt = null)
+    {
+
+        $startAt = ((empty($startAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days'))) : $startAt);
+        $endAt = ((empty($endAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59')) : $endAt);
+
+        return $this->orderRepository->countOrdersByPeriod($startAt, $endAt);
+
+    }
+
+    public function countPaidOrdersByPeriod($startAt = null, $endAt = null)
+    {
+
+        $startAt = ((empty($startAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days'))) : $startAt);
+        $endAt = ((empty($endAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59')) : $endAt);
+
+        return $this->orderRepository->countPaidOrdersByPeriod($startAt, $endAt);
+
+    }
+
+    public function countWaitingPaymentOrdersByPeriod($startAt = null, $endAt = null)
+    {
+        $startAt = ((empty($startAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days'))) : $startAt);
+        $endAt = ((empty($endAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59')) : $endAt);
+
+        return $this->orderRepository->countWaitingPaymentOrdersByPeriod($startAt, $endAt);
+
+    }
+
+    public function countCompletedOrdersByPeriod($startAt = null, $endAt = null)
+    {
+        $startAt = ((empty($startAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days'))) : $startAt);
+        $endAt = ((empty($endAt)) ? Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59')) : $endAt);
+
+        return $this->orderRepository->countCompletedOrdersByPeriod($startAt, $endAt);
     }
 
     public function getLastOrders($perPage, $currentPage = 1)

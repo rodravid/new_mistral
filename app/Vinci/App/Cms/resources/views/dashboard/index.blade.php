@@ -103,7 +103,7 @@
                         <ul class="nav nav-tabs pull-right">
                             <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
                             {{--<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>--}}
-                            <li class="pull-left"><a href="{{ route('cms.orders.list') }}"><h3 class="box-title"><i class="fa fa-th"></i> Gráfico de vendas <small>/ Totais Detalhados</small></h3></a></li>
+                            <li class="pull-left"><a href="{{ route('cms.orders.list') }}"><h3 class="box-title"><i class="fa fa-th"></i> Gráfico de vendas <small>/ Totais Detalhados (Ultimos 10 dias)</small></h3></a></li>
                         </ul>
                         <div class="tab-content no-padding">
                             <!-- Morris chart - Sales -->
@@ -113,19 +113,19 @@
                         <div class="box-footer no-border">
                             <div class="row">
                                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrders }}" value="100" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalPaidOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#a0d0e0">
 
                                     <div class="knob-label">Pedidos Pagos</div>
                                 </div>
                                 <!-- ./col -->
                                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrders }}" value="50" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalCompletedOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#a0d0e0">
 
-                                    <div class="knob-label">Concluídos</div>
+                                    <div class="knob-label">Pedidos Completos</div>
                                 </div>
                                 <!-- ./col -->
                                 <div class="col-xs-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrders }}" value="30" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalWaitingPaymentOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#a0d0e0">
 
                                     <div class="knob-label">Aguardando Pagamento</div>
                                 </div>
@@ -142,7 +142,7 @@
                     <div class="box box-solid bg-teal-gradient">
                         <div class="box-header">
 
-                            <h3 class="box-title"><i class="fa fa-shopping-bag"></i> Gráfico de vendas <small>/ Totais Diários</small></h3>
+                            <h3 class="box-title"><i class="fa fa-shopping-bag"></i> Gráfico de vendas <small>/ Totais Diários (Ultimos 10 dias)</small></h3>
 
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn bg-teal btn-sm" data-widget="collapse">
