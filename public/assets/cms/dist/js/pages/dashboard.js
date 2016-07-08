@@ -22,6 +22,9 @@ $(document).ready(function () {
                 data: $data,
                 xkey: 'date',
                 ykeys: ['orders'],
+                xLabelFormat: function (date) {
+                    return date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+                },
                 labels: ['Pedidos'],
                 lineColors: ['#efefef'],
                 lineWidth: 2,
