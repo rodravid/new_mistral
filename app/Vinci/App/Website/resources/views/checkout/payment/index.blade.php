@@ -37,12 +37,12 @@
             <article class="request section-payment">
 
                 <div class="cart-items-wrapper">
-                    @foreach($shoppingCart->getItems() as $item)
+                    @foreach($shoppingCart->getAvailableItems() as $item)
                         <div class="row-request template1">
                             <div class="col-request">
                                 <div class="name-product-request">
                                     <h3 class="title-card-wine">
-                                        {{ $item->getTitle() }}
+                                        {{ $item->product->title }}
                                         @if($item->hasProducer())
                                             <span>{{ $item->getProducer()->getName() }}</span>
                                         @endif

@@ -12,12 +12,14 @@ class ShoppingCartItemTransformer extends TransformerAbstract
     {
         $data = [
             'id' => $item->getId(),
-            'name' => $item->getTitle(),
+            'name' => $item->getProduct()->present()->title,
             'sale_price' => $item->getSalePrice(),
             'quantity' => $item->getQuantity(),
             'subtotal' => $item->getSubTotal(),
             'image_url' => $item->getProduct()->present()->image_url,
             'web_path' => $item->getProduct()->getWebPath(),
+            'is_available' => $item->getProduct()->isGiftPackage(),
+            'is_stock_available' => $item->getProduct()->hasStock(),
             'is_gift_package' => $item->getProduct()->isGiftPackage()
         ];
 

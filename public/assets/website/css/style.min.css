@@ -5850,6 +5850,39 @@ ul.pagination {
   padding-bottom: 20px; }
 
 /* PG CARRINHO */
+.alert-purchase {
+  border-radius: 3px;
+  width: 100%;
+  display: inline-block;
+  padding: 15px;
+  margin-bottom: 20px; }
+
+.alert-red {
+  border: 1px solid #f7e2e2;
+  background: #f6e2e2; }
+  .alert-red .alert-msg {
+    color: #be494d; }
+  .alert-red span {
+    border-radius: 5px;
+    background-color: #bb2a2f;
+    color: #9a7749;
+    padding: 1px 3px;
+    margin-bottom: 2px;
+    display: inline-block; }
+
+.alert-yellow {
+  border: 1px solid #feedd5;
+  background: #fef9e8; }
+  .alert-yellow .alert-msg {
+    color: #99776b; }
+  .alert-yellow span {
+    border-radius: 5px;
+    background-color: #e7d1af;
+    color: #9a7749;
+    padding: 1px 3px;
+    margin-bottom: 2px;
+    display: inline-block; }
+
 .link-cart {
   color: #11b6f0;
   text-transform: uppercase;
@@ -6032,6 +6065,11 @@ ul.pagination {
 .box-two-links {
   width: 420px;
   float: right; }
+  .box-two-links .content-bt-middle {
+    margin-left: 40px; }
+    @media only screen and (max-width: 767px) {
+      .box-two-links .content-bt-middle {
+        margin-left: 0px; } }
   @media only screen and (max-width: 767px) {
     .box-two-links {
       display: -ms-flexbox;
@@ -6057,9 +6095,13 @@ ul.pagination {
   font: 15px "roboto_condensedbold";
   text-transform: uppercase;
   margin-top: 10px;
-  float: left; }
+  float: right; }
   .keep-buying:hover {
     text-decoration: underline; }
+
+.unavailable {
+  font: 15px "roboto_condensedbold";
+  color: #e02d50; }
 
 /* PG CARRINHO */
 .slider-gift {
@@ -6412,7 +6454,7 @@ ul.pagination {
 
 .flags, .flags-transfer {
   /* 			width:70px;
-			height:38px; */
+height:38px; */
   display: block;
   margin: 0 auto 5px; }
   @media only screen and (max-width: 767px) {
@@ -6447,7 +6489,7 @@ ul.pagination {
 				background-position: -197px 3px;
 				background-size: 236px;
 			}
-		} */
+			} */
 .payment-methods {
   display: inline-block;
   margin-bottom: -5px;
@@ -6477,7 +6519,7 @@ ul.pagination {
 			display: inline-block;
 			margin: 0;
 			list-style: none;
-		} */
+			} */
 .r-tabs .r-tabs-panel {
   display: none; }
 
@@ -7226,5 +7268,19 @@ option {
 
 .loading_gif {
   margin: 0 auto; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important; }
+
+ng\:form {
+  display: block; }
+
+.ng-animate-shim {
+  visibility: hidden; }
+
+.ng-anchor {
+  position: absolute; }
 
 /*# sourceMappingURL=style.min.css.map */

@@ -27,9 +27,18 @@
 
             <div id="loading-container" class="loading-container-cart"><img src="{{ asset_web('images/loading.gif') }}" alt="Carregando..." class="loading_gif"></div>
 
+            <div class="alert-purchase alert-red ng-hide" ng-show="ctrl.isInvalid()">
+                <p class="alert-msg">Sua compra não pode ser processada. Os produtos no carrinho, estão indisponíveis no momento.</p>
+            </div>
+
+            <div class="alert-purchase alert-yellow ng-hide" ng-show="ctrl.cart.valid_items_count != ctrl.cart.count_products && ctrl.cart.valid_items_count != 0">
+                <span >Importante</span>
+                <p class="alert-msg">Há produtos indisponíveis no momento, em seu carrinho. Estes itens serão automaticamente removidos ao finalizar seu pedido.</p>
+            </div>
+
             <div class="cart-content ng-hide" ng-show="ctrl.hasItems()">
 
-                <div class="wrap-content-bt mbottom20">
+                <div class="wrap-content-bt mbottom20" ng-hide="ctrl.isInvalid()">
                     <div class="content-bt-middle">
                         <a class="bt-default-full bt-middle bt-color" href="{{ route('checkout.delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
                     </div>
@@ -71,9 +80,10 @@
                                 <p class="wine-price">
                                     @{{ item.sale_price | currency }}
                                 </p>
+                                <p class="unavailable" ng-show="! item.is_stock_available">Indisponível</p>
                             </div>
                             <div class="col-cart2" ng-init="quantity = item.quantity">
-                                <div class="botoes-add">
+                                <div class="botoes-add" ng-show="item.is_stock_available">
                                     <a href="javascript:void(0);" class="bt-remove" ng-click="decrementQuantity()">-</a>
                                     <input type="text" class="input-quantity txtQuantity" value="@{{ item.quantity }}" ng-model="quantity" ng-blur="syncQuantity()">
                                     <a href="javascript:void(0);" class="bt-add" ng-click="incrementQuantity()">+</a>
@@ -82,23 +92,13 @@
                             </div>
                         </div>
                         <div class="col-cart3 show-desktop">
-                            <h3 class="current-price">
+                            <h3 class="current-price" ng-show="item.is_stock_available">
                                 @{{ item.subtotal | currency }}
                             </h3>
                         </div>
                     </article>
 
                     <ul class="valor-total-carrinho float-right">
-
-                        {{--<li>--}}
-                        {{--<article class="wrap-compra-dados-venda">--}}
-                        {{--<span>Desconto</span>--}}
-                        {{--<div class="container-info-compra">--}}
-                        {{--<p class="price-cart" id="pgCartSubtotal">R$ 27,50</p>--}}
-                        {{--</div>--}}
-                        {{--</article>--}}
-                        {{--</li>--}}
-
                         <li>
                             <article class="wrap-compra-dados-venda">
                                 <span>Subtotal</span>
@@ -123,25 +123,9 @@
                             <article class="wrap-compra-dados-venda">
                                 
                                 <div class="container-info-compra">
-                                    <!-- <span id="shipping-value"></span> -->
                                     <span>Frete @{{ ctrl.cart.shipping.price }}</span>
                                 </div>
                             </article>
-<!--                             <article class="wrap-compra-dados-venda">
-                                <div class="container-info-compra">
-                                    <span id="shipping-delivery"></span>
-                                </div>
-                            </article> -->
-<!--                             <article class="wrap-compra-dados-venda">
-                                <div class="wrap-select-convencional select-standard half form-control-white">
-                                    <select name="" id="" class="select-standard" style="">
-                                        <option value="">convencional</option>
-                                    </select>
-                                </div>
-                                <div class="container-info-remover">
-                                    <a href="javascript:void(0);" class="remover-carrinho" id="removeShipping" ng-click="ctrl.removeShipping()">remover</a>
-                                </div>
-                            </article> -->
                         </li>
                         <li>
                             <article class="wrap-compra-dados-venda">
@@ -155,23 +139,20 @@
 
                     <div class="wrap-content-bt">
                         <div class="box-two-links">
-
-                            <a class="keep-buying" href="{{ route('index') }}">Continuar comprando ></a>
-
-                            <div class="content-bt-middle">
+                            <div class="content-bt-middle" ng-hide="ctrl.isInvalid()">
                                 <a class="bt-default-full bt-middle bt-color" href="{{ route('checkout.delivery.index') }}">Finalizar Compra <span class="arrow-link">&gt;</span></a>
                             </div>
+                            <a class="keep-buying" href="{{ route('index') }}">Continuar comprando ></a>
                         </div>
                     </div>
 
                 </section>
-
             </div>
 
             <section class="also-recommend featured-products hide-tablet">
                     <h2 class="title-category mbottom20">Também recomendamos</h2>
                     @foreach($productsRecommended as $key => $product)
-                        <div class="cols-products {{ $templates[$key] }}">
+                        <div class="cols-products bg-template {{ $templates[$key] }}">
                             @include('website::layouts.partials.product.cards.default', ['product' => $product])
                         </div>
                     @endforeach
