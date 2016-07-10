@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Model;
 use Vinci\Domain\Order\OrderInterface;
 use Vinci\Domain\Shipping\Presenter\ShipmentPresenter;
 
@@ -13,7 +14,7 @@ use Vinci\Domain\Shipping\Presenter\ShipmentPresenter;
  * @ORM\Entity
  * @ORM\Table(name="order_shipments")
  */
-class Shipment implements ShipmentInterface, Presentable
+class Shipment extends Model implements ShipmentInterface, Presentable
 {
 
     use Timestampable, PresentableTrait;

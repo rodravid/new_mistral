@@ -3,28 +3,34 @@
 namespace Vinci\Domain\Order;
 
 use Auth;
-use Doctrine\Common\Collections\Collection;
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
+use Illuminate\Support\MessageBag;
+use Inacho\CreditCard as CreditCardNumberValidator;
 use InvalidArgumentException;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Common\Event\FiredByAdminUser;
-use Vinci\Domain\Core\Model;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
+use Vinci\Domain\Order\Exceptions\InvalidItemsException;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
+use Vinci\Domain\Order\Factory\OrderItemFactory;
+use Vinci\Domain\Order\Item\ValidItemsFilter;
 use Vinci\Domain\Order\Jobs\SendOrderStatusMail;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
-use Vinci\Domain\Order\Validators\OrderCreditCardValidator;
 use Vinci\Domain\Order\Validators\OrderValidator;
 use Vinci\Domain\Payment\CreditCard;
 use Vinci\Domain\Payment\Payment;
 use Vinci\Domain\Payment\PaymentMethod;
 use Vinci\Domain\Payment\Repositories\PaymentMethodsRepository;
+use Vinci\Domain\Payment\Validators\CreditCardValidator;
 use Vinci\Domain\Shipping\Services\ShippingService;
 use Vinci\Domain\Shipping\Shipment;
+use Vinci\Domain\ShoppingCart\Exceptions\InvalidShoppingCartException;
 
 class OrderService
 {
@@ -36,6 +42,8 @@ class OrderService
     protected $creditCardValidator;
 
     protected $factory;
+
+    protected $orderItemFactory;
 
     protected $shippingService;
 
@@ -50,8 +58,9 @@ class OrderService
     public function __construct(
         EntityManagerInterface $entityManager,
         OrderValidator $orderValidator,
-        OrderCreditCardValidator $creditCardValidator,
+        CreditCardValidator $creditCardValidator,
         OrderFactory $factory,
+        OrderItemFactory $orderItemFactory,
         ShippingService $shippingService,
         Dispatcher $eventDispatcher,
         BusDispatcher $bus,
@@ -62,6 +71,7 @@ class OrderService
         $this->orderValidator = $orderValidator;
         $this->creditCardValidator = $creditCardValidator;
         $this->factory = $factory;
+        $this->orderItemFactory = $orderItemFactory;
         $this->shippingService = $shippingService;
         $this->eventDispatcher = $eventDispatcher;
         $this->bus = $bus;
@@ -74,14 +84,18 @@ class OrderService
         $this->orderValidator->with($data)->passesOrFail();
 
         $data = $this->getPaymentMethodType($data);
-
+        
         if (array_get($data, 'payment.method_type') == "credit_card") {
-            $this->creditCardValidator->with($data)->passesOrFail();
+            $this->validateCreditCard($data);
         }
 
-        return $this->entityManager->transactional(function ($em) use ($data) {
+        $items = $this->getOrderItems($data);
+
+        return $this->entityManager->transactional(function ($em) use ($data, $items) {
 
             $order = $this->factory->make($data);
+
+            $order->setItems($items);
 
             $shipment = $this->getShipment($order);
 
@@ -103,6 +117,19 @@ class OrderService
 
             return $order;
         });
+    }
+
+    protected function getOrderItems(array $data)
+    {
+        $items = $this->orderItemFactory->makeFromShoppingCart($this->getShoppingCart($data));
+
+        $items = (new ValidItemsFilter())->filter($items);
+
+        if (! $items->count()) {
+            throw new InvalidShoppingCartException('The shopping cart given does not contains valid items.');
+        }
+
+        return $items;
     }
 
     protected function dispatchOrderEvents(OrderInterface $order)
@@ -227,13 +254,39 @@ class OrderService
     protected function getTrackingStatus()
     {
         try {
-
             return $this->trackingStatusRepository->getOneByCode(OrderTrackingStatus::STATUS_NEW);
 
         } catch (Exception $e) {
-
             throw new InvalidArgumentException(sprintf('Order tracking status not found by code: %s', OrderTrackingStatus::STATUS_NEW));
+        }
+    }
 
+    private function validateCreditCard(array $data)
+    {
+        $paymentMethod = $this->getPaymentMethod($data);
+
+        $this->creditCardValidator->with($data)->passesOrFail();
+
+        if(! CreditCardNumberValidator::validCreditCard(only_numbers(array_get($data, 'card.number')), $paymentMethod->getName())['valid']) {
+            throw new ValidationException(new MessageBag([
+                'card.number' => 'Cartão de crédito inválido para a bandeira selecionada.'
+            ]));
+        }
+
+        $installments = array_get($data, 'payment.installments');
+        $creditcardExpires = Carbon::createFromDate(array_get($data, 'card.expiry_year'), array_get($data, 'card.expiry_month'));
+        $now = Carbon::now();
+        $message = 'A validade do cartão de crédito está expirada.';
+
+        if ($installments > 1) {
+            $message = 'O mês de validade do cartão não pode ser menor ou igual ao mês da última parcela.';
+            $now->addMonths($installments);
+        }
+
+        if ($creditcardExpires < $now) {
+            throw new ValidationException(new MessageBag([
+                'card.expiry_month' => $message,
+            ]));
         }
 
     }

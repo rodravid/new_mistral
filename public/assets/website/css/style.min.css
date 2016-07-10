@@ -794,7 +794,7 @@ input[type="search"]::-webkit-search-decoration {
   .nav-link {
     font-weight: 400 !important; }
   .larger760-right .drop-menu {
-    right: 10px; }
+    right: 9px; }
   .wind .larger760-right .drop-menu {
     right: 8px; } }
 
@@ -5226,28 +5226,30 @@ ul.pagination {
 		} */ }
   @media only screen and (max-width: 970px) {
     .column-products-search-category {
-      width: 68.9%; } }
+      width: 68.9%; }
+      .column-products-search-category .title-card-wine {
+        min-height: auto; }
+      .column-products-search-category .content-card-product {
+        min-height: auto; } }
   @media only screen and (max-width: 767px) {
     .column-products-search-category {
       width: 100%; } }
+  .column-products-search-category .wine-card:nth-child(3n+4) {
+    margin-right: 0px; }
+    @media only screen and (max-width: 970px) {
+      .column-products-search-category .wine-card:nth-child(3n+4) {
+        margin-right: 0px; } }
   .column-products-search-category .wine-card {
-    width: 217px;
+    width: 223px;
     display: inline-table;
-    margin-right: 20px; }
+    margin-right: 15px; }
     @media only screen and (max-width: 970px) {
       .column-products-search-category .wine-card {
-        width: 100%; } }
+        width: 100%;
+        min-height: auto; } }
     @media only screen and (max-width: 767px) {
       .column-products-search-category .wine-card {
         width: 100%;
-        margin-right: 0px; } }
-  .column-products-search-category .wine-card:nth-child(3n+2) {
-    margin-right: 0px;
-    /* 			@media only screen and (max-width :767px) { 
-				margin-right:0;
-				} */ }
-    @media only screen and (max-width: 970px) {
-      .column-products-search-category .wine-card:nth-child(3n+2) {
         margin-right: 0px; } }
   .column-products-search-category .bt-default-full {
     width: 98%;
@@ -5511,7 +5513,11 @@ ul.pagination {
       margin-top: 20px; } }
 
 .img-product {
+  width: 100%;
   max-width: 100%; }
+  @media only screen and (max-width: 767px) {
+    .img-product {
+      width: auto; } }
 
 .height-bg-product {
   min-height: 300px; }
@@ -5844,6 +5850,39 @@ ul.pagination {
   padding-bottom: 20px; }
 
 /* PG CARRINHO */
+.alert-purchase {
+  border-radius: 3px;
+  width: 100%;
+  display: inline-block;
+  padding: 15px;
+  margin-bottom: 20px; }
+
+.alert-red {
+  border: 1px solid #f7e2e2;
+  background: #f6e2e2; }
+  .alert-red .alert-msg {
+    color: #be494d; }
+  .alert-red span {
+    border-radius: 5px;
+    background-color: #bb2a2f;
+    color: #9a7749;
+    padding: 1px 3px;
+    margin-bottom: 2px;
+    display: inline-block; }
+
+.alert-yellow {
+  border: 1px solid #feedd5;
+  background: #fef9e8; }
+  .alert-yellow .alert-msg {
+    color: #99776b; }
+  .alert-yellow span {
+    border-radius: 5px;
+    background-color: #e7d1af;
+    color: #9a7749;
+    padding: 1px 3px;
+    margin-bottom: 2px;
+    display: inline-block; }
+
 .link-cart {
   color: #11b6f0;
   text-transform: uppercase;
@@ -6026,6 +6065,11 @@ ul.pagination {
 .box-two-links {
   width: 420px;
   float: right; }
+  .box-two-links .content-bt-middle {
+    margin-left: 40px; }
+    @media only screen and (max-width: 767px) {
+      .box-two-links .content-bt-middle {
+        margin-left: 0px; } }
   @media only screen and (max-width: 767px) {
     .box-two-links {
       display: -ms-flexbox;
@@ -6051,9 +6095,13 @@ ul.pagination {
   font: 15px "roboto_condensedbold";
   text-transform: uppercase;
   margin-top: 10px;
-  float: left; }
+  float: right; }
   .keep-buying:hover {
     text-decoration: underline; }
+
+.unavailable {
+  font: 15px "roboto_condensedbold";
+  color: #e02d50; }
 
 /* PG CARRINHO */
 .slider-gift {
@@ -6133,6 +6181,9 @@ ul.pagination {
 .content-button-gift {
   width: 80%;
   margin: 10px auto; }
+
+.cart-content {
+  position: relative; }
 
 /* PG ENTREGA */
 .nav-status {
@@ -6403,7 +6454,7 @@ ul.pagination {
 
 .flags, .flags-transfer {
   /* 			width:70px;
-			height:38px; */
+height:38px; */
   display: block;
   margin: 0 auto 5px; }
   @media only screen and (max-width: 767px) {
@@ -6438,7 +6489,7 @@ ul.pagination {
 				background-position: -197px 3px;
 				background-size: 236px;
 			}
-		} */
+			} */
 .payment-methods {
   display: inline-block;
   margin-bottom: -5px;
@@ -6468,7 +6519,7 @@ ul.pagination {
 			display: inline-block;
 			margin: 0;
 			list-style: none;
-		} */
+			} */
 .r-tabs .r-tabs-panel {
   display: none; }
 
@@ -7147,6 +7198,9 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
   margin-top: 1px;
   background-position: 10px 10px; }
 
+option {
+  font-family: "roboto_condensedlight"; }
+
 /* Hack select*/
 .ie-edge .select-standard select,
 .ie-11 .select-standard select,
@@ -7199,7 +7253,34 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6); 
 .loading-container {
   text-align: center; }
 
+@media only screen and (max-width: 767px) {
+  .loading-container-cart {
+    margin-bottom: 10px; } }
+
+.loading-container-cart img {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -30px; }
+  @media only screen and (max-width: 767px) {
+    .loading-container-cart img {
+      top: -40px; } }
+
 .loading_gif {
   margin: 0 auto; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important; }
+
+ng\:form {
+  display: block; }
+
+.ng-animate-shim {
+  visibility: hidden; }
+
+.ng-anchor {
+  position: absolute; }
 
 /*# sourceMappingURL=style.min.css.map */

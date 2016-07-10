@@ -151,6 +151,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
         LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         LaravelDoctrine\ORM\Auth\Passwords\PasswordResetServiceProvider::class,
@@ -165,12 +166,11 @@ return [
         Vinci\App\Api\Providers\ApiServiceProvider::class,
         Vinci\App\Integration\ERP\IntegrationServiceProvider::class,
         Vinci\App\Core\Services\Sanitizer\SanitizerServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Spatie\Fractal\FractalServiceProvider::class,
+        Spatie\Fractal\FractalServiceProvider::class
 
     ],
 

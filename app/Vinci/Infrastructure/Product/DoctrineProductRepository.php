@@ -330,4 +330,14 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $queryBuilder->addOrderBy('RAND()');
     }
 
+    public function findOneBySKU($sku)
+    {
+        $qb = $this->getBaseQueryBuilder();
+
+        $qb->where('v.sku = :sku');
+
+        $qb->setParameter('sku', $sku);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

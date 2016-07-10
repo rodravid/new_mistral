@@ -35,7 +35,8 @@ class Kernel extends ConsoleKernel
         MakeSlugGrapes::class,
         RandomizeProductTemplate::class,
         UniqueIdTest::class,
-        'Vinci\App\Integration\ERP\Console\Commands\ImportProducts'
+        'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
+        'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock'
     ];
 
     /**
@@ -47,6 +48,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('search:index-products')
-            ->everyThirtyMinutes();
+            ->everyTenMinutes();
     }
 }

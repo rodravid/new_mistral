@@ -21,7 +21,7 @@ class Wine extends Product
     protected $grapeContent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      */
     protected $scores;
 

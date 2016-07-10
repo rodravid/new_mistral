@@ -6,6 +6,8 @@ use Vinci\Domain\ShoppingCart\ShoppingCart;
 
 interface ProductRecommendedService
 {
+    public function getRecommendedForShoppingCartPage(ShoppingCart $currentCart, $quantity = 4);
+
     public function getRecommendedByShoppingCart(ShoppingCart $currentCart);
 
     public function getRecommendedByProduct(Product $product);

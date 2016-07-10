@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
+use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Status;
@@ -15,6 +18,7 @@ use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Image\Image;
+use Vinci\Domain\Inventory\Events\StockWasChanged;
 use Vinci\Domain\Inventory\Events\StockWasIncreased;
 use Vinci\Domain\Inventory\Events\StockWasReduced;
 
@@ -22,10 +26,12 @@ use Vinci\Domain\Inventory\Events\StockWasReduced;
  * @ORM\Entity
  * @ORM\Table(name="products_variants")
  */
-class ProductVariant extends Model implements ProductVariantInterface
+class ProductVariant extends Model implements ProductVariantInterface, Presentable
 {
 
-    use Timestampable, SoftDeletes, SEOable, Schedulable, HasEvents;
+    use Timestampable, SoftDeletes, SEOable, Schedulable, HasEvents, PresentableTrait;
+
+    protected $presenter = ProductPresenter::class;
 
     /**
      * @ORM\Id
@@ -175,6 +181,15 @@ class ProductVariant extends Model implements ProductVariantInterface
     {
         $this->stock = (int) $stock;
         return $this;
+    }
+
+    public function changeStock($stock)
+    {
+        $oldStock = $this->getStock();
+
+        $this->setStock($stock);
+
+        $this->raise(new StockWasChanged($this, $oldStock));
     }
 
     public function hasStock()
@@ -529,5 +544,4 @@ class ProductVariant extends Model implements ProductVariantInterface
         $this->packSize = (int) $packSize;
         return $this;
     }
-
 }

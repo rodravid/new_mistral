@@ -34,7 +34,7 @@ class ProductCmsDatatable extends AbstractDatatables
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
         $qb = $this->repository->createQueryBuilder('p')
-            ->select('p')
+            ->select('p', 'v', 'i')
             ->join('p.variants', 'v')
             ->leftJoin('v.images', 'i')
             ->setFirstResult($start)

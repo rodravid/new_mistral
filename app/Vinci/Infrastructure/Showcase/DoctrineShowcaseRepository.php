@@ -15,6 +15,9 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
     {
         $qb = $this->getBySortableGroupsQueryBuilder(['type' => $type]);
 
+        $qb->select('n', 't')
+            ->join('n.template', 't');
+
         $qb->andWhere($qb->expr()->lte('n.startsAt', $qb->expr()->literal(Carbon::now())))
             ->andWhere($qb->expr()->orX(
                 $qb->expr()->gte('n.expirationAt', $qb->expr()->literal(Carbon::now())),

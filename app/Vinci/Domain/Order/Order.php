@@ -207,7 +207,12 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     public function setItems(ArrayCollection $items)
     {
-        $this->items = $items;
+        $this->items->clear();
+
+        foreach ($items as $item) {
+            $this->addItem($item);
+        }
+
         return $this;
     }
 
@@ -426,6 +431,13 @@ class Order extends Model implements OrderInterface, AggregateRoot
         $this->setTrackingStatus($status);
 
         $this->raise(new OrderTrackingStatusWasChanged($this, $oldStatus));
+    }
+
+    public function __sleep()
+    {
+        app('em')->detach($this);
+
+        return ['id', 'number', 'customer', 'channel', 'total', 'itemsTotal', 'shippingAddress', 'billingAddress', 'payments', 'shipment'];
     }
 
 }

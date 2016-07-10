@@ -11,6 +11,7 @@ use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Customer\Customer;
+use Vinci\Domain\Order\Item\ValidItemsFilter;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Shipping\ShippingOption;
 use Vinci\Domain\ShoppingCart\Events\ItemWasRemoved;
@@ -101,6 +102,11 @@ class ShoppingCart extends Model implements ShoppingCartInterface
     public function getItems()
     {
         return $this->items;
+    }
+
+    public function getAvailableItems()
+    {
+        return app(ValidItemsFilter::class)->filter($this->items);
     }
 
     public function hasItems()
@@ -196,7 +202,7 @@ class ShoppingCart extends Model implements ShoppingCartInterface
     {
         $sum = 0;
 
-        foreach ($this->getItems() as $item) {
+        foreach ($this->getAvailableItems() as $item) {
             $sum += $item->getSubtotal();
         }
 

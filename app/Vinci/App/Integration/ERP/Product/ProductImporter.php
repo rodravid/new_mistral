@@ -2,7 +2,14 @@
 
 namespace Vinci\App\Integration\ERP\Product;
 
+use Exception;
+use Log;
+use Vinci\App\Integration\Exceptions\IntegrationException;
+use Vinci\Domain\ERP\Product\Product;
 use Vinci\Domain\ERP\Product\ProductService;
+use Vinci\Domain\Inventory\InventoryService;
+use Vinci\Domain\Product\ProductInterface;
+use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Services\ProductManagementService;
 
 class ProductImporter
@@ -12,26 +19,98 @@ class ProductImporter
 
     protected $localProductService;
 
-    public function __construct(ProductService $erpProductService, ProductManagementService $localProductService)
-    {
+    protected $localProductRepository;
+
+    protected $inventoryService;
+
+    public function __construct(
+        ProductService $erpProductService,
+        ProductManagementService $localProductService,
+        ProductRepository $localProductRepository,
+        InventoryService $inventoryService
+    ) {
         $this->erpProductService = $erpProductService;
         $this->localProductService = $localProductService;
+        $this->localProductRepository = $localProductRepository;
+        $this->inventoryService = $inventoryService;
     }
 
-    public function importAllProducts()
+    public function importOneBySKU($sku)
     {
+        try {
 
-        $products = $this->erpProductService->getOneBySKU(123);
+            $localProduct = $this->localProductRepository->findOneBySKU($sku);
+            $erpProduct = $this->erpProductService->getOneBySKU($sku);
 
-        dd($products);
+            if (! $localProduct) {
+                return $this->createProduct($erpProduct);
+            }
 
+            return $this->updateProduct($erpProduct, $localProduct);
 
+        } catch (Exception $e) {
 
-        $this->localProductService->create([]);
+            $this->log($e->getMessage());
 
+            throw $e;
+        }
 
     }
 
+    public function importStock($sku)
+    {
+        try {
 
+            $product = $this->localProductRepository->findOneBySKU($sku);
+
+            if (! $product) {
+                throw new IntegrationException(sprintf('The product #%s dont exists.', $sku));
+            }
+
+            if (! $product->shouldImportStock()) {
+                throw  new IntegrationException(sprintf('The product #%s can not import stock.', $sku));
+            }
+
+            $newStock = $this->erpProductService->getStock($sku);
+
+            $this->inventoryService->changeStock($product->getMasterVariant(), $newStock);
+
+            return $newStock;
+
+        } catch (Exception $e) {
+
+            $this->log($e->getMessage());
+
+            throw $e;
+        }
+    }
+
+    protected function createProduct(Product $product)
+    {
+        return $this->localProductService->create($product->toArray());
+    }
+
+    protected function updateProduct(Product $product, ProductInterface $localProduct)
+    {
+        $data = $product->toArray();
+
+        unset($data['should_import_stock']);
+        unset($data['should_import_price']);
+
+        if (! $localProduct->shouldImportStock()) {
+            unset($data['stock']);
+        }
+
+        if (! $localProduct->shouldImportPrice()) {
+            unset($data['price']);
+        }
+
+        return $this->localProductService->update($data, $localProduct->getId());
+    }
+
+    public function log($message)
+    {
+        Log::error($message);
+    }
 
 }

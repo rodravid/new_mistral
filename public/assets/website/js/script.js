@@ -188,7 +188,8 @@ jQuery(document).ready(function ($) {
     $("[date]").inputmask("99/99/9999");
     $("[cpf]").inputmask("999.999.999-99");
     $("[cnpj]").inputmask("99.999.999/9999-99");
-    $("[phone-mask]").inputmask("(99) 9999-9999[9]");
+    $("[phone-mask]").inputmask("(99) 9999-9999");
+    $("[cel-phone-mask]").inputmask("(99) 9999-9999[9]");
     $("[cep]").inputmask("99999-999");
     $("[credit_card]").inputmask("9999-9999-9999-9999");
     $("[credit_card_security_cod]").inputmask("999[9]");
@@ -386,15 +387,10 @@ jQuery(document).ready(function ($) {
         lessLink: '<a href="javascript:void(0);" class="less-txt">- Veja menos </a>'
     });
 
-    $('#paymentTabs').responsiveTabs({
-        startCollapsed: 'accordion'
+    $('.bt-close-suggestions').click( function () {
+         $('.input-search').val("");
+         $(".results-suggestions").hide();
     });
-
-      $('.bt-close-suggestions').click( function () {
-             $('.input-search').val(""); 
-             $(".results-suggestions").hide();
-       });
-
 
 });
 

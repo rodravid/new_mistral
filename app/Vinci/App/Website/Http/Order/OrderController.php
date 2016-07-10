@@ -13,6 +13,7 @@ use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
 use Vinci\Domain\Channel\Contracts\ChannelProvider;
 use Vinci\Domain\Order\OrderService;
+use Vinci\Domain\ShoppingCart\Exceptions\InvalidShoppingCartException;
 use Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider;
 
 class OrderController extends Controller
@@ -48,6 +49,10 @@ class OrderController extends Controller
 
             return Redirect::back()->withErrors($e->getErrors())->withInput();
 
+        } catch (InvalidShoppingCartException $e) {
+
+            return Redirect::route('cart.index');
+
         } catch (Exception $e) {
 
             Log::error(sprintf('Erro ao finalizar pedido: %s | Trace: %s', $e->getMessage(), $e->getTraceAsString()));
@@ -59,7 +64,6 @@ class OrderController extends Controller
         } finally {
             Session::flash('scroll', true);
         }
-
     }
 
     protected function getData(Request $request)

@@ -16,21 +16,24 @@
                                     <input type="radio" name="addresses[{{ $address->getId() }}][type]" class="physical-person"
                                            value="1"
                                            id="addressType{{ $address->getId() }}R"
-                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 1) checked @endif>
+                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 1) checked @endif
+                                           title="Residencial">
                                 </li>
                                 <li>
                                     <label for="addressType{{ $address->getId() }}C">Comercial</label>
                                     <input type="radio" name="addresses[{{ $address->getId() }}][type]" class="physical-person"
                                            value="2"
                                            id="addressType{{ $address->getId() }}C"
-                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 2) checked @endif>
+                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 2) checked @endif
+                                           title="Comercial">
                                 </li>
                                 <li>
                                     <label for="addressType{{ $address->getId() }}O">Outros</label>
                                     <input type="radio" name="addresses[{{ $address->getId() }}][type]" class="physical-person"
                                            value="3"
                                            id="addressType{{ $address->getId() }}O"
-                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 3) checked @endif>
+                                           @if(old('addresses.' . $address->getId() . '.type', ($address->getId() > 0 ? $address->getType()->getId() : null)) == 3) checked @endif
+                                           title="Outros">
                                 </li>
                             </ul>
                         </li>
@@ -149,6 +152,8 @@
 
         $(document).ready(function() {
 
+            manageAddressTypeInputs();
+
             $("[cep]").inputmask("99999-999");
 
             $('#frmNewAddress').bind('submit', function(e) {
@@ -188,7 +193,26 @@
                 e.preventDefault();
             });
 
+            $('input[type="radio"]').change(function () {
+                manageAddressTypeInputs();
+            });
 
         });
+
+        function manageAddressTypeInputs() {
+
+            var $radioChecked = $('input[type="radio"]:checked');
+
+            if (! $radioChecked.length) {
+                $('input[type="radio"]').first().prop('checked', true);
+                $('#txtNickname').parent().attr('style', 'display:none;');
+            } else {
+                if ($radioChecked.attr('title') == 'Outros') {
+                    $('#txtNickname').parent().animate({height: 'show'});
+                } else {
+                    $('#txtNickname').parent().animate({height: 'hide'});
+                }
+            }
+        }
 
     </script>

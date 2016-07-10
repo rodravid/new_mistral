@@ -60,7 +60,7 @@ abstract class AbstractPriceCalculator implements PriceCalculator
     public function parseValueAndReset($value)
     {
         $this->calcDiscounts = true;
-        return (double) $value;
+        return (double) round($value, 2);
     }
 
 }

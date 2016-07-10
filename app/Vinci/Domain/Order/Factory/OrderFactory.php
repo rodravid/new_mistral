@@ -2,29 +2,23 @@
 
 namespace Vinci\Domain\Order\Factory;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Vinci\Domain\Customer\Address\AddressRepository;
 use Vinci\Domain\Order\Address\Address;
 use Vinci\Domain\Order\Order;
-use Vinci\Domain\Order\OrderInterface;
 
 class OrderFactory
 {
 
     private $entityManager;
 
-    private $orderItemFactory;
-
     private $addressRepository;
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        OrderItemFactory $orderItemFactory,
         AddressRepository $addressRepository
     ) {
         $this->entityManager = $entityManager;
-        $this->orderItemFactory = $orderItemFactory;
         $this->addressRepository = $addressRepository;
     }
 
@@ -43,21 +37,7 @@ class OrderFactory
             ->setChannel($channel)
             ->setCustomer($customer);
 
-        $this->addItems($order, $this->getOrderItems($data));
-
         return $order;
-    }
-
-    protected function addItems(OrderInterface $order, Collection $items)
-    {
-        foreach ($items as $item) {
-            $order->addItem($item);
-        }
-    }
-
-    protected function getOrderItems(array $data)
-    {
-        return $this->orderItemFactory->makeFromShoppingCart($this->getShoppingCart($data));
     }
 
     protected function getChannel($data)

@@ -111,7 +111,7 @@
                         $i = 1;
                         $div = false;
                         ?>
-                        @foreach($product->getAttributes() as $attribute)
+                        @foreach($product->getAttributesSorted() as $attribute)
 
                             @if (! empty($attribute->getValue()))
 
@@ -168,7 +168,7 @@
                                 <div class="wrap-seal-product">
                                     <div class="content-seal-product">
                                         <div class="seal-score">
-                                            <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
+                                            <img src="{{ $score->seal_img }}" alt="">
                                             <span>{{ $score->value }}</span>
                                         </div>
                                     </div>
@@ -313,7 +313,7 @@
                             $i = 1;
                             $div = false;
                         ?>
-                        @foreach($product->getAttributes() as $attribute)
+                        @foreach($product->getAttributesSorted() as $attribute)
 
                             @if (! empty($attribute->getValue()))
 
