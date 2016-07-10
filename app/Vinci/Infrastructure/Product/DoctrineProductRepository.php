@@ -332,9 +332,11 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
     public function findOneBySKU($sku)
     {
-        $qb = $this->getBaseQueryBuilder();
+        $qb = $this->createQueryBuilder('p');
 
-        $qb->where('v.sku = :sku');
+        $qb->select('p', 'v')
+            ->join('p.variants', 'v')
+            ->where('v.sku = :sku');
 
         $qb->setParameter('sku', $sku);
 
