@@ -166,7 +166,7 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->where('s.id = :id')
             ->orderBy('si.position', 'asc');
 
-        $this->applyDefaultConditions($qb);
+//        $this->applyDefaultConditions($qb);
 
         $qb->setParameter('id', $showcase);
 

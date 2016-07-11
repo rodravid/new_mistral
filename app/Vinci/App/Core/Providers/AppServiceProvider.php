@@ -28,6 +28,17 @@ class AppServiceProvider extends ServiceProvider
             return validateCnpj($value);
         });
 
+        Validator::extend('cpf_cnpj', function($attribute, $value, $parameters) {
+            $value = only_numbers($value);
+
+            if (strlen($value) == 11) {
+                return validateCpf($value);
+            }
+
+            return validateCnpj($value);
+
+        });
+
         $this->registerCustomDoctrineFunctions();
 
     }
@@ -65,6 +76,9 @@ class AppServiceProvider extends ServiceProvider
         
         $doctrineConfig->addCustomStringFunction('RAND', 'DoctrineExtensions\Query\Mysql\Rand');
         $doctrineConfig->addCustomStringFunction('FIELD', 'DoctrineExtensions\Query\Mysql\Field');
+        $doctrineConfig->addCustomStringFunction('DAY', 'DoctrineExtensions\Query\Mysql\Day');
+        $doctrineConfig->addCustomStringFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
+        $doctrineConfig->addCustomStringFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
     }
 
 }

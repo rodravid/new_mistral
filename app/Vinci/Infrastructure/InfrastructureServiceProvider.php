@@ -281,6 +281,8 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Payment\PaymentInstallment'
         );
 
+        $this->app->singleton('Vinci\Domain\Graphic\Order\OrderGraphicsRepository', 'Vinci\Infrastructure\Graphic\Order\DoctrineOrderGraphicsRepository');
+
     }
 
     protected function registerRepository($repositoryInterfaceClass, $concreteRepository, $entityClass)

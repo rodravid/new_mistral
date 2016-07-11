@@ -26,8 +26,12 @@ class DashboardController extends Controller
             return $this->view('dashboard.default');
         }
 
-
         $totalOrders = $this->dashboardMetricsService->countOrders();
+        $totalOrdersOfLastDays = $this->dashboardMetricsService->countOrdersByPeriod();
+        $totalPaidOrdersOfLastDays = $this->dashboardMetricsService->countPaidOrdersByPeriod();
+        $totalCompletedOrdersOfLastDays = $this->dashboardMetricsService->countCompletedOrdersByPeriod();
+        $totalWaitingPaymentOrdersOfLastDays = $this->dashboardMetricsService->countWaitingPaymentOrdersByPeriod();
+
         $lastOrders = $this->dashboardMetricsService->getLastOrders(10);
         $lastOrders = $this->presenter->paginator($lastOrders, OrderPresenter::class);
 
@@ -39,12 +43,16 @@ class DashboardController extends Controller
         $totalNewsletters = $this->dashboardMetricsService->countNewsletters();
 
         return $this->view('dashboard.index',
-                                compact('totalOrders',
+                                compact('lastOrders',
+                                        'totalOrders',
                                         'totalProducts',
                                         'totalCustomers',
                                         'totalNewsletters',
-                                        'lastOrders',
-                                        'lastProductsAdded'
+                                        'lastProductsAdded',
+                                        'totalOrdersOfLastDays',
+                                        'totalPaidOrdersOfLastDays',
+                                        'totalCompletedOrdersOfLastDays',
+                                        'totalWaitingPaymentOrdersOfLastDays'
                                 ));
     }
 

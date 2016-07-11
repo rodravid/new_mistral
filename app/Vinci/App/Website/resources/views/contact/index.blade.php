@@ -54,7 +54,7 @@
 						</li>
 						<li>
 							<label for="phone1" class="label-input">Telefone</label>
-							{!! Form::input('tel', 'phone', null, ['id' => 'phone1', 'class' => 'cel input-register half', 'placeholder' => 'Telefone', 'phone-mask' => '']) !!}
+							{!! Form::input('tel', 'phone', null, ['id' => 'phone1', 'class' => 'cel input-register half', 'placeholder' => 'Telefone', 'cel-phone-mask' => '']) !!}
 						</li>
 
 						<li class="mbottom20">

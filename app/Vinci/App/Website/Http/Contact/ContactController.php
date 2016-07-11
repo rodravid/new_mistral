@@ -36,7 +36,7 @@ class ContactController extends Controller
             Mail::send('website::contact.mail.default', compact('data'), function ($mail) use ($data) {
                 $mail->from($data['email'], $data['name']);
 
-                $mail->to('roliveira@webeleven.com.br', 'Rodrigo David de Oliveira')->subject(sprintf('Fale Conosco - %s', $data['subject']));
+                $mail->to(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject(sprintf('Fale Conosco - %s', $data['subject']));
             });
             
             Flash::success('Mensagem Enviada! Agradecemos o seu contato e retornaremos o mais breve possível.');
