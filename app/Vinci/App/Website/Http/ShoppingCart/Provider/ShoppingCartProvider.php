@@ -56,7 +56,7 @@ class ShoppingCartProvider implements ShoppingCartProviderInterface
 
             $cart = $this->cartRepository->find($cartIdentifier);
 
-            if ($cart !== null) {
+            if ($cart !== null && ! $cart->hasCustomer()) {
                 return $cart;
             }
 

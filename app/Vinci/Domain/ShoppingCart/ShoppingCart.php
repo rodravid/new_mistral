@@ -77,6 +77,11 @@ class ShoppingCart extends Model implements ShoppingCartInterface
         return $this;
     }
 
+    public function hasCustomer()
+    {
+        return ! empty($this->customer);
+    }
+
     public function getStatus()
     {
         return $this->status;

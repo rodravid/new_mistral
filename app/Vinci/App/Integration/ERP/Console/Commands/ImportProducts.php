@@ -70,7 +70,9 @@ class ImportProducts extends Command
 
             $this->productImporter->importOneBySKU($productSKU);
 
-            $this->info('Done!');
+            if (! $silent) {
+                $this->info('Done!');
+            }
 
         } catch (Exception $e) {
 

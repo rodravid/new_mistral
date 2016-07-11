@@ -29,7 +29,7 @@ class AttributeValue
     protected $attribute;
 
     /**
-     * @ORM\Column(name="text_value", type="string", nullable=true)
+     * @ORM\Column(name="text_value", type="text", nullable=true)
      */
     protected $text;
 
