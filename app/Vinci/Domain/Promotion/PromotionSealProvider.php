@@ -17,7 +17,7 @@ class PromotionSealProvider
 
     public function provideFor(ProductInterface $product)
     {
-        if($promotion = $this->discountPromotionService->findValidPromotionFor($product)) {
+        if ($promotion = $this->discountPromotionService->findValidPromotionFor($product)) {
 
             if ($promotion->hasSealImage()) {
                 return $promotion->getSealImage()->getWebPath();
