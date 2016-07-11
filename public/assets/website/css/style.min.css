@@ -119,7 +119,7 @@ input[type="search"]::-webkit-search-decoration {
   font-style: normal; }
 
 .header-main {
-  position: relative;
+  position: absolute;
   top: 0;
   padding: 25px 0 0 0;
   z-index: 99999;
@@ -131,6 +131,9 @@ input[type="search"]::-webkit-search-decoration {
   @media only screen and (max-width: 767px) {
     .header-main .row {
       padding: 0; } }
+
+.header-internal .header-main {
+  position: relative; }
 
 .menu-fixo .cart-header {
   margin: -16px 30px 6px 0px; }
@@ -406,7 +409,6 @@ input[type="search"]::-webkit-search-decoration {
   vertical-align: middle;
   transform: translateZ(0);
   box-shadow: 0 0 1px transparent;
-  /* -webkit-backface-visibility: hidden; */
   backface-visibility: hidden;
   /* -moz-osx-font-smoothing: grayscale; */
   position: relative;
@@ -450,6 +452,27 @@ input[type="search"]::-webkit-search-decoration {
   transition-timing-function: ease-out; }
 
 .ie9 .nav-link:hover {
+  color: #fff !important; }
+
+/* Safari 7.1 -8.0 (Safari 7.1+)
+(Use this as a prefix to your normal CSS rule)
+---------------------------------------------------------------- */
+_::-webkit-full-page-media .nav-link:before, _:future .nav-link:before, :root div .nav-link:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none;
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out; }
+
+_::-webkit-full-page-media .nav-link:hover, _:future .nav-link:hover, :root div .nav-link:hover {
   color: #fff !important; }
 
 .cart-header {
@@ -4253,11 +4276,7 @@ strong {
   display: block; }
 
 .wrap-slider-principal {
-  margin-top: -106px;
   overflow: hidden; }
-  @media only screen and (max-width: 767px) {
-    .wrap-slider-principal {
-      margin-top: -116px; } }
 
 .slider-principal {
   width: 100%;
