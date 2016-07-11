@@ -38,4 +38,9 @@ class CustomerPresenter extends AbstractPresenter
 
     }
 
+    public function presentDocument()
+    {
+        return mask($this->getDocument(), ($this->isIndividual()) ? '###.###.###-##' : '##.###.###/####-##');
+    }
+
 }

@@ -7,29 +7,36 @@
 
 		Obrigado por preferir a VINCI.<br/><br/>
 
-		Confira abaixo as informações que agora constam no cadastro:<br /><br />
+		Por favor, confira abaixo as informações que agora constam no cadastro:<br /><br />
 
 		<b>Nome: </b>{{ $customer->name }}<br>
 
-		<b>CPF: </b>{{ $customer->cpf }}<br>
+
+		<b>CPF/CNPJ: </b>{{ $customer->document }}<br>
 
 		@if(! empty($customer->rg))
-		<b>RG: </b>{{ $customer->rg }}<br>
+			<b>RG: </b>{{ $customer->rg }}<br>
 		@endif
 		<br>
 
-		<b>Endereço: </b> {!! $customer->full_address_html !!}    <br>
+		<b>Endereço principal</b><br>
 
-		<b>Data de Nascimento: </b>{{ $customer->birthday }}<br>
+		<b>Tipo: </b> {!! $customer->getMainAddress()->getType()->getTitle() !!}<br>
 
-		<b>Sexo: </b>{{ $customer->gender }}<br>
+		<b>Endereço: </b> {!! $customer->full_address_html !!}<br>
+
+		@if ($customer->isIndividual())
+			<b>Data de Nascimento: </b>{{ $customer->birthday }}<br>
+
+			<b>Sexo: </b>{{ $customer->gender }}<br>
+		@endif
 
 		@if(! empty($customer->Phone))
-		<b>Telefone: </b>{{ $customer->Phone }} <br>
+			<b>Telefone: </b>{{ $customer->Phone }} <br>
 		@endif
 
 		@if(! empty($customer->cellPhone))
-		<b>Celular: </b>{{ $customer->cellPhone }} <br>
+			<b>Celular: </b>{{ $customer->cellPhone }} <br>
 		@endif
 
 		<b>E-mail: </b>{{ $customer->email }}<br>
