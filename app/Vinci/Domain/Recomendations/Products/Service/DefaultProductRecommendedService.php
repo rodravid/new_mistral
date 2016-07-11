@@ -46,7 +46,7 @@ class DefaultProductRecommendedService implements ProductRecommendedService
         $products = $this->productRepository->getProductsByCountryAndType($product->getCountry(), $product->getProductType(), $quantity, [$product->getId()], $randomize);
 
         if ($products->isEmpty()) {
-            $products = $this->getRecommendedProducts();
+            return $this->getRecommendedProducts();
         }
 
         return $this->presenter->paginator($products, ProductPresenter::class);
@@ -55,7 +55,7 @@ class DefaultProductRecommendedService implements ProductRecommendedService
     public function getRecommendedProducts()
     {
         $products = $this->productRepository->getRandomProducts();
-
+        
         return $this->presenter->paginator($products, ProductPresenter::class);
     }
 }

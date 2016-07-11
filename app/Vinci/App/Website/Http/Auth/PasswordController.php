@@ -18,6 +18,8 @@ class PasswordController extends BaseAuthController
 
     protected $redirectPath = '/minhaconta';
 
+    protected $subject = 'Recuperação de senha';
+
     protected function getSendResetLinkEmailSuccessResponse($response)
     {
         if (Request::ajax() || Request::wantsJson()) {

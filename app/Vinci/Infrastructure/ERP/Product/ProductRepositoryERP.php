@@ -87,8 +87,8 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
             $client = $this->buildClient('products.get_current_products');
 
-            $response = $client->call('GETPRODUTOS', [
-                'GETPRODUTOSInput' => [
+            $response = $client->call('GETPRODUTOSATUAIS', [
+                'GETPRODUTOSATUAISInput' => [
                     'PCODLISTAPRECO-VARCHAR2-IN' => $this->config->get('erp.products_price_list'),
                     'PXML-XMLTYPE-OUT' => '',
                 ]
@@ -96,12 +96,12 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
             try {
 
-                $product = $this->parseResponse($response);
+                $products = $this->parseResponse($response, true);
 
-                return $this->factory->makeFromXmlObject($product);
+                return $this->factory->makeListFromXmlObject($products);
 
             } catch (Exception $e) {
-                throw new IntegrationException(sprintf('Error when importing the product #%s: %s', $sku, $e->getMessage()));
+                throw new IntegrationException(sprintf('Error when importing all products from ERP: %s', $e->getMessage()));
             }
 
         } catch (Exception $e) {
@@ -119,9 +119,15 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
         return [];
     }
 
-    protected function parseResponse($response)
+    protected function parseResponse($response, $includeRoot = false)
     {
-        $response = simplexml_load_string($response->PXML->any);
+        $response = $response->PXML->any;
+
+        if ($includeRoot) {
+            $response = sprintf('<data>%s</data>', $response);
+        }
+
+        $response = simplexml_load_string($response);
 
         if(isset($response->ERRO)) {
             throw new IntegrationException($response->ERRO);
