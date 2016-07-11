@@ -63,9 +63,11 @@ DQL;
     protected function getBaseQueryBuilder()
     {
         return $this->createQueryBuilder('o')
-            ->select('o', 'i', 'c')
+            ->select('o', 'i', 'c', 'p', 's')
             ->join('o.items', 'i')
-            ->join('o.customer', 'c');
+            ->join('o.customer', 'c')
+            ->join('o.payments', 'p')
+            ->join('o.shipment', 's');
     }
 
     public function countOrders()

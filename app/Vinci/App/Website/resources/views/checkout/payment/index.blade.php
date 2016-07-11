@@ -88,6 +88,13 @@
                 </div>
             </article>
 
+            <p class="title-internal-blue mbottom20">Previsão de Entrega</p>
+            <article class="to-deliver section-payment">
+                <div class="float-left">
+                    <p>{{ $shoppingCart->shipping->deadline }}</p>
+                </div>
+            </article>
+
             <p class="title-internal-blue mbottom30">Forma de pagamento</p>
 
             <div id="paymentTabs">

@@ -6,7 +6,6 @@ TRUNCATE orders;
 TRUNCATE order_addresses;
 TRUNCATE order_payments;
 TRUNCATE order_shipments;
-TRUNCATE order_tracking_status;
 TRUNCATE orders_history;
 TRUNCATE orders_history_entries;
 TRUNCATE orders_items;
@@ -27,7 +26,6 @@ TRUNCATE shopping_cart;
 TRUNCATE shopping_cart_items;
 TRUNCATE wines;
 TRUNCATE wines_grapes;
-TRUNCATE wines_scores;
 TRUNCATE wines_scores;
 
 SET FOREIGN_KEY_CHECKS = 1;

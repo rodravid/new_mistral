@@ -16,11 +16,16 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\Login' => [
             'Vinci\App\Website\Auth\Events\Listeners\LinkCustomerToCurrentCart',
         ],
+
         'Vinci\Domain\Order\Events\NewOrderWasCreated' => [
             'Vinci\Domain\Order\Events\Listeners\FinalizeCustomerShoppingCart',
             'Vinci\Domain\Order\Events\Listeners\CloseCustomerAbandonedCarts',
             'Vinci\Domain\Order\Events\Listeners\ReduceStockOfProducts',
             'Vinci\Domain\Order\Events\Listeners\SendOrderConfirmationMail',
+        ],
+
+        'Vinci\Domain\Customer\Events\CustomerWasCreated' => [
+            'Vinci\Domain\Customer\Events\Listeners\SendCustomerConfirmationMail'
         ]
     ];
 
