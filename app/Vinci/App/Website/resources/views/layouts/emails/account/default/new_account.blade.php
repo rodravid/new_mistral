@@ -41,6 +41,6 @@
 
 		<b>E-mail: </b>{{ $customer->email }}<br>
 
-
+		@include('website::layouts.emails.templates.partials.additional_message')
 
 @endsection
