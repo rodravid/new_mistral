@@ -11,7 +11,7 @@ class CreditCardValidator extends LaravelValidator
         'payment.method_type' => 'exists:Vinci\Domain\Payment\PaymentMethod,description',
         'card.holdername' => 'required_if:payment.method_type,==,credit_card',
         'card.number' => 'required_if:payment.method_type,==,credit_card',
-        'document' => 'required_if:payment.method_type,==,credit_card',
+        'document' => 'required_if:payment.method_type,==,credit_card|cpf_cnpj',
         'card.expiry_month' => 'required_if:payment.method_type,==,credit_card',
         'card.expiry_year' => 'required_if:payment.method_type,==,credit_card',
         'card.security_code' => 'required_if:payment.method_type,==,credit_card|min:3|max:4',
@@ -19,6 +19,7 @@ class CreditCardValidator extends LaravelValidator
 
     protected $messages = [
         'document.required_if' => 'Informe o CPF/CNPJ do titular do cartão.',
+        'document.cpf_cnpj' => 'CPF/CNPJ inválido.',
         'card.holdername.required_if' => 'Informe o nome impresso no cartão.',
         'card.number.required_if' => 'Informe o número do cartão.',
         'card.expiry_month.required_if' => 'Selecione o mês de validade do cartão.',

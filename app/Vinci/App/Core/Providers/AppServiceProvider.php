@@ -28,6 +28,17 @@ class AppServiceProvider extends ServiceProvider
             return validateCnpj($value);
         });
 
+        Validator::extend('cpf_cnpj', function($attribute, $value, $parameters) {
+            $value = only_numbers($value);
+
+            if (strlen($value) == 11) {
+                return validateCpf($value);
+            }
+
+            return validateCnpj($value);
+
+        });
+
         $this->registerCustomDoctrineFunctions();
 
     }

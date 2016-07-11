@@ -55,6 +55,8 @@ class OrderController extends Controller
 
         } catch (Exception $e) {
 
+            throw $e;
+
             Log::error(sprintf('Erro ao finalizar pedido: %s | Trace: %s', $e->getMessage(), $e->getTraceAsString()));
 
             Flash::error('Não foi possível finalizar seu pedido, por gentileza entrar em contato através do email ' . env('CONTACT_MAIL'));
