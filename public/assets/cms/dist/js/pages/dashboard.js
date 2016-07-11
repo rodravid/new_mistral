@@ -64,7 +64,12 @@ function buildBarChartData(response) {
     var $data = [];
 
     $.each(response, function (index, values) {
-        $.merge($data, [{ date: ('0' + values.day).slice(-2) + '/' + ('0' + values.month).slice(-2) + '/' + values.year, allOrders: values.orders, paidOrders: values.paidOrders, completedOrders: values.completedOrders }]);
+        $.merge($data, [{
+                            date: ('0' + values.day).slice(-2) + '/' + ('0' + values.month).slice(-2) + '/' + values.year,
+                            allOrders: values.orders,
+                            paidOrders: values.paidOrders,
+                            completedOrders: values.completedOrders
+                        }]);
     });
 
     var area = new Morris.Bar({

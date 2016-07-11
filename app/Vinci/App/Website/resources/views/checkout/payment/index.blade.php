@@ -285,10 +285,10 @@
                     data: 'paymentMethod=' + paymentMethod + "&address_id={{ $deliveryAddress->id }}",
                     dataType: 'json',
                     success: function (dataReturn) {
-                        var html = "<option value='' selected>Selecione o parcelamento</option>";
+                        var html = "<option value=''>Selecione o parcelamento</option>";
 
                         $.each(dataReturn, function (index, value) {
-                            html += "<option value='" + index + "'" + ((paymentInstallment != 0 && paymentInstallment != null) ? "selected='selected'" : "") + ">" + value + "</option>";
+                            html += "<option value='" + index + "'" + ((paymentInstallment != 0 && paymentInstallment == index) ? "selected='selected'" : "") + ">" + value + "</option>";
                         });
 
                         $("#paymentInstallments").html(html);
