@@ -18,7 +18,8 @@ class SendOrderConfirmationMail
 
     public function handle(NewOrderWasCreated $event)
     {
-        $job = (new SendOrderConfirmationMailJob($event->order->getId()))->onQueue('vinci-queue');
+        $job = (new SendOrderConfirmationMailJob($event->order->getId()))
+            ->onQueue('vinci-email-orders');
 
         $this->dispatcher->dispatch($job);
     }
