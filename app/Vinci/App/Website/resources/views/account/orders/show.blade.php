@@ -114,6 +114,14 @@
             </div>
         </article>
 
+        <p class="title-internal mbottom20">Previsão de Entrega</p>
+
+        <article class="to-deliver section-payment">
+            <div class="float-left">
+                <p>{{ $order->shipment->deadline }}</p>
+            </div>
+        </article>
+
         <p class="title-internal mbottom20">Forma de pagamento</p>
 
         <article class="purchase-data section-payment">
