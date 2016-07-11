@@ -3,6 +3,7 @@
 namespace Vinci\Domain\Order;
 
 use Vinci\App\Core\Contracts\RepositoryInterface;
+use Vinci\Domain\Common\Model\DateRange;
 
 interface OrderRepository extends RepositoryInterface
 {
@@ -13,12 +14,12 @@ interface OrderRepository extends RepositoryInterface
 
     public function getByCustomer($customerId, $perPage = 5, $pageName = 'page');
 
-    public function countOrdersByPeriod($startAt, $endAt);
+    public function countOrdersByPeriod(DateRange $dateRange);
 
-    public function countPaidOrdersByPeriod($startAt, $endAt);
+    public function countPaidOrdersByPeriod(DateRange $dateRange);
 
-    public function countWaitingPaymentOrdersByPeriod($startAt, $endAt);
+    public function countWaitingPaymentOrdersByPeriod(DateRange $dateRange);
 
-    public function countCompletedOrdersByPeriod($startAt, $endAt);
+    public function countCompletedOrdersByPeriod(DateRange $dateRange);
 
 }
