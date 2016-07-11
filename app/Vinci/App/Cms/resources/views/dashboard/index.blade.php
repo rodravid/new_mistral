@@ -112,22 +112,22 @@
                         </div>
                         <div class="box-footer no-border">
                             <div class="row">
+                                <div class="col-xs-4 text-center">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalWaitingPaymentOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+
+                                    <div class="knob-label">Aguardando Pagamento</div>
+                                </div>
+                                <!-- ./col -->
                                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalPaidOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalPaidOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#3c8dbc">
 
                                     <div class="knob-label">Pedidos Pagos</div>
                                 </div>
                                 <!-- ./col -->
                                 <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalCompletedOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#a0d0e0">
+                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalCompletedOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#4da74d">
 
                                     <div class="knob-label">Pedidos Completos</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-xs-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" data-min="0" data-max="{{ $totalOrdersOfLastDays }}" value="{{ $totalWaitingPaymentOrdersOfLastDays }}" data-width="60" data-height="60" data-fgColor="#a0d0e0">
-
-                                    <div class="knob-label">Aguardando Pagamento</div>
                                 </div>
                                 <!-- ./col -->
                             </div>
