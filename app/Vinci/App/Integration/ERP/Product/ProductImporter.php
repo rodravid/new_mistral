@@ -51,11 +51,10 @@ class ProductImporter
 
         } catch (Exception $e) {
 
-            $this->log($e);
+            $this->log($e, $sku);
 
             throw $e;
         }
-
     }
 
     public function importStock($sku)
@@ -69,7 +68,7 @@ class ProductImporter
             }
 
             if (! $product->shouldImportStock()) {
-                throw  new IntegrationException(sprintf('The product #%s can not import stock.', $sku));
+                throw new IntegrationException(sprintf('The product #%s can not import stock.', $sku));
             }
 
             $newStock = $this->erpProductService->getStock($sku);
@@ -109,11 +108,11 @@ class ProductImporter
         return $this->localProductService->update($data, $localProduct->getId());
     }
 
-    public function log(Exception $e)
+    public function log(Exception $e, $sku)
     {
         if ($e instanceof ValidationException) {
 
-            Log::error(sprintf('Validation exception: %s', serialize($e->getErrors())));
+            Log::error(sprintf('Validation exception #%s: %s', $sku, serialize($e->getErrors())));
 
         } else {
             Log::error($e->getMessage());
