@@ -55,7 +55,6 @@ class ProductImporter
 
             throw $e;
         }
-
     }
 
     public function importStock($sku)
@@ -69,7 +68,7 @@ class ProductImporter
             }
 
             if (! $product->shouldImportStock()) {
-                throw  new IntegrationException(sprintf('The product #%s can not import stock.', $sku));
+                throw new IntegrationException(sprintf('The product #%s can not import stock.', $sku));
             }
 
             $newStock = $this->erpProductService->getStock($sku);
