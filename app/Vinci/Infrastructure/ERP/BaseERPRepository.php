@@ -37,4 +37,9 @@ abstract class BaseERPRepository
         return $this->config->get($fullKey);
     }
 
+    public function getStoreCode()
+    {
+        return $this->config->get('erp.products_price_list');
+    }
+
 }

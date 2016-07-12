@@ -22,11 +22,6 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
         $this->factory = $factory;
     }
 
-    public function getStoreCode()
-    {
-        return $this->config->get('erp.products_price_list');
-    }
-
     public function getOneBySKU($sku)
     {
         try {
