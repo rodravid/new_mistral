@@ -3,11 +3,13 @@
 namespace Vinci\Domain\Graphic\Order;
 
 
+use Vinci\Domain\Common\Model\DateRange;
+
 interface OrderGraphicsRepository
 {
 
-    public function countAllByPeriod($startAt, $endAt);
+    public function countAllByPeriod(DateRange $dateRange);
 
-    public function countPaidByPeriod($startAt, $endAt);
+    public function countPaidByPeriod(DateRange $dateRange);
 
 }
