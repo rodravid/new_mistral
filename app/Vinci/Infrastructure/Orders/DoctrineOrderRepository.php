@@ -2,6 +2,7 @@
 
 namespace Vinci\Infrastructure\Orders;
 
+use Vinci\Domain\Common\Model\DateRange;
 use Vinci\Domain\Order\OrderRepository;
 use Vinci\Domain\Order\OrderStatus;
 use Vinci\Domain\Payment\PaymentStatus;
@@ -75,7 +76,7 @@ DQL;
         return (int) $this->createQueryBuilder('o')->select('count(o.id)')->getQuery()->getSingleScalarResult();
     }
 
-    public function countOrdersByPeriod($startAt, $endAt)
+    public function countOrdersByPeriod(DateRange $dateRange)
     {
 
         $dql = <<<DQL
@@ -86,13 +87,13 @@ DQL;
 
         $query = $this->_em->createQuery($dql);
 
-        $query->setParameter('startAt', $startAt)
-              ->setParameter('endAt', $endAt);
+        $query->setParameter('startAt', $dateRange->getStart())
+              ->setParameter('endAt', $dateRange->getEnd());
 
         return (int) $query->getSingleScalarResult();
     }
 
-    public function countPaidOrdersByPeriod($startAt, $endAt)
+    public function countPaidOrdersByPeriod(DateRange $dateRange)
     {
         $dql = <<<DQL
         SELECT count(o.id)
@@ -104,14 +105,14 @@ DQL;
 
         $query = $this->_em->createQuery($dql);
 
-        $query->setParameter('startAt', $startAt)
-              ->setParameter('endAt', $endAt)
+        $query->setParameter('startAt', $dateRange->getStart())
+              ->setParameter('endAt', $dateRange->getEnd())
               ->setParameter('statuses', [PaymentStatus::STATUS_AUTHORIZED, PaymentStatus::STATUS_COMPLETED]);
 
         return (int) $query->getSingleScalarResult();
     }
 
-    public function countWaitingPaymentOrdersByPeriod($startAt, $endAt)
+    public function countWaitingPaymentOrdersByPeriod(DateRange $dateRange)
     {
         $dql = <<<DQL
         SELECT count(o.id)
@@ -123,14 +124,14 @@ DQL;
 
         $query = $this->_em->createQuery($dql);
 
-        $query->setParameter('startAt', $startAt)
-            ->setParameter('endAt', $endAt)
+        $query->setParameter('startAt', $dateRange->getStart())
+            ->setParameter('endAt', $dateRange->getEnd())
             ->setParameter('statuses', [PaymentStatus::STATUS_PROCESSING, PaymentStatus::STATUS_PENDING, PaymentStatus::STATUS_NEW]);
 
         return (int) $query->getSingleScalarResult();
     }
 
-    public function countCompletedOrdersByPeriod($startAt, $endAt)
+    public function countCompletedOrdersByPeriod(DateRange $dateRange)
     {
         $dql = <<<DQL
         SELECT count(o.id)
@@ -142,8 +143,8 @@ DQL;
 
         $query = $this->_em->createQuery($dql);
 
-        $query->setParameter('startAt', $startAt)
-              ->setParameter('endAt', $endAt)
+        $query->setParameter('startAt', $dateRange->getStart())
+              ->setParameter('endAt', $dateRange->getEnd())
               ->setParameter('statuses', [OrderStatus::STATUS_COMPLETED]);
 
         return (int) $query->getSingleScalarResult();

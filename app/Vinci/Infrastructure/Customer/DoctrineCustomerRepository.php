@@ -40,9 +40,10 @@ class DoctrineCustomerRepository extends DoctrineUserRepository implements Custo
     {
         $qb = $this->createQueryBuilder('o');
 
-        $qb->where('o.cpf = :cpf');
+        $qb->where('o.cpf = :document')
+           ->orWhere('o.cnpj = :document');
 
-        $qb->setParameter('cpf', $document);
+        $qb->setParameter('document', $document);
 
         return $qb->getQuery()->getOneOrNullResult();
     }

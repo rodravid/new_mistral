@@ -5,6 +5,7 @@ namespace Vinci\App\Cms\Http\Graphics;
 use Carbon\Carbon;
 use Response;
 use Vinci\App\Cms\Http\Controller;
+use Vinci\Domain\Common\Model\DateRange;
 use Vinci\Domain\Graphic\Order\OrderGraphicsRepository;
 use Vinci\Domain\Order\OrderRepository;
 
@@ -22,20 +23,15 @@ class GraphicsController extends Controller
 
     public function getDataForOrdersLineChart()
     {
-        $startAt = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days')));
-        $stopAt = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59'));
-
-        $data = $this->orderGraphicsRepository->countAllByPeriod($startAt, $stopAt);
+        $data = $this->orderGraphicsRepository->countAllByPeriod(DateRange::getPeriod());
 
         return Response::json($data);
     }
 
     public function getDataForOrdersBarChart()
     {
-        $dateStart = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 00:00:00', strtotime('-10 days')));
-        $dateStop = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d 23:59:59'));
 
-        $orders = $this->orderGraphicsRepository->countPaidByPeriod($dateStart, $dateStop);
+        $orders = $this->orderGraphicsRepository->countPaidByPeriod(DateRange::getPeriod());
 
         return Response::json($orders);
     }

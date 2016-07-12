@@ -4,9 +4,9 @@
 
     @include('website::layouts.emails.templates.partials.salutation')
 
-    Agradecemos por se cadastrar na Vinci.<br/><br/>
+    Agradecemos a atualização de seus dados no site da Vinci.<br/><br/>
 
-    Por favor, confira abaixo as informações que agora constam em seu cadastro:<br/><br/>
+    Por favor, confira abaixo as informações que agora constam em seu cadastro:<br /><br />
 
     <b>Dados Pessoais</b><br>
     <b>Nome: </b>{{ $customer->name }}<br>

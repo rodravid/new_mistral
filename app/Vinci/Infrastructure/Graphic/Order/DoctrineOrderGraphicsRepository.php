@@ -4,6 +4,7 @@ namespace Vinci\Infrastructure\Graphic\Order;
 
 
 use Doctrine\ORM\EntityManagerInterface;
+use Vinci\Domain\Common\Model\DateRange;
 use Vinci\Domain\Graphic\Order\OrderGraphicsRepository;
 use Vinci\Domain\Order\OrderStatus;
 use Vinci\Domain\Payment\PaymentStatus;
@@ -21,7 +22,7 @@ class DoctrineOrderGraphicsRepository extends DoctrineBaseRepository implements 
 
     }
 
-    public function countAllByPeriod($startAt, $endAt)
+    public function countAllByPeriod(DateRange $dateRange)
     {
         $dql = <<<DQL
         
@@ -35,13 +36,13 @@ DQL;
 
         $query = $this->em->createQuery($dql);
 
-        $query->setParameter('startAt', $startAt)
-              ->setParameter('endAt', $endAt);
+        $query->setParameter('startAt', $dateRange->getStart())
+              ->setParameter('endAt', $dateRange->getEnd());
 
         return $query->getResult();
     }
 
-    public function countPaidByPeriod($startAt, $endAt)
+    public function countPaidByPeriod(DateRange $dateRange)
     {
         $dql = <<<DQL
         
@@ -69,13 +70,14 @@ DQL;
         WHERE o.createdAt BETWEEN :startAt AND :endAt
         GROUP BY year, month, day
         ORDER BY year, month, day ASC
+        
 DQL;
 
         $query = $this->em->createQuery($dql);
 
-        $query->setParameter('startAt', $startAt)
-              ->setParameter('endAt', $endAt)
-              ->setParameter('statuses', [PaymentStatus::STATUS_AUTHORIZED, PaymentStatus::STATUS_COMPLETED])
+        $query->setParameter('startAt', $dateRange->getStart())
+              ->setParameter('endAt', $dateRange->getEnd())
+              ->setParameter('statuses', [PaymentStatus::STATUS_AUTHORIZED])
               ->setParameter('completed', [OrderStatus::STATUS_COMPLETED]);
 
         return $query->getResult();
