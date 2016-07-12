@@ -4,9 +4,11 @@ jQuery(document).ready(function() {
      Fullscreen background
      */
     $.backstretch([
-        "/assets/cms/dist/img/backgrounds/1.jpg"
+        "/assets/cms/dist/img/backgrounds/1.jpg",
+        "/assets/cms/dist/img/backgrounds/2.jpg",
+        "/assets/cms/dist/img/backgrounds/3.jpg"
     ], {
-        fade: 400
+        fade: 600
     });
 
     /*
