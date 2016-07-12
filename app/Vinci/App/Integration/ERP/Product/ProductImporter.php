@@ -49,6 +49,12 @@ class ProductImporter
 
             return $this->updateProduct($erpProduct, $localProduct);
 
+        } catch (ValidationException $e) {
+
+            $this->log($e, $sku);
+
+            throw new IntegrationException(sprintf('Validation exception #%s: %s', $sku, serialize($e->getErrors())));
+
         } catch (Exception $e) {
 
             $this->log($e, $sku);
@@ -79,7 +85,7 @@ class ProductImporter
 
         } catch (Exception $e) {
 
-            $this->log($e->getMessage());
+            $this->log($e, $sku);
 
             throw $e;
         }

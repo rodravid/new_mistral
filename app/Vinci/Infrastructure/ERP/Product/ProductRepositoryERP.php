@@ -8,6 +8,7 @@ use Vinci\App\Integration\Exceptions\IntegrationException;
 use Vinci\Domain\ERP\Product\ProductFactory;
 use Vinci\Domain\ERP\Product\ProductRepository;
 use Vinci\Infrastructure\ERP\BaseERPRepository;
+use Vinci\Infrastructure\Exceptions\EmptyResponseException;
 
 class ProductRepositoryERP extends BaseERPRepository implements ProductRepository
 {
@@ -21,6 +22,11 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
         $this->factory = $factory;
     }
 
+    public function getStoreCode()
+    {
+        return $this->config->get('erp.products_price_list');
+    }
+
     public function getOneBySKU($sku)
     {
         try {
@@ -29,7 +35,7 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
             $response = $client->call('GETPRODUTOS', [
                 'GETPRODUTOSInput' => [
-                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->config->get('erp.products_price_list'),
+                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->getStoreCode(),
                     'PCODMATERIAL-VARCHAR2-IN' => $sku,
                     'PXML-XMLTYPE-OUT' => '',
                 ]
@@ -59,7 +65,7 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
             $response = $client->call('CONSULTASALDOESTOQUE', [
                 'CONSULTASALDOESTOQUEInput' => [
-                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->config->get('erp.products_price_list'),
+                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->getStoreCode(),
                     'PCODMATERIAL-VARCHAR2-IN' => $sku,
                     'PXML-XMLTYPE-OUT' => '',
                 ]
@@ -89,7 +95,7 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
             $response = $client->call('GETPRODUTOSATUAIS', [
                 'GETPRODUTOSATUAISInput' => [
-                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->config->get('erp.products_price_list'),
+                    'PCODLISTAPRECO-VARCHAR2-IN' => $this->getStoreCode(),
                     'PXML-XMLTYPE-OUT' => '',
                 ]
             ]);
@@ -100,8 +106,12 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
                 return $this->factory->makeListFromXmlObject($products);
 
+            } catch (EmptyResponseException $e) {
+
+                return [];
+
             } catch (Exception $e) {
-                throw new IntegrationException(sprintf('Error when importing all products from ERP: %s', $e->getMessage()));
+                throw new IntegrationException(sprintf('Error when getting products list from ERP: %s', $e->getMessage()));
             }
 
         } catch (Exception $e) {
@@ -111,17 +121,73 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
     public function getNew()
     {
-        return [];
+        try {
+
+            $client = $this->buildClient('products.get_new_products');
+
+            $response = $client->call('GETPRODUTOSNOVOS', [
+                'GETPRODUTOSNOVOSInput' => [
+                    'PMARCA-VARCHAR2-IN' => $this->getStoreCode(),
+                    'PXML-XMLTYPE-OUT' => '',
+                ]
+            ]);
+
+            try {
+
+                $products = $this->parseResponse($response, true);
+
+                return $this->factory->makeListFromXmlObject($products);
+
+            } catch (EmptyResponseException $e) {
+
+                return [];
+
+            } catch (Exception $e) {
+                throw new IntegrationException(sprintf('Error when getting new products list from ERP: %s', $e->getMessage()));
+            }
+
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     public function getChanged()
     {
-        return [];
+        try {
+
+            $client = $this->buildClient('products.get_changed_products');
+
+            $response = $client->call('GETPRODUTOSALTERADOS', [
+                'GETPRODUTOSALTERADOSInput' => [
+                    'PMARCA-VARCHAR2-IN' => $this->getStoreCode(),
+                    'PXML-XMLTYPE-OUT' => '',
+                ]
+            ]);
+
+            try {
+
+                $products = $this->parseResponse($response, true);
+
+                return $this->factory->makeListFromXmlObject($products);
+
+            } catch (EmptyResponseException $e) {
+                return [];
+            } catch (Exception $e) {
+                throw new IntegrationException(sprintf('Error when getting changed products list from ERP: %s', $e->getMessage()));
+            }
+
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     protected function parseResponse($response, $includeRoot = false)
     {
-        $response = $response->PXML->any;
+        if (isset($response->PXML->any)) {
+            $response = $response->PXML->any;
+        } else {
+            throw new EmptyResponseException('Empty response.');
+        }
 
         if ($includeRoot) {
             $response = sprintf('<data>%s</data>', $response);
