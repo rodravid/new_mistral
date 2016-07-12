@@ -10,7 +10,7 @@
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="{{ $user->profile_photo }}" alt="User profile picture">
 
-                        <h3 class="profile-username text-center">{{ $user->name }} <br> <small>{{ $user->getRoles()->first()->title }}</small></h3>
+                        <h3 class="profile-username text-center">{{ $user->name }} <br> <small>Cargo: {{ $user->getOffice() }} <br> Grupo: {{ $user->getRoles()->first()->title }}</small></h3>
                         <hr>
                         <p class="text-muted">
                             <b>E-mail: </b> {{ $user->email }}<br>
