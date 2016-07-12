@@ -34,8 +34,7 @@ class CustomerService
         AddressService $addressService,
         Sanitizer $sanitizer,
         Event $event
-    )
-    {
+    ) {
         $this->repository = $repository;
         $this->entityManager = $entityManager;
         $this->validator = $validator;
@@ -115,12 +114,14 @@ class CustomerService
 
         $this->syncAddresses($customer, $data);
 
+        $creating = empty($customer->getId());
+
         $this->repository->save($customer);
 
-        if (empty($customer->getId())) {
-            $this->event->fire(new CustomerWasCreated($customer));
+        if ($creating) {
+            $this->event->fire(new CustomerWasCreated($customer->getId()));
         } else {
-            $this->event->fire(new CustomerWasUpdated($customer));
+            $this->event->fire(new CustomerWasUpdated($customer->getId()));
         }
 
         return $customer;

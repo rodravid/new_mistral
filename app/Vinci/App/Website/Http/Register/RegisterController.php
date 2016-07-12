@@ -29,8 +29,7 @@ class RegisterController extends Controller
         CustomerService $customerService,
         StateRepository $stateRepository,
         PublicPlaceRepository $publicPlaceRepository
-    )
-    {
+    ) {
         parent::__construct($em);
 
         $this->customerService = $customerService;
