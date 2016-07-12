@@ -4,14 +4,23 @@
 
     @include('website::layouts.emails.order.default.layouts.partials.salutation')
 
-    Informamos que referente ao seu pedido nº. <span style="font-size: 13px; color: #11b6f0 !important;"><b>{{ $order->number }}</b></span> estamos com dificuldades em processar o faturamento.<br /><br />
+    Estamos com dificuldades em processar o faturamento de seu pedido de número
+    <span style="font-size: 13px; color: #11b6f0 !important;"><b>{{ $order->number }}</b></span> através do cartão de crédito informado.<br><br>
 
-    Lembramos que os problemas mais comuns são divergências na data de validade ou no código de segurança. Para outros casos, consulte sua operadora, antes de nos contatar.<br /><br />
+    Os problemas mais comuns são divergências na data de validade ou no código de segurança.<br><br>
 
-    Para confirmar seus dados de pagamento, por favor, entre em contato conosco através deste e-mail <span style="font-size: 13px; color: #11b6f0 !important;">info@vinci.com.br</span> ou ligue para nosso atendimento no telefone (11) 3130-4646 (Atenção: atendimento de Internet somente de segunda a sexta-feira das 9h às 18h e sábados das 9h às 13h - exceto feriados).<br /><br />
+    Se os dados do cartão estiverem corretos, é possível que a sua operadora tenha bloqueado a compra por medida de segurança.<br><br>
 
-    Importante lembrar que o prazo de entrega do seu respectivo pedido somente é contado a partir da confirmação de pagamento.<br /><br />
+    Para todos os casos, pedimos a gentileza de entrar em contato com a operadora do seu cartão de crédito e solicitar a
+    liberação da compra, uma vez que apenas o titular do cartão está autorizado a fazer isto. Caso seja mais conveniente para
+    o(a) Sr(a), pode ser feita a troca do cartão de crédito ou mesmo um depósito em conta no banco Itaú.<br><br>
 
-    Os comunicados referente aos pedidos realizados pela internet, são em primeira instância, sempre tratados através de mensagens de e-mail.<br /><br />
+    Para confirmar seus dados de pagamento com segurança, solicitamos que entre em contato conosco através do
+    telefone (11) 2797-0000 (o horário de atendimento telefônico para clientes da internet é de segunda a sexta-feira
+    das 9h00 às 18h00, exceto feriados).<br><br>
+
+    É importante lembrar que o prazo de entrega do seu respectivo pedido somente será contado a partir da confirmação de pagamento.<br><br>
+
+    *Os comunicados referentes aos pedidos realizados são sempre tratados através de mensagens de e-mail em primeira instância.<br><br>
 
 @endsection
