@@ -53,7 +53,6 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
 
     public function getStock($sku)
     {
-
         try {
 
             $client = $this->buildClient('products.get_stock');
@@ -79,7 +78,6 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
         } catch (Exception $e) {
             throw $e;
         }
-
     }
 
     public function getAll()
@@ -174,31 +172,6 @@ class ProductRepositoryERP extends BaseERPRepository implements ProductRepositor
         } catch (Exception $e) {
             throw $e;
         }
-    }
-
-    protected function parseResponse($response, $includeRoot = false)
-    {
-        if (isset($response->PXML->any)) {
-            $response = $response->PXML->any;
-        } else {
-            throw new EmptyResponseException('Empty response.');
-        }
-
-        if ($includeRoot) {
-            $response = sprintf('<data>%s</data>', $response);
-        }
-
-        $response = simplexml_load_string($response);
-
-        if(isset($response->ERRO)) {
-            throw new IntegrationException($response->ERRO);
-        }
-
-        if(isset($response->PERRO)) {
-            throw new IntegrationException($response->PERRO);
-        }
-
-        return $response;
     }
 
 }

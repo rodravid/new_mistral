@@ -42,4 +42,29 @@ abstract class BaseERPRepository
         return $this->config->get('erp.products_price_list');
     }
 
+    protected function parseResponse($response, $includeRoot = false)
+    {
+        if (isset($response->PXML->any)) {
+            $response = $response->PXML->any;
+        } else {
+            throw new EmptyResponseException('Empty response.');
+        }
+
+        if ($includeRoot) {
+            $response = sprintf('<data>%s</data>', $response);
+        }
+
+        $response = simplexml_load_string($response);
+
+        if(isset($response->ERRO)) {
+            throw new IntegrationException($response->ERRO);
+        }
+
+        if(isset($response->PERRO)) {
+            throw new IntegrationException($response->PERRO);
+        }
+
+        return $response;
+    }
+
 }

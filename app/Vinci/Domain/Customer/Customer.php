@@ -175,7 +175,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function getCpf()
     {
-        return $this->cpf;
+        return only_numbers($this->cpf);
     }
 
     public function setCnpj($cnpj = null)
@@ -186,7 +186,7 @@ class Customer extends User implements CustomerInterface, Presentable
 
     public function getCnpj()
     {
-        return $this->cnpj;
+        return only_numbers($this->cnpj);
     }
 
     public function setRg($rg = null)
