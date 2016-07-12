@@ -16,6 +16,7 @@ use LaravelDoctrine\ACL\Permissions\HasPermissions;
 use LaravelDoctrine\ACL\Roles\HasRoles;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
+use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\ACL\Role\Role;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Customer\Customer;
@@ -216,6 +217,11 @@ abstract class User extends Model implements
         return $permissions;
     }
 
+    public function getPermissionsGroupedByModules()
+    {
+        return app(ACLService::class)->getPermissionsByUserGroupedByModule($this);
+    }
+    
     public function isSuperAdmin()
     {
         return $this->hasRoleByName(Role::SUPER_ADMIN);

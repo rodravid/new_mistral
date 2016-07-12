@@ -112,6 +112,19 @@ class ACLService
     {
         $permissions = $this->permissionRepository->getAll();
 
+        return $this->groupPermissionsByModule($permissions);
+    }
+
+    public function getPermissionsByUserGroupedByModule(User $user)
+    {
+
+        return $this->groupPermissionsByModule($user->getPermissions());
+
+    }
+
+    protected function groupPermissionsByModule($permissions)
+    {
+
         $groupedPermissions = [];
 
         foreach ($permissions as $permission) {
@@ -133,7 +146,7 @@ class ACLService
 
         $this->assignPermissions($role, $attributes['permissions']);
 
-        $this->assingModules($role, $attributes['modules']);
+        $this->assignModules($role, $attributes['modules']);
 
         $this->roleRepository->save($role);
 
@@ -150,7 +163,7 @@ class ACLService
 
         $this->assignPermissions($role, $attributes['permissions']);
 
-        $this->assingModules($role, $attributes['modules']);
+        $this->assignModules($role, $attributes['modules']);
 
         $this->roleRepository->save($role);
 
@@ -164,7 +177,7 @@ class ACLService
         }
     }
 
-    protected function assingModules(Role $role, array $modules = [])
+    protected function assignModules(Role $role, array $modules = [])
     {
         foreach($modules as $moduleId) {
 
@@ -173,7 +186,7 @@ class ACLService
             $role->assignModule($module);
 
             if ($module->hasParent()) {
-                $this->assingModules($role, [$module->getParent()->getId()]);
+                $this->assignModules($role, [$module->getParent()->getId()]);
             }
 
         }
