@@ -2,10 +2,13 @@
 
 namespace Vinci\App\Cms\Http\Account;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Flash;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Vinci\App\Website\Http\Controller;
+use Redirect;
+use Vinci\App\Cms\Http\Controller;
+use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Admin\AdminService;
 
 class AccountController extends Controller
@@ -15,58 +18,37 @@ class AccountController extends Controller
 
     protected $auth;
 
-    public function __construct(AdminService $adminService, AuthManager $auth)
+    public function __construct(EntityManagerInterface $em, AdminService $adminService, AuthManager $auth)
     {
+        parent::__construct($em);
+
         $this->adminService = $adminService;
         $this->auth = $auth->guard('cms');
     }
 
-    public function index()
+    public function show()
     {
         $user = $this->auth->user();
 
         return $this->view('account.index', compact('user'));
     }
 
-    public function create()
-    {
-        return $this->view('account.create');
-    }
-
-    public function edit()
-    {
-        $user = $this->auth->user();
-
-        return $this->view('account.create', compact('user'));
-    }
-
-    public function store(Request $request)
+    public function update(Request $request, $userId)
     {
         try {
+            $data = $request->all();
+            $data['photo'] = $request->file('photo');
 
-            $customer = $this->adminService->create($request->all());
+            $this->adminService->update($data, $userId);
 
-            $this->auth->login($customer);
+            Flash::success('Perfil atualizado com sucesso!');
 
-            return redirect()->route('cms.account.index');
+            return redirect()->route('cms.profile.show');
 
         } catch (ValidationException $e) {
 
-            $this->throwValidationException($request, $e->validator);
-        }
-    }
+            return Redirect::back()->withErrors($e->getErrors())->withInput();
 
-    public function update(Request $request, $customerId)
-    {
-        try {
-
-            $this->adminService->update($request->all(), $customerId);
-
-            return redirect()->route('cms.account.index');
-
-        } catch (ValidationException $e) {
-
-            $this->throwValidationException($request, $e->validator);
         }
     }
 

@@ -18,9 +18,16 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/', 'Dashboard\\DashboardController@index')->name('dashboard.show');
             $route->get('/LineChartPedidos', 'Graphics\\GraphicsController@getDataForOrdersLineChart')->name('dashboard.order.lineChart');
             $route->get('/BarChartPedidos', 'Graphics\\GraphicsController@getDataForOrdersBarChart')->name('dashboard.orders.barChart');
-            $route->get('profile', 'Account\\AccountController@index')->name('profile');
             $route->get('password/help', 'Auth\PasswordController@help')->name('password.help');
             $route->post('settings/{key}/{value}', 'Settings\\SettingsController@store')->name('settings.store');
+            
+            /**
+             * Accounts
+             */
+            $route->group(['prefix' => 'profile', 'as' => 'profile.'], function () use ($route) {
+                $route->get('/', 'Account\\AccountController@show')->name('show');
+                $route->put('/{user}', 'Account\\AccountController@update')->name('update');
+            });
 
             $route->group(['middleware' => ['acl']], function() use ($route) {
 
