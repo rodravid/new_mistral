@@ -458,11 +458,11 @@ a.bt-default {
 .wine-card {
 	width:100%;
 	border:1px solid #000;
-	padding:20px;
+	padding:15px;
 	text-align:left;
 	margin-bottom:20px;
 	position:relative;
-	min-height: 395px;
+	min-height: 322px;
 
 	@media #{$screen767} { 
 		min-height: auto;
@@ -506,7 +506,7 @@ a.bt-default {
 	width:100%;
 	display:inline-block;
 	margin-top: 18px;
-	min-height: 150px;
+	min-height: 125px;
 
 	@media #{$screen767} {
 		min-height:auto;
@@ -592,17 +592,16 @@ a.bt-default {
 	text-transform: uppercase;
 	line-height: 18px;
 	width: 90%;
-	min-height: 92px;
+	height: 36px;
+	overflow:hidden;
 	@media #{$screen767} {
 		min-height: auto;
 	}
+}
 
-	span {
+.wine-card-producer {
 		font:15px $robotolight;
 		display:block;
-		text-transform:none;
-	}
-
 }
 
 .wine-price { font:27px $robotobold; }
