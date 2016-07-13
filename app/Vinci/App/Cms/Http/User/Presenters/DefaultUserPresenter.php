@@ -10,7 +10,7 @@ class DefaultUserPresenter extends AbstractPresenter
     public function presentOffice()
     {
         if (! empty($office = $this->getOffice())) {
-            return ' - ' . $office;
+            return $office;
         }
     }
 

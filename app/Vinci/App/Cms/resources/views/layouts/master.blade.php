@@ -47,7 +47,7 @@
         <link rel="stylesheet" href="{{ asset_cms('dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.min.css') }}">
+        <link rel="stylesheet" href="{{ asset_cms('dist/css/skins/_all-skins.css') }}">
 
         <style>
             td.vcenter { vertical-align: middle !important; }
@@ -104,7 +104,7 @@
                                 <img src="{{ $loggedUser->profile_photo }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ $loggedUser->name }} {{ $loggedUser->office }}
+                                    {{ $loggedUser->name }} {!!  $loggedUser->office }}
                                     <small>Membro desde {{ $loggedUser->getCreatedAt()->format('M/Y') }}</small>
                                 </p>
                             </li>
@@ -120,9 +120,9 @@
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
-                    {{--<li>--}}
-                        {{--<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>--}}
-                    {{--</li>--}}
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
                 </ul>
             </div>
         </nav>
