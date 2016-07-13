@@ -36,7 +36,8 @@ class Kernel extends ConsoleKernel
         RandomizeProductTemplate::class,
         UniqueIdTest::class,
         'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
-        'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock'
+        'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock',
+        'Vinci\App\Integration\ERP\Console\Commands\ExportCustomers',
     ];
 
     /**

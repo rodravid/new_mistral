@@ -9,7 +9,7 @@ class CustomSoapClient extends SoapClient
 
     public function __doRequest($req, $location, $action, $version, $one_way = 0)
     {
-        $xml = explode("\r\n", parent::__doRequest($req, $location, $action, $version, $one_way))[0];
+        $xml = parent::__doRequest($req, $location, $action, $version, $one_way);
 
         $xml = str_replace('<?xml version="1.0" ?>', '', str_replace('<?xml version="1.0"?>', '', $xml));
 
