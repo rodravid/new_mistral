@@ -18,7 +18,7 @@ class SendCustomerConfirmationMail
 
     public function handle(CustomerWasCreated $event)
     {
-        $job = (new SendCustomerConfirmationMailJob($event->customer))
+        $job = (new SendCustomerConfirmationMailJob($event->customer->getId()))
             ->onQueue('vinci-email-customers');
 
         $this->dispatcher->dispatch($job);

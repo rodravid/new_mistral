@@ -119,9 +119,9 @@ class CustomerService
         $this->repository->save($customer);
 
         if ($creating) {
-            $this->event->fire(new CustomerWasCreated($customer->getId()));
+            $this->event->fire(new CustomerWasCreated($customer));
         } else {
-            $this->event->fire(new CustomerWasUpdated($customer->getId()));
+            $this->event->fire(new CustomerWasUpdated($customer));
         }
 
         return $customer;

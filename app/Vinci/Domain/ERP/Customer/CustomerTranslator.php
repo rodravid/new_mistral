@@ -26,7 +26,7 @@ class CustomerTranslator
 
         $customer->fill($attributes);
 
-        dd($customer);
+        $customer->billing_address = clone $customer->address;
 
         return $customer;
     }

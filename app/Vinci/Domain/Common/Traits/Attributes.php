@@ -113,9 +113,10 @@ trait Attributes
 
             if (method_exists($this, $setter)) {
                 call_user_func([$this, $setter], $value);
+            } else {
+                $this->setAttribute($name, $value);
             }
 
-            $this->setAttribute($name, $value);
         }
     }
 

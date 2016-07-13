@@ -2,9 +2,9 @@
 
 namespace Vinci\Domain\ERP\Customer\Phone;
 
-use League\Fractal\TransformerAbstract;
+use Vinci\Domain\ERP\Transformer\BaseTransformer;
 
-class PhoneTransformer extends TransformerAbstract
+class PhoneTransformer extends BaseTransformer
 {
 
     public function transform($phone = '')
