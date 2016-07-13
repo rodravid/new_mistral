@@ -104,7 +104,7 @@
                                 <img src="{{ $loggedUser->profile_photo }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ $loggedUser->name }} {!!  $loggedUser->office }}
+                                    {{ $loggedUser->name }} {!!  $loggedUser->office !!}
                                     <small>Membro desde {{ $loggedUser->getCreatedAt()->format('M/Y') }}</small>
                                 </p>
                             </li>

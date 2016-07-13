@@ -10,11 +10,14 @@
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="{{ $loggedUser->profile_photo }}" alt="User profile picture">
 
-                        <h3 class="profile-username text-center">{{ $loggedUser->name }} <br> <small>{!! $loggedUser->office !!}<br> Grupo: {{ $loggedUser->getRoles()->first()->title }}</small></h3>
-                        <hr>
-                        <p class="text-muted">
-                            <b>E-mail: </b> {{ $loggedUser->email }}<br>
-                        </p>
+                        <h3 class="profile-username text-center">
+                            {{ $loggedUser->name }} <br>
+                            <small>
+                                {!! $loggedUser->office !!}<br>
+                                Grupo: {{ $loggedUser->getRoles()->first()->title }}<br>
+                                <b>E-mail: </b> {{ $loggedUser->email }}
+                            </small>
+                        </h3>
                     </div>
                 </div>
 
@@ -238,39 +241,41 @@
                     </div>
                 </div>
 
-                <div class="box box-info collapsed-box">
-                    <div class="box-header">
+                @if (! $loggedUser->isSuperAdmin())
+                    <div class="box box-info collapsed-box">
+                        <div class="box-header">
 
-                        <h3 class="box-title">
-                            <i class="fa fa-check-square-o"></i>
-                            Permissões
-                        </h3>
+                            <h3 class="box-title">
+                                <i class="fa fa-check-square-o"></i>
+                                Permissões
+                            </h3>
 
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-plus"></i>
-                            </button>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="box-body border-radius-none">
-                        @foreach ($loggedUser->getPermissionsGroupedByModules() as $aggregate)
-                            <div class="col-md-4">
-                                <div class="panel panel-default" style="height: 158px;">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">{{ $aggregate['module']->getTitle() }}</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            @foreach ($aggregate['permissions'] as $permission)
-                                                <li>{{ $permission->getDescription() }}</li>
-                                            @endforeach
-                                        </ul>
+                        <div class="box-body border-radius-none">
+                            @foreach ($loggedUser->getPermissionsGroupedByModules() as $aggregate)
+                                <div class="col-md-4">
+                                    <div class="panel panel-default" style="height: 158px;">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">{{ $aggregate['module']->getTitle() }}</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul>
+                                                @foreach ($aggregate['permissions'] as $permission)
+                                                    <li>{{ $permission->getDescription() }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
 
         </div>
