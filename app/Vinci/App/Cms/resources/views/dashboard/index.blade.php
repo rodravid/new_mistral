@@ -81,7 +81,7 @@
                         <div class="inner">
                             <h3>{{ $totalNewsletters }}</h3>
 
-                            <p>Newsletters</p>
+                            <p>Assinantes newsletter</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-newspaper-o"></i>
