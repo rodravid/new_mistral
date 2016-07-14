@@ -462,7 +462,7 @@ a.bt-default {
 	text-align:left;
 	margin-bottom:20px;
 	position:relative;
-	min-height: 322px;
+	min-height: 340px;
 
 	@media #{$screen767} { 
 		min-height: auto;
@@ -506,7 +506,7 @@ a.bt-default {
 	width:100%;
 	display:inline-block;
 	margin-top: 18px;
-	min-height: 125px;
+	min-height: 151px;
 
 	@media #{$screen767} {
 		min-height:auto;
