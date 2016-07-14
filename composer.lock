@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f33dbfa5cfd2968469abebd0da12c109",
-    "content-hash": "f7faf66d4d6eec6f4aa32c74c131c018",
+    "hash": "f86f0d088f66634a347b99b02a9b1683",
+    "content-hash": "4acb5f2f1123efa0c2af42e47dc5c6a7",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2622,56 +2622,6 @@
                 "laravel"
             ],
             "time": "2016-03-01 17:45:44"
-        },
-        {
-            "name": "maxbrokman/safe-queue",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/felipeweb11/SafeQueue.git",
-                "reference": "257d08999ab279f8ec34df4b6639ae69e8faa0f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/felipeweb11/SafeQueue/zipball/257d08999ab279f8ec34df4b6639ae69e8faa0f6",
-                "reference": "257d08999ab279f8ec34df4b6639ae69e8faa0f6",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/queue": "5.*",
-                "laravel-doctrine/orm": "^1.0",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "^1.11",
-                "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "^5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MaxBrokman\\SafeQueue\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "test\\MaxBrokman\\SafeQueue\\": "tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Max Brokman",
-                    "email": "max.brokman@vice.com"
-                }
-            ],
-            "description": "A Laravel Doctrine friendly daemonising queue worker for Laravel 5",
-            "support": {
-                "source": "https://github.com/felipeweb11/SafeQueue/tree/master"
-            },
-            "time": "2016-06-23 19:19:32"
         },
         {
             "name": "maximebf/debugbar",
@@ -5413,6 +5363,56 @@
             "time": "2016-06-14 14:14:52"
         },
         {
+            "name": "webeleven/safe-queue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Webeleven/SafeQueue.git",
+                "reference": "0fb49d23daeb1482c7dfad0fde230a8d874d7cb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Webeleven/SafeQueue/zipball/0fb49d23daeb1482c7dfad0fde230a8d874d7cb1",
+                "reference": "0fb49d23daeb1482c7dfad0fde230a8d874d7cb1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/queue": "5.*",
+                "laravel-doctrine/orm": "^1.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.11",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MaxBrokman\\SafeQueue\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "test\\MaxBrokman\\SafeQueue\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Max Brokman",
+                    "email": "max.brokman@vice.com"
+                }
+            ],
+            "description": "A Laravel Doctrine friendly daemonising queue worker for Laravel 5",
+            "support": {
+                "source": "https://github.com/Webeleven/SafeQueue/tree/master"
+            },
+            "time": "2016-07-14 13:25:04"
+        },
+        {
             "name": "webmozart/assert",
             "version": "1.0.2",
             "source": {
@@ -6188,7 +6188,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "maxbrokman/safe-queue": 20
+        "webeleven/safe-queue": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
