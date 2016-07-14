@@ -2,6 +2,7 @@
 
 namespace Vinci\Infrastructure\Promotion\Types\Discount;
 
+use Cache;
 use Carbon\Carbon;
 use Doctrine\ORM\Query\Expr\Join;
 use Vinci\Domain\Common\Status;
@@ -87,8 +88,20 @@ class DoctrineDiscountPromotionRepository extends DoctrineBaseRepository impleme
             ->andWhere($qb->expr()->orX(
                 $qb->expr()->gte('dp.expirationAt', $qb->expr()->literal(Carbon::now())),
                 $qb->expr()->isNull('dp.expirationAt')
-            ));
+            ))->orderBy('dp.startsAt', 'DESC');
 
-        return $qb->getQuery()->getOneOrNullResult();
+        $result = $qb->getQuery()->getResult();
+
+        if (! empty($result)) {
+            return $result[0];
+        }
     }
+
+    public function save($entity)
+    {
+        parent::save($entity);
+
+        Cache::tags('showcase')->flush();
+    }
+
 }

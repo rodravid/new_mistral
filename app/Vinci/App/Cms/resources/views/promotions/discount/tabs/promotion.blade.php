@@ -2,10 +2,9 @@
     <input type="hidden" name="channel" value="1">
     <div class="row">
         <div class="col-xs-12 col-sm-12">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtShowcaseTitle">Título</label>
                 {!! Form::text('title', null, ['id' => 'txtShowcaseTitle', 'class' => 'form-control', 'placeholder' => 'Digite o título']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
             </div>
         </div>
 

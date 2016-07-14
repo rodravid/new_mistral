@@ -13,7 +13,7 @@ class ShoppingCartShippingTransformer extends TransformerAbstract
 
             return [
                 'price' => $shipping->present()->price,
-                'deadline' => $shipping->getDeadline()
+                'deadline' => $shipping->present()->deadline
             ];
 
         }

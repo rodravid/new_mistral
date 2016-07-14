@@ -35,6 +35,7 @@ class PromotionProductsCmsDatatable extends AbstractDatatables
             ->join('i.promotion', 'prm')
             ->join('i.product', 'p')
             ->join('p.variants', 'v')
+            ->groupBy('p.id')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
