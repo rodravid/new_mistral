@@ -475,6 +475,9 @@ _::-webkit-full-page-media .nav-link:before, _:future .nav-link:before, :root di
 _::-webkit-full-page-media .nav-link:hover, _:future .nav-link:hover, :root div .nav-link:hover {
   color: #fff !important; }
 
+_::-webkit-full-page-media .nav-item-user-logged .nav-link:hover, _:future .nav-item-user-logged .nav-link:hover, :root div .nav-item-user-logged .nav-link:hover {
+  color: #11b6f0 !important; }
+
 .cart-header {
   height: 55px;
   width: 66px;
@@ -1025,7 +1028,7 @@ input#control-nav {
   text-align: center;
   display: inline-block;
   color: #fff;
-  margin: 15px 0 0 0;
+  margin: 0px 0 0 0;
   border: 2px solid #fff;
   transition: all .1s ease .05s;
   position: relative;
@@ -4527,11 +4530,11 @@ a.bt-default {
 .wine-card {
   width: 100%;
   border: 1px solid #000;
-  padding: 20px;
+  padding: 15px;
   text-align: left;
   margin-bottom: 20px;
   position: relative;
-  min-height: 395px; }
+  min-height: 340px; }
   @media only screen and (max-width: 767px) {
     .wine-card {
       min-height: auto; } }
@@ -4564,7 +4567,7 @@ a.bt-default {
   width: 100%;
   display: inline-block;
   margin-top: 18px;
-  min-height: 150px; }
+  min-height: 151px; }
   @media only screen and (max-width: 767px) {
     .content-card-product {
       min-height: auto; } }
@@ -4628,14 +4631,15 @@ a.bt-default {
   text-transform: uppercase;
   line-height: 18px;
   width: 90%;
-  min-height: 92px; }
+  height: 36px;
+  overflow: hidden; }
   @media only screen and (max-width: 767px) {
     .title-card-wine {
       min-height: auto; } }
-  .title-card-wine span {
-    font: 15px "roboto_condensedlight";
-    display: block;
-    text-transform: none; }
+
+.wine-card-producer {
+  font: 15px "roboto_condensedlight";
+  display: block; }
 
 .wine-price {
   font: 27px "roboto_condensedbold"; }

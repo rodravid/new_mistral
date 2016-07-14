@@ -4,11 +4,12 @@
     <h3 class="title-card-wine">
         <a href="{{ $product->web_path }}">
             {!! $product->card_title !!}
-            @if ($product->hasProducer())
-                <span>{{ $product->producer->name }}</span>
-            @endif
+
         </a>
     </h3>
+    @if ($product->hasProducer())
+    <span class="wine-card-producer">{{ $product->producer->name }}</span>
+    @endif
     <p class="wine-intro">{{ $product->shortned_description }}</p>
     <div class="content-card-product">
         <div class="thumb-wine">

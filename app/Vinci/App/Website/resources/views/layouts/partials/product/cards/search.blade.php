@@ -25,12 +25,13 @@
         <h3 class="title-card-wine">
             <a href="{{ $product->web_path }}">
                 {{ $product->title }}
-                @if($product->hasProducer())
-                    <span>{{ $product->producer->name }}</span>
-                @endif
+  
             </a>
             <favorite-widget product="{{ $product->id }}" favorited="@isProductFavorited($product->id)"></favorite-widget>
         </h3>
+        @if($product->hasProducer())
+        <span class="wine-card-producer">{{ $product->producer->name }}</span>
+        @endif
         <a href="{{ $product->web_path }}">
             <p class="wine-intro">{!! $product->shortned_description !!}</p>
             @if($product->hasAttributeByName('bottle_size'))
