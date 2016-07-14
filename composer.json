@@ -7,7 +7,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/felipeweb11/SafeQueue"
+            "url": "https://github.com/Webeleven/SafeQueue"
         }
     ],
     "require": {
@@ -38,7 +38,7 @@
         "beberlei/DoctrineExtensions": "^1.0",
         "inacho/php-credit-card-validator": "1.*",
         "aws/aws-sdk-php": "~3.0",
-        "maxbrokman/safe-queue": "dev-master",
+        "webeleven/safe-queue": "dev-master",
         "facile-it/doctrine-mysql-come-back": "^1.6"
     },
     "require-dev": {
