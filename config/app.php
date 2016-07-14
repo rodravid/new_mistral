@@ -156,6 +156,7 @@ return [
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         LaravelDoctrine\ORM\Auth\Passwords\PasswordResetServiceProvider::class,
         LaravelDoctrine\ACL\AclServiceProvider::class,
+        MaxBrokman\SafeQueue\DoctrineQueueProvider::class,
         Vinci\App\Core\Providers\AppServiceProvider::class,
         Vinci\App\Core\Providers\EventServiceProvider::class,
         Vinci\Infrastructure\InfrastructureServiceProvider::class,

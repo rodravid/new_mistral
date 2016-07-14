@@ -4,6 +4,12 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/felipeweb11/SafeQueue"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
@@ -31,7 +37,9 @@
         "phpspec/phpspec": "^2.5",
         "beberlei/DoctrineExtensions": "^1.0",
         "inacho/php-credit-card-validator": "1.*",
-        "aws/aws-sdk-php": "~3.0"
+        "aws/aws-sdk-php": "~3.0",
+        "maxbrokman/safe-queue": "dev-master",
+        "facile-it/doctrine-mysql-come-back": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
