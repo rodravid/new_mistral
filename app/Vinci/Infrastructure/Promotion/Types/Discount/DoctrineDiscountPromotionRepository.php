@@ -2,6 +2,7 @@
 
 namespace Vinci\Infrastructure\Promotion\Types\Discount;
 
+use Cache;
 use Carbon\Carbon;
 use Doctrine\ORM\Query\Expr\Join;
 use Vinci\Domain\Common\Status;
@@ -95,4 +96,12 @@ class DoctrineDiscountPromotionRepository extends DoctrineBaseRepository impleme
             return $result[0];
         }
     }
+
+    public function save($entity)
+    {
+        parent::save($entity);
+
+        Cache::tags('showcase')->flush();
+    }
+
 }

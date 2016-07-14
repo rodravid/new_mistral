@@ -63,7 +63,7 @@ class ShowcaseController extends SearchController
         $page = $request->get('page', 1);
         $cacheKey = $this->getCacheKey([$showcase, $limit, $page]);
 
-        return Cache::remember($cacheKey, 1, function () use ($showcase, $limit, $page) {
+        return Cache::tags(['showcase'])->remember($cacheKey, 1, function () use ($showcase, $limit, $page) {
 
             $products = $this->productRepository->getProductsByShowcase($showcase, $limit, $page);
 

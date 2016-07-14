@@ -2,6 +2,7 @@
 
 namespace Vinci\Infrastructure\Showcase;
 
+use Cache;
 use Carbon\Carbon;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Showcase\Showcase;
@@ -97,5 +98,12 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
         $qb->setParameter('productId', $product);
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function save($entity)
+    {
+        parent::save($entity);
+
+        Cache::tags('showcase')->flush();
     }
 }
