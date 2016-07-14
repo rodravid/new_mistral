@@ -4600,7 +4600,7 @@ a.bt-default {
   height: 340px; }
   @media only screen and (max-width: 767px) {
     .wine-card {
-      min-height: auto; } }
+      height: auto; } }
   .wine-card:hover .favorite {
     opacity: 1;
     filter: alpha(opacity=1000); }
