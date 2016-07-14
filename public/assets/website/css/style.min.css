@@ -413,71 +413,134 @@ input[type="search"]::-webkit-search-decoration {
   /* -moz-osx-font-smoothing: grayscale; */
   position: relative;
   transition-property: color;
-  transition-duration: 0.3s; }
+  transition-duration: 0.1s; }
 
 .nav-link:hover {
-  color: #11b6f0; }
+  color: #11b6f0;
+  background: #fff; }
 
-.nav-link:hover:before {
+.nav-link:hover {
   transform: scaleY(1); }
 
-.nav-link:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #fff;
-  transform: scaleY(0);
-  transform-origin: 50% 100%;
-  transition-property: transform;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out; }
+/* .nav-link:before{
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff;
+	-webkit-transform: scaleY(0);
+	transform: scaleY(0);
+	-webkit-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-transition-property: transform;
+	transition-property: transform;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+} */
+/* .ie9 {
+	.nav-link:before{
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: none;
+		-webkit-transform: scaleY(0);
+		transform: scaleY(0);
+		-webkit-transform-origin: 50% 100%;
+		transform-origin: 50% 100%;
+		-webkit-transition-property: transform;
+		transition-property: transform;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
 
-.ie9 .nav-link:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: none;
-  transform: scaleY(0);
-  transform-origin: 50% 100%;
-  transition-property: transform;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out; }
-
-.ie9 .nav-link:hover {
-  color: #fff !important; }
-
+	.nav-link:hover {
+		color: #fff !important;
+	}
+} */
 /* Safari 7.1 -8.0 (Safari 7.1+)
 (Use this as a prefix to your normal CSS rule)
 ---------------------------------------------------------------- */
-_::-webkit-full-page-media .nav-link:before, _:future .nav-link:before, :root div .nav-link:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: none;
-  transform: scaleY(0);
-  transform-origin: 50% 100%;
-  transition-property: transform;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out; }
+/* _::-webkit-full-page-media, _:future, :root div {
+ 	.nav-link:before{
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: none;
+		-webkit-transform: scaleY(0);
+		transform: scaleY(0);
+		-webkit-transform-origin: 50% 100%;
+		transform-origin: 50% 100%;
+		-webkit-transition-property: transform;
+		transition-property: transform;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
 
-_::-webkit-full-page-media .nav-link:hover, _:future .nav-link:hover, :root div .nav-link:hover {
-  color: #fff !important; }
+	.nav-link:hover {
+		color: #fff !important;
+	}
 
-_::-webkit-full-page-media .nav-item-user-logged .nav-link:hover, _:future .nav-item-user-logged .nav-link:hover, :root div .nav-item-user-logged .nav-link:hover {
-  color: #11b6f0 !important; }
+	.nav-item-user-logged {
 
+	.nav-link:hover {
+		color: $blue !important;
+	}
+
+	}
+}
+
+.selector:not(*:root) {
+	 	.nav-link:before{
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: none;
+		-webkit-transform: scaleY(0);
+		transform: scaleY(0);
+		-webkit-transform-origin: 50% 100%;
+		transform-origin: 50% 100%;
+		-webkit-transition-property: transform;
+		transition-property: transform;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
+
+	.nav-link:hover {
+		color: #fff !important;
+	}
+
+	.nav-item-user-logged {
+
+	.nav-link:hover {
+		color: $blue !important;
+	}
+
+	}
+}
+ */
 .cart-header {
   height: 55px;
   width: 66px;
@@ -4534,10 +4597,10 @@ a.bt-default {
   text-align: left;
   margin-bottom: 20px;
   position: relative;
-  min-height: 340px; }
+  height: 340px; }
   @media only screen and (max-width: 767px) {
     .wine-card {
-      min-height: auto; } }
+      height: auto; } }
   .wine-card:hover .favorite {
     opacity: 1;
     filter: alpha(opacity=1000); }
@@ -4790,7 +4853,7 @@ a.bt-default {
 .display-filter span {
   margin-right: 20px;
   margin-top: 3px;
-  display: inline-block; }
+  float: left; }
 
 @media only screen and (max-width: 767px) {
   .display-filter {
@@ -4935,7 +4998,12 @@ a.bt-default {
     min-height: auto; }
   .column-products-search-inline .wine-card {
     display: inline-block;
-    min-height: auto; }
+    min-height: initial;
+    height: auto; }
+  .column-products-search-inline .ie9 .wine-card {
+    min-height: 168px;
+    height: 168px;
+    height: auto !important; }
   .column-products-search-inline .other-wine-info {
     width: 180px;
     float: right;
@@ -5644,7 +5712,8 @@ ul.pagination {
   height: 30px;
   text-align: center;
   font-size: 15px;
-  font-family: "roboto_condensedlight"; }
+  font-family: "roboto_condensedlight";
+  float: left; }
 
 .botoes-add {
   float: right;
