@@ -87,8 +87,12 @@ class DoctrineDiscountPromotionRepository extends DoctrineBaseRepository impleme
             ->andWhere($qb->expr()->orX(
                 $qb->expr()->gte('dp.expirationAt', $qb->expr()->literal(Carbon::now())),
                 $qb->expr()->isNull('dp.expirationAt')
-            ));
+            ))->orderBy('dp.startsAt', 'DESC');
 
-        return $qb->getQuery()->getOneOrNullResult();
+        $result = $qb->getQuery()->getResult();
+
+        if (! empty($result)) {
+            return $result[0];
+        }
     }
 }
