@@ -462,7 +462,7 @@ a.bt-default {
 	text-align:left;
 	margin-bottom:20px;
 	position:relative;
-	min-height: 340px;
+	height: 340px;
 
 	@media #{$screen767} { 
 		min-height: auto;
@@ -972,6 +972,7 @@ a.bt-default {
 	.wine-card {
 		display:inline-block;
 		min-height: initial;
+		height:auto;
 	}
 	.ie9{	
 		.wine-card {

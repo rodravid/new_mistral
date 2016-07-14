@@ -4597,7 +4597,7 @@ a.bt-default {
   text-align: left;
   margin-bottom: 20px;
   position: relative;
-  min-height: 340px; }
+  height: 340px; }
   @media only screen and (max-width: 767px) {
     .wine-card {
       min-height: auto; } }
@@ -4998,7 +4998,8 @@ a.bt-default {
     min-height: auto; }
   .column-products-search-inline .wine-card {
     display: inline-block;
-    min-height: initial; }
+    min-height: initial;
+    height: auto; }
   .column-products-search-inline .ie9 .wine-card {
     min-height: 168px;
     height: 168px;
