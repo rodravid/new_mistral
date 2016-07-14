@@ -45,7 +45,7 @@ class ExportCustomers extends Command
 
         if ($count > 0) {
 
-            $this->info(sprintf("Exporting #%s customers to ERP...\n", $count));
+            $this->info(sprintf("Exporting #%s customer(s) to ERP...\n", $count));
 
             $progressBar = $this->output->createProgressBar($count);
 
