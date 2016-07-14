@@ -793,7 +793,7 @@ a.bt-default {
 	span {
 		margin-right:20px;
 		margin-top: 3px;
-		display: inline-block;
+		float:left;
 	}
 
 	@media #{$screen767} {
@@ -969,9 +969,16 @@ a.bt-default {
 	}
 
 
-	.wine-card{
+	.wine-card {
 		display:inline-block;
-		min-height: auto;
+		min-height: initial;
+	}
+	.ie9{	
+		.wine-card {
+			min-height: 168px; 
+			height:168px;
+			height: auto !important;
+		}
 	}
 	.other-wine-info{
 		width: 180px;
@@ -1860,6 +1867,8 @@ ul.pagination{
 			padding-top: 3px;
 		}
 
+
+
 		.input-quantity {
 			width:30px;
 			border:0;
@@ -1867,7 +1876,9 @@ ul.pagination{
 			text-align:center;
 			font-size: 15px;
 			font-family:$robotolight;
+			float:left;
 		}
+
 
 		.botoes-add {
 			float:right;
