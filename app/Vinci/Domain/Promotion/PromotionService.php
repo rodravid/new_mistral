@@ -45,6 +45,7 @@ class PromotionService
     {
         $promotion = $this->normalizePromotion($promotion);
 
+
         foreach ($products as $product) {
 
             $product = $this->normalizeProduct($product);
@@ -200,8 +201,7 @@ class PromotionService
 
     protected function canBeAdded(ProductInterface $product, PromotionInterface $promotion)
     {
-        return ! in_array($product->getProductType()->getId(), $this->getNotAllowedProductTypes()) &&
-        ! $promotion->hasProduct($product);
+        return ! in_array($product->getProductType()->getId(), $this->getNotAllowedProductTypes());
     }
 
     protected function saveSealImage(PromotionInterface $promotion, $image)
