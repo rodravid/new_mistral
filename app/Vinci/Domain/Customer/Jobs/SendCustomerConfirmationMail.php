@@ -33,13 +33,13 @@ class SendCustomerConfirmationMail extends Job implements ShouldQueue
 
             $mailer->send('website::layouts.emails.account.default.new_account', ['customer' => $this->customer], function ($message) {
                 $message
-                    ->subject(sprintf('Vinci Vinhos – Confirmação de cadastro'))
+                    ->subject(sprintf('Vinci Vinhos – Confirmação de cadastro.'))
                     ->to($this->customer->getEmail(), $this->customer->getName());
             });
 
         } catch (Exception $e) {
 
-            Log::error(sprintf('Erro ao enviar email de confirmacao de pedido: %s', $e->getMessage()));
+            Log::error(sprintf('Erro ao enviar email de confirmacao de cadastro: %s', $e->getMessage()));
 
             throw $e;
         }
