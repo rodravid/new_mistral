@@ -25,8 +25,7 @@ class ShowcaseController extends SearchController
         ProductSearchService $searchService,
         ShowcaseRepository $showcaseRepository,
         ProductRepository $productRepository
-    )
-    {
+    ) {
         parent::__construct($em, $searchService);
 
         $this->showcaseRepository = $showcaseRepository;
