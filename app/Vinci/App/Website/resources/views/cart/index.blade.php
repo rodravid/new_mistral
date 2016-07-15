@@ -123,7 +123,8 @@
                             <article class="wrap-compra-dados-venda">
                                 
                                 <div class="container-info-compra">
-                                    <span>Frete @{{ ctrl.cart.shipping.price }}</span>
+                                    <span>Frete @{{ ctrl.cart.shipping.price }}</span><br>
+                                    <span>@{{ ctrl.cart.shipping.deadline }}</span>
                                 </div>
                             </article>
                         </li>

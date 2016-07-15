@@ -67,7 +67,7 @@ abstract class Promotion extends Model
     protected $channel;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Promotion\PromotionItem", mappedBy="promotion", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Promotion\PromotionItem", mappedBy="promotion", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      */
     protected $items;
 

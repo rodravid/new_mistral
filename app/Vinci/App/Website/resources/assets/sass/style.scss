@@ -458,14 +458,14 @@ a.bt-default {
 .wine-card {
 	width:100%;
 	border:1px solid #000;
-	padding:20px;
+	padding:15px;
 	text-align:left;
 	margin-bottom:20px;
 	position:relative;
-	min-height: 395px;
+	height: 340px;
 
 	@media #{$screen767} { 
-		min-height: auto;
+		height: auto;
 	}
 
 	&:hover{
@@ -506,7 +506,7 @@ a.bt-default {
 	width:100%;
 	display:inline-block;
 	margin-top: 18px;
-	min-height: 150px;
+	min-height: 151px;
 
 	@media #{$screen767} {
 		min-height:auto;
@@ -592,17 +592,16 @@ a.bt-default {
 	text-transform: uppercase;
 	line-height: 18px;
 	width: 90%;
-	min-height: 92px;
+	height: 36px;
+	overflow:hidden;
 	@media #{$screen767} {
 		min-height: auto;
 	}
+}
 
-	span {
+.wine-card-producer {
 		font:15px $robotolight;
 		display:block;
-		text-transform:none;
-	}
-
 }
 
 .wine-price { font:27px $robotobold; }
@@ -794,7 +793,7 @@ a.bt-default {
 	span {
 		margin-right:20px;
 		margin-top: 3px;
-		display: inline-block;
+		float:left;
 	}
 
 	@media #{$screen767} {
@@ -970,9 +969,17 @@ a.bt-default {
 	}
 
 
-	.wine-card{
+	.wine-card {
 		display:inline-block;
-		min-height: auto;
+		min-height: initial;
+		height:auto;
+	}
+	.ie9{	
+		.wine-card {
+			min-height: 168px; 
+			height:168px;
+			height: auto !important;
+		}
 	}
 	.other-wine-info{
 		width: 180px;
@@ -1861,6 +1868,8 @@ ul.pagination{
 			padding-top: 3px;
 		}
 
+
+
 		.input-quantity {
 			width:30px;
 			border:0;
@@ -1868,7 +1877,9 @@ ul.pagination{
 			text-align:center;
 			font-size: 15px;
 			font-family:$robotolight;
+			float:left;
 		}
+
 
 		.botoes-add {
 			float:right;

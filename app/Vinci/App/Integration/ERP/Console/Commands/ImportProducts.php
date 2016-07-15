@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Integration\ERP\Console\Commands;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -46,7 +47,11 @@ class ImportProducts extends Command
     {
         $productsSKU = $this->getProductsSKU();
 
-        if($productsSKU->count()) {
+        $start = Carbon::now();
+
+        $this->info(sprintf('Started in: %s', $start->format('d/m/Y H:i:s')));
+
+        if ($productsSKU->count()) {
 
            if ($productsSKU->count() == 1) {
                $this->importOne($productsSKU->first(), false, $this->option('exceptions'));
@@ -58,6 +63,10 @@ class ImportProducts extends Command
         } else {
             $this->info('Nothing to do.');
         }
+
+        $end = Carbon::now();
+        $this->info(sprintf('Completed in: %s', $end->format('d/m/Y H:i:s')));
+        $this->info(sprintf('Total time: %s seconds', $start->diffInSeconds($end)));
     }
 
     public function importOne($productSKU, $silent = false, $exceptions = false)

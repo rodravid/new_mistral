@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Showcase;
 
+use Cache;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -119,6 +120,8 @@ class ShowcaseService
 
                 $this->entityManager->persist($item);
                 $this->entityManager->flush();
+
+                Cache::tags('showcase')->flush();
 
                 return true;
 

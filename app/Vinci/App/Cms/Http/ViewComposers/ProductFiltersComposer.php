@@ -40,7 +40,7 @@ class ProductFiltersComposer
     {
         $view->with('products', $this->productRepository->getAllValidForSelectArray());
         $view->with('countries', $this->countryRepository->getAllValidForSelectArray());
-        $view->with('regions', $this->countryRepository->getAllValidForSelectArray());
+        $view->with('regions', $this->regionRepository->getAllValidForSelectArray());
         $view->with('producers', $this->producerRepository->getAllValidForSelectArray());
         $view->with('productTypes', $this->productTypeRepository->getAllValidForSelectArray());
     }

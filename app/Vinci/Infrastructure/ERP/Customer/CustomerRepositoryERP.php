@@ -28,7 +28,7 @@ class CustomerRepositoryERP extends BaseERPRepository implements CustomerReposit
             $client = $this->buildClient('customers.create_customer');
 
             $response = $client->call('CRIAPESSOA', [
-                'CRIAPESSOAInput' => $this->getCustomerErpData($customer)
+                'CRIAPESSOAInput' => $this->getCustomerInput($customer)
             ]);
 
             $customerId = $this->parseResponse($response);
@@ -42,17 +42,12 @@ class CustomerRepositoryERP extends BaseERPRepository implements CustomerReposit
         }
     }
 
-    protected function getCustomerErpData(Customer $customer)
+    protected function getCustomerInput(Customer $customer)
     {
         return $this->fractal
             ->item($customer)
             ->transformWith(new CustomerErpTransformer)
             ->toArray();
-    }
-
-    protected function getData()
-    {
-        
     }
 
     protected function parseResponse($response, $includeRoot = false)

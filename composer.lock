@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ce1bf71a036afa7d02725ff15d86cf74",
-    "content-hash": "b90a0c76801df640dfa3ac88d72a9a68",
+    "hash": "f86f0d088f66634a347b99b02a9b1683",
+    "content-hash": "4acb5f2f1123efa0c2af42e47dc5c6a7",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.25",
+            "version": "3.18.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "37a8ce927a69de3d821c21b64674a2b3b9d1d247"
+                "reference": "c75d3ba185d5db6998124fa1a99a63e5d529b247"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/37a8ce927a69de3d821c21b64674a2b3b9d1d247",
-                "reference": "37a8ce927a69de3d821c21b64674a2b3b9d1d247",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c75d3ba185d5db6998124fa1a99a63e5d529b247",
+                "reference": "c75d3ba185d5db6998124fa1a99a63e5d529b247",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-07-05 19:25:06"
+            "time": "2016-07-13 20:34:06"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1139,17 +1139,63 @@
             "time": "2016-06-03 21:09:29"
         },
         {
-            "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.13",
+            "name": "facile-it/doctrine-mysql-come-back",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "5f4b6c848f0d6834a434a62a09a0935d147082e1"
+                "url": "https://github.com/facile-it/doctrine-mysql-come-back.git",
+                "reference": "f84b317a88f14edf039b4940aee6e4c5dedb6ee8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/5f4b6c848f0d6834a434a62a09a0935d147082e1",
-                "reference": "5f4b6c848f0d6834a434a62a09a0935d147082e1",
+                "url": "https://api.github.com/repos/facile-it/doctrine-mysql-come-back/zipball/f84b317a88f14edf039b4940aee6e4c5dedb6ee8",
+                "reference": "f84b317a88f14edf039b4940aee6e4c5dedb6ee8",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": ">=2.3,<2.6-dev",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Facile\\DoctrineMySQLComeBack\\Doctrine\\DBAL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache License Version 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Luca Bo",
+                    "email": "luca.boeri@facile.it"
+                }
+            ],
+            "description": "Auto reconnect on Doctrine MySql has gone away exceptions on doctrine/dbal",
+            "keywords": [
+                "Connection",
+                "doctrine",
+                "exception",
+                "has gone away",
+                "mysql",
+                "reconnect",
+                "refresh"
+            ],
+            "time": "2016-06-03 07:25:14"
+        },
+        {
+            "name": "gedmo/doctrine-extensions",
+            "version": "v2.4.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
+                "reference": "8f172af78138ee3ea12e87be431dec3da0c2f4a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/8f172af78138ee3ea12e87be431dec3da0c2f4a9",
+                "reference": "8f172af78138ee3ea12e87be431dec3da0c2f4a9",
                 "shasum": ""
             },
             "require": {
@@ -1215,7 +1261,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2016-02-18 15:33:43"
+            "time": "2016-07-08 05:48:13"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1791,16 +1837,16 @@
         },
         {
             "name": "laracasts/flash",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/flash.git",
-                "reference": "4df7200127a71511bdf116bc8b7a2586612c7a35"
+                "reference": "03eec812fd6ae948664ff51b4320785f6d15ee5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/flash/zipball/4df7200127a71511bdf116bc8b7a2586612c7a35",
-                "reference": "4df7200127a71511bdf116bc8b7a2586612c7a35",
+                "url": "https://api.github.com/repos/laracasts/flash/zipball/03eec812fd6ae948664ff51b4320785f6d15ee5d",
+                "reference": "03eec812fd6ae948664ff51b4320785f6d15ee5d",
                 "shasum": ""
             },
             "require": {
@@ -1830,7 +1876,7 @@
                 }
             ],
             "description": "Easy flash notifications",
-            "time": "2016-03-14 15:55:34"
+            "time": "2016-07-11 20:46:02"
         },
         {
             "name": "laravel-doctrine/acl",
@@ -4111,23 +4157,23 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8"
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d8db871a54619458a805229a057ea2af33c753e8",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1,<0.9.4"
+                "mockery/mockery": "~0.9.1"
             },
             "type": "library",
             "extra": {
@@ -4160,7 +4206,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-05-01 08:45:47"
+            "time": "2016-07-08 11:51:25"
         },
         {
             "name": "symfony/class-loader",
@@ -5317,6 +5363,56 @@
             "time": "2016-06-14 14:14:52"
         },
         {
+            "name": "webeleven/safe-queue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Webeleven/SafeQueue.git",
+                "reference": "0fb49d23daeb1482c7dfad0fde230a8d874d7cb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Webeleven/SafeQueue/zipball/0fb49d23daeb1482c7dfad0fde230a8d874d7cb1",
+                "reference": "0fb49d23daeb1482c7dfad0fde230a8d874d7cb1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/queue": "5.*",
+                "laravel-doctrine/orm": "^1.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.11",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MaxBrokman\\SafeQueue\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "test\\MaxBrokman\\SafeQueue\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Max Brokman",
+                    "email": "max.brokman@vice.com"
+                }
+            ],
+            "description": "A Laravel Doctrine friendly daemonising queue worker for Laravel 5",
+            "support": {
+                "source": "https://github.com/Webeleven/SafeQueue/tree/master"
+            },
+            "time": "2016-07-14 13:25:04"
+        },
+        {
             "name": "webmozart/assert",
             "version": "1.0.2",
             "source": {
@@ -6091,7 +6187,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "webeleven/safe-queue": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
