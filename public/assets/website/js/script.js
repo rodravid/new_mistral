@@ -59,15 +59,15 @@ jQuery(document).ready(function ($) {
         autoplaySpeed: 8000,
         arrow: false,
         touchMove: false,
-        responsive: [
-            {
-                breakpoint: 1100,
-                settings: {
-                    touchMove: true,
-                    dots: true,
-                }
-            }
-        ]
+        // responsive: [
+        //     {
+        //         breakpoint: 1100,
+        //         settings: {
+        //             touchMove: true,
+        //             dots: true,
+        //         }
+        //     }
+        // ]
 
     });
     $('.slick-dots').appendTo('.w960');
