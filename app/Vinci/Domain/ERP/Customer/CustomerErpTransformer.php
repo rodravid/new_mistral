@@ -35,7 +35,7 @@ class CustomerErpTransformer extends BaseTransformer
             'PCODIBGEPAIS-NUMBER-IN' => $customer->address->country_code,
             'PCODIBGEPAISCOB-NUMBER-IN' => $customer->billing_address->country_code,
             'PCODIBGEUF-NUMBER-IN' => $customer->address->state_code,
-            'PCODIBGEUFCOB-NUMBER-IN' => $customer->billing_address->country_code,
+            'PCODIBGEUFCOB-NUMBER-IN' => $customer->billing_address->state_code,
             'PCODLIQDCFINANCPADRAO-VARCHAR2-IN' => '',
             'PCODPRODUTOSERVICOPADRAO-VARCHAR2-IN' => '',
             'PCODPRODUTOSERVICOPADRAOCLI-VARCHAR2-IN' => '',
