@@ -6,7 +6,8 @@
 
     Agradecemos por sua compra na Vinci.<br/><br/>
 
-    Sua solicitação de pedido N° <span style="font-size: 13px; color: #000 !important;"><b>{{ $order->number }}</b></span>, no valor total de
+    Sua solicitação de pedido N° <span
+            style="font-size: 13px; color: #000 !important;"><b>{{ $order->number }}</b></span>, no valor total de
     <b>{{ $order->total }}</b> foi recebido em nosso sistema de comércio eletrônico e está em processamento.<br/><br/>
 
     <br/><font style="font-size:15px; color: #11b6f0 !important;">Detalhes do Pedido:</font><br/><br/>
@@ -19,7 +20,7 @@
 
     <font style="font-size:15px; color: #11b6f0 !important;">Produtos Solicitados:</font><br/><br/>
 
-    <table width="100%" border="0"  cellpadding="3" cellspacing="3">
+    <table width="100%" border="0" cellpadding="3" cellspacing="3">
         <tr bgcolor="#f2f2f2" height="30" style="border-bottom: 1px solid #eaeaea !important;">
             <td bgcolor="#f2f2f2"><b>Produto</b></td>
             <td bgcolor="#f2f2f2" align="center"><b>Quantidade</b></td>
@@ -56,7 +57,7 @@
     {{ $order->customer->name }}<br/>
     Endereço: {{ $order->shipping_address->full_address }}<br/>
     Bairro: {{ $order->shipping_address->district }}<br/>
-    Cidade: {{ $order->shipping_address->city_name }}<br />
+    Cidade: {{ $order->shipping_address->city_name }}<br/>
     Estado: {{ $order->shipping_address->state_name }}<br/>
     CEP: {{ $order->shipping_address->postal_code }}<br/>
 
@@ -68,14 +69,15 @@
 
     <table width="100%" border="0" bgcolor="#f2f2f2" cellpadding="1" cellspacing="1">
         <tr>
-            <td  style="padding: 10px;">
+            <td style="padding: 10px;">
                 <b>Previsão de entrega em até: {{ $order->shipment->deadline }}.</b><br/><br/>
 
                 <b>ATENÇÃO: Esta solicitação de compra está sujeita a alterações, conforme termos abaixo:</b><br/><br/>
 
                 TERMOS DO PRAZO: A previsão de entrega é válida após as seguintes condições:<br/><br/>
 
-                - A disponibilidade de produtos em estoque bem como o prazo de entrega estão sujeitos à confirmação.<br/>[
+                - A disponibilidade de produtos em estoque bem como o prazo de entrega estão sujeitos à
+                confirmação.<br/>[
 
                 - No caso de indisponibilidade de um ou mais itens do seu pedido, despacharemos
                 somente os produtos disponíveis e seu pedido será concluído. Sendo neste caso,
@@ -105,7 +107,8 @@
                 <br><br>
 
                 <b>Para acompanhar seu pedido, clique no link:</b><br/>
-                <a href="{{ route('account.orders.show', $order->number) }}" style="font-size:13px; color: #11b6f0 !important;"><b>{{ route('account.orders.show', $order->number) }}</b></a>
+                <a href="{{ route('account.orders.show', $order->number) }}"
+                   style="font-size:13px; color: #11b6f0 !important;"><b>{{ route('account.orders.show', $order->number) }}</b></a>
 
             </td>
         </tr>
