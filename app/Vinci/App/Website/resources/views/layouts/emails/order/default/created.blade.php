@@ -9,12 +9,12 @@
     Sua solicitação de pedido N° <span style="font-size: 13px; color: #000 !important;"><b>{{ $order->number }}</b></span>, no valor total de
     <b>{{ $order->total }}</b> foi recebido em nosso sistema de comércio eletrônico e está em processamento.<br/><br/>
 
-    <br/><font style="font-size:15px; color: #14a68f !important;">Detalhes do Pedido:</font><br/><br/>
+    <br/><font style="font-size:15px; color: #11b6f0 !important;">Detalhes do Pedido:</font><br/><br/>
 
     Pedido Número: {{ $order->number }}<br/>
     Data: {{ $order->creation_date }}<br/>
 
-    <font style="font-size:15px; color: #14a68f !important;">Produtos Solicitados:</font><br/><br/>
+    <font style="font-size:15px; color: #11b6f0 !important;">Produtos Solicitados:</font><br/><br/>
 
     <table width="100%" border="0"  cellpadding="3" cellspacing="3">
         <tr bgcolor="#f2f2f2" height="30" style="border-bottom: 1px solid #eaeaea !important;">
@@ -38,7 +38,7 @@
     Valor do Frete: {{ $order->shipment->amount }}<br/>
     Valor Total do Pedido: {{ $order->total }}<br/><br/>
 
-    <font style="font-size:15px; color: #14a68f !important;">Forma de Pagamento:</font><br/><br/>
+    <font style="font-size:15px; color: #11b6f0 !important;">Forma de Pagamento:</font><br/><br/>
 
     @if($order->payment->wasMadeWithCreditCard())
 
@@ -52,7 +52,7 @@
 
     <br/><br/>
 
-    <font style="font-size:15px; color: #14a68f !important;">Dados de entrega:</font><br/><br/>
+    <font style="font-size:15px; color: #11b6f0 !important;">Dados de entrega:</font><br/><br/>
 
     {{ $order->customer->name }}<br/>
     Endereço: {{ $order->shipping_address->full_address }}<br/>
@@ -106,7 +106,7 @@
                 <br><br>
 
                 <b>Para acompanhar seu pedido, clique no link:</b><br/>
-                <a href="{{ route('account.orders.show', $order->number) }}" style="font-size:13px; color: #14a68f !important;"><b>{{ route('account.orders.show', $order->number) }}</b></a>
+                <a href="{{ route('account.orders.show', $order->number) }}" style="font-size:13px; color: #11b6f0 !important;"><b>{{ route('account.orders.show', $order->number) }}</b></a>
 
             </td>
         </tr>
