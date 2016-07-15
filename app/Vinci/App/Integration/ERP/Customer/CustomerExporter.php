@@ -3,6 +3,7 @@
 namespace Vinci\App\Integration\ERP\Customer;
 
 use Exception;
+use Illuminate\Events\Dispatcher;
 use Log;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\ERP\Customer\CustomerService;
@@ -15,10 +16,16 @@ class CustomerExporter
 
     private $customerTranslator;
 
-    public function __construct(CustomerService $customerService, CustomerTranslator $customerTranslator)
-    {
+    private $eventDispatcher;
+
+    public function __construct(
+        CustomerService $customerService,
+        CustomerTranslator $customerTranslator,
+        Dispatcher $eventDispatcher
+    ) {
         $this->customerService = $customerService;
         $this->customerTranslator = $customerTranslator;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function export(CustomerInterface $localCustomer)
