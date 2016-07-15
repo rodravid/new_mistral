@@ -3,15 +3,20 @@
 namespace Vinci\Infrastructure\ERP;
 
 use Exception;
+use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Contracts\Config\Repository;
 
 abstract class BaseERPRepository
 {
     protected $config;
 
+    protected $http;
+
     public function __construct(Repository $config)
     {
         $this->config = $config;
+
+        $this->http = new GuzzleClient();
     }
 
     protected function buildClient($wsdlKey, array $config = [])
