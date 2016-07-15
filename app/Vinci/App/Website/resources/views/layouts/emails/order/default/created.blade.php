@@ -13,9 +13,6 @@
 
     Pedido Número: {{ $order->number }}<br/>
     Data: {{ $order->creation_date }}<br/>
-    Valor do(s) Produto(s): {{ $order->items_total }}<br/>
-    Valor do Frete: {{ $order->shipment->amount }}<br/>
-    Valor Total do Pedido: {{ $order->total }}<br/><br/>
 
     <font style="font-size:15px; color: #14a68f !important;">Produtos Solicitados:</font><br/><br/>
 
@@ -36,6 +33,10 @@
 
         @endforeach
     </table>
+
+    Valor do(s) Produto(s): {{ $order->items_total }}<br/>
+    Valor do Frete: {{ $order->shipment->amount }}<br/>
+    Valor Total do Pedido: {{ $order->total }}<br/><br/>
 
     <font style="font-size:15px; color: #14a68f !important;">Forma de Pagamento:</font><br/><br/>
 

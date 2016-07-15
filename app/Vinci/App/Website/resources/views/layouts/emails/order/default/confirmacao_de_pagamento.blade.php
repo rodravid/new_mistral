@@ -8,7 +8,7 @@
 
     O pedido será finalizado em até 2 (dois) dias úteis e seguirá então para entrega. <br><br>
 
-    Lembramos que a previsão de entrega é contada após identificação e confirmação do pagamento. <br><br>
+    Lembramos que a previsão de entrega é contada após identificação e confirmação do pagamento.
 
     @include('website::layouts.emails.order.default.layouts.partials.additional_message')
 
