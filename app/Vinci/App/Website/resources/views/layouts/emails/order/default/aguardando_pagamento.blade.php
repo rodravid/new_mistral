@@ -26,7 +26,7 @@
     *Lembramos que a previsão de entrega é contada após identificação e confirmação do pagamento<br><br>
 
     Para acompanhar seu pedido, clique no link:<br>
-    <a href="{{ route('account.orders.show', $order->number) }}" style="font-size:13px; color: #11b6f0 !important;"><b>{{ route('account.orders.show', $order->number) }}</b></a>
+    <a href="{{ route('account.orders.show', $order->number) }}" style="font-size:13px; color: #11b6f0 !important;" target="_blank"><b>{{ route('account.orders.show', $order->number) }}</b></a>
 
     @include('website::layouts.emails.order.default.layouts.partials.additional_message')
 
