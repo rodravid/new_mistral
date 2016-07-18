@@ -2,7 +2,7 @@
     <soapenv:Header/>
     <soapenv:Body>
         <cri:CRIAPESSOAInput>
-            @foreach($input as $key => $value)
+            @foreach($data as $key => $value)
                 <cri:{{ $key }}>{!! $value !!}</cri:{{ $key }}>
             @endforeach
         </cri:CRIAPESSOAInput>

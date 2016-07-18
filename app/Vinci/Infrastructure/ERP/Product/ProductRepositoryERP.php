@@ -4,20 +4,21 @@ namespace Vinci\Infrastructure\ERP\Product;
 
 use Exception;
 use Illuminate\Contracts\Config\Repository;
+use Spatie\Fractal\Fractal;
 use Vinci\App\Integration\Exceptions\IntegrationException;
 use Vinci\Domain\ERP\Product\ProductFactory;
 use Vinci\Domain\ERP\Product\ProductRepository;
-use Vinci\Infrastructure\ERP\BaseERPRepository;
+use Vinci\Infrastructure\ERP\BaseSoapErpRepository;
 use Vinci\Infrastructure\Exceptions\EmptyResponseException;
 
-class ProductRepositoryERP extends BaseERPRepository implements ProductRepository
+class ProductRepositoryERP extends BaseSoapErpRepository implements ProductRepository
 {
 
     protected $factory;
 
-    public function __construct(Repository $config, ProductFactory $factory)
+    public function __construct(Repository $config, Fractal $fractal, ProductFactory $factory)
     {
-        parent::__construct($config);
+        parent::__construct($config, $fractal);
 
         $this->factory = $factory;
     }

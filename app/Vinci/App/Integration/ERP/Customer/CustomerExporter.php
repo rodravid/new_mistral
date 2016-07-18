@@ -5,7 +5,9 @@ namespace Vinci\App\Integration\ERP\Customer;
 use Exception;
 use Illuminate\Events\Dispatcher;
 use Log;
+use Vinci\App\Integration\Exceptions\IntegrationException;
 use Vinci\Domain\Customer\CustomerInterface;
+use Vinci\Domain\ERP\Customer\Commands\CustomerCreateCommand;
 use Vinci\Domain\ERP\Customer\CustomerService;
 use Vinci\Domain\ERP\Customer\CustomerTranslator;
 
@@ -34,19 +36,13 @@ class CustomerExporter
 
             $customer = $this->customerTranslator->translate($localCustomer);
 
-            $this->customerService->create($customer);
+            $command = new CustomerCreateCommand($customer);
+
+            $this->customerService->create($command);
 
         } catch (Exception $e) {
-
-            $this->log($e, $localCustomer);
-
-            throw $e;
+            throw new IntegrationException($e->getMessage());
         }
-    }
-
-    private function log(Exception $e, CustomerInterface $localCustomer)
-    {
-        Log::error(sprintf('Error during export customer #%s: %s', $localCustomer->getId(), $e->getMessage()));
     }
 
 }

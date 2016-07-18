@@ -115,12 +115,12 @@ class ExportCustomers extends Command
 
     public function getCustomers()
     {
-        $customers = $this->getCustomersInput();
+        $customersInput = $this->getCustomersInput();
 
         $qb = $this->customerRepository->createQueryBuilder('c');
 
-        if ($customers->count()) {
-            $qb->where($qb->expr()->in('c.id', $customers->toArray()));
+        if ($customersInput->count()) {
+            $qb->where($qb->expr()->in('c.id', $customersInput->toArray()));
         } else {
             $qb->setMaxResults($this->getLimit());
         }

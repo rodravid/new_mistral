@@ -19,6 +19,7 @@ class CustomerTransformer extends BaseTransformer
     public function transform(CustomerInterface $customer)
     {
         return [
+            'id' => $customer->getId(),
             'name' => $this->normalizeString($customer->getName()),
             'email' => $customer->getEmail(),
             'contact_name' => $this->normalizeString($customer->getName()),
