@@ -2,24 +2,24 @@
 
 namespace Vinci\Domain\ERP\Customer\Events;
 
-use Vinci\Domain\ERP\Customer\Customer;
+use Vinci\Domain\ERP\Customer\Commands\SaveCustomerCommand;
 use Vinci\Domain\ERP\Events\ErpRequestEvent;
 
 class CustomerWasSavedOnErp extends ErpRequestEvent
 {
 
-    public $customer;
+    public $command;
 
-    public function __construct(Customer $customer, $request = null, $response = null, $user)
+    public function __construct(SaveCustomerCommand $command, $request = null, $response = null)
     {
-        parent::__construct($request, $response, $user);
+        parent::__construct($request, $response);
         
-        $this->customer = $customer;
+        $this->command = $command;
     }
     
-    public function getCustomer()
+    public function getCommand()
     {
-        return $this->customer;
+        return $this->command;
     }
 
 }

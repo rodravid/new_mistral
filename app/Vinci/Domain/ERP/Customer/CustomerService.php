@@ -3,8 +3,9 @@
 namespace Vinci\Domain\ERP\Customer;
 
 use Exception;
+use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\ERP\BaseErpService;
-use Vinci\Domain\ERP\Customer\Commands\CustomerCreateCommand;
+use Vinci\Domain\ERP\Customer\Commands\SaveCustomerCommand;
 use Vinci\Domain\ERP\Customer\Events\CustomerSaveOnErpFailed;
 use Vinci\Domain\ERP\Customer\Events\CustomerWasSavedOnErp;
 use Vinci\Domain\ERP\Exceptions\ErpException;
@@ -16,30 +17,34 @@ class CustomerService extends BaseErpService
 
     private $customerRepository;
 
+    private $customerTranslator;
+
     public function __construct(
         EnvelopeFactory $envelopeFactory,
         Dispatcher $dispatcher,
-        CustomerRepository $customerRepository
+        CustomerRepository $customerRepository,
+        CustomerTranslator $customerTranslator
     ) {
         parent::__construct($envelopeFactory, $dispatcher);
 
         $this->customerRepository = $customerRepository;
+        $this->customerTranslator = $customerTranslator;
     }
 
-    public function create(CustomerCreateCommand $command)
+    public function save(SaveCustomerCommand $command)
     {
         try {
 
-            $customer = $command->getCustomer();
+            $customer = $this->customerTranslator->translate($command->getCustomer());
 
-            $request = $this->envelopeFactory->make($command->getCustomer(), 'create');
+            $request = $this->envelopeFactory->make($customer, 'create');
             
             $response = $this->customerRepository->create($customer);
 
             if ($response->wasSuccessfullyCreated()) {
 
                 $this->eventDispatcher->fire(
-                    new CustomerWasSavedOnErp($customer, $request, $response, $command->getUserActor())
+                    new CustomerWasSavedOnErp($command, $request, $response->getRaw())
                 );
 
                 return $response;
@@ -51,10 +56,10 @@ class CustomerService extends BaseErpService
 
             $response = $e instanceof ErpException ? $e->getResponse()->getRaw() : '';
 
-            $request = isset($request) ? : '';
+            $request = isset($request) ? $request : '';
 
             $this->eventDispatcher->fire(
-                new CustomerSaveOnErpFailed($customer, $request, $response, $command->getUserActor(), $e)
+                new CustomerSaveOnErpFailed($command, $request, $response, $e)
             );
 
             throw $e;

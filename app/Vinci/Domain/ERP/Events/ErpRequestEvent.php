@@ -9,25 +9,12 @@ abstract class ErpRequestEvent extends Event
 
     public $response;
 
-    public $user;
-
     public $request;
 
-    public function __construct($request = null, $response = null, $user)
+    public function __construct($request = null, $response = null)
     {
         $this->setRequest($request);
         $this->setResponse($response);
-        $this->setUser($user);
-    }
-
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    public function setUser($user)
-    {
-        $this->user = $user;
     }
 
     public function getRequest()

@@ -2,18 +2,23 @@
 
 namespace Vinci\Domain\ERP\Customer\Commands;
 
-use Vinci\Domain\ERP\Customer\Customer;
+use Vinci\Domain\Customer\CustomerInterface;
 
-class CustomerCreateCommand
+class SaveCustomerCommand
 {
 
     private $customer;
 
     private $userActor;
 
-    public function __construct(Customer $customer, $userActor = null)
+    public function __construct(CustomerInterface $customer, $userActor = null)
     {
         $this->customer = $customer;
+
+        if (empty($userActor)) {
+            $userActor = $this->getDefaultUserActor();
+        }
+
         $this->userActor = $userActor;
     }
 
@@ -25,6 +30,11 @@ class CustomerCreateCommand
     public function getUserActor()
     {
         return $this->userActor;
+    }
+
+    protected function getDefaultUserActor()
+    {
+        return 'Sistema';
     }
 
 }

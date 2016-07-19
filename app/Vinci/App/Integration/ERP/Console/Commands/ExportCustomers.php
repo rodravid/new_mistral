@@ -5,6 +5,7 @@ namespace Vinci\App\Integration\ERP\Console\Commands;
 use Exception;
 use Illuminate\Console\Command;
 use Vinci\App\Integration\ERP\Customer\CustomerExporter;
+use Vinci\Domain\Common\IntegrationStatus;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\Customer\CustomerRepository;
 
@@ -18,7 +19,7 @@ class ExportCustomers extends Command
      */
     protected $signature = 'erp:integration:customers:export 
                             {customers?* : IDs array of customers}
-                            {--limit=10 : Limit the result all products from ERP}';
+                            {--with-failed : Include customers failed}';
 
     /**
      * The console command description.
@@ -122,7 +123,7 @@ class ExportCustomers extends Command
         if ($customersInput->count()) {
             $qb->where($qb->expr()->in('c.id', $customersInput->toArray()));
         } else {
-            $qb->setMaxResults($this->getLimit());
+            $qb->where($qb->expr()->in('c.erpIntegrationStatus', $this->getStatuses()));
         }
 
         $count = (int) $qb->select($qb->expr()->count('c.id'))->getQuery()->getSingleScalarResult();
@@ -135,8 +136,14 @@ class ExportCustomers extends Command
         return collect($this->argument('customers'));
     }
 
-    public function getLimit()
+    private function getStatuses()
     {
-        return (int) $this->option('limit');
+        $status = [IntegrationStatus::PENDING];
+
+        if ($this->option('with-failed')) {
+            $status[] = IntegrationStatus::FAILED;
+        }
+
+        return $status;
     }
 }

@@ -10,5 +10,10 @@ abstract class Response
     {
         $this->raw = $raw;
     }
+    
+    public function getRaw()
+    {
+        return $this->raw;
+    }
 
 }
