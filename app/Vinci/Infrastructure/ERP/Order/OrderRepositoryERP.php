@@ -2,17 +2,20 @@
 
 namespace Vinci\Infrastructure\ERP\Order;
 
-use Illuminate\Contracts\Config\Repository;
+use Vinci\Domain\ERP\Order\Order;
 use Vinci\Domain\ERP\Order\OrderRepository;
-use Vinci\Infrastructure\ERP\BaseERPRepository;
+use Vinci\Infrastructure\ERP\BaseHttpErpRepository;
+use Vinci\Infrastructure\ERP\Order\Responses\Parsers\CreateOrderResponseParser;
 
-class OrderRepositoryERP extends BaseERPRepository implements OrderRepository
+class OrderRepositoryERP extends BaseHttpErpRepository implements OrderRepository
 {
-    public function __construct(Repository $config)
+    public function create(Order $order)
     {
-        parent::__construct($config);
+        return $this->erpRequest(
+            $this->config->get('erp.wsdl.orders.create_order'),
+            $this->envelopeFactory->make($order, 'create'),
+            CreateOrderResponseParser::class
+        );
     }
-
-    
 
 }

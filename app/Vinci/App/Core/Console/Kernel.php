@@ -38,6 +38,7 @@ class Kernel extends ConsoleKernel
         'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock',
         'Vinci\App\Integration\ERP\Console\Commands\ExportCustomers',
+        'Vinci\App\Integration\ERP\Console\Commands\ExportOrders',
     ];
 
     /**

@@ -18,7 +18,7 @@ class CreateCustomerResponseParser extends ResponseParser
 
         } catch (Exception $e)  {
 
-            new CreateCustomerResponse($response, '');
+            return new CreateCustomerResponse($response, '');
         }
     }
 

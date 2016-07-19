@@ -29,7 +29,7 @@ class CustomerEventSubscriber
         CustomerIntegrationLogger::success([
             'user' => $event->getCommand()->getUserActor(),
             'resource_id' => $localCustomer->getId(),
-            'message' => sprintf('Cliente %s integrado com sucesso', $localCustomer->getName()),
+            'message' => sprintf('Cliente %s integrado com sucesso!', $localCustomer->getName()),
             'request_body' => $event->getRequest(),
             'response_body' => $event->getResponse()
         ]);
@@ -46,7 +46,7 @@ class CustomerEventSubscriber
         CustomerIntegrationLogger::error([
             'user' => $event->getCommand()->getUserActor(),
             'resource_id' => $localCustomer->getId(),
-            'message' => sprintf('Falha ao integrar cliente %s', $localCustomer->getName()),
+            'message' => sprintf('Falha ao integrar cliente %s.', $localCustomer->getName()),
             'error_message' => $event->getException()->getMessage(),
             'error_trace' => $event->getException()->getTraceAsString(),
             'request_body' => $event->getRequest(),

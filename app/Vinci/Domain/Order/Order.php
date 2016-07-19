@@ -7,6 +7,7 @@ use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use Vinci\Domain\Channel\Contracts\Channel;
 use Vinci\Domain\Common\AggregateRoot;
 use Vinci\Domain\Common\Event\HasEvents;
+use Vinci\Domain\Common\Traits\HasIntegrationStatus;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,7 +35,7 @@ use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 class Order extends Model implements OrderInterface, AggregateRoot
 {
 
-    use Timestampable, SoftDeletes, HasEvents;
+    use Timestampable, SoftDeletes, HasEvents, HasIntegrationStatus;
 
     /**
      * @ORM\Id
@@ -47,6 +48,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
      * @ORM\Column(type="string", length=11, options={"fixed" = true}, unique=true)
      */
     protected $number;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $erpNumber;
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Customer\Customer", inversedBy="orders")
@@ -433,11 +439,27 @@ class Order extends Model implements OrderInterface, AggregateRoot
         $this->raise(new OrderTrackingStatusWasChanged($this, $oldStatus));
     }
 
+    public function getEstimatedDeliveryDate()
+    {
+        return $this->getShipment()->getEstimatedDeliveryDate();
+    }
+
     public function __sleep()
     {
         app('em')->detach($this);
 
         return ['id', 'number', 'customer', 'channel', 'total', 'itemsTotal', 'shippingAddress', 'billingAddress', 'payments', 'shipment'];
+    }
+
+    public function getErpNumber()
+    {
+        return $this->erpNumber;
+    }
+
+    public function setErpNumber($erpNumber)
+    {
+        $this->erpNumber = $erpNumber;
+        return $this;
     }
 
 }

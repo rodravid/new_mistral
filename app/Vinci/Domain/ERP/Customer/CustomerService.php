@@ -3,7 +3,6 @@
 namespace Vinci\Domain\ERP\Customer;
 
 use Exception;
-use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\ERP\BaseErpService;
 use Vinci\Domain\ERP\Customer\Commands\SaveCustomerCommand;
 use Vinci\Domain\ERP\Customer\Events\CustomerSaveOnErpFailed;
@@ -41,7 +40,7 @@ class CustomerService extends BaseErpService
             
             $response = $this->customerRepository->create($customer);
 
-            if ($response->wasSuccessfullyCreated()) {
+            if ($response && $response->wasSuccessfullyCreated()) {
 
                 $this->eventDispatcher->fire(
                     new CustomerWasSavedOnErp($command, $request, $response->getRaw())

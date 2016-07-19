@@ -28,8 +28,6 @@ class CustomerTranslator
 
         $customer->billing_address = clone $customer->address;
 
-        $customer->local_customer = $localCustomer;
-
         return $customer;
     }
 
