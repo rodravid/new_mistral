@@ -10,7 +10,7 @@ class ProductPresenter extends BaseProductPresenter
 
     public function presentTitle()
     {
-       return preg_replace('/\(.*\)/', '', $this->getTitle());
+        return preg_replace('/\(.*\)/', '', $this->getTitle());
     }
 
     public function presentCardTitle()
@@ -23,7 +23,7 @@ class ProductPresenter extends BaseProductPresenter
     public function presentShortnedDescription()
     {
         $text = !empty($this->getShortDescription()) ? $this->getShortDescription() : strip_tags($this->getDescription());
-        return $this->limitTo($text, 80);
+        return $this->limitTo($text, 85);
     }
 
     public function presentShortDescription()
