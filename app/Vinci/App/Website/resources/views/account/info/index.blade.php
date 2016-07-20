@@ -10,10 +10,8 @@
 
     <article class="wrap-content-register">
 
-        @if($errors->has())
-
+        @if($errors->count())
             {{ $errors->first() }}
-
         @endif
         
         {!! Form::model($customer, ['route' => ['account.update', $customer->getId()], 'method' => 'PUT']) !!}

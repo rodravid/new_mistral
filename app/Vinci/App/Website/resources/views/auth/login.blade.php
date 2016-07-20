@@ -27,7 +27,7 @@
             <div class="pg-log">
                 <form action="/login" method="POST">
 
-                    @if ($errors->has())
+                    @if ($errors->count())
                         <span class="help-block text-danger"><strong>{{ $errors->first() }}</strong></span>
                     @endif
 

@@ -129,7 +129,7 @@
                                 @endif
                             @endforeach
                         </ul>
-                        @if($errors->has())
+                        @if($errors->count())
                             <ul class="error-message">
                                 <li><strong>Problemas com os dados no formulário</strong></li>
                                 @foreach ($errors->getMessages() as $error)
