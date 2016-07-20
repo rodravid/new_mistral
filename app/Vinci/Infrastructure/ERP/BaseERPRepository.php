@@ -5,6 +5,7 @@ namespace Vinci\Infrastructure\ERP;
 use Exception;
 use Illuminate\Contracts\Config\Repository;
 use Spatie\Fractal\Fractal;
+use Vinci\Infrastructure\Exceptions\EmptyResponseException;
 
 abstract class BaseErpRepository
 {

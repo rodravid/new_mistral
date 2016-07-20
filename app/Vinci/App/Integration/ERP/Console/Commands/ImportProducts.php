@@ -108,7 +108,7 @@ class ImportProducts extends Command
 
             try {
 
-                $this->importOne($productSKU, true, true);
+                $this->importOne($productSKU, true);
 
                 $success[] = $productSKU;
 
