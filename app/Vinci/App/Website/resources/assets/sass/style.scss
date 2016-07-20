@@ -47,6 +47,7 @@ strong {
 .mbottom20 { margin-bottom: 20px;}
 .mbottom10 { margin-bottom: 10px;}
 
+.mtop5	{ margin-top: 5px;}
 .mtop10 { margin-top: 10px;}
 .mtop20 { margin-top: 20px;}
 .mtop30 { margin-top: 30px;}
@@ -488,7 +489,7 @@ a.bt-default {
 }
 
 .wine-intro {
-	font:13px $robotolight;
+	font:14px $robotolight;
 	margin:5px 0 0 0;
 	line-height: 13px;
 	min-height:40px;
@@ -602,6 +603,7 @@ a.bt-default {
 .wine-card-producer {
 		font:15px $robotolight;
 		display:block;
+		color:$black;
 }
 
 .wine-price { font:27px $robotobold; }

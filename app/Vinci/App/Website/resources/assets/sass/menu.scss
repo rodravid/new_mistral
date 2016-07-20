@@ -852,16 +852,19 @@
 			.drop-menu {
 				max-width: 670px;
 				width: 100%;
-				right: 9px;
+				right: 29px;
 			}
 		}
 
-		.ie9 {
+		.ie9,
+		.ie-10,
+		.ie-11,
+		.ie-edge {
 			.larger760-right {
 				.drop-menu {
 					max-width: 670px;
 					width: 100%;
-					right: 9px;
+					right: 25px;
 				}
 			}
 		}
@@ -869,7 +872,7 @@
 
 
 		.drop-menu{
-			padding: 18px 20px;
+			padding: 12px 20px;
 			position: absolute;
 			display: block;
 			max-width: 960px;
@@ -903,7 +906,7 @@
 				font-weight:400 !important;
 			}
 
-			.larger760-right {
+/* 			.larger760-right {
 				.drop-menu {
 					right: 9px;
 				}
@@ -915,7 +918,7 @@
 						right: 8px;
 					}
 				}
-			}
+			} */
 		}
 
 		.mac{
@@ -973,7 +976,7 @@
 		transition: all .3s ease .30s;
 		} */
 
-		.menu-item:hover .drop-menu{
+		.menu-item:hover .drop-menu {
 			opacity: 1;
 			visibility: visible;
 			overflow: visible;
@@ -984,23 +987,30 @@
 			transition: all .3s ease .30s;
 		} 
 
-		.list-sub-menu{
+		.list-sub-menu {
+			margin-top:-5px;
+			display:inline-block;
+			width:100%;
 
-			li{
+			li {
 				display:block;
-				padding:2px 0;
-				a{
+				padding:7px 0;
+				a {
 					font-size:15px;
 					color:#000;
 					font-weight:400;
+
+					span {
+						font-size:12px;
+					}
 				}
 			}
-			li+li{
+			li+li {
 				border-top:1px solid #d6d6d6;
 			}
 
 		}
-		.division{
+		.division {
 			margin-right:30px;
 			width:190px;
 			float:left;
@@ -1014,12 +1024,18 @@
 			float: left;
 		}
 
-		.link-featured-sub-menu {
+		.price-card-menu {
+			font-family: $robotobold;
+			font-size:15px;
+			margin-bottom:5px;
+		}
+
+/* 		.link-featured-sub-menu {
 			width:100%;
 			padding:13px;
 			display:inline-block;
 			transition: all 50ms ease;
-		}
+		} */
 
 		.featured-sub-menu{
 			color:#000;
@@ -1029,12 +1045,15 @@
 			margin-bottom:8px;
 			transition: all 50ms ease;
 			position:relative;
+			padding: 13px;
 
 			h3 {
 				font-family: $robotobold;
 				font-size:15px;
 				text-transform:uppercase;
 				color:#000;
+				height: 38px;
+    		overflow: hidden;
 				span {
 					font-family:$robotolight;
 					display:block;
@@ -1046,7 +1065,8 @@
 			font-size:13px;
 			color:#000;
 			line-height: 15px;
-			height: 69px;			
+			height: 47px;
+    	overflow: hidden;
 		}
 		.featured-sub-link,
 		.featured-sub-more {
@@ -1068,6 +1088,7 @@
 			padding:13px 13px 0 13px;
 			position:relative;
 			transition: all 50ms ease;
+			margin-top:10px;
 			h3{
 				color:#fff;
 				font-family: $robotobold;
