@@ -18,7 +18,7 @@ class CreateOrderItemResponseParser extends ResponseParser
 
         } catch (Exception $e)  {
 
-            new CreateOrderItemResponse($response);
+            return new CreateOrderItemResponse($response);
         }
     }
 

@@ -90,7 +90,7 @@ class ImportProductsStock extends ImportProducts
 
             try {
 
-                $this->importStockOfOne($productSKU, true, true);
+                $this->importStockOfOne($productSKU, true);
 
                 $success[] = $productSKU;
 
