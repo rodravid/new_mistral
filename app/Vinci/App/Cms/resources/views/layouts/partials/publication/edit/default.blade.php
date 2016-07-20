@@ -5,7 +5,11 @@
     <div class="box-body">
 
         @if($model->hasProperty('status'))
-            <p>{!! present_status_html($model->getStatus()) !!}</p>
+            <p><b>Status:</b> {!! present_status_html($model->getStatus()) !!}</p>
+        @endif
+
+        @if($model->hasProperty('erpIntegrationStatus'))
+            <p><b>Status da integração:</b> {!! $customer->present()->integration_status_html !!}</p>
         @endif
 
         <p><i class="fa fa-calendar"></i><b> Criado em:</b> {{ $model->getCreatedAt()->format('d/m/Y \à\s H:i\h') }}</p>

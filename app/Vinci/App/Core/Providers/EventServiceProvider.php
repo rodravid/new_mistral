@@ -32,6 +32,8 @@ class EventServiceProvider extends ServiceProvider
     protected $subscribe = [
         'Vinci\Domain\ShoppingCart\Events\Subscribers\ShoppingCartEventSubscriber',
         'Vinci\Domain\Order\Events\Subscribers\OrderStatusSubscriber',
+        'Vinci\Domain\ERP\Customer\Events\Listeners\CustomerEventSubscriber',
+        'Vinci\Domain\ERP\Order\Events\Listeners\OrderEventSubscriber',
     ];
 
     /**

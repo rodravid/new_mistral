@@ -28,6 +28,7 @@ class CustomerCmsDatatable extends AbstractDatatables
         4 => 'o.',
         6 => 'o.createdAt',
         7 => 'o.status',
+        8 => 'o.erpIntegrationStatus',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -71,6 +72,7 @@ class CustomerCmsDatatable extends AbstractDatatables
             $presenter->getRegistry(),
             $presenter->created_at,
             $presenter->status_html,
+            $presenter->integration_status_html,
             $this->buildActionsColumn($customer)
         ];
     }

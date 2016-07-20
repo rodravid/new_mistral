@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\ERP\Customer;
 
+use Exception;
 use Vinci\Domain\Customer\CustomerInterface;
 use Vinci\Domain\ERP\Address\AddressTransformer;
 use Vinci\Domain\ERP\Customer\Phone\PhoneTransformer;
@@ -19,6 +20,7 @@ class CustomerTransformer extends BaseTransformer
     public function transform(CustomerInterface $customer)
     {
         return [
+            'id' => $customer->getId(),
             'name' => $this->normalizeString($customer->getName()),
             'email' => $customer->getEmail(),
             'contact_name' => $this->normalizeString($customer->getName()),
@@ -34,6 +36,8 @@ class CustomerTransformer extends BaseTransformer
 
     public function includeAddress(CustomerInterface $customer)
     {
+        $this->assertAddressExists($customer);
+
         return $this->item($customer->getMainAddress(), new AddressTransformer);
     }
 
@@ -49,11 +53,20 @@ class CustomerTransformer extends BaseTransformer
 
     protected function getObs(CustomerInterface $customer)
     {
+        $this->assertAddressExists($customer);
+
         if (! empty($landmark = $customer->getMainAddress()->getLandmark())) {
             return sprintf('REF. ENTREGA %s', $this->normalizeString($landmark));
         }
 
         return '';
+    }
+
+    protected function assertAddressExists(CustomerInterface $customer)
+    {
+        if (empty($customer->getMainAddress())) {
+            throw new Exception('The user does not have a main address.');
+        }
     }
 
 }

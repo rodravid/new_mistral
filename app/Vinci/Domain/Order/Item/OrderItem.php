@@ -7,6 +7,7 @@ use Robbo\Presenter\Robbo;
 use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Event\HasEvents;
+use Vinci\Domain\Common\Traits\HasIntegrationStatus;
 use Vinci\Domain\Common\Traits\Timestampable;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Order\OrderInterface;
@@ -20,7 +21,7 @@ use Vinci\Domain\Product\ProductVariantInterface;
 class OrderItem extends Model implements Presentable
 {
 
-    use Timestampable, HasEvents, PresentableTrait;
+    use Timestampable, HasEvents, PresentableTrait, HasIntegrationStatus;
 
     protected $presenter = OrderItemPresenter::class;
 

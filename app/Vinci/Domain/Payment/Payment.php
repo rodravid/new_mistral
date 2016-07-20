@@ -162,4 +162,9 @@ class Payment  extends Model implements PaymentInterface, Presentable
         return $this->getMethod()->getDescription() == 'credit_card';
     }
 
+    public function wasMadeWithBankDeposit()
+    {
+        return $this->getMethod()->getDescription() == 'account_deposit';
+    }
+
 }

@@ -42,4 +42,9 @@ class Customer extends Model
         return $this;
     }
 
+    public function getLocalCustomerReference()
+    {
+        return $this->local_customer;
+    }
+
 }

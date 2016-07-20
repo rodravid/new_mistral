@@ -9,6 +9,7 @@ use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\App\Website\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\Domain\Auth\Authenticatable;
+use Vinci\Domain\Common\Traits\HasIntegrationStatus;
 use Vinci\Domain\Customer\Address\Address;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
@@ -20,7 +21,7 @@ use Vinci\Domain\User\User;
  */
 class Customer extends User implements CustomerInterface, Presentable
 {
-    use Authenticatable, PresentableTrait;
+    use Authenticatable, PresentableTrait, HasIntegrationStatus;
 
     protected $presenter = CustomerPresenter::class;
 

@@ -18,7 +18,7 @@ class CustomerErpTransformer extends BaseTransformer
             'PCAIXAPOSTALCOBRANCA-VARCHAR2-IN' => '',
             'PCEP-VARCHAR2-IN' => $customer->address->postal_code,
             'PCEPCAIXAPOSTAL-VARCHAR2-IN' => '',
-            'PCEPCOBRANCA-VARCHAR2-IN' => '',
+            'PCEPCOBRANCA-VARCHAR2-IN' => $customer->billing_address->postal_code,
             'PCGC-VARCHAR2-IN' => $customer->cnpj,
             'PCODCENTROCUSTOPADRAO-NUMBER-IN' => '',
             'PCODCLASSIFCLIENTE-VARCHAR2-IN' => 'CONS',

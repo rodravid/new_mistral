@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure\Orders;
 
 use Vinci\Domain\Common\Model\DateRange;
+use Vinci\Domain\Order\Item\OrderItem;
 use Vinci\Domain\Order\OrderRepository;
 use Vinci\Domain\Order\OrderStatus;
 use Vinci\Domain\Payment\PaymentStatus;
@@ -172,5 +173,13 @@ DQL;
         }
 
         return $order;
+    }
+
+    public function getItemsQuery($alias)
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        return $qb->select($alias)
+            ->from(OrderItem::class, $alias);
     }
 }

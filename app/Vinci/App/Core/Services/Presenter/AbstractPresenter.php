@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Robbo\Presenter\Presenter as BasePresenter;
 use Vinci\App\Core\Utils\Mask;
 use Vinci\Domain\Common\Gender;
+use Vinci\Domain\Common\IntegrationStatus;
 
 abstract class AbstractPresenter extends BasePresenter
 {
@@ -96,6 +97,26 @@ abstract class AbstractPresenter extends BasePresenter
                 return 'Publicado';
             break;
         }
+    }
+
+    public function presentIntegrationStatus()
+    {
+        switch ($this->getErpIntegrationStatus()) {
+            case IntegrationStatus::INTEGRATED:
+                return 'Integrado';
+                break;
+            case IntegrationStatus::PENDING:
+                return 'Pendente';
+                break;
+            case IntegrationStatus::FAILED:
+                return 'Falhou';
+                break;
+        }
+    }
+
+    public function presentIntegrationStatusHtml()
+    {
+        return present_integration_status_html($this->getErpIntegrationStatus());
     }
 
     public function presentStatusHtml()

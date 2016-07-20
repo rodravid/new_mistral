@@ -80,10 +80,10 @@ return [
 
         'homolog' => [
             'driver'    => 'mysql',
-            'host'      => 'web11-homolog.cpeuehgmouqy.sa-east-1.rds.amazonaws.com',
-            'database'  => 'vinci',
-            'username'  => 'homolog_admin',
-            'password'  => 'w3biihom0i0g',
+            'host'      => 'vinci-homolog.cphccisqwbrl.sa-east-1.rds.amazonaws.com',
+            'database'  => 'vinci_homolog',
+            'username'  => 'dbroot',
+            'password'  => 'Z3EYRKIZnvAwJ4Dz',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

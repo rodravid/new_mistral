@@ -17,6 +17,8 @@ class IntegrationServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerProductServices();
+
+        $this->loadViewsFrom(__DIR__ . '/../../../Infrastructure/ERP', 'erp');
     }
 
     private function registerProductServices()

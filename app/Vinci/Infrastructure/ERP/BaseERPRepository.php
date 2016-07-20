@@ -4,14 +4,19 @@ namespace Vinci\Infrastructure\ERP;
 
 use Exception;
 use Illuminate\Contracts\Config\Repository;
+use Spatie\Fractal\Fractal;
+use Vinci\Infrastructure\Exceptions\EmptyResponseException;
 
-abstract class BaseERPRepository
+abstract class BaseErpRepository
 {
     protected $config;
 
-    public function __construct(Repository $config)
+    protected $fractal;
+
+    public function __construct(Repository $config, Fractal $fractal)
     {
         $this->config = $config;
+        $this->fractal = $fractal;
     }
 
     protected function buildClient($wsdlKey, array $config = [])
@@ -23,7 +28,7 @@ abstract class BaseERPRepository
             'cache_wsdl' => WSDL_CACHE_NONE
         ], $config);
 
-        return new CustomSoapClient($this->getWsdl($wsdlKey), $config);
+        return new CustomSoapClient($this->getWsdl($wsdlKey) . '?wsdl', $config);
     }
 
     public function getWsdl($configKey)
