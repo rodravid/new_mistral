@@ -850,15 +850,18 @@ input[type="search"]::-webkit-search-decoration {
 .larger760-right .drop-menu {
   max-width: 670px;
   width: 100%;
-  right: 9px; }
+  right: 29px; }
 
-.ie9 .larger760-right .drop-menu {
+.ie9 .larger760-right .drop-menu,
+.ie-10 .larger760-right .drop-menu,
+.ie-11 .larger760-right .drop-menu,
+.ie-edge .larger760-right .drop-menu {
   max-width: 670px;
   width: 100%;
-  right: 9px; }
+  right: 25px; }
 
 .drop-menu {
-  padding: 18px 20px;
+  padding: 12px 20px;
   position: absolute;
   display: block;
   max-width: 960px;
@@ -878,14 +881,23 @@ input[type="search"]::-webkit-search-decoration {
       display: none; } }
 
 @-moz-document url-prefix() {
+  /* 			.larger760-right {
+				.drop-menu {
+					right: 9px;
+				}
+			}
+
+			.wind {
+				.larger760-right {
+					.drop-menu {
+						right: 8px;
+					}
+				}
+			} */
   .menu-link {
     -moz-osx-font-smoothing: antialiased !important; }
   .nav-link {
-    font-weight: 400 !important; }
-  .larger760-right .drop-menu {
-    right: 9px; }
-  .wind .larger760-right .drop-menu {
-    right: 8px; } }
+    font-weight: 400 !important; } }
 
 .mac .menu-link {
   -webkit-font-smoothing: antialiased;
@@ -943,16 +955,21 @@ input[type="search"]::-webkit-search-decoration {
   overflow: visible;
   transition: all .3s ease .30s; }
 
-.list-sub-menu li {
-  display: block;
-  padding: 2px 0; }
-  .list-sub-menu li a {
-    font-size: 15px;
-    color: #000;
-    font-weight: 400; }
-
-.list-sub-menu li + li {
-  border-top: 1px solid #d6d6d6; }
+.list-sub-menu {
+  margin-top: -5px;
+  display: inline-block;
+  width: 100%; }
+  .list-sub-menu li {
+    display: block;
+    padding: 7px 0; }
+    .list-sub-menu li a {
+      font-size: 15px;
+      color: #000;
+      font-weight: 400; }
+      .list-sub-menu li a span {
+        font-size: 12px; }
+  .list-sub-menu li + li {
+    border-top: 1px solid #d6d6d6; }
 
 .division {
   margin-right: 30px;
@@ -966,12 +983,17 @@ input[type="search"]::-webkit-search-decoration {
   width: 190px;
   float: left; }
 
-.link-featured-sub-menu {
-  width: 100%;
-  padding: 13px;
-  display: inline-block;
-  transition: all 50ms ease; }
+.price-card-menu {
+  font-family: "roboto_condensedbold";
+  font-size: 15px;
+  margin-bottom: 5px; }
 
+/* 		.link-featured-sub-menu {
+			width:100%;
+			padding:13px;
+			display:inline-block;
+			transition: all 50ms ease;
+		} */
 .featured-sub-menu {
   color: #000;
   width: 100%;
@@ -979,12 +1001,15 @@ input[type="search"]::-webkit-search-decoration {
   border: 1px solid #11b6f0;
   margin-bottom: 8px;
   transition: all 50ms ease;
-  position: relative; }
+  position: relative;
+  padding: 13px; }
   .featured-sub-menu h3 {
     font-family: "roboto_condensedbold";
     font-size: 15px;
     text-transform: uppercase;
-    color: #000; }
+    color: #000;
+    height: 38px;
+    overflow: hidden; }
     .featured-sub-menu h3 span {
       font-family: "roboto_condensedlight";
       display: block;
@@ -994,7 +1019,8 @@ input[type="search"]::-webkit-search-decoration {
   font-size: 13px;
   color: #000;
   line-height: 15px;
-  height: 69px; }
+  height: 47px;
+  overflow: hidden; }
 
 .featured-sub-link,
 .featured-sub-more {
@@ -1013,7 +1039,8 @@ input[type="search"]::-webkit-search-decoration {
   width: 100%;
   padding: 13px 13px 0 13px;
   position: relative;
-  transition: all 50ms ease; }
+  transition: all 50ms ease;
+  margin-top: 10px; }
   .every-category h3 {
     color: #fff;
     font-family: "roboto_condensedbold";
@@ -1257,6 +1284,8 @@ input#control-nav {
 			}
 		}
 		} */ }
+  .template1 .price-card-menu {
+    color: #11b6f0; }
   .template1 .every-category {
     background: #11b6f0;
     border: 2px solid #11b6f0; }
@@ -1497,6 +1526,8 @@ input#control-nav {
 /* Inicio templates RED ****************RED******************RED*******/
 .template2 {
   /*card produto*/ }
+  .template2 .price-card-menu {
+    color: #e02d50; }
   .template2 .template-button {
     background: #ffa311;
     border: 2px solid #ffa311;
@@ -1719,6 +1750,8 @@ input#control-nav {
 			}
 			} */
   /*card produto*/ }
+  .template3 .price-card-menu {
+    color: #3cc811; }
   .template3 .template-button {
     background: #0c2401;
     border: 2px solid #0c2401;
@@ -1929,6 +1962,8 @@ input#control-nav {
 /* Inicio templates PURPLE ****************PURPLE******************PURPLE*******/
 .template4 {
   /*card produto*/ }
+  .template4 .price-card-menu {
+    color: #791898; }
   .template4 .template-button {
     background: #ff008a;
     border: 2px solid #ff008a;
@@ -2152,6 +2187,8 @@ input#control-nav {
 				}
 			}
 			} */ }
+  .template5 .price-card-menu {
+    color: #e411c3; }
   .template5 .template-button {
     background: #791898;
     border: 2px solid #791898;
@@ -2373,6 +2410,8 @@ input#control-nav {
 			}
 		}
 		*/ }
+  .template6 .price-card-menu {
+    color: #3438db; }
   .template6 .template-button {
     background: #e929d9;
     border: 2px solid #e929d9;
@@ -2580,6 +2619,8 @@ input#control-nav {
 /* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 .template7 {
   /*card produto*/ }
+  .template7 .price-card-menu {
+    color: #ffa311; }
   .template7 .template-button {
     background: #a0015f;
     border: 2px solid #a0015f;
@@ -2787,6 +2828,8 @@ input#control-nav {
 /* Inicio templates BLACK ******************BLACK****************BLACK*******/
 .template8 {
   /*card produto*/ }
+  .template8 .price-card-menu {
+    color: #111111; }
   .template8 .title-slider {
     color: #00e667; }
   .template8 .descr-slider .bt-default {
@@ -3022,6 +3065,8 @@ input#control-nav {
 			}
 		}
 		} */ }
+  .template9 .price-card-menu {
+    color: #ff5400; }
   .template9 .every-category {
     background: #ff5400;
     border: 2px solid #ff5400; }
@@ -3260,6 +3305,8 @@ input#control-nav {
 			}
 		}
 		} */ }
+  .template10 .price-card-menu {
+    color: #a0015f; }
   .template10 .txt-contact {
     color: #de1e43; }
   .template10 .title-form {
@@ -3480,6 +3527,8 @@ input#control-nav {
 			}
 		}
 		} */ }
+  .template11 .price-card-menu {
+    color: #ff008a; }
   .template11 .title-form {
     color: #ff008a; }
   .template11 .title-internal {
@@ -3698,6 +3747,8 @@ input#control-nav {
 			}
 		}
 		} */ }
+  .template12 .price-card-menu {
+    color: #8a25d8; }
   .template12 .every-category {
     background: #8a25d8;
     border: 2px solid #8a25d8; }
@@ -3907,6 +3958,278 @@ input#control-nav {
       background: #8a25d8 !important; } }
 
 /* Fim templates LIGHT PURPLE **************LIGHT PURPLE****************LIGHT PURPLE***********/
+/* Inicio templates GREY **************GREY****************GREY***********/
+.template13 {
+  /**slider*/
+  /* 	.descr-slider {
+
+		.bt-default {
+			background:#570036;
+		}
+
+		.arrow-link {
+			color:#5d003b;
+			background: #00b1ef;
+		}
+
+		} */
+  /*card produto*/
+  /* 	.wine-card:hover {
+		.bt-default {
+			background:#fff;
+			border:2px solid $grey;
+			color:$grey;
+			transition: all .1s ease .05s;
+			.arrow-link {
+				background: $grey;
+				color: #fff;
+				transition: all .1s ease .05s;
+			}
+		}
+		} */ }
+  .template13 .price-card-menu {
+    color: #e3ebf2; }
+  .template13 .every-category {
+    background: #e3ebf2;
+    border: 2px solid #e3ebf2; }
+    .template13 .every-category:hover {
+      background: #fff;
+      transition: all 50ms ease; }
+      .template13 .every-category:hover h3 {
+        color: #e3ebf2; }
+      .template13 .every-category:hover span {
+        color: #fff;
+        background: #e3ebf2;
+        right: 2px;
+        bottom: 2px; }
+    .template13 .every-category span {
+      color: #e3ebf2; }
+  .template13 .template-button {
+    background: #791898;
+    border: 2px solid #791898;
+    transition: all .1s ease .05s; }
+    .template13 .template-button:hover {
+      background: #fff;
+      color: #791898;
+      border: 2px solid #791898;
+      transition: all .1s ease .05s; }
+      .template13 .template-button:hover .arrow-link {
+        background: #791898;
+        color: #fff;
+        transition: all .1s ease .05s;
+        border: 2px solid #791898; }
+    .template13 .template-button .arrow-link {
+      color: #791898;
+      transition: all .1s ease .05s;
+      border: 2px solid #791898; }
+  .template13 .botoes-add {
+    background: #e3ebf2; }
+  .template13 .see-more-info,
+  .template13 .see-less-info {
+    border: 1px solid #e3ebf2;
+    color: #e3ebf2; }
+    @media only screen and (max-width: 767px) {
+      .template13 .see-more-info,
+      .template13 .see-less-info {
+        border: 0; } }
+  .template13 .seals-description li p {
+    color: #e3ebf2; }
+  .template13 .seals-description li + li div {
+    display: none; }
+  .template13 .tit-product-info {
+    color: #5e057b; }
+  .template13 .current-price {
+    color: #e3ebf2; }
+  .template13 .info-vinho-template {
+    color: #e3ebf2; }
+  .template13 .title-form {
+    color: #e3ebf2; }
+  .template13 .title-internal {
+    color: #e3ebf2; }
+  .template13 .input-register:focus {
+    border: 1px solid #e3ebf2; }
+  .template13 .bt-arrow-action {
+    border: 2px solid #e3ebf2;
+    color: #e3ebf2; }
+    .template13 .bt-arrow-action:hover {
+      background: #e3ebf2; }
+  .template13 .list-sub-menu li a:hover {
+    color: #e3ebf2; }
+  .template13 .link-featured-sub-menu:hover {
+    background: #e3ebf2;
+    transition: all 50ms ease; }
+    .template13 .link-featured-sub-menu:hover h3, .template13 .link-featured-sub-menu:hover p, .template13 .link-featured-sub-menu:hover span {
+      color: #fff; }
+  .template13 .featured-sub-link:hover {
+    color: #e3ebf2; }
+  .template13 .favorite {
+    background-position: 0 -40px; }
+  .template13 .favorite.clicado {
+    background-position: -40px -40px; }
+  .template13 .title-menu {
+    color: #11b6f0; }
+  .template13 .featured-sub-menu {
+    border: 1px solid #11b6f0; }
+  .template13 .every-category {
+    background: #11b6f0; }
+    .template13 .every-category span {
+      color: #11b6f0; }
+  .template13 .title-slider {
+    color: #5d003b; }
+  .template13 .descr-slider .bt-default {
+    background: #570036;
+    border: 2px solid #5d003b; }
+  .template13 .descr-slider .arrow-link {
+    color: #5d003b;
+    background: #e3ebf2;
+    border: 2px solid #5d003b; }
+  .template13 .title-category {
+    color: #e3ebf2; }
+  .template13 .wine-card {
+    border: 1px solid #e3ebf2; }
+    .template13 .wine-card .wine-price {
+      color: #e3ebf2; }
+    .template13 .wine-card .bt-default {
+      background: #e3ebf2;
+      border: 2px solid #e3ebf2; }
+    .template13 .wine-card .arrow-link {
+      background: #fff;
+      color: #e3ebf2;
+      border: 2px solid #e3ebf2; }
+    .template13 .wine-card:hover .bt-default {
+      background: #fff;
+      border: 2px solid #e3ebf2;
+      color: #e3ebf2;
+      transition: all .1s ease .05s; }
+      .template13 .wine-card:hover .bt-default .arrow-link {
+        background: #e3ebf2;
+        color: #fff;
+        transition: all .1s ease .05s; }
+  .template13 .bt-default-full {
+    background: #e3ebf2; }
+    .template13 .bt-default-full .arrow-link {
+      color: #e3ebf2; }
+
+.header-internal.template13-bg {
+  background: #e3ebf2; }
+  .header-internal.template13-bg .nav-link:hover {
+    color: #e3ebf2; }
+  .header-internal.template13-bg .nav-item-user-logged .nav-link {
+    color: #e3ebf2; }
+  .header-internal.template13-bg .nav-item-user-logged:hover .nav-link:before,
+  .header-internal.template13-bg .nav-item-user-logged:hover .nav-link {
+    color: #e3ebf2; }
+  .header-internal.template13-bg .drop-user a:hover {
+    color: #e3ebf2; }
+  .header-internal.template13-bg .drop-user a + a {
+    border-top: 1px solid #d6d6d6; }
+  .header-internal.template13-bg .internal-subtitle-category {
+    color: #5e057b; }
+  .header-internal.template13-bg .more-txt,
+  .header-internal.template13-bg .less-txt {
+    color: #5e057b; }
+  @media only screen and (max-width: 767px) {
+    .header-internal.template13-bg .input-bt-search {
+      background-position: -209px -122px; }
+    .header-internal.template13-bg .input-search {
+      color: #e3ebf2; } }
+  .header-internal.template13-bg .suggestions-link:hover {
+    color: #e3ebf2; }
+    .header-internal.template13-bg .suggestions-link:hover span {
+      color: #e3ebf2; }
+
+.wine-card.template13 {
+  border: 1px solid #e3ebf2; }
+  .wine-card.template13 .wine-price {
+    color: #e3ebf2; }
+  .wine-card.template13 .bt-default {
+    background: #e3ebf2;
+    border: 2px solid #e3ebf2; }
+  .wine-card.template13 .arrow-link {
+    background: #fff;
+    color: #e3ebf2;
+    border: 2px solid #e3ebf2; }
+  .wine-card.template13:hover .bt-default {
+    background: #fff;
+    border: 2px solid #e3ebf2;
+    color: #e3ebf2; }
+  .wine-card.template13:hover .arrow-link {
+    background: #e3ebf2;
+    color: #fff;
+    border: 2px solid #e3ebf2; }
+
+.template13.bg-slider-principal {
+  background: #11b6f0; }
+
+.bt-default.bt-default-grey {
+  background: #11b6f0;
+  color: #fff;
+  border: 2px solid #11b6f0;
+  position: relative;
+  padding-right: 38px;
+  text-align: center;
+  line-height: 24px;
+  transition: all .1s ease .05s; }
+  .bt-default.bt-default-grey:hover {
+    background: #fff;
+    color: #e3ebf2;
+    border: 2px solid #e3ebf2;
+    transition: all .1s ease .05s; }
+    .bt-default.bt-default-grey:hover .arrow-link {
+      color: #fff;
+      background: #e3ebf2;
+      transition: all .1s ease .05s; }
+  .bt-default.bt-default-grey .arrow-link {
+    color: #e3ebf2;
+    background: #fff;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    line-height: 20px;
+    border: 2px solid #e3ebf2;
+    height: 32px;
+    width: 30px;
+    transition: all .1s ease .05s; }
+
+.bt-default-full.template13 {
+  background: #fff;
+  border: 2px solid #fff;
+  transition: all .1s ease .05s;
+  color: #111111;
+  /* 		&:hover{
+			background: #fff;
+			color:$grey;
+			border:2px solid $grey;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $grey;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $grey;
+			}
+		} */ }
+  .bt-default-full.template13 .arrow-link {
+    color: #111111;
+    transition: all .1s ease .05s;
+    border: 2px solid #fff;
+    font-size: 14px;
+    background: #e3ebf2; }
+
+.bg-product.template13 {
+  background: #e3ebf2; }
+
+.bg-template.template13 {
+  border: 0; }
+  .bg-template.template13 .wine-card {
+    background: #e5f7fd; }
+
+.template13-bg.bg-color-category {
+  background-color: #e3ebf2 !important; }
+  @media only screen and (max-width: 970px) {
+    .template13-bg.bg-color-category {
+      background: #e3ebf2 !important; } }
+
+/* Fim template GREY ******************GREY****************GREY*******/
 footer {
   display: inline-block;
   width: 100%;
@@ -4262,6 +4585,9 @@ strong {
 .mbottom10 {
   margin-bottom: 10px; }
 
+.mtop5 {
+  margin-top: 5px; }
+
 .mtop10 {
   margin-top: 10px; }
 
@@ -4613,7 +4939,7 @@ a.bt-default {
   max-width: 100%; }
 
 .wine-intro {
-  font: 13px "roboto_condensedlight";
+  font: 14px "roboto_condensedlight";
   margin: 5px 0 0 0;
   line-height: 13px;
   min-height: 40px; }
@@ -4702,7 +5028,8 @@ a.bt-default {
 
 .wine-card-producer {
   font: 15px "roboto_condensedlight";
-  display: block; }
+  display: block;
+  color: #111111; }
 
 .wine-price {
   font: 27px "roboto_condensedbold"; }
@@ -4729,10 +5056,12 @@ a.bt-default {
 
 .list-banners {
   width: 49.5%;
-  display: inline-block; }
+  float: left; }
   @media only screen and (max-width: 990px) {
     .list-banners {
-      width: 49.5%; } }
+      width: 49.5%;
+      float: none;
+      display: inline-block; } }
   @media only screen and (max-width: 767px) {
     .list-banners {
       width: 100%;
@@ -4748,9 +5077,17 @@ a.bt-default {
         max-width: 100%; } }
 
 .list-banners + .list-banners {
-  text-align: right; }
+  text-align: right;
+  float: right; }
+  @media only screen and (max-width: 990px) {
+    .list-banners + .list-banners {
+      width: 49.5%;
+      float: none;
+      display: inline-block; } }
   @media only screen and (max-width: 767px) {
     .list-banners + .list-banners {
+      text-align: center;
+      width: 100%;
       text-align: center; } }
 
 /* MENU INTERNAL **********************/
@@ -7374,5 +7711,39 @@ ng\:form {
 
 .ng-anchor {
   position: absolute; }
+
+.wrap-price-range {
+  background: #e3ebf2;
+  width: 100%;
+  padding: 20px 0;
+  margin: 50px 0 20px 0;
+  display: inline-block; }
+
+.item-button-price {
+  width: 140px;
+  margin-right: 20px;
+  float: left; }
+  @media only screen and (max-width: 970px) {
+    .item-button-price {
+      width: calc(50% - 10px);
+      margin-right: 10px;
+      float: left;
+      margin-bottom: 10px; } }
+  .item-button-price .bt-default-full {
+    text-transform: initial; }
+
+.item-button-price + .item-button-price + .item-button-price + .item-button-price + .item-button-price + .item-button-price {
+  margin-right: 0px; }
+  .item-button-price + .item-button-price + .item-button-price + .item-button-price + .item-button-price + .item-button-price .bt-default-full.template13 {
+    padding: 2px 2px 2px 10px;
+    text-align: left; }
+    @media only screen and (max-width: 970px) {
+      .item-button-price + .item-button-price + .item-button-price + .item-button-price + .item-button-price + .item-button-price .bt-default-full.template13 {
+        text-align: center;
+        padding: 2px 20px 2px 0px; } }
+
+.title-15 {
+  font: 15px "roboto_condensedbold";
+  color: #111111; }
 
 /*# sourceMappingURL=style.min.css.map */

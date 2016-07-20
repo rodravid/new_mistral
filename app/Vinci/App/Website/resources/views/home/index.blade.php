@@ -39,7 +39,33 @@
 
         </section>
 
-        <div class="row top90">
+        <section class="wrap-price-range">
+        <div class="row">
+            <p class="title-15 mbottom10 uppercase">Vinhos por faixa de preço (R$)</p>
+            <ul class="list-button-price">
+                <li class="item-button-price">
+                    <a href="javascript:void();" class="bt-default-full template13"">Até 60 <span class="arrow-link">></span></a>
+                </li>
+                <li class="item-button-price">
+                    <a href="javascript:void();" class="bt-default-full template13"">60 a 100 <span class="arrow-link">></span></a>
+                </li>
+                <li class="item-button-price">
+                    <a href="javascript:void();" class="bt-default-full template13"">170 a 170 <span class="arrow-link">></span></a>
+                </li>
+                <li class="item-button-price">
+                    <a href="javascript:void();" class="bt-default-full template13"">170 a 270 <span class="arrow-link">></span></a>
+                </li>
+                <li class="item-button-price">
+                    <a href="javascript:void();" class="bt-default-full template13"">270 a 500 <span class="arrow-link">></span></a>
+                </li>
+                <li class="item-button-price">
+                <a href="javascript:void();" class="bt-default-full template13"">Acima de 500 <span class="arrow-link">></span></a>
+                </li>
+            </ul>
+        </div>
+        </section>
+
+        <div class="row">
 
             <section class="wrap-banners">
                 <ul class="banners">
@@ -196,7 +222,7 @@
 
                 if (eDesktop()) {
 
-                    if (scrollTop >= 686 && scrollTop < lastBoxOffsetTop) {
+                    if (scrollTop >= 780 && scrollTop < lastBoxOffsetTop) {
 
                         toggleTitleCategory('show');
 
