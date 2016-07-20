@@ -8,6 +8,7 @@ use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Address\City\City;
 use Vinci\Domain\Address\Presenter\AddressPresenter;
+use Vinci\Domain\Common\Traits\HasIntegrationStatus;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -16,7 +17,7 @@ use Vinci\Domain\Core\Model;
 abstract class Address extends Model implements Presentable
 {
 
-    use Timestamps, PresentableTrait;
+    use Timestamps, PresentableTrait, HasIntegrationStatus;
 
     protected $presenter = AddressPresenter::class;
 
@@ -26,6 +27,11 @@ abstract class Address extends Model implements Presentable
      * @ORM\Column(type="integer")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $code;
 
     /**
      * @ORM\Embedded(class="Vinci\Domain\Address\AddressType")
@@ -86,6 +92,17 @@ abstract class Address extends Model implements Presentable
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function setCode($code)
+    {
+        $this->code = $code;
+        return $this;
     }
 
     public function getType()
