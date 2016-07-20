@@ -10,6 +10,7 @@
         <th><i class="fa fa-file-text-o"></i> RG/IE</th>
         <th><i class="fa fa-calendar"></i> Criado em</th>
         <th><i class="fa fa-edit"></i> Status</th>
+        <th><i class="fa fa-edit"></i> Status de integração</th>
         <th>Ações</th>
     </tr>
 @endsection

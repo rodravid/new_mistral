@@ -35,12 +35,28 @@ function present_status_html($status)
 {
     switch($status) {
         case 0:
-            return '<i class="fa fa-edit"></i><span class="text-info"> Rascunho</span>';
+            return '<span class="text-info"><i class="fa fa-edit"></i> Rascunho</span>';
             break;
 
         case 1:
-            return '<i class="fa fa-check"></i><span class="text-success"> Publicado</span>';
+            return '<span class="text-success"><i class="fa fa-check"></i> Publicado</span>';
         break;
+    }
+}
+
+function present_integration_status_html($status)
+{
+    switch($status) {
+        case \Vinci\Domain\Common\IntegrationStatus::PENDING:
+            return '<span class="text-warning"><i class="fa fa-hourglass-start"></i> Pendente</span>';
+            break;
+
+        case \Vinci\Domain\Common\IntegrationStatus::INTEGRATED:
+            return '<span class="text-success"><i class="fa fa-check"></i> Integrado</span>';
+            break;
+        case \Vinci\Domain\Common\IntegrationStatus::FAILED:
+            return '<span class="text-danger"><i class="fa fa-exclamation-circle"></i> Falhou</span>';
+            break;
     }
 }
 

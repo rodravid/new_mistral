@@ -28,6 +28,9 @@
                             <li class="list-group-item">
                                 <b>Total de endereços</b> <a class="pull-right"> {{ $customer->stats()->addresses() }}</a>
                             </li>
+                            <li class="list-group-item">
+                                <b>Status da integração</b> <span class="pull-right">{!! $customer->integration_status_html !!}</span>
+                            </li>
                         </ul>
 
                         @if ($loggedUser->hasPermissionTo('cms.customers.edit'))
