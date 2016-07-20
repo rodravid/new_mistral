@@ -22,7 +22,7 @@
                                 </div>
                             @endif
 
-                            @if ($errors->has())
+                            @if ($errors->count())
                                 <span class="help-block text-danger"><strong>{{ $errors->first() }}</strong></span>
                             @endif
 

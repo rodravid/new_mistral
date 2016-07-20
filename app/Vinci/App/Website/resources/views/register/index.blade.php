@@ -33,7 +33,7 @@
 
         <article class="wrap-content-register">
 
-            @if($errors->has())
+            @if($errors->count())
                 <ul class="error-message">
                     @if($errors->count() > 10)
                         <li>{{ $errors->first() }}</li>

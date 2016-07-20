@@ -16,7 +16,7 @@
                             <h3>Acesso</h3>
                             <p>Digite seu e-mail e senha para acessar o CMS:</p>
 
-                            @if ($errors->has())
+                            @if ($errors->count())
                                 <span class="help-block text-danger"><strong>{{ $errors->first() }}</strong></span>
                             @endif
 

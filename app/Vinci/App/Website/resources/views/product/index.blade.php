@@ -244,7 +244,7 @@
                                 <form action="{{ route('product.register') }}" method="POST">
                                     {!! Form::hidden('product', $product->getId()) !!}
                                     {!! Form::email('customer_email', null, ['class' => 'email input-register full mbottom10 mtop10 ' . ($errors->has('email') ? 'error-field' : '')]) !!}
-                                    @if($errors->has())
+                                    @if($errors->count())
                                         <p class="error-email mbottom10"><b>{{ $errors->first() }}</b></p>
                                     @endif
 

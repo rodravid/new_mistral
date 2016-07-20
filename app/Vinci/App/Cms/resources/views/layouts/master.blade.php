@@ -428,7 +428,7 @@
         </script>
     @endif
 
-    @if($errors->has())
+    @if($errors->count())
         <script>
             $.notify({
                 message: ' {{ $errors->first() }}'
