@@ -9,18 +9,16 @@
         </div>
 
         <div class="col-lg-12">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtShowcaseDescription">Descrição</label>
                 {!! Form::textarea('description', null, ['id' => 'txtShowcaseDescription', 'class' => 'form-control html-editor-especial', 'placeholder' => 'Digite a descrição', 'rows' => '3']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
             </div>
         </div>
 
         <div class="col-lg-12">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtHighlightPasswordConfirmation">Imagem Selo</label>
                 {!! Form::file('seal_image', ['id' => 'txtSealImage']) !!}
-                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
             </div>
         </div>
 
@@ -38,26 +36,23 @@
         <div class="col-xs-12 col-sm-6">
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
-                    <div class="form-group has-feedback" ng-show="discountType != 'exchange-rate'">
+                    <div class="form-group" ng-show="discountType != 'exchange-rate'">
                         <label for="txtShowcaseTitle">Valor do desconto</label>
                         {!! Form::text('discountAmount', null, ['id' => 'txtDiscountAmount', 'class' => 'form-control', 'placeholder' => 'Valor do desconto']) !!}
-                        <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
                     </div>
                 </div>
 
                 <div id="discount-exchange-rate" ng-show="discountType == 'exchange-rate'">
                     <div class="col-xs-12 col-sm-6">
-                        <div class="form-group has-feedback">
+                        <div class="form-group">
                             <label for="txtShowcaseTitle">Valor dólar DE</label>
                             {!! Form::text('currencyOriginalAmount', null, ['id' => 'txtDiscountOriginalCurrency', 'class' => 'form-control', 'placeholder' => 'Dólar DE']) !!}
-                            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6">
-                        <div class="form-group has-feedback">
+                        <div class="form-group">
                             <label for="txtShowcaseTitle">Valor dólar POR</label>
                             {!! Form::text('discountAmount', null, ['id' => 'txtDiscountAmount', 'class' => 'form-control', 'placeholder' => 'Dólar POR', 'ng-disabled' => 'discountType != \'exchange-rate\'']) !!}
-                            <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
                         </div>
                     </div>
                 </div>

@@ -30,6 +30,7 @@
                 columnDefs: [
                     {orderable: false, targets: 1 },
                     {orderable: false, width: '92px', targets: -1 },
+                    {className: 'hcenter vcenter', width: '50px', targets: 0 },
                     {className: 'hcenter vcenter', width: '70px', targets: 1 },
                     {className: 'vcenter', width: '200px', targets: 2 },
                     {className: 'hcenter vcenter', targets: 0 },
