@@ -7,6 +7,8 @@ use Illuminate\Contracts\View\Factory;
 use Spatie\Fractal\Fractal;
 use Vinci\Domain\ERP\Customer\Customer;
 use Vinci\Domain\ERP\Customer\CustomerErpTransformer;
+use Vinci\Domain\ERP\Order\Item\Item;
+use Vinci\Domain\ERP\Order\Item\ItemErpTransformer;
 use Vinci\Domain\ERP\Order\Order;
 use Vinci\Domain\ERP\Order\OrderErpTransformer;
 
@@ -36,6 +38,12 @@ class EnvelopeFactory
             'create' => [
                 'envelope' => 'order.create',
                 'transformer' => OrderErpTransformer::class
+            ]
+        ],
+        Item::class => [
+            'create' => [
+                'envelope' => 'order.item.create',
+                'transformer' => ItemErpTransformer::class
             ]
         ]
     ];
