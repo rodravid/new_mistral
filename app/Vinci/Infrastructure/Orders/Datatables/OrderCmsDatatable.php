@@ -27,6 +27,7 @@ class OrderCmsDatatable extends AbstractDatatables
         3 => 'o.total',
         4 => 'o.createdAt',
         5 => 'o.status',
+        6 => 'o.erpIntegrationStatus',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -68,6 +69,7 @@ class OrderCmsDatatable extends AbstractDatatables
             $presenter->total,
             $presenter->created_at,
             $presenter->status,
+            $presenter->integration_status_html,
             $this->buildActionsColumn($order)
         ];
     }

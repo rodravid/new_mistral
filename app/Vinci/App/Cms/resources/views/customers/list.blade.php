@@ -10,7 +10,7 @@
         <th><i class="fa fa-file-text-o"></i> RG/IE</th>
         <th><i class="fa fa-calendar"></i> Criado em</th>
         <th><i class="fa fa-edit"></i> Status</th>
-        <th><i class="fa fa-edit"></i> Status de integração</th>
+        <th><i class="fa fa-edit"></i> Status da integração</th>
         <th>Ações</th>
     </tr>
 @endsection
@@ -37,7 +37,7 @@
                     {orderable: false, targets: [4,5] },
                     {orderable: false, width: '170px', targets: -1 },
                     {className: 'hcenter vcenter', width: '20px', targets: [0] },
-                    {className: 'vcenter', targets: [1,2,3,4,5,6,7,8] }
+                    {className: 'vcenter', targets: [1,2,3,4,5,6,7,8,9] }
                 ]
             });
 
