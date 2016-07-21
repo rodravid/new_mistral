@@ -3,6 +3,7 @@
 namespace Vinci\Domain\ERP\Order;
 
 use Exception;
+use Vinci\App\Integration\Exceptions\CustomerNotIntegratedException;
 use Vinci\Domain\ERP\BaseErpService;
 use Vinci\Domain\ERP\Exceptions\ErpException;
 use Vinci\Domain\ERP\Order\Commands\CreateOrderItemCommand;
@@ -52,6 +53,10 @@ class OrderService extends BaseErpService
     public function create(SaveOrderCommand $command)
     {
         try {
+
+            if (! $command->getOrder()->getCustomer()->wasIntegrated()) {
+                throw new CustomerNotIntegratedException(sprintf('The customer has not yet been integrated.'));
+            }
 
             $order = $this->orderTranslator->translate($command->getOrder());
 

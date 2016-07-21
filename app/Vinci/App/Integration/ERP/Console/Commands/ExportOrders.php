@@ -4,6 +4,8 @@ namespace Vinci\App\Integration\ERP\Console\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
+use Queue;
+use Vinci\App\Integration\ERP\Order\Jobs\ExportOrderToErp;
 use Vinci\App\Integration\ERP\Order\OrderExporter;
 use Vinci\Domain\Common\IntegrationStatus;
 use Vinci\Domain\Order\OrderInterface;
@@ -19,7 +21,8 @@ class ExportOrders extends Command
      */
     protected $signature = 'erp:integration:orders:export 
                             {orders?* : IDs array of orders}
-                            {--with-failed : Include orders failed}';
+                            {--with-failed : Include orders failed}
+                            {--queued : Put orders on integration queue}';
 
     /**
      * The console command description.
@@ -46,7 +49,11 @@ class ExportOrders extends Command
 
         if ($count > 0) {
 
-            $this->info(sprintf("Exporting #%s order(s) to ERP...\n", $count));
+            if ($this->option('queued')) {
+                $this->info(sprintf("Putting #%s order(s) in integration queue...\n", $count));
+            } else {
+                $this->info(sprintf("Exporting #%s order(s) to ERP...\n", $count));
+            }
 
             $progressBar = $this->output->createProgressBar($count);
 
@@ -75,11 +82,23 @@ class ExportOrders extends Command
             $this->info("\n\nDone!");
 
             if (! empty($success)) {
-                $this->info(sprintf("\n%s order(s) exported with success!", count($success)));
+
+                if ($this->option('queued')) {
+                    $this->info(sprintf("\n%s order(s) were placed in integration queue!", count($success)));
+                } else {
+                    $this->info(sprintf("\n%s order(s) exported with success!", count($success)));
+                }
+
             }
 
             if (! empty($error)) {
-                $this->error(sprintf("\n%s order(s) were not exported!", count($error)));
+
+                if ($this->option('queued')) {
+                    $this->error(sprintf("\n%s order(s) were not placed on integration queue!", count($error)));
+                } else {
+                    $this->error(sprintf("\n%s order(s) were not exported!", count($error)));
+                }
+
             }
 
         } else {
@@ -95,7 +114,12 @@ class ExportOrders extends Command
 
         try {
 
-            $this->orderExporter->export($order);
+            if ($this->option('queued')) {
+                Queue::pushOn('vinci-orders-integration', new ExportOrderToErp($order->getId()));
+
+            } else {
+                $this->orderExporter->export($order);
+            }
 
             if (! $silent) {
                 $this->info('Done!');
