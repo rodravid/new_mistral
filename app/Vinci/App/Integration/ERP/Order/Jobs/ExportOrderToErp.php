@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Log;
 use Vinci\App\Core\Jobs\Job;
 use Vinci\App\Integration\ERP\Order\OrderExporter;
 use Vinci\App\Integration\Exceptions\CustomerNotIntegratedException;
