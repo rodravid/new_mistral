@@ -136,7 +136,7 @@
                         <li><a href="/c/pais/alemanha">Alemanha</a></li>
                         <li><a href="/c/pais/uruguai">Uruguai</a></li>
                         <li><a href="/c/pais/estados-unidos">Estados Unidos</a></li>
-                        <li><a href="/c/pais/uruguai">Lista de todos os países <span>></span></a></li>    
+                        <li><a class="all-links" href="/c/pais/uruguai">Lista de todos os países <small>></small></a></li>    
                         </ul>
                     </div>
                     <div class="division">
@@ -515,7 +515,7 @@
                             <li><a href="/c/pais/espanha">Best Buys</a></li>
                             <li><a href="/c/pais/italia">90+ pontos</a></li>
                             <li><a href="/c/pais/franca">Wine Spectator</a></li>
-                            <li><a href="/c/pais/portugal">Todos os vinhos pontuados ></a></li>
+                            <li><a class="all-links" href="/c/pais/portugal">Todos os vinhos pontuados <small>></small></a></li>
                         </ul>
                     </div>
 

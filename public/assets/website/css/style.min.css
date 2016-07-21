@@ -1255,6 +1255,11 @@ input#control-nav {
 .blue {
   color: #11b6f0; }
 
+.all-links small {
+  float: right;
+  font-size: 16px;
+  font-family: "roboto_condensedbold"; }
+
 /* Inicio templates BLUE **************BLUE****************BLUE***********/
 .template1 {
   /**slider*/
@@ -1284,22 +1289,28 @@ input#control-nav {
 			}
 		}
 		} */ }
-  .template1 .price-card-menu {
+  .template1 .price-card-menu,
+  .template1 .all-links {
     color: #11b6f0; }
-  .template1 .every-category {
+  .template1 .all-links
+.every-category {
     background: #11b6f0;
     border: 2px solid #11b6f0; }
-    .template1 .every-category:hover {
+    .template1 .all-links
+.every-category:hover {
       background: #fff;
       transition: all 50ms ease; }
-      .template1 .every-category:hover h3 {
+      .template1 .all-links
+.every-category:hover h3 {
         color: #11b6f0; }
-      .template1 .every-category:hover span {
+      .template1 .all-links
+.every-category:hover span {
         color: #fff;
         background: #11b6f0;
         right: 2px;
         bottom: 2px; }
-    .template1 .every-category span {
+    .template1 .all-links
+.every-category span {
       color: #11b6f0; }
   .template1 .template-button {
     background: #791898;
@@ -1526,7 +1537,8 @@ input#control-nav {
 /* Inicio templates RED ****************RED******************RED*******/
 .template2 {
   /*card produto*/ }
-  .template2 .price-card-menu {
+  .template2 .price-card-menu,
+  .template2 .all-links {
     color: #e02d50; }
   .template2 .template-button {
     background: #ffa311;
@@ -1750,7 +1762,8 @@ input#control-nav {
 			}
 			} */
   /*card produto*/ }
-  .template3 .price-card-menu {
+  .template3 .price-card-menu,
+  .template3 .all-links {
     color: #3cc811; }
   .template3 .template-button {
     background: #0c2401;
@@ -1962,7 +1975,8 @@ input#control-nav {
 /* Inicio templates PURPLE ****************PURPLE******************PURPLE*******/
 .template4 {
   /*card produto*/ }
-  .template4 .price-card-menu {
+  .template4 .price-card-menu,
+  .template4 .all-links {
     color: #791898; }
   .template4 .template-button {
     background: #ff008a;
@@ -2187,7 +2201,8 @@ input#control-nav {
 				}
 			}
 			} */ }
-  .template5 .price-card-menu {
+  .template5 .price-card-menu,
+  .template5 .all-links {
     color: #e411c3; }
   .template5 .template-button {
     background: #791898;
@@ -2410,7 +2425,8 @@ input#control-nav {
 			}
 		}
 		*/ }
-  .template6 .price-card-menu {
+  .template6 .price-card-menu,
+  .template6 .all-links {
     color: #3438db; }
   .template6 .template-button {
     background: #e929d9;
@@ -2619,7 +2635,8 @@ input#control-nav {
 /* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 .template7 {
   /*card produto*/ }
-  .template7 .price-card-menu {
+  .template7 .price-card-menu,
+  .template7 .all-links {
     color: #ffa311; }
   .template7 .template-button {
     background: #a0015f;
@@ -2828,7 +2845,8 @@ input#control-nav {
 /* Inicio templates BLACK ******************BLACK****************BLACK*******/
 .template8 {
   /*card produto*/ }
-  .template8 .price-card-menu {
+  .template8 .price-card-menu,
+  .template8 .all-links {
     color: #111111; }
   .template8 .title-slider {
     color: #00e667; }
@@ -3065,7 +3083,8 @@ input#control-nav {
 			}
 		}
 		} */ }
-  .template9 .price-card-menu {
+  .template9 .price-card-menu,
+  .template9 .all-links {
     color: #ff5400; }
   .template9 .every-category {
     background: #ff5400;
@@ -3305,7 +3324,8 @@ input#control-nav {
 			}
 		}
 		} */ }
-  .template10 .price-card-menu {
+  .template10 .price-card-menu,
+  .template10 .all-links {
     color: #a0015f; }
   .template10 .txt-contact {
     color: #de1e43; }
@@ -3527,7 +3547,8 @@ input#control-nav {
 			}
 		}
 		} */ }
-  .template11 .price-card-menu {
+  .template11 .price-card-menu,
+  .template11 .all-links {
     color: #ff008a; }
   .template11 .title-form {
     color: #ff008a; }
@@ -3747,7 +3768,8 @@ input#control-nav {
 			}
 		}
 		} */ }
-  .template12 .price-card-menu {
+  .template12 .price-card-menu,
+  .template12 .all-links {
     color: #8a25d8; }
   .template12 .every-category {
     background: #8a25d8;
@@ -3987,7 +4009,8 @@ input#control-nav {
 			}
 		}
 		} */ }
-  .template13 .price-card-menu {
+  .template13 .price-card-menu,
+  .template13 .all-links {
     color: #e3ebf2; }
   .template13 .every-category {
     background: #e3ebf2;
@@ -4985,7 +5008,7 @@ a.bt-default {
 
 .featured-sub-menu .wrap-seal-card {
   right: -22px;
-  top: -25px; }
+  top: -37px; }
 
 .featured-sub-menu .seal-score-card span {
   color: #6b0f45 !important; }
