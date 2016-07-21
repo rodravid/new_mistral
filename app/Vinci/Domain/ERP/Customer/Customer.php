@@ -20,17 +20,6 @@ class Customer extends Model
         return $this;
     }
 
-    public function setPhone($phone)
-    {
-        if (is_array($phone)) {
-            $this->attributes['phone'] = new Phone($phone);
-            return $this;
-        }
-
-        $this->attributes['phone'] = $phone;
-        return $this;
-    }
-
     public function setCellPhone($phone)
     {
         if (is_array($phone)) {

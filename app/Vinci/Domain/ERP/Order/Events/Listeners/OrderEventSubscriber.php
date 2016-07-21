@@ -2,16 +2,19 @@
 
 namespace Vinci\Domain\ERP\Order\Events\Listeners;
 
+use Vinci\App\Integration\ERP\Order\AddressIntegrationLogger;
 use Vinci\App\Integration\ERP\Order\OrderIntegrationLogger;
 use Vinci\App\Integration\ERP\Order\OrderItemIntegrationLogger;
 use Vinci\Domain\Common\IntegrationStatus;
+use Vinci\Domain\ERP\Order\Events\AddressErpChecked;
+use Vinci\Domain\ERP\Order\Events\AddressErpCheckFailed;
 use Vinci\Domain\ERP\Order\Events\OrderCreationErpFailed;
 use Vinci\Domain\ERP\Order\Events\OrderItemCreationErpFailed;
 use Vinci\Domain\ERP\Order\Events\OrderItemWasCreatedOnErp;
 use Vinci\Domain\ERP\Order\Events\OrderWasCreatedOnErp;
+use Vinci\Domain\ERP\Order\Events\ShippingAddressUpdateFailed;
+use Vinci\Domain\ERP\Order\Events\ShippingAddressWasUpdated;
 use Vinci\Domain\Order\OrderRepository;
-use Vinci\Domain\ERP\Order\Events\OrderSaveOnErpFailed;
-use Vinci\Domain\ERP\Order\Events\OrderWasSavedOnErp;
 
 class OrderEventSubscriber
 {
@@ -97,6 +100,74 @@ class OrderEventSubscriber
         ]);
     }
 
+    public function onAddressErpChecked(AddressErpChecked $event)
+    {
+        $address = $event->getCommand()->getAddress();
+
+        $this->orderRepository->save($address);
+
+        AddressIntegrationLogger::success([
+            'user' => $event->getCommand()->getUserActor(),
+            'resource_owner_id' => $address->getOrder()->getId(),
+            'resource_id' => $address->getId(),
+            'message' => sprintf('Endereço de entrega do pedido #%s checado com sucesso.', $address->getOrder()->getNumber()),
+            'request_type' => 'get',
+            'request_body' => $event->getRequest(),
+            'response_body' => $event->getResponse()
+        ]);
+    }
+
+    public function onAddressErpCheckFailed(AddressErpCheckFailed $event)
+    {
+        $address = $event->getCommand()->getAddress();
+
+        AddressIntegrationLogger::error([
+            'user' => $event->getCommand()->getUserActor(),
+            'resource_owner_id' => $address->getOrder()->getId(),
+            'resource_id' => $address->getId(),
+            'message' => sprintf('Falha ao checar endereço de entrega do pedido #%s no ERP.', $address->getOrder()->getNumber()),
+            'error_message' => $event->getException()->getMessage(),
+            'error_trace' => $event->getException()->getTraceAsString(),
+            'request_type' => 'get',
+            'request_body' => $event->getRequest(),
+            'response_body' => $event->getResponse()
+        ]);
+    }
+
+    public function onShippingAddressWasUpdated(ShippingAddressWasUpdated $event)
+    {
+        $address = $event->getCommand()->getAddress();
+
+        $this->orderRepository->save($address);
+
+        AddressIntegrationLogger::success([
+            'user' => $event->getCommand()->getUserActor(),
+            'resource_owner_id' => $address->getOrder()->getId(),
+            'resource_id' => $address->getId(),
+            'message' => sprintf('Endereço de entrega do pedido #%s checado com sucesso.', $address->getOrder()->getNumber()),
+            'request_type' => 'update',
+            'request_body' => $event->getRequest(),
+            'response_body' => $event->getResponse()
+        ]);
+    }
+
+    public function onShippingAddressUpdateFailed(ShippingAddressUpdateFailed $event)
+    {
+        $address = $event->getCommand()->getAddress();
+
+        AddressIntegrationLogger::error([
+            'user' => $event->getCommand()->getUserActor(),
+            'resource_owner_id' => $address->getOrder()->getId(),
+            'resource_id' => $address->getId(),
+            'message' => sprintf('Falha ao atualizar endereço de entrega do pedido #%s no ERP.', $address->getOrder()->getNumber()),
+            'error_message' => $event->getException()->getMessage(),
+            'error_trace' => $event->getException()->getTraceAsString(),
+            'request_type' => 'update',
+            'request_body' => $event->getRequest(),
+            'response_body' => $event->getResponse()
+        ]);
+    }
+
     public function subscribe($events)
     {
         $events->listen(
@@ -117,6 +188,26 @@ class OrderEventSubscriber
         $events->listen(
             'Vinci\Domain\ERP\Order\Events\OrderItemCreationErpFailed',
             'Vinci\Domain\ERP\Order\Events\Listeners\OrderEventSubscriber@onOrderItemCreationFailed'
+        );
+
+        $events->listen(
+            'Vinci\Domain\ERP\Order\Events\AddressErpChecked',
+            'Vinci\Domain\ERP\Order\Events\Listeners\OrderEventSubscriber@onAddressErpChecked'
+        );
+
+        $events->listen(
+            'Vinci\Domain\ERP\Order\Events\AddressErpCheckFailed',
+            'Vinci\Domain\ERP\Order\Events\Listeners\OrderEventSubscriber@onAddressErpCheckFailed'
+        );
+
+        $events->listen(
+            'Vinci\Domain\ERP\Order\Events\ShippingAddressWasUpdated',
+            'Vinci\Domain\ERP\Order\Events\Listeners\OrderEventSubscriber@onShippingAddressWasUpdated'
+        );
+
+        $events->listen(
+            'Vinci\Domain\ERP\Order\Events\ShippingAddressUpdateFailed',
+            'Vinci\Domain\ERP\Order\Events\Listeners\OrderEventSubscriber@onShippingAddressUpdateFailed'
         );
     }
 
