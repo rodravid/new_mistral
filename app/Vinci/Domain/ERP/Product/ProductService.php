@@ -36,4 +36,11 @@ class ProductService
         return $this->repository->getStock($sku);
     }
 
+    public function getPrice($sku)
+    {
+        $product = $this->getOneBySKU($sku);
+
+        return $product->price;
+    }
+
 }

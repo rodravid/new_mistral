@@ -60,6 +60,8 @@ class ProductImporter
             $this->log($e, $sku);
 
             throw $e;
+        } finally {
+            app('em')->clear();
         }
     }
 
@@ -88,6 +90,39 @@ class ProductImporter
             $this->log($e, $sku);
 
             throw $e;
+        } finally {
+            app('em')->clear();
+        }
+    }
+
+    public function importPrice($sku)
+    {
+        try {
+
+            $product = $this->localProductRepository->findOneBySKU($sku);
+
+            if (! $product) {
+                throw new IntegrationException(sprintf('The product #%s dont exists.', $sku));
+            }
+
+            if (! $product->shouldImportPrice()) {
+                throw new IntegrationException(sprintf('The product #%s can not import price.', $sku));
+            }
+
+            $newPrice = $this->erpProductService->getPrice($sku);
+
+            $this->localProductService->changePrice($product->getMasterVariant(), $newPrice);
+
+            return $newPrice;
+
+        } catch (Exception $e) {
+
+            $this->log($e, $sku);
+
+            throw $e;
+
+        } finally {
+            app('em')->clear();
         }
     }
 

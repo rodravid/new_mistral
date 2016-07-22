@@ -37,6 +37,7 @@ class Kernel extends ConsoleKernel
         UniqueIdTest::class,
         'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock',
+        'Vinci\App\Integration\ERP\Console\Commands\ImportProductsPrice',
         'Vinci\App\Integration\ERP\Console\Commands\ExportCustomers',
         'Vinci\App\Integration\ERP\Console\Commands\ExportOrders',
         'Vinci\App\Integration\ERP\Console\Commands\ExportOrdersItems'
@@ -55,6 +56,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('erp:integration:products:import', ['--changed' => true])
             ->cron('5 */2 * * *');
+
+        $schedule->command('erp:integration:products:import-price', ['--all' => true])
+            ->cron('*/30 * * * *');
 
         $schedule->command('erp:integration:products:import-stock', ['--all' => true])
             ->hourly();

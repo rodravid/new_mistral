@@ -167,7 +167,7 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
         return $this->discountType;
     }
 
-    public function setDiscountType($discountType)
+    public function setDiscountType($discountType = null)
     {
         $this->discountType = $discountType;
         return $this;
@@ -178,7 +178,7 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
         return $this->discountAmount;
     }
 
-    public function setDiscountAmount($discountAmount)
+    public function setDiscountAmount($discountAmount = null)
     {
         $this->discountAmount = (double) $discountAmount;
         return $this;
