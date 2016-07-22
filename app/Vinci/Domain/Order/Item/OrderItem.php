@@ -53,6 +53,11 @@ class OrderItem extends Model implements Presentable
     protected $originalPrice;
 
     /**
+     * @ORM\Column(name="aliquot_ipi", type="decimal", precision=13, scale=2, nullable=true)
+     */
+    protected $aliquotIpi;
+
+    /**
      * @ORM\Column(type="decimal", precision=13, scale=2)
      */
     protected $total;
@@ -108,6 +113,17 @@ class OrderItem extends Model implements Presentable
     public function setOriginalPrice($originalPrice)
     {
         $this->originalPrice = $originalPrice;
+        return $this;
+    }
+
+    public function getAliquotIpi()
+    {
+        return (double) $this->aliquotIpi;
+    }
+
+    public function setAliquotIpi($aliquotIpi)
+    {
+        $this->aliquotIpi = $aliquotIpi;
         return $this;
     }
 
