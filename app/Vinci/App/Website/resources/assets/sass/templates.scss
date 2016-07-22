@@ -173,15 +173,24 @@ button.bt-default-full.bt-middle {
 
 /*Cores ******************************************/
 .orange {color:$orange;}
-.blue {color:$blue;} 
+.blue {color:$blue;}
+
+.all-links small {
+	float:right;
+	font-size:16px;
+	font-family:$robotobold;
+}
 
 /* Inicio templates BLUE **************BLUE****************BLUE***********/
 
 .template1 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$blue;
 }
+
+.all-links
 
 	.every-category {
 		background: $blue;
@@ -638,7 +647,8 @@ button.bt-default-full.bt-middle {
 
 	.template2 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$red;
 }
 
@@ -1017,7 +1027,8 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates GREEN ****************GREEN******************GREEN*******/
 	.template3 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$green;
 }
 
@@ -1406,7 +1417,8 @@ button.bt-default-full.bt-middle {
 
 		.template4 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$purple;
 }
 
@@ -1785,7 +1797,8 @@ button.bt-default-full.bt-middle {
 		/* Inicio templates PINK ******************PINK****************PINK*******/
 		.template5 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$pink;
 }
 
@@ -2174,7 +2187,8 @@ button.bt-default-full.bt-middle {
 		/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 		.template6 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$darkblue;
 }
 
@@ -2558,7 +2572,8 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 	.template7 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$orange;
 }
 
@@ -2937,7 +2952,8 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates BLACK ******************BLACK****************BLACK*******/
 	.template8 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$black;
 }
 
@@ -3321,7 +3337,8 @@ button.bt-default-full.bt-middle {
 
 	.template9 {
 
-		.price-card-menu {
+		.price-card-menu,
+		.all-links {
 	color:$dark-orange;
 }
 
@@ -3746,7 +3763,8 @@ button.bt-default-full.bt-middle {
 
 	.template10 {
 
-		.price-card-menu {
+		.price-card-menu,
+		.all-links {
 	color:$dark-pink;
 }
 
@@ -4107,7 +4125,8 @@ button.bt-default-full.bt-middle {
 
 	.template11 {
 
-		.price-card-menu {
+		.price-card-menu,
+		.all-links {
 	color:$dark-pink-heavy;
 }
 
@@ -4464,7 +4483,8 @@ button.bt-default-full.bt-middle {
 
 	.template12 {
 
-		.price-card-menu {
+		.price-card-menu,
+		.all-links {
 	color:$lightpurple;
 }
 
@@ -4890,7 +4910,8 @@ button.bt-default-full.bt-middle {
 
 .template13 {
 
-.price-card-menu {
+.price-card-menu,
+.all-links {
 	color:$grey;
 }
 
