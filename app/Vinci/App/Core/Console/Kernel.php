@@ -50,6 +50,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('erp:integration:products:import', ['--new'])
+            ->cron('10 * * * *');
+
+        $schedule->command('erp:integration:products:import', ['--changed'])
+            ->cron('5 */2 * * *');
+
+        $schedule->command('erp:integration:products:import-stock', ['--all'])
+            ->hourly();
+
         $schedule->command('search:index-products')
             ->everyTenMinutes();
     }
