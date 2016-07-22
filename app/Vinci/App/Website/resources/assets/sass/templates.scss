@@ -179,33 +179,34 @@ button.bt-default-full.bt-middle {
 
 .template1 {
 
+.price-card-menu {
+	color:$blue;
+}
 
+	.every-category {
+		background: $blue;
+		border:2px solid $blue;
 
+		&:hover {
+			background: #fff;
+			transition: all 50ms ease;
 
-					.every-category {
-			background: $blue;
-			border:2px solid $blue;
-
-			&:hover {
-				background: #fff;
-				transition: all 50ms ease;
-
-				h3 {
-					color:$blue;
-				}
-				span {
-					color:#fff;
-					background:$blue;
-					right: 2px;
-					bottom:2px;
-
-				}
-			}
-
-			span{
+			h3 {
 				color:$blue;
 			}
+			span {
+				color:#fff;
+				background:$blue;
+				right: 2px;
+				bottom:2px;
+
+			}
 		}
+
+		span{
+			color:$blue;
+		}
+	}
 
 
 	.template-button {
@@ -637,7 +638,9 @@ button.bt-default-full.bt-middle {
 
 	.template2 {
 
-
+.price-card-menu {
+	color:$red;
+}
 
 		.template-button {
 			background: $orange;
@@ -1014,6 +1017,9 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates GREEN ****************GREEN******************GREEN*******/
 	.template3 {
 
+.price-card-menu {
+	color:$green;
+}
 
 		.template-button {
 			background: #0c2401;
@@ -1400,6 +1406,9 @@ button.bt-default-full.bt-middle {
 
 		.template4 {
 
+.price-card-menu {
+	color:$purple;
+}
 
 			.template-button {
 				background: $dark-pink-heavy;
@@ -1776,6 +1785,9 @@ button.bt-default-full.bt-middle {
 		/* Inicio templates PINK ******************PINK****************PINK*******/
 		.template5 {
 
+.price-card-menu {
+	color:$pink;
+}
 
 	.template-button {
 		background: $purple;
@@ -2162,6 +2174,9 @@ button.bt-default-full.bt-middle {
 		/* Inicio templates DARKBLUE ******************DARKBLUE****************DARKBLUE*******/
 		.template6 {
 
+.price-card-menu {
+	color:$darkblue;
+}
 
 
 			.template-button {
@@ -2543,7 +2558,9 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates ORANGE ******************ORANGE****************ORANGE*******/
 	.template7 {
 
-
+.price-card-menu {
+	color:$orange;
+}
 
 		.template-button {
 			background: #a0015f;
@@ -2920,7 +2937,9 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates BLACK ******************BLACK****************BLACK*******/
 	.template8 {
 
-
+.price-card-menu {
+	color:$black;
+}
 
 		.title-slider {
 			color:#00e667; 
@@ -3301,6 +3320,10 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates LARANJA ESCURO **************LARANJA ESCURO****************LARANJA ESCURO***********/
 
 	.template9 {
+
+		.price-card-menu {
+	color:$dark-orange;
+}
 
 					.every-category {
 			background: $dark-orange;
@@ -3723,6 +3746,10 @@ button.bt-default-full.bt-middle {
 
 	.template10 {
 
+		.price-card-menu {
+	color:$dark-pink;
+}
+
 		.txt-contact {
 			color:#de1e43;
 		}
@@ -4080,6 +4107,10 @@ button.bt-default-full.bt-middle {
 
 	.template11 {
 
+		.price-card-menu {
+	color:$dark-pink-heavy;
+}
+
 		.title-form {
 			color:$dark-pink-heavy;
 		}
@@ -4432,6 +4463,10 @@ button.bt-default-full.bt-middle {
 	/* Inicio templates LIGHT PURPLE **************LIGHT PURPLE****************LIGHT PURPLE***********/
 
 	.template12 {
+
+		.price-card-menu {
+	color:$lightpurple;
+}
 
 					.every-category {
 			background: $lightpurple;
@@ -4849,6 +4884,465 @@ button.bt-default-full.bt-middle {
 
 
 	/* Fim templates LIGHT PURPLE **************LIGHT PURPLE****************LIGHT PURPLE***********/
+
+
+	/* Inicio templates GREY **************GREY****************GREY***********/
+
+.template13 {
+
+.price-card-menu {
+	color:$grey;
+}
+
+	.every-category {
+		background: $grey;
+		border:2px solid $grey;
+
+		&:hover {
+			background: #fff;
+			transition: all 50ms ease;
+
+			h3 {
+				color:$grey;
+			}
+			span {
+				color:#fff;
+				background:$grey;
+				right: 2px;
+				bottom:2px;
+
+			}
+		}
+
+		span{
+			color:$grey;
+		}
+	}
+
+
+	.template-button {
+		background: $purple;
+		border:2px solid $purple;
+		transition: all .1s ease .05s;
+
+		&:hover{
+			background: #fff;
+			color:$purple;
+			border:2px solid $purple;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $purple;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $purple;
+			}
+		}
+
+		.arrow-link{
+			color:$purple;
+			transition: all .1s ease .05s;
+			border: 2px solid $purple;
+		}
+	}
+
+	.botoes-add {
+		background:$grey;
+	}
+
+	.see-more-info,
+	.see-less-info {
+		border: 1px solid $grey;
+		color: $grey;
+
+		@media #{$screen767} { 
+			border:0;
+		}
+	}
+
+	.seals-description {
+
+		li {
+
+			p {
+
+				color:$grey;
+			}
+
+			div {
+			}
+
+		}
+
+		li+li {
+
+			
+			div {
+				display:none;
+			}
+		}
+	}
+
+	.tit-product-info {
+		color:#5e057b;
+	}
+
+	.current-price {
+		color:$grey;
+	}
+
+	.info-vinho-template {
+		color:$grey;
+	}
+
+	.title-form {
+		color:$grey;
+	}
+
+	.title-internal {
+		color:$grey;
+	}
+
+	.input-register{
+
+		&:focus {
+			border:1px solid $grey;
+		}
+	}
+
+	.bt-arrow-action {
+		border: 2px solid $grey;
+		color: $grey;
+
+		&:hover {
+			background: $grey;
+		}
+	}
+
+	.list-sub-menu li a:hover{
+		color:$grey;
+	}
+
+	.link-featured-sub-menu:hover {
+		background:$grey;
+		transition: all 50ms ease;
+
+		h3,p,span{
+			color:#fff;
+		}
+
+	}
+
+	.featured-sub-link:hover {
+		color:$grey;
+	}
+
+	.favorite {
+		background-position:0 -40px;
+	}
+
+	.favorite.clicado {
+		background-position: -40px -40px;
+	}
+
+	.title-menu {
+		color:#11b6f0;
+	}
+
+	.featured-sub-menu {
+		border:1px solid #11b6f0;
+	}
+
+	.every-category {
+		background: #11b6f0;
+
+		h3 { }
+
+		span {
+			color:#11b6f0;
+		}
+
+	}
+
+	/**slider*/
+
+	.title-slider {
+		color:#5d003b;
+	}
+	
+/* 	.descr-slider {
+
+		.bt-default {
+			background:#570036;
+		}
+
+		.arrow-link {
+			color:#5d003b;
+			background: #00b1ef;
+		}
+
+		} */
+
+		.descr-slider{
+			.bt-default{
+				background:#570036;
+				border: 2px solid #5d003b;
+			}
+			.arrow-link{
+				color:#5d003b;
+				background: $grey;
+				border: 2px solid #5d003b;
+			}
+		}
+
+		/*card produto*/
+
+/* 	.wine-card:hover {
+		.bt-default {
+			background:#fff;
+			border:2px solid $grey;
+			color:$grey;
+			transition: all .1s ease .05s;
+			.arrow-link {
+				background: $grey;
+				color: #fff;
+				transition: all .1s ease .05s;
+			}
+		}
+		} */
+
+		.title-category {
+			color:$grey;
+		}
+
+		.wine-card {
+			border:1px solid $grey;
+
+			.wine-price {
+				color:$grey;
+			}
+
+			.bt-default {
+				background:$grey;
+				border: 2px solid $grey;
+			}
+
+			.arrow-link {
+				background:#fff;
+				color:$grey;
+				border: 2px solid $grey;
+			}
+
+			&:hover {
+				.bt-default {
+					background:#fff;
+					border:2px solid $grey;
+					color:$grey;
+					transition: all .1s ease .05s;
+					.arrow-link {
+						background: $grey;
+						color: #fff;
+						transition: all .1s ease .05s;
+					}
+				}
+			}
+
+		}
+
+		.bt-default-full {
+			background: $grey;
+
+			.arrow-link {
+				color:$grey;
+			}
+
+		}
+
+
+
+	}
+
+	.header-internal.template13-bg{
+		background:$grey;
+
+		.nav-link:hover{
+			color:$grey;
+		}
+
+		.nav-item-user-logged .nav-link {
+			color:$grey;
+		}
+		.nav-item-user-logged:hover .nav-link:before,
+		.nav-item-user-logged:hover .nav-link{
+			color:$grey;
+		}
+
+		.drop-user{
+			a{
+				&:hover{
+					color: $grey;
+				}
+			}
+			a+a{
+				border-top:1px solid #d6d6d6;
+			}
+		}
+
+
+
+
+		.internal-subtitle-category {
+			color:#5e057b;
+		}
+
+		.more-txt,
+		.less-txt {
+			color:#5e057b;
+		}
+
+		
+		@media #{$screen767} {
+			.input-bt-search {
+				background-position: -209px -122px;
+
+			}
+			.input-search {
+				color:$grey;
+			}
+		}
+
+		.suggestions-link:hover {
+			color:$grey;
+			span {
+				color:$grey;
+			}
+		}
+
+
+
+	}
+
+
+	.wine-card.template13 {
+
+		border:1px solid $grey;
+		.wine-price{
+			color:$grey;
+		}
+
+		.bt-default{
+			background:$grey;
+			border: 2px solid $grey;
+		}
+		.arrow-link{
+			background:#fff;
+			color:$grey;
+			border: 2px solid $grey;
+		}
+
+		&:hover {
+			.bt-default{
+				background:#fff;
+				border: 2px solid $grey;
+				color:$grey;
+			}
+			.arrow-link{
+				background:$grey;
+				color:#fff;
+				border: 2px solid $grey;
+			}
+		}
+
+	}
+
+	.template13.bg-slider-principal {
+		background: #11b6f0;
+	}
+
+	.bt-default.bt-default-grey {
+		background: #11b6f0;
+		color: #fff;
+		border: 2px solid #11b6f0;
+		position: relative;
+		padding-right: 38px;
+		text-align: center;
+		line-height: 24px;
+		transition: all .1s ease .05s;
+		&:hover{
+			background:#fff;
+			color:$grey;
+			border:2px solid $grey;
+			transition: all .1s ease .05s;
+
+			.arrow-link {
+				color:#fff;
+				background: $grey;
+				transition: all .1s ease .05s;
+			}
+		}
+
+		.arrow-link {
+			color: $grey;
+			background: #fff;
+			position: absolute;
+			top: -2px;
+			right: -2px;
+			line-height: 20px;
+			border: 2px solid $grey;
+			height: 32px;
+			width: 30px;
+			transition: all .1s ease .05s;
+		}
+
+	}
+
+	.bt-default-full.template13 {
+		background: $white;
+		border:2px solid $white;
+		transition: all .1s ease .05s;
+		color:$black;
+
+/* 		&:hover{
+			background: #fff;
+			color:$grey;
+			border:2px solid $grey;
+			transition: all .1s ease .05s;
+			.arrow-link{
+				background: $grey;
+				color:#fff;
+				transition: all .1s ease .05s;
+				border: 2px solid $grey;
+			}
+		} */
+
+		.arrow-link{
+			color:$black;
+			transition: all .1s ease .05s;
+			border: 2px solid $white;
+			font-size: 14px;
+			background:$grey;
+		}
+	}
+
+	.bg-product.template13 {
+		background: $grey;
+	}
+
+	.bg-template.template13 {
+		border:0;
+
+		.wine-card {
+			background:#e5f7fd;
+		}
+	}
+
+	.template13-bg.bg-color-category {
+		background-color:$grey !important;
+		@media #{$screen970} {
+			background:$grey !important;
+		}
+	}
+
+	/* Fim template GREY ******************GREY****************GREY*******/
 
 
 
