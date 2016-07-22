@@ -35,7 +35,7 @@ class ExportCustomerToErp extends Job implements ShouldQueue
         } catch (Exception $e) {
 
             $this->attempts() < 3 ?
-                $this->release(5) : $this->delete();
+                $this->release() : $this->delete();
 
             throw $e;
         }
