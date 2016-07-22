@@ -5,8 +5,6 @@ node[:deploy].each do |app_name, deploy|
     user "root"
     cwd "#{current_path}"
     code <<-EOH
-    npm install
-    gulp --production 
     EOH
   end
 end 
