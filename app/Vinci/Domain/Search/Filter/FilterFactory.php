@@ -40,6 +40,10 @@ class FilterFactory
 
             $values = $this->filterValueFactory->makeCollection(array_get($item, 'buckets'));
 
+            foreach ($values as $value) {
+                $value->setFilter($filter);
+            }
+
             $filter->setValues($values);
 
             $collection->add($filter);

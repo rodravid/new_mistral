@@ -17,6 +17,8 @@ class FilterValue implements Presentable
 
     protected $count = 0;
 
+    protected $filter;
+
     public function getTitle()
     {
         return $this->title;
@@ -36,6 +38,17 @@ class FilterValue implements Presentable
     public function setCount($count)
     {
         $this->count = (int) $count;
+        return $this;
+    }
+
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    public function setFilter(Filter $filter)
+    {
+        $this->filter = $filter;
         return $this;
     }
 

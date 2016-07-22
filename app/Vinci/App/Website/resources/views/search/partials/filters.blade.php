@@ -21,13 +21,13 @@
                 </li>
             @endif
 
-            @foreach($result->getSelectedFilters() as $key => $filter)
+            @foreach($result->getSelectedFilters() as $filter)
 
-                @foreach($filter as $selectedValue)
+                @foreach($filter->getValues() as $selectedValue)
                     <li class="filter-search-item">
-                        <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $key }}[]" data-value="{{ $selectedValue }}">
+                        <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $filter->name }}[]" data-value="{{ $selectedValue->getTitle() }}">
                             <li>
-                                <a href="javascript:void(0);">{{ $selectedValue }}</a>
+                                <a href="javascript:void(0);">{{ $filter->title }} - {{ $selectedValue->title }}</a>
                             </li>
                             <li>
                                 <a href="javascript:void(0);">X</a>
@@ -46,7 +46,7 @@
 
             <ul class="filter-search search-filter" data-urlkey="{{ $filter->name }}[]">
                 @foreach($filter->getValues() as $value)
-                    <li class="filter-search-item search-filter-value" data-value="{{ $value->title }}">
+                    <li class="filter-search-item search-filter-value" data-value="{{ $value->getTitle() }}">
                         <ul class="subitem-filter-search">
                             <li>
                                 <a href="javascript:void(0);">{{ $value->title }}</a>
@@ -58,7 +58,9 @@
                     </li>
                 @endforeach
 
-                <span class="see-more-filter">+ veja mais</span>
+                @if ($filter->name != 'preco')
+                    <span class="see-more-filter">+ veja mais</span>
+                @endif
             </ul>
 
         @endforeach
