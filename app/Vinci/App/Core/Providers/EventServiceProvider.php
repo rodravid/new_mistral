@@ -22,6 +22,8 @@ class EventServiceProvider extends ServiceProvider
             'Vinci\Domain\Order\Events\Listeners\CloseCustomerAbandonedCarts',
             'Vinci\Domain\Order\Events\Listeners\ReduceStockOfProducts',
             'Vinci\Domain\Order\Events\Listeners\SendOrderConfirmationMail',
+            'Vinci\Domain\Order\Events\Listeners\SendOrderToIntegrationQueue',
+            'Vinci\Domain\Order\Events\Listeners\SendCustomerToIntegrationQueue'
         ],
 
         'Vinci\Domain\Customer\Events\CustomerWasCreated' => [

@@ -4,6 +4,7 @@ namespace Vinci\App\Cms\Http;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Contracts\Queue\Factory as QueueManager;
+use Vinci\Domain\Order\Order;
 
 class TestController extends Controller
 {
@@ -19,10 +20,21 @@ class TestController extends Controller
     public function index()
     {
 
-        $job = $this->queue->connection('sqs')->pushOn('vinci-teste', new TestJob());
+        $order = new Order();
 
-        dd($job);
+        dd($order);
 
+
+//        for ($i = 0; $i <= 50; $i++) {
+//            $this->queue->connection('database')
+//                ->pushOn('fila1', new TestJob());
+//        }
+//
+//        for ($i = 0; $i <= 50; $i++) {
+//            $this->queue->connection('database')
+//                ->pushOn('fila2', new TestJob2());
+//        }
+
+        return 'Done!';
     }
-
 }

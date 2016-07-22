@@ -8,6 +8,7 @@ use Exception;
 use Vinci\Domain\Image\ImageVersion;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory;
 use Vinci\Domain\Product\Product;
+use Vinci\Domain\Product\ProductVariantInterface;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Product\Validators\ProductValidator;
 
@@ -86,6 +87,35 @@ class ProductManagementService
 
             throw $e;
         }
+    }
+
+    public function changePrice(ProductVariantInterface $variant, array $newPrice)
+    {
+        $currentPrice = $variant->getPrice();
+        $newPrice = $newPrice[0];
+
+        if (! empty($price = array_get($newPrice, 'price'))) {
+            $currentPrice->setPrice($price);
+        }
+
+        if (! empty($currency = array_get($newPrice, 'currency_amount'))) {
+            $currentPrice->setCurrencyAmount($currency);
+        }
+
+        if (! empty($ipi = array_get($newPrice, 'aliquot_ipi'))) {
+            $currentPrice->setAliquotIpi($ipi);
+        }
+
+        if (! empty($discountType = array_get($newPrice, 'discount_type'))) {
+            $currentPrice->setDiscountType($discountType);
+        }
+
+        if (! empty($discountValue = array_get($newPrice, 'discount_value'))) {
+            $currentPrice->setDiscountValue($discountType);
+        }
+
+        $this->entityManager->persist($currentPrice);
+        $this->entityManager->flush();
     }
 
     protected function saveImages($data, Product $product)

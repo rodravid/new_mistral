@@ -19,6 +19,10 @@ angular.module('app')
 
                     var uri = getUri();
 
+                    if(urlKey == 'preco[]') {
+                        uri.removeSearch('preco[]');
+                    }
+
                     uri.addSearch(urlKey, value);
 
                     $window.location.href = uri;

@@ -14,7 +14,6 @@ use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Address\PostalCode;
 use Vinci\Domain\Common\Event\FiredByAdminUser;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
-use Vinci\Domain\Order\Exceptions\InvalidItemsException;
 use Vinci\Domain\Order\Factory\OrderFactory;
 use Illuminate\Contracts\Events\Dispatcher;
 use Vinci\Domain\Order\Factory\OrderItemFactory;

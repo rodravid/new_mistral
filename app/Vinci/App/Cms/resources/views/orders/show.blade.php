@@ -16,7 +16,12 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h2 class="page-header">
-                            <i class="fa fa-globe"></i> Pedido #{{ $order->number }} <small><b>Status:</b> {{ $order->status }}</small> <small><b>Status da integração:</b> {!! $order->integration_status_html !!}</small>
+                            <i class="fa fa-globe"></i> Pedido #{{ $order->number }}
+                            <small><b>Status:</b> {{ $order->status }}</small>
+                            <small><b>Status da integração:</b> {!! $order->integration_status_html !!}</small>
+                            @if(! empty($order->erp_number))
+                                <small><b>Número no ERP:</b> {!! $order->erp_number !!}</small>
+                            @endif
                             <small class="pull-right">Data: {{ $order->creation_date }}</small>
                             <small class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;" onClick="window.print()"> <i class="fa fa-print"></i> Imprimir</small>
                         </h2>

@@ -5,12 +5,15 @@ namespace Vinci\Infrastructure\ERP;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Spatie\Fractal\Fractal;
+use Vinci\Domain\ERP\Address\Address;
 use Vinci\Domain\ERP\Customer\Customer;
 use Vinci\Domain\ERP\Customer\CustomerErpTransformer;
 use Vinci\Domain\ERP\Order\Item\Item;
 use Vinci\Domain\ERP\Order\Item\ItemErpTransformer;
 use Vinci\Domain\ERP\Order\Order;
 use Vinci\Domain\ERP\Order\OrderErpTransformer;
+use Vinci\Domain\ERP\Order\Shipping\AddressErpTransformer;
+use Vinci\Domain\ERP\Order\Shipping\AddressGetErpTransformer;
 
 class EnvelopeFactory
 {
@@ -44,6 +47,16 @@ class EnvelopeFactory
             'create' => [
                 'envelope' => 'order.item.create',
                 'transformer' => ItemErpTransformer::class
+            ]
+        ],
+        Address::class => [
+            'update' => [
+                'envelope' => 'customer.shipping.address.update',
+                'transformer' => AddressErpTransformer::class
+            ],
+            'get' => [
+                'envelope' => 'customer.shipping.address.get',
+                'transformer' => AddressGetErpTransformer::class
             ]
         ]
     ];

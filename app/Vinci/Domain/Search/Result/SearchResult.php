@@ -4,6 +4,7 @@ namespace Vinci\Domain\Search\Result;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
+use Vinci\Domain\Search\Filter\Filter;
 
 class SearchResult
 {
@@ -33,7 +34,7 @@ class SearchResult
         $this->items = [];
         $this->filters = new ArrayCollection;
         $this->suggesters = new ArrayCollection;
-        $this->visibleFilters = '*';
+        $this->visibleFilters = [];
         $this->selectedFilters = [];
     }
 
@@ -86,18 +87,24 @@ class SearchResult
         return $this;
     }
 
+    public function addFilter(Filter $filter)
+    {
+        $this->filters->add($filter);
+        return $this;
+    }
+
     public function getVisibleFilters()
     {
-        if ($this->visibleFilters == '*') {
-            return $this->filters;
+        $filters = [];
+        foreach ($this->visibleFilters as $vf) {
+            foreach ($this->filters as $f) {
+                if ($vf == $f->getName()) {
+                    $filters[] = $f;
+                }
+            }
         }
 
-        $expr = Criteria::expr();
-        $criteria = Criteria::create();
-
-        $criteria->where($expr->in('name', $this->visibleFilters));
-
-        return $this->filters->matching($criteria);
+        return collect($filters);
     }
 
     public function setVisibleFilters($visibleFilters)
@@ -129,7 +136,40 @@ class SearchResult
 
     public function getSelectedFilters()
     {
-        return $this->selectedFilters;
+        $filters = [];
+
+        foreach ($this->selectedFilters as $key => $values) {
+            foreach ($this->cloneFilters() as $f) {
+                if ($key == $f->getName()) {
+
+                    $selectedValues = [];
+
+                    foreach ($f->getValues() as $val) {
+                        foreach ($values as $v) {
+                            if ($val->getTitle() == $v) {
+                                $selectedValues[] = $val;
+                            }
+                        }
+                    }
+
+                    $f->setValues(new ArrayCollection($selectedValues));
+                    $filters[] = $f;
+                }
+            }
+        }
+
+        return collect($filters);
+    }
+
+    public function cloneFilters()
+    {
+        $cloned = new ArrayCollection();
+
+        foreach ($this->filters as $filter) {
+            $cloned->add(clone $filter);
+        }
+
+        return $cloned;
     }
 
     public function setSelectedFilters($selectedFilters)

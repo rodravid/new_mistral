@@ -11,6 +11,10 @@ class AddressTransformer extends BaseTransformer
     public function transform(LocalAddress $address)
     {
         return [
+            'id' => $address->getId(),
+            'code' => $address->getCode(),
+            'type' => $this->normalizeString($address->getType()->getTitle()),
+            'integration_status' => $address->getErpIntegrationStatus(),
             'public_place' => $this->normalizeString($address->getPublicPlace()->getTitle()),
             'address' => $this->normalizeString($address->getAddress()),
             'number' => $this->normalizeString($address->getNumber()),

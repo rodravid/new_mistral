@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Search\Filter;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Search\Presenters\FilterPresenter;
@@ -50,6 +51,17 @@ class Filter implements Presentable
     {
         $this->name = $name;
         return $this;
+    }
+
+    public function __clone()
+    {
+        $newValues = new ArrayCollection();
+
+        foreach ($this->values as $value) {
+            $newValues->add(clone $value);
+        }
+
+        $this->setValues($newValues);
     }
 
 }

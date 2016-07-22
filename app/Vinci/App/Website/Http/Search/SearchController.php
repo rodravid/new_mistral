@@ -45,6 +45,7 @@ class SearchController extends Controller
             $result->getItems()->appends($this->getAppends($request));
         }
 
+        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'preco']);
         $result->setSelectedFilters($this->getSelectedFilters($request));
 
         return $result;
@@ -64,6 +65,10 @@ class SearchController extends Controller
 
         if ($request->has('produtor')) {
             $filters['produtor'] = $request->get('produtor');
+        }
+
+        if ($request->has('preco')) {
+            $filters['preco'] = $request->get('preco');
         }
 
         $filters = ['post' => $filters];

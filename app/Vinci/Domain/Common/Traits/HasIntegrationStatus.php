@@ -30,4 +30,9 @@ trait HasIntegrationStatus
         return $this;
     }
 
+    public function wasIntegrated()
+    {
+        return $this->erpIntegrationStatus == IntegrationStatus::INTEGRATED;
+    }
+
 }

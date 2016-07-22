@@ -79,6 +79,7 @@ class ProductSearchService extends SearchService
             'pais' => 'Países',
             'regiao' => 'Regiões',
             'produtor' => 'Produtores',
+            'preco' => 'Preço',
         ];
     }
 
@@ -109,6 +110,19 @@ class ProductSearchService extends SearchService
                             'size' => 20
                         ]
                     ],
+                    'preco' => [
+                        'range' => [
+                            'field' => 'price',
+                            'ranges' => [
+                                ['to' => 60, 'key' => '*-60'],
+                                ['from' => 60, 'to' => 100, 'key' => '60-100'],
+                                ['from' => 100, 'to' => 170, 'key' => '100-170'],
+                                ['from' => 170, 'to' => 270, 'key' => '170-270'],
+                                ['from' => 270, 'to' => 500, 'key' => '270-500'],
+                                ['from' => 500, 'key' => '500-*']
+                            ]
+                        ]
+                    ]
                 ],
             ],
            'sort' => $this->getSort($sort)
@@ -166,6 +180,10 @@ class ProductSearchService extends SearchService
 
                 if (! empty($producers = array_get($filters, 'post.produtor'))) {
                     $this->addPostFilter($params, 'producer.title', $producers);
+                }
+
+                if (! empty($preco = array_get($filters, 'post.preco'))) {
+                    $this->addPostFilterPrice($params, 'price', $preco);
                 }
 
             }
@@ -233,6 +251,41 @@ class ProductSearchService extends SearchService
                     'bool' => [
                         'should' => [
                             ['terms' => [$column => $values]],
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $params = array_merge_recursive($params, $search);
+    }
+
+    protected function addPostFilterPrice(array &$params, $column, array $values)
+    {
+        $val = $values[0];
+
+        $price = explode('-', $val);
+
+        $p = [];
+
+        if ($price[0] !== '*') {
+            $p['gte'] = $price[0];
+        }
+
+        if ($price[1] !== '*') {
+            $p['lte'] = $price[1];
+        }
+
+        $prices[] = [
+            $column => $p
+        ];
+
+        $search = [
+            'body' => [
+                'post_filter' => [
+                    'bool' => [
+                        'should' => [
+                            ['range' => [$column => $p]]
                         ]
                     ]
                 ]

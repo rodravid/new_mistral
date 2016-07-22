@@ -18,6 +18,7 @@ class OrderItemFactory
             ->setProductVariant(array_get($data, 'product_variant'))
             ->setPrice(array_get($data, 'price'))
             ->setOriginalPrice(array_get($data, 'original_price'))
+            ->setAliquotIpi(array_get($data, 'aliquot_ipi'))
             ->setQuantity(array_get($data, 'quantity'))
             ->setTotal(array_get($data, 'price') * array_get($data, 'quantity'));
 
@@ -35,6 +36,7 @@ class OrderItemFactory
             'product_variant' => $cartItem->getProductVariant(),
             'price' => $cartItem->getSalePrice(),
             'original_price' => ! empty($cartItem->getOriginalSalePrice()) ? $cartItem->getOriginalSalePrice() : $cartItem->getSalePrice(),
+            'aliquot_ipi' => $cartItem->getProductVariant()->getPrice()->getAliquotIpi(),
             'quantity' => $cartItem->getQuantity(),
             'total' => $cartItem->getSubtotal()
         ];

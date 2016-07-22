@@ -355,3 +355,32 @@ function validateCnpj($cnpj)
     }
     return true;
 }
+
+function get_filter_price_value_title($title) {
+    switch ($title) {
+        case '*-60':
+            return 'Até R$ 60,00';
+            break;
+
+        case '60-100':
+            return 'R$ 60,00 a R$ 100,00';
+            break;
+
+        case '100-170':
+            return 'R$ 100,00 a R$ 170,00';
+            break;
+
+        case '170-270':
+            return 'R$ 170,00 a R$ 270,00';
+            break;
+
+        case '270-500':
+            return 'R$ 270,00 a R$ 500,00';
+            break;
+
+        case '500-*':
+            return 'Acima de R$ 500,00';
+            break;
+    }
+
+}
