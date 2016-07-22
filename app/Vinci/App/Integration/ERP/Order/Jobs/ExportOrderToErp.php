@@ -36,7 +36,7 @@ class ExportOrderToErp extends Job implements ShouldQueue
         } catch (CustomerNotIntegratedException $e) {
 
             $this->attempts() < 3 ?
-                $this->release() : $this->delete();
+                $this->release(5) : $this->delete();
 
             throw $e;
 

@@ -27,4 +27,9 @@ class OrderPresenter extends AbstractPresenter
         return $this->getShippingAddress();
     }
 
+    public function presentErpNumber()
+    {
+        return $this->getErpNumber();
+    }
+
 }

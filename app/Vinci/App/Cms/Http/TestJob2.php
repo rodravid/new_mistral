@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Storage;
 use Vinci\App\Core\Jobs\Job;
 
-class TestJob extends Job implements ShouldQueue
+class TestJob2 extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 
@@ -16,10 +16,7 @@ class TestJob extends Job implements ShouldQueue
     {
         sleep(3);
 
-        Storage::disk('local')->put(sprintf('/teste/fila_1_%s', microtime()), 'fila1');
+        Storage::disk('local')->put(sprintf('/teste/fila_2_%s', microtime()), 'fila2');
     }
-
-    
-
 
 }
