@@ -2,12 +2,15 @@
 
     <div class="col-xs-12">
         <ul class="nav nav-tabs" style="margin-bottom: 20px;">
-            <li class="@if(old('current-tab') == '#customer-data' || old('current-tab') == null) active @endif"><a href="#customer-data" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Dados do cliente</a></li>
-            <li class="@if(old('current-tab') == '#customer-addresses') active @endif"><a href="#customer-addresses" data-toggle="tab" aria-expanded="false"><i class="fa fa-flag-checkered"></i> Endereços</a></li>
+            <li class="{{ currentTabActive('#customer-data', 'active', true) }}"><a href="#customer-data" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Dados do cliente</a></li>
+            <li class="{{ currentTabActive('#customer-addresses') }}"><a href="#customer-addresses" data-toggle="tab" aria-expanded="false"><i class="fa fa-flag-checkered"></i> Endereços</a></li>
+            @if($loggedUser->isSuperAdmin())
+            <li class="{{ currentTabActive('#customer-integration') }}"><a href="#customer-integration" data-toggle="tab" aria-expanded="false"><i class="fa fa-cog"></i> Integração ERP</a></li>
+            @endif
         </ul>
         <div class="tab-content">
             <input type="hidden" name="current-tab" id="currentTab" value="{{ old('current-tab', '#customer-data') }}">
-            <div class="tab-pane @if(old('current-tab') == '#customer-data' || old('current-tab') == null) active @endif" id="customer-data">
+            <div class="tab-pane {{ currentTabActive('#customer-data', 'active', true) }}" id="customer-data">
                 <div class="row">
 
                     <div class="col-xs-12">
@@ -161,8 +164,7 @@
 
                 </div>
             </div>
-
-            <div class="tab-pane @if(old('current-tab') == '#customer-addresses') active @endif" id="customer-addresses">
+            <div class="tab-pane {{ currentTabActive('#customer-addresses') }}" id="customer-addresses">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box-addresses">
@@ -360,6 +362,10 @@
                     </div>
                 </div>
             </div>
+
+            @if($loggedUser->isSuperAdmin())
+                @include('cms::customers.tabs.integration')
+            @endif
         </div>
     </div>
 

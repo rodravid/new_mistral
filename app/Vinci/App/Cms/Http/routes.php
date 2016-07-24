@@ -65,6 +65,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->put('/{customer}', 'Customer\\CustomerController@update')->name('edit#update');
                     $route->post('datatable', 'Customer\\CustomerController@datatable')->name('list#datatable');
                     $route->get('/{customer}', 'Customer\\CustomerController@show')->name('show');
+                    $route->post('/{customer}/export-erp', 'Customer\\CustomerController@exportToErp')->name('edit#export-erp');
+                    $route->post('/{customer}/export-erp-queue', 'Customer\\CustomerController@exportToErpQueued')->name('edit#export-erp-queue');
                 });
 
                 /**
