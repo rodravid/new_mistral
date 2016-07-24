@@ -195,7 +195,7 @@ class CustomerController extends Controller
 
         try {
 
-            $this->customerExporter->export($customer);
+            $this->customerExporter->export($customer, $this->user->name);
 
             Flash::success("Cliente {$customer->getName()} integrado com sucesso ao ERP!");
 

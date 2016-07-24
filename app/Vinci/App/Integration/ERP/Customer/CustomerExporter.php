@@ -31,11 +31,11 @@ class CustomerExporter
         $this->commandDispatcher = $commandDispatcher;
     }
 
-    public function export(CustomerInterface $localCustomer)
+    public function export(CustomerInterface $localCustomer, $user = 'Sistema')
     {
         try {
 
-            $command = new SaveCustomerCommand($localCustomer);
+            $command = new SaveCustomerCommand($localCustomer, $user);
 
             $this->customerService->save($command);
 
