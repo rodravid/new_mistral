@@ -66,7 +66,13 @@ class AddressService
     {
         $address = $method(array_first($data['addresses']));
 
-        $address->setCustomer($this->entityManager->getReference(Customer::class, $customerId));
+        $customer = $this->entityManager->getReference(Customer::class, $customerId);
+        
+        if (! $customer->getAddresses()->count()) {
+            $address->setMainAddress(true);
+        }
+
+        $address->setCustomer($customer);
 
         $this->entityManager->persist($address);
         $this->entityManager->flush();

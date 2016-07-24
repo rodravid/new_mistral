@@ -10,6 +10,9 @@
         <div class="modal-content">
             {!! Form::open(['route' => 'api.customers.addresses.store', 'method' => 'POST', 'id' => 'frmNewAddress']) !!}
                 <input type="hidden" name="customer" value="{{ $customer->getId() }}">
+                @if(! $customer->getAddresses()->count())
+                <input type="hidden" name="main_address" value="0">
+                @endif
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
