@@ -12,6 +12,7 @@ use View;
 use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Cms\Http\Order\Presenters\OrderPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
+use Vinci\App\Integration\ERP\Logger\IntegrationLogger;
 use Vinci\App\Website\Http\Order\Presenter\OrderPresenter as OrderPresenterWeb;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\OrderRepository;
@@ -58,7 +59,9 @@ class OrderController extends Controller
 
         $order = $this->presenter->model($order, OrderPresenter::class);
 
-        return $this->view('orders.show')->withOrder($order);
+        $integrationLogs = IntegrationLogger::type('order')->getByResourceId($id);
+
+        return $this->view('orders.show', compact('order', 'integrationLogs'));
     }
 
     public function edit($id)

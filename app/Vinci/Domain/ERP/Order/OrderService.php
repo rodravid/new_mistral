@@ -54,13 +54,13 @@ class OrderService extends BaseErpService
     {
         try {
 
-            if (! $command->getOrder()->getCustomer()->wasIntegrated()) {
-                throw new CustomerNotIntegratedException(sprintf('The customer has not yet been integrated.'));
-            }
-
             $order = $this->orderTranslator->translate($command->getOrder());
 
             $request = $this->envelopeFactory->make($order, 'create');
+
+            if (! $command->getOrder()->getCustomer()->wasIntegrated()) {
+                throw new CustomerNotIntegratedException(sprintf('The customer has not yet been integrated.'));
+            }
 
             $response = $this->orderRepository->create($order);
 

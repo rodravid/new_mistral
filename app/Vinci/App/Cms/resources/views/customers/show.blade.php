@@ -23,13 +23,13 @@
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Total de pedidos</b> <a class="pull-right"> {{ $customer->stats()->orders() }}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Total de endereços</b> <a class="pull-right"> {{ $customer->stats()->addresses() }}</a>
-                            </li>
-                            <li class="list-group-item">
                                 <b>Status da integração</b> <span class="pull-right">{!! $customer->integration_status_html !!}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Total de pedidos</b> <a class="pull-right"><span class="label label-info">{{ $customer->stats()->orders() }}</span></a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Total de endereços</b> <a class="pull-right"><span class="label label-info">{{ $customer->stats()->addresses() }}</span></a>
                             </li>
                         </ul>
 
@@ -78,65 +78,77 @@
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#orders" data-toggle="tab">Pedidos realizados</a></li>
-                        <li><a href="#addresses" data-toggle="tab">Endereços cadastrados</a></li>
+                        <li class="active"><a href="#orders" data-toggle="tab"><h4>Pedidos</h4></a></li>
+                        <li><a href="#addresses" data-toggle="tab"><h4>Endereços cadastrados</h4></a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="active tab-pane" id="orders">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#ID</th>
-                                    <th><i class="fa fa-tag"></i> Número</th>
-                                    <th><i class="fa fa-money"></i> Valor</th>
-                                    <th><i class="fa fa-calendar"></i> Criado em</th>
-                                    <th><i class="fa fa-edit"></i> Status</th>
-                                </tr>
-                                </thead>
-                                @foreach ($orders as $order)
+                            @if($orders->count())
+                                <table class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
-                                        <td>
-                                            <a href="{{ route('cms.orders.show', $order->id) }}">
-                                                {{ $order->id }}
-                                            </a>
-                                        </td>
-                                        <td>{{ $order->number }}</td>
-                                        <td>{{ $order->total }}</td>
-                                        <td>{{ $order->created_at }}</td>
-                                        <td>{{ $order->status }}</td>
+                                        <th>#ID</th>
+                                        <th><i class="fa fa-tag"></i> Número</th>
+                                        <th><i class="fa fa-money"></i> Valor</th>
+                                        <th><i class="fa fa-calendar"></i> Criado em</th>
+                                        <th><i class="fa fa-edit"></i> Status</th>
+                                        <th><i class="fa fa-edit"></i> Status da integração</th>
                                     </tr>
-                                @endforeach
-                            </table>
-                            {!! $orders->links() !!}
+                                    </thead>
+                                    @foreach ($orders as $order)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('cms.orders.show', $order->id) }}">
+                                                    {{ $order->id }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $order->number }}</td>
+                                            <td>{{ $order->total }}</td>
+                                            <td>{{ $order->created_at }}</td>
+                                            <td>{{ $order->status }}</td>
+                                            <td>{!! $order->integration_status_html !!}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                                {!! $orders->links() !!}
+                            @else
+                                <h4 class="text-center">O cliente ainda não possui pedidos realizados.</h4>
+                            @endif
                         </div>
                         <div class="tab-pane" id="addresses">
-                            <table class="table table-bordered table-striped">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tipo</th>
-                                    <th>Logradouro</th>
-                                    <th>Número</th>
-                                    <th>Complemento</th>
-                                    <th>Bairro</th>
-                                    <th>UF</th>
-                                    <th>Cidade</th>
-                                </tr>
-                                @foreach($addresses as $address)
+                            @if(count($addresses))
+                                <table class="table table-bordered table-striped">
                                     <tr>
-                                        <td>{{ $address->getId() }}</td>
-                                        <td>{{ $address->getNickname() }}</td>
-                                        <td>{{ $address->getPublicPlace()->getTitle() . " " . $address->getAddress() }}</td>
-                                        <td>{{ $address->getNumber() }}</td>
-                                        <td>{{ $address->getComplement() }}</td>
-                                        <td>{{ $address->getDistrict() }}</td>
-                                        <td>{{ $address->getCity()->getUf() }}</td>
-                                        <td>{{ $address->getCity()->getName() }}</td>
+                                        <th>ID</th>
+                                        <th>Tipo</th>
+                                        <th>Logradouro</th>
+                                        <th>Número</th>
+                                        <th>Complemento</th>
+                                        <th>Bairro</th>
+                                        <th>UF</th>
+                                        <th>Cidade</th>
                                     </tr>
-                                @endforeach
-                            </table>
+                                    @foreach($addresses as $address)
+                                        <tr>
+                                            <td>{{ $address->getId() }}</td>
+                                            <td>{{ $address->getNickname() }}</td>
+                                            <td>{{ $address->getPublicPlace()->getTitle() . " " . $address->getAddress() }}</td>
+                                            <td>{{ $address->getNumber() }}</td>
+                                            <td>{{ $address->getComplement() }}</td>
+                                            <td>{{ $address->getDistrict() }}</td>
+                                            <td>{{ $address->getCity()->getUf() }}</td>
+                                            <td>{{ $address->getCity()->getName() }}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            @else
+                                <h4 class="text-center">O cliente não possui nenhum endereço cadastrado.</h4>
+                            @endif
                         </div>
                     </div>
                 </div>
+
+                @include('cms::integration.logs.box')
             </div>
         </div>
     </section>

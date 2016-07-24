@@ -29,6 +29,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 $route->put('/{user}', 'Account\\AccountController@update')->name('update');
             });
 
+            $route->group(['prefix' => 'integration', 'as' => 'integration.'], function () use ($route) {
+                $route->group(['prefix' => 'logs', 'as' => 'logs.'], function () use ($route) {
+                    $route->get('/{type}/{id}/show', 'Integration\\Logs\\IntegrationLogsController@show')->name('show');
+                });
+            });
+
             $route->group(['middleware' => ['acl']], function() use ($route) {
 
 

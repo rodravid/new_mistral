@@ -12,6 +12,7 @@ use Vinci\App\Cms\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\App\Cms\Http\Order\Presenters\OrderPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
+use Vinci\App\Integration\ERP\Logger\IntegrationLogger;
 use Vinci\Domain\Address\City\CityRepository;
 use Vinci\Domain\Address\Country\Country;
 use Vinci\Domain\Address\Country\CountryRepository;
@@ -107,7 +108,9 @@ class CustomerController extends Controller
         $orders = $this->orderRepository->getByCustomer($id, 10);
         $orders = $this->presenter->paginator($orders, OrderPresenter::class);
 
-        return $this->view('customers.show', compact('customer', 'addresses', 'orders'));
+        $integrationLogs = IntegrationLogger::type('customer')->getByResourceId($customer->id);
+
+        return $this->view('customers.show', compact('customer', 'addresses', 'orders', 'integrationLogs'));
     }
 
     public function store(Request $request)
