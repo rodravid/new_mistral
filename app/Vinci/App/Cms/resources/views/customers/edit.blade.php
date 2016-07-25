@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li><a href="/cms"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="{{ $currentModule->getUrl() }}"><i class="{{ $currentModule->getIcon() }}"></i> {{ $currentModule->getTitle() }}</a></li>
-        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $customer->getId() }}</li>
+        <li class="active"><i class="fa fa-edit"></i> {{ $currentModule->getEditingText() }} #{{ $customer->getId() }} - {{ $customer->getName() }}</li>
     </ol>
 @endsection
 
@@ -18,7 +18,7 @@
             <div class="col-xs-12 col-lg-9">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $customer->getId() }}</h3>
+                        <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $customer->getId() }} - {{ $customer->getName() }}</h3>
                     </div>
 
                     {!! Form::hidden('id', $customer->getId()) !!}
