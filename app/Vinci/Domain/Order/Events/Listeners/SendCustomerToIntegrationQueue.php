@@ -17,9 +17,9 @@ class SendCustomerToIntegrationQueue
 
     public function handle(NewOrderWasCreated $event)
     {
-        $customer = $event->getOrder()->getCustomer();
-
-        $this->customerExporter->exportQueued($customer);
+        $this->customerExporter->exportQueued(
+            $event->getOrder()->getCustomer()
+        );
     }
 
 }
