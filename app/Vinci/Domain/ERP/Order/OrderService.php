@@ -97,7 +97,8 @@ class OrderService extends BaseErpService
     {
         foreach ($command->getOrder()->getItems() as $item) {
             $this->createItem(
-                new CreateOrderItemCommand($item, $command->getUserActor(), true)
+                (new CreateOrderItemCommand($item, $command->getUserActor()))
+                    ->silent()
             );
         }
     }

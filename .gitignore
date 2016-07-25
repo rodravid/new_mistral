@@ -5,6 +5,7 @@
 Homestead.yaml
 Homestead.json
 /bin
+.vagrant
 .env
 .env.example
 .idea

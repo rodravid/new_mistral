@@ -55,11 +55,50 @@ class StandardPriceCalculatorSpec extends ObjectBehavior
         $configuration->getCurrencyAmount()->willReturn(null);
         $configuration->getDiscountType()->willReturn(null);
         $configuration->getDiscountAmount()->willReturn(null);
+        $configuration->getAliquotIpi()->willReturn(null);
 
         $this->dollarProvider->getCurrentDollarAmount()->shouldBeCalled();
 
         $this->skipDiscounts()->calculate($this->subject)->shouldReturn(592.5);
         $this->calculate($this->subject)->shouldReturn(592.5);
+    }
+
+    function it_calculate_price_with_ipi_taxe(PriceConfiguration $configuration)
+    {
+        $amount = 150.0;
+
+        $this->subject->getAmount()->willReturn($amount);
+
+        $this->setPriceConfiguration($configuration);
+
+        $configuration->getCurrencyAmount()->willReturn(null);
+        $configuration->getDiscountType()->willReturn(null);
+        $configuration->getDiscountAmount()->willReturn(null);
+        $configuration->getAliquotIpi()->willReturn(10);
+
+        $this->dollarProvider->getCurrentDollarAmount()->shouldBeCalled();
+
+        $this->skipDiscounts()->calculate($this->subject)->shouldReturn(651.75);
+        $this->calculate($this->subject)->shouldReturn(651.75);
+    }
+
+    function it_calculate_ipi(PriceConfiguration $configuration)
+    {
+        $amount = 150.0;
+
+        $this->subject->getAmount()->willReturn($amount);
+
+        $this->setPriceConfiguration($configuration);
+
+        $configuration->getCurrencyAmount()->willReturn(null);
+        $configuration->getDiscountType()->willReturn(null);
+        $configuration->getDiscountAmount()->willReturn(null);
+        $configuration->getAliquotIpi()->willReturn(10);
+
+        $this->dollarProvider->getCurrentDollarAmount()->shouldBeCalled();
+
+        $this->skipDiscounts()->calculateIpi($this->subject)->shouldReturn(59.25);
+        $this->calculateIpi($this->subject)->shouldReturn(59.25);
     }
 
     function it_calculate_price_with_discount_type_fixed(PriceConfiguration $configuration)
@@ -73,6 +112,7 @@ class StandardPriceCalculatorSpec extends ObjectBehavior
         $configuration->getCurrencyAmount()->willReturn(null);
         $configuration->getDiscountType()->willReturn(DiscountType::FIXED);
         $configuration->getDiscountAmount()->willReturn(25);
+        $configuration->getAliquotIpi()->willReturn(null);
 
         $this->dollarProvider->getCurrentDollarAmount()->shouldBeCalled();
 
@@ -97,6 +137,7 @@ class StandardPriceCalculatorSpec extends ObjectBehavior
         $configuration->getCurrencyAmount()->willReturn(null);
         $configuration->getDiscountType()->willReturn(DiscountType::PERCENTAGE);
         $configuration->getDiscountAmount()->willReturn(10);
+        $configuration->getAliquotIpi()->willReturn(null);
 
         $this->dollarProvider->getCurrentDollarAmount()->shouldBeCalled();
 
@@ -121,6 +162,7 @@ class StandardPriceCalculatorSpec extends ObjectBehavior
         $configuration->getCurrencyAmount()->willReturn(2);
         $configuration->getDiscountType()->willReturn(null);
         $configuration->getDiscountAmount()->willReturn(null);
+        $configuration->getAliquotIpi()->willReturn(null);
 
         $this->dollarProvider->getCurrentDollarAmount()->shouldNotBeCalled();
 
@@ -146,6 +188,7 @@ class StandardPriceCalculatorSpec extends ObjectBehavior
         $configuration->getDiscountType()->willReturn(DiscountType::EXCHANGE_RATE);
         $configuration->getCurrencyOriginalAmount()->willReturn(3);
         $configuration->getDiscountAmount()->willReturn(2);
+        $configuration->getAliquotIpi()->willReturn(null);
 
         $this->dollarProvider->getCurrentDollarAmount()->shouldNotBeCalled();
 

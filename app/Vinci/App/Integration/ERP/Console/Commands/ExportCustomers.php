@@ -19,7 +19,10 @@ class ExportCustomers extends Command
      */
     protected $signature = 'erp:integration:customers:export 
                             {customers?* : IDs array of customers}
-                            {--with-failed : Include customers failed}';
+                            {--with-failed : Include customers failed}
+                            {--only-failed : Only failed customers failed}
+                            {--only-pending : Only pending customers failed}
+                            {--queued : Put cutomers on integration queue}';
 
     /**
      * The console command description.
@@ -46,7 +49,11 @@ class ExportCustomers extends Command
 
         if ($count > 0) {
 
-            $this->info(sprintf("Exporting #%s customer(s) to ERP...\n", $count));
+            if ($this->option('queued')) {
+                $this->info(sprintf("Putting #%s customer(s) in integration queue...\n", $count));
+            } else {
+                $this->info(sprintf("Exporting #%s customer(s) to ERP...\n", $count));
+            }
 
             $progressBar = $this->output->createProgressBar($count);
 
@@ -75,11 +82,21 @@ class ExportCustomers extends Command
             $this->info("\n\nDone!");
 
             if (! empty($success)) {
-                $this->info(sprintf("\n%s customer(s) exported with success!", count($success)));
+
+                if ($this->option('queued')) {
+                    $this->info(sprintf("\n%s customers(s) were placed in integration queue!", count($success)));
+                } else {
+                    $this->info(sprintf("\n%s customer(s) exported with success!", count($success)));
+                }
             }
 
             if (! empty($error)) {
-                $this->error(sprintf("\n%s customer(s) were not exported!", count($error)));
+
+                if ($this->option('queued')) {
+                    $this->error(sprintf("\n%s customers(s) were not placed on integration queue!", count($error)));
+                } else {
+                    $this->error(sprintf("\n%s customer(s) were not exported!", count($error)));
+                }
             }
 
         } else {
@@ -95,7 +112,12 @@ class ExportCustomers extends Command
 
         try {
 
-            $this->customerExporter->export($customer);
+            if ($this->option('queued')) {
+                $this->customerExporter->exportQueued($customer);
+            } else {
+                $this->customerExporter->export($customer);
+            }
+
 
             if (! $silent) {
                 $this->info('Done!');

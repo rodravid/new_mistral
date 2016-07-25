@@ -41,6 +41,9 @@ class CustomerExporter
 
         } catch (Exception $e) {
             throw new IntegrationException($e->getMessage());
+            
+        } finally {
+            app('em')->clear();
         }
     }
 

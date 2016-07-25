@@ -39,6 +39,8 @@ class OrderExporter
 
         } catch (Exception $e) {
             throw $e;
+        } finally {
+            app('em')->clear();
         }
     }
 
@@ -50,6 +52,8 @@ class OrderExporter
 
         } catch (Exception $e) {
             throw $e;
+        } finally {
+            app('em')->clear();
         }
     }
 

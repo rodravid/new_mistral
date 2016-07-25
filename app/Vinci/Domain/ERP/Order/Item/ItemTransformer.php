@@ -15,7 +15,7 @@ class ItemTransformer extends BaseTransformer
             'order_number' => $item->getOrder()->getErpNumber(),
             'sku' => $item->getProductVariant()->getSku(),
             'quantity' => $item->getQuantity(),
-            'price' => $item->getPrice(),
+            'price' => $item->getPrice() - $item->getAliquotIpi(),
             'discount' => '',
             'discount_percent' => 0
         ];

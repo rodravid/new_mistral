@@ -22,6 +22,8 @@ class StandardPriceCalculator extends AbstractPriceCalculator implements PriceCa
 
         $this->applyDiscountsIfNecessary($subject, $finalPrice);
 
+        $this->applyTaxes($finalPrice);
+
         return $this->parseValueAndReset($finalPrice);
     }
 
@@ -71,4 +73,25 @@ class StandardPriceCalculator extends AbstractPriceCalculator implements PriceCa
             $amount : $this->dollarProvider->getCurrentDollarAmount();
     }
 
+    protected function applyTaxes(&$finalPrice)
+    {
+        if (! empty($ipi = $this->getPriceConfiguration()->getAliquotIpi())) {
+            $finalPrice = $finalPrice + ($ipi * $finalPrice / 100);
+        }
+    }
+
+    public function calculateIpi(CalculablePrice $subject)
+    {
+        $finalPrice = $this->convertAmountToReal($subject);
+
+        $this->applyDiscountsIfNecessary($subject, $finalPrice);
+
+        $amount = 0;
+
+        if (! empty($ipi = $this->getPriceConfiguration()->getAliquotIpi())) {
+            $amount = $ipi * $finalPrice / 100;
+        }
+
+        return $this->parseValueAndReset($amount);
+    }
 }

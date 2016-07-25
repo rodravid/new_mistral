@@ -212,6 +212,14 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
             ->calculate($this);
     }
 
+    public function getCalculatedIpi()
+    {
+        $this->assertPriceCalculatorIsDefined();
+
+        return $this->getPriceCalculator()
+            ->calculateIpi($this);
+    }
+
     private function assertPriceCalculatorIsDefined()
     {
         if (! $this->getPriceCalculator()) {
@@ -235,6 +243,11 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
     public function getAmount()
     {
         return $this->getPrice();
+    }
+
+    public function hasDiscount()
+    {
+        return ! empty($this->getDiscountType());
     }
 
     public function getPriceConfiguration()
