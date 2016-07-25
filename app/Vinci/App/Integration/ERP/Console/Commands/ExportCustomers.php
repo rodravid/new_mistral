@@ -20,6 +20,8 @@ class ExportCustomers extends Command
     protected $signature = 'erp:integration:customers:export 
                             {customers?* : IDs array of customers}
                             {--with-failed : Include customers failed}
+                            {--only-failed : Only failed customers failed}
+                            {--only-pending : Only pending customers failed}
                             {--queued : Put cutomers on integration queue}';
 
     /**
