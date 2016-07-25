@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.31",
+            "version": "3.18.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "dad0b7db5fa8f3c7a3805efb2a1e86a50f11fe8b"
+                "reference": "84b9927ee116b30babf90a9fc723764672543e29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/dad0b7db5fa8f3c7a3805efb2a1e86a50f11fe8b",
-                "reference": "dad0b7db5fa8f3c7a3805efb2a1e86a50f11fe8b",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/84b9927ee116b30babf90a9fc723764672543e29",
+                "reference": "84b9927ee116b30babf90a9fc723764672543e29",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-07-19 17:25:45"
+            "time": "2016-07-21 22:30:58"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1880,16 +1880,16 @@
         },
         {
             "name": "laravel-doctrine/acl",
-            "version": "1.0.12",
+            "version": "1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-doctrine/acl.git",
-                "reference": "587939b648f8adde94ba7dbb5a6453ac7a08b8f2"
+                "reference": "97b7594a7ccf8bb087135d1689735591c70ad964"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-doctrine/acl/zipball/587939b648f8adde94ba7dbb5a6453ac7a08b8f2",
-                "reference": "587939b648f8adde94ba7dbb5a6453ac7a08b8f2",
+                "url": "https://api.github.com/repos/laravel-doctrine/acl/zipball/97b7594a7ccf8bb087135d1689735591c70ad964",
+                "reference": "97b7594a7ccf8bb087135d1689735591c70ad964",
                 "shasum": ""
             },
             "require": {
@@ -1897,7 +1897,7 @@
                 "illuminate/config": "5.1.*|5.2.*",
                 "illuminate/contracts": "5.1.*|5.2.*",
                 "illuminate/support": "5.1.*|5.2.*",
-                "laravel-doctrine/orm": "1.0.*|1.1.*",
+                "laravel-doctrine/orm": "1.0.*|1.1.*|1.2.*",
                 "php": ">=5.5.9"
             },
             "require-dev": {
@@ -1934,20 +1934,20 @@
                 "policies",
                 "roles"
             ],
-            "time": "2016-05-05 22:31:42"
+            "time": "2016-07-24 12:37:31"
         },
         {
             "name": "laravel-doctrine/extensions",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-doctrine/extensions.git",
-                "reference": "0ae8f6ac8617004ffada469af8d05a5fc87f1d1f"
+                "reference": "12e378d0fe3c5f369093f8767ce0d2b12eeeb9d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-doctrine/extensions/zipball/0ae8f6ac8617004ffada469af8d05a5fc87f1d1f",
-                "reference": "0ae8f6ac8617004ffada469af8d05a5fc87f1d1f",
+                "url": "https://api.github.com/repos/laravel-doctrine/extensions/zipball/12e378d0fe3c5f369093f8767ce0d2b12eeeb9d5",
+                "reference": "12e378d0fe3c5f369093f8767ce0d2b12eeeb9d5",
                 "shasum": ""
             },
             "require": {
@@ -1956,7 +1956,7 @@
                 "illuminate/contracts": "5.1.*|5.2.*",
                 "illuminate/http": "5.1.*|5.2.*",
                 "illuminate/support": "5.1.*|5.2.*",
-                "laravel-doctrine/orm": "1.0.*|1.1.*",
+                "laravel-doctrine/orm": "1.0.*|1.1.*|1.2.*",
                 "php": ">=5.5.9"
             },
             "require-dev": {
@@ -1995,7 +1995,7 @@
                 "laravel",
                 "orm"
             ],
-            "time": "2016-02-26 18:35:02"
+            "time": "2016-07-24 12:35:33"
         },
         {
             "name": "laravel-doctrine/fluent",
@@ -5866,16 +5866,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.26",
+            "version": "4.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fc1d8cd5b5de11625979125c5639347896ac2c74"
+                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fc1d8cd5b5de11625979125c5639347896ac2c74",
-                "reference": "fc1d8cd5b5de11625979125c5639347896ac2c74",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c062dddcb68e44b563f66ee319ddae2b5a322a90",
+                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90",
                 "shasum": ""
             },
             "require": {
@@ -5934,7 +5934,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-05-17 03:09:28"
+            "time": "2016-07-21 06:48:14"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
