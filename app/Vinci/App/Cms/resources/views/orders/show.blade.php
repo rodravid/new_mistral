@@ -41,6 +41,8 @@
 
             </div>
         </div>
+
+        @include('cms::integration.logs.box')
     </section>
 
 @endsection

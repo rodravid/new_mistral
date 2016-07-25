@@ -112,7 +112,7 @@
 
     function getAddressInfo(postalCode, callback)
     {
-        $.get('http://api.postmon.com.br/v1/cep/' + postalCode, function(response) {
+        $.get('//api.postmon.com.br/v1/cep/' + postalCode, function(response) {
             callback(response);
         });
     }

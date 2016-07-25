@@ -29,6 +29,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 $route->put('/{user}', 'Account\\AccountController@update')->name('update');
             });
 
+            $route->group(['prefix' => 'integration', 'as' => 'integration.'], function () use ($route) {
+                $route->group(['prefix' => 'logs', 'as' => 'logs.'], function () use ($route) {
+                    $route->get('/{type}/{id}/show', 'Integration\\Logs\\IntegrationLogsController@show')->name('show');
+                });
+            });
+
             $route->group(['middleware' => ['acl']], function() use ($route) {
 
 
@@ -59,6 +65,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->put('/{customer}', 'Customer\\CustomerController@update')->name('edit#update');
                     $route->post('datatable', 'Customer\\CustomerController@datatable')->name('list#datatable');
                     $route->get('/{customer}', 'Customer\\CustomerController@show')->name('show');
+                    $route->post('/{customer}/export-erp', 'Customer\\CustomerController@exportToErp')->name('edit#export-erp');
+                    $route->post('/{customer}/export-erp-queue', 'Customer\\CustomerController@exportToErpQueued')->name('edit#export-erp-queue');
                 });
 
                 /**
@@ -190,12 +198,6 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                  */
                 $route->group(['prefix' => 'promotions', 'namespace' => 'Promotion'], function () use ($route) {
 
-                    $route->post('{promotion}/items/add', 'PromotionController@addProducts');
-                    $route->post('{promotion}/items/add-all', 'PromotionController@addAllProducts');
-                    $route->post('{promotion}/items/add-from-filters', 'PromotionController@addProductsFromFilters');
-                    $route->post('{promotion}/items/add-from-file', 'PromotionController@addProductsFromFile');
-                    $route->delete('/{promotion}/remove-seal', 'PromotionController@removeSeal')->name('promotions.edit#remove-seal');
-
                     /**
                      * Discount promotion
                      */
@@ -210,6 +212,12 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                         $route->post('datatable', 'DiscountPromotion\\DiscountPromotionController@datatable')->name('list#datatable');
                         $route->post('/{promotion}/items/datatable', 'DiscountPromotion\\DiscountPromotionController@itemsDatatable')->name('edit#items-datatable');
                         $route->delete('/{promotion}/items/{item}/delete', 'DiscountPromotion\\DiscountPromotionController@removeItem')->name('edit#remove-item');
+
+                        $route->post('{promotion}/items/add', 'PromotionController@addProducts')->name('edit#add-products');
+                        $route->post('{promotion}/items/add-all', 'PromotionController@addAllProducts')->name('edit#add-all-products');
+                        $route->post('{promotion}/items/add-from-filters', 'PromotionController@addProductsFromFilters')->name('edit#add-all-products-filters');
+                        $route->post('{promotion}/items/add-from-file', 'PromotionController@addProductsFromFile')->name('edit#add-from-file');
+                        $route->delete('/{promotion}/remove-seal', 'PromotionController@removeSeal')->name('edit#remove-seal');
                     });
 
                     /**

@@ -35,7 +35,12 @@
         $(function() {
 
             var promotion_id = '{{$promotion->id }}';
+            var currentModuleName = '{{ $currentModule->getName() }}';
             var $body = $('body');
+
+            function getBaseUrl() {
+                return '/cms/promotions/' + currentModuleName + '/' + promotion_id;
+            }
 
             $tabs = $('[data-toggle="tabajax"]');
 
@@ -64,7 +69,7 @@
             var oldFile;
 
             $('#btnImportProducts').dropzone({
-                url: '/cms/promotions/' + promotion_id + '/items/add-from-file',
+                url: getBaseUrl() + '/items/add-from-file',
                 uploadMultiple: false,
                 maxFiles: 1,
                 acceptedFiles: '.xls,.xlsx',
@@ -157,7 +162,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/cms/promotions/' + promotion_id + '/items/add',
+                    url: getBaseUrl() + '/items/add',
                     dataType: 'json',
                     data: {id: promotion_id, products: products},
                     success: function(response) {
@@ -206,7 +211,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/cms/promotions/' + promotion_id + '/items/add-from-filters',
+                    url: getBaseUrl() + '/items/add-from-filters',
                     dataType: 'json',
                     data: {id: promotion_id, countries: countries, regions: regions, producers: producers, types: types},
                     success: function(response) {
@@ -256,7 +261,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: '/cms/promotions/' + promotion_id + '/items/add-all',
+                        url: getBaseUrl() + '/items/add-all',
                         dataType: 'json',
                         data: {id: promotion_id, all: true},
                         success: function(response) {
@@ -446,37 +451,6 @@
                     type: "GET",
                     delay: 250
                 }
-            });
-
-            $('#btnAddProduct').bind('click', function(e) {
-
-                var productId = $selectProduct.val();
-
-                $.ajax({
-                    url: '/cms/promotions/discount-promotion/{{ $promotion->id }}/items',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        promotionId: '{{ $promotion->id }}',
-                        productId: productId
-                    },
-                    success: function () {
-
-                        reloadTable();
-
-                        $selectProduct.val('');
-                        $selectProduct.text('');
-                        $selectProduct.find('option:first').prop('selected', true);
-                        $selectProduct.trigger('change');
-
-                        swal('Pronto!', 'O produto foi adicionado na promoção com sucesso!', 'success');
-                    },
-                    error: function() {
-                        swal('Ops!', 'Não foi possível adicionar o produto na promoção. Tente novamente.', 'error')
-                    }
-                });
-
-                e.preventDefault();
             });
 
             $('body').delegate('[data-remove-item]', 'click', function(e) {

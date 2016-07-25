@@ -12,6 +12,8 @@ use Vinci\App\Cms\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\App\Cms\Http\Order\Presenters\OrderPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
+use Vinci\App\Integration\ERP\Customer\CustomerExporter;
+use Vinci\App\Integration\ERP\Logger\IntegrationLogger;
 use Vinci\Domain\Address\City\CityRepository;
 use Vinci\Domain\Address\Country\Country;
 use Vinci\Domain\Address\Country\CountryRepository;
@@ -45,6 +47,8 @@ class CustomerController extends Controller
 
     protected $orderRepository;
 
+    protected $customerExporter;
+
     public function __construct(
         EntityManagerInterface $em,
         CustomerService $service,
@@ -54,7 +58,8 @@ class CustomerController extends Controller
         StateRepository $stateRepository,
         CityRepository $cityRepository,
         PublicPlaceRepository $publicPlaceRepository,
-        OrderRepository $orderRepository
+        OrderRepository $orderRepository,
+        CustomerExporter $customerExporter
     ) {
         parent::__construct($em);
 
@@ -66,6 +71,7 @@ class CustomerController extends Controller
         $this->publicPlaceRepository = $publicPlaceRepository;
         $this->addressRepository = $addressRepository;
         $this->orderRepository = $orderRepository;
+        $this->customerExporter = $customerExporter;
     }
 
     public function index()
@@ -94,7 +100,9 @@ class CustomerController extends Controller
 
         $publicPlaces = $this->publicPlaceRepository->getAll();
 
-        return $this->view('customers.edit', compact('customer', 'country', 'states', 'publicPlaces'));
+        $integrationLogs = IntegrationLogger::type('customer')->getByResourceId($id);
+
+        return $this->view('customers.edit', compact('customer', 'country', 'states', 'publicPlaces', 'integrationLogs'));
     }
 
     public function show($id)
@@ -107,7 +115,9 @@ class CustomerController extends Controller
         $orders = $this->orderRepository->getByCustomer($id, 10);
         $orders = $this->presenter->paginator($orders, OrderPresenter::class);
 
-        return $this->view('customers.show', compact('customer', 'addresses', 'orders'));
+        $integrationLogs = IntegrationLogger::type('customer')->getByResourceId($id);
+
+        return $this->view('customers.show', compact('customer', 'addresses', 'orders', 'integrationLogs'));
     }
 
     public function store(Request $request)
@@ -178,4 +188,47 @@ class CustomerController extends Controller
             return Redirect::back();
         }
     }
+
+    public function exportToErp($customerId, Request $request)
+    {
+        $customer = $this->repository->find($customerId);
+
+        try {
+
+            $this->customerExporter->export($customer, $this->user->name);
+
+            Flash::success("Cliente {$customer->getName()} integrado com sucesso ao ERP!");
+
+            return Redirect::route($this->getEditRouteName(), $customer->getId())
+                ->withInput(['current-tab' => $request->get('current-tab')]);
+
+        } catch (Exception $e) {
+
+            Flash::error('Falha ao integrar cliente ao ERP.');
+            return Redirect::back()->withInput();
+        }
+
+    }
+
+    public function exportToErpQueued($customerId, Request $request)
+    {
+        $customer = $this->repository->find($customerId);
+
+        try {
+
+            $this->customerExporter->exportQueued($customer);
+
+            Flash::success("Cliente {$customer->getName()} enviado com sucesso para fila de integração!");
+
+            return Redirect::route($this->getEditRouteName(), $customer->getId())
+                ->withInput(['current-tab' => $request->get('current-tab')]);
+
+        } catch (Exception $e) {
+
+            Flash::error($e->getMessage());
+            return Redirect::back()->withInput();
+        }
+
+    }
+
 }

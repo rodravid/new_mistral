@@ -307,6 +307,14 @@
                     var method = $self.data('method');
                     var action = $self.data('action');
                     var $form = $('<form method="POST" action="' + action + '"><input type="hidden" name="_method" value="' + method + '"></form>');
+                    var params = $self.data('params');
+
+                    if (typeof params !== 'undefined' && params != '') {
+                        $.each(params, function(key, p) {
+                            $form.append('<input type="hidden" name="' + key + '" value="' + p + '">');
+                        });
+                    }
+
                     $form.submit();
                     return true;
                 }
