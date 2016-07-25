@@ -16,6 +16,8 @@
                                 <div class="page-header">
                                     LOG ID #{{ $log->id }} - {{ $log->present()->created_at }}
                                     @yield('log.header')
+                                    <small><b>Usuário:</b> {!! $log->user !!}</small>
+                                    <small><b>Status:</b> {!! $log->present()->status_html !!}</small>
                                 </div>
                             </div>
                         </div>
@@ -30,12 +32,12 @@
 
                                 <div class="form-group">
                                     <label>Request:</label>
-                                    <textarea class="form-control" rows="10" readonly>{!! $log->request_body !!}</textarea>
+                                    <textarea class="form-control" rows="15" readonly>{!! $log->request_body !!}</textarea>
                                 </div>
                                 @if (! empty($log->response_body))
                                     <div class="form-group">
                                         <label>Response:</label>
-                                        <textarea class="form-control" rows="10" readonly>{!! $log->response_body !!}</textarea>
+                                        <textarea class="form-control" rows="15" readonly>{!! $log->response_body !!}</textarea>
                                     </div>
                                 @endif
 
