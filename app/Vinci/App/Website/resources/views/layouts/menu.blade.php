@@ -200,7 +200,7 @@
 
             <li class="menu-item larger760 template3">
                 <a class="menu-link" href="javascript:void(0);">
-                    Região
+                    Produtores
                 </a>
                 <div class="drop-menu">
                     <div class="division">
@@ -392,12 +392,12 @@
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                        <li><a href="/c/pais/chile">Até R$ 60</a></li>
-                            <li><a href="/c/pais/argentina">R$ 60 a R$100</a></li>
-                            <li><a href="/c/pais/espanha">R$ 100 a R$ 170</a></li>
-                            <li><a href="/c/pais/italia">R$ 170 a R$ 270</a></li>
-                            <li><a href="/c/pais/franca">R$ 270 a R$ 500</a></li>
-                            <li><a href="/c/pais/portugal">Acima de R$ 500</a></li>
+                        <li><a href="/busca?preco%5B%5D=*-60">Até R$ 60</a></li>
+                            <li><a href="/busca?preco%5B%5D=60-100">R$ 60 a R$100</a></li>
+                            <li><a href="/busca?preco%5B%5D=100-170">R$ 100 a R$ 170</a></li>
+                            <li><a href="/busca?preco%5B%5D=170-270">R$ 170 a R$ 270</a></li>
+                            <li><a href="/busca?preco%5B%5D=270-500">R$ 270 a R$ 500</a></li>
+                            <li><a href="/busca?preco%5B%5D=500-*">Acima de R$ 500</a></li>
                         </ul>
                     </div>
                     <div class="division">
