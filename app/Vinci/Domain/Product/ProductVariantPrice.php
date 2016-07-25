@@ -237,6 +237,11 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
         return $this->getPrice();
     }
 
+    public function hasDiscount()
+    {
+        return ! empty($this->getDiscountType());
+    }
+
     public function getPriceConfiguration()
     {
 

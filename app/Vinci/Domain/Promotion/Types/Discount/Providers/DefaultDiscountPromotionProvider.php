@@ -32,7 +32,6 @@ class DefaultDiscountPromotionProvider implements DiscountPromotionProvider
             if ($promotion && $promotion->isValid()) {
                 return $promotion;
             }
-
         }
     }
 }

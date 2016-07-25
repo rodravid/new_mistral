@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Pricing\Providers;
 
+use Vinci\Domain\Pricing\Contracts\DiscountType;
 use Vinci\Domain\Pricing\Contracts\PriceConfigurationProvider;
 use Vinci\Domain\Product\ProductVariantPrice;
 use Vinci\Domain\Promotion\Types\Discount\DiscountPromotionService;
@@ -28,9 +29,17 @@ class StandardPriceConfigurationProvider extends AbstractPriceConfigurationProvi
         $variant = $this->productVariantPrice->getVariant();
         $product = $variant->getProduct();
 
+        if ($this->productVariantPrice->hasDiscount()) {
+            return $this->productVariantPrice->getPriceConfiguration();
+        }
+
         if ($promotion = $this->discountPromotionService->findValidPromotionFor($product)) {
 
             $configuration = $promotion->getPriceConfiguration();
+
+            if ($configuration->getDiscountType() !== DiscountType::EXCHANGE_RATE) {
+                $configuration->setCurrencyAmount($this->productVariantPrice->getCurrencyAmount());
+            }
 
             $configuration->setAliquotIpi($this->productVariantPrice->getAliquotIpi());
 

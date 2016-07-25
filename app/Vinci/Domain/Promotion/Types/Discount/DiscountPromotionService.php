@@ -53,8 +53,6 @@ class DiscountPromotionService extends PromotionService
 
         return $this->savePromotion($data, function() {
             $promotion = new DiscountPromotion;
-
-            
             return $promotion;
         });
     }

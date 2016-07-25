@@ -4,6 +4,7 @@ namespace Vinci\Domain\Promotion\Types\Discount;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Vinci\Domain\Pricing\Contracts\DiscountType;
 use Vinci\Domain\Pricing\PriceConfiguration;
 use Vinci\Domain\Promotion\Promotion;
 use Vinci\Domain\Promotion\PromotionInterface;
@@ -37,7 +38,7 @@ class DiscountPromotion extends Promotion implements DiscountPromotionInterface
 
     public function setCurrencyOriginalAmount($currencyOriginalAmount)
     {
-        $this->currencyOriginalAmount = $currencyOriginalAmount;
+        $this->currencyOriginalAmount = (double) $currencyOriginalAmount;
         return $this;
     }
 
@@ -76,7 +77,7 @@ class DiscountPromotion extends Promotion implements DiscountPromotionInterface
             ->setDiscountType($this->getDiscountType())
             ->setDiscountAmount($this->getDiscountAmount());
 
-        if ($this->getDiscountType() == 'exchange-rate') {
+        if ($this->getDiscountType() == DiscountType::EXCHANGE_RATE) {
 
             $configuration
                 ->setCurrencyAmount($this->getDiscountAmount())
