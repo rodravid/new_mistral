@@ -25,7 +25,6 @@ class DoctrineBaseRepository extends EntityRepository
     {
         $this->_em->persist($entity);
         $this->_em->flush();
-        $this->_em->clear(get_class($entity));
     }
 
     public function delete($entity)

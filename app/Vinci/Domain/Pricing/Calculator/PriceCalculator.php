@@ -17,4 +17,6 @@ interface PriceCalculator
 
     public function calculateDiscounts(CalculablePrice $subject);
 
+    public function calculateIpi(CalculablePrice $subject);
+
 }

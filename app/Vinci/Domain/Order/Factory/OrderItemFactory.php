@@ -36,7 +36,7 @@ class OrderItemFactory
             'product_variant' => $cartItem->getProductVariant(),
             'price' => $cartItem->getSalePrice(),
             'original_price' => ! empty($cartItem->getOriginalSalePrice()) ? $cartItem->getOriginalSalePrice() : $cartItem->getSalePrice(),
-            'aliquot_ipi' => $cartItem->getProductVariant()->getPrice()->getAliquotIpi(),
+            'aliquot_ipi' => $cartItem->getProductVariant()->getPrice()->getCalculatedIpi(),
             'quantity' => $cartItem->getQuantity(),
             'total' => $cartItem->getSubtotal()
         ];

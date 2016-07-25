@@ -80,4 +80,18 @@ class StandardPriceCalculator extends AbstractPriceCalculator implements PriceCa
         }
     }
 
+    public function calculateIpi(CalculablePrice $subject)
+    {
+        $finalPrice = $this->convertAmountToReal($subject);
+
+        $this->applyDiscountsIfNecessary($subject, $finalPrice);
+
+        $amount = 0;
+
+        if (! empty($ipi = $this->getPriceConfiguration()->getAliquotIpi())) {
+            $amount = $ipi * $finalPrice / 100;
+        }
+
+        return $this->parseValueAndReset($amount);
+    }
 }
