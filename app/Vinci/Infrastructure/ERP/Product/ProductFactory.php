@@ -20,7 +20,7 @@ class ProductFactory implements ProductFactoryInterface
         $data['product_type_id'] = $this->normalizeValue($xmlObject->COD_TIPO);
         $data["sku"] = $this->normalizeValue($xmlObject->CODIGO_PRODUTO);
         $data["title"] = $this->normalizeValue($xmlObject->NOME_NO_SITE);
-        $data["shortDescription"] = $this->normalizeValue($xmlObject->DESCRICAO_SITE_MARKETING);
+        $data["shortDescription"] = $this->normalizeValue($xmlObject->FRASE_DESCRITIVA);
         $data["description"] = $this->normalizeValue($xmlObject->DESCRICAO_SITE_LONGA);
         $data["packSize"] = $this->normalizeValue($xmlObject->GRF_CAIXA);
         $data["startsAt"] = Carbon::now()->format('d/m/Y H:i');
