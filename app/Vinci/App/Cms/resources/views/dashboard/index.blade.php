@@ -153,7 +153,7 @@
                         @if ($loggedUser->canManageModule('orders'))
                             <div id="lastOrders" class="box box-info">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Últimos Pedidos</h3>
+                                    <h3 class="box-title">Últimos pedidos</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -215,7 +215,7 @@
                         @if ($loggedUser->canManageModule('products'))
                             <div id="productsRecentlyAdded" class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Produtos Adicionados Recentemente</h3>
+                                    <h3 class="box-title">Produtos adicionados recentemente</h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                             <i class="fa fa-minus"></i>
