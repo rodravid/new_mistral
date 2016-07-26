@@ -153,10 +153,12 @@ class ImportCustomers extends Command
                 } catch (UniqueConstraintViolationException $e) {
 
                     if (! $this->em->isOpen()) {
-                        $this->entityManager = $this->em->create(
+                        $this->em = $this->em->create(
                             $this->em->getConnection(),
                             $this->em->getConfiguration()
                         );
+
+                        $this->service->setEntityManager($this->em);
                     }
 
                 } catch (\Exception $e) {

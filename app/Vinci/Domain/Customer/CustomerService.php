@@ -181,4 +181,11 @@ class CustomerService
         ], $data);
     }
 
+    public function setEntityManager(EntityManagerInterface $em)
+    {
+        $this->entityManager = $em;
+        $this->repository->setEntityManager($em);
+        $this->addressService->setEntityManager($em);
+    }
+
 }
