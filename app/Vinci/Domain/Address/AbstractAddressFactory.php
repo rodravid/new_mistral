@@ -64,4 +64,9 @@ abstract class AbstractAddressFactory
         return $this->entityManager->getReference(City::class, $id);
     }
 
+    public function setEntityManager(EntityManagerInterface $em)
+    {
+        $this->entityManager = $em;
+    }
+
 }

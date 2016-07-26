@@ -131,6 +131,7 @@ class AddressService
     public function setEntityManager(EntityManagerInterface $em)
     {
         $this->entityManager = $em;
+        $this->addressFactory->setEntityManager($em);
         $this->addressRepository->setEntityManager($em);
     }
 

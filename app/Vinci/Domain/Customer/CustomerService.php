@@ -79,6 +79,10 @@ class CustomerService
             $customer->setImportId($data['importId']);
         }
 
+        if (isset($data['cryptKey']) && ! empty($data['cryptKey'])) {
+            $customer->setCryptKey($data['cryptKey']);
+        }
+
         $customer
             ->setEmail(array_get($data, 'email'))
             ->setCustomerType(array_get($data, 'customerType'))
