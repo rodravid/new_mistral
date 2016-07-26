@@ -64,8 +64,8 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user1 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste@teste.com',
+            'name' => 'Rodrigo',
+            'email' => 'roliveira@webeleven.com',
             'password' => '123',
             'status' => Status::ACTIVE
         ]);
