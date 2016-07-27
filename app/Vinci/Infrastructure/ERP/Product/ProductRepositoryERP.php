@@ -70,7 +70,7 @@ class ProductRepositoryERP extends BaseSoapErpRepository implements ProductRepos
 
                 $stock = $this->parseResponse($response);
 
-                return intval($stock);
+                return intval($stock->QTD);
 
             } catch (Exception $e) {
                 throw new IntegrationException(sprintf('Error when importing stock of the product #%s: %s', $sku, $e->getMessage()));
