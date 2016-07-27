@@ -34,7 +34,8 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#SKU</th>
+                <th>#ID</th>
+                <th>SKU</th>
                 <th>Produto</th>
                 <th>Valor unitário</th>
                 <th>Quantidade</th>
@@ -46,6 +47,7 @@
 
             @foreach($order->getItems() as $item)
                 <tr>
+                    <td>{{ $item->id }}</td>
                     <td>{{ $item->product->sku }}</td>
                     <td>{{ $item->product->title }}</td>
                     <td>{{ $item->price }}</td>

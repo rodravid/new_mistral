@@ -24,4 +24,16 @@ class IntegrationLogPresenter extends AbstractPresenter
         }
     }
 
+    public function presentRequestType()
+    {
+        switch ($this->getObject()->request_type) {
+            case 'get':
+                return 'Checagem';
+                break;
+            case 'update':
+                return 'Atualização';
+                break;
+        }
+    }
+
 }

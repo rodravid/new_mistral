@@ -42,7 +42,24 @@
             </div>
         </div>
 
-        @include('cms::integration.logs.box')
+        <div class="row">
+            <div class="col-xs-12">
+                @include('cms::integration.logs.box', ['boxTitle' => 'Log de integração do pedido com o ERP'])
+            </div>
+            <div class="col-xs-12">
+                @include('cms::integration.logs.box', [
+                    'boxTitle' => 'Log de integração dos items do pedido com o ERP',
+                    'integrationLogs' => $integrationLogsItems
+                ])
+            </div>
+            <div class="col-xs-12">
+                @include('cms::integration.logs.box', [
+                    'boxTitle' => 'Log de integração do endereço de entrega com o ERP',
+                    'with' => ['request_type' => true],
+                    'integrationLogs' => $integrationLogsAddress
+                ])
+            </div>
+        </div>
     </section>
 
 @endsection
