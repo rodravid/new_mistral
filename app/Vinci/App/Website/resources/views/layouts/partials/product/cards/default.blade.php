@@ -22,10 +22,7 @@
                     <div class="wrap-seal-card">
                         <div class="content-seal-card">
                             <div class="seal-score-card">
-                            <a href="{{ $product->web_path }}">
-                                <img src="{{ $score->seal_img }}" alt="">
-                                <span>{{ $score->value }}</span>
-                                </a>
+                                <a href="{{ $product->web_path }}">{!! $score->seal_img !!}</a>
                             </div>
                         </div>
                     </div>

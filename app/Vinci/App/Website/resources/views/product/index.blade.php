@@ -168,8 +168,7 @@
                                 <div class="wrap-seal-product">
                                     <div class="content-seal-product">
                                         <div class="seal-score">
-                                            <img src="{{ $score->seal_img }}" alt="">
-                                            <span>{{ $score->value }}</span>
+                                            {!! $score->seal_img !!}
                                         </div>
                                     </div>
                                 </div>

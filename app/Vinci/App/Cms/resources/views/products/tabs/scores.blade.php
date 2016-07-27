@@ -14,7 +14,7 @@
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
                                         <label>Crítico</label>
-                                        {!! Form::select('scores[' . $key . '][critical_acclaim_id]', $wineCriticalAcclaims, is_object($score) ? [$score->getCriticalAcclaim()->getId()] : $score['critical_acclaim_id'], ['class' => 'form-control']) !!}
+                                        {!! Form::select('scores[' . $key . '][critical_acclaim_id]', $wineCriticalAcclaims, is_object($score) ? [$score->getCriticalAcclaim()->getId()] : $score['critical_acclaim_id'], ['class' => 'form-control selectCriticalAcclaim']) !!}
                                         {!! Form::hidden('scores[' . $key . '][id]', $score['id']) !!}
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                 '<div class="col-xs-12 col-sm-4">' +
                 '<div class="form-group">' +
                 '<label>Crítico</label>' +
-                '<select class="form-control" name="scores[i' + index + '][critical_acclaim_id]">@foreach($wineCriticalAcclaims as $key => $criticalAcclaim) <option value="{{ $key }}">{{ $criticalAcclaim }}</option> @endforeach</select>' +
+                '<select class="form-control selectCriticalAcclaim" name="scores[i' + index + '][critical_acclaim_id]">@foreach($wineCriticalAcclaims as $key => $criticalAcclaim) <option value="{{ $key }}">{{ $criticalAcclaim }}</option> @endforeach</select>' +
                 '<input type="hidden" name="scores[i' + index + '][id]" value="">' +
                 '</div>' +
                 '</div>' +
@@ -93,7 +93,7 @@
                 '<div class="form-group">' +
                 '<input type="hidden" name="scores[i' + index + '][highlighted]" value="0">' +
                 '<div class="checkbox" style="margin-top: 30px;">' +
-                '<label for="ckbScoreHighlight"><input type="checkbox" name="scores[i' + index + '][highlighted]" value="1"> Destaque?</label>' +
+                '<label for="highlitedi' + index + '"><input type="checkbox" name="scores[i' + index + '][highlighted]" value="1" id="highlitedi' + index + '"> Destaque?</label>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
