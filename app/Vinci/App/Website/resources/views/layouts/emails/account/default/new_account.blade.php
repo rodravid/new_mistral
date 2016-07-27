@@ -176,7 +176,7 @@
 
     <tr><td height="12" style="line-height:12px;border-bottom:solid 1px #bbcad1">&nbsp;</td></tr>
 
-    @if(! empty($customer->getComplement))
+    @if(! empty($customer->getMainAddress()->getComplement()))
     <tr>
         <td style="padding-top: 10px">
             <table cellpadding="0" cellspacing="0" border="0">
@@ -194,6 +194,26 @@
     </tr>
 
     <tr><td height="12" style="line-height:12px;border-bottom:solid 1px #bbcad1">&nbsp;</td></tr>
+    @endif
+
+    @if(! empty($customer->getMainAddress()->getLandmark()))
+        <tr>
+            <td style="padding-top: 10px">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="190" style="font-size: 15px">
+                            Ref. entrega
+                        </td>
+
+                        <td width="300" style="font-size: 15px">
+                            {{ $customer->getMainAddress()->landmark }}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr><td height="12" style="line-height:12px;border-bottom:solid 1px #bbcad1">&nbsp;</td></tr>
     @endif
 
     <tr>
@@ -362,6 +382,6 @@
     </tr>
 
 
-    {{--@include('website::layouts.emails.templates.partials.additional_message')--}}
+
 
 @endsection

@@ -123,7 +123,7 @@
             <br>
 
             <b>Previsão de entrega em até</b> <br>
-            {{ $order->shipment->deadline }} dias úteis
+            {{ $order->shipment->deadline }}
 
 
             <br><br>
