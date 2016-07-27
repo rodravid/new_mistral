@@ -1,1 +1,1 @@
-Prezado(a) Sr.(a) <span style="font-size: 13px; color: #11b6f0 !important;"><b>{{ $order->customer->name }}</b></span>,<br /><br />
+ <span style="font-size: 15px; color: #000000 !important;">Prezado(a) Sr.(a) <b>  {{ $order->customer->name }}</b></span><br /><br />

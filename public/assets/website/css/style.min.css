@@ -4754,6 +4754,9 @@ h3.title-slider {
 
 .txt-slider + p {
   color: #fff; }
+  @media only screen and (max-width: 767px) {
+    .txt-slider + p {
+      display: none; } }
 
 a.bt-default {
   padding: 2px 2px 2px 16px;
