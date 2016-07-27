@@ -29,7 +29,6 @@
         </td>
     </tr>
 
-
     <tr>
         <td style="font-size:15px;font-family:Arial, verdana, sans-serif; padding:10px 0 10px 0">
             @include('website::layouts.emails.templates.partials.additional_message')
