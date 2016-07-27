@@ -39,6 +39,7 @@
                 <th>Valor unitário</th>
                 <th>Quantidade</th>
                 <th>Subtotal</th>
+                <th>Status da integração</th>
             </tr>
             </thead>
             <tbody>
@@ -50,6 +51,7 @@
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->quantity_units }}</td>
                     <td>{{ $item->total }}</td>
+                    <td>{!! $item->integration_status_html !!}</td>
                 </tr>
             @endforeach
             </tbody>

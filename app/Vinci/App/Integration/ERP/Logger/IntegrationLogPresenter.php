@@ -16,10 +16,10 @@ class IntegrationLogPresenter extends AbstractPresenter
     {
         switch ($this->getObject()->type) {
             case 'success':
-                return '<span class="text-success"><i class="fa fa-check"></i> Sucesso</span>';
+                return '<span class="badge bg-green"><i class="fa fa-check"></i> Sucesso</span>';
                 break;
             case 'error':
-                return '<span class="text-danger"><i class="fa fa-exclamation-circle"></i> Erro</span>';
+                return '<span class="badge bg-red"><i class="fa fa-exclamation-circle"></i> Falhou</span>';
                 break;
         }
     }

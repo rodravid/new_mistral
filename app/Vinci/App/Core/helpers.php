@@ -48,14 +48,14 @@ function present_integration_status_html($status)
 {
     switch($status) {
         case \Vinci\Domain\Common\IntegrationStatus::PENDING:
-            return '<span class="text-warning"><i class="fa fa-hourglass-start"></i> Pendente</span>';
+            return '<span class="badge bg-yellow"><i class="fa fa-hourglass-start"></i> Pendente</span>';
             break;
 
         case \Vinci\Domain\Common\IntegrationStatus::INTEGRATED:
-            return '<span class="text-success"><i class="fa fa-check"></i> Integrado</span>';
+            return '<span class="badge bg-green"><i class="fa fa-check"></i> Integrado</span>';
             break;
         case \Vinci\Domain\Common\IntegrationStatus::FAILED:
-            return '<span class="text-danger"><i class="fa fa-exclamation-circle"></i> Falhou</span>';
+            return '<span class="badge bg-red"><i class="fa fa-exclamation-circle"></i> Falhou</span>';
             break;
     }
 }
