@@ -2,9 +2,12 @@
 
 namespace Vinci\App\Core\Console\Commands;
 
-use Doctrine\ORM\EntityManager;
+use DB;
+use Exception;
 use Illuminate\Console\Command;
-use PDO;
+use Vinci\Domain\Core\BaseTaxonomy;
+use Vinci\Domain\ProductType\ProductType;
+use Vinci\Domain\ProductType\ProductTypeService;
 
 class ImportProductsTypes extends Command
 {
@@ -22,29 +25,75 @@ class ImportProductsTypes extends Command
      */
     protected $description = 'Import products types';
 
-    private $em;
+    private $productTypeService;
 
-    public function __construct(EntityManager $em)
+    public function __construct(ProductTypeService $productTypeService)
     {
         parent::__construct();
 
-        $this->em = $em;
+        $this->productTypeService = $productTypeService;
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
+        $db = DB::connection('homolog');
 
-        $conn = $this->em->getConnection();
+        $productsTypes = collect($db->table('w11_productType')->get());
 
-        $stmt = $conn->prepare('SELECT * FROM w11_countries');
+        if ($total = $productsTypes->count()) {
 
-        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $country) {
-            dd($country);
+            $this->info(sprintf('Importing %s products types...', $total));
+            $bar = $this->output->createProgressBar($total);
+            $success = 0;
+            $errors = 0;
+
+            foreach ($productsTypes as $productType) {
+
+                $metadata = app('em')->getClassMetaData(BaseTaxonomy::class);
+                $metadata2 = app('em')->getClassMetaData(ProductType::class);
+
+                $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+                $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+                $metadata2->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+                $metadata2->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+
+                try {
+
+                    $this->productTypeService->create([
+                        'id' => $productType->id,
+                        'name' => $productType->title,
+                        'description' => $productType->description,
+                        'slug' => $productType->slug,
+                        'visible_site' => $productType->visibleSite,
+                        'status' => 1,
+                        'seoTitle' => $productType->seo_title,
+                        'seoDescription' => $productType->seo_description,
+                    ]);
+
+                    $success++;
+
+                } catch (Exception $e) {
+                    $errors++;
+                }
+
+                $bar->advance();
+
+            }
+
+            $bar->finish();
+
+            $this->info('Done!');
+
+            if ($success > 0) {
+                $this->info(sprintf('%s products types imported with success!', $success));
+            }
+
+            if ($errors > 0) {
+                $this->error(sprintf('%s products types were not imported!', $errors));
+            }
+
+        } else {
+            $this->info('Nothing to do.');
         }
 
     }

@@ -5,6 +5,8 @@ namespace Vinci\App\Core\Console\Commands;
 use DB;
 use Exception;
 use Illuminate\Console\Command;
+use Vinci\Domain\Core\BaseTaxonomy;
+use Vinci\Domain\Producer\Producer;
 use Vinci\Domain\Producer\ProducerService;
 
 class ImportProducers extends Command
@@ -45,12 +47,20 @@ class ImportProducers extends Command
             $success = 0;
             $errors = 0;
 
+            $metadata = app('em')->getClassMetaData(BaseTaxonomy::class);
+            $metadata2 = app('em')->getClassMetaData(Producer::class);
+
+            $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+            $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata2->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata2->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+
             foreach ($producers as $producer) {
 
                 try {
 
                     $this->producerService->create([
-                        'id' => $producer->id,
+                        'id' => $producer->producer_id,
                         'region_id' => $producer->region_id,
                         'name' => $producer->title,
                         'description' => $producer->description,

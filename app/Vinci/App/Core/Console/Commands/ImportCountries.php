@@ -5,6 +5,8 @@ namespace Vinci\App\Core\Console\Commands;
 use DB;
 use Exception;
 use Illuminate\Console\Command;
+use Vinci\Domain\Core\BaseTaxonomy;
+use Vinci\Domain\Country\Country;
 use Vinci\Domain\Country\CountryService;
 
 class ImportCountries extends Command
@@ -46,6 +48,14 @@ class ImportCountries extends Command
             $errors = 0;
 
             foreach ($countries as $country) {
+
+                $metadata = app('em')->getClassMetaData(BaseTaxonomy::class);
+                $metadata2 = app('em')->getClassMetaData(Country::class);
+
+                $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+                $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+                $metadata2->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+                $metadata2->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 
                 try {
 

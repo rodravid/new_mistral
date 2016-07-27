@@ -126,12 +126,12 @@ class ProductTypeService
 
     protected function saveImages($data, ProductType $productType)
     {
-        if (! empty($imageDesktop = $data['picture'])) {
+        if (isset($data['picture']) && ! empty($imageDesktop = $data['picture'])) {
             $image = $this->storeImage($productType, $imageDesktop);
             $productType->addImage($image, ImageVersion::PICTURE);
         }
 
-        if (! empty($imageMobile = $data['picture_mobile'])) {
+        if (isset($data['picture_mobile']) && ! empty($imageMobile = $data['picture_mobile'])) {
             $image = $this->storeImage($productType, $imageMobile);
             $productType->addImage($image, ImageVersion::PICTURE_MOBILE);
         }

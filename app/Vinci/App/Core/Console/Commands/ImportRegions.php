@@ -5,6 +5,8 @@ namespace Vinci\App\Core\Console\Commands;
 use DB;
 use Exception;
 use Illuminate\Console\Command;
+use Vinci\Domain\Core\BaseTaxonomy;
+use Vinci\Domain\Region\Region;
 use Vinci\Domain\Region\RegionService;
 
 class ImportRegions extends Command
@@ -36,7 +38,7 @@ class ImportRegions extends Command
     {
         $db = DB::connection('homolog');
 
-        $regions = collect($db->table('w11_regions as r')->join('w11_regions_countries_relationship as rc', 'r.id', '=', 'rc.region_id')->get());
+        $regions = collect($db->table('w11_regions as r')->distinct()->join('w11_regions_countries_relationship as rc', 'r.id', '=', 'rc.region_id')->get());
 
         if ($total = $regions->count()) {
 
@@ -45,12 +47,20 @@ class ImportRegions extends Command
             $success = 0;
             $errors = 0;
 
+            $metadata = app('em')->getClassMetaData(BaseTaxonomy::class);
+            $metadata2 = app('em')->getClassMetaData(Region::class);
+
+            $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+            $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata2->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata2->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
+
             foreach ($regions as $region) {
 
                 try {
 
                     $this->regionService->create([
-                        'id' => $region->id,
+                        'id' => $region->region_id,
                         'country' => $region->country_id,
                         'name' => $region->title,
                         'description' => $region->description,

@@ -129,12 +129,12 @@ class ProducerService
 
     protected function saveImages($data, Producer $producer)
     {
-        if (! empty($imageDesktop = $data['image_logo'])) {
+        if (isset($data['image_logo']) && ! empty($imageDesktop = $data['image_logo'])) {
             $image = $this->storeImage($producer, $imageDesktop);
             $producer->addImage($image, ImageVersion::LOGO);
         }
 
-        if (! empty($imageMobile = $data['image_logo_mobile'])) {
+        if (isset($data['image_logo_mobile']) && ! empty($imageMobile = $data['image_logo_mobile'])) {
             $image = $this->storeImage($producer, $imageMobile);
             $producer->addImage($image, ImageVersion::LOGO_MOBILE);
         }
