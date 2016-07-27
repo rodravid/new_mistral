@@ -34,22 +34,26 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#SKU</th>
+                <th>#ID</th>
+                <th>SKU</th>
                 <th>Produto</th>
                 <th>Valor unitário</th>
                 <th>Quantidade</th>
                 <th>Subtotal</th>
+                <th>Status da integração</th>
             </tr>
             </thead>
             <tbody>
 
             @foreach($order->getItems() as $item)
                 <tr>
+                    <td>{{ $item->id }}</td>
                     <td>{{ $item->product->sku }}</td>
                     <td>{{ $item->product->title }}</td>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->quantity_units }}</td>
                     <td>{{ $item->total }}</td>
+                    <td>{!! $item->integration_status_html !!}</td>
                 </tr>
             @endforeach
             </tbody>

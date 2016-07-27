@@ -79,6 +79,10 @@ class CustomerService
             $customer->setImportId($data['importId']);
         }
 
+        if (isset($data['cryptKey']) && ! empty($data['cryptKey'])) {
+            $customer->setCryptKey($data['cryptKey']);
+        }
+
         $customer
             ->setEmail(array_get($data, 'email'))
             ->setCustomerType(array_get($data, 'customerType'))
@@ -179,6 +183,13 @@ class CustomerService
             'cellPhone' => 'trim|only_numbers',
             'commercialPhone' => 'trim|only_numbers'
         ], $data);
+    }
+
+    public function setEntityManager(EntityManagerInterface $em)
+    {
+        $this->entityManager = $em;
+        $this->repository->setEntityManager($em);
+        $this->addressService->setEntityManager($em);
     }
 
 }

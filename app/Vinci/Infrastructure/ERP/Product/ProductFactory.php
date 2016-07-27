@@ -15,9 +15,13 @@ class ProductFactory implements ProductFactoryInterface
         $data["channels"][0] = 1;
         $data["type"]["id"] = 2;
         $data["country_id"] = $this->normalizeValue($xmlObject->COD_PAIS);
+        $data["country_name"] = $this->normalizeValue($xmlObject->PAIS);
         $data["region_id"] = $this->normalizeValue($xmlObject->COD_REGIAO);
+        $data["region_name"] = $this->normalizeValue($xmlObject->REGIAO);
         $data["producer_id"] = $this->normalizeValue($xmlObject->COD_PRODUTOR);
+        $data["producer_name"] = $this->normalizeValue($xmlObject->PRODUTOR);
         $data['product_type_id'] = $this->normalizeValue($xmlObject->COD_TIPO);
+        $data['product_type_name'] = $this->normalizeValue($xmlObject->TIPO);
         $data["sku"] = $this->normalizeValue($xmlObject->CODIGO_PRODUTO);
         $data["title"] = $this->normalizeValue($xmlObject->NOME_NO_SITE);
         $data["shortDescription"] = $this->normalizeValue($xmlObject->FRASE_DESCRITIVA);

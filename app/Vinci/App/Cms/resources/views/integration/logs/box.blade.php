@@ -1,6 +1,6 @@
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Log de integração com ERP</h3>
+        <h3 class="box-title">{{ $boxTitle or 'Log de integração com ERP' }}</h3>
     </div>
     <div class="box-body">
         @if($integrationLogs->count())
@@ -9,6 +9,9 @@
                 <tr>
                     <th>#ID</th>
                     <th><i class="fa fa-user"></i> Usuário</th>
+                    @if(isset($with['request_type']))
+                        <th><i class="fa fa-edit"></i> Tipo</th>
+                    @endif
                     <th><i class="fa fa-edit"></i> Status</th>
                     <th><i class="fa fa-edit"></i> Mensagem</th>
                     <th><i class="fa fa-calendar"></i> Data</th>
@@ -21,6 +24,9 @@
                     <tr>
                         <td>{{ $log->id }}</td>
                         <td>{{ $log->user }}</td>
+                        @if(isset($with['request_type']))
+                            <td>{!! $log->present()->request_type !!}</td>
+                        @endif
                         <td>{!! $log->present()->status_html !!}</td>
                         <td>{{ $log->message }}</td>
                         <td>{{ $log->present()->created_at }}</td>

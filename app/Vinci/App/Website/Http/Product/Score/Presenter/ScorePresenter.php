@@ -14,6 +14,14 @@ class ScorePresenter extends AbstractPresenter
 
     public function presentSealImg()
     {
-        return asset_web(sprintf('images/wine_seals/%s.%s', $this->getCriticalAcclaim()->getCode(), 'png'));
+        $code = $this->getCriticalAcclaim()->getCode();
+        $path = $code;
+
+        if (in_array($code, ['gambero_rosso', 'decanter'])) {
+            $path .= sprintf('/%s', $this->getValue());
+            return sprintf('<img src="%s" />', asset_web(sprintf('images/wine_seals/%s.%s', $path, 'png')));
+        }
+
+        return sprintf('<img src="%s" /><span>%s</span>', asset_web(sprintf('images/wine_seals/%s.%s', $path, 'png')), $this->getValue());
     }
 }

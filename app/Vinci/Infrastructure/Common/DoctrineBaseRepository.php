@@ -2,6 +2,7 @@
 
 namespace Vinci\Infrastructure\Common;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Vinci\Infrastructure\Common\Traits\Paginatable;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
@@ -32,6 +33,11 @@ class DoctrineBaseRepository extends EntityRepository
         $this->_em->remove($entity);
         $this->_em->flush();
         $this->_em->clear(get_class($entity));
+    }
+
+    public function setEntityManager(EntityManagerInterface $em)
+    {
+        $this->_em = $em;
     }
 
 }

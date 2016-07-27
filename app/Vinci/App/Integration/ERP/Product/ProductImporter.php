@@ -3,6 +3,7 @@
 namespace Vinci\App\Integration\ERP\Product;
 
 use Exception;
+use Illuminate\Support\Str;
 use Log;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Integration\Exceptions\IntegrationException;
@@ -51,7 +52,7 @@ class ProductImporter
 
         } catch (ValidationException $e) {
 
-            $this->log($e, $sku);
+            $this->log($e, $sku, $erpProduct);
 
             throw new IntegrationException(sprintf('Validation exception #%s: %s', $sku, serialize($e->getErrors())));
 
@@ -149,13 +150,40 @@ class ProductImporter
         return $this->localProductService->update($data, $localProduct->getId());
     }
 
-    public function log(Exception $e, $sku)
+    public function log(Exception $e, $sku, $erpProduct = null)
     {
         if ($e instanceof ValidationException) {
+
+            $firstError = $e->getErrors()->first();
+
+            if (Str::contains($firstError, 'country')) {
+                $message = sprintf('Páis não existe: %s - %s', $erpProduct->country_id, $erpProduct->country_name);
+            } else if (strpos($firstError, 'region') !== false) {
+                $message = sprintf('Região não existe: %s - %s', $erpProduct->region_id, $erpProduct->region_name);
+            } else if (strpos($firstError, 'producer') !== false) {
+                $message = sprintf('Produtor não existe: %s - %s', $erpProduct->producer_id, $erpProduct->producer_name);
+            } else if (strpos($firstError, 'type') !== false) {
+                $message = sprintf('Tipo de produto não existe: %s - %s', $erpProduct->product_type_id, $erpProduct->product_type_name);
+            } else {
+                $message = serialize($e->getErrors());
+            }
+
+            file_put_contents(
+                storage_path('/app/products_integration_errors.txt'),
+                sprintf('%s: %s', $sku, $message) . PHP_EOL,
+                FILE_APPEND
+            );
 
             Log::error(sprintf('Validation exception #%s: %s', $sku, serialize($e->getErrors())));
 
         } else {
+
+            file_put_contents(
+                storage_path('/app/products_integration_errors.txt'),
+                sprintf('%s: %s', $sku, $e->getMessage()) . PHP_EOL,
+                FILE_APPEND
+            );
+
             Log::error($e->getMessage());
         }
     }

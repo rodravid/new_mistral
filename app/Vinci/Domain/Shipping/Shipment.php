@@ -105,7 +105,7 @@ class Shipment extends Model implements ShipmentInterface, Presentable
 
     public function getEstimatedDeliveryDate()
     {
-        $creationDate = $this->getOrder()->getCreatedAt();
+        $creationDate = clone $this->getOrder()->getCreatedAt();
         $deadline = $this->getDeadline() > 0
             ? $this->getDeadline() : 1;
 

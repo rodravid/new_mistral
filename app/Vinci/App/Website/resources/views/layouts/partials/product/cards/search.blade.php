@@ -10,8 +10,7 @@
                 <div class="wrap-seal-card">
                     <div class="content-seal-card">
                         <div class="seal-score-card">
-                            <img src="{{ $score->seal_img }}" alt="">
-                            <span>{{ $score->value }}</span>
+                            {!! $score->seal_img !!}
                         </div>
                     </div>
                 </div>
