@@ -106,7 +106,7 @@ class ProductFactory implements ProductFactoryInterface
 
         //aging_potential
         $data["attributes"][10]["attribute_id"] = 11;
-        $data["attributes"][10]["value"] = $this->normalizeValue($xmlObject->CORPO);
+        $data["attributes"][10]["value"] = $this->normalizeValue($xmlObject->SUGESTAO_DE_GUARDA);
 
         //bottle_size
         $data["attributes"][11]["attribute_id"] = 12;
