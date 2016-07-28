@@ -44,7 +44,9 @@
 
         <div class="row no-print">
             <div class="col-xs-12">
-                @include('cms::integration.logs.box', ['boxTitle' => 'Log de integração do pedido com o ERP'])
+                @include('cms::integration.logs.box', [
+                    'boxTitle' => 'Log de integração do pedido com o ERP'
+                ])
             </div>
             <div class="col-xs-12">
                 @include('cms::integration.logs.box', [
