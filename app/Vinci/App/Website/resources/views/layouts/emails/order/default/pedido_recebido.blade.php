@@ -280,7 +280,7 @@
             <br>
             - Qualquer compra cuja quantidade possa ser caracterizada como revenda ou por outro motivo de retenção pelo SEFAZ do seu Estado, ficará sujeita ao recolhimento de ICMS no posto fiscal da fronteira do Estado de destino. Estes valores e eventuais despesas são de total responsabilidade do cliente.
             <br>
-            - Atenção compradores do Estado do AMAZONAS: o pedido de compra está sujeito à fiscalização da SEFAZ/AM e Taxa de Armazenagem. Eventuais despesas acrescidas são integralmente por conta do cliente. (****CONFIRMAR SE É PRECISO MANTER ESTA INFORMAÇÃO)
+            - Atenção compradores do Estado do AMAZONAS: o pedido de compra está sujeito à fiscalização da SEFAZ/AM e Taxa de Armazenagem. Eventuais despesas acrescidas são integralmente por conta do cliente.
             <br><br>
             De acordo com a Medida Provisória número 690/15, convertida em Lei número 13.241 (30/12/2015), desde 01/12/2015 todos os vinhos e destilados vendidos no território brasileiro estão sujeitos à cobrança de IPI. As seguintes alíquotas serão adicionadas aos preços do catálogo impresso, do site e das nossas newsletters anunciadas: 10% sobre os vinhos de mesa (tintos, brancos e espumantes), 20% sobre os vinhos do Porto, Madeira e Jerez, e 30% sobre os destilados (Cognac, Armagnac, Grappa).
             <br>
