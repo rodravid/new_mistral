@@ -13,19 +13,16 @@
 
                 <table width="600" border="0" align="center" bgcolor="#FFFFFF">
                     <tbody>
-                        <tr>
-                            <td style="padding:14px 0 14px 14px; background: #11b6f0;">
-                                <img alt="Vinci" src="{{ asset_web('images/logo-vinci.png') }}"/>
-                            </td>
-                        </tr>
+
+                        @include('website::layouts.emails.templates.partials.header')
                         <tr valign="top">
-                            <td style="padding: 33px; font-size: 13px; color: #000000;">
+                            <td style="padding: 33px 40px 33px 40px; font-size: 13px; color: #000000;">
 
-                                @yield('body')
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    @yield('body')
+                                </table>
 
-                                <br /><br />
-                                <span style="font-size: 13px; color: #000000;">Atenciosamente,<br/>Equipe de Comércio Eletrônico<br/>Vinci - Somos loucos por vinho<br/></span>
-                                <a href="https://www.vinci.com.br" style="font-size: 13px; color: #11b6f0 !important;"><strong>https://www.vinci.com.br</strong></a><br/>
+                                @include('website::layouts.emails.templates.partials.footer')
                             </td>
                         </tr>
                     </tbody>
