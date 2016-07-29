@@ -122,6 +122,15 @@ class Wine extends Product
         return $this->grapeContent;
     }
 
+    public function getMainGrape()
+    {
+        $criteria = Criteria::create();
+
+        $criteria->orderBy(['weight' => $criteria::DESC]);
+
+        return $this->grapeContent->matching($criteria)->first();
+    }
+
     public function addGrape(Grape $grape, $weight)
     {
         $grapeContent = new GrapeContent();

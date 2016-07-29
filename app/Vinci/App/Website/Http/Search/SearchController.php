@@ -45,7 +45,7 @@ class SearchController extends Controller
             $result->getItems()->appends($this->getAppends($request));
         }
 
-        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'preco']);
+        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'tipo-de-vinho', 'preco']);
         $result->setSelectedFilters($this->getSelectedFilters($request));
 
         return $result;
@@ -69,6 +69,10 @@ class SearchController extends Controller
 
         if ($request->has('preco')) {
             $filters['preco'] = $request->get('preco');
+        }
+
+        if ($request->has('tipo-de-vinho')) {
+            $filters['tipo-de-vinho'] = $request->get('tipo-de-vinho');
         }
 
         $filters = ['post' => $filters];

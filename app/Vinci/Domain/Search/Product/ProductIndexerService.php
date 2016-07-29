@@ -106,6 +106,17 @@ class ProductIndexerService
                                     ]
                                 ],
                             ],
+                            'product_type' => [
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer'
+                                    ],
+                                    'title' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ]
+                                ],
+                            ],
                             'suggest' => [
                                 'type' => 'completion',
                                 'index_analyzer' => 'simple',
