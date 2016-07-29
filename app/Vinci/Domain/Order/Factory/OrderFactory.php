@@ -61,7 +61,13 @@ class OrderFactory
         $shippingAddress = new Address;
         $shippingAddress->override($address);
 
-        $billingAddress = clone $shippingAddress;
+        $billingAddress = new Address;
+
+        if (! empty($billAddress = $this->getCustomer($data)->getMainAddress())) {
+            $billingAddress->override($billAddress);
+        } else {
+            $billingAddress = clone $shippingAddress;
+        }
 
         return [$shippingAddress, $billingAddress];
     }

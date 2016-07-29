@@ -36,7 +36,7 @@ class AddressIntegrationLogger extends IntegrationLogger
             return $this->order;
         }
 
-        return $this->order = app(OrderRepository::class)->getOneById($this->resource_id);
+        return $this->order = app(OrderRepository::class)->getOneById($this->resource_owner_id);
     }
 
 }

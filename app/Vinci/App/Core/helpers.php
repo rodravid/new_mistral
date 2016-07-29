@@ -15,6 +15,25 @@ function cmsUser()
     return auth('cms')->user();
 }
 
+function present() {
+    return app(\Vinci\App\Core\Services\Presenter\Presenter::class);
+}
+
+function productCardMenu($productId, $title, $template)
+{
+    $product = app(\Vinci\Domain\Product\Repositories\ProductRepository::class)->find($productId);
+
+    if (! $product) {
+        return;
+    }
+
+    return view('website::layouts.partials.product.cards.menu', [
+        'title' => $title,
+        'product' => present()->model($product, \Vinci\App\Website\Http\Product\Presenter\ProductPresenter::class),
+        'template' => $template
+    ])->render();
+}
+
 function html_select_array($data, $key = 'id', $value = 'title')
 {
     $result = [];
