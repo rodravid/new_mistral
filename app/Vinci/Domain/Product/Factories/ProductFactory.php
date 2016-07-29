@@ -95,7 +95,7 @@ class ProductFactory implements ProductFactoryInterface
 
     protected function includeGrapes($product, array $data)
     {
-        if (isset($data['grapes'])) {
+        if (isset($data['grapes']) && ! empty($data['grapes'])) {
 
             foreach ($data['grapes'] as $item) {
                 $grape = $this->grapeFactory->make($item);
@@ -206,8 +206,16 @@ class ProductFactory implements ProductFactoryInterface
         }
 
         if ($product->isType(ProductArchType::TYPE_WINE)) {
-            $product->syncScores($newProduct->getScores());
-            $product->syncGrapeContent($newProduct->getGrapes());
+            
+            
+            if (isset($data['scores'])) {
+                $product->syncScores($newProduct->getScores());
+            }
+
+            if (isset($data['grapes'])) {
+                $product->syncGrapeContent($newProduct->getGrapes());
+            }
+            
         }
 
         return $product;
