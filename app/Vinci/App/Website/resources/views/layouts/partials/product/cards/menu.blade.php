@@ -24,7 +24,15 @@
             <p class="wine-card-producer">{{ $product->producer->name }}</p>
         @endif
         <p class="featured-sub-descr">{{ $product->shortned_description }}</p>
-        <p class="price-card-menu">{{ $product->sale_price }}</p>
+        @if($product->isAvailable())
+            <p class="price-card-menu">{{ $product->sale_price }}</p>
+        @else
+            <p class="product-unavailable mtop20">
+                Produto indisponível no site
+            </p>
+        @endif
     </a>
-    <a href="javascript:void(0);" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1" class="bt-default-full {{ $template }}">Comprar <span class="arrow-link">></span></a>
+    @if($product->isAvailable())
+        <a href="javascript:void(0);" cart-add-button variant-id="{{ $product->getMasterVariant()->getId() }}" quantity="1" class="bt-default-full {{ $template }}">Comprar <span class="arrow-link">></span></a>
+    @endif
 </div>

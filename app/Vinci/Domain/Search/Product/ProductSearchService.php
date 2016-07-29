@@ -80,6 +80,7 @@ class ProductSearchService extends SearchService
             'regiao' => 'Regiões',
             'produtor' => 'Produtores',
             'preco' => 'Preço',
+            'tipo-de-vinho' => 'Tipo de vinho'
         ];
     }
 
@@ -121,6 +122,12 @@ class ProductSearchService extends SearchService
                                 ['from' => 270, 'to' => 500, 'key' => '270-500'],
                                 ['from' => 500, 'key' => '500-*']
                             ]
+                        ]
+                    ],
+                    'tipo-de-vinho' => [
+                        'terms' => [
+                            'field' => 'product_type.title',
+                            'size' => 20
                         ]
                     ]
                 ],
@@ -180,6 +187,10 @@ class ProductSearchService extends SearchService
 
                 if (! empty($producers = array_get($filters, 'post.produtor'))) {
                     $this->addPostFilter($params, 'producer.title', $producers);
+                }
+
+                if (! empty($types = array_get($filters, 'post.tipo-de-vinho'))) {
+                    $this->addPostFilter($params, 'product_type.title', $types);
                 }
 
                 if (! empty($preco = array_get($filters, 'post.preco'))) {
