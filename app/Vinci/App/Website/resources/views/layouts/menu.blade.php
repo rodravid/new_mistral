@@ -141,21 +141,9 @@
                     </div>
                     <div class="division">
                         <div class="featured-wrap">
-                            <h2 class="title-menu">Sugerimos</h2>
-                            <div class="featured-sub-menu">
-                                <a href="javascript:void(0);">
-                                    <h3>
-                                        KAIKEN TERROIR SERIES CORTE 2013
-                                    </h3>
-                                    <p class="wine-card-producer">Kaiken</p>
-                                    <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template1">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
-                            </div>
+                            {!! productCardMenu(383, 'Sugerimos', 'template1') !!}
                         </div>
+                    </div>
                 </div>
             </li>
 
