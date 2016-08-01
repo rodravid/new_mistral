@@ -2,6 +2,8 @@
 
 namespace Vinci\Domain\Search\Product;
 
+use PHPFluent\ElasticQueryBuilder\Query;
+use PHPFluent\ElasticQueryBuilder\Term;
 use Vinci\App\Core\Services\Presenter\Presenter;
 use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\Product\Repositories\ProductRepository;
@@ -86,8 +88,62 @@ class ProductSearchService extends SearchService
         ];
     }
 
+    protected function aggFilter($agg, $field, array $values)
+    {
+        if (empty($values)) {
+            $agg->filter()->matchAll([]);
+        } else {
+            $agg->filter()->terms([
+                $field => $values
+            ]);
+        }
+    }
+
+    public function makeAndAddDefaultAggregation($qb, $name, $fieldName, $size = 20)
+    {
+        $qb->aggs()->$name()->aggs()->$name()->terms([
+            'field' => $fieldName,
+            'size' => $size
+        ]);
+
+        //$this->aggFilter($this->aggs()->$name(), 'region.title', $regions);
+
+    }
+
     private function getSearchParams($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
+        $qb = new Query();
+        $qb->index('vinci');
+        $qb->type('product');
+        $qb->from($start);
+        $qb->size($limit);
+
+        $body = $qb->body();
+
+        $aggs = $body->aggs();
+
+        $countries = (array) array_get($filters, 'post.pais');
+        $regions = (array) array_get($filters, 'post.regiao');
+        $producers = (array) array_get($filters, 'post.produtor');
+        $productType = (array) array_get($filters, 'post.tipo-de-vinho');
+        $grapes = (array) array_get($filters, 'post.tipo-de-uva');
+        $size = (array) array_get($filters, 'post.tamanho');
+        $price = (array) array_get($filters, 'post.preco');
+
+
+        $this->makeAndAddDefaultAggregation($qb, 'regiao', 'region.title');
+
+
+        $aggs->regiao()->aggs()->regiao()->terms([
+            'field' => 'region.title',
+            'size' => 20
+        ]);
+
+        $this->aggFilter($aggs->regiao(), 'region.title', $regions);
+
+        dd($qb->__toString());
+
+
         $params = [
             'index' => 'vinci',
             'type' => 'product',
@@ -96,15 +152,33 @@ class ProductSearchService extends SearchService
             'body' => [
                 'aggs' => [
                     'pais' => [
-                        'terms' => [
-                            'field' => 'country.title',
-                            'size' => 20
+                        'filter' => [
+                            'match_all' => []
+                        ],
+                        'aggs' => [
+                            'pais' => [
+                                'terms' => [
+                                    'field' => 'country.title',
+                                    'size' => 20
+                                ]
+                            ],
                         ]
                     ],
                     'regiao' => [
-                        'terms' => [
-                            'field' => 'region.title',
-                            'size' => 20
+                        'filter' => [
+                            //'match_all' => []
+                                'terms' => [
+                                    'country.title' => array_get($filters, 'post.pais', [])
+                                ]
+
+                        ],
+                        'aggs' => [
+                            'regiao' => [
+                                'terms' => [
+                                    'field' => 'region.title',
+                                    'size' => 20
+                                ]
+                            ]
                         ]
                     ],
                     'produtor' => [
@@ -192,27 +266,27 @@ class ProductSearchService extends SearchService
             if (isset($filters['post']) && ! empty($filters['post'])) {
 
                 if (! empty($countries = array_get($filters, 'post.pais'))) {
-                    $this->addPostFilter($params, 'country.title', $countries);
+                    $this->addFilter($params, 'country.title', $countries);
                 }
 
                 if (! empty($regions = array_get($filters, 'post.regiao'))) {
-                    $this->addPostFilter($params, 'region.title', $regions);
+                    $this->addFilter($params, 'region.title', $regions);
                 }
 
                 if (! empty($producers = array_get($filters, 'post.produtor'))) {
-                    $this->addPostFilter($params, 'producer.title', $producers);
+                    $this->addFilter($params, 'producer.title', $producers);
                 }
 
                 if (! empty($grapes = array_get($filters, 'post.tipo-de-uva'))) {
-                    $this->addPostFilter($params, 'grapes.title', $grapes);
+                    $this->addFilter($params, 'grapes.title', $grapes);
                 }
 
                 if (! empty($types = array_get($filters, 'post.tipo-de-vinho'))) {
-                    $this->addPostFilter($params, 'product_type.title', $types);
+                    $this->addFilter($params, 'product_type.title', $types);
                 }
 
                 if (! empty($size = array_get($filters, 'post.tamanho'))) {
-                    $this->addPostFilter($params, 'bottle_size.raw', $size);
+                    $this->addFilter($params, 'bottle_size.raw', $size);
                 }
 
                 if (! empty($price = array_get($filters, 'post.preco'))) {
@@ -324,8 +398,8 @@ class ProductSearchService extends SearchService
     {
         $search = [
             'body' => [
-                'query' => [
-                    'filtered' => [
+//                'query' => [
+//                    'filtered' => [
                         'filter' => [
                             'bool' => [
                                 'must' => [
@@ -334,8 +408,8 @@ class ProductSearchService extends SearchService
                             ]
                         ]
                     ]
-                ]
-            ]
+//                ]
+//            ]
         ];
 
         $params = array_merge_recursive($params, $search);
