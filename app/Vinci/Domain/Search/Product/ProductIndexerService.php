@@ -69,6 +69,9 @@ class ProductIndexerService
                             'price' => [
                                 'type' => 'double'
                             ],
+                            'available' => [
+                                'type' => 'integer'
+                            ],
                             'bottle_size' => [
                                 'type' => 'string',
                                 'fields' => [
@@ -178,7 +181,8 @@ class ProductIndexerService
                 'sku' => $product->getSku(),
                 'title' => $product->present()->title,
                 'description' => $product->getDescription(),
-                'price' => $product->getSalePrice()
+                'price' => $product->getSalePrice(),
+                'available' => (int) $product->isAvailable()
             ];
 
             if ($product->hasCountry()) {
