@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a5624f3d6cfe9f69a8e066f62d5c617",
-    "content-hash": "22601dd936e9c0d56efc5c419291cc1a",
+    "hash": "2de53779b8b6c34978264b320113af82",
+    "content-hash": "4e8e905f5386ecd9711b1337a8da78a5",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -3152,6 +3152,50 @@
                 }
             ],
             "time": "2016-06-10 07:14:17"
+        },
+        {
+            "name": "phpfluent/elastic-query-builder",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPFluent/ElasticQueryBuilder.git",
+                "reference": "abe13eba0514f6b57589c1321820b5cdccd5c557"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPFluent/ElasticQueryBuilder/zipball/abe13eba0514f6b57589c1321820b5cdccd5c557",
+                "reference": "abe13eba0514f6b57589c1321820b5cdccd5c557",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPFluent\\ElasticQueryBuilder": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "New BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Henrique Moody",
+                    "email": "henriquemoody@gmail.com",
+                    "homepage": "http://about.me/henriquemoody"
+                },
+                {
+                    "name": "Kinn Coelho Julião",
+                    "email": "kinncj@gmail.com",
+                    "homepage": "http://kinncj.com.br",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fluent query builder for Elastic Search.",
+            "homepage": "http://github.com/PHPFluent/ElasticQueryBuilder",
+            "time": "2013-02-24 21:00:00"
         },
         {
             "name": "phpoffice/phpexcel",
