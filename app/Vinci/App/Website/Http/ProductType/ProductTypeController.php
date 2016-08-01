@@ -29,13 +29,13 @@ class ProductTypeController extends BaseTaxonomyController
 
         $filters = [
             'filters' => [
-                'pais' => [$productType->getName()]
+                'tipo-de-vinho' => [$productType->getName()]
             ]
         ];
 
         $result = $this->search($request, $filters);
 
-        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'preco']);
+        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tamanho', 'preco']);
 
         return $this->view('product-type.index', compact('productType', 'result'));
     }

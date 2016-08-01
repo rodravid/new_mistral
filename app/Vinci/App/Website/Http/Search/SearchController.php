@@ -45,7 +45,7 @@ class SearchController extends Controller
             $result->getItems()->appends($this->getAppends($request));
         }
 
-        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'tipo-de-vinho', 'preco']);
+        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco']);
         $result->setSelectedFilters($this->getSelectedFilters($request));
 
         return $result;
@@ -67,8 +67,16 @@ class SearchController extends Controller
             $filters['produtor'] = $request->get('produtor');
         }
 
+        if ($request->has('tamanho')) {
+            $filters['tamanho'] = $request->get('tamanho');
+        }
+
         if ($request->has('preco')) {
             $filters['preco'] = $request->get('preco');
+        }
+
+        if ($request->has('tipo-de-uva')) {
+            $filters['tipo-de-uva'] = $request->get('tipo-de-uva');
         }
 
         if ($request->has('tipo-de-vinho')) {

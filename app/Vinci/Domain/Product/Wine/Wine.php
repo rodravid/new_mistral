@@ -122,7 +122,12 @@ class Wine extends Product
         return $this->grapeContent;
     }
 
-    public function getMainGrape()
+    public function hasMainGrapeContent()
+    {
+        return (bool) $this->getMainGrapeContent();
+    }
+
+    public function getMainGrapeContent()
     {
         $criteria = Criteria::create();
 
