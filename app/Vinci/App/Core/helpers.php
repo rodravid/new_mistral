@@ -50,6 +50,11 @@ function uniqueHash()
     return md5(uniqid(rand()));
 }
 
+function contains_numbers($String)
+{
+    return preg_match('/\\d/', $String) > 0;
+}
+
 function present_status_html($status)
 {
     switch($status) {

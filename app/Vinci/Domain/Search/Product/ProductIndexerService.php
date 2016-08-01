@@ -261,6 +261,11 @@ class ProductIndexerService
 
                 foreach ($attributes as $attribute) {
                     if (! empty($attribute->getValue())) {
+
+                        if ($attribute->getAttribute()->getCode() == 'bottle_size' && ! contains_numbers($attribute->getValue())) {
+                            continue;
+                        }
+
                         $data[$attribute->getAttribute()->getCode()] = $attribute->getValue();
                     }
                 }
