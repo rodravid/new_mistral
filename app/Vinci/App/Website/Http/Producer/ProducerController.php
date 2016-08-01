@@ -35,7 +35,7 @@ class ProducerController extends BaseTaxonomyController
 
         $result = $this->search($request, $filters);
 
-        $result->setVisibleFilters([]);
+        $result->setVisibleFilters(['tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco']);
 
         return $this->view('producer.index', compact('producer', 'result'));
     }

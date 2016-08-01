@@ -35,7 +35,7 @@ class RegionController extends BaseTaxonomyController
 
         $result = $this->search($request, $filters);
 
-        $result->setVisibleFilters(['produtor']);
+        $result->setVisibleFilters(['produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco']);
 
         return $this->view('region.index', compact('region', 'result'));
     }

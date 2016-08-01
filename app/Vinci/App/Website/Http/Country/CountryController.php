@@ -35,7 +35,7 @@ class CountryController extends BaseTaxonomyController
 
         $result = $this->search($request, $filters);
 
-        $result->setVisibleFilters(['regiao', 'produtor', 'preco']);
+        $result->setVisibleFilters(['regiao', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco']);
 
         return $this->view('country.index', compact('country', 'result'));
     }
