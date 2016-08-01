@@ -36,6 +36,6 @@ class Grape extends BaseTaxonomy
 
     public function getBaseWebUrl()
     {
-        return '/c/tipos-de-uva/';
+        return '/c/tipo-de-uva/';
     }
 }

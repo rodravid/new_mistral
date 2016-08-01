@@ -29,13 +29,13 @@ class GrapeController extends BaseTaxonomyController
 
         $filters = [
             'filters' => [
-                'pais' => [$grape->getName()]
+                'tipo-de-uva' => [$grape->getName()]
             ]
         ];
 
         $result = $this->search($request, $filters);
 
-        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'preco']);
+        $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'tipo-de-vinho', 'tamanho', 'preco']);
 
         return $this->view('grape.index', compact('grape', 'result'));
     }

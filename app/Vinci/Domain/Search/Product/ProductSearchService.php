@@ -80,7 +80,9 @@ class ProductSearchService extends SearchService
             'regiao' => 'Regiões',
             'produtor' => 'Produtores',
             'preco' => 'Preço',
-            'tipo-de-vinho' => 'Tipo de vinho'
+            'tipo-de-uva' => 'Tipo de uva',
+            'tipo-de-vinho' => 'Tipo de vinho',
+            'tamanho' => 'Tamanho',
         ];
     }
 
@@ -124,9 +126,21 @@ class ProductSearchService extends SearchService
                             ]
                         ]
                     ],
+                    'tipo-de-uva' => [
+                        'terms' => [
+                            'field' => 'grapes.title',
+                            'size' => 20
+                        ]
+                    ],
                     'tipo-de-vinho' => [
                         'terms' => [
                             'field' => 'product_type.title',
+                            'size' => 20
+                        ]
+                    ],
+                    'tamanho' => [
+                        'terms' => [
+                            'field' => 'bottle_size.raw',
                             'size' => 20
                         ]
                     ]
@@ -189,12 +203,20 @@ class ProductSearchService extends SearchService
                     $this->addPostFilter($params, 'producer.title', $producers);
                 }
 
+                if (! empty($grapes = array_get($filters, 'post.tipo-de-uva'))) {
+                    $this->addPostFilter($params, 'grapes.title', $grapes);
+                }
+
                 if (! empty($types = array_get($filters, 'post.tipo-de-vinho'))) {
                     $this->addPostFilter($params, 'product_type.title', $types);
                 }
 
-                if (! empty($preco = array_get($filters, 'post.preco'))) {
-                    $this->addPostFilterPrice($params, 'price', $preco);
+                if (! empty($size = array_get($filters, 'post.tamanho'))) {
+                    $this->addPostFilter($params, 'bottle_size.raw', $size);
+                }
+
+                if (! empty($price = array_get($filters, 'post.preco'))) {
+                    $this->addPostFilterPrice($params, 'price', $price);
                 }
 
             }
@@ -213,6 +235,14 @@ class ProductSearchService extends SearchService
                     $this->addFilter($params, 'producer.title', $producers);
                 }
 
+                if (! empty($grapes = array_get($filters, 'filters.tipo-de-uva'))) {
+                    $this->addFilter($params, 'grapes.title', $grapes);
+                }
+
+                if (! empty($types = array_get($filters, 'filters.tipo-de-vinho'))) {
+                    $this->addFilter($params, 'product_type.title', $types);
+                }
+
                 if (! empty($showcases = array_get($filters, 'filters.showcase'))) {
                     $this->addFilter($params, 'showcases.id', $showcases);
                 }
@@ -226,29 +256,13 @@ class ProductSearchService extends SearchService
 
     protected function getSort($order)
     {
-
         switch ($order) {
 
-            case 1:
-                return ['_score'];
-                break;
-
-            case 2:
-                return ['price:asc'];
-                break;
-
-            case 3:
-                return ['price:desc'];
-                break;
-
-            case 4:
-                return ['title.raw:asc'];
-                break;
-
-            case 5:
-                return ['title.raw:desc'];
-                break;
-
+            case 1: return ['_score']; break;
+            case 2: return ['price:asc']; break;
+            case 3: return ['price:desc']; break;
+            case 4: return ['title.raw:asc']; break;
+            case 5: return ['title.raw:desc']; break;
         }
 
         return ['_score'];

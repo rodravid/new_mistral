@@ -99,10 +99,16 @@
                             <li>
                                 <ul>
                                     <li><p class="item-info-wine">Tipo</p></li>
-                                    <li><a href="{{ $product->productType->getWebUrl() }}"><p
-                                                    class="info-vinho-template">{{ $product->productType->name }}</p>
-                                        </a>
-                                    </li>
+                                    <li><a href="{{ $product->productType->getWebUrl() }}"><p class="info-vinho-template">{{ $product->productType->name }}</p></a></li>
+                                </ul>
+                            </li>
+                        @endif
+
+                        @if($product->isWine() && $product->hasMainGrapeContent())
+                            <li>
+                                <ul>
+                                    <li><p class="item-info-wine">Uva</p></li>
+                                    <li><a href="{{ $product->getMainGrapeContent()->getGrape()->getWebUrl() }}"><p class="info-vinho-template">{{ $product->getMainGrapeContent()->getGrape()->name }}</p></a></li>
                                 </ul>
                             </li>
                         @endif
