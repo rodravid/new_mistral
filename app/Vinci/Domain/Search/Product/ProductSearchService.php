@@ -258,11 +258,11 @@ class ProductSearchService extends SearchService
     {
         switch ($order) {
 
-            case 1: return ['_score:desc', 'available:desc']; break;
-            case 2: return ['price:asc', 'available:desc']; break;
-            case 3: return ['price:desc', 'available:desc']; break;
-            case 4: return ['title.raw:asc', 'available:desc']; break;
-            case 5: return ['title.raw:desc', 'available:desc']; break;
+            case 1: return ['_score']; break;
+            case 2: return ['price:asc']; break;
+            case 3: return ['price:desc']; break;
+            case 4: return ['title.raw:asc']; break;
+            case 5: return ['title.raw:desc']; break;
         }
 
         return ['_score'];
