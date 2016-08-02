@@ -759,7 +759,7 @@ class Product extends Model implements ProductInterface, Presentable
         return (bool) $this->enabledForPromotions;
     }
 
-    public function setEnabledForPromotions($value)
+    public function setEnabledForPromotions($value = null)
     {
         $this->enabledForPromotions = (bool) $value;
         return $this;

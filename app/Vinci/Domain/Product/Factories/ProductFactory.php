@@ -65,7 +65,8 @@ class ProductFactory implements ProductFactoryInterface
             ->setSku($data['sku'])
             ->setStatus($data['status'])
             ->setStartsAtFromFormat($data['startsAt'])
-            ->setExpirationAtFromFormat($data['expirationAt']);
+            ->setExpirationAtFromFormat($data['expirationAt'])
+            ->setEnabledForPromotions(array_get($data, 'enabled_for_promotions'));
 
         $this->includeCountry($product, $data);
         $this->includeRegion($product, $data);
@@ -203,6 +204,10 @@ class ProductFactory implements ProductFactoryInterface
 
         if (array_has($data, 'should_import_price')) {
             $product->setImportPrice($newProduct->shouldImportPrice());
+        }
+
+        if (array_has($data, 'enabled_for_promotions')) {
+            $product->setEnabledForPromotions($newProduct->canBePromoted());
         }
 
         if ($product->isType(ProductArchType::TYPE_WINE)) {

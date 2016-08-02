@@ -54,7 +54,7 @@ class AddressService
         return $this->saveAddress($data, $customerId, function ($addressData) use ($addressId) {
             $address = $this->addressRepository->getOneById($addressId);
 
-            $newAddress = $this->addressFactory->makeFromArray($addressData);
+            $newAddress = $this->addressFactory->makeFromArray(array_except($addressData, 'id'));
 
             $address->override($newAddress);
 
@@ -67,12 +67,15 @@ class AddressService
         $address = $method(array_first($data['addresses']));
 
         $customer = $this->entityManager->getReference(Customer::class, $customerId);
-        
+
+        $address->setCustomer($customer);
+
+        $this->entityManager->persist($address);
+        $this->entityManager->flush();
+
         if (! $customer->getAddresses()->count()) {
             $address->setMainAddress(true);
         }
-
-        $address->setCustomer($customer);
 
         $this->entityManager->persist($address);
         $this->entityManager->flush();
