@@ -3,9 +3,9 @@
 namespace Vinci\App\Core\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Auth;
-use Vinci\App\Cms\Http\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Doctrine\ORM\EntityManagerInterface;
+use Vinci\App\Core\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {
@@ -26,7 +26,7 @@ class PasswordController extends Controller
     {
         parent::__construct($em);
 
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
 
     protected function resetPassword($user, $password)
