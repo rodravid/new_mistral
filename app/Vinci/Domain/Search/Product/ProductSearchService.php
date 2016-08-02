@@ -119,6 +119,7 @@ class ProductSearchService extends SearchService
         $qb->size($limit);
 
         $body = $qb->body();
+        $body->sort($this->getSort($sort));
 
         $aggs = $body->aggs();
 
@@ -131,15 +132,33 @@ class ProductSearchService extends SearchService
         $price = (array) array_get($filters, 'post.preco');
 
 
+        $this->makeAndAddDefaultAggregation($qb, 'pais', 'country.title');
+        $this->aggFilter($aggs->pais(), 'country.title', $countries);
+
         $this->makeAndAddDefaultAggregation($qb, 'regiao', 'region.title');
+        $this->aggFilter($aggs->regiao(), 'region.title', $regions);
+
+        $this->makeAndAddDefaultAggregation($qb, 'produtor', 'region.title');
+        $this->aggFilter($aggs->produtor(), 'region.title', $regions);
+
+//        $aggs->regiao()->aggs()->regiao()->terms([
+//            'field' => 'region.title',
+//            'size' => 20
+//        ]);
 
 
-        $aggs->regiao()->aggs()->regiao()->terms([
-            'field' => 'region.title',
-            'size' => 20
+        $aggs->preco()->range([
+            'field' => 'price',
+            'ranges' => [
+                ['to' => 60, 'key' => '*-60'],
+                ['from' => 60, 'to' => 100, 'key' => '60-100'],
+                ['from' => 100, 'to' => 170, 'key' => '100-170'],
+                ['from' => 170, 'to' => 270, 'key' => '170-270'],
+                ['from' => 270, 'to' => 500, 'key' => '270-500'],
+                ['from' => 500, 'key' => '500-*']
+            ]
         ]);
 
-        $this->aggFilter($aggs->regiao(), 'region.title', $regions);
 
         dd($qb->__toString());
 
