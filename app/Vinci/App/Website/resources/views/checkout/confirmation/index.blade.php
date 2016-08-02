@@ -47,7 +47,7 @@
 
             <article class="order section-payment">
                 <div class="content-order float-left">
-                    <p class="txt-order">Numero do pedido</p>
+                    <p class="txt-order">Número do pedido</p>
                     <span class="num-order">{{ $order->number }}</span>
                 </div>
                 <div class="status-order float-right">
