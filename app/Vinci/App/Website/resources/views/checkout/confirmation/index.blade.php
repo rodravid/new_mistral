@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <p class="mbottom20">Agradecemos a sua compra. Você receberá um e-mail de confirmacão do seu produto</p>
+            <p class="mbottom20">Agradecemos a sua compra. Você receberá um e-mail de confirmação do seu produto</p>
 
             <article class="order section-payment">
                 <div class="content-order float-left">
@@ -115,8 +115,8 @@
 
             <article class="to-deliver section-payment">
                 <div class="float-left">
-                    <span class="title-internal-15 uppercase">{{ $order->billingAddress->nickname }}</span>
-                    {!! $order->billingAddress->address_html !!}
+                    <span class="title-internal-15 uppercase">{{ $order->shippingAddress->nickname }}</span>
+                    {!! $order->shippingAddress->address_html !!}
                 </div>
 
             </article>

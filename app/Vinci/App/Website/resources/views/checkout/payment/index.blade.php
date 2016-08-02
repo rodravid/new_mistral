@@ -231,7 +231,7 @@
                         <p class="mbottom20"><strong>Atenção:</strong> Não efetue depósito sem nossa confirmação, os
                             dados podem mudar conforme a expedição de envio de mercadorias, o que atrasaria seu processo
                             em caso de divergência fiscal. É importante aguardar o recebimento do email com as
-                            instruções para o o depósito bancário.</p>
+                            instruções para o depósito bancário.</p>
                     </section>
 
                     <div class="wrap-content-bt remove-mbttom20">
