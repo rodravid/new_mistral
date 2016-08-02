@@ -112,16 +112,16 @@ class ProductSearchService extends SearchService
 
     private function getSearchParams($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
-        $qb = new Query();
-        $qb->index('vinci');
-        $qb->type('product');
-        $qb->from($start);
-        $qb->size($limit);
-
-        $body = $qb->body();
-        $body->sort($this->getSort($sort));
-
-        $aggs = $body->aggs();
+//        $qb = new Query();
+//        $qb->index('vinci');
+//        $qb->type('product');
+//        $qb->from($start);
+//        $qb->size($limit);
+//
+//        $body = $qb->body();
+//        $body->sort($this->getSort($sort));
+//
+//        $aggs = $body->aggs();
 
         $countries = (array) array_get($filters, 'post.pais');
         $regions = (array) array_get($filters, 'post.regiao');
@@ -132,35 +132,38 @@ class ProductSearchService extends SearchService
         $price = (array) array_get($filters, 'post.preco');
 
 
-        $this->makeAndAddDefaultAggregation($qb, 'pais', 'country.title');
-        $this->aggFilter($aggs->pais(), 'country.title', $countries);
-
-        $this->makeAndAddDefaultAggregation($qb, 'regiao', 'region.title');
-        $this->aggFilter($aggs->regiao(), 'region.title', $regions);
-
-        $this->makeAndAddDefaultAggregation($qb, 'produtor', 'region.title');
-        $this->aggFilter($aggs->produtor(), 'region.title', $regions);
-
-//        $aggs->regiao()->aggs()->regiao()->terms([
-//            'field' => 'region.title',
-//            'size' => 20
+//        $this->makeAndAddDefaultAggregation($qb, 'pais', 'country.title');
+//        $this->aggFilter($aggs->pais(), 'country.title', $countries);
+//
+//        $this->makeAndAddDefaultAggregation($qb, 'regiao', 'region.title');
+//        $this->aggFilter($aggs->regiao(), 'region.title', $regions);
+//
+//        $this->makeAndAddDefaultAggregation($qb, 'produtor', 'region.title');
+//        $this->aggFilter($aggs->produtor(), 'region.title', $regions);
+//
+//        $this->makeAndAddDefaultAggregation($qb, 'tipo-de-vinho', 'product_type.title');
+//        $this->aggFilter($aggs->tipoDeVinho(), 'product_type.title', $regions);
+//
+////        $aggs->regiao()->aggs()->regiao()->terms([
+////            'field' => 'region.title',
+////            'size' => 20
+////        ]);
+//
+//
+//        $aggs->preco()->range([
+//            'field' => 'price',
+//            'ranges' => [
+//                ['to' => 60, 'key' => '*-60'],
+//                ['from' => 60, 'to' => 100, 'key' => '60-100'],
+//                ['from' => 100, 'to' => 170, 'key' => '100-170'],
+//                ['from' => 170, 'to' => 270, 'key' => '170-270'],
+//                ['from' => 270, 'to' => 500, 'key' => '270-500'],
+//                ['from' => 500, 'key' => '500-*']
+//            ]
 //        ]);
-
-
-        $aggs->preco()->range([
-            'field' => 'price',
-            'ranges' => [
-                ['to' => 60, 'key' => '*-60'],
-                ['from' => 60, 'to' => 100, 'key' => '60-100'],
-                ['from' => 100, 'to' => 170, 'key' => '100-170'],
-                ['from' => 170, 'to' => 270, 'key' => '170-270'],
-                ['from' => 270, 'to' => 500, 'key' => '270-500'],
-                ['from' => 500, 'key' => '500-*']
-            ]
-        ]);
-
-
-        dd($qb->__toString());
+//
+//
+//        dd($qb->__toString());
 
 
         $params = [
@@ -184,13 +187,12 @@ class ProductSearchService extends SearchService
                         ]
                     ],
                     'regiao' => [
-                        'filter' => [
-                            //'match_all' => []
+                        'filter' => ! empty($countries) ? [
                                 'terms' => [
-                                    'country.title' => array_get($filters, 'post.pais', [])
+                                    'country.title' => $countries
                                 ]
 
-                        ],
+                        ] : ['match_all' => []],
                         'aggs' => [
                             'regiao' => [
                                 'terms' => [
@@ -201,9 +203,19 @@ class ProductSearchService extends SearchService
                         ]
                     ],
                     'produtor' => [
-                        'terms' => [
-                            'field' => 'producer.title',
-                            'size' => 20
+                        'filter' => ! empty($regions) ? [
+                            'terms' => [
+                                'region.title' => $regions
+                            ]
+
+                        ] : ['match_all' => []],
+                        'aggs' => [
+                            'produtor' => [
+                                'terms' => [
+                                    'field' => 'producer.title',
+                                    'size' => 20
+                                ]
+                            ]
                         ]
                     ],
                     'preco' => [
