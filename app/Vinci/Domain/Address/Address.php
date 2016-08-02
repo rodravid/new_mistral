@@ -94,6 +94,12 @@ abstract class Address extends Model implements Presentable
         return $this->id;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getCode()
     {
         return $this->code;

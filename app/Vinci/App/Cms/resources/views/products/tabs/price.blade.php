@@ -61,6 +61,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="hidden" name="enabled_for_promotions" value="0">
+                            <label for="ckbEnabledPromo">
+                                <input type="checkbox" id="ckbEnabledPromo" name="enabled_for_promotions" value="1" @if(old('enabled_for_promotions', isset($product) ? $product->canBePromoted() : false)) checked @endif>
+                                Ativo para promoções?</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -16,12 +16,11 @@ abstract class AbstractAddressFactory
         $this->entityManager = $entityManager;
     }
 
-    protected abstract function
-    getNewAddressInstance($id = null);
+    protected abstract function getNewAddressInstance($id = null);
 
     public function makeFromArray(array $addressData)
     {
-        $address = $this->getNewAddressInstance($addressData['id']);
+        $address = $this->getNewAddressInstance(array_get($addressData, 'id'));
 
         $address->setType($this->getAddressType($addressData['type']))
                 ->setPublicPlace($this->getPublicPlace($addressData['public_place']))
