@@ -2,8 +2,8 @@
 
 namespace Vinci\App\Core\Http\Controllers\Auth;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Vinci\App\Core\Http\Controllers\Controller;
-use Vinci\User;
 use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -35,8 +35,11 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(EntityManagerInterface $em)
     {
+        parent::__construct($em);
+
+
         $this->middleware('guest:' . $this->getGuard(), ['except' => 'logout']);
     }
 

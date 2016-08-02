@@ -2,10 +2,13 @@
 
 namespace Vinci\App\Website\Http\Auth;
 
+use Auth;
+use Doctrine\ORM\EntityManagerInterface;
 use Request;
-use Vinci\App\Core\Http\Controllers\Auth\PasswordController as BaseAuthController;
+use Vinci\App\Core\Http\Controllers\Auth\PasswordController as BasePasswordController;
+use Vinci\App\Website\Http\Customer\Presenters\CustomerPresenter;
 
-class PasswordController extends BaseAuthController
+class PasswordController extends BasePasswordController
 {
 
     protected $guard = 'website';
@@ -19,6 +22,24 @@ class PasswordController extends BaseAuthController
     protected $redirectPath = '/minhaconta';
 
     protected $subject = 'Vinci Vinhos – Recuperação de senha.';
+
+    protected $user;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        parent::__construct($em);
+
+        $this->shareLoggedUser();
+    }
+
+    protected function shareLoggedUser()
+    {
+        $this->user = Auth::guard('website')->user();
+
+        if ($this->user) {
+            view()->share('loggedUser', new CustomerPresenter($this->user));
+        }
+    }
 
     protected function getSendResetLinkEmailSuccessResponse($response)
     {

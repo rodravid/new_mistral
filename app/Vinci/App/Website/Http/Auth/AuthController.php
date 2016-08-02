@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Website\Http\Auth;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -19,9 +20,9 @@ class AuthController extends BaseAuthController
 
     protected $redirectAfterLogout = '/';
 
-    public function __construct()
+    public function __construct(EntityManagerInterface $em)
     {
-        parent::__construct();
+        parent::__construct($em);
 
         $this->redirectTo = route('account.index');
     }
