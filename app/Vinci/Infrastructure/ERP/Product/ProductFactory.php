@@ -115,12 +115,12 @@ class ProductFactory implements ProductFactoryInterface
         return $this->newInstance($data);
     }
 
-    public function makeListFromXmlObject($xmlObject)
+    public function makeListFromXmlObject($xmlObject, $field = 'CODIGO_PRODUTO')
     {
         $list = [];
 
         foreach ($xmlObject as $item) {
-            $list[] = (string) $item->CODIGO_PRODUTO;
+            $list[] = (string) $item->$field;
         }
 
         return $list;
