@@ -62,6 +62,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('erp:integration:products:import --new')
             ->cron('10 * * * *');
 
+        $schedule->command('erp:integration:products:import --changed')
+            ->cron('15 * * * *');
+
         $schedule->command('erp:integration:products:import --all')
             ->cron('5 */2 * * *');
 

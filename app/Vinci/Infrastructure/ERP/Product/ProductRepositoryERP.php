@@ -121,7 +121,7 @@ class ProductRepositoryERP extends BaseSoapErpRepository implements ProductRepos
 
             $response = $client->call('GETPRODUTOSNOVOS', [
                 'GETPRODUTOSNOVOSInput' => [
-                    'PMARCA-VARCHAR2-IN' => $this->getStoreCode(),
+                    'PMARCA-VARCHAR2-IN' => 'VINCI',
                     'PXML-XMLTYPE-OUT' => '',
                 ]
             ]);
@@ -130,7 +130,7 @@ class ProductRepositoryERP extends BaseSoapErpRepository implements ProductRepos
 
                 $products = $this->parseResponse($response, true);
 
-                return $this->factory->makeListFromXmlObject($products);
+                return $this->factory->makeListFromXmlObject($products, 'COD_MATERIAL');
 
             } catch (EmptyResponseException $e) {
 
@@ -153,7 +153,7 @@ class ProductRepositoryERP extends BaseSoapErpRepository implements ProductRepos
 
             $response = $client->call('GETPRODUTOSALTERADOS', [
                 'GETPRODUTOSALTERADOSInput' => [
-                    'PMARCA-VARCHAR2-IN' => $this->getStoreCode(),
+                    'PMARCA-VARCHAR2-IN' => 'VINCI',
                     'PXML-XMLTYPE-OUT' => '',
                 ]
             ]);
@@ -162,7 +162,7 @@ class ProductRepositoryERP extends BaseSoapErpRepository implements ProductRepos
 
                 $products = $this->parseResponse($response, true);
 
-                return $this->factory->makeListFromXmlObject($products);
+                return $this->factory->makeListFromXmlObject($products, 'COD_MATERIAL');
 
             } catch (EmptyResponseException $e) {
                 return [];

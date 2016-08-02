@@ -7,6 +7,6 @@ interface ProductFactory
 
     public function makeFromXmlObject($xmlObject);
 
-    public function makeListFromXmlObject($xmlObject);
+    public function makeListFromXmlObject($xmlObject, $field = 'COD_PRODUTO');
 
 }

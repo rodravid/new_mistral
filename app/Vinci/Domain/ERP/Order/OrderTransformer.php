@@ -21,7 +21,7 @@ class OrderTransformer extends BaseTransformer
             'shipping_value' => $order->getShipment()->getAmount(),
             'obs' => $this->getObs($order),
             'created_at' => $order->getCreatedAt()->format('d/M/Y'),
-            'erp_shipping_address' => '', //Setado quando atualizado o endereço de entrega no erp
+            'erp_shipping_address' => $order->getShippingAddress()->getCode(),
             'filial' => 6,
         ];
     }
