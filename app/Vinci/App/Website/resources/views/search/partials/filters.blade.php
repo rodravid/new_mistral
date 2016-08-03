@@ -46,7 +46,7 @@
 
             <ul class="filter-search search-filter" data-urlkey="{{ $filter->name }}[]">
                 @foreach($filter->getValues() as $value)
-                    <li class="filter-search-item search-filter-value" data-value="{{ $value->getTitle() }}">
+                    <li class="filter-search-item search-filter-value {{ ! $value->count > 0 ? 'disabled' : '' }}" data-value="{{ $value->getTitle() }}">
                         <ul class="subitem-filter-search">
                             <li>
                                 <a href="javascript:void(0);">{{ $value->title }}</a>
