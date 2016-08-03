@@ -2,34 +2,30 @@
     <input type="hidden" name="channel" value="1">
     <div class="row">
         <div class="col-xs-12 col-sm-12">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtShowcaseTitle">Título</label>
                 {!! Form::text('title', null, ['id' => 'txtShowcaseTitle', 'class' => 'form-control', 'placeholder' => 'Digite o título']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
             </div>
         </div>
 
         <div class="col-lg-12">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtShowcaseDescription">Descrição</label>
                 {!! Form::textarea('description', null, ['id' => 'txtShowcaseDescription', 'class' => 'form-control html-editor-especial', 'placeholder' => 'Digite a descrição', 'rows' => '3']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-6">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtShowcaseTitle">Valor inicial da compra</label>
                 {!! Form::text('initialAmount', null, ['id' => 'txtInitialAmount', 'class' => 'form-control', 'placeholder' => 'Valor inicial da compra']) !!}
-                <span class="fa fa-money form-control-feedback"></span>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-6">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtShowcaseTitle">Valor final da compra</label>
                 {!! Form::text('finalAmount', null, ['id' => 'txtFinalAmount', 'class' => 'form-control', 'placeholder' => 'Valor final da compra']) !!}
-                <span class="fa fa-money form-control-feedback"></span>
             </div>
         </div>
 
@@ -52,10 +48,9 @@
         </div>
 
         <div class="col-xs-12 col-sm-6">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="txtShowcaseTitle">Valor do desconto</label>
                 {!! Form::text('discountAmount', null, ['id' => 'txtDiscountAmount', 'class' => 'form-control', 'placeholder' => 'Valor do desconto']) !!}
-                <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
             </div>
         </div>
 
