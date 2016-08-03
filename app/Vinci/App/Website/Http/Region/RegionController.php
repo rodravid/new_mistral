@@ -28,9 +28,7 @@ class RegionController extends BaseTaxonomyController
         $region = $this->getRegion($slug);
 
         $filters = [
-            'filters' => [
-                'regiao' => [$region->getName()]
-            ]
+            'regiao' => [$region->getName()]
         ];
 
         $result = $this->search($request, $filters);

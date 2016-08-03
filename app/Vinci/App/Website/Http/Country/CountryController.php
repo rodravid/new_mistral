@@ -28,9 +28,7 @@ class CountryController extends BaseTaxonomyController
         $country = $this->getCountry($slug);
 
         $filters = [
-            'filters' => [
-                'pais' => [$country->getName()]
-            ]
+            'pais' => [$country->getName()]
         ];
 
         $result = $this->search($request, $filters);
