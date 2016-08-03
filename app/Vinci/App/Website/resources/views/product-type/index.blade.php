@@ -3,7 +3,7 @@
 @section('title', 'Vinci - ' . $productType->seo()->title())
 
 @section('content')
-<div class="header-internal template1-bg bg-color-category" style="background: url({{ asset_web('images/bg-pais.jpg') }}) no-repeat top right;">
+<div class="header-internal template4-bg bg-color-category" style="background: url({{ asset_web('images/bg-tipo-vinho.jpg') }}) no-repeat top right;">
 	@include('website::layouts.menu')
 	<div class="row">
 		<ul class="breadcrumb">
