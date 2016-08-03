@@ -109,11 +109,6 @@ class SearchService
         return $result['hits']['hits'];
     }
 
-    protected function getNewResultClassInstance()
-    {
-        return new SearchResult;
-    }
-
     protected function makePaginator($items, $result)
     {
         $paginator = new LengthAwarePaginator($items, array_get($result, 'hits.total'), array_get($result, 'limit'));
@@ -121,6 +116,112 @@ class SearchService
         $paginator = new DefaultPaginatorPresenter($paginator);
 
         return $paginator;
+    }
+
+    protected function makeAggFilter($aggName, array $filters)
+    {
+        $mapping = $this->getAggMapping($aggName);
+        $filter = [];
+
+        if (isset($mapping['filtered_by'])) {
+
+            foreach ($mapping['filtered_by'] as $agg) {
+
+                $map = $this->getAggMapping($agg);
+
+                if (!empty($values = array_get($filters, $agg))) {
+
+                    if ($map['type'] == 'term') {
+                        $filter['bool']['must'][]['terms'] = [$map['field'] => $values];
+
+                    } elseif ($map['type'] == 'range') {
+                        $filter['bool']['must'][]['range'] = [$map['field'] => $this->parseRangeValue($values[0])];
+                    }
+                }
+            }
+        }
+
+        if (empty($filter)) {
+            $filter = ['match_all' => []];
+        }
+
+        return $filter;
+    }
+
+    protected function getAggMapping($name)
+    {
+        return $this->aggsMapping[$name];
+    }
+
+    protected function addFilter(array &$params, $column, array $values)
+    {
+        $search = [
+            'body' => [
+                'filter' => [
+                    'bool' => [
+                        'must' => [
+                            ['terms' => [$column => $values]],
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $params = array_merge_recursive($params, $search);
+    }
+
+    protected function parseRangeValue($value)
+    {
+        $range = explode('-', $value);
+
+        $val = [];
+
+        if ($range[0] !== '*') {
+            $val['gte'] = $range[0];
+        }
+
+        if ($range[1] !== '*') {
+            $val['lte'] = $range[1];
+        }
+
+        return $val;
+    }
+
+    protected function addFilterRange(array &$params, $column, array $values)
+    {
+        $search = [
+            'body' => [
+                'filter' => [
+                    'bool' => [
+                        'must' => [
+                            ['range' => [$column => $this->parseRangeValue($values[0])]]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $params = array_merge_recursive($params, $search);
+    }
+
+    protected function getFiltersTitles()
+    {
+        $titles = [];
+
+        foreach ($this->aggsMapping as $key => $mapping) {
+            $titles[$key] = array_get($mapping, 'title');
+        }
+
+        return $titles;
+    }
+
+    protected function getNewResultClassInstance()
+    {
+        if (property_exists($this, 'resultClass')) {
+            return new $this->resultClass;
+        }
+
+        return new SearchResult;
     }
 
 }

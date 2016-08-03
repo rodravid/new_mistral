@@ -28,9 +28,7 @@ class ProducerController extends BaseTaxonomyController
         $producer = $this->getProducer($slug);
 
         $filters = [
-            'filters' => [
-                'produtor' => [$producer->getName()]
-            ]
+            'produtor' => [$producer->getName()]
         ];
 
         $result = $this->search($request, $filters);
