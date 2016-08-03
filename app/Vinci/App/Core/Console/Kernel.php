@@ -5,8 +5,12 @@ namespace Vinci\App\Core\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Vinci\App\Core\Console\Commands\DoctrineTruncateTable;
+use Vinci\App\Core\Console\Commands\ImportCountries;
 use Vinci\App\Core\Console\Commands\ImportCustomers;
+use Vinci\App\Core\Console\Commands\ImportProducers;
 use Vinci\App\Core\Console\Commands\ImportProduct;
+use Vinci\App\Core\Console\Commands\ImportProductsTypes;
+use Vinci\App\Core\Console\Commands\ImportRegions;
 use Vinci\App\Core\Console\Commands\MakeSlugCountry;
 use Vinci\App\Core\Console\Commands\MakeSlugGrapes;
 use Vinci\App\Core\Console\Commands\MakeSlugProducer;
@@ -35,6 +39,10 @@ class Kernel extends ConsoleKernel
         MakeSlugGrapes::class,
         RandomizeProductTemplate::class,
         UniqueIdTest::class,
+        ImportCountries::class,
+        ImportRegions::class,
+        ImportProducers::class,
+        ImportProductsTypes::class,
         'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsPrice',
@@ -51,17 +59,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('erp:integration:products:import', ['--new' => true])
+        $schedule->command('erp:integration:products:import --new')
             ->cron('10 * * * *');
 
-        $schedule->command('erp:integration:products:import', ['--changed' => true])
+        $schedule->command('erp:integration:products:import --changed')
+            ->cron('15 * * * *');
+
+        $schedule->command('erp:integration:products:import --all')
             ->cron('5 */2 * * *');
 
-        $schedule->command('erp:integration:products:import-price', ['--all' => true])
+        $schedule->command('erp:integration:products:import-price --all')
             ->cron('*/30 * * * *');
 
-        $schedule->command('erp:integration:products:import-stock', ['--all' => true])
-            ->hourly();
+        $schedule->command('erp:integration:products:import-stock --all')
+            ->everyThirtyMinutes();
 
         $schedule->command('search:index-products')
             ->everyTenMinutes();

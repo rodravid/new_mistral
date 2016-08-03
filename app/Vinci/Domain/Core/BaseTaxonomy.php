@@ -61,6 +61,14 @@ abstract class BaseTaxonomy extends Model implements Sluggable
 
     public abstract function getImagesUploadPath();
 
+    public abstract function getBaseWebUrl();
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -159,6 +167,4 @@ abstract class BaseTaxonomy extends Model implements Sluggable
     {
         return env('APP_URL') . $this->getBaseWebUrl() . $this->getSlug();
     }
-
-    public abstract function getBaseWebUrl();
 }

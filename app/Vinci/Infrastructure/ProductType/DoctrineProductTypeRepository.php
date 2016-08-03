@@ -5,6 +5,7 @@ namespace Vinci\Infrastructure\ProductType;
 use Vinci\Domain\ProductType\ProductType;
 use Vinci\Domain\ProductType\ProductTypeRepository;
 use Vinci\Infrastructure\Common\DoctrineBaseRepository;
+use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineProductTypeRepository extends DoctrineBaseRepository implements ProductTypeRepository
 {
@@ -44,4 +45,20 @@ class DoctrineProductTypeRepository extends DoctrineBaseRepository implements Pr
         return $countries;
     }
 
+    public function getOneBySlug($slug)
+    {
+        $qb = $this->createQueryBuilder('pt');
+
+        $qb->where('pt.slug = :slug');
+
+        $qb->setParameter('slug', $slug);
+
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if (! $result) {
+            throw new EntityNotFoundException;
+        }
+
+        return $result;
+    }
 }

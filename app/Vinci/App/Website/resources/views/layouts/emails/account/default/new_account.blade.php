@@ -372,8 +372,8 @@
             <span style="color: {{ $color }};"><b>internet@vinci.com.br</b></span>
             <br><br>
             Ou ligue para <br>
-            <span style="color: {{ $color }};"><b>(11) 3031-4646</b></span> <br>
-            Horário de atendimento telefônico é de segunda a sexta-feira das 9h às 18h, <br> sábado das 9h às 13h, exceto em feriados.
+            <span style="color: {{ $color }};"><b>(11) 2797-0000</b></span> <br>
+            Horário de atendimento telefônico é de segunda a sexta-feira das 9h às 18h, exceto em feriados.
             <br><br>
             Atenciosamente <br>
             Equipe de Comércio Eletrônico

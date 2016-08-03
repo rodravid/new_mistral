@@ -138,6 +138,14 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/{slug}', 'Producer\ProducerController@show')->name('show');
         });
 
+        $route->group(['prefix' => 'tipo-de-vinho', 'as' => 'product-type.'], function () use ($route) {
+            $route->get('/{slug}', 'ProductType\ProductTypeController@show')->name('show');
+        });
+
+        $route->group(['prefix' => 'tipo-de-uva', 'as' => 'grape.'], function () use ($route) {
+            $route->get('/{slug}', 'Grape\GrapeController@show')->name('show');
+        });
+
         $route->group(['prefix' => 'vitrine', 'as' => 'showcase.'], function () use ($route) {
             $route->get('/{slug}', 'Showcase\ShowcaseController@show')->name('show');
         });

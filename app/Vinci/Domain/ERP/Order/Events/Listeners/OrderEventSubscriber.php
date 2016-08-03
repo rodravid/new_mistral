@@ -138,13 +138,15 @@ class OrderEventSubscriber
     {
         $address = $event->getCommand()->getAddress();
 
+        $address->changeErpIntegrationStatus(IntegrationStatus::INTEGRATED);
+
         $this->orderRepository->save($address);
 
         AddressIntegrationLogger::success([
             'user' => $event->getCommand()->getUserActor(),
             'resource_owner_id' => $address->getOrder()->getId(),
             'resource_id' => $address->getId(),
-            'message' => sprintf('Endereço de entrega do pedido #%s checado com sucesso.', $address->getOrder()->getNumber()),
+            'message' => sprintf('Endereço de entrega do pedido #%s atualizado com sucesso.', $address->getOrder()->getNumber()),
             'request_type' => 'update',
             'request_body' => $event->getRequest(),
             'response_body' => $event->getResponse()
@@ -154,6 +156,10 @@ class OrderEventSubscriber
     public function onShippingAddressUpdateFailed(ShippingAddressUpdateFailed $event)
     {
         $address = $event->getCommand()->getAddress();
+
+        $address->changeErpIntegrationStatus(IntegrationStatus::FAILED);
+
+        $this->orderRepository->save($address);
 
         AddressIntegrationLogger::error([
             'user' => $event->getCommand()->getUserActor(),

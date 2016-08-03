@@ -129,12 +129,12 @@ class RegionService
 
     protected function saveImages($data, Region $region)
     {
-        if (! empty($imageDesktop = $data['image_map'])) {
+        if (isset($data['image_map']) && ! empty($imageDesktop = $data['image_map'])) {
             $image = $this->storeImage($region, $imageDesktop);
             $region->addImage($image, ImageVersion::MAP);
         }
 
-        if (! empty($imageMobile = $data['image_banner'])) {
+        if (isset($data['image_banner']) && ! empty($imageMobile = $data['image_banner'])) {
             $image = $this->storeImage($region, $imageMobile);
             $region->addImage($image, ImageVersion::BANNER);
         }

@@ -2,8 +2,10 @@
 
 namespace Vinci\App\Core\Console\Commands;
 
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Console\Command;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Customer\CustomerService;
@@ -52,9 +54,7 @@ class ImportCustomers extends Command
 
     public function create()
     {
-        $conn = $this->em->getConnection();
-
-        $stmt = $conn->prepare('select * from bkp_customers_vinci where imported=0 limit ' . $this->argument('limit'));
+        $stmt = $this->em->getConnection()->prepare('select * from bkp_customers_vinci where imported=0 limit ' . $this->argument('limit'));
         $stmt->execute();
 
         $customers = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -95,12 +95,12 @@ class ImportCustomers extends Command
                 $data["password"] = $this->normalizeValue($customer["senha"]);
                 $data["password_confirmation"] = $this->normalizeValue($customer["senha"]);
 
-                $data["crypt_key"] = $this->normalizeValue($customer["senhaCrypto"]);
+                $data["cryptKey"] = $this->normalizeValue($customer["senhaCrypto"]);
 
                 $data["main_address"] = "0";
                 $data["status"] = "1";
 
-                $stmt_address = $conn->prepare('select * from bkp_customers_address_vinci where customer_id =' . $customer["id"]);
+                $stmt_address = $this->em->getConnection()->prepare('select * from bkp_customers_address_vinci where customer_id =' . $customer["id"]);
                 $stmt_address->execute();
                 $addresses = $stmt_address->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -125,7 +125,7 @@ class ImportCustomers extends Command
                         $data["addresses"][$key]["landmark"] = $this->normalizeValue($address["landmark"]);
                         $data["addresses"][$key]["receiver"] = $this->normalizeValue($address["receiver"]);
 
-                        $stmt_upd = $conn->prepare('update bkp_customers_address_vinci set city_id="' . $postmon["cidade_info"]["codigo_ibge"] . '" where id = ' . $address["id"]);
+                        $stmt_upd = $this->em->getConnection()->prepare('update bkp_customers_address_vinci set city_id="' . $postmon["cidade_info"]["codigo_ibge"] . '" where id = ' . $address["id"]);
                         $stmt_upd->execute();
 
                     }
@@ -136,11 +136,11 @@ class ImportCustomers extends Command
 
                 try {
                     $result = $this->service->create($data);
-                    $stmt = $conn->prepare('update bkp_customers_vinci set imported=1 where id = ' . $customer["id"]);
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=1 where id = ' . $customer["id"]);
                     $stmt->execute();
 
                 } catch (ValidationException $e) {
-                    $stmt = $conn->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
                     $stmt->execute();
 
                     $this->line('');
@@ -153,24 +153,55 @@ class ImportCustomers extends Command
                 } catch (UniqueConstraintViolationException $e) {
 
                     if (! $this->em->isOpen()) {
-                        $this->entityManager = $this->em->create(
+                        $this->em = $this->em->create(
                             $this->em->getConnection(),
                             $this->em->getConfiguration()
                         );
+
+                        $this->service->setEntityManager($this->em);
+                        app()->instance(EntityManagerInterface::class, $this->em);
                     }
 
-                } catch (\Exception $e) {
-                    $stmt = $conn->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
                     $stmt->execute();
-
                     $this->line('');
                     $this->error("Erro ao adicionar o produto [" . $customer["id"] . "]");
                     $this->info($e->getMessage());
                     $this->line('');
+                    $error++;
+                    
+                } catch (ForeignKeyConstraintViolationException $e) {
 
+                    if (! $this->em->isOpen()) {
+                        $this->em = $this->em->create(
+                            $this->em->getConnection(),
+                            $this->em->getConfiguration()
+                        );
+
+                        $this->service->setEntityManager($this->em);
+
+                        app()->instance(EntityManagerInterface::class, $this->em);
+                    }
+
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
+                    $stmt->execute();
+                    $this->line('');
+                    $this->error("Erro ao adicionar o produto [" . $customer["id"] . "]");
+                    $this->info($e->getMessage());
+                    $this->line('');
                     $error++;
 
-
+                } catch (\Exception $e) {
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
+                    $stmt->execute();
+                    $this->line('');
+                    $this->error("Erro ao adicionar o produto [" . $customer["id"] . "]");
+                    $this->info($e->getMessage());
+                    $this->line('');
+                    $error++;
+                    
+                } finally {
+                    $this->em->clear();
                 }
 
                 $progressBar->advance();
@@ -186,6 +217,8 @@ class ImportCustomers extends Command
 
 
     }
+    
+    
 
     public function normalizeValue($value)
     {

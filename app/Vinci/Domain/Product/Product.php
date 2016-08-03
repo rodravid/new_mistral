@@ -572,6 +572,11 @@ class Product extends Model implements ProductInterface, Presentable
         return $this->getArchType()->is($type);
     }
 
+    public function isWine()
+    {
+        return $this->isType(ProductArchType::TYPE_WINE);
+    }
+
     public function syncChannels(ArrayCollection $channels)
     {
         $toRemove = $this->channels->filter(function($channel) use ($channels) {
@@ -754,7 +759,7 @@ class Product extends Model implements ProductInterface, Presentable
         return (bool) $this->enabledForPromotions;
     }
 
-    public function setEnabledForPromotions($value)
+    public function setEnabledForPromotions($value = null)
     {
         $this->enabledForPromotions = (bool) $value;
         return $this;

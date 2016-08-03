@@ -15,6 +15,25 @@ function cmsUser()
     return auth('cms')->user();
 }
 
+function present() {
+    return app(\Vinci\App\Core\Services\Presenter\Presenter::class);
+}
+
+function productCardMenu($productId, $title, $template)
+{
+    $product = app(\Vinci\Domain\Product\Repositories\ProductRepository::class)->find($productId);
+
+    if (! $product) {
+        return;
+    }
+
+    return view('website::layouts.partials.product.cards.menu', [
+        'title' => $title,
+        'product' => present()->model($product, \Vinci\App\Website\Http\Product\Presenter\ProductPresenter::class),
+        'template' => $template
+    ])->render();
+}
+
 function html_select_array($data, $key = 'id', $value = 'title')
 {
     $result = [];
@@ -29,6 +48,11 @@ function html_select_array($data, $key = 'id', $value = 'title')
 function uniqueHash()
 {
     return md5(uniqid(rand()));
+}
+
+function contains_numbers($String)
+{
+    return preg_match('/\\d/', $String) > 0;
 }
 
 function present_status_html($status)
@@ -48,14 +72,14 @@ function present_integration_status_html($status)
 {
     switch($status) {
         case \Vinci\Domain\Common\IntegrationStatus::PENDING:
-            return '<span class="text-warning"><i class="fa fa-hourglass-start"></i> Pendente</span>';
+            return '<span class="badge bg-yellow"><i class="fa fa-hourglass-start"></i> Pendente</span>';
             break;
 
         case \Vinci\Domain\Common\IntegrationStatus::INTEGRATED:
-            return '<span class="text-success"><i class="fa fa-check"></i> Integrado</span>';
+            return '<span class="badge bg-green"><i class="fa fa-check"></i> Integrado</span>';
             break;
         case \Vinci\Domain\Common\IntegrationStatus::FAILED:
-            return '<span class="text-danger"><i class="fa fa-exclamation-circle"></i> Falhou</span>';
+            return '<span class="badge bg-red"><i class="fa fa-exclamation-circle"></i> Falhou</span>';
             break;
     }
 }

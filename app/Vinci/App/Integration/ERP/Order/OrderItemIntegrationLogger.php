@@ -3,6 +3,7 @@
 namespace Vinci\App\Integration\ERP\Order;
 
 use Vinci\App\Integration\ERP\Logger\IntegrationLogger;
+use Vinci\Domain\Order\OrderRepository;
 
 class OrderItemIntegrationLogger extends IntegrationLogger
 {
@@ -20,5 +21,21 @@ class OrderItemIntegrationLogger extends IntegrationLogger
         'request_body',
         'response_body'
     ];
+
+    protected $item;
+
+    public function getResourceTypeAttribute()
+    {
+        return 'order_item';
+    }
+
+    public function getItem()
+    {
+        if (! is_null($this->item)) {
+            return $this->item;
+        }
+
+        return $this->item = app(OrderRepository::class)->getItemById($this->resource_id);
+    }
 
 }

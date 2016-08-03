@@ -136,26 +136,14 @@
                         <li><a href="/c/pais/alemanha">Alemanha</a></li>
                         <li><a href="/c/pais/uruguai">Uruguai</a></li>
                         <li><a href="/c/pais/estados-unidos">Estados Unidos</a></li>
-                        <li><a class="all-links" href="/c/pais/uruguai">Lista de todos os países <small>></small></a></li>    
+                        <li><a class="all-links" href="/c/paises">Lista de todos os países <small>></small></a></li>
                         </ul>
                     </div>
                     <div class="division">
                         <div class="featured-wrap">
-                            <h2 class="title-menu">Sugerimos</h2>
-                            <div class="featured-sub-menu">
-                                <a href="javascript:void(0);">
-                                    <h3>
-                                        KAIKEN TERROIR SERIES CORTE 2013
-                                    </h3>
-                                    <p class="wine-card-producer">Kaiken</p>
-                                    <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template1">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
-                            </div>
+                            {!! productCardMenu(383, 'Sugerimos', 'template1') !!}
                         </div>
+                    </div>
                 </div>
             </li>
 
@@ -166,28 +154,28 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/pais/chile">Mendoza</a></li>
-                            <li><a href="/c/pais/argentina">Toscana</a></li>
-                            <li><a href="/c/pais/espanha">Bordeaux</a></li>
-                            <li><a href="/c/pais/italia">Douro e Porto</a></li>
-                            <li><a href="/c/pais/franca">Alentejo</a></li>
-                            <li><a href="/c/pais/portugal">Bairrada</a></li>
+                            <li><a href="/c/regiao/mendoza">Mendoza</a></li>
+                            <li><a href="/c/regiao/toscana">Toscana</a></li>
+                            <li><a href="/c/regiao/bordeaux">Bordeaux</a></li>
+                            <li><a href="/c/regiao/douro-e-porto">Douro e Porto</a></li>
+                            <li><a href="/c/regiao/alentejo">Alentejo</a></li>
+                            <li><a href="/c/regiao/bairrada">Bairrada</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/pais/chile">Bourgogne</a></li>
-                            <li><a href="/c/pais/argentina">Languedoc-Roussillon</a></li>
-                            <li><a href="/c/pais/espanha">Piemonte</a></li>
-                            <li><a href="/c/pais/italia">Rhône</a></li>
-                            <li><a href="/c/pais/franca">Rioja</a></li>
-                            <li><a href="/c/pais/portugal">Puglia</a></li>
+                            <li><a href="/c/regiao/bourgogne">Bourgogne</a></li>
+                            <li><a href="/c/regiao/languedoc-roussillon">Languedoc-Roussillon</a></li>
+                            <li><a href="/c/regiao/piemonte">Piemonte</a></li>
+                            <li><a href="/c/regiao/rhone">Rhône</a></li>
+                            <li><a href="/c/regiao/rioja">Rioja</a></li>
+                            <li><a href="/c/regiao/puglia">Puglia</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
-                        <a href="/regioes-produtoras-de-vinhos">
+                        <a href="/c/regioes">
                             <div class="every-category">
                                 <h3>Veja a lista de todas as regiões</h3>
                                 <span>></span>
@@ -205,28 +193,28 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/pais/chile">Errazuriz</a></li>
-                            <li><a href="/c/pais/argentina">Kaiken <span>(Viña Montes)</span></a></li>
-                            <li><a href="/c/pais/espanha">Tilia <span>(Bodegas Esmeralda)</span></a></li>
-                            <li><a href="/c/pais/italia">Laura Catena</a></li>
-                            <li><a href="/c/pais/franca">Terra Andina</a></li>
-                            <li><a href="/c/pais/portugal">Viña Tondonia</a></li>
+                            <li><a href="/c/produtor/errazuriz">Errazuriz</a></li>
+                            <li><a href="/c/produtor/kaiken">Kaiken <span>(Viña Montes)</span></a></li>
+                            <li><a href="/c/produtor/tilia">Tilia <span>(Bodegas Esmeralda)</span></a></li>
+                            <li><a href="/c/produtor/luca-laura-catena">Laura Catena</a></li>
+                            <li><a href="/c/produtor/terra-andina">Terra Andina</a></li>
+                            <li><a href="/c/produtor/vina-tondonia">Viña Tondonia</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/pais/chile">Niepoort</a></li>
-                            <li><a href="/c/pais/argentina">Piccini</a></li>
-                            <li><a href="/c/pais/espanha">Monte da Ravasqueira</a></li>
-                            <li><a href="/c/pais/italia">Ogier</a></li>
-                            <li><a href="/c/pais/franca">CVNE</a></li>
-                            <li><a href="/c/pais/portugal">Massaria Trajone</a></li>
+                            <li><a href="/c/produtor/niepoort">Niepoort</a></li>
+                            <li><a href="/c/produtor/piccini">Piccini</a></li>
+                            <li><a href="/c/produtor/monte-da-ravasqueira">Monte da Ravasqueira</a></li>
+                            <li><a href="/c/produtor/ogier">Ogier</a></li>
+                            <li><a href="/c/produtor/cvne-cia-vinicola-del-norte-de-espana">CVNE</a></li>
+                            <li><a href="/c/produtor/masseria-trajone">Masseria Trajone</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
-                        <a href="/regioes-produtoras-de-vinhos">
+                        <a href="/c/produtores">
                             <div class="every-category">
                                 <h3>Veja a lista de todos os produtores</h3>
                                 <span>></span>
@@ -244,48 +232,24 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/pais/chile">Tintos</a></li>
-                            <li><a href="/c/pais/argentina">Brancos</a></li>
-                            <li><a href="/c/pais/espanha">Rosados</span></a></li>
-                            <li><a href="/c/pais/italia">Champagne e Espumantes</a></li>
-                            <li><a href="/c/pais/franca">Porto</a></li>
-                            <li><a href="/c/pais/portugal">Sobremessa</a></li>
+                            <li><a href="/c/tipo-de-vinho/tinto">Tintos</a></li>
+                            <li><a href="/c/tipo-de-vinho/branco">Brancos</a></li>
+                            <li><a href="/c/tipo-de-vinho/rosado">Rosados</a></li>
+                            <li><a href="/c/tipo-de-vinho/espumante">Champagne e Espumantes</a></li>
+                            <li><a href="/c/tipo-de-vinho/porto">Porto</a></li>
+                            <li><a href="/c/tipo-de-vinho/sobremesa">Sobremesa</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
                         <div class="featured-wrap">
-                        <h2 class="title-menu">Tinto</h2>
-                            <div class="featured-sub-menu">
-                                <a href="javascript:void(0);">
-                                    <h3>
-                                       LUCA PINOT NOIR 2012
-                                    </h3>
-                                    <p class="wine-card-producer">Luca (Laura Catena)</p>
-                                    <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                    <p class="price-card-menu">R$ 183,00</p>
-                                </a>
-                                <a href="javascript:void(0);" class="bt-default-full template4">Comprar <span class="arrow-link">></span></a>
-                            </div>
-
+                            {!! productCardMenu(159, 'Tinto', 'template4') !!}
                         </div>
                     </div>
 
                     <div class="division">
                         <div class="featured-wrap">
-                            <h2 class="title-menu">Champagne e espumantes</h2>
-                            <div class="featured-sub-menu">
-                                <a href="javascript:void(0);">
-                                    <h3>
-                                      ESPUMANTE BRUT TALISE
-                                    </h3>
-                                    <p class="wine-card-producer">Talise</p>
-                                    <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                    <p class="price-card-menu">R$ 47,20</p>
-                                </a>
-                                <a href="javascript:void(0);" class="bt-default-full template4">Comprar <span class="arrow-link">></span></a>
-                            </div>
-
+                            {!! productCardMenu(38, 'Champagne e espumantes', 'template4') !!}
                         </div>
                     </div>
                 </div>
@@ -298,28 +262,28 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/pais/chile">Malbec</a></li>
-                            <li><a href="/c/pais/argentina">Cabernet Sauvignon</span></a></li>
-                            <li><a href="/c/pais/espanha">Tempranillo </a></li>
-                            <li><a href="/c/pais/italia">Chardonnay</a></li>
-                            <li><a href="/c/pais/franca">Carmenère</a></li>
-                            <li><a href="/c/pais/portugal">Merlot</a></li>
+                            <li><a href="/c/tipo-de-uva/malbec">Malbec</a></li>
+                            <li><a href="/c/tipo-de-uva/cabernet-sauvignon">Cabernet Sauvignon</a></li>
+                            <li><a href="/c/tipo-de-uva/tempranillo">Tempranillo</a></li>
+                            <li><a href="/c/tipo-de-uva/chardonnay">Chardonnay</a></li>
+                            <li><a href="/c/tipo-de-uva/carmenere">Carmenère</a></li>
+                            <li><a href="/c/tipo-de-uva/merlot">Merlot</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/pais/chile">Sauvignon Blanc</a></li>
-                            <li><a href="/c/pais/argentina">Sangiovese</a></li>
-                            <li><a href="/c/pais/espanha">Pinot Noir</a></li>
-                            <li><a href="/c/pais/italia">Syrah e Shiraz</a></li>
-                            <li><a href="/c/pais/franca">Primitivo</a></li>
-                            <li><a href="/c/pais/portugal">Cortes</a></li>
+                            <li><a href="/c/tipo-de-uva/sauvignon-blanc">Sauvignon Blanc</a></li>
+                            <li><a href="/c/tipo-de-uva/sangiovese">Sangiovese</a></li>
+                            <li><a href="/c/tipo-de-uva/pinot-noir">Pinot Noir</a></li>
+                            <li><a href="/c/tipo-de-uva/syrah-e-shiraz">Syrah e Shiraz</a></li>
+                            <li><a href="/c/tipo-de-uva/primitivo">Primitivo</a></li>
+                            <li><a href="/c/tipo-de-uva/cortese">Cortese</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
-                        <a href="/regioes-produtoras-de-vinhos">
+                        <a href="/c/tipos-de-uvas">
                             <div class="every-category">
                                 <h3>Veja a lista de todas as uvas</h3>
                                 <span>></span>
@@ -338,40 +302,15 @@
 
                     <div class="division">
                         <div class="featured-wrap">
-                            <h2 class="title-menu">África do Sul</h2>
-                            <div class="featured-sub-menu">
-                                <a href="javascript:void(0);">
-                                    <h3>
-                                      ROBERTSON PINOTAGE 2012 
-                                    </h3>
-                                    <p class="wine-card-producer">Robertson Winery</p>
-                                    <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template6">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
-                            </div>
+                            {!! productCardMenu(203, 'África do Sul', 'template6') !!}
                         </div>
+                    </div>
 
-                        <div class="division">
-                            <div class="featured-wrap">
-                                <h2 class="title-menu">Chile</h2>
-                                <div class="featured-sub-menu">
-                                    <a href="javascript:void(0);">
-                                        <h3>
-                                            KAIKEN TERROIR SERIES CORTE 2013
-                                        </h3>
-                                        <p class="wine-card-producer">Kaiken</p>
-                                        <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template6">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
-                            </div>
+                    <div class="division">
+                        <div class="featured-wrap">
+                            {!! productCardMenu(162, 'Chile', 'template6') !!}
                         </div>
-     
+                    </div>
 
                     <div class="division">
                         <a href="/c/vinhos-bons-e-baratos">
@@ -402,105 +341,44 @@
                     </div>
                     <div class="division">
                         <div class="featured-wrap">
-                            <h2 class="title-menu">Até R$ 60</h2>
-                            <div class="featured-sub-menu">
-                                <a href="javascript:void(0);">
-                                    <h3>
-                                      ROBERTSON PINOTAGE 2012 
-                                    </h3>
-                                    <p class="wine-card-producer">Robertson Winery</p>
-                                    <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template7">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
-                            </div>
+                            {!! productCardMenu(206, 'Chile', 'template7') !!}
                         </div>
+                    </div>
 
-                        <div class="division">
-                            <div class="featured-wrap">
-                                <h2 class="title-menu">R$ 100 a R$ 170</h2>
-                                <div class="featured-sub-menu">
-                                    <a href="javascript:void(0);">
-                                        <h3>
-                                            KAIKEN TERROIR SERIES CORTE 2013
-                                        </h3>
-                                        <p class="wine-card-producer">Kaiken</p>
-                                        <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template7">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
-                            </div>
+                    <div class="division">
+                        <div class="featured-wrap">
+                            {!! productCardMenu(783, 'Chile', 'template7') !!}
                         </div>
-
-
+                    </div>
                 </div>
             </li>
-
 
             <li class="menu-item larger760-right template12">
                 <a class="menu-link" href="javascript:void(0);">
                     Meias garrafas
                 </a>
                 <div class="drop-menu">
-
                     <div class="division">
                         <div class="featured-wrap">
-                            <h2 class="title-menu">África do Sul</h2>
-                            <div class="featured-sub-menu">
-                                <a href="javascript:void(0);">
-                                    <h3>
-                                      ROBERTSON PINOTAGE 2012 
-                                    </h3>
-                                    <p class="wine-card-producer">Robertson Winery</p>
-                                    <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template12">Comprar <span class="arrow-link">></span></a>
-                                </div>
+                            {!! productCardMenu(145, 'Chile', 'template12') !!}
+                        </div>
+                    </div>
 
+                        <div class="division">
+                            <div class="featured-wrap">
+                                {!! productCardMenu(256, 'Chile', 'template12') !!}
                             </div>
                         </div>
 
                         <div class="division">
-                            <div class="featured-wrap">
-                                <h2 class="title-menu">Chile</h2>
-                                <div class="featured-sub-menu">
-                                <div class="wrap-seal-card">
-                                        <div class="content-seal-card">
-                                            <div class="seal-score-card">
-                                                <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
-                                                <span>92</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="javascript:void(0);">
-                                        <h3>
-                                            KAIKEN TERROIR SERIES CORTE 2013
-                                        </h3>
-                                        <p class="wine-card-producer">Kaiken</p>
-                                        <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template12">Comprar <span class="arrow-link">></span></a>
+                            <a href="/c/vinhos-bons-e-baratos">
+                                <div class="every-category">
+                                    <h3>Veja todos os vinhos da categoria  bons e baratos</h3>
+                                    <span>></span>
                                 </div>
-
-                            </div>
+                            </a>
                         </div>
-     
-
-                    <div class="division">
-                        <a href="/c/vinhos-bons-e-baratos">
-                            <div class="every-category">
-                                <h3>Veja todos os vinhos da categoria  bons e baratos</h3>
-                                <span>></span>
-                            </div>
-                        </a>
                     </div>
-                </div>
             </li>
 
             <li class="menu-item larger760-right template9">
@@ -521,53 +399,13 @@
 
                       <div class="division">
                             <div class="featured-wrap">
-                                <h2 class="title-menu">Chile</h2>
-                                <div class="featured-sub-menu">
-                                <div class="wrap-seal-card">
-                                        <div class="content-seal-card">
-                                            <div class="seal-score-card">
-                                                <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
-                                                <span>92</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="javascript:void(0);">
-                                        <h3>
-                                            KAIKEN TERROIR SERIES CORTE 2013
-                                        </h3>
-                                        <p class="wine-card-producer">Kaiken</p>
-                                        <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template9">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
+                                {!! productCardMenu(135, 'Chile', 'template9') !!}
                             </div>
                         </div>
 
                       <div class="division">
                             <div class="featured-wrap">
-                                <h2 class="title-menu">Chile</h2>
-                                <div class="featured-sub-menu">
-                                <div class="wrap-seal-card">
-                                        <div class="content-seal-card">
-                                            <div class="seal-score-card">
-                                                <img src="{{ asset_web('images/selo-grande.png') }}" alt="">
-                                                <span>92</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="javascript:void(0);">
-                                        <h3>
-                                            KAIKEN TERROIR SERIES CORTE 2013
-                                        </h3>
-                                        <p class="wine-card-producer">Kaiken</p>
-                                        <p class="featured-sub-descr">Elaborado pela talentosa Laura Catena, este Malbec poderoso e cheio de personalidade ...</p>
-                                        <p class="price-card-menu">R$ 120,20</p>
-                                    </a>
-                                    <a href="javascript:void(0);" class="bt-default-full template9">Comprar <span class="arrow-link">></span></a>
-                                </div>
-
+                                {!! productCardMenu(363, 'Chile', 'template9') !!}
                             </div>
                         </div>
                 </div>

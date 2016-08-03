@@ -13,7 +13,7 @@ class AddressTransformer extends BaseTransformer
         return [
             'id' => $address->getId(),
             'code' => $address->getCode(),
-            'type' => $this->normalizeString($address->getType()->getTitle()),
+            'type' => sprintf('%s %s', $this->normalizeString($address->getType()->getTitle()), $address->getId()),
             'integration_status' => $address->getErpIntegrationStatus(),
             'public_place' => $this->normalizeString($address->getPublicPlace()->getTitle()),
             'address' => $this->normalizeString($address->getAddress()),

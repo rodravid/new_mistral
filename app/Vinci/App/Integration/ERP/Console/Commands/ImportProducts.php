@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Mail;
 use Vinci\App\Integration\ERP\Product\ProductImporter;
 use Vinci\Domain\ERP\Product\ProductService;
 
@@ -22,6 +23,7 @@ class ImportProducts extends Command
                             {--all : Import all products from ERP}
                             {--new : Import only new products from ERP}
                             {--changed : Import only changed products from ERP}
+                            {--send-log-mail-to=}
                             {--exceptions : Throws exceptions}';
 
     /**
@@ -53,12 +55,20 @@ class ImportProducts extends Command
 
         if ($productsSKU->count()) {
 
-           if ($productsSKU->count() == 1) {
+            if ($productsSKU->count() == 1) {
                $this->importOne($productsSKU->first(), false, $this->option('exceptions'));
 
-           } else {
+            } else {
                $this->importMany($productsSKU);
-           }
+            }
+
+            if (! empty($email = $this->option('send-log-mail-to'))) {
+                Mail::raw('Segue em anexo o log de erros de integração de produtos.', function($message) use ($email) {
+                    $message->subject('Log de erros de integração de produtos');
+                    $message->to($email);
+                    $message->attach(storage_path('/app/products_integration_errors.txt'), ['as' => 'products_integration_logs.txt', 'mime' => 'text/plain']);
+                });
+            }
 
         } else {
             $this->info('Nothing to do.');

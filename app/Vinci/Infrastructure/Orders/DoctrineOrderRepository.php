@@ -61,6 +61,20 @@ DQL;
         return $this->paginate($qb->getQuery(), $perPage, $pageName);
     }
 
+    public function getItemById($id)
+    {
+        $dql = <<<DQL
+        SELECT i, o FROM Vinci\Domain\Order\Item\OrderItem i
+        JOIN i.order o
+        WHERE i.id = :id
+DQL;
+
+        $query = $this->_em->createQuery($dql);
+
+        $query->setParameter('id', $id);
+
+        return $query->getOneOrNullResult();
+    }
 
     protected function getBaseQueryBuilder()
     {

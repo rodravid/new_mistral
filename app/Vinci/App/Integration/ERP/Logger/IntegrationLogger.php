@@ -84,6 +84,15 @@ class IntegrationLogger extends Model implements Presentable
             ->get();
     }
 
+    public function getByResourceOwnerId($id, $limit = 10)
+    {
+        return static::newQuery()
+            ->where('resource_owner_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->take($limit)
+            ->get();
+    }
+
     public function getOneById($id)
     {
         return static::newQuery()

@@ -4,7 +4,6 @@ namespace Vinci\Domain\Search\Product;
 
 use Elasticsearch\Client;
 use Vinci\Domain\Product\ProductInterface;
-use Vinci\Domain\Product\Wine\Wine;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 
 class ProductIndexerService
@@ -70,8 +69,17 @@ class ProductIndexerService
                             'price' => [
                                 'type' => 'double'
                             ],
+                            'available' => [
+                                'type' => 'integer'
+                            ],
                             'bottle_size' => [
-                                'type' => 'string'
+                                'type' => 'string',
+                                'fields' => [
+                                    'raw' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ]
+                                ]
                             ],
                             'country' => [
                                 'properties' => [
@@ -103,6 +111,31 @@ class ProductIndexerService
                                     'title' => [
                                         'type' => 'string',
                                         'index' => 'not_analyzed'
+                                    ]
+                                ],
+                            ],
+                            'product_type' => [
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer'
+                                    ],
+                                    'title' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ]
+                                ],
+                            ],
+                            'grapes' => [
+                                'properties' => [
+                                    'id' => [
+                                        'type' => 'integer'
+                                    ],
+                                    'title' => [
+                                        'type' => 'string',
+                                        'index' => 'not_analyzed'
+                                    ],
+                                    'weight' => [
+                                        'type' => 'double'
                                     ]
                                 ],
                             ],
@@ -148,7 +181,8 @@ class ProductIndexerService
                 'sku' => $product->getSku(),
                 'title' => $product->present()->title,
                 'description' => $product->getDescription(),
-                'price' => $product->getSalePrice()
+                'price' => $product->getSalePrice(),
+                'available' => (int) $product->isAvailable()
             ];
 
             if ($product->hasCountry()) {
@@ -188,13 +222,17 @@ class ProductIndexerService
                 ];
             }
 
-            if ($product->hasAttributeByName('bottle_size')) {
-                $data['bottle_size'] = $product->getAttribute('bottle_size');
+            if ($product->isWine()) {
+                foreach ($product->getGrapeContent() as $grapeContent) {
+                    $data['grapes'][] = [
+                        'id' => $grapeContent->getGrape()->getId(),
+                        'title' => $grapeContent->getGrape()->getName(),
+                        'weight' => $grapeContent->getWeight()
+                    ];
+                }
             }
 
-
             $data['keywords'] = $product->getSeoKeywords();
-
 
             foreach ($this->showcaseRepository->getByProduct($product) as $showcase) {
                 $data['keywords'] .= $showcase->getKeywords();
@@ -222,17 +260,20 @@ class ProductIndexerService
                 ]
             ];
 
-
-            /*if ($product->hasAttributes()) {
+            if ($product->hasAttributes()) {
                 $attributes = $product->getAttributes();
 
                 foreach ($attributes as $attribute) {
                     if (! empty($attribute->getValue())) {
+
+                        if ($attribute->getAttribute()->getCode() == 'bottle_size' && ! contains_numbers($attribute->getValue())) {
+                            continue;
+                        }
+
                         $data[$attribute->getAttribute()->getCode()] = $attribute->getValue();
                     }
                 }
-            }*/
-
+            }
 
             $params['body'][] = $data;
         }

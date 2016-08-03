@@ -60,8 +60,10 @@ class OrderController extends Controller
         $order = $this->presenter->model($order, OrderPresenter::class);
 
         $integrationLogs = IntegrationLogger::type('order')->getByResourceId($id);
+        $integrationLogsItems = IntegrationLogger::type('order_item')->getByResourceOwnerId($id);
+        $integrationLogsAddress = IntegrationLogger::type('address')->getByResourceOwnerId($id);
 
-        return $this->view('orders.show', compact('order', 'integrationLogs'));
+        return $this->view('orders.show', compact('order', 'integrationLogs', 'integrationLogsItems', 'integrationLogsAddress'));
     }
 
     public function edit($id)

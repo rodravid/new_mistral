@@ -65,7 +65,8 @@ class ProductFactory implements ProductFactoryInterface
             ->setSku($data['sku'])
             ->setStatus($data['status'])
             ->setStartsAtFromFormat($data['startsAt'])
-            ->setExpirationAtFromFormat($data['expirationAt']);
+            ->setExpirationAtFromFormat($data['expirationAt'])
+            ->setEnabledForPromotions(array_get($data, 'enabled_for_promotions'));
 
         $this->includeCountry($product, $data);
         $this->includeRegion($product, $data);
@@ -95,7 +96,7 @@ class ProductFactory implements ProductFactoryInterface
 
     protected function includeGrapes($product, array $data)
     {
-        if (isset($data['grapes'])) {
+        if (isset($data['grapes']) && ! empty($data['grapes'])) {
 
             foreach ($data['grapes'] as $item) {
                 $grape = $this->grapeFactory->make($item);
@@ -205,9 +206,21 @@ class ProductFactory implements ProductFactoryInterface
             $product->setImportPrice($newProduct->shouldImportPrice());
         }
 
+        if (array_has($data, 'enabled_for_promotions')) {
+            $product->setEnabledForPromotions($newProduct->canBePromoted());
+        }
+
         if ($product->isType(ProductArchType::TYPE_WINE)) {
-            $product->syncScores($newProduct->getScores());
-            $product->syncGrapeContent($newProduct->getGrapes());
+            
+            
+            if (isset($data['scores'])) {
+                $product->syncScores($newProduct->getScores());
+            }
+
+            if (isset($data['grapes'])) {
+                $product->syncGrapeContent($newProduct->getGrapes());
+            }
+            
         }
 
         return $product;

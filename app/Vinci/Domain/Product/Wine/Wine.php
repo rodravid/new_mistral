@@ -21,7 +21,7 @@ class Wine extends Product
     protected $grapeContent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Vinci\Domain\Product\Wine\Score", mappedBy="wine", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY", indexBy="id")
      */
     protected $scores;
 
@@ -120,6 +120,20 @@ class Wine extends Product
     public function getGrapes()
     {
         return $this->grapeContent;
+    }
+
+    public function hasMainGrapeContent()
+    {
+        return (bool) $this->getMainGrapeContent();
+    }
+
+    public function getMainGrapeContent()
+    {
+        $criteria = Criteria::create();
+
+        $criteria->orderBy(['weight' => $criteria::DESC]);
+
+        return $this->grapeContent->matching($criteria)->first();
     }
 
     public function addGrape(Grape $grape, $weight)

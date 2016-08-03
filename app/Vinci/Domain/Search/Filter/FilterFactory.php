@@ -36,9 +36,20 @@ class FilterFactory
 
         foreach ($items as $key => $item) {
 
+
+//            if ($key == 'regiao') {
+//                continue;
+//            }
+//
+//            if ($key == 'pais') {
+//                dd($item);
+//            }
+
             $filter = $this->make(['name' => $key]);
 
-            $values = $this->filterValueFactory->makeCollection(array_get($item, 'buckets'));
+            $buckets = isset($item[$key]) ? array_get($item[$key], 'buckets') : array_get($item, 'buckets');
+
+            $values = $this->filterValueFactory->makeCollection($buckets);
 
             foreach ($values as $value) {
                 $value->setFilter($filter);

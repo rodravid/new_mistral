@@ -85,7 +85,7 @@ class Score extends Model implements Presentable
 
     public function setYear($year)
     {
-        $this->year = $year;
+        $this->year = (int) $year;
         return $this;
     }
 

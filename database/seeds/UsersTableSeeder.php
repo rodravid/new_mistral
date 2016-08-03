@@ -64,8 +64,8 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user1 = $this->adminRepository->create([
-            'name' => 'Teste',
-            'email' => 'teste@teste.com',
+            'name' => 'Rodrigo',
+            'email' => 'roliveira@webeleven.com',
             'password' => '123',
             'status' => Status::ACTIVE
         ]);
@@ -116,15 +116,8 @@ class UsersTableSeeder extends Seeder
 //                  ->addAddress($address2)
 //                  ->setMainAddress($address1);
 
-        $superAdminRole = Role::make([
-            'title' => 'Super admin',
-            'name' => 'super-admin'
-        ]);
-
-        $adminRole = Role::make([
-            'title' => 'Admin',
-            'name' => 'admin'
-        ]);
+        $superAdminRole = $this->em->getReference(Role::class, 1);
+        $adminRole = $this->em->getReference(Role::class, 2);
 
         $adminRole->assignModule($this->em->getReference(Module::class, 1));
         $adminRole->assignModule($this->em->getReference(Module::class, 4));
