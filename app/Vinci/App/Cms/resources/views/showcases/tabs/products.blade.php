@@ -9,17 +9,20 @@
         </div>
 
         <div class="col-xs-12">
-            <button type="button" id="btnAddProduct" class="btn btn-success"><i class="fa fa-plus-circle"></i> Adicionar</button>
+            <button type="button" id="btnAddProduct" class="btn btn-success"><i class="fa fa-plus-circle"></i> Adicionar
+            </button>
         </div>
 
         <div class="col-xs-12" style="margin-top: 20px;">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped" data-url="{{ route('cms.' . $currentModule->getName() . '.edit#items-datatable', [$showcase->getId()]) }}">
+                <table class="table table-bordered table-striped"
+                       data-url="{{ route('cms.' . $currentModule->getName() . '.edit#items-datatable', [$showcase->getId()]) }}">
                     <thead>
                     <tr>
                         <th>#SKU</th>
                         <th><i class="fa fa-pencil"></i> Título</th>
                         <th><i class="fa fa-list-ol"></i> Ordem</th>
+                        <th><i class="fa fa-cubes"></i> Estoque</th>
                         <th><i class="fa fa-calendar"></i> Adicinado em</th>
                         <th>Ações</th>
                     </tr>
@@ -35,7 +38,7 @@
 
     <script type="text/javascript">
 
-        $(function() {
+        $(function () {
 
             var $table = $('.table');
 
@@ -45,7 +48,7 @@
                 ajax: {
                     url: $table.data('url'),
                     type: "POST",
-                    data: function(data) {
+                    data: function (data) {
 
                         data.showcase = {
                             id: '{{ $showcase->getId() }}',
@@ -54,21 +57,21 @@
 
                     }
                 },
-                drawCallback: function(settings) {
+                drawCallback: function (settings) {
 
-                    $table.find('.field-editable').each(function(i, el) {
+                    $table.find('.field-editable').each(function (i, el) {
 
                         var $el = $(el);
                         var itemId = $el.attr('data-id');
 
-                        $el.editable("click", function(e){
+                        $el.editable("click", function (e) {
 
                             $.ajax({
                                 type: 'POST',
-                                url: '/cms/api/showcase/{{ $showcase->id }}/items/' + itemId  + '/update-position',
+                                url: '/cms/api/showcase/{{ $showcase->id }}/items/' + itemId + '/update-position',
                                 dataType: 'json',
                                 data: {position: e.value},
-                                success: function() {
+                                success: function () {
 
                                     reloadTable();
 
@@ -81,18 +84,17 @@
 
                 },
                 searchDelay: 600,
-                order: [[ 2, "asc" ]],
+                order: [[2, "asc"]],
                 columnDefs: [
-                    {orderable: false, width: '92px', targets: -1 },
-                    {className: 'hcenter vcenter', width: '20px', targets: 0 },
-                    {className: 'hcenter vcenter', width: '70px', targets: 2 },
-                    {className: 'hcenter vcenter', width: '120px', targets: 3 },
-                    {className: 'vcenter', targets: [2,3,4] }
+                    {orderable: false, width: '92px', targets: -1},
+                    {className: 'hcenter vcenter', width: '20px', targets: 0},
+                    {className: 'hcenter vcenter', width: '70px', targets: 2},
+                    {className: 'hcenter vcenter', width: '120px', targets: 3},
+                    {className: 'vcenter', targets: [2, 3, 4]}
                 ]
             });
 
-            function reloadTable()
-            {
+            function reloadTable() {
                 $table.DataTable().ajax.reload();
             }
 
@@ -109,7 +111,7 @@
                 }
             });
 
-            $('#btnAddProduct').bind('click', function(e) {
+            $('#btnAddProduct').bind('click', function (e) {
 
                 var productId = $selectProduct.val();
 
@@ -132,7 +134,7 @@
 
                         swal('Pronto!', 'O produto foi adicionado à vitrine com sucesso!', 'success');
                     },
-                    error: function() {
+                    error: function () {
                         swal('Ops!', 'Não foi possível adicionar o produto na vitrine. Tente novamente.', 'error')
                     }
                 });
@@ -140,12 +142,11 @@
                 e.preventDefault();
             });
 
-            $('body').delegate('[data-remove-item]', 'click', function(e) {
+            $('body').delegate('[data-remove-item]', 'click', function (e) {
 
                 var $self = $(this);
 
-                function submitForm()
-                {
+                function submitForm() {
                     var method = $self.data('method');
                     var action = $self.data('action');
 
@@ -153,14 +154,14 @@
                         type: method,
                         url: action,
                         dataType: 'json',
-                        success: function(response) {
+                        success: function (response) {
 
                             reloadTable();
 
                             swal('Pronto!', response.message, 'success');
 
                         },
-                        error: function(response) {
+                        error: function (response) {
 
                             swal('Ops!', response.message, 'error');
 
@@ -184,7 +185,7 @@
                         confirmButtonText: "Sim",
                         cancelButtonText: "Não",
                         closeOnConfirm: false
-                    }, function() {
+                    }, function () {
 
                         submitForm();
 

@@ -24,7 +24,8 @@ class ShowcaseProductsCmsDatatable extends AbstractDatatables
         0 => 'v.sku',
         1 => 'v.title',
         2 => 'i.position',
-        3 => 'i.createdAt',
+        3 => 'v.stock',
+        4 => 'i.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -38,7 +39,7 @@ class ShowcaseProductsCmsDatatable extends AbstractDatatables
 
         $qb->where($qb->expr()->eq('s.id', array_get($search, 'showcase.id')));
 
-        if (! empty($search['value'])) {
+        if (!empty($search['value'])) {
 
             $qb->andWhere($qb->expr()->eq('v.sku', ':id'));
 
@@ -63,6 +64,7 @@ class ShowcaseProductsCmsDatatable extends AbstractDatatables
             $presenter->product->sku,
             $presenter->product->title,
             sprintf('<p class="field-editable" data-id="%s">%s</p>', $presenter->id, $presenter->position),
+            $presenter->product->stock,
             $presenter->created_at,
             $this->buildActionsColumn($showcaseItem)
         ];
