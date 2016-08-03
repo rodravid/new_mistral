@@ -2,8 +2,6 @@
 
 namespace Vinci\Domain\Search\Product;
 
-use PHPFluent\ElasticQueryBuilder\Query;
-use PHPFluent\ElasticQueryBuilder\Term;
 use Vinci\App\Core\Services\Presenter\Presenter;
 use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\Product\Repositories\ProductRepository;
@@ -21,6 +19,65 @@ class ProductSearchService extends SearchService
     protected $productRepository;
 
     protected $presenter;
+
+    protected $resultClass = ProductSearchResult::class;
+
+    protected $aggsMapping = [
+        'pais' => [
+            'title' => 'País',
+            'field' => 'country.title',
+            'type' => 'term',
+            'size' => 20,
+            'filtered_by' => ['regiao', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
+        ],
+        'regiao' => [
+            'title' => 'Região',
+            'field' => 'region.title',
+            'type' => 'term',
+            'size' => 20,
+            'filtered_by' => ['pais', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
+        ],
+        'produtor' => [
+            'title' => 'Produtor',
+            'field' => 'producer.title',
+            'type' => 'term',
+            'size' => 20,
+            'filtered_by' => ['pais', 'regiao', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
+        ],
+        'tipo-de-uva' => [
+            'title' => 'Tipo de uva',
+            'field' => 'grapes.title',
+            'type' => 'term',
+            'size' => 20,
+            'filtered_by' => ['pais', 'regiao', 'produtor', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
+        ],
+        'tipo-de-vinho' => [
+            'title' => 'Tipo de vinho',
+            'field' => 'product_type.title',
+            'type' => 'term',
+            'size' => 20,
+            'filtered_by' => ['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tamanho', 'preco', 'showcase']
+        ],
+        'tamanho' => [
+            'title' => 'Tamanho',
+            'field' => 'bottle_size.raw',
+            'type' => 'term',
+            'size' => 20,
+            'filtered_by' => ['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'preco', 'showcase']
+        ],
+        'preco' => [
+            'title' => 'Preço',
+            'field' => 'price',
+            'type' => 'range',
+            'size' => 20,
+            'filtered_by' => ['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'showcase']
+        ],
+        'showcase' => [
+            'title' => 'Vitrine',
+            'field' => 'showcases.id',
+            'type' => 'term'
+        ],
+    ];
 
     public function __construct(
         ClientBuilder $builder,
@@ -67,105 +124,8 @@ class ProductSearchService extends SearchService
         return $products;
     }
 
-    protected function getNewResultClassInstance()
-    {
-        return new ProductSearchResult;
-    }
-
-    protected function getFiltersTitles()
-    {
-        return [
-            'countries' => 'Países',
-            'regions' => 'Regiões',
-            'producers' => 'Produtores',
-            'pais' => 'Países',
-            'regiao' => 'Regiões',
-            'produtor' => 'Produtores',
-            'preco' => 'Preço',
-            'tipo-de-uva' => 'Tipo de uva',
-            'tipo-de-vinho' => 'Tipo de vinho',
-            'tamanho' => 'Tamanho',
-        ];
-    }
-
-    protected function aggFilter($agg, $field, array $values)
-    {
-        if (empty($values)) {
-            $agg->filter()->matchAll([]);
-        } else {
-            $agg->filter()->terms([
-                $field => $values
-            ]);
-        }
-    }
-
-    public function makeAndAddDefaultAggregation($qb, $name, $fieldName, $size = 20)
-    {
-        $qb->aggs()->$name()->aggs()->$name()->terms([
-            'field' => $fieldName,
-            'size' => $size
-        ]);
-
-        //$this->aggFilter($this->aggs()->$name(), 'region.title', $regions);
-
-    }
-
     private function getSearchParams($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
-//        $qb = new Query();
-//        $qb->index('vinci');
-//        $qb->type('product');
-//        $qb->from($start);
-//        $qb->size($limit);
-//
-//        $body = $qb->body();
-//        $body->sort($this->getSort($sort));
-//
-//        $aggs = $body->aggs();
-
-        $countries = (array) array_get($filters, 'post.pais');
-        $regions = (array) array_get($filters, 'post.regiao');
-        $producers = (array) array_get($filters, 'post.produtor');
-        $productType = (array) array_get($filters, 'post.tipo-de-vinho');
-        $grapes = (array) array_get($filters, 'post.tipo-de-uva');
-        $size = (array) array_get($filters, 'post.tamanho');
-        $price = (array) array_get($filters, 'post.preco');
-
-
-//        $this->makeAndAddDefaultAggregation($qb, 'pais', 'country.title');
-//        $this->aggFilter($aggs->pais(), 'country.title', $countries);
-//
-//        $this->makeAndAddDefaultAggregation($qb, 'regiao', 'region.title');
-//        $this->aggFilter($aggs->regiao(), 'region.title', $regions);
-//
-//        $this->makeAndAddDefaultAggregation($qb, 'produtor', 'region.title');
-//        $this->aggFilter($aggs->produtor(), 'region.title', $regions);
-//
-//        $this->makeAndAddDefaultAggregation($qb, 'tipo-de-vinho', 'product_type.title');
-//        $this->aggFilter($aggs->tipoDeVinho(), 'product_type.title', $regions);
-//
-////        $aggs->regiao()->aggs()->regiao()->terms([
-////            'field' => 'region.title',
-////            'size' => 20
-////        ]);
-//
-//
-//        $aggs->preco()->range([
-//            'field' => 'price',
-//            'ranges' => [
-//                ['to' => 60, 'key' => '*-60'],
-//                ['from' => 60, 'to' => 100, 'key' => '60-100'],
-//                ['from' => 100, 'to' => 170, 'key' => '100-170'],
-//                ['from' => 170, 'to' => 270, 'key' => '170-270'],
-//                ['from' => 270, 'to' => 500, 'key' => '270-500'],
-//                ['from' => 500, 'key' => '500-*']
-//            ]
-//        ]);
-//
-//
-//        dd($qb->__toString());
-
-
         $params = [
             'index' => 'vinci',
             'type' => 'product',
@@ -174,9 +134,7 @@ class ProductSearchService extends SearchService
             'body' => [
                 'aggs' => [
                     'pais' => [
-                        'filter' => [
-                            'match_all' => []
-                        ],
+                        'filter' => $this->makeAggFilter('pais', $filters),
                         'aggs' => [
                             'pais' => [
                                 'terms' => [
@@ -187,12 +145,7 @@ class ProductSearchService extends SearchService
                         ]
                     ],
                     'regiao' => [
-                        'filter' => ! empty($countries) ? [
-                                'terms' => [
-                                    'country.title' => $countries
-                                ]
-
-                        ] : ['match_all' => []],
+                        'filter' => $this->makeAggFilter('regiao', $filters),
                         'aggs' => [
                             'regiao' => [
                                 'terms' => [
@@ -203,12 +156,7 @@ class ProductSearchService extends SearchService
                         ]
                     ],
                     'produtor' => [
-                        'filter' => ! empty($regions) ? [
-                            'terms' => [
-                                'region.title' => $regions
-                            ]
-
-                        ] : ['match_all' => []],
+                        'filter' => $this->makeAggFilter('produtor', $filters),
                         'aggs' => [
                             'produtor' => [
                                 'terms' => [
@@ -219,34 +167,54 @@ class ProductSearchService extends SearchService
                         ]
                     ],
                     'preco' => [
-                        'range' => [
-                            'field' => 'price',
-                            'ranges' => [
-                                ['to' => 60, 'key' => '*-60'],
-                                ['from' => 60, 'to' => 100, 'key' => '60-100'],
-                                ['from' => 100, 'to' => 170, 'key' => '100-170'],
-                                ['from' => 170, 'to' => 270, 'key' => '170-270'],
-                                ['from' => 270, 'to' => 500, 'key' => '270-500'],
-                                ['from' => 500, 'key' => '500-*']
+                        'filter' => $this->makeAggFilter('preco', $filters),
+                        'aggs' => [
+                            'preco' => [
+                                'range' => [
+                                    'field' => 'price',
+                                    'ranges' => [
+                                        ['to' => 60, 'key' => '*-60'],
+                                        ['from' => 60, 'to' => 100, 'key' => '60-100'],
+                                        ['from' => 100, 'to' => 170, 'key' => '100-170'],
+                                        ['from' => 170, 'to' => 270, 'key' => '170-270'],
+                                        ['from' => 270, 'to' => 500, 'key' => '270-500'],
+                                        ['from' => 500, 'key' => '500-*']
+                                    ]
+                                ]
+                            ],
+                        ],
+                    ],
+                    'tipo-de-uva' => [
+                        'filter' => $this->makeAggFilter('tipo-de-uva', $filters),
+                        'aggs' => [
+                            'tipo-de-uva' => [
+                                'terms' => [
+                                    'field' => 'grapes.title',
+                                    'size' => 20
+                                ]
                             ]
                         ]
                     ],
-                    'tipo-de-uva' => [
-                        'terms' => [
-                            'field' => 'grapes.title',
-                            'size' => 20
-                        ]
-                    ],
                     'tipo-de-vinho' => [
-                        'terms' => [
-                            'field' => 'product_type.title',
-                            'size' => 20
-                        ]
+                        'filter' => $this->makeAggFilter('tipo-de-vinho', $filters),
+                        'aggs' => [
+                            'tipo-de-vinho' => [
+                                'terms' => [
+                                    'field' => 'product_type.title',
+                                    'size' => 20
+                                ]
+                            ]
+                        ],
                     ],
                     'tamanho' => [
-                        'terms' => [
-                            'field' => 'bottle_size.raw',
-                            'size' => 20
+                        'filter' => $this->makeAggFilter('tamanho', $filters),
+                        'aggs' => [
+                            'tamanho' => [
+                                'terms' => [
+                                    'field' => 'bottle_size.raw',
+                                    'size' => 20
+                                ]
+                            ]
                         ]
                     ]
                 ],
@@ -294,64 +262,36 @@ class ProductSearchService extends SearchService
 
         if (! empty($filters)) {
 
-            if (isset($filters['post']) && ! empty($filters['post'])) {
-
-                if (! empty($countries = array_get($filters, 'post.pais'))) {
-                    $this->addFilter($params, 'country.title', $countries);
-                }
-
-                if (! empty($regions = array_get($filters, 'post.regiao'))) {
-                    $this->addFilter($params, 'region.title', $regions);
-                }
-
-                if (! empty($producers = array_get($filters, 'post.produtor'))) {
-                    $this->addFilter($params, 'producer.title', $producers);
-                }
-
-                if (! empty($grapes = array_get($filters, 'post.tipo-de-uva'))) {
-                    $this->addFilter($params, 'grapes.title', $grapes);
-                }
-
-                if (! empty($types = array_get($filters, 'post.tipo-de-vinho'))) {
-                    $this->addFilter($params, 'product_type.title', $types);
-                }
-
-                if (! empty($size = array_get($filters, 'post.tamanho'))) {
-                    $this->addFilter($params, 'bottle_size.raw', $size);
-                }
-
-                if (! empty($price = array_get($filters, 'post.preco'))) {
-                    $this->addPostFilterPrice($params, 'price', $price);
-                }
-
+            if (! empty($countries = array_get($filters, 'pais'))) {
+                $this->addFilter($params, 'country.title', $countries);
             }
 
-            if (isset($filters['filters']) && ! empty($filters['filters'])) {
+            if (! empty($regions = array_get($filters, 'regiao'))) {
+                $this->addFilter($params, 'region.title', $regions);
+            }
 
-                if (! empty($countries = array_get($filters, 'filters.pais'))) {
-                    $this->addFilter($params, 'country.title', $countries);
-                }
+            if (! empty($producers = array_get($filters, 'produtor'))) {
+                $this->addFilter($params, 'producer.title', $producers);
+            }
 
-                if (! empty($regions = array_get($filters, 'filters.regiao'))) {
-                    $this->addFilter($params, 'region.title', $regions);
-                }
+            if (! empty($grapes = array_get($filters, 'tipo-de-uva'))) {
+                $this->addFilter($params, 'grapes.title', $grapes);
+            }
 
-                if (! empty($producers = array_get($filters, 'filters.produtor'))) {
-                    $this->addFilter($params, 'producer.title', $producers);
-                }
+            if (! empty($types = array_get($filters, 'tipo-de-vinho'))) {
+                $this->addFilter($params, 'product_type.title', $types);
+            }
 
-                if (! empty($grapes = array_get($filters, 'filters.tipo-de-uva'))) {
-                    $this->addFilter($params, 'grapes.title', $grapes);
-                }
+            if (! empty($size = array_get($filters, 'tamanho'))) {
+                $this->addFilter($params, 'bottle_size.raw', $size);
+            }
 
-                if (! empty($types = array_get($filters, 'filters.tipo-de-vinho'))) {
-                    $this->addFilter($params, 'product_type.title', $types);
-                }
+            if (! empty($price = array_get($filters, 'preco'))) {
+                $this->addFilterRange($params, 'price', $price);
+            }
 
-                if (! empty($showcases = array_get($filters, 'filters.showcase'))) {
-                    $this->addFilter($params, 'showcases.id', $showcases);
-                }
-
+            if (! empty($showcases = array_get($filters, 'showcase'))) {
+                $this->addFilter($params, 'showcases.id', $showcases);
             }
 
         }
@@ -362,7 +302,6 @@ class ProductSearchService extends SearchService
     protected function getSort($order)
     {
         switch ($order) {
-
             case 1: return ['_score']; break;
             case 2: return ['price:asc']; break;
             case 3: return ['price:desc']; break;
@@ -371,79 +310,6 @@ class ProductSearchService extends SearchService
         }
 
         return ['_score'];
-    }
-
-    protected function addPostFilter(array &$params, $column, array $values)
-    {
-        $search = [
-            'body' => [
-                'post_filter' => [
-                    'bool' => [
-                        'should' => [
-                            ['terms' => [$column => $values]],
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $params = array_merge_recursive($params, $search);
-    }
-
-    protected function addPostFilterPrice(array &$params, $column, array $values)
-    {
-        $val = $values[0];
-
-        $price = explode('-', $val);
-
-        $p = [];
-
-        if ($price[0] !== '*') {
-            $p['gte'] = $price[0];
-        }
-
-        if ($price[1] !== '*') {
-            $p['lte'] = $price[1];
-        }
-
-        $prices[] = [
-            $column => $p
-        ];
-
-        $search = [
-            'body' => [
-                'post_filter' => [
-                    'bool' => [
-                        'should' => [
-                            ['range' => [$column => $p]]
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $params = array_merge_recursive($params, $search);
-    }
-
-    protected function addFilter(array &$params, $column, array $values)
-    {
-        $search = [
-            'body' => [
-//                'query' => [
-//                    'filtered' => [
-                        'filter' => [
-                            'bool' => [
-                                'must' => [
-                                    ['terms' => [$column => $values]],
-                                ]
-                            ]
-                        ]
-                    ]
-//                ]
-//            ]
-        ];
-
-        $params = array_merge_recursive($params, $search);
     }
 
 }

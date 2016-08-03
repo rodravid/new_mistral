@@ -83,8 +83,6 @@ class SearchController extends Controller
             $filters['tipo-de-vinho'] = $request->get('tipo-de-vinho');
         }
 
-        $filters = ['post' => $filters];
-
         return $filters;
     }
 
@@ -104,7 +102,7 @@ class SearchController extends Controller
             $appends['ordem'] = intval($request->get('ordem'));
         }
 
-        return array_merge($appends, $this->getFilters($request)['post']);
+        return array_merge($appends, $this->getFilters($request));
     }
 
     protected function getLimitStart(Request $request)
@@ -119,7 +117,7 @@ class SearchController extends Controller
 
     protected function getSelectedFilters($request)
     {
-        return $this->getFilters($request)['post'];
+        return $this->getFilters($request);
     }
 
     protected function getSearchUrlPath($request)

@@ -28,9 +28,7 @@ class GrapeController extends BaseTaxonomyController
         $grape = $this->getGrape($slug);
 
         $filters = [
-            'filters' => [
-                'tipo-de-uva' => [$grape->getName()]
-            ]
+            'tipo-de-uva' => [$grape->getName()]
         ];
 
         $result = $this->search($request, $filters);

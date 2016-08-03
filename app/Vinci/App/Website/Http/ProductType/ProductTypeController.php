@@ -28,9 +28,7 @@ class ProductTypeController extends BaseTaxonomyController
         $productType = $this->getProductType($slug);
 
         $filters = [
-            'filters' => [
-                'tipo-de-vinho' => [$productType->getName()]
-            ]
+            'tipo-de-vinho' => [$productType->getName()]
         ];
 
         $result = $this->search($request, $filters);

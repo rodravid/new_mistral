@@ -37,9 +37,7 @@ class ShowcaseController extends SearchController
         $showcase = $this->getShowcase($slug);
 
         $filters = [
-            'filters' => [
-                'showcase' => [$showcase->getId()]
-            ]
+            'showcase' => [$showcase->getId()]
         ];
 
         $result = $this->search($request, $filters);
