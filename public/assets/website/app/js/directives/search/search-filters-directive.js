@@ -11,7 +11,7 @@ angular.module('app')
 
                 var $el = $(el);
 
-                $el.find('.search-filter-value').bind('click', function() {
+                $el.find('.search-filter-value').not('.disabled').bind('click', function() {
 
                     var $self = $(this);
                     var urlKey = $self.parent('.search-filter').data('urlkey');
