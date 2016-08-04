@@ -1,7 +1,7 @@
 <div class="wine-card">
     <div class="thumb-wine">
         <a href="{{ $product->web_path }}">
-            <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
+            <img class="wine-bottle" src="{{ $product->card_image_url }}" alt="{!! $product->card_title !!} - {!! $product->producer->name !!}">
         </a>
         @if($promotionSeal = $product->getPromotionSeal())
             <img class="label-wine" src="{{ $promotionSeal }}" alt="Selo Vinho">

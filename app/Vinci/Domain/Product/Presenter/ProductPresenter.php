@@ -31,4 +31,20 @@ class ProductPresenter extends AbstractPresenter
         return asset_web('images/no_photo.png');
     }
 
+    public function presentCardImageUrl()
+    {
+        if ($this->hasImage('photo')) {
+
+            $small = $this->getImage('photo')->getVersion('small');
+
+            if (! empty($small)) {
+                return $small->getWebPath();
+            }
+
+            return $this->getImage('photo')->getWebPath();
+        }
+
+        return asset_web('images/no_photo.png');
+    }
+
 }
