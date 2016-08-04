@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Search\Product;
 
+use Illuminate\Support\Str;
 use Vinci\App\Core\Services\Presenter\Presenter;
 use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\Product\Repositories\ProductRepository;
@@ -25,35 +26,35 @@ class ProductSearchService extends SearchService
     protected $aggsMapping = [
         'pais' => [
             'title' => 'País',
-            'field' => 'country.title',
+            'field' => 'country.title.raw',
             'type' => 'term',
             'size' => 20,
             'filtered_by' => ['regiao', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
         ],
         'regiao' => [
             'title' => 'Região',
-            'field' => 'region.title',
+            'field' => 'region.title.raw',
             'type' => 'term',
             'size' => 20,
             'filtered_by' => ['pais', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
         ],
         'produtor' => [
             'title' => 'Produtor',
-            'field' => 'producer.title',
+            'field' => 'producer.title.raw',
             'type' => 'term',
             'size' => 20,
             'filtered_by' => ['pais', 'regiao', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
         ],
         'tipo-de-uva' => [
             'title' => 'Tipo de uva',
-            'field' => 'grapes.title',
+            'field' => 'grapes.title.raw',
             'type' => 'term',
             'size' => 20,
             'filtered_by' => ['pais', 'regiao', 'produtor', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
         ],
         'tipo-de-vinho' => [
             'title' => 'Tipo de vinho',
-            'field' => 'product_type.title',
+            'field' => 'product_type.title.raw',
             'type' => 'term',
             'size' => 20,
             'filtered_by' => ['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tamanho', 'preco', 'showcase']
@@ -97,6 +98,8 @@ class ProductSearchService extends SearchService
 
     public function search($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
+        $keyword = Str::lower($keyword);
+
         $params = $this->getSearchParams($keyword, $filters, $limit, $start, $sort);
 
         $result = $this->client->search($params);
@@ -138,7 +141,7 @@ class ProductSearchService extends SearchService
                         'aggs' => [
                             'pais' => [
                                 'terms' => [
-                                    'field' => 'country.title',
+                                    'field' => 'country.title.raw',
                                     'size' => 20
                                 ]
                             ],
@@ -149,7 +152,7 @@ class ProductSearchService extends SearchService
                         'aggs' => [
                             'regiao' => [
                                 'terms' => [
-                                    'field' => 'region.title',
+                                    'field' => 'region.title.raw',
                                     'size' => 20
                                 ]
                             ]
@@ -160,7 +163,7 @@ class ProductSearchService extends SearchService
                         'aggs' => [
                             'produtor' => [
                                 'terms' => [
-                                    'field' => 'producer.title',
+                                    'field' => 'producer.title.raw',
                                     'size' => 20
                                 ]
                             ]
@@ -189,7 +192,7 @@ class ProductSearchService extends SearchService
                         'aggs' => [
                             'tipo-de-uva' => [
                                 'terms' => [
-                                    'field' => 'grapes.title',
+                                    'field' => 'grapes.title.raw',
                                     'size' => 20
                                 ]
                             ]
@@ -200,7 +203,7 @@ class ProductSearchService extends SearchService
                         'aggs' => [
                             'tipo-de-vinho' => [
                                 'terms' => [
-                                    'field' => 'product_type.title',
+                                    'field' => 'product_type.title.raw',
                                     'size' => 20
                                 ]
                             ]
@@ -231,9 +234,12 @@ class ProductSearchService extends SearchService
                         ['term' => ['sku' => intval($keyword)]],
                         ['match' => ['title' => $keyword]],
                         ['match' => ['keywords' => $keyword]],
+                        ['match' => ['short_description' => $keyword]],
                         ['match' => ['country.title' => $keyword]],
                         ['match' => ['region.title' => $keyword]],
                         ['match' => ['producer.title' => $keyword]],
+                        ['match' => ['product_type.title' => $keyword]],
+                        ['match' => ['grapes.title' => $keyword]],
                         ['fuzzy' =>
                             [
                                 'title' => [
@@ -263,23 +269,23 @@ class ProductSearchService extends SearchService
         if (! empty($filters)) {
 
             if (! empty($countries = array_get($filters, 'pais'))) {
-                $this->addFilter($params, 'country.title', $countries);
+                $this->addFilter($params, 'country.title.raw', $countries);
             }
 
             if (! empty($regions = array_get($filters, 'regiao'))) {
-                $this->addFilter($params, 'region.title', $regions);
+                $this->addFilter($params, 'region.title.raw', $regions);
             }
 
             if (! empty($producers = array_get($filters, 'produtor'))) {
-                $this->addFilter($params, 'producer.title', $producers);
+                $this->addFilter($params, 'producer.title.raw', $producers);
             }
 
             if (! empty($grapes = array_get($filters, 'tipo-de-uva'))) {
-                $this->addFilter($params, 'grapes.title', $grapes);
+                $this->addFilter($params, 'grapes.title.raw', $grapes);
             }
 
             if (! empty($types = array_get($filters, 'tipo-de-vinho'))) {
-                $this->addFilter($params, 'product_type.title', $types);
+                $this->addFilter($params, 'product_type.title.raw', $types);
             }
 
             if (! empty($size = array_get($filters, 'tamanho'))) {
