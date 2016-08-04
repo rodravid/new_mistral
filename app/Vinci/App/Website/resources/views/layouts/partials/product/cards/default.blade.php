@@ -4,7 +4,6 @@
     <h3 class="title-card-wine">
         <a href="{{ $product->web_path }}">
             {!! $product->card_title !!}
-
         </a>
     </h3>
     @if ($product->hasProducer())
@@ -29,7 +28,7 @@
                 @endif
             @endif
             <a href="{{ $product->web_path }}">
-                <img class="wine-bottle" src="{{ $product->image_url }}" alt="Vinho">
+                <img class="wine-bottle" src="{{ $product->card_image_url }}" alt="{!! $product->card_title !!} - {!! $product->producer->name !!}">
             </a>
         </div>
         <div class="other-wine-info">

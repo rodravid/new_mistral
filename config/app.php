@@ -171,7 +171,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Spatie\Fractal\FractalServiceProvider::class
+        Spatie\Fractal\FractalServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -224,6 +225,7 @@ return [
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Sanitizer' => Rees\Sanitizer\Facade::class,
         'Fractal'   => Spatie\Fractal\FractalFacade::class,
+        'Image'     => Intervention\Image\Facades\Image::class
 
     ],
 
