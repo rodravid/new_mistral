@@ -45,6 +45,18 @@ class ProductIndexerService
         $params = [
             'index' => 'vinci',
             'body' => [
+                'settings' => [
+                    'index' => [
+                        'analysis' => [
+                            'analyzer' => [
+                                'analyzer_keyword' => [
+                                    'tokenizer' => 'standard',
+                                    'filter' => 'lowercase'
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 'mappings' => [
                     'product' => [
                         'properties' => [
@@ -56,6 +68,7 @@ class ProductIndexerService
                             ],
                             'title' => [
                                 'type' => 'string',
+                                'analyzer' => 'analyzer_keyword',
                                 'fields' => [
                                     'raw' => [
                                         'type' => 'string',
@@ -64,7 +77,12 @@ class ProductIndexerService
                                 ]
                             ],
                             'description' => [
-                                'type' => 'string'
+                                'type' => 'string',
+                                'analyzer' => 'analyzer_keyword'
+                            ],
+                            'short_description' => [
+                                'type' => 'string',
+                                'analyzer' => 'analyzer_keyword'
                             ],
                             'price' => [
                                 'type' => 'double'
@@ -74,6 +92,7 @@ class ProductIndexerService
                             ],
                             'bottle_size' => [
                                 'type' => 'string',
+                                'analyzer' => 'analyzer_keyword',
                                 'fields' => [
                                     'raw' => [
                                         'type' => 'string',
@@ -88,8 +107,14 @@ class ProductIndexerService
                                     ],
                                     'title' => [
                                         'type' => 'string',
-                                        'index' => 'not_analyzed'
-                                    ]
+                                        'analyzer' => 'analyzer_keyword',
+                                        'fields' => [
+                                            'raw' => [
+                                                'type' => 'string',
+                                                'index' => 'not_analyzed'
+                                            ]
+                                        ]
+                                    ],
                                 ],
                             ],
                             'region' => [
@@ -99,7 +124,13 @@ class ProductIndexerService
                                     ],
                                     'title' => [
                                         'type' => 'string',
-                                        'index' => 'not_analyzed'
+                                        'analyzer' => 'analyzer_keyword',
+                                        'fields' => [
+                                            'raw' => [
+                                                'type' => 'string',
+                                                'index' => 'not_analyzed'
+                                            ]
+                                        ]
                                     ]
                                 ],
                             ],
@@ -110,7 +141,13 @@ class ProductIndexerService
                                     ],
                                     'title' => [
                                         'type' => 'string',
-                                        'index' => 'not_analyzed'
+                                        'analyzer' => 'analyzer_keyword',
+                                        'fields' => [
+                                            'raw' => [
+                                                'type' => 'string',
+                                                'index' => 'not_analyzed'
+                                            ]
+                                        ]
                                     ]
                                 ],
                             ],
@@ -121,7 +158,13 @@ class ProductIndexerService
                                     ],
                                     'title' => [
                                         'type' => 'string',
-                                        'index' => 'not_analyzed'
+                                        'analyzer' => 'analyzer_keyword',
+                                        'fields' => [
+                                            'raw' => [
+                                                'type' => 'string',
+                                                'index' => 'not_analyzed'
+                                            ]
+                                        ]
                                     ]
                                 ],
                             ],
@@ -132,7 +175,13 @@ class ProductIndexerService
                                     ],
                                     'title' => [
                                         'type' => 'string',
-                                        'index' => 'not_analyzed'
+                                        'analyzer' => 'analyzer_keyword',
+                                        'fields' => [
+                                            'raw' => [
+                                                'type' => 'string',
+                                                'index' => 'not_analyzed'
+                                            ]
+                                        ]
                                     ],
                                     'weight' => [
                                         'type' => 'double'
@@ -181,6 +230,7 @@ class ProductIndexerService
                 'sku' => $product->getSku(),
                 'title' => $product->present()->title,
                 'description' => $product->getDescription(),
+                'short_description' => $product->getShortDescription(),
                 'price' => $product->getSalePrice(),
                 'available' => (int) $product->isAvailable()
             ];
@@ -232,7 +282,7 @@ class ProductIndexerService
                 }
             }
 
-            $data['keywords'] = $product->getSeoKeywords();
+            $data['keywords'] = $keywords = $product->getSeoKeywords();
 
             foreach ($this->showcaseRepository->getByProduct($product) as $showcase) {
                 $data['keywords'] .= $showcase->getKeywords();
@@ -246,8 +296,7 @@ class ProductIndexerService
             }
 
             $suggestInput = explode(' ', $product->getTitle());
-
-            $suggestInput = array_merge($suggestInput, explode(',', $data['keywords']));
+            $suggestInput = array_merge($suggestInput, explode(',', $keywords));
 
             $data['suggest'] = [
                 'input' => $suggestInput,
