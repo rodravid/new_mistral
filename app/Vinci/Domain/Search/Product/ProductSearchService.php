@@ -36,7 +36,7 @@ class ProductSearchService extends SearchService
             'field' => 'region.title.raw',
             'type' => 'term',
             'size' => 20,
-            'filtered_by' => ['pais', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
+            'filtered_by' => ['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco', 'showcase']
         ],
         'produtor' => [
             'title' => 'Produtor',
