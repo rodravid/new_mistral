@@ -172,7 +172,11 @@ class Image extends File
         $image->setParent($this);
         $image->setVersionType($version);
         $image->setPath($this->getPath() . '/' . $version);
-        $image->setName($this->getName());
+
+        if (empty($image->getName())) {
+            $image->setName($this->getName());
+        }
+
         $this->versions->set($version, $image);
     }
 

@@ -4,7 +4,10 @@ namespace Vinci\Domain\Image;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Http\UploadedFile;
+use Vinci\Domain\File\Builders\PathBuilderInterface;
+use Vinci\Domain\File\Mapping\FileMapping;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class ImageService
@@ -15,15 +18,22 @@ class ImageService
 
     private $storage;
 
+    private $factory;
+
+    private $container;
+
     public function __construct(
         EntityManagerInterface $entityManager,
         ImageRepository $repository,
-        StorageService $storage
-    )
-    {
+        StorageService $storage,
+        ImageFactory $factory,
+        Container $container
+    ) {
         $this->entityManager = $entityManager;
         $this->repository = $repository;
         $this->storage = $storage;
+        $this->factory = $factory;
+        $this->container = $container;
     }
 
     public function storeFor($entity, UploadedFile $image)
@@ -77,6 +87,29 @@ class ImageService
         if (! $image instanceof UploadedFile) {
             throw new \Exception(sprintf("The given image must be instance of %s.", UploadedFile::class));
         }
+    }
+
+    public function store(UploadedFile $uploadedFile, FileMapping $mapping)
+    {
+        $builder = $this->makePathBuilder($mapping->getPathBuilder());
+        $image = $this->factory->make($mapping, $builder, $uploadedFile);
+
+        $this->repository->save($image);
+
+        $image->setUploadedFile($uploadedFile);
+
+        $this->storage->storeImage($image);
+
+        return $image;
+    }
+
+    private function makePathBuilder($builderClass)
+    {
+        if ($builderClass instanceof PathBuilderInterface) {
+            return $builderClass;
+        }
+
+        return $this->container->make($builderClass);
     }
 
 }

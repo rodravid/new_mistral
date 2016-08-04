@@ -22,9 +22,6 @@ class ProductVariantFactory
 
         $variant
             ->setTitle($data['title'])
-            ->setSeoTitle($data['seoTitle'])
-            ->setSeoDescription($data['seoDescription'])
-            ->setSeoKeywords($data['seoKeywords'])
             ->setDescription($data['description'])
             ->setShortDescription($data['shortDescription'])
             ->setStatus($data['status'])
@@ -34,6 +31,18 @@ class ProductVariantFactory
             ->setStartsAtFromFormat($data['startsAt'])
             ->setExpirationAtFromFormat($data['expirationAt'])
             ->setPackSize($data['packSize']);
+
+        if (isset($data['seoTitle'])) {
+            $variant->setSeoTitle($data['seoTitle']);
+        }
+
+        if (isset($data['seoKeywords'])) {
+            $variant->setSeoKeywords($data['seoKeywords']);
+        }
+
+        if (isset($data['seoDescription'])) {
+            $variant->setSeoDescription($data['seoDescription']);
+        }
 
         return $variant;
     }

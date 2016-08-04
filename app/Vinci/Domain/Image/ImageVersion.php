@@ -5,6 +5,7 @@ namespace Vinci\Domain\Image;
 interface ImageVersion
 {
 
+    const PHOTO = 'photo';
     const ORIGINAL = 'original';
     const SMALL = 'small';
     const MEDIUM = 'medium';

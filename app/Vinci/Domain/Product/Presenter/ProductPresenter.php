@@ -24,8 +24,8 @@ class ProductPresenter extends AbstractPresenter
 
     public function presentImageUrl()
     {
-        if ($this->hasImage('desktop')) {
-            return $this->getImage('desktop')->getWebPath();
+        if ($this->hasImage('photo')) {
+            return $this->getImage('photo')->getWebPath();
         }
 
         return asset_web('images/no_photo.png');
