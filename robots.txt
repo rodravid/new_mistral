@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow:
+Disallow: /cms
+
+Sitemap: https://www.vinci.com.br/sitemap.xml
