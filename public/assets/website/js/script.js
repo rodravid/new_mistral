@@ -95,7 +95,7 @@ jQuery(document).ready(function ($) {
 
     $('.filter-search').each(function () {
         if ($(this).children('li').length > 5) {
-            $(this).find("li:nth-child(1n+7)").css("display", "none");
+            $(this).find("li:nth-child(1n+6)").css("display", "none");
             $(this).find(".see-more-filter").show();
         }
         else {
@@ -105,10 +105,10 @@ jQuery(document).ready(function ($) {
 
     $(".see-more-filter").click(function (event) {
         if ($(this).hasClass('see-less-filter')) {
-            $(this).siblings(".filter-search li:nth-child(1n+7)").css("display", "none");
+            $(this).siblings(".filter-search li:nth-child(1n+6)").css("display", "none");
             $(this).text('+ veja mais').addClass('see-more-filter').removeClass('see-less-filter');
         } else {
-            $(this).siblings(".filter-search li:nth-child(1n+7)").css("display", "inline-block");
+            $(this).siblings(".filter-search li:nth-child(1n+6)").css("display", "inline-block");
             $(this).text('- veja menos').addClass('see-less-filter').removeClass('see-more-filter');
         }
     });
@@ -390,6 +390,18 @@ jQuery(document).ready(function ($) {
     $('.bt-close-suggestions').click( function () {
          $('.input-search').val("");
          $(".results-suggestions").hide();
+    });
+
+
+    //Scrool links
+    $("a[rel=external]").attr('target', '_blank');
+    $(".link-alphabet-list, .arrow-top a").click(function(e) {
+        e.preventDefault();
+        var ancora = $(this).attr('href');
+        $('html, body').animate({
+
+            scrollTop: $(ancora).offset().top
+        }, 800);
     });
 
 });

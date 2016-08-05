@@ -928,6 +928,16 @@ a.bt-default {
 
 }
 
+.filter-search-item.disabled {
+	.subitem-filter-search li a{
+		color: #d4d3d3;
+		cursor: no-drop;
+	}
+}
+.filter-search-item.disabled:hover {
+	border-bottom:1px solid #fff;
+}
+
 .subitem-filter-search li+li {
 	width:20%;
 	float:right;
@@ -1466,6 +1476,10 @@ ul.pagination{
 				width:90%;
 			}
 		}
+
+.category-description+p {
+	color: #fff;
+}
 
 		.more-txt,
 		.less-txt {
@@ -4130,3 +4144,135 @@ ng\:form {
 	font:15px $robotobold;
 	color:$black;
 }
+
+
+.container-leia-mais {
+	p {
+		color: #fff;
+	}
+
+	a {
+		font-family: $robotobold;
+		color: #fff;
+	}
+
+	div {
+		color: #fff;
+	}
+}
+
+/* PG LISTA PAIS, REGIÃO PRODUTOR*/
+
+.alphabet-list {
+	text-align: center;
+	margin: 10px 0 0px 0;
+	border: 1px solid #d6d6d6;
+	padding: 20px 10px;
+}
+
+.item-alphabet-list {
+	display: inline-block;
+	@media #{$screen970}{
+		margin-bottom: 20px;
+	}
+}
+
+.item-alphabet-list+.item-alphabet-list a {
+	padding: 0 11px;
+}
+
+.link-alphabet-list {
+	text-transform: uppercase;
+	font-size: 18px;
+	font-family: $robotobold;
+	&:hover{
+		text-decoration:underline;
+	}
+}
+
+
+.letter-disabled a{
+	color: #D8CFCF !important;
+	cursor: no-drop;
+	font-family: $robotobold;
+}
+
+.line-category {
+	width: 100%;
+	display: inline-block;
+	padding-left: 30px;
+	@media #{$screen767} {
+		border-top: none;
+		padding-left: 0px;
+	}
+}
+
+.line-category+.line-category {
+	border-top: 1px solid #e0e0e0;
+	@media #{$screen767} {
+		border-top: none;
+	}
+}
+.line-category+.line-category ul{
+	padding: 35px 0 35px 0;
+	@media #{$screen767} {
+		padding: 10px 0 20px 0;
+
+	}
+
+}
+
+ul.line-category-content {
+	padding: 35px 0 35px 0;
+	display: inline-table;
+	width: 220px;
+	@media #{$screen970}{
+		width: 45%;
+		margin-right: 2.5%;
+	}
+	@media #{$screen767} {
+		width: 100%;
+		border-bottom: 1px solid #e0e0e0;
+
+	}
+}
+
+li.item-line-category {
+	width: 190px;
+	display: block;
+	margin-bottom: 10px;
+	@media #{$screen970}{
+		margin-bottom: 15px;
+	}
+}
+
+a.link-line-category {
+	font-size: 14px;
+	color: #000;
+	&:hover{
+		text-decoration:underline;
+	}
+	@media #{$screen970}{
+		font-size: 16px;
+	}
+}
+
+h3.title-line-category {
+	text-transform: uppercase;
+	color: #000;
+	font-size: 15px;
+	font-family: $robotobold;
+}
+
+
+
+
+.arrow-top{
+	position: fixed;
+	bottom: 20px;
+	right: 10px;
+	transition: all 0.25s ease-in-out;
+	z-index: 99999;
+}
+
+/* PG LISTA PAIS, REGIÃO PRODUTOR*/
