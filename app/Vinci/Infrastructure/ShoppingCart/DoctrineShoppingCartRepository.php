@@ -56,12 +56,18 @@ class DoctrineShoppingCartRepository extends DoctrineBaseRepository implements S
     {
         $query = $this
             ->createQueryBuilder('c')
-            ->select('c', 'cs', 'i', 'p', 'pv', 'pvp')
+            ->select('c', 'cs', 'i', 'p', 'pr', 'pv', 'iv', 'pvp', 'pvi', 'pvii', 'pviv')
             ->leftJoin('c.customer', 'cs')
             ->leftJoin('c.items', 'i')
             ->leftJoin('i.product', 'p')
-            ->leftJoin('i.productVariant', 'pv')
-            ->leftJoin('pv.prices', 'pvp');
+            ->leftJoin('p.producer', 'pr')
+            ->leftJoin('p.variants', 'pv')
+            ->leftJoin('i.productVariant', 'iv')
+            ->leftJoin('pv.prices', 'pvp')
+            ->leftJoin('pv.images', 'pvi')
+            ->leftJoin('pvi.image', 'pvii')
+            ->leftJoin('pvii.versions', 'pviv')
+        ;
 
         return $query;
     }
