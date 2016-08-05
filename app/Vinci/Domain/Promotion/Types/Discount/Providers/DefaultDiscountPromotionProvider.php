@@ -24,6 +24,10 @@ class DefaultDiscountPromotionProvider implements DiscountPromotionProvider
     {
         if ($product->canBePromoted()) {
 
+            if (($promotion = $product->getCurrentPromotion()) !== null) {
+                return $promotion;
+            }
+
             $promotion = $this->cache->rememberForever(DiscountPromotionProvider::CACHE_KEY . $product->getId(), function () use ($product) {
                 $promo = $this->repository->findOneByProduct($product);
 
@@ -31,6 +35,7 @@ class DefaultDiscountPromotionProvider implements DiscountPromotionProvider
             });
 
             if ($promotion && $promotion->isValid()) {
+                $product->setCurrentPromotion($promotion);
                 return $promotion;
             }
         }
