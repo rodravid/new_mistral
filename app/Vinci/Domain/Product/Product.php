@@ -133,6 +133,8 @@ class Product extends Model implements ProductInterface, Presentable
 
     protected $priceConfigurationResolver;
 
+    protected $currentPromotion;
+
     public function __construct()
     {
         $this->variants = new ArrayCollection;
@@ -826,6 +828,17 @@ class Product extends Model implements ProductInterface, Presentable
     public function setShippingMetrics(ShippingMetrics $shippingMetrics)
     {
         $this->getMasterVariant()->setShippingMetrics($shippingMetrics);
+        return $this;
+    }
+
+    public function getCurrentPromotion()
+    {
+        return $this->currentPromotion;
+    }
+
+    public function setCurrentPromotion($currentPromotion)
+    {
+        $this->currentPromotion = $currentPromotion;
         return $this;
     }
 
