@@ -232,7 +232,7 @@ class ProductSearchService extends SearchService
                     'should' => [
                         ['term' => ['_id' => $keyword]],
                         ['term' => ['sku' => intval($keyword)]],
-                        ['match' => ['title' => $keyword]],
+                        ['wildcard' => ['title' => $keyword . '*']],
                         ['match' => ['keywords' => $keyword]],
                         ['match' => ['short_description' => $keyword]],
                         ['match' => ['country.title' => $keyword]],
@@ -244,7 +244,7 @@ class ProductSearchService extends SearchService
                             [
                                 'title' => [
                                     'value' => $keyword,
-                                    'fuzziness' => 2
+                                    'fuzziness' => 1
                                 ]
                             ]
                         ]
