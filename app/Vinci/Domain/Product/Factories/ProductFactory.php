@@ -210,6 +210,18 @@ class ProductFactory implements ProductFactoryInterface
             $product->setEnabledForPromotions($newProduct->canBePromoted());
         }
 
+        if (! empty(array_get($data, 'country_id'))) {
+            $product->setCountry($newProduct->getCountry());
+        }
+
+        if (! empty(array_get($data, 'region_id'))) {
+            $product->setRegion($newProduct->getRegion());
+        }
+
+        if (! empty(array_get($data, 'producer_id'))) {
+            $product->setProducer($newProduct->getProducer());
+        }
+
         if ($product->isType(ProductArchType::TYPE_WINE)) {
             
             
