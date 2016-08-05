@@ -35,6 +35,8 @@ use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
 class DomainServiceProvider extends ServiceProvider
 {
 
+    protected $defer = true;
+
     public function register()
     {
 
@@ -254,10 +256,44 @@ class DomainServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService', function ($app) {
-
             return new DefaultProductRecommendedService($app['product.repository'], $app[Presenter::class]);
-
         });
 
+    }
+
+    public function provides()
+    {
+        return [
+            'Vinci\Domain\ACL\ACLService',
+            'Vinci\Domain\Customer\Address\AddressService',
+            'Vinci\Domain\Customer\CustomerService',
+            'Vinci\Domain\DeliveryTrack\DeliveryTrackService',
+            'Vinci\Domain\Admin\AdminService',
+            'Vinci\Domain\Highlight\HighlightService',
+            'Vinci\Domain\Country\CountryService',
+            'Vinci\Domain\Region\RegionService',
+            'Vinci\Domain\Producer\ProducerService',
+            'Vinci\Domain\Grape\GrapeService',
+            'Vinci\Domain\ProductType\ProductTypeService',
+            'Vinci\Domain\ProductNotify\Services\ProductNotifyService',
+            'Vinci\Domain\Shipping\Contracts\ShippingCarrierLocator',
+            'Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionLocator',
+            'Vinci\Domain\Product\Factories\Contracts\ProductFactory',
+            'product.url_generator',
+            'Vinci\Domain\Channel\Contracts\ChannelContext',
+            'Vinci\Domain\Channel\Contracts\ChannelProvider',
+            'Vinci\Domain\ShoppingCart\Factory\Contracts\ShoppingCartFactory',
+            'Vinci\Domain\ShoppingCart\Context\Contracts\ShoppingCartContext',
+            'cart.provider',
+            'Vinci\Domain\ShoppingCart\Provider\ShoppingCartProvider',
+            'Vinci\Domain\Inventory\Checkers\Contracts\AvailabilityChecker',
+            'Vinci\Domain\ShoppingCart\Resolver\Contracts\ItemResolver',
+            'Vinci\App\Website\Auth\Events\Listeners\LinkCustomerToCurrentCart',
+            'Vinci\Domain\Dollar\DollarProvider',
+            'Vinci\Domain\Pricing\PriceCalculator',
+            'Vinci\Domain\Pricing\Contracts\PriceCalculatorProvider',
+            'Vinci\Domain\Promotion\Types\Discount\DiscountPromotionProvider',
+            'Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService'
+        ];
     }
 }

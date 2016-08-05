@@ -110,9 +110,11 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
     public function getBaseQueryBuilder()
     {
         $qb = $this->createQueryBuilder('p')
-            ->select('p', 'v', 'i', 'vp', 'c', 'av', 'a', 'co', 'pr', 're')
+            ->select('p', 'v', 'i', 'ii', 'iv', 'vp', 'c', 'av', 'a', 'co', 'pr', 're')
             ->join('p.variants', 'v')
             ->leftJoin('v.images', 'i')
+            ->leftJoin('i.image', 'ii')
+            ->leftJoin('ii.versions', 'iv')
             ->leftJoin('v.prices', 'vp')
             ->leftJoin('p.channels', 'c')
             ->leftJoin('p.attributes', 'av')
