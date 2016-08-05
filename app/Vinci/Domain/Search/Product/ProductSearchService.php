@@ -258,7 +258,7 @@ class ProductSearchService extends SearchService
                     'completion' => [
                         'field' => 'suggest',
                         'fuzzy' => [
-                            'fuzziness' => 2
+                            'fuzziness' => 1
                         ]
                     ]
                 ]
