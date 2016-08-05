@@ -1,6 +1,6 @@
 <div class="row">
     @if($result->hasItems())
-        <article class="wrap-content-search template1">
+        <article class="wrap-content-search @if(isset($template)) {{ $template }} @else template1 @endif">
 
             @include('website::search.partials.filters')
 

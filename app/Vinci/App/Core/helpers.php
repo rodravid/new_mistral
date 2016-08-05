@@ -21,17 +21,7 @@ function present() {
 
 function productCardMenu($productId, $title, $template)
 {
-    $product = app(\Vinci\Domain\Product\Repositories\ProductRepository::class)->find($productId);
-
-    if (! $product) {
-        return;
-    }
-
-    return view('website::layouts.partials.product.cards.menu', [
-        'title' => $title,
-        'product' => present()->model($product, \Vinci\App\Website\Http\Product\Presenter\ProductPresenter::class),
-        'template' => $template
-    ])->render();
+    return app(\Vinci\Domain\Product\Services\ProductService::class)->makeMenuCardHtml($productId, $title, $template);
 }
 
 function html_select_array($data, $key = 'id', $value = 'title')
