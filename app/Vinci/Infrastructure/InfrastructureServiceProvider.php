@@ -8,6 +8,8 @@ use Vinci\Infrastructure\Storage\StorageService;
 class InfrastructureServiceProvider extends ServiceProvider
 {
 
+    protected $defer = true;
+
     public function register()
     {
 
@@ -295,6 +297,52 @@ class InfrastructureServiceProvider extends ServiceProvider
                 $entityManager->getClassMetaData($entityClass)
             );
         });
+    }
+
+    public function provides()
+    {
+        return [
+            'Vinci\Domain\User\UserRepository',
+            'Vinci\Domain\Customer\CustomerRepository',
+            'Vinci\Domain\Order\OrderRepository',
+            'Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository',
+            'Vinci\Domain\Admin\AdminRepository',
+            'Vinci\Domain\ACL\Role\RoleRepository',
+            'Vinci\Domain\ACL\Permission\PermissionRepository',
+            'Vinci\Domain\ACL\Module\ModuleRepository',
+            'Vinci\Domain\Image\ImageRepository',
+            'Vinci\Domain\Newsletter\NewsletterRepository',
+            'Vinci\Domain\Dollar\DollarRepository',
+            'Vinci\Domain\Deadline\DeadlineRepository',
+            'Vinci\Domain\DeliveryTrack\DeliveryTrackRepository',
+            'Vinci\Domain\Highlight\HighlightRepository',
+            'Vinci\Domain\Showcase\ShowcaseRepository',
+            'Vinci\Domain\Promotion\PromotionRepository',
+            'Vinci\Domain\Promotion\Types\Discount\DiscountPromotionRepository',
+            'Vinci\Domain\Promotion\Types\Shipping\ShippingPromotionRepository',
+            'Vinci\Domain\Template\TemplateRepository',
+            'Vinci\Domain\Country\CountryRepository',
+            'Vinci\Domain\Region\RegionRepository',
+            'Vinci\Domain\Producer\ProducerRepository',
+            'Vinci\Domain\Grape\GrapeRepository',
+            'Vinci\Domain\ProductType\ProductTypeRepository',
+            'Vinci\Domain\Address\Country\CountryRepository',
+            'Vinci\Domain\Address\PublicPlaceRepository',
+            'Vinci\Domain\ShoppingCart\Repositories\ShoppingCartRepository',
+            'Vinci\Domain\Carrier\CarrierRepository',
+            'Vinci\Domain\Product\Repositories\ProductRepository',
+            'Vinci\Domain\ProductNotify\Repositories\ProductNotifyRepository',
+            'Vinci\Domain\Product\Repositories\ProductVariantRepository',
+            'Vinci\Domain\Channel\ChannelRepository',
+            'Vinci\Domain\Customer\Address\AddressRepository',
+            'Vinci\Domain\Address\City\CityRepository',
+            'Vinci\Domain\Address\State\StateRepository',
+            'Vinci\Infrastructure\Storage\StorageService',
+            'Vinci\Domain\Product\Wine\Repositories\CriticalAcclaimsRepository',
+            'Vinci\Domain\Payment\Repositories\PaymentMethodsRepository',
+            'Vinci\Domain\Payment\Repositories\PaymentInstallmentRepository',
+            'Vinci\Domain\Graphic\Order\OrderGraphicsRepository',
+        ];
     }
 
 }
