@@ -27,7 +27,7 @@
 	</div>
 </div>
 
-@include('website::search.box')
+@include('website::search.box', ['template' => 'template1'])
 
 <div class="bg-layer-filtro"></div>
 

@@ -6,6 +6,7 @@ use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\Core\Validation\ValidationTrait;
 use Vinci\Domain\Image\Image;
@@ -132,4 +133,20 @@ class ProductService
 
         return $highlight;
     }
+
+    public function makeMenuCardHtml($product, $title, $template)
+    {
+        $product = $this->repository->find($product);
+
+        if (! $product) {
+            return;
+        }
+
+        return view('website::layouts.partials.product.cards.menu', [
+            'title' => $title,
+            'product' => present()->model($product, ProductPresenter::class),
+            'template' => $template
+        ])->render();
+    }
+
 }
