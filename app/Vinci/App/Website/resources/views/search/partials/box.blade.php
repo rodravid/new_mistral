@@ -1,10 +1,10 @@
 <div class="row">
     @if($result->hasItems())
-        <article class="wrap-content-search">
+        <article class="wrap-content-search template1">
 
             @include('website::search.partials.filters')
 
-            <div class="@yield('box_class') template1">
+            <div class="@yield('box_class')">
 
                 <header class="header-content-internal">
 

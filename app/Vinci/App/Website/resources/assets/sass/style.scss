@@ -937,7 +937,6 @@ a.bt-default {
 .see-less-filter{
 	cursor:pointer;
 	font-size: 15px;
-	color:$blue;
 	text-transform:uppercase;
 	&:hover {
 		text-decoration: underline;
@@ -1947,10 +1946,15 @@ ul.pagination{
 			}
 		}
 
+		.wrap-content-seal {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 90px;
+		}
+
 		.wrap-seal-product {
-			position:absolute;
-			top:0;
-			right:0;
+			position: relative;
 			img {
 				display:block;
 				margin-bottom: 10px;
