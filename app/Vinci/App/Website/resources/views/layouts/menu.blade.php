@@ -115,7 +115,7 @@
         <ul class="menu">
 
             <li class="menu-item larger760 template1">
-                <a class="menu-link" href="{{ route('category.country.list') }}">
+                <a class="menu-link" href="{{ route('category.countries.list') }}">
                     País
                 </a>
                 <div class="drop-menu">
@@ -136,7 +136,7 @@
                         <li><a href="/c/pais/alemanha">Alemanha</a></li>
                         <li><a href="/c/pais/uruguai">Uruguai</a></li>
                         <li><a href="/c/pais/estados-unidos">Estados Unidos</a></li>
-                        <li><a class="all-links" href="/c/paises">Lista de todos os países <small>></small></a></li>
+                        <li><a class="all-links" href="{{ route('category.countries.list') }}">Lista de todos os países <small>></small></a></li>
                         </ul>
                     </div>
                     <div class="division">
@@ -148,7 +148,7 @@
             </li>
 
             <li class="menu-item larger760 template2">
-                <a class="menu-link" href="{{ route('category.region.list') }}">
+                <a class="menu-link" href="{{ route('category.regions.list') }}">
                     Região
                 </a>
                 <div class="drop-menu">
@@ -175,7 +175,7 @@
                     </div>
 
                     <div class="division">
-                        <a href="/c/regioes">
+                        <a href="{{ route('category.regions.list') }}">
                             <div class="every-category">
                                 <h3>Veja a lista de todas as regiões</h3>
                                 <span>></span>
@@ -187,7 +187,7 @@
             </li>
 
             <li class="menu-item larger760 template3">
-                <a class="menu-link" href="{{ route('category.producer.list') }}">
+                <a class="menu-link" href="{{ route('category.producers.list') }}">
                     Produtor
                 </a>
                 <div class="drop-menu">
@@ -214,7 +214,7 @@
                     </div>
 
                     <div class="division">
-                        <a href="/c/produtores">
+                        <a href="{{ route('category.producers.list') }}">
                             <div class="every-category">
                                 <h3>Veja a lista de todos os produtores</h3>
                                 <span>></span>
@@ -226,7 +226,7 @@
             </li>
 
             <li class="menu-item larger760-right template4">
-                <a class="menu-link" href="{{ route('category.product-type.list') }}">
+                <a class="menu-link" href="{{ route('category.product-types.list') }}">
                     Tipo de vinho
                 </a>
                 <div class="drop-menu">
@@ -256,7 +256,7 @@
             </li>
 
             <li class="menu-item larger760-right template5">
-                <a class="menu-link" href="{{ route('category.grape.list') }}">
+                <a class="menu-link" href="{{ route('category.grapes.list') }}">
                    Uva
                 </a>
                 <div class="drop-menu">
@@ -276,14 +276,14 @@
                             <li><a href="/c/tipo-de-uva/sauvignon-blanc">Sauvignon Blanc</a></li>
                             <li><a href="/c/tipo-de-uva/sangiovese">Sangiovese</a></li>
                             <li><a href="/c/tipo-de-uva/pinot-noir">Pinot Noir</a></li>
-                            <li><a href="/c/tipo-de-uva/syrah-e-shiraz">Syrah e Shiraz</a></li>
+                            <li><a href="/c/tipo-de-uva/syrah-shiraz">Syrah e Shiraz</a></li>
                             <li><a href="/c/tipo-de-uva/primitivo">Primitivo</a></li>
                             <li><a href="/c/vitrine/cortes-de-varias-uvas">Cortes de várias uvas </a></li>
                         </ul>
                     </div>
 
                     <div class="division">
-                        <a href="/c/tipos-de-uvas">
+                        <a href="{{ route('category.grapes.list') }}">
                             <div class="every-category">
                                 <h3>Veja a lista de todas as uvas</h3>
                                 <span>></span>

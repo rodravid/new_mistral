@@ -51,7 +51,7 @@ class CountryController extends BaseTaxonomyController
                     ->with([
                         'resources' => $countries,
                         'resourceType' => 'country',
-                        'pageTitle' => 'País',
+                        'pageTitle' => 'Países',
                         'template' => 'template1',
                         'imageTitle' => 'bg-pais.jpg'
                     ]);

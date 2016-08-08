@@ -51,7 +51,7 @@ class ProductTypeController extends BaseTaxonomyController
             ->with([
                 'resources' => $productsType,
                 'resourceType' => 'product-type',
-                'pageTitle' => 'Tipo de Vinho',
+                'pageTitle' => 'Tipos de Vinho',
                 'template' => 'template4',
                 'imageTitle' => 'bg-tipo-vinho.jpg'
             ]);

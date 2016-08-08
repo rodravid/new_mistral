@@ -47,7 +47,7 @@ class RegionController extends BaseTaxonomyController
             ->with([
                 'resources' => $regions,
                 'resourceType' => 'region',
-                'pageTitle' => 'Região',
+                'pageTitle' => 'Regiões',
                 'template' => 'template2',
                 'imageTitle' => 'bg-regiao.jpg'
             ]);

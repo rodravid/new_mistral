@@ -47,7 +47,7 @@ class ProducerController extends BaseTaxonomyController
             ->with([
                 'resources' => $producers,
                 'resourceType' => 'producer',
-                'pageTitle' => 'Produtor',
+                'pageTitle' => 'Produtores',
                 'template' => 'template3',
                 'imageTitle' => 'bg-produtor.jpg'
             ]);
