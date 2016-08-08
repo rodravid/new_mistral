@@ -7,6 +7,8 @@ interface ProducerRepository
 
     public function find($id);
 
+    public function getAll();
+
     public function getOneBySlug($slug);
 
     public function getAllValidForSelectArray();

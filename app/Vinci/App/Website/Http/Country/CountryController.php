@@ -5,6 +5,7 @@ namespace Vinci\App\Website\Http\Country;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\Request;
 use Vinci\App\Website\Http\Taxonomy\BaseTaxonomyController;
+use Vinci\Domain\Common\TaxonomyCollection;
 use Vinci\Domain\Country\CountryRepository;
 use Vinci\Domain\Search\Product\ProductSearchService;
 
@@ -40,7 +41,20 @@ class CountryController extends BaseTaxonomyController
 
     public function index(Request $request)
     {
-        return $this->view('layouts.pages.list');
+        $countries = new TaxonomyCollection($this->countryRepository->getAll());
+
+        $countries = $countries->filter(function ($country) {
+            return ! in_array($country->getName(), ['Acessórios', 'Embalagens']);
+        });
+
+        return $this->view('layouts.pages.list')
+                    ->with([
+                        'resources' => $countries,
+                        'resourceType' => 'country',
+                        'pageTitle' => 'País',
+                        'template' => 'template1',
+                        'imageTitle' => 'bg-pais.jpg'
+                    ]);
     }
 
     protected function getCountry($slug)

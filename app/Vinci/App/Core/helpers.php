@@ -398,3 +398,42 @@ function get_filter_price_value_title($title) {
     }
 
 }
+
+function makeAlphabet($availableLetters = null, array $conf = [])
+{
+    $conf = array_merge([
+        'disabled_class' => 'letter-disabled',
+        'active_class' => 'letter-active'
+    ], $conf);
+
+    $letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    $availableLetters = !empty($availableLetters) ? $availableLetters : $letters;
+
+    $alphabet = '';
+
+    foreach ($letters as $key => $letter) {
+
+        $class = '';
+
+        if (!in_array(strtolower($letter), $availableLetters)) {
+
+            $class = $conf['disabled_class'];
+            $linkClass = '';
+            $href = 'javascript:void(0);';
+
+        } else {
+
+            if ($key === 0) {
+                $class = $conf['active_class'];
+            }
+            $linkClass = 'link-alphabet-list';
+            $href = '#' . $letter;
+
+        }
+
+        $alphabet .= '<li class="item-alphabet-list ' . $class . '" data-letter="' . $letter . '"><a class="' . $linkClass . '" href="' . $href . '">' . strtoupper($letter) . '</a></li>';
+    }
+
+    return $alphabet;
+}
