@@ -5,6 +5,7 @@ namespace Vinci\Domain\Product\Services;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Http\UploadedFile;
 use Vinci\App\Website\Http\Product\Presenter\ProductPresenter;
 use Vinci\Domain\ACL\ACLService;
@@ -31,6 +32,10 @@ class ProductService
     private $imageRepository;
 
     private $aclService;
+    /**
+     * @var Repository
+     */
+    private $cache;
 
     public function __construct(
         EntityManagerInterface $entityManager,
@@ -38,15 +43,16 @@ class ProductService
         ProductValidator $validator,
         StorageService $storage,
         ImageRepository $imageRepository,
-        ACLService $aclService
-    )
-    {
+        ACLService $aclService,
+        Repository $cache
+    ) {
         $this->entityManager = $entityManager;
         $this->repository = $repository;
         $this->validator = $validator;
         $this->storage = $storage;
         $this->imageRepository = $imageRepository;
         $this->aclService = $aclService;
+        $this->cache = $cache;
     }
 
     public function create(array $data)
@@ -136,17 +142,20 @@ class ProductService
 
     public function makeMenuCardHtml($product, $title, $template)
     {
-        $product = $this->repository->find($product);
+        return $this->cache->remember('product-card-menu-' . $product, 5, function() use ($product, $title, $template) {
 
-        if (! $product) {
-            return;
-        }
+            $product = $this->repository->find($product);
 
-        return view('website::layouts.partials.product.cards.menu', [
-            'title' => $title,
-            'product' => present()->model($product, ProductPresenter::class),
-            'template' => $template
-        ])->render();
+            if (! $product) {
+                return '';
+            }
+
+            return view('website::layouts.partials.product.cards.menu', [
+                'title' => $title,
+                'product' => present()->model($product, ProductPresenter::class),
+                'template' => $template
+            ])->render();
+        });
     }
 
 }

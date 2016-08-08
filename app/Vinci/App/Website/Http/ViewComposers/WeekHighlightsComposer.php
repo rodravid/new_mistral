@@ -33,7 +33,7 @@ class WeekHighlightsComposer
         if (! empty($showcases)) {
             $showcase = $this->presenter->model($showcases[0], ShowcasePresenter::class);
 
-            $products = $this->productRepository->getProductsByShowcase($showcase->getId());
+            $products = $this->productRepository->getProductsByShowcase($showcase->getId(), 12);
 
             $products = $this->presenter->paginator($products, ProductPresenter::class);
 
