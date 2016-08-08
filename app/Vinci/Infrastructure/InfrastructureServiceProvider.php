@@ -3,6 +3,7 @@
 namespace Vinci\Infrastructure;
 
 use Illuminate\Support\ServiceProvider;
+use Vinci\Infrastructure\Services\Postmon\Postmon;
 use Vinci\Infrastructure\Storage\StorageService;
 
 class InfrastructureServiceProvider extends ServiceProvider
@@ -285,6 +286,10 @@ class InfrastructureServiceProvider extends ServiceProvider
 
         $this->app->singleton('Vinci\Domain\Graphic\Order\OrderGraphicsRepository', 'Vinci\Infrastructure\Graphic\Order\DoctrineOrderGraphicsRepository');
 
+        $this->app->singleton('postmon', function() {
+            return new Postmon;
+        });
+
     }
 
     protected function registerRepository($repositoryInterfaceClass, $concreteRepository, $entityClass)
@@ -342,6 +347,7 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Payment\Repositories\PaymentMethodsRepository',
             'Vinci\Domain\Payment\Repositories\PaymentInstallmentRepository',
             'Vinci\Domain\Graphic\Order\OrderGraphicsRepository',
+            'postmon'
         ];
     }
 

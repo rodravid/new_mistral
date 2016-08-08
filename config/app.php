@@ -225,7 +225,8 @@ return [
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Sanitizer' => Rees\Sanitizer\Facade::class,
         'Fractal'   => Spatie\Fractal\FractalFacade::class,
-        'Image'     => Intervention\Image\Facades\Image::class
+        'Image'     => Intervention\Image\Facades\Image::class,
+        'Postmon'   => \Vinci\Infrastructure\Services\Postmon\Facades\Postmon::class
 
     ],
 
