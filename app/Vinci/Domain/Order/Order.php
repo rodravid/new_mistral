@@ -133,6 +133,12 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return $this->id;
     }
 
+    public function setNumber($number)
+    {
+        $this->number = $number;
+        return $this;
+    }
+
     public function getNumber()
     {
         return $this->number;
@@ -374,7 +380,9 @@ class Order extends Model implements OrderInterface, AggregateRoot
     /** @ORM\PrePersist */
     public function generateOrderNumber()
     {
-        $this->number = app(OrderNumberGenerator::class)->generate();
+        if (empty($this->number)) {
+            $this->number = app(OrderNumberGenerator::class)->generate();
+        }
     }
 
     public function getPayments()

@@ -174,6 +174,7 @@
                                                     <th>Número do pedido</th>
                                                     <th>Cliente</th>
                                                     <th>Total</th>
+                                                    <th width="15%">Status da integração</th>
                                                     <th>Data</th>
                                                 </tr>
                                                 </thead>
@@ -188,6 +189,7 @@
                                                         <td>{{ $order->number }}</td>
                                                         <td>{{ $order->customer->name }}</td>
                                                         <td>{{ $order->total }}</td>
+                                                        <td>{!! $order->integration_status_html !!}</td>
                                                         <td>
                                                             <div class="sparkbar" data-color="#00a65a" data-height="20">
                                                                 {{ $order->created_at }}
