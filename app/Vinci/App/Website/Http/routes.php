@@ -130,19 +130,19 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/{slug}', 'Country\CountryController@show')->name('show');
         });
 
-        $route->get('/paises', 'Country\CountryController@index')->name('countries.list');
+        $route->get('/pais', 'Country\CountryController@index')->name('countries.list');
 
         $route->group(['prefix' => 'regiao', 'as' => 'region.'], function () use ($route) {
             $route->get('/{slug}', 'Region\RegionController@show')->name('show');
         });
 
-        $route->get('/regioes', 'Region\RegionController@index')->name('regions.list');
+        $route->get('/regiao', 'Region\RegionController@index')->name('regions.list');
 
         $route->group(['prefix' => 'produtor', 'as' => 'producer.'], function () use ($route) {
             $route->get('/{slug}', 'Producer\ProducerController@show')->name('show');
         });
 
-        $route->get('/produtores', 'Producer\ProducerController@index')->name('producers.list');
+        $route->get('/produtor', 'Producer\ProducerController@index')->name('producers.list');
 
         $route->group(['prefix' => 'tipo-de-vinho', 'as' => 'product-type.'], function () use ($route) {
             $route->get('/{slug}', 'ProductType\ProductTypeController@show')->name('show');

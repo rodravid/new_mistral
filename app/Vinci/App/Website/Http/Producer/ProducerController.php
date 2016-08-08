@@ -43,14 +43,21 @@ class ProducerController extends BaseTaxonomyController
     {
         $producers = new TaxonomyCollection($this->producerRepository->getAll());
 
+        $pageDescription = 'Os mais prestigiados produtores de vinho da 
+                            atualidade no portfólio da Vinci oferecendo 
+                            os melhores vinhos das grandes regiões vinícolas 
+                            do mundo. Veja!';
+
         return $this->view('layouts.pages.list')
-            ->with([
-                'resources' => $producers,
-                'resourceType' => 'producer',
-                'pageTitle' => 'Produtores',
-                'template' => 'template3',
-                'imageTitle' => 'bg-produtor.jpg'
-            ]);
+                    ->with([
+                        'metaTitle' => 'Os maiores produtores de vinho da atualidade - Vinci',
+                        'resources' => $producers,
+                        'resourceType' => 'producer',
+                        'pageTitle' => 'Produtor',
+                        'pageDescription' => $pageDescription,
+                        'template' => 'template3',
+                        'imageTitle' => 'bg-produtor.jpg'
+                    ]);
     }
 
     protected function getProducer($slug)

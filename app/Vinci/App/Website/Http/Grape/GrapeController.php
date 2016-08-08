@@ -47,11 +47,15 @@ class GrapeController extends BaseTaxonomyController
             return ! in_array($grape->getName(), ['Acessório', 'Embalagem']);
         });
 
+        $pageDescription = '';
+
         return $this->view('layouts.pages.list')
             ->with([
+                'metaTitle' => 'Encontre o tipo de uva ideal para cada ocasião - Vinci',
                 'resources' => $grapes,
                 'resourceType' => 'grape',
-                'pageTitle' => 'Tipos de Uva',
+                'pageTitle' => 'Tipo de Uva',
+                'pageDescription' => $pageDescription,
                 'template' => 'template5',
                 'imageTitle' => 'bg-tipo-uva.jpg'
             ]);

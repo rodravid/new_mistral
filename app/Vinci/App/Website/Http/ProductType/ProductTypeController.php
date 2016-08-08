@@ -47,14 +47,21 @@ class ProductTypeController extends BaseTaxonomyController
             return ! in_array($productType->getName(), ['Acessório', 'Embalagem', 'Kits', 'Outros']);
         });
 
+        $pageDescription = 'Todos os tipos de vinho Tinto, 
+                            Branco Seco, Rosado, Espumante, 
+                            Branco Doce, Vinho do Porto, Tinto Doce, 
+                            Madeira, Licor e outros. Encontre o seu favorito!';
+
         return $this->view('layouts.pages.list')
-            ->with([
-                'resources' => $productsType,
-                'resourceType' => 'product-type',
-                'pageTitle' => 'Tipos de Vinho',
-                'template' => 'template4',
-                'imageTitle' => 'bg-tipo-vinho.jpg'
-            ]);
+                    ->with([
+                        'metaTitle' => 'Encontre o tipo de vinho ideal para cada ocasião - Vinci',
+                        'resources' => $productsType,
+                        'resourceType' => 'product-type',
+                        'pageTitle' => 'Tipo de Vinho',
+                        'pageDescription' => $pageDescription,
+                        'template' => 'template4',
+                        'imageTitle' => 'bg-tipo-vinho.jpg'
+                    ]);
     }
 
     protected function getProductType($slug)
