@@ -10,7 +10,9 @@ use Illuminate\Console\Command;
 use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Common\IntegrationStatus;
 use Vinci\Domain\Customer\Customer;
+use Vinci\Domain\Order\Address\Address;
 use Vinci\Domain\Order\Order;
+use Vinci\Domain\Order\OrderInterface;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
@@ -41,9 +43,6 @@ class ImportOldOrders extends Command
         parent::__construct();
 
         $this->em = $em;
-
-        $this->channel = $this->em->getReference(Channel::class, 1);
-        $this->trackingStatus = $this->em->getReference(OrderTrackingStatus::class, 1);
     }
 
     /**
@@ -53,7 +52,7 @@ class ImportOldOrders extends Command
      */
     public function handle()
     {
-        $oldOrders = collect(DB::table('tbOrder')->get());
+        $oldOrders = collect(DB::table('tbOrder as o')->join('tbOrderShippingAddress as oa', 'o.idOrder', '=', 'oa.idOrder')->get());
 
         if ($count = $oldOrders->count()) {
 
@@ -112,8 +111,8 @@ class ImportOldOrders extends Command
 
         $order = new Order;
 
-        $order->setChannel($this->channel)
-            ->setTrackingStatus($this->trackingStatus)
+        $order->setChannel($this->getChannel())
+            ->setTrackingStatus($this->getTrackingStatus())
             ->setNumber($number)
             ->setTotal($total)
             ->setItemsTotal($itemsTotal)
@@ -121,7 +120,9 @@ class ImportOldOrders extends Command
             ->setCreatedAt($orderDate)
             ->setErpIntegrationStatus(IntegrationStatus::INTEGRATED);
 
-        dd($order);
+        list($shippingAddress, $billingAddress) = $this->getAddresses($oldOrder, $order);
+
+        dd($shippingAddress, $billingAddress);
 
         //@TODO Add order items
         //@TODO Add order billing address
@@ -148,6 +149,49 @@ class ImportOldOrders extends Command
         }
 
         return $customer;
+    }
+
+    protected function getAddresses($oldOrder, OrderInterface $newOrder)
+    {
+        $shippingAddress = new Address;
+
+        $shippingAddress
+            ->setAddress(trim($oldOrder->dsAddress))
+            ->setNumber(trim($oldOrder->dsNumber))
+            ->setDistrict(trim($oldOrder->dsDictrict))
+            ->setComplement(trim($oldOrder->dsComplement))
+            ->setLandmark(trim($oldOrder->dsReferenceAddress))
+        ;
+
+        dd($shippingAddress);
+
+        $billingAddress = new Address;
+
+        if (! empty($billAddress = $newOrder->getCustomer()->getMainAddress())) {
+            $billingAddress->override($billAddress);
+        } else {
+            $billingAddress = clone $shippingAddress;
+        }
+
+        return [$shippingAddress, $billingAddress];
+    }
+
+    public function getChannel()
+    {
+        if (! is_null($this->channel)) {
+            return $this->channel;
+        }
+
+        return $this->channel = $this->em->getReference(Channel::class, 1);
+    }
+
+    public function getTrackingStatus()
+    {
+        if (! is_null($this->trackingStatus)) {
+            return $this->trackingStatus;
+        }
+
+        return $this->trackingStatus = $this->em->getReference(OrderTrackingStatus::class, 1);
     }
 
 }
