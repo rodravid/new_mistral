@@ -38,6 +38,11 @@ class CountryController extends BaseTaxonomyController
         return $this->view('country.index', compact('country', 'result'));
     }
 
+    public function index(Request $request)
+    {
+        return $this->view('layouts.pages.list');
+    }
+
     protected function getCountry($slug)
     {
         $country = $this->countryRepository->getOneBySlug($slug);

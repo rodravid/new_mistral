@@ -115,7 +115,7 @@
         <ul class="menu">
 
             <li class="menu-item larger760 template1">
-                <a class="menu-link" href="/categoria">
+                <a class="menu-link" href="javascript:void(0);">
                     País
                 </a>
                 <div class="drop-menu">
@@ -148,7 +148,7 @@
             </li>
 
             <li class="menu-item larger760 template2">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="/c/regiao">
                     Região
                 </a>
                 <div class="drop-menu">
@@ -278,7 +278,7 @@
                             <li><a href="/c/tipo-de-uva/pinot-noir">Pinot Noir</a></li>
                             <li><a href="/c/tipo-de-uva/syrah-e-shiraz">Syrah e Shiraz</a></li>
                             <li><a href="/c/tipo-de-uva/primitivo">Primitivo</a></li>
-                            <li><a href="/c/tipo-de-uva/cortese">Cortese</a></li>
+                            <li><a href="/c/vitrine/cortes-de-varias-uvas">Cortes de várias uvas </a></li>
                         </ul>
                     </div>
 

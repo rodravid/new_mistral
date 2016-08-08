@@ -130,6 +130,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/{slug}', 'Country\CountryController@show')->name('show');
         });
 
+        $route->get('/regiao', 'Country\CountryController@index')->name('country.list');
+
         $route->group(['prefix' => 'regiao', 'as' => 'region.'], function () use ($route) {
             $route->get('/{slug}', 'Region\RegionController@show')->name('show');
         });
