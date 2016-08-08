@@ -47,11 +47,17 @@ class CountryController extends BaseTaxonomyController
             return ! in_array($country->getName(), ['Acessórios', 'Embalagens']);
         });
 
+        $pageDescription = 'São mais de 1000 rótulos de vinhos de 15 países diferentes, 
+                            mais de 150 produtores exclusivos do mais alto nível, 
+                            entre as maiores estrelas de suas regiões!';
+
         return $this->view('layouts.pages.list')
                     ->with([
+                        'metaTitle' => 'Os melhores vinhos do mundo de cada país - Vinci',
                         'resources' => $countries,
                         'resourceType' => 'country',
                         'pageTitle' => 'País',
+                        'pageDescription' => $pageDescription,
                         'template' => 'template1',
                         'imageTitle' => 'bg-pais.jpg'
                     ]);

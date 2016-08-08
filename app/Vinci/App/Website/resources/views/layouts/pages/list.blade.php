@@ -1,6 +1,6 @@
 @extends('website::layouts.master')
 
-@section('title', 'Vinci - ')
+@section('title', $metaTitle)
 
 @section('content')
     <div class="header-internal {{ $template }}-bg bg-color-category" style="background: url({{ asset_web('images/' . $imageTitle) }}) no-repeat top right;">
@@ -18,11 +18,7 @@
             <h1 class="internal-subtitle-category">Vinhos por {{ $pageTitle }}</h1>
             <div class="container-leia-mais">
                 <p class="category-description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae blanditiis
-                    cum cumque deserunt dolor eveniet explicabo hic incidunt, inventore ipsa ipsum iusto
-                    laborum laudantium magnam officia praesentium similique sunt totam? Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Aliquid et nulla quos. Ad aliquid deserunt, doloremque earum esse est explicabo
-                    itaque laborum magni nesciunt quae quasi quia, saepe temporibus voluptatibus.
+                    {{ $pageDescription }}
                 </p>
             </div>
         </div>

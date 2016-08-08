@@ -43,14 +43,21 @@ class RegionController extends BaseTaxonomyController
     {
         $regions = new TaxonomyCollection($this->regionRepository->getAll());
 
+        $pageDescription = 'Vinhos das regiões mais famosas do mundo: 
+                            Bordeaux, Borgonha, Champagne, Rhône, Piemonte, 
+                            Toscana, Douro, Ribera del Duero, Rioja, Priorato, 
+                            Mendoza e mais!';
+
         return $this->view('layouts.pages.list')
-            ->with([
-                'resources' => $regions,
-                'resourceType' => 'region',
-                'pageTitle' => 'Região',
-                'template' => 'template2',
-                'imageTitle' => 'bg-regiao.jpg'
-            ]);
+                    ->with([
+                        'metaTitle' => 'Os maiores vinhos das principais regiões vinícolas do mundo - Vinci',
+                        'resources' => $regions,
+                        'resourceType' => 'region',
+                        'pageTitle' => 'Região',
+                        'pageDescription' => $pageDescription,
+                        'template' => 'template2',
+                        'imageTitle' => 'bg-regiao.jpg'
+                    ]);
     }
 
     protected function getRegion($slug)
