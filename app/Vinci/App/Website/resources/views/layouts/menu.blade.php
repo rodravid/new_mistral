@@ -115,7 +115,7 @@
         <ul class="menu">
 
             <li class="menu-item larger760 template1">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="{{ route('category.country.list') }}">
                     País
                 </a>
                 <div class="drop-menu">
@@ -148,7 +148,7 @@
             </li>
 
             <li class="menu-item larger760 template2">
-                <a class="menu-link" href="/c/regiao">
+                <a class="menu-link" href="{{ route('category.region.list') }}">
                     Região
                 </a>
                 <div class="drop-menu">
@@ -187,7 +187,7 @@
             </li>
 
             <li class="menu-item larger760 template3">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="{{ route('category.producer.list') }}">
                     Produtor
                 </a>
                 <div class="drop-menu">
@@ -226,7 +226,7 @@
             </li>
 
             <li class="menu-item larger760-right template4">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="{{ route('category.product-type.list') }}">
                     Tipo de vinho
                 </a>
                 <div class="drop-menu">
@@ -256,7 +256,7 @@
             </li>
 
             <li class="menu-item larger760-right template5">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="{{ route('category.grape.list') }}">
                    Uva
                 </a>
                 <div class="drop-menu">

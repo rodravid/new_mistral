@@ -5,6 +5,7 @@ namespace Vinci\App\Website\Http\ProductType;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\Request;
 use Vinci\App\Website\Http\Taxonomy\BaseTaxonomyController;
+use Vinci\Domain\Common\TaxonomyCollection;
 use Vinci\Domain\ProductType\ProductTypeRepository;
 use Vinci\Domain\Search\Product\ProductSearchService;
 
@@ -36,6 +37,24 @@ class ProductTypeController extends BaseTaxonomyController
         $result->setVisibleFilters(['pais', 'regiao', 'produtor', 'tipo-de-uva', 'tamanho', 'preco']);
 
         return $this->view('product-type.index', compact('productType', 'result'));
+    }
+
+    public function index(Request $request)
+    {
+        $productsType = new TaxonomyCollection($this->productTypeRepository->getAll());
+
+        $productsType = $productsType->filter(function ($productType) {
+            return ! in_array($productType->getName(), ['Acessório', 'Embalagem', 'Kits', 'Outros']);
+        });
+
+        return $this->view('layouts.pages.list')
+            ->with([
+                'resources' => $productsType,
+                'resourceType' => 'product-type',
+                'pageTitle' => 'Tipo de Vinho',
+                'template' => 'template4',
+                'imageTitle' => 'bg-tipo-vinho.jpg'
+            ]);
     }
 
     protected function getProductType($slug)

@@ -5,6 +5,7 @@ namespace Vinci\App\Website\Http\Region;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\Request;
 use Vinci\App\Website\Http\Taxonomy\BaseTaxonomyController;
+use Vinci\Domain\Common\TaxonomyCollection;
 use Vinci\Domain\Region\RegionRepository;
 use Vinci\Domain\Search\Product\ProductSearchService;
 
@@ -36,6 +37,20 @@ class RegionController extends BaseTaxonomyController
         $result->setVisibleFilters(['produtor', 'tipo-de-uva', 'tipo-de-vinho', 'tamanho', 'preco']);
 
         return $this->view('region.index', compact('region', 'result'));
+    }
+
+    public function index(Request $request)
+    {
+        $regions = new TaxonomyCollection($this->regionRepository->getAll());
+
+        return $this->view('layouts.pages.list')
+            ->with([
+                'resources' => $regions,
+                'resourceType' => 'region',
+                'pageTitle' => 'Região',
+                'template' => 'template2',
+                'imageTitle' => 'bg-regiao.jpg'
+            ]);
     }
 
     protected function getRegion($slug)

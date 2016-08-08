@@ -10,6 +10,17 @@ use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 class DoctrineProducerRepository extends DoctrineBaseRepository implements ProducerRepository
 {
 
+    public function getAll()
+    {
+        $query = $this->_em
+            ->createQueryBuilder()
+            ->select('producer')
+            ->from('Vinci\Domain\Producer\Producer', 'producer')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
     public function find($id)
     {
         $qb = $this->createQueryBuilder('o');
@@ -61,5 +72,4 @@ class DoctrineProducerRepository extends DoctrineBaseRepository implements Produ
 
         return $countries;
     }
-
 }
