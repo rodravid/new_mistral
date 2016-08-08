@@ -222,6 +222,10 @@ class ProductFactory implements ProductFactoryInterface
             $product->setProducer($newProduct->getProducer());
         }
 
+        if (! empty(array_get($data, 'product_type_id'))) {
+            $product->setProductType($newProduct->getProductType());
+        }
+
         if ($product->isType(ProductArchType::TYPE_WINE)) {
             
             

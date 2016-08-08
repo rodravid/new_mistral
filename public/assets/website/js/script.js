@@ -94,8 +94,8 @@ jQuery(document).ready(function ($) {
 
 
     $('.filter-search').each(function () {
-        if ($(this).children('li').length > 5) {
-            $(this).find("li:nth-child(1n+6)").css("display", "none");
+        if ($(this).children('li').length > 6) {
+            $(this).find("li:nth-child(1n+7)").css("display", "none");
             $(this).find(".see-more-filter").show();
         }
         else {

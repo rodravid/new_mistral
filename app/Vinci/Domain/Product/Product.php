@@ -131,8 +131,6 @@ class Product extends Model implements ProductInterface, Presentable
 
     protected $priceCalculator;
 
-    protected $priceConfigurationResolver;
-
     protected $currentPromotion;
 
     public function __construct()
