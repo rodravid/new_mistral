@@ -4,7 +4,6 @@ namespace Vinci\Domain\Pricing\Calculator;
 
 use Illuminate\Contracts\Container\Container;
 use Vinci\Domain\Pricing\Contracts\PriceCalculatorProvider as PriceCalculatorProviderInterface;
-use Vinci\Domain\Pricing\Providers\StandardPriceConfigurationProvider;
 
 class PriceCalculatorProvider implements PriceCalculatorProviderInterface
 {
@@ -20,16 +19,5 @@ class PriceCalculatorProvider implements PriceCalculatorProviderInterface
     {
         return $this->container->make(StandardPriceCalculator::class);
     }
-
-    public function getPriceConfigurationResolver()
-    {
-        return function($productVariantPrice) {
-
-            $provider = $this->container->make(StandardPriceConfigurationProvider::class);
-
-            $provider->setProductVariantPrice($productVariantPrice);
-
-            return $provider;
-        };
-    }
+    
 }
