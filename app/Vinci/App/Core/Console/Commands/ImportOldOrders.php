@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+use Vinci\App\Core\Services\Logging\OrderImporterLogger;
 use Vinci\Domain\Address\AddressType;
 use Vinci\Domain\Address\City\City;
 use Vinci\Domain\Address\PublicPlace;
@@ -20,6 +22,7 @@ use Vinci\Domain\Order\Item\OrderItem;
 use Vinci\Domain\Order\Order;
 use Vinci\Domain\Order\OrderInterface;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
+use Vinci\Domain\Payment\CreditCard;
 use Vinci\Domain\Payment\Payment;
 use Vinci\Domain\Payment\PaymentMethod;
 use Vinci\Domain\Product\ProductVariant;
@@ -34,7 +37,7 @@ class ImportOldOrders extends Command
      *
      * @var string
      */
-    protected $signature = 'import:old-orders';
+    protected $signature = 'import:old-orders {--limit=} {--with-failed}';
 
     /**
      * The console command description.
@@ -54,6 +57,24 @@ class ImportOldOrders extends Command
         $this->em = $em;
     }
 
+    protected function getOldOrders($limit = null)
+    {
+        $qb = DB::table('tbOrder as o')
+            ->join('tbOrderShippingAddress as oa', 'o.idOrder', '=', 'oa.idOrder');
+
+        if ($this->option('with-failed')) {
+            $qb->whereIn('imported', [0, 2]);
+        } else {
+            $qb->where('imported', 0);
+        }
+
+        if (! empty($limit)) {
+            $qb->take(intval($limit));
+        }
+
+        return collect($qb->get());
+    }
+
     /**
      * Execute the console command.
      *
@@ -61,7 +82,7 @@ class ImportOldOrders extends Command
      */
     public function handle()
     {
-        $oldOrders = collect(DB::table('tbOrder as o')->join('tbOrderShippingAddress as oa', 'o.idOrder', '=', 'oa.idOrder')->get());
+        $oldOrders = $this->getOldOrders($this->option('limit'));
 
         if ($count = $oldOrders->count()) {
 
@@ -77,25 +98,32 @@ class ImportOldOrders extends Command
 
                     $this->importOne($oldOrder);
 
+                    DB::table('tbOrder')->where('idOrder', $oldOrder->idOrder)->update(['imported' => 1]);
+
                     $success++;
 
                 } catch (Exception $e) {
 
-                    dd($e->getMessage());
+                    OrderImporterLogger::log([
+                        'resource_id' => $oldOrder->idOrder,
+                        'error_message' => $e->getMessage(),
+                        'error_trace' => $e->getTraceAsString()
+                    ]);
+
+                    DB::table('tbOrder')->where('idOrder', $oldOrder->idOrder)->update(['imported' => 2]);
+
                     $error++;
 
                 } finally {
                     $this->em->clear();
                 }
 
-                dd('ok');
-
                 $progressBar->advance();
             }
 
             $progressBar->finish();
 
-            $this->info("Done!\n");
+            $this->info("\n\nDone!\n");
 
             if ($success > 0) {
                 $this->info(sprintf("%s orders imported with success!\n", $success));
@@ -148,19 +176,23 @@ class ImportOldOrders extends Command
 
         $order->setShipment($shipment);
 
+        $paymentInfo = $this->getPaymentInfo($oldOrder);
+
         $payment = new Payment;
 
         $payment
             ->setAmount($order->getTotal())
             ->setInstallments($installments)
-            ->setMethod($this->getPaymentMethod($oldOrder));
+            ->setMethod($paymentInfo['method']);
+
+        if (isset($paymentInfo['card'])) {
+            $payment->setCreditCard($paymentInfo['card']);
+        }
 
         $order->addPayment($payment);
 
         $this->em->persist($order);
         $this->em->flush($order);
-
-        //@TODO Add order payment
     }
 
     protected function parseDecimal($value)
@@ -287,15 +319,51 @@ class ImportOldOrders extends Command
         return $items;
     }
 
-    protected function getPaymentMethod($oldOrder)
+    protected function getPaymentInfo($oldOrder)
     {
+        //Boleto bancario
         if ($oldOrder->idPayMethod == 9) {
-            return $this->em->getReference(PaymentMethod::class, 5);
+            return ['method' => $this->em->getReference(PaymentMethod::class, 5)];
         }
 
         $paymentInfo = DB::table('tbOrderPaymentDetailLog')->where('idOrder', $oldOrder->idOrder)->first();
 
-        dd($paymentInfo);
+        if ($paymentInfo) {
+
+            $mapping = [
+                'visa' => 1,
+                'mastercard' => 2,
+                'american-express' => 3,
+                'dinersclub' => 4,
+                'maestro' => 7
+            ];
+
+
+            if(! empty($paymentMethodId = array_get($mapping, Str::slug($paymentInfo->dsCardType)))) {
+
+                $method = $this->em->getReference(PaymentMethod::class, $paymentMethodId);
+
+                $card = new CreditCard;
+
+                $card
+                    ->setHolderName($paymentInfo->dsCardOwner)
+                    ->setNumber($paymentInfo->dsCardNumber)
+                    ->setExpiryMonth(intval($paymentInfo->dsCardMonthExpires))
+                    ->setExpiryYear(intval($paymentInfo->dsCardYearExpires))
+                    ->setSecurityCode($paymentInfo->dsCardComp)
+                    ->setBrand($method->getCode());
+
+                return [
+                    'method' => $method,
+                    'card' => $card
+                ];
+
+            }
+
+        }
+
+
+        throw new Exception('Invalid payment method');
 
     }
 
