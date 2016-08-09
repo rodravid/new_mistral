@@ -29,11 +29,13 @@ class Score extends Model implements Presentable
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Wine\Wine", inversedBy="scores")
+     * @ORM\JoinColumn(name="wine_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $wine;
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Wine\CriticalAcclaim", cascade={"persist"})
+     * @ORM\JoinColumn(name="critical_acclaim_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $criticalAcclaim;
 

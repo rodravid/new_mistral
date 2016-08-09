@@ -165,7 +165,7 @@ class ImportCustomers extends Command
                     $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
                     $stmt->execute();
                     $this->line('');
-                    $this->error("Erro ao adicionar o produto [" . $customer["id"] . "]");
+                    $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
                     $this->info($e->getMessage());
                     $this->line('');
                     $error++;
@@ -186,7 +186,7 @@ class ImportCustomers extends Command
                     $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
                     $stmt->execute();
                     $this->line('');
-                    $this->error("Erro ao adicionar o produto [" . $customer["id"] . "]");
+                    $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
                     $this->info($e->getMessage());
                     $this->line('');
                     $error++;
@@ -195,7 +195,7 @@ class ImportCustomers extends Command
                     $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
                     $stmt->execute();
                     $this->line('');
-                    $this->error("Erro ao adicionar o produto [" . $customer["id"] . "]");
+                    $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
                     $this->info($e->getMessage());
                     $this->line('');
                     $error++;

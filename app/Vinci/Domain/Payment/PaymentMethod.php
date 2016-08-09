@@ -112,4 +112,9 @@ class PaymentMethod extends Model implements PaymentMethodInterface, Presentable
         $this->status = $status;
     }
 
+    public function isCreditCard()
+    {
+        return $this->description == 'credit_card';
+    }
+
 }

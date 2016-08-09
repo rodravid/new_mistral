@@ -62,8 +62,9 @@ class OrderItem extends Model implements Presentable
      */
     protected $total;
 
-    /**
+    /**Show
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductVariant")
+     * @ORM\JoinColumn(name="product_variant_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $productVariant;
 

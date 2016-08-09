@@ -37,11 +37,13 @@ class ShoppingCartItem extends Model implements ShoppingCartItemInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", cascade={"persist"})
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $product;
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductVariant")
+     * @ORM\JoinColumn(name="product_variant_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $productVariant;
 

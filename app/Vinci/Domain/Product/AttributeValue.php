@@ -20,6 +20,7 @@ class AttributeValue
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", inversedBy="attributes")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $product;
 

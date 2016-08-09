@@ -27,7 +27,7 @@ class ProductVariantImage extends Model
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductVariant", inversedBy="images")
-     * @ORM\JoinColumn(name="variant_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="variant_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $productVariant;
 

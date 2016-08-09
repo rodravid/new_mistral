@@ -52,6 +52,7 @@ class Channel extends Model implements ChannelInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", mappedBy="channels", indexBy="id")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $products;
 

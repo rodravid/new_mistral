@@ -98,6 +98,7 @@ class ProductVariant extends Model implements ProductVariantInterface, Presentab
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product", inversedBy="variants")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $product;
 
