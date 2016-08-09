@@ -5,6 +5,8 @@ namespace Vinci\App\Core\Console\Commands;
 use Carbon\Carbon;
 use DB;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Console\Command;
@@ -83,6 +85,48 @@ class ImportOldOrders extends Command
                     DB::table('tbOrder')->where('idOrder', $oldOrder->idOrder)->update(['imported' => 1]);
 
                     $success++;
+
+                } catch (UniqueConstraintViolationException $e) {
+
+                    if (! $this->em->isOpen()) {
+                        $this->em = $this->em->create(
+                            $this->em->getConnection(),
+                            $this->em->getConfiguration()
+                        );
+
+                        app()->instance(EntityManagerInterface::class, $this->em);
+                    }
+
+                    OrderImporterLogger::log([
+                        'resource_id' => $oldOrder->idOrder,
+                        'error_message' => $e->getMessage(),
+                        'error_trace' => $e->getTraceAsString()
+                    ]);
+
+                    DB::table('tbOrder')->where('idOrder', $oldOrder->idOrder)->update(['imported' => 2]);
+
+                    $error++;
+
+                } catch (ForeignKeyConstraintViolationException $e) {
+
+                    if (! $this->em->isOpen()) {
+                        $this->em = $this->em->create(
+                            $this->em->getConnection(),
+                            $this->em->getConfiguration()
+                        );
+
+                        app()->instance(EntityManagerInterface::class, $this->em);
+                    }
+
+                    OrderImporterLogger::log([
+                        'resource_id' => $oldOrder->idOrder,
+                        'error_message' => $e->getMessage(),
+                        'error_trace' => $e->getTraceAsString()
+                    ]);
+
+                    DB::table('tbOrder')->where('idOrder', $oldOrder->idOrder)->update(['imported' => 2]);
+
+                    $error++;
 
                 } catch (Exception $e) {
 
