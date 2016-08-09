@@ -100,8 +100,8 @@ class ImportCustomers extends Command
                 $data["main_address"] = "0";
                 $data["status"] = "1";
 
-                $stmt_address = $this->em->getConnection()->prepare('select * from bkp_customers_address_vinci where customer_id =' . $customer["id"]);
-                $stmt_address->execute();
+                $stmt_address = $this->em->getConnection()->prepare('select * from bkp_customers_address_vinci where customer_id = ?;');
+                $stmt_address->execute([$customer["id"]]);
                 $addresses = $stmt_address->fetchAll(\PDO::FETCH_ASSOC);
 
                 foreach ($addresses as $key => $address) {
@@ -136,12 +136,12 @@ class ImportCustomers extends Command
 
                 try {
                     $result = $this->service->create($data);
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=1 where id = ' . $customer["id"]);
-                    $stmt->execute();
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=1 where id = ?;');
+                    $stmt->execute([$customer["id"]]);
 
                 } catch (ValidationException $e) {
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
-                    $stmt->execute();
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?;');
+                    $stmt->execute([$customer["id"]]);
 
                     $this->line('');
                     $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
@@ -162,8 +162,8 @@ class ImportCustomers extends Command
                         app()->instance(EntityManagerInterface::class, $this->em);
                     }
 
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
-                    $stmt->execute();
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?');
+                    $stmt->execute([$customer["id"]]);
                     $this->line('');
                     $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
                     $this->info($e->getMessage());
@@ -183,8 +183,8 @@ class ImportCustomers extends Command
                         app()->instance(EntityManagerInterface::class, $this->em);
                     }
 
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
-                    $stmt->execute();
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?;');
+                    $stmt->execute([$customer["id"]]);
                     $this->line('');
                     $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
                     $this->info($e->getMessage());
@@ -192,8 +192,8 @@ class ImportCustomers extends Command
                     $error++;
 
                 } catch (\Exception $e) {
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ' . $customer["id"]);
-                    $stmt->execute();
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?;');
+                    $stmt->execute([$customer["id"]]);
                     $this->line('');
                     $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
                     $this->info($e->getMessage());
