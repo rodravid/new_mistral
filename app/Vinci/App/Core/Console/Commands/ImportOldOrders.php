@@ -57,24 +57,6 @@ class ImportOldOrders extends Command
         $this->em = $em;
     }
 
-    protected function getOldOrders($limit = null)
-    {
-        $qb = DB::table('tbOrder as o')
-            ->join('tbOrderShippingAddress as oa', 'o.idOrder', '=', 'oa.idOrder');
-
-        if ($this->option('with-failed')) {
-            $qb->whereIn('imported', [0, 2]);
-        } else {
-            $qb->where('imported', 0);
-        }
-
-        if (! empty($limit)) {
-            $qb->take(intval($limit));
-        }
-
-        return collect($qb->get());
-    }
-
     /**
      * Execute the console command.
      *
@@ -376,6 +358,24 @@ class ImportOldOrders extends Command
         }
         
         return $variant;
+    }
+
+    protected function getOldOrders($limit = null)
+    {
+        $qb = DB::table('tbOrder as o')
+            ->join('tbOrderShippingAddress as oa', 'o.idOrder', '=', 'oa.idOrder');
+
+        if ($this->option('with-failed')) {
+            $qb->whereIn('imported', [0, 2]);
+        } else {
+            $qb->where('imported', 0);
+        }
+
+        if (! empty($limit)) {
+            $qb->take(intval($limit));
+        }
+
+        return collect($qb->get());
     }
 
 }
