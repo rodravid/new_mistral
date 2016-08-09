@@ -1421,7 +1421,7 @@ ul.pagination{
 		margin-right: 15px;
 		@media #{$screen970} {
 			width:100%;
-			min-height:auto;
+			height:auto;
 		}
 
 		@media #{$screen767} {
@@ -1471,11 +1471,6 @@ ul.pagination{
 
 		.category-description {
 			color:#fff;
-			width:70%;
-			/* margin-bottom: 20px; */
-			@media #{$screen767} {
-				width:90%;
-			}
 		}
 
 .category-description+p {
@@ -1931,10 +1926,10 @@ ul.pagination{
 		}
 
 		.tit-product {
-			font: 40px $robotobold;
+			font: 38px $robotobold;
 			color:#fff;
 			text-transform:uppercase;
-			line-height: 40px;
+			line-height: 38px;
 			width:91%;
 			@media #{$screen970} {
 				font-size:30px;
@@ -1947,13 +1942,13 @@ ul.pagination{
 			color:#fff;
 		}
 		.tit-product-info {
-			font: 30px $robotobold;
-			line-height: 30px;
-			width:230px;
-			margin-top: 37px;
+			font: 22px $robotobold;
+			line-height: 24px;
+			width:280px;
+			margin-top: 20px;
 			@media #{$screen970} { 
 				font-size:25px;
-				line-height:24px;
+				width:230px;
 			}
 			@media #{$screen767} {
 				width:auto;
@@ -2186,6 +2181,7 @@ ul.pagination{
 
 		.rule-details-wine {
 			display:none;
+			border-top: 1px solid #a0a0a0;
 		}
 
 
@@ -4148,6 +4144,10 @@ ng\:form {
 
 
 .container-leia-mais {
+	width: 70% !important;
+	@media #{$screen970}{
+		width: 100% !important;
+	}
 	p {
 		color: #fff;
 	}
@@ -4179,7 +4179,7 @@ ng\:form {
 }
 
 .item-alphabet-list+.item-alphabet-list a {
-	padding: 0 11px;
+	padding: 0 13px;
 }
 
 .link-alphabet-list {
