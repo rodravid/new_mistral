@@ -1932,7 +1932,7 @@ ul.pagination{
 			line-height: 38px;
 			width:91%;
 			@media #{$screen970} {
-				font-size:30px;
+				font: 30px $robotobold;
 				line-height: 30px;
 				width:80%;
 			}
@@ -4145,6 +4145,9 @@ ng\:form {
 
 .container-leia-mais {
 	width: 70% !important;
+	@media #{$screen1150}{
+		width: 59% !important;
+	}
 	@media #{$screen970}{
 		width: 100% !important;
 	}
