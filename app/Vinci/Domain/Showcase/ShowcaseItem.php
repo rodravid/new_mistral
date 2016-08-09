@@ -33,6 +33,7 @@ class ShowcaseItem extends Model
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Product")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $product;
 

@@ -25,7 +25,7 @@ class ProductVariantPrice implements PriceInterface, CalculablePrice
 
     /**
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\ProductVariant", inversedBy="prices")
-     * @ORM\JoinColumn(name="variant_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="variant_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $variant;
 

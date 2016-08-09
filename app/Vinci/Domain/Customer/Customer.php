@@ -133,6 +133,7 @@ class Customer extends User implements CustomerInterface, Presentable
     /**
      * @ORM\ManyToMany(targetEntity="Vinci\Domain\Product\Product", inversedBy="customers")
      * @ORM\JoinTable(name="products_favorites")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $favoriteProducts;
 

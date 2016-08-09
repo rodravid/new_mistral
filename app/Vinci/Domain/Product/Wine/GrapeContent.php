@@ -15,14 +15,14 @@ class GrapeContent extends Model
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Product\Wine\Wine", inversedBy="grapeContent")
-     * @ORM\JoinColumn(name="wine_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="wine_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $wine;
 
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Vinci\Domain\Grape\Grape")
-     * @ORM\JoinColumn(name="grape_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="grape_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $grape;
 
