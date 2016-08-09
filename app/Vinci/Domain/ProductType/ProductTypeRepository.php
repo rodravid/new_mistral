@@ -4,6 +4,7 @@ namespace Vinci\Domain\ProductType;
 
 interface ProductTypeRepository
 {
+    public function getAll();
 
     public function find($id);
 

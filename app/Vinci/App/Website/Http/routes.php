@@ -130,23 +130,31 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/{slug}', 'Country\CountryController@show')->name('show');
         });
 
-        $route->get('/regiao', 'Country\CountryController@index')->name('country.list');
+        $route->get('/pais', 'Country\CountryController@index')->name('countries.list');
 
         $route->group(['prefix' => 'regiao', 'as' => 'region.'], function () use ($route) {
             $route->get('/{slug}', 'Region\RegionController@show')->name('show');
         });
 
+        $route->get('/regiao', 'Region\RegionController@index')->name('regions.list');
+
         $route->group(['prefix' => 'produtor', 'as' => 'producer.'], function () use ($route) {
             $route->get('/{slug}', 'Producer\ProducerController@show')->name('show');
         });
+
+        $route->get('/produtor', 'Producer\ProducerController@index')->name('producers.list');
 
         $route->group(['prefix' => 'tipo-de-vinho', 'as' => 'product-type.'], function () use ($route) {
             $route->get('/{slug}', 'ProductType\ProductTypeController@show')->name('show');
         });
 
+        $route->get('/tipos-de-vinho', 'ProductType\ProductTypeController@index')->name('product-types.list');
+
         $route->group(['prefix' => 'tipo-de-uva', 'as' => 'grape.'], function () use ($route) {
             $route->get('/{slug}', 'Grape\GrapeController@show')->name('show');
         });
+
+        $route->get('/tipos-de-uva', 'Grape\GrapeController@index')->name('grapes.list');
 
         $route->group(['prefix' => 'vitrine', 'as' => 'showcase.'], function () use ($route) {
             $route->get('/{slug}', 'Showcase\ShowcaseController@show')->name('show');

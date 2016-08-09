@@ -115,7 +115,7 @@ class ExportOrders extends Command
         try {
 
             if ($this->option('queued')) {
-                Queue::pushOn('vinci-orders-integration', new ExportOrderToErp($order->getId()));
+                Queue::pushOn('vinci-integration-orders', new ExportOrderToErp($order->getId()));
 
             } else {
                 $this->orderExporter->export($order);

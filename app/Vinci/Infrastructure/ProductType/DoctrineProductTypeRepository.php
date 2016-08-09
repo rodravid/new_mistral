@@ -10,6 +10,15 @@ use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 class DoctrineProductTypeRepository extends DoctrineBaseRepository implements ProductTypeRepository
 {
 
+    public function getAll()
+    {
+        $queryBuilder = $this->createQueryBuilder('pt');
+
+        $queryBuilder->select('pt');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
     public function find($id)
     {
         $qb = $this->createQueryBuilder('o');
