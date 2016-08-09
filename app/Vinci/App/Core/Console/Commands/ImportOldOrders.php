@@ -50,8 +50,6 @@ class ImportOldOrders extends Command
 
     private $em;
 
-    private $channel;
-
     public function __construct(EntityManagerInterface $em)
     {
         parent::__construct();
@@ -284,10 +282,6 @@ class ImportOldOrders extends Command
 
     protected function getChannel()
     {
-        if (! is_null($this->channel)) {
-            return $this->channel;
-        }
-
         return $this->channel = $this->em->getReference(Channel::class, 1);
     }
 
@@ -418,6 +412,8 @@ class ImportOldOrders extends Command
         if (! empty($limit)) {
             $qb->take(intval($limit));
         }
+
+        $qb->orderBy('o.idOrder', 'desc');
 
         return collect($qb->get());
     }
