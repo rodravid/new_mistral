@@ -152,6 +152,20 @@ strong {
 	@media #{$screen767} {
 		height: 400px;
 	}
+
+	.slick-prev,
+	.slick-next {
+		display:none !important;
+	}
+}
+
+.link-banner-slider {
+	position: absolute;
+	width: 960px;
+	height: 330px;
+	top: 130px;
+	left: 0;
+	z-index: 10;
 }
 
 .descr-slider {

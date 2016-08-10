@@ -7,19 +7,21 @@
 
         <div class="wrap-slider-principal">
 
-            <div class="slider slider-principal">
+            <div class="slider slider-principal" tabindex="1">
 
                 @foreach($highlights as $highlight)
 
                     <div class="bg-slider-principal {{ $highlight->template }}">
                         <div class="conteudo-slider-principal"
                              @if($highlight->hasImage('desktop')) style="background: url({{ $highlight->getImage('desktop')->getWebPath() }}) no-repeat;" @endif>
+                            <a class="link-banner-slider" href="{{ $highlight->url }}" target="{{ $highlight->target }}">
+                            </a>
                             <div class="descr-slider">
-                                <a href="{{ $highlight->url }}" target="{{ $highlight->target }}">
+
                                     <h3 class="title-slider">{!! $highlight->title !!}</h3>
                                     <span class="sub-title-slider">{!! $highlight->subtitle !!}</span>
                                     <p class="txt-slider">{!! $highlight->description !!}</p>
-                                </a>
+
                                 <a href="{{ $highlight->url }}" target="{{ $highlight->target }}" class="bt-default">Clique aqui 
                                     <span class="arrow-link">></span>
                                 </a>

@@ -659,50 +659,9 @@
 
 }
 
-/* .menu-item>.menu-link:after {
-		border-bottom: 9px solid $white;
-		content: "";
-		border-left: 8px solid transparent;
-		opacity: 0;
-		width: 0;
-		height: 0;
-		border-right: 8px solid transparent;
-		position: absolute;
-		left: 50%;
-		margin-left: -15px;
-		bottom: 0px;
-		z-index: 99;
-		-webkit-transition: all .3s ease .30s;
-		-moz-transition: all .3s ease .30s;
-		-o-transition: all .3s ease .30s;
-		-ms-transition: all .3s ease .30s;
-		transition: all .3s ease .30s;
-		visibility: hidden;
-		overflow: hidden;
-	}
-	.menu-item:hover>.menu-link:after {
-		border-bottom: 9px solid $white;
-		content: "";
-		border-left: 8px solid transparent;
-		opacity: 1;
-		visibility: visible;
-		overflow: visible; 
-		width: 0;
-		height: 0;
-		border-right: 8px solid transparent;
-		position: absolute;
-		left: 50%;
-		margin-left: -15px;
-		bottom: 0px;
-		z-index: 99;
-		-webkit-transition: all .3s ease .30s;
-		-moz-transition: all .3s ease .30s;
-		-o-transition: all .3s ease .30s;
-		-ms-transition: all .3s ease .30s;
-		transition: all .3s ease .30s;
-		} */
 
-		.menu-item:hover .drop-menu{
+		.menu-item:hover .drop-menu,
+		.menu-item:focus .drop-menu{
 			opacity: 1;
 			visibility: visible;
 			overflow: visible;
@@ -811,7 +770,8 @@
 			}
 		}
 
-		.menu-item:hover>.menu-link{
+		.menu-item:hover>.menu-link,
+		.menu-item:focus>.menu-link{
 			background: #fff;
 			color:#000;
 			-webkit-transition: all .3s ease .30s;
