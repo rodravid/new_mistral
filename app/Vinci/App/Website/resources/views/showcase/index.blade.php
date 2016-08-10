@@ -10,9 +10,11 @@
 			<li class="breadcrumb-item">
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
 			</li>
-            <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/c/paises"><span>Categoria</span></a> >
-            </li>
+            @if(isset($showcase->parent_breadcrumb))
+                <li class="breadcrumb-item">
+                    <a class="breadcrumb-link" href="{{ $showcase->parent_breadcrumb->url }}"><span>{{ $showcase->parent_breadcrumb->title }}</span></a> >
+                </li>
+            @endif
 			<li class="breadcrumb-item">
 				<span>{{ $showcase->title }}</span>
 			</li>

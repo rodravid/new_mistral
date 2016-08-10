@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Showcase\StaticShowcases;
 
+use stdClass;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Template\Template;
 
@@ -15,6 +16,17 @@ class NinetyFivePoints extends StaticShowcase
     protected $keywords = '95, pontos, pontuados';
 
     protected $slug = '95-mais-pontos';
+
+    public $parent_breadcrumb;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->parent_breadcrumb = new stdClass();
+        $this->parent_breadcrumb->url = '/c/vinhos-pontuados';
+        $this->parent_breadcrumb->title = 'Vinhos pontuados';
+    }
 
     public function getTemplate()
     {

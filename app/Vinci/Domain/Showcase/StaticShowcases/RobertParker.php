@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Showcase\StaticShowcases;
 
+use stdClass;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Product\Wine\CriticalAcclaim;
 use Vinci\Domain\Template\Template;
@@ -16,6 +17,17 @@ class RobertParker extends StaticShowcase
     protected $keywords = 'robert, parker';
 
     protected $slug = 'robert-parker';
+
+    public $parent_breadcrumb;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->parent_breadcrumb = new stdClass();
+        $this->parent_breadcrumb->url = '/c/vinhos-pontuados';
+        $this->parent_breadcrumb->title = 'Vinhos pontuados';
+    }
 
     public function getTemplate()
     {
