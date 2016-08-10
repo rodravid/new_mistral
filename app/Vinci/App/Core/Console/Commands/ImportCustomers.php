@@ -19,7 +19,7 @@ class ImportCustomers extends Command
      *
      * @var string
      */
-    protected $signature = 'import:customers {limit=1}';
+    protected $signature = 'import:customers { --limit=1 }';
 
     /**
      * The console command description.
@@ -54,7 +54,7 @@ class ImportCustomers extends Command
 
     public function create()
     {
-        $stmt = $this->em->getConnection()->prepare('select * from bkp_customers_vinci where imported=0 limit ' . $this->argument('limit'));
+        $stmt = $this->em->getConnection()->prepare('SELECT * FROM bkp_customers_vinci WHERE id != "" AND imported = 0 limit ' . $this->option('limit'));
         $stmt->execute();
 
         $customers = $stmt->fetchAll(\PDO::FETCH_ASSOC);
