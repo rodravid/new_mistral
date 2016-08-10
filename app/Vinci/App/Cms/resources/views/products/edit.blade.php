@@ -20,6 +20,9 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $product->getId() }} - {{ $product->getTitle() }}</h3>
                         <a href="{{ $product->getWebPath() }}" target="__blank" class="btn btn-info pull-right"><i class="fa fa-eye"></i> Ver produto no site</a>
+                        <div class="checkbox pull-right" style="margin-right: 20px;">
+                            <label><input type="checkbox" class="" name="online" value="1" @if($product->isOnline()) checked @endif>Visível no site?</label>
+                        </div>
                     </div>
 
                     {!! Form::hidden('id', $product->getId()) !!}
