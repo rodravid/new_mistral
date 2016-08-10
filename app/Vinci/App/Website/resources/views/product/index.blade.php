@@ -12,26 +12,25 @@
 
                     @if($product->hasCountry())
                         <li class="breadcrumb-item">
-                            <a class="breadcrumb-link" href="/"><span>{{ $product->country->name }}</span></a> >
+                            <a class="breadcrumb-link" href="{{ $product->country->web_url }}"><span>{{ $product->country->name }}</span></a> >
                         </li>
                     @endif
 
                     @if($product->hasRegion())
                         <li class="breadcrumb-item">
-                            <a class="breadcrumb-link" href="/"><span>{{ $product->region->name }}</span></a> >
+                            <a class="breadcrumb-link" href="{{ $product->region->web_url }}"><span>{{ $product->region->name }}</span></a> >
                         </li>
                     @endif
 
                     @if($product->hasProducer())
                         <li class="breadcrumb-item">
-                            <a class="breadcrumb-link" href="/"><span>{{ $product->producer->name }}</span></a> >
+                            <a class="breadcrumb-link" href="{{ $product->producer->web_url }}"><span>{{ $product->producer->name }}</span></a> >
                         </li>
                     @endif
 
                     <li class="breadcrumb-item">
-                        <a class="breadcrumb-link" href="/"><span>{{ $product->title }}</span></a>
+                        <span>{{ $product->title }}</span>
                     </li>
-
                 </ul>
             </div>
         </div>
