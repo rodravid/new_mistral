@@ -122,10 +122,12 @@ class CustomerService
 
         $this->repository->save($customer);
 
-        if ($creating) {
-            $this->event->fire(new CustomerWasCreated($customer));
-        } else {
-            $this->event->fire(new CustomerWasUpdated($customer));
+        if (! isset($data['disable_events'])) {
+            if ($creating) {
+                $this->event->fire(new CustomerWasCreated($customer));
+            } else {
+                $this->event->fire(new CustomerWasUpdated($customer));
+            }
         }
 
         return $customer;
