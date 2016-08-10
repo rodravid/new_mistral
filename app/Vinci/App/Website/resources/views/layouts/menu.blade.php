@@ -382,7 +382,7 @@
             </li>
 
             <li class="menu-item larger760-right template9">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="/c/vinhos-pontuados">
                     Vinhos Pontuados
                 </a>
                 <div class="drop-menu">
@@ -393,7 +393,7 @@
                             <li><a href="/c/pais/espanha">Best Buys</a></li>
                             <li><a href="/c/pais/italia">90+ pontos</a></li>
                             <li><a href="/c/pais/franca">Wine Spectator</a></li>
-                            <li><a class="all-links" href="/c/pais/portugal">Todos os vinhos pontuados <small>></small></a></li>
+                            <li><a class="all-links" href="/c/vinhos-pontuados">Todos os vinhos pontuados <small>></small></a></li>
                         </ul>
                     </div>
 
