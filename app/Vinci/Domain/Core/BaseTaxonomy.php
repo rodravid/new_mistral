@@ -106,6 +106,11 @@ abstract class BaseTaxonomy extends Model implements Sluggable, Presentable
         return $this->visibleSite;
     }
 
+    public function isOnline()
+    {
+        return $this->getVisibleSite();
+    }
+
     public function setVisibleSite($visibility)
     {
         $this->visibleSite = (bool) $visibility;

@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Flash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use Redirect;
 use Response;
 use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\App\Website\Http\Controller;
@@ -55,6 +55,11 @@ class ProductController extends Controller
         $slug = $this->parseProductSlug($slug);
 
         $product = $this->productRepository->getOneByTypeAndSlug($type, $slug);
+
+        if (! $product->isOnline()) {
+            return Redirect::to('/');
+        }
+
         $productsRecommended = $this->recommendedService->getRecommendedByProduct($product);
         $product = $this->presenter->model($product, ProductPresenter::class);
 
