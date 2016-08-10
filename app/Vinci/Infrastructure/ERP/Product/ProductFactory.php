@@ -41,9 +41,9 @@ class ProductFactory implements ProductFactoryInterface
         /**
          * SEO
          */
-        $data["seoTitle"] = "";
-        $data["seoDescription"] = "";
-        $data["seoKeywords"] = "";
+//        $data["seoTitle"] = "";
+//        $data["seoDescription"] = "";
+//        $data["seoKeywords"] = "";
 
         /**
          * Price
