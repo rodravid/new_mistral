@@ -1,6 +1,7 @@
 @extends('website::layouts.master')
 
-@section('title', 'Vinci - ' . $country->seo()->title())
+@section('title', $country->seo()->title())
+@section('description', $country->seo()->description())
 
 @section('content')
 <div class="header-internal template1-bg bg-color-category" style="background: url({{ asset_web('images/bg-pais.jpg') }}) no-repeat top right;">

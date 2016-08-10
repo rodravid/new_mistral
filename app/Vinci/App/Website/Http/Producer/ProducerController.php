@@ -51,6 +51,7 @@ class ProducerController extends BaseTaxonomyController
         return $this->view('layouts.pages.list')
                     ->with([
                         'metaTitle' => 'Os maiores produtores de vinho da atualidade - Vinci',
+                        'metaDescription' => $pageDescription,
                         'resources' => $producers,
                         'resourceType' => 'producer',
                         'pageTitle' => 'Produtor',

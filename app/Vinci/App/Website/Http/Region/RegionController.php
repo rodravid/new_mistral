@@ -51,6 +51,7 @@ class RegionController extends BaseTaxonomyController
         return $this->view('layouts.pages.list')
                     ->with([
                         'metaTitle' => 'Os maiores vinhos das principais regiões vinícolas do mundo - Vinci',
+                        'metaDescription' => $pageDescription,
                         'resources' => $regions,
                         'resourceType' => 'region',
                         'pageTitle' => 'Região',

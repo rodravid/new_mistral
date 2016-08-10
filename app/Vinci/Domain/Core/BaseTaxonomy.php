@@ -7,20 +7,25 @@ use Doctrine\ORM\Mapping AS ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Sluggable\Sluggable;
 use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
+use Vinci\App\Core\Services\Presenter\Presentable;
+use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Relationships\HasOneAdminUser;
 use Vinci\Domain\Common\Traits\SEOable;
 use Vinci\Domain\Common\Traits\Timestampable;
+use Vinci\Domain\Core\Presenter\BaseTaxonomyPresenter;
 use Vinci\Domain\Image\Image;
 
 /**
  * @ORM\MappedSuperclass
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
-abstract class BaseTaxonomy extends Model implements Sluggable
+abstract class BaseTaxonomy extends Model implements Sluggable, Presentable
 {
 
-    use Timestampable, SoftDeletes, SEOable, HasOneAdminUser;
+    use Timestampable, PresentableTrait, SoftDeletes, SEOable, HasOneAdminUser;
 
+    protected $presenter = BaseTaxonomyPresenter::class;
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

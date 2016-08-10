@@ -52,6 +52,7 @@ class GrapeController extends BaseTaxonomyController
         return $this->view('layouts.pages.list')
             ->with([
                 'metaTitle' => 'Encontre o tipo de uva ideal para cada ocasião - Vinci',
+                'metaDescription' => $pageDescription,
                 'resources' => $grapes,
                 'resourceType' => 'grape',
                 'pageTitle' => 'Tipo de Uva',
