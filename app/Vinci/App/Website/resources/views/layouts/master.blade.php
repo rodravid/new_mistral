@@ -2,8 +2,9 @@
 <html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Vinci - Somos loucos por vinho')</title>
+    <title>@yield('title', 'Vinci, somos loucos por vinho - Vinci')</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset_web('images/vinci_ico.ico') }}">
+    <meta name="description" content="@yield('description', 'A Vinci é uma das mais premiadas importadoras de vinhos do país, com uma seleção de vinhos e produtores mundialmente aclamados em um catálogo imperdível. Veja!')">
     @section('styles')
         <link rel="stylesheet" href="{{ asset_web('css/style.min.css') }}">
         <link rel="stylesheet" href="{{ asset_web('js/sweetalert/sweetalert.css') }}">

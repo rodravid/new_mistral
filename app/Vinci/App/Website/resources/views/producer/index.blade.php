@@ -1,6 +1,7 @@
 @extends('website::layouts.master')
 
-@section('title', 'Vinci - ' . $producer->seo()->title())
+@section('title', $producer->seo()->title())
+@section('description', $producer->seo()->description())
 
 @section('content')
 <div class="header-internal template3-bg bg-color-category" style="background: url({{ asset_web('images/bg-produtor.jpg') }}) no-repeat top right;">

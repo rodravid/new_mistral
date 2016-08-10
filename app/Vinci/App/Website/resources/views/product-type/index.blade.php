@@ -1,6 +1,7 @@
 @extends('website::layouts.master')
 
-@section('title', 'Vinci - ' . $productType->seo()->title())
+@section('title', $productType->seo()->title())
+@section('description', $productType->seo()->description())
 
 @section('content')
 <div class="header-internal template4-bg bg-color-category" style="background: url({{ asset_web('images/bg-tipo-vinho.jpg') }}) no-repeat top right;">
