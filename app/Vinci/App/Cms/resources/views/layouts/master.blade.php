@@ -43,8 +43,6 @@
         <link rel="stylesheet" href="{{ asset_cms('plugins/sweetalert/dist/sweetalert.css') }}">
         <!-- Dropzone -->
         <link rel="stylesheet" href="{{ asset_cms('plugins/dropzone/dropzone.css') }}">
-        <!-- rcswitcher -->
-        <link rel="stylesheet" href="{{ asset_cms('plugins/rcswitcher/style.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset_cms('dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -203,8 +201,6 @@
     <script src="{{ asset_cms('plugins/tagsinput/jquery.tagsinput.min.js') }}"></script>
     <!-- Jquery editable -->
     <script src="{{ asset_cms('plugins/jquery-editable/jquery.editable.min.js') }}"></script>
-    <!-- Jquery rcswitcher -->
-    <script src="{{ asset_cms('plugins/rcswitcher/rcswitcher-3.0.0.min.js') }}"></script>
     <!-- AngularJS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <!-- AdminLTE App -->
@@ -220,19 +216,6 @@
         }());
 
         $(function () {
-
-            $('.rcswitcher').rcSwitcher({
-                theme: 'light',         // light                    select theme between 'flat, light, dark, modern'
-                width: 80,              // 56  in 'px'
-                height: 26,             // 22
-                blobOffset: 0,          // 2
-                reverse: true,          // false                    reverse on off order
-                onText: 'Sim',          // 'ON'                     text displayed on ON state
-                offText: 'Não',         // 'OFF'                    text displayed on OFF state
-                inputs: false,          // false                    show corresponding  inputs
-                autoFontSize: true,     // false                    auto fit text size with respect to switch height
-                autoStick: true         // false                    auto stick switch to its parent side
-            });
 
             $(".select2").select2();
 
