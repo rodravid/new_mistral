@@ -331,7 +331,7 @@
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                        <li><a href="/busca?preco%5B%5D=*-60">Até R$ 60</a></li>
+                            <li><a href="/busca?preco%5B%5D=*-60">Até R$ 60</a></li>
                             <li><a href="/busca?preco%5B%5D=60-100">R$ 60 a R$100</a></li>
                             <li><a href="/busca?preco%5B%5D=100-170">R$ 100 a R$ 170</a></li>
                             <li><a href="/busca?preco%5B%5D=170-270">R$ 170 a R$ 270</a></li>

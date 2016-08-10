@@ -54,7 +54,7 @@ class RegionController extends BaseTaxonomyController
                         'metaDescription' => $pageDescription,
                         'resources' => $regions,
                         'resourceType' => 'region',
-                        'pageTitle' => 'Região',
+                        'pageTitle' => 'Vinhos por região',
                         'pageDescription' => $pageDescription,
                         'template' => 'template2',
                         'imageTitle' => 'bg-regiao.jpg'

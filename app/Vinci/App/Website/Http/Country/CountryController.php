@@ -57,7 +57,7 @@ class CountryController extends BaseTaxonomyController
                         'metaDescription' => $pageDescription,
                         'resources' => $countries,
                         'resourceType' => 'country',
-                        'pageTitle' => 'País',
+                        'pageTitle' => 'Vinhos por país',
                         'pageDescription' => $pageDescription,
                         'template' => 'template1',
                         'imageTitle' => 'bg-pais.jpg'

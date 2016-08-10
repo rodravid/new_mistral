@@ -58,7 +58,7 @@ class ProductTypeController extends BaseTaxonomyController
                         'metaDescription' => $pageDescription,
                         'resources' => $productsType,
                         'resourceType' => 'product-type',
-                        'pageTitle' => 'Tipo de Vinho',
+                        'pageTitle' => 'Tipos de vinho',
                         'pageDescription' => $pageDescription,
                         'template' => 'template4',
                         'imageTitle' => 'bg-tipo-vinho.jpg'

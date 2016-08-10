@@ -12,7 +12,7 @@
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
 			</li>
             <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/c/produtores"><span>Vinho por produtor</span></a> >
+                <a class="breadcrumb-link" href="{{ route('category.producers.list') }}"><span>Vinhos por produtor</span></a> >
             </li>
 			<li class="breadcrumb-item">
 				<span>{{ $producer->name }}</span>
