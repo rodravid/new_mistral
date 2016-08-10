@@ -842,13 +842,11 @@
 			visibility: hidden;
 			overflow: hidden;
 			background: $white;
-			/* box-shadow: 0 0 10px rgba(0,0,0,.5); */
 			-webkit-transition: all .3s ease .30s;
 			-moz-transition: all .3s ease .30s;
 			-o-transition: all .3s ease .30s;
 			-ms-transition: all .3s ease .30s;
 			transition: all .3s ease .30s;
-			/* box-shadow: 0 0 5px rgba(0,0,0,.5); */
 			box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 			z-index:800;
 			@media #{$screen970}{

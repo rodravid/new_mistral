@@ -81,20 +81,35 @@
 		</div>
 
 		<sidebar class="sidebar">
-			<p>Caso sua pergunta não esteja relacionada abaixo envie sua mensagem para o email <span class="txt-contact">info@vinci.com.br</span></p>
 
-			<p>Ou ligue para <span class="txt-contact">(11) 2797-0000</span>  (horário de atendimento telefônico para clientes de internet é de segunda a sexta-feira das 9h às 18h, exceto em feriados). 
+			<p><strong>Atendimento de Internet</strong> <br>
+				Ligue para (11) 2797-0000 <br>
+				De segunda a sexta-feira das 9h às 18h - exceto feriados
 			</p>
 
-			<p>Se preferir compre pelo telefone
-				<span class="txt-contact">(11) 3130-4500</span>
+			<p><strong>Televendas</strong><br>
+				Ligue para (11) 3130-4500 <br>
+				De segunda a sexta-feira das 10h às 19h e sábado das 10h às 15h - exceto feriados
 			</p>
-			<p>Vinci Importadora e Exportadora de Bebidas Ltda.</p>
 
-			<p><span>Endereço Administrativo</span>Rua Dr. Siqueira Cardoso, 227 - CEP 03163 020 - São Paulo - SP </p>
+			<p><strong>Email:</strong> <br>
+				info@vinci.com.br
+			</p>
 
-			<p><span>Endereço de Vendas</span>
-				Rua Pamplona, 917 - CEP 01405-001 - Jardim Paulista - São Paulo - SP </p>
+			{{--<p>Caso sua pergunta não esteja relacionada abaixo envie sua mensagem para o email <span class="txt-contact">info@vinci.com.br</span></p>--}}
+
+			{{--<p>Ou ligue para <span class="txt-contact">(11) 2797-0000</span>  (horário de atendimento telefônico para clientes de internet é de segunda a sexta-feira das 9h às 18h, exceto em feriados). --}}
+			{{--</p>--}}
+
+			{{--<p>Se preferir compre pelo telefone--}}
+				{{--<span class="txt-contact">(11) 3130-4500</span>--}}
+			{{--</p>--}}
+			{{--<p>Vinci Importadora e Exportadora de Bebidas Ltda.</p>--}}
+
+			{{--<p><span>Endereço Administrativo</span>Rua Dr. Siqueira Cardoso, 227 - CEP 03163 020 - São Paulo - SP </p>--}}
+
+			{{--<p><span>Endereço de Vendas</span>--}}
+				{{--Rua Pamplona, 917 - CEP 01405-001 - Jardim Paulista - São Paulo - SP </p>--}}
 			</sidebar>
 
 
