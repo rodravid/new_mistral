@@ -58,7 +58,7 @@ class Wine extends Product
     {
         $criteria = Criteria::create();
 
-        $criteria->orderBy(['position' => 'asc']);
+        $criteria->orderBy(['value' => 'desc']);
 
         return $this->scores->matching($criteria);
     }
