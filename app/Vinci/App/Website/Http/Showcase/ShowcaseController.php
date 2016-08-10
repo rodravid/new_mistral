@@ -12,6 +12,7 @@ use Vinci\App\Website\Http\Showcase\Presenters\ShowcasePresenter;
 use Vinci\Domain\Product\Repositories\ProductRepository;
 use Vinci\Domain\Search\Product\ProductSearchService;
 use Vinci\Domain\Showcase\ShowcaseRepository;
+use Vinci\Domain\Showcase\StaticShowcases\StaticShowcasesProvider;
 
 class ShowcaseController extends SearchController
 {
@@ -20,16 +21,20 @@ class ShowcaseController extends SearchController
 
     private $productRepository;
 
+    private $staticShowcasesProvider;
+
     public function __construct(
         EntityManagerInterface $em,
         ProductSearchService $searchService,
         ShowcaseRepository $showcaseRepository,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        StaticShowcasesProvider $staticShowcasesProvider
     ) {
         parent::__construct($em, $searchService);
 
         $this->showcaseRepository = $showcaseRepository;
         $this->productRepository = $productRepository;
+        $this->staticShowcasesProvider = $staticShowcasesProvider;
     }
 
     public function show($slug, Request $request)
@@ -47,6 +52,10 @@ class ShowcaseController extends SearchController
     
     protected function getShowcase($slug)
     {
+        if ($showcase = $this->staticShowcasesProvider->getShowcaseBySlug($slug)) {
+            return $showcase;
+        }
+
         $showcase = $this->showcaseRepository->getOneBySlug($slug);
 
         $showcase = $this->presenter->model($showcase, ShowcasePresenter::class);

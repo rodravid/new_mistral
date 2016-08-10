@@ -354,7 +354,7 @@
             </li>
 
             <li class="menu-item larger760-right template12">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="/c/meias-garrafas">
                     Meias garrafas
                 </a>
                 <div class="drop-menu">
@@ -371,7 +371,7 @@
                         </div>
 
                         <div class="division">
-                            <a href="/c/vinhos-bons-e-baratos">
+                            <a href="/c/meias-garrafas">
                                 <div class="every-category">
                                     <h3>Veja todos os vinhos da categoria  bons e baratos</h3>
                                     <span>></span>

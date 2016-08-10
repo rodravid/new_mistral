@@ -213,4 +213,13 @@ class Wine extends Product
         return self::TYPE_WINE;
     }
 
+    public function isHalfBottle()
+    {
+        if(! $this->hasAttributeByName('bottle_size')) {
+            return false;
+        }
+
+        return in_array($this->getAttribute('bottle_size')->getValue(), ['375 ml', '187 ml']);
+    }
+
 }

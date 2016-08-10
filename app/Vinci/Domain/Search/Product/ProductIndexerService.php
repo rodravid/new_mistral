@@ -3,8 +3,8 @@
 namespace Vinci\Domain\Search\Product;
 
 use Elasticsearch\Client;
-use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\Showcase\ShowcaseRepository;
+use Vinci\Domain\Showcase\StaticShowcases\StaticShowcasesProvider;
 
 class ProductIndexerService
 {
@@ -15,19 +15,18 @@ class ProductIndexerService
 
     private $showcaseRepository;
 
+    private $staticShowcasesProvider;
+
     public function __construct(
         Client $client,
         ProductRepositoryInterface $productRepository,
-        ShowcaseRepository $showcaseRepository
+        ShowcaseRepository $showcaseRepository,
+        StaticShowcasesProvider $staticShowcasesProvider
     ) {
         $this->client = $client;
         $this->productRepository = $productRepository;
         $this->showcaseRepository = $showcaseRepository;
-    }
-
-    public function index(ProductInterface $product)
-    {
-
+        $this->staticShowcasesProvider = $staticShowcasesProvider;
     }
 
     public function deleteIndex($name)
@@ -64,7 +63,7 @@ class ProductIndexerService
                                 'type' => 'integer'
                             ],
                             'sku' => [
-                                'type' => 'integer'
+                                'type' => 'string'
                             ],
                             'title' => [
                                 'type' => 'string',
@@ -292,6 +291,21 @@ class ProductIndexerService
                     'title' => $showcase->getTitle(),
                     'keywords' => $showcase->getKeywords()
                 ];
+
+            }
+
+            foreach ($this->staticShowcasesProvider->getShowcases() as $showcase) {
+
+                if ($showcase->isSatisfiedBy($product)) {
+
+                    $data['keywords'] .= $showcase->getKeywords();
+
+                    $data['showcases'][] = [
+                        'id' => $showcase->getId(),
+                        'title' => $showcase->getTitle(),
+                        'keywords' => $showcase->getKeywords()
+                    ];
+                }
 
             }
 
