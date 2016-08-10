@@ -16,7 +16,7 @@
                 </li>
             </ul>
 
-            <h1 class="internal-subtitle-category">Vinhos por {{ $pageTitle }}</h1>
+            <h1 class="internal-subtitle-category">{{ $pageTitle }}</h1>
             <div class="container-leia-mais">
                 <p class="category-description">
                     {{ $pageDescription }}

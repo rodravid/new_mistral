@@ -12,7 +12,7 @@
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
 			</li>
             <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/c/tipos-de-uvas"><span>Vinhos por tipo de uva</span></a> >
+                <a class="breadcrumb-link" href="{{ route('category.grapes.list') }}"><span>Tipos de Uva</span></a> >
             </li>
 			<li class="breadcrumb-item">
 				<span>{{ $grape->name }}</span>

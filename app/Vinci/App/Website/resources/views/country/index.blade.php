@@ -12,7 +12,7 @@
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
 			</li>
             <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/c/paises"><span>Vinho por país</span></a> >
+                <a class="breadcrumb-link" href="{{ route('category.countries.list') }}"><span>Vinho por país</span></a> >
             </li>
 			<li class="breadcrumb-item">
 				<span>{{ $country->name }}</span>

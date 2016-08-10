@@ -12,7 +12,7 @@
 				<a class="breadcrumb-link" href="/"><span>Início</span></a> >
 			</li>
             <li class="breadcrumb-item">
-                <a class="breadcrumb-link" href="/c/regioes"><span>Vinho por região</span></a> >
+                <a class="breadcrumb-link" href="{{ route('category.regions.list') }}"><span>Vinhos por região</span></a> >
             </li>
 			<li class="breadcrumb-item">
 				<span>{{ $region->name }}</span>

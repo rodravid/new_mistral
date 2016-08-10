@@ -55,7 +55,7 @@ class GrapeController extends BaseTaxonomyController
                 'metaDescription' => $pageDescription,
                 'resources' => $grapes,
                 'resourceType' => 'grape',
-                'pageTitle' => 'Tipo de Uva',
+                'pageTitle' => 'Tipos de Uva',
                 'pageDescription' => $pageDescription,
                 'template' => 'template5',
                 'imageTitle' => 'bg-tipo-uva.jpg'

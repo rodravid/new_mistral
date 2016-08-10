@@ -54,7 +54,7 @@ class ProducerController extends BaseTaxonomyController
                         'metaDescription' => $pageDescription,
                         'resources' => $producers,
                         'resourceType' => 'producer',
-                        'pageTitle' => 'Produtor',
+                        'pageTitle' => 'Vinhos por produtor',
                         'pageDescription' => $pageDescription,
                         'template' => 'template3',
                         'imageTitle' => 'bg-produtor.jpg'

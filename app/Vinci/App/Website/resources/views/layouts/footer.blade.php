@@ -28,21 +28,21 @@
 				<h4>Vinhos</h4>
 				<ul class="links-main-footer">
 
-					<li><a class="link-light" href="javascript:void(0);">País</a></li>
+					<li><a class="link-light" href="{{ route('category.countries.list') }}">País</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Região</a></li>
+					<li><a class="link-light" href="{{ route('category.regions.list') }}">Região</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Produtor</a></li>
+					<li><a class="link-light" href="{{ route('category.producers.list') }}">Produtor</a></li>
 
 				</ul>
 
 				<ul class="links-main-footer">
 
-					<li><a class="link-light" href="javascript:void(0);">Tipo de vinho</a></li>
+					<li><a class="link-light" href="{{ route('category.product-types.list') }}">Tipo de vinho</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Uva</a></li>
+					<li><a class="link-light" href="{{ route('category.grapes.list') }}">Uva</a></li>
 
-					<li><a class="link-light" href="javascript:void(0);">Bons e baratos</a></li>
+					<li><a class="link-light" href="{{ route('category.show', ['vinhos-bons-e-baratos']) }}">Bons e baratos</a></li>
 
 				</ul>
 
