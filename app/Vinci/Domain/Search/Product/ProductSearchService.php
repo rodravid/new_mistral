@@ -231,7 +231,7 @@ class ProductSearchService extends SearchService
                 'bool' => [
                     'should' => [
                         ['term' => ['_id' => $keyword]],
-                        ['term' => ['sku' => intval($keyword)]],
+                        ['term' => ['sku' => $keyword]],
                         ['wildcard' => ['title' => $keyword . '*']],
                         ['match' => ['keywords' => $keyword]],
                         ['match' => ['short_description' => $keyword]],

@@ -354,7 +354,7 @@
             </li>
 
             <li class="menu-item larger760-right template12">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="/c/meias-garrafas">
                     Meias garrafas
                 </a>
                 <div class="drop-menu">
@@ -371,7 +371,7 @@
                         </div>
 
                         <div class="division">
-                            <a href="/c/vinhos-bons-e-baratos">
+                            <a href="/c/meias-garrafas">
                                 <div class="every-category">
                                     <h3>Veja todos os vinhos da categoria  bons e baratos</h3>
                                     <span>></span>
@@ -382,18 +382,18 @@
             </li>
 
             <li class="menu-item larger760-right template9">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="/c/vinhos-pontuados">
                     Vinhos Pontuados
                 </a>
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                        <li><a href="/c/pais/chile">Robert Parker</a></li>
-                            <li><a href="/c/pais/argentina">95+ pontos</a></li>
-                            <li><a href="/c/pais/espanha">Best Buys</a></li>
-                            <li><a href="/c/pais/italia">90+ pontos</a></li>
-                            <li><a href="/c/pais/franca">Wine Spectator</a></li>
-                            <li><a class="all-links" href="/c/pais/portugal">Todos os vinhos pontuados <small>></small></a></li>
+                        <li><a href="/c/robert-parker">Robert Parker</a></li>
+                            <li><a href="/c/95-mais-pontos">95+ pontos</a></li>
+                            <li><a href="/c/best-buys">Best Buys</a></li>
+                            <li><a href="/c/90-mais-pontos">90+ pontos</a></li>
+                            <li><a href="/c/wine-spectator">Wine Spectator</a></li>
+                            <li><a class="all-links" href="/c/vinhos-pontuados">Todos os vinhos pontuados <small>></small></a></li>
                         </ul>
                     </div>
 

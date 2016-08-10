@@ -29,7 +29,8 @@ class SearchServiceProvider extends ServiceProvider
             return new ProductIndexerService(
                 $this->app['elasticsearch.products']->getClient(),
                 $this->app['product.repository'],
-                $this->app['showcase.repository']
+                $this->app['showcase.repository'],
+                $this->app['showcase.static.provider']
             );
         });
 

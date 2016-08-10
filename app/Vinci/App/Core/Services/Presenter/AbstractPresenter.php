@@ -196,8 +196,8 @@ abstract class AbstractPresenter extends BasePresenter
 
     public function presentTemplateCss()
     {
-        if ($this->hasTemplate()) {
-            return $this->getTemplate()->getCode();
+        if ($template = $this->getTemplate()) {
+            return $template->getCode();
         }
 
         return 'template1';

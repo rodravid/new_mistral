@@ -31,6 +31,7 @@ use Vinci\Domain\ProductType\ProductTypeService;
 use Vinci\Domain\Shipping\Services\ShippingCarrierLocator;
 use Vinci\Domain\ShoppingCart\Factory\ShoppingCartItemFactory;
 use Vinci\Domain\ShoppingCart\Resolver\ItemResolver;
+use Vinci\Domain\Showcase\StaticShowcases\DefaultStaticShowcasesProvider;
 
 class DomainServiceProvider extends ServiceProvider
 {
@@ -258,6 +259,12 @@ class DomainServiceProvider extends ServiceProvider
         $this->app->singleton('Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService', function ($app) {
             return new DefaultProductRecommendedService($app['product.repository'], $app[Presenter::class]);
         });
+        
+        $this->app->singleton('Vinci\Domain\Showcase\StaticShowcases\StaticShowcasesProvider', function() {
+            return new DefaultStaticShowcasesProvider;
+        });
+        
+        $this->app->alias('Vinci\Domain\Showcase\StaticShowcases\StaticShowcasesProvider', 'showcase.static.provider');
 
     }
 
@@ -293,7 +300,8 @@ class DomainServiceProvider extends ServiceProvider
             'Vinci\Domain\Pricing\PriceCalculator',
             'Vinci\Domain\Pricing\Contracts\PriceCalculatorProvider',
             'Vinci\Domain\Promotion\Types\Discount\DiscountPromotionProvider',
-            'Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService'
+            'Vinci\Domain\Recomendations\Products\Service\ProductRecommendedService',
+            'Vinci\Domain\Showcase\StaticShowcases\StaticShowcasesProvider'
         ];
     }
 }

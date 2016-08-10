@@ -9,7 +9,7 @@ class ScorePresenter extends AbstractPresenter
 
     public function presentFeaturedText()
     {
-        return $this->getCriticalAcclaim()->getTitle() . ' ' . $this->getValue() . ' PTS / ' . $this->getYear();
+        return $this->getCriticalAcclaim()->getTitle() . ' ' . $this->getValue() . ' PTS' . (! empty($this->getYear()) ? ' / ' . $this->getYear() : '');
     }
 
     public function presentSealImg()
@@ -18,10 +18,21 @@ class ScorePresenter extends AbstractPresenter
         $path = $code;
 
         if (in_array($code, ['gambero_rosso', 'decanter'])) {
+
+            if ($code == 'decanter' && $this->getValue() > 5) {
+                return $this->getScoreValueSeal($path);
+            }
+
             $path .= sprintf('/%s', $this->getValue());
+
             return sprintf('<img src="%s" />', asset_web(sprintf('images/wine_seals/%s.%s', $path, 'png')));
         }
 
+        return $this->getScoreValueSeal($path);
+    }
+
+    protected function getScoreValueSeal($path)
+    {
         return sprintf('<img src="%s" /><span>%s</span>', asset_web(sprintf('images/wine_seals/%s.%s', $path, 'png')), $this->getValue());
     }
 }

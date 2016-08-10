@@ -167,8 +167,8 @@
                     <div class="content-img-product">
                         <img src="{{ $product->image_url }}" class="img-product" alt="{{ $product->title }}">
                         @if($scores = $product->getHighlightedScores())
-                            @foreach($scores as $score)
-                                <div class="wrap-content-seal">
+                            <div class="wrap-content-seal">
+                                @foreach($scores as $score)
                                     <div class="wrap-seal-product">
                                         <div class="content-seal-product">
                                             <div class="seal-score">
@@ -176,8 +176,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         @endif
                     </div>
                 </div>

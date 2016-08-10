@@ -58,7 +58,7 @@ class Wine extends Product
     {
         $criteria = Criteria::create();
 
-        $criteria->orderBy(['position' => 'asc']);
+        $criteria->orderBy(['value' => 'desc']);
 
         return $this->scores->matching($criteria);
     }
@@ -69,7 +69,7 @@ class Wine extends Product
         $criteria = Criteria::create();
 
         $criteria->where($expr->eq('highlight', true))
-            ->orderBy(['position' => 'asc']);
+            ->orderBy(['value' => 'desc']);
 
         return $this->scores->matching($criteria);
     }
@@ -211,6 +211,15 @@ class Wine extends Product
     public function getType()
     {
         return self::TYPE_WINE;
+    }
+
+    public function isHalfBottle()
+    {
+        if(! $this->hasAttributeByName('bottle_size')) {
+            return false;
+        }
+
+        return in_array($this->getAttribute('bottle_size')->getValue(), ['375 ml', '187 ml']);
     }
 
 }

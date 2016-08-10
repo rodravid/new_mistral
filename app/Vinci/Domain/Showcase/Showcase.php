@@ -98,6 +98,12 @@ class Showcase extends Model
         $this->images = new ArrayCollection;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getId()
     {
         return $this->id;
