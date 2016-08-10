@@ -13,6 +13,9 @@ use Vinci\Domain\Core\Model;
 class CriticalAcclaim extends Model
 {
 
+    const ROBERT_PARKER = 'robert_parker';
+    const WINE_SPECTATOR = 'wine_spectator';
+
     use Timestampable;
 
     /**

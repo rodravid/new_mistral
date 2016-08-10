@@ -388,11 +388,11 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                        <li><a href="/c/pais/chile">Robert Parker</a></li>
-                            <li><a href="/c/pais/argentina">95+ pontos</a></li>
-                            <li><a href="/c/pais/espanha">Best Buys</a></li>
-                            <li><a href="/c/pais/italia">90+ pontos</a></li>
-                            <li><a href="/c/pais/franca">Wine Spectator</a></li>
+                        <li><a href="/c/robert-parker">Robert Parker</a></li>
+                            <li><a href="/c/95-mais-pontos">95+ pontos</a></li>
+                            <li><a href="/c/best-buys">Best Buys</a></li>
+                            <li><a href="/c/90-mais-pontos">90+ pontos</a></li>
+                            <li><a href="/c/wine-spectator">Wine Spectator</a></li>
                             <li><a class="all-links" href="/c/vinhos-pontuados">Todos os vinhos pontuados <small>></small></a></li>
                         </ul>
                     </div>

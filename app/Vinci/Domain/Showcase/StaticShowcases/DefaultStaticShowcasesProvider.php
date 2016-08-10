@@ -8,7 +8,11 @@ class DefaultStaticShowcasesProvider implements StaticShowcasesProvider
 {
     protected $showcases = [
         HalfBottle::class,
-        ScoredWines::class
+        ScoredWines::class,
+        RobertParker::class,
+        WineSpectator::class,
+        NinetyPoints::class,
+        NinetyFivePoints::class
     ];
 
     protected $instances = [];
