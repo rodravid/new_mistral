@@ -382,7 +382,7 @@ jQuery(document).ready(function ($) {
 
     $('.container-leia-mais').readmore({
         speed: 100,
-        collapsedHeight: 70,
+        collapsedHeight: 77,
         moreLink: '<a href="javascript:void(0);" class="more-txt">+ Veja mais</a>',
         lessLink: '<a href="javascript:void(0);" class="less-txt">- Veja menos </a>'
     });
