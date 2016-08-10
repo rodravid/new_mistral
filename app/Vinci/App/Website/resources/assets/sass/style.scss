@@ -4159,14 +4159,15 @@ ng\:form {
 
 .container-leia-mais {
 	width: 70% !important;
-	@media #{$screen1150}{
-		width: 59% !important;
+	color: #fff;
+	@media #{$screen1260}{
+		width: 45% !important;
 	}
 	@media #{$screen970}{
 		width: 100% !important;
 	}
-	p {
-		color: #fff;
+	p,span,div {
+		margin-bottom: 10px;
 	}
 
 	a {
@@ -4174,9 +4175,6 @@ ng\:form {
 		color: #fff;
 	}
 
-	div {
-		color: #fff;
-	}
 }
 
 /* PG LISTA PAIS, REGIÃO PRODUTOR*/
