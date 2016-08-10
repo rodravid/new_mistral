@@ -55,6 +55,7 @@ class ProductTypeController extends BaseTaxonomyController
         return $this->view('layouts.pages.list')
                     ->with([
                         'metaTitle' => 'Encontre o tipo de vinho ideal para cada ocasião - Vinci',
+                        'metaDescription' => $pageDescription,
                         'resources' => $productsType,
                         'resourceType' => 'product-type',
                         'pageTitle' => 'Tipo de Vinho',

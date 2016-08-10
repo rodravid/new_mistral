@@ -54,6 +54,7 @@ class CountryController extends BaseTaxonomyController
         return $this->view('layouts.pages.list')
                     ->with([
                         'metaTitle' => 'Os melhores vinhos do mundo de cada país - Vinci',
+                        'metaDescription' => $pageDescription,
                         'resources' => $countries,
                         'resourceType' => 'country',
                         'pageTitle' => 'País',

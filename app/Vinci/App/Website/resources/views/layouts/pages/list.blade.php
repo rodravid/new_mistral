@@ -1,6 +1,7 @@
 @extends('website::layouts.master')
 
 @section('title', $metaTitle)
+@section('description', $metaDescription)
 
 @section('content')
     <div class="header-internal {{ $template }}-bg bg-color-category" style="background: url({{ asset_web('images/' . $imageTitle) }}) no-repeat top right;">
