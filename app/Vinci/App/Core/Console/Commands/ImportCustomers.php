@@ -135,6 +135,9 @@ class ImportCustomers extends Command
                 //dd($data);
 
                 try {
+
+                    $data['disable_events'] = true;
+
                     $result = $this->service->create($data);
                     $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=1 where id = ?;');
                     $stmt->execute([$customer["id"]]);
