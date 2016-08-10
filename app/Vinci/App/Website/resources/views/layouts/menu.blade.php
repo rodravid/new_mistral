@@ -373,7 +373,8 @@
                         <div class="division">
                             <a href="/c/meias-garrafas">
                                 <div class="every-category">
-                                    <h3>Veja todos os vinhos da categoria  bons e baratos</h3>
+                                    <h3>Veja todos os vinhos
+                                        em meia garrafa</h3>
                                     <span>></span>
                                 </div>
                             </a>

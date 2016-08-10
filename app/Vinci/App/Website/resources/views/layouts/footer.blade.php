@@ -28,31 +28,57 @@
 				<h4>Vinhos</h4>
 				<ul class="links-main-footer">
 
-					<li><a class="link-light" href="{{ route('category.countries.list') }}">País</a></li>
+					<li class="item-main-footer">
+						<a class="link-light" href="{{ route('category.countries.list') }}">País</a>
+					</li>
 
-					<li><a class="link-light" href="{{ route('category.regions.list') }}">Região</a></li>
+					<li class="item-main-footer">
+						<a class="link-light" href="{{ route('category.regions.list') }}">Região</a>
+					</li>
 
-					<li><a class="link-light" href="{{ route('category.producers.list') }}">Produtor</a></li>
-
-				</ul>
-
-				<ul class="links-main-footer">
-
-					<li><a class="link-light" href="{{ route('category.product-types.list') }}">Tipo de vinho</a></li>
-
-					<li><a class="link-light" href="{{ route('category.grapes.list') }}">Uva</a></li>
-
-					<li><a class="link-light" href="{{ route('category.show', ['vinhos-bons-e-baratos']) }}">Bons e baratos</a></li>
+					<li class="item-main-footer">
+						<a class="link-light" href="{{ route('category.producers.list') }}">Produtor</a>
+					</li>
 
 				</ul>
 
 				<ul class="links-main-footer">
 
-					<li><a class="link-light" href="javascript:void(0);">Por preço</a></li>
+					<li class="item-main-footer">
+						<a class="link-light" href="{{ route('category.product-types.list') }}">Tipo de vinho</a>
+					</li>
 
-					<li><a class="link-light" href="javascript:void(0);">Meias garrafas</a></li>
+					<li class="item-main-footer">
+						<a class="link-light" href="{{ route('category.grapes.list') }}">Uva</a>
+					</li>
 
-					<li><a class="link-light" href="javascript:void(0);">Vinhos pontuados</a></li>
+					<li class="item-main-footer">
+						<a class="link-light" href="{{ route('category.show', ['vinhos-bons-e-baratos']) }}">Bons e baratos</a>
+					</li>
+
+				</ul>
+
+				<ul class="links-main-footer">
+
+					<li class="item-main-footer">
+						<a class="link-light" href="javascript:void(0);">Por preço</a>
+						<div class="drop-footer">
+							<a class="link-drop-footer" href="/busca?preco%5B%5D=*-60">Até R$ 60</a>
+							<a class="link-drop-footer" href="/busca?preco%5B%5D=60-100">R$ 60 a R$100</a>
+							<a class="link-drop-footer" href="/busca?preco%5B%5D=100-170">R$ 100 a R$ 170</a>
+							<a class="link-drop-footer" href="/busca?preco%5B%5D=170-270">R$ 170 a R$ 270</a>
+							<a class="link-drop-footer" href="/busca?preco%5B%5D=270-500">R$ 270 a R$ 500</a>
+							<a class="link-drop-footer" href="/busca?preco%5B%5D=500-*">Acima de R$ 500</a>
+						</div>
+					</li>
+
+					<li class="item-main-footer">
+						<a class="link-light" href="/c/meias-garrafas">Meias garrafas</a>
+					</li>
+
+					<li class="item-main-footer">
+						<a class="link-light" href="/c/vinhos-pontuados">Vinhos pontuados</a>
+					</li>
 
 				</ul>
 			</div>

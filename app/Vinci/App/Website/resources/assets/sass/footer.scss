@@ -202,10 +202,65 @@ a.link-light{
 	@media #{$screen767}{
 		margin:0;
 	}
-	li{
-		margin-bottom: 10px;
+}
 
+.item-main-footer {
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.link-drop-footer {
+	color: $black;
+	width: 50%;
+	float: left;
+	margin-bottom: 5px;
+
+	&:hover {
+		color:$blue;
 	}
+	@media #{$screen970}{
+		width: 100%;
+	}
+}
+
+.drop-footer{
+	padding: 5px 7px 5px 7px;
+	position: absolute;
+	display: block;
+	max-width: 960px;
+	width: 100%;
+	top: 22px;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	background: #f1f3f1;
+	-webkit-transition: all .3s ease .30s;
+	-moz-transition: all .3s ease .30s;
+	-o-transition: all .3s ease .30s;
+	-ms-transition: all .3s ease .30s;
+	transition: all .3s ease .30s;
+	box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+	z-index:800;
+	@media #{$screen767}{
+		display:none;
+	}
+}
+
+.item-main-footer:hover .drop-footer,
+.item-main-footer:focus .drop-footer {
+	opacity: 1;
+	visibility: visible;
+	overflow: visible;
+	-webkit-transition: all .3s ease .30s;
+	-moz-transition: all .3s ease .30s;
+	-o-transition: all .3s ease .30s;
+	-ms-transition: all .3s ease .30s;
+	transition: all .3s ease .30s;
+}
+
+.item-main-footer:hover> .link-light,
+.item-main-footer:focus> .link-light {
+	color: $blue;
 }
 
 .m-bottom20{margin-bottom: 20px;}

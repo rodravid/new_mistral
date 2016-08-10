@@ -16,7 +16,7 @@
                 </li>
             </ul>
 
-            <h1 class="internal-subtitle">uma das melhores e mais premiadas importadoras de vinhos do país</h1>
+            <h1 class="internal-subtitle">Sobre a Vinci</h1>
 
         </div>
     </div>
@@ -27,33 +27,33 @@
 
             <div class="colum-620 about-vinci">
 
-                <p>
-                    Em poucos lugares do mundo você consegue encontrar uma seleção de vinhos e produtores tão
-                    conceituados e premiados como no catálogo da Vinci. Nomes exclusivos como Noemía, O.Fournier,
-                    Errazuriz, Kaiken, Luca - Laura Catena, Champagne Henriot, Comte Lafond de Ladoucette, Viña
-                    Tondonia, CVNE, La Spinetta, Caves São João, Niepoot, Palácio da Brejoeira, Rust en Vrede,
-                    Castellare di Castellina, Boutari, Selbach-Oster, Bonny Doon e tantos outros que você só encontra na
-                    Vinci.
+                <p><strong>A Vinci é uma das melhores e mais premiadas importadoras de vinhos do país.</strong>
+                    Em poucos lugares do
+                    mundo você encontra uma seleção de vinhos e produtores tão conceituados e premiados como no catálogo
+                    da Vinci. <strong>Nomes exclusivos</strong> como Errazuriz, Luca - Laura Catena, Kaiken (Viña Montes), Noemía,
+                    Champagne Henriot, Chanson Père &amp; Fils, Comte Lafond de Ladoucette, Ogier, Viña Tondonia, CVNE,
+                    La Spinetta, Caves São João, Niepoort, Palácio da Brejoeira, Rust en Vrede, Castellare di Castellina,
+                    Boutari, Selbach-Oster e tantos outros que <strong>você só encontra na Vinci</strong>.
                 </p>
 
                 <p>
-                    São mais de 1000 rótulos de 15 países diferentes, e mais de 150 produtores exclusivos do mais alto
-                    nível, entre as maiores estrelas de suas regiões - todos especialmente selecionados pelo enófilo
-                    Ciro Lilla. São vinhos de conhecedores, que gozam de enorme prestígio internacional e que estão na
-                    Vinci para conquistarem um merecido lugar na sua adega.
+                    São mais de 1000 rótulos de 15 países diferentes, e mais de 100 produtores exclusivos do mais alto nível,
+                    entre as maiores estrelas de suas regiões - <strong>todos especialmente selecionados pelo enófilo Ciro Lilla</strong>. São
+                    vinhos de conhecedores, que gozam de enorme prestígio internacional e que estão na Vinci para
+                    conquistarem um merecido lugar na sua adega.
                 </p>
 
-                <p>
-                    Descubra nossos vinhos. Se você gosta de variar, <strong>a Vinci é sua melhor alternativa.</strong>
-                </p>
+                {{--<p>--}}
+                    {{--Descubra nossos vinhos. Se você gosta de variar, <strong>a Vinci é sua melhor alternativa.</strong>--}}
+                {{--</p>--}}
 
                 <p>
                     <strong class="txt-contact">É fácil comprar na Vinci</strong>
                 </p>
 
                 <p>
-                    Além da maravilhosa seleção de produtores exclusivos, a Vinci trata seus vinhos com o máximo
-                    respeito e carinho. Nossos vinhos são transportados em containers refrigerados e armazenados em
+                    Além da maravilhosa seleção de produtores exclusivos, a Vinci trata seus vinhos com o <strong>máximo
+                    respeito e carinho</strong>. Nossos vinhos são transportados em containers refrigerados e armazenados em
                     temperatura controlada em nossas amplas e modernas instalações em São Paulo.
                 </p>
 
@@ -63,8 +63,8 @@
                 </p>
 
                 <p>
-                    Se você mora em São Paulo, não deixe de visitar a Vinci Pamplona. Se você é um amante de vinhos,
-                    você é muito importante para a Vinci e vai ser tratado com toda a atenção que merece.
+                    Se você mora em São Paulo, <strong>visite a Vinci Pamplona</strong>. Se você é um amante de vinhos, você é muito
+                    importante para a Vinci e vai ser tratado com toda a atenção que merece.
                 </p>
 
                 <p>
@@ -75,7 +75,7 @@
 
                 <p>
                     <strong>
-                        Nossos vinhos importados da Vinci são entregues pela distribuidora homologada: MV Net
+                        Os vinhos importados pela Vinci são entregues pela distribuidora homologada: MV Net
                         Distribuidora de Bebidas Ltda - CNPJ 12.500.701/0001-79 - São Paulo - SP - Fale Conosco pelo
                         Telefone (11) 2797-0000
                     </strong>
@@ -86,14 +86,12 @@
             <sidebar class="sidebar">
                 <p>
                     <span class="txt-contact">Vinci Pamplona</span>
-                    Rua Pamplona 917 - Jardim Paulista <br>
-                    São Paulo - SP <br>
-                    (11) 3130 4500 <br>
+                    Rua Pamplona 917 - Jardim Paulista - São Paulo - SP (11) 3130 4500
                 </p>
 
                 <p>
-                    <span class="txt-contact">Novo horário de atendimento a partir do dia 02/05/2016:</span>
-                    Segunda a sexta-feira das 10h00 às 19h00 <br>
+                    <span class="txt-contact">Horário de atendimento:</span>
+                    Segunda a sexta-feira das 10h00 às 19h00 
                     Sábados das 10h00 às 15h00
                 </p>
 
@@ -104,23 +102,21 @@
 
                 <p>
                     <strong>
-                        Estacionamentos
+                        Estacionamentos conveniados*:
                     </strong>
                 </p>
 
                 <p>ESTACIONE AKI <br>
-                    Rua Pamplona, 833 <br>
-                    (atendimento de segunda-feira a sábado)
+                    Rua Pamplona, 833  (atendimento de segunda-feira a sábado)
                 </p>
 
                 <p>
                     ESTACIONE <br>
-                    Rua Pamplona, 972 <br>
-                    (atendimento de segunda a sexta-feira)
+                    Rua Pamplona, 972  (atendimento de segunda a sexta-feira)
                 </p>
 
                 <p>
-                    *Cortesia válida para a primeira hora e em compras
+                    *Cortesia válida para a primeira hora e em compras acima de R$300,00
                 </p>
             </sidebar>
 
