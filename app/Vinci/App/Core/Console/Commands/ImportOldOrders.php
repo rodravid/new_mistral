@@ -39,7 +39,7 @@ class ImportOldOrders extends Command
      *
      * @var string
      */
-    protected $signature = 'import:old-orders {--limit=} {--with-failed}';
+    protected $signature = 'import:old-orders {--limit=} {--with-failed} {--retry-failed} {--months-ago=}';
 
     /**
      * The console command description.
@@ -84,50 +84,17 @@ class ImportOldOrders extends Command
 
                     $success++;
 
-                } catch (UniqueConstraintViolationException $e) {
-
-                    if (! $this->em->isOpen()) {
-                        $this->em = $this->em->create(
-                            $this->em->getConnection(),
-                            $this->em->getConfiguration()
-                        );
-
-                        app()->instance(EntityManagerInterface::class, $this->em);
-                    }
-
-                    OrderImporterLogger::log([
-                        'resource_id' => $oldOrder->idOrder,
-                        'error_message' => $e->getMessage(),
-                        'error_trace' => $e->getTraceAsString()
-                    ]);
-
-                    DB::table('tbOrder')->where('idOrder', $oldOrder->idOrder)->update(['imported' => 2]);
-
-                    $error++;
-
-                } catch (ForeignKeyConstraintViolationException $e) {
-
-                    if (! $this->em->isOpen()) {
-                        $this->em = $this->em->create(
-                            $this->em->getConnection(),
-                            $this->em->getConfiguration()
-                        );
-
-                        app()->instance(EntityManagerInterface::class, $this->em);
-                    }
-
-                    OrderImporterLogger::log([
-                        'resource_id' => $oldOrder->idOrder,
-                        'error_message' => $e->getMessage(),
-                        'error_trace' => $e->getTraceAsString()
-                    ]);
-
-                    DB::table('tbOrder')->where('idOrder', $oldOrder->idOrder)->update(['imported' => 2]);
-
-                    $error++;
-
                 } catch (Exception $e) {
 
+                    if (! $this->em->isOpen()) {
+                        $this->em = $this->em->create(
+                            $this->em->getConnection(),
+                            $this->em->getConfiguration()
+                        );
+
+                        app()->instance(EntityManagerInterface::class, $this->em);
+                    }
+
                     OrderImporterLogger::log([
                         'resource_id' => $oldOrder->idOrder,
                         'error_message' => $e->getMessage(),
@@ -138,9 +105,9 @@ class ImportOldOrders extends Command
 
                     $error++;
 
-                } finally {
-                    $this->em->clear();
                 }
+
+                $this->em->clear();
 
                 $progressBar->advance();
             }
@@ -282,7 +249,7 @@ class ImportOldOrders extends Command
 
     protected function getChannel()
     {
-        return $this->channel = $this->em->getReference(Channel::class, 1);
+        return $this->em->getReference(Channel::class, 1);
     }
 
     protected function getTrackingStatus($oldOrder)
@@ -400,6 +367,10 @@ class ImportOldOrders extends Command
 
     protected function getOldOrders($limit = null)
     {
+        if ($this->option('retry-failed')) {
+            DB::table('tbOrder')->update(['imported' => 0]);
+        }
+
         $qb = DB::table('tbOrder as o')
             ->join('tbOrderShippingAddress as oa', 'o.idOrder', '=', 'oa.idOrder');
 
@@ -413,7 +384,11 @@ class ImportOldOrders extends Command
             $qb->take(intval($limit));
         }
 
-        $qb->orderBy('o.idOrder', 'desc');
+        if (! empty($this->option('months-ago'))) {
+            $qb->where('o.dtOrder', '>=', Carbon::now()->subMonth(intval($this->option('months-ago')))->format('Y-m-d H:i:s'));
+        }
+
+        $qb->orderBy('o.dtOrder', 'desc');
 
         return collect($qb->get());
     }
