@@ -89,7 +89,7 @@
                         <li ng-repeat="item in cart.items | limitTo:3">
                             <a href="@{{ item.web_path }}">
                                 <div class="product-add">
-                                    <img src="@{{ item.image_url }}" width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
+                                    <img ng-src="@{{ item.image_url }}" width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
                                     <p class="product-name-cart">@{{ item.name }} <span ng-show="item.producer">(@{{ item.producer }})</span></p>
                                 </div>
                                 <div class="value-product">
