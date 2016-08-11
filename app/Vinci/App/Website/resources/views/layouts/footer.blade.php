@@ -73,11 +73,11 @@
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="/c/meias-garrafas">Meias garrafas</a>
+						<a class="link-light" href="{{ route('category.show', ['meias-garrafas']) }}">Meias garrafas</a>
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="/c/vinhos-pontuados">Vinhos pontuados</a>
+						<a class="link-light" href="{{ route('category.show', ['vinhos-pontuados']) }}">Vinhos pontuados</a>
 					</li>
 
 				</ul>
