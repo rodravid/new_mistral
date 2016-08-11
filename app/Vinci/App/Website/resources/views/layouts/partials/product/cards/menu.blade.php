@@ -16,7 +16,7 @@
             @endif
         @endif
     </div>
-    <a href="javascript:void(0);">
+    <a href="{{ $product->web_path }}">
         <h3>
             {!! $product->card_title !!}
         </h3>
