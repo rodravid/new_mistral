@@ -23,6 +23,10 @@ class ShowcasePresenter extends AbstractPresenter
 
     public function presentBannerImageUrl()
     {
+        if (isset($this->object->banner_image_url)) {
+            return $this->object->banner_image_url;
+        }
+
         if ($this->hasImage('banner')) {
             return $this->getImage('banner')->getWebPath();
         }

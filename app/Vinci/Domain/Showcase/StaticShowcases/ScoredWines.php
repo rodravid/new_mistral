@@ -16,6 +16,8 @@ class ScoredWines extends StaticShowcase
 
     protected $slug = 'vinhos-pontuados';
 
+    public $banner_image_url = 'url/da/imagem';
+
     public function getTemplate()
     {
         return app('em')->getReference(Template::class, 9);
