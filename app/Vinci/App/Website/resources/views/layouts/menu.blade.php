@@ -84,26 +84,21 @@
                 <p class="your-cart ng-hide" ng-show="!ctrl.hasItems()">Não há produtos em seu carrinho.</p>
 
                 <div class="ng-hide" ng-show="ctrl.hasItems()">
-                    <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no
-                        carrinho de compras</p>
+                    <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no carrinho de compras</p>
                     <ul class="lista-add" id="cartItems">
-                        <li ng-repeat="item in cart.items | limitTo:3 ">
+                        <li ng-repeat="item in cart.items | limitTo:3">
                             <a href="@{{ item.web_path }}">
                                 <div class="product-add">
-                                    <img src="@{{ item.image_url }}"
-                                         width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
-                                    <p class="product-name-cart">@{{ item.name }} <span
-                                                ng-show="item.producer">(@{{ item.producer }})</span></p>
+                                    <img ng-src="@{{ item.image_url }}" width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
+                                    <p class="product-name-cart">@{{ item.name }} <span ng-show="item.producer">(@{{ item.producer }})</span></p>
                                 </div>
                                 <div class="value-product">
-                                    <p class="price-wine">@{{ item.sale_price | currency }} <span>@{{ item.quantity }}
-                                            un.</span></p>
+                                    <p class="price-wine">@{{ item.sale_price | currency }} <span>@{{ item.quantity }} un.</span></p>
                                 </div>
                             </a>
                         </li>
                     </ul>
-                    <a href="{{ route('cart.index') }}" class="bt-default bt-default-blue float-right">Detalhes do
-                        carrinho <span class="arrow-link">></span></a>
+                    <a href="{{ route('cart.index') }}" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
                 </div>
 
             </div>

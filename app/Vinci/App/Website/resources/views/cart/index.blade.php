@@ -62,7 +62,7 @@
                             <div class="col-product-cart">
                                 <div class="thumb-wine">
                                     <a href="@{{ item.web_path }}">
-                                        <img class="wine-bottle" src="@{{ item.image_url }}" alt="Vinho">
+                                        <img class="wine-bottle" ng-src="@{{ item.image_url }}" alt="Vinho">
                                     </a>
                                 </div>
                                 <div class="colum-description-cart">

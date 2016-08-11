@@ -215,7 +215,7 @@ class Wine extends Product
 
     public function isHalfBottle()
     {
-        if(! $this->hasAttributeByName('bottle_size')) {
+        if (! $this->hasAttributeByName('bottle_size')) {
             return false;
         }
 

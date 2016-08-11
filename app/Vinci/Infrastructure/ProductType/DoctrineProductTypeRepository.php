@@ -12,11 +12,17 @@ class DoctrineProductTypeRepository extends DoctrineBaseRepository implements Pr
 
     public function getAll()
     {
+        $this->_em->getFilters()->enable('toggleable');
+        
         $queryBuilder = $this->createQueryBuilder('pt');
 
         $queryBuilder->select('pt');
 
-        return $queryBuilder->getQuery()->getResult();
+        $result = $queryBuilder->getQuery()->getResult();
+
+        $this->_em->getFilters()->disable('toggleable');
+
+        return $result;
     }
 
     public function find($id)

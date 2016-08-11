@@ -191,7 +191,7 @@ class ProductFactory implements ProductFactoryInterface
             ->setPackSize($newProduct->getPackSize());
 
         if (array_has($data, 'stock')) {
-            $product->setStock($newProduct->getStock());
+            $product->changeStock($newProduct->getStock());
         }
 
         if (array_has($data, 'should_import_stock')) {

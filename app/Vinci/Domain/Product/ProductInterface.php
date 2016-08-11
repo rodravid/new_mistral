@@ -2,7 +2,9 @@
 
 namespace Vinci\Domain\Product;
 
-interface ProductInterface
+use Vinci\Domain\Common\AggregateRoot;
+
+interface ProductInterface extends AggregateRoot
 {
 
     const TYPE_PRODUCT = 'product';

@@ -12,13 +12,19 @@ class DoctrineProducerRepository extends DoctrineBaseRepository implements Produ
 
     public function getAll()
     {
+        $this->_em->getFilters()->enable('toggleable');
+
         $query = $this->_em
             ->createQueryBuilder()
             ->select('producer')
             ->from('Vinci\Domain\Producer\Producer', 'producer')
             ->getQuery();
 
-        return $query->getResult();
+        $result = $query->getResult();
+
+        $this->_em->getFilters()->disable('toggleable');
+
+        return $result;
     }
 
     public function find($id)

@@ -27,7 +27,7 @@ class ShowcasePresenter extends AbstractPresenter
             return $this->getImage('banner')->getWebPath();
         }
 
-        return asset_web('images/bg-pais.jpg');
+        return '';
     }
 
 }
