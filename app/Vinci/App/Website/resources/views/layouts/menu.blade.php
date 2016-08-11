@@ -257,21 +257,21 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/tipo-de-uva/malbec">Malbec</a></li>
-                            <li><a href="/c/tipo-de-uva/cabernet-sauvignon">Cabernet Sauvignon</a></li>
-                            <li><a href="/c/tipo-de-uva/tempranillo">Tempranillo</a></li>
-                            <li><a href="/c/tipo-de-uva/chardonnay">Chardonnay</a></li>
-                            <li><a href="/c/tipo-de-uva/carmenere">Carmenère</a></li>
-                            <li><a href="/c/tipo-de-uva/merlot">Merlot</a></li>
+                            <li><a href="{{ route('category.grape.show', ['malbec']) }}">Malbec</a></li>
+                            <li><a href="{{ route('category.grape.show', ['cabernet-sauvignon']) }}">Cabernet Sauvignon</a></li>
+                            <li><a href="{{ route('category.grape.show', ['tempranillo']) }}">Tempranillo</a></li>
+                            <li><a href="{{ route('category.grape.show', ['chardonnay']) }}">Chardonnay</a></li>
+                            <li><a href="{{ route('category.grape.show', ['carmenere']) }}">Carmenère</a></li>
+                            <li><a href="{{ route('category.grape.show', ['merlot']) }}">Merlot</a></li>
                         </ul>
                     </div>
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/tipo-de-uva/sauvignon-blanc">Sauvignon Blanc</a></li>
-                            <li><a href="/c/tipo-de-uva/sangiovese">Sangiovese</a></li>
-                            <li><a href="/c/tipo-de-uva/pinot-noir">Pinot Noir</a></li>
-                            <li><a href="/c/tipo-de-uva/syrah-shiraz">Syrah e Shiraz</a></li>
+                            <li><a href="{{ route('category.grape.show', ['sauvignon-blanc']) }}">Sauvignon Blanc</a></li>
+                            <li><a href="{{ route('category.grape.show', ['sangiovese']) }}">Sangiovese</a></li>
+                            <li><a href="{{ route('category.grape.show', ['pinot-noir']) }}">Pinot Noir</a></li>
+                            <li><a href="{{ route('category.grape.show', ['syrah-shiraz']) }}">Syrah e Shiraz</a></li>
                             <li><a href="/c/tipo-de-uva/primitivo">Primitivo</a></li>
                             <li><a href="/c/vitrine/cortes-de-varias-uvas">Cortes de várias uvas </a></li>
                         </ul>
@@ -290,7 +290,7 @@
             </li>
 
             <li class="menu-item larger760-right template6">
-                <a class="menu-link" href="javascript:void(0);">
+                <a class="menu-link" href="{{ route('category.show', ['vinhos-bons-e-baratos']) }}">
                     Bons e baratos
                 </a>
                 <div class="drop-menu">
@@ -308,7 +308,7 @@
                     </div>
 
                     <div class="division">
-                        <a href="/c/vinhos-bons-e-baratos">
+                        <a href="{{ route('category.show', ['vinhos-bons-e-baratos']) }}">
                             <div class="every-category">
                                 <h3>Veja todos os vinhos da categoria  bons e baratos</h3>
                                 <span>></span>

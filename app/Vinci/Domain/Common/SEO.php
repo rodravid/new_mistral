@@ -31,7 +31,7 @@ class SEO
             return $description;
         }
 
-        return $this->model->getDescription();
+        return e($this->model->getDescription());
     }
 
     public function keywords()
