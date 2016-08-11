@@ -67,7 +67,7 @@
 							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-60-a-100']) }}">R$ 60 a R$100</a>
 							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-100-a-170']) }}">R$ 100 a R$ 170</a>
 							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-170-a-270']) }}">R$ 170 a R$ 270</a>
-							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-270-a-50']) }}0">R$ 270 a R$ 500</a>
+							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-270-a-500']) }}">R$ 270 a R$ 500</a>
 							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-acima-de-500']) }}">Acima de R$ 500</a>
 						</div>
 					</li>

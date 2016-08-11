@@ -326,12 +326,12 @@
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/busca?preco%5B%5D=*-60">Até R$ 60</a></li>
-                            <li><a href="/busca?preco%5B%5D=60-100">R$ 60 a R$100</a></li>
-                            <li><a href="/busca?preco%5B%5D=100-170">R$ 100 a R$ 170</a></li>
-                            <li><a href="/busca?preco%5B%5D=170-270">R$ 170 a R$ 270</a></li>
-                            <li><a href="/busca?preco%5B%5D=270-500">R$ 270 a R$ 500</a></li>
-                            <li><a href="/busca?preco%5B%5D=500-*">Acima de R$ 500</a></li>
+                            <li><a href="{{ route('category.show', ['por-preco-ate-60']) }}">Até R$ 60</a></li>
+                            <li><a href="{{ route('category.show', ['por-preco-de-60-a-100']) }}">R$ 60 a R$100</a></li>
+                            <li><a href="{{ route('category.show', ['por-preco-de-100-a-170']) }}">R$ 100 a R$ 170</a></li>
+                            <li><a href="{{ route('category.show', ['por-preco-de-170-a-270']) }}">R$ 170 a R$ 270</a></li>
+                            <li><a href="{{ route('category.show', ['por-preco-de-270-a-500']) }}">R$ 270 a R$ 500</a></li>
+                            <li><a href="{{ route('category.show', ['por-preco-acima-de-500']) }}">Acima de R$ 500</a></li>
                         </ul>
                     </div>
                     <div class="division">

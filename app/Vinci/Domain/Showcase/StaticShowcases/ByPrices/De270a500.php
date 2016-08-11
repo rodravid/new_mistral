@@ -31,7 +31,7 @@ class De270a500 extends StaticShowcase
 
     public function getTemplate()
     {
-        return app('em')->getReference(Template::class, 9);
+        return app('em')->getReference(Template::class, 7);
     }
     
     public function isSatisfiedBy(ProductInterface $product)
