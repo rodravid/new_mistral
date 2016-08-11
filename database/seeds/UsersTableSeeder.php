@@ -65,8 +65,15 @@ class UsersTableSeeder extends Seeder
 
         $user1 = $this->adminRepository->create([
             'name' => 'Rodrigo',
-            'email' => 'roliveira@webeleven.com',
+            'email' => 'roliveira@webeleven.com.br',
             'password' => '123',
+            'status' => Status::ACTIVE
+        ]);
+
+        $user2 = $this->adminRepository->create([
+            'name' => 'Redação',
+            'email' => 'redacao@webeleven.com.br',
+            'password' => 'webeleven',
             'status' => Status::ACTIVE
         ]);
 
@@ -130,6 +137,7 @@ class UsersTableSeeder extends Seeder
         $admin3->assignRole($superAdminRole);
 
         $user1->assignRole($adminRole);
+        $user2->assignRole($adminRole);
 
         $this->em->persist($superAdminRole);
         $this->em->persist($adminRole);
