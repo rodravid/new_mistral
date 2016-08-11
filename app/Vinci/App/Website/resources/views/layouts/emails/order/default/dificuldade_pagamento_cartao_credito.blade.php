@@ -18,7 +18,7 @@
             Estamos com dificuldades em processar o faturamento de seu pedido de número  <span style="font-size: 15px; color: {{ $color }} !important;"><b>{{ $order->number }}</b></span> através do
             cartão de crédito informado.
             <br><br>
-            Os problemas mais comuns são divergências na data de validade ou no código de segurança.
+            Os problemas mais comuns são divergências na data de validade ou no código de segurança. <br><br>
             Se os dados do cartão estiverem corretos, é possível que a sua operadora tenha bloqueado a
             compra por medida de segurança.
             <br><br>
