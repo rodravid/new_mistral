@@ -16,8 +16,15 @@ class HalfBottle extends StaticShowcase
 
     protected $slug = 'meias-garrafas';
 
-    public $banner_image_url = 'url/da/imagem';
+    public $banner_image_url;
 
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->banner_image_url = asset_web('images/bg-meia-garrafa.jpg');
+    }
+    
     public function getTemplate()
     {
         return app('em')->getReference(Template::class, 12);

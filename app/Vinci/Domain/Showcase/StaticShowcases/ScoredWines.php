@@ -16,7 +16,14 @@ class ScoredWines extends StaticShowcase
 
     protected $slug = 'vinhos-pontuados';
 
-    public $banner_image_url = 'url/da/imagem';
+    public $banner_image_url;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->banner_image_url = asset_web('images/bg-pontuados.jpg');
+    }
 
     public function getTemplate()
     {

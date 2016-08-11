@@ -20,12 +20,13 @@ class De170a270 extends StaticShowcase
 
     public $parent_breadcrumb;
 
-    public $banner_image_url = 'url/da/imagem';
+    public $banner_image_url;
 
     public function __construct()
     {
         parent::__construct();
 
+        $this-> banner_image_url = asset_web('images/bg-por-preco.jpg');
         $this->parent_breadcrumb = new stdClass();
         $this->parent_breadcrumb->url = '#';
         $this->parent_breadcrumb->title = 'Por Preços';
