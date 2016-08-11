@@ -40,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->registerCustomDoctrineFunctions();
+        $this->registerAndEnableCustomDoctrineFilters();
 
     }
 
@@ -79,6 +80,14 @@ class AppServiceProvider extends ServiceProvider
         $doctrineConfig->addCustomStringFunction('DAY', 'DoctrineExtensions\Query\Mysql\Day');
         $doctrineConfig->addCustomStringFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
         $doctrineConfig->addCustomStringFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+    }
+
+    private function registerAndEnableCustomDoctrineFilters()
+    {
+        $doctrineConfig = $this->app['em']->getConfiguration();
+        $doctrineConfig->addFilter('toggleable', 'Vinci\Infrastructure\Doctrine\Filters\ToggleableFilter');
+
+        $this->app['em']->getFilters()->enable('toggleable');
     }
 
 }
