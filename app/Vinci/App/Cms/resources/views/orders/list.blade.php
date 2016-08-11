@@ -63,7 +63,7 @@
                     "type": "POST"
                 },
                 searchDelay: 600,
-                order: [[ 0, "desc" ]],
+                order: [[ 4, "desc" ]],
                 columnDefs: [
                     {orderable: false, width: '170px', targets: -1 },
                     {className: 'hcenter vcenter', width: '20px', targets: [0] },
