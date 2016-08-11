@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->registerCustomDoctrineFunctions();
-        $this->registerAndEnableCustomDoctrineFilters();
+        $this->registerCustomDoctrineFilters();
 
     }
 
@@ -82,12 +82,10 @@ class AppServiceProvider extends ServiceProvider
         $doctrineConfig->addCustomStringFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
     }
 
-    private function registerAndEnableCustomDoctrineFilters()
+    private function registerCustomDoctrineFilters()
     {
         $doctrineConfig = $this->app['em']->getConfiguration();
         $doctrineConfig->addFilter('toggleable', 'Vinci\Infrastructure\Doctrine\Filters\ToggleableFilter');
-
-        $this->app['em']->getFilters()->enable('toggleable');
     }
 
 }

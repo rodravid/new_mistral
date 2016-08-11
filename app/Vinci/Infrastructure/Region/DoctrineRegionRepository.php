@@ -31,13 +31,19 @@ class DoctrineRegionRepository extends DoctrineBaseRepository implements RegionR
 
     public function getAll()
     {
+        $this->_em->getFilters()->enable('toggleable');
+
         $query = $this->_em
             ->createQueryBuilder()
             ->select('region')
             ->from('Vinci\Domain\Region\Region', 'region')
             ->getQuery();
 
-        return $query->getResult();
+        $result = $query->getResult();
+
+        $this->_em->getFilters()->disable('toggleable');
+
+        return $result;
     }
 
     public function getOneBySlug($slug)

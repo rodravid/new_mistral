@@ -31,8 +31,15 @@ class DoctrineGrapeRepository extends DoctrineBaseRepository implements GrapeRep
 
     public function getAll()
     {
+        $this->_em->getFilters()->enable('toggleable');
+
         $query = 'SELECT g FROM Vinci\Domain\Grape\Grape g';
-        return $this->_em->createQuery($query)->getResult();
+
+        $result = $this->_em->createQuery($query)->getResult();
+
+        $this->_em->getFilters()->disable('toggleable');
+
+        return $result;
     }
 
     public function getOneBySlug($slug)
