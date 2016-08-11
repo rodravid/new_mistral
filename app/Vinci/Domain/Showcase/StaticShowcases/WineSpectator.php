@@ -20,6 +20,8 @@ class WineSpectator extends StaticShowcase
 
     public $parent_breadcrumb;
 
+    public $banner_image_url = 'url/da/imagem';
+
     public function __construct()
     {
         parent::__construct();
