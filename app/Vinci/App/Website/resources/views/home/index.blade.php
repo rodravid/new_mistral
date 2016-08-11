@@ -76,7 +76,7 @@
 
                         @if ($banner->hasImage('desktop'))
                             <li class="list-banners">
-                                <img src="{{ $banner->getImage('desktop')->getWebPath() }}" alt="{{ $banner->title }}">
+                                <a href="{{ $banner->url }}" target="{{ $banner->target }}"><img src="{{ $banner->getImage('desktop')->getWebPath() }}" alt="{{ $banner->title }}"></a>
                             </li>
                         @endif
 
