@@ -1,7 +1,7 @@
 @extends('website::layouts.emails.order.default.layouts.template')
 
 <?php $color = '#8a25d8'; ?>
-@section('header.title', 'Depósito Recebido')
+@section('header.title', 'Depósito confirmado')
 @section('header.bg.color', $color)
 @section('footer.img.src', asset_web('images/emails/logo-footer-purple.jpg'))
 
@@ -23,7 +23,7 @@
 
     <tr>
         <td style="font-family:Arial, verdana, sans-serif; font-size: 15px; padding:20px 0;">
-            O pedido será finalizado em até 2 (dois) dias úteis e seguirá então para entrega.
+            O pedido será finalizado em até 2 (dois) dias úteis e seguirá para entrega.
         </td>
     </tr>
 

@@ -19,7 +19,7 @@
     <tr>
         <td style="padding-top:20px;">
              <span style="color:#000000;font-family:Arial, verdana, sans-serif; font-size:15px;">
-        Descubra nossos vinhos. São mais de 1000 rótulos de 15 países diferentes, e mais de 150 produtores exclusivos do mais alto nível, entre as maiores estrelas de suas regiões - todos especialmente selecionados pelo enófilo Ciro Lilla. São vinhos de conhecedores, que gozam de enorme prestígio internacional e que estão na Vinci para conquistarem um merecido lugar na sua adega.
+        Descubra nossos vinhos. São mais de 1000 rótulos de 15 países diferentes, e mais de 100 produtores exclusivos do mais alto nível, entre as maiores estrelas de suas regiões - todos especialmente selecionados pelo enófilo Ciro Lilla. São vinhos de conhecedores, que gozam de enorme prestígio internacional e que estão na Vinci para conquistarem um merecido lugar na sua adega.
     </span>
         </td>
     </tr>
