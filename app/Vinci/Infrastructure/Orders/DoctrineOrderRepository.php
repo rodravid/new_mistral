@@ -16,7 +16,7 @@ class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRep
     public function getLastOrders($perPage, $currentPage = 1)
     {
         $query = $this->getBaseQueryBuilder()
-                      ->orderBy('o.id', 'desc')
+                      ->orderBy('o.createdAt', 'desc')
                       ->getQuery();
 
         return $this->paginateRaw($query, $perPage, $currentPage);
