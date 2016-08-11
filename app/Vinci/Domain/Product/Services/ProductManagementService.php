@@ -5,6 +5,7 @@ namespace Vinci\Domain\Product\Services;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Illuminate\Contracts\Events\Dispatcher;
 use Vinci\Domain\Image\ImageVersion;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory;
 use Vinci\Domain\Product\Product;
@@ -25,18 +26,22 @@ class ProductManagementService
 
     private $productFactory;
 
+    private $eventDispatcher;
+
     public function __construct(
         EntityManagerInterface $entityManager,
         ProductRepository $repository,
         ProductValidator $validator,
         ProductImageService $imageService,
-        ProductFactory $productFactory
+        ProductFactory $productFactory,
+        Dispatcher $eventDispatcher
     ) {
         $this->entityManager = $entityManager;
         $this->repository = $repository;
         $this->validator = $validator;
         $this->imageService = $imageService;
         $this->productFactory = $productFactory;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function create(array $data)
@@ -76,6 +81,10 @@ class ProductManagementService
             $this->repository->save($product);
 
             $this->saveImages($data, $product);
+
+            foreach ($product->releaseEvents() as $event) {
+                $this->eventDispatcher->fire($event);
+            }
 
             $this->entityManager->commit();
 

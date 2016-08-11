@@ -12,6 +12,7 @@ use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Channel\Contracts\Channel as ChannelInterface;
+use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Core\Model;
@@ -40,7 +41,7 @@ use Vinci\Domain\Template\Template;
 class Product extends Model implements ProductInterface, Presentable
 {
 
-    use Timestamps, SoftDeletes, Schedulable, PresentableTrait;
+    use Timestamps, SoftDeletes, Schedulable, PresentableTrait, HasEvents;
 
     protected $presenter = 'Vinci\App\Website\Http\Product\Presenter\ProductPresenter';
 
@@ -838,6 +839,23 @@ class Product extends Model implements ProductInterface, Presentable
     {
         $this->currentPromotion = $currentPromotion;
         return $this;
+    }
+
+    public function changeStock($stock)
+    {
+        return $this->getMasterVariant()->changeStock($stock);
+    }
+
+    public function releaseEvents()
+    {
+        $events = $this->pendingEvents;
+        $this->pendingEvents = [];
+
+        foreach ($this->getVariants() as $variant) {
+            $events = array_merge($events, $variant->releaseEvents());
+        }
+
+        return $events;
     }
 
 }

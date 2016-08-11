@@ -188,9 +188,10 @@ class ProductVariant extends Model implements ProductVariantInterface, Presentab
     {
         $oldStock = $this->getStock();
 
-        $this->setStock($stock);
-
-        $this->raise(new StockWasChanged($this, $oldStock));
+        if ($stock != $oldStock) {
+            $this->setStock($stock);
+            $this->raise(new StockWasChanged($this, $oldStock));
+        }
     }
 
     public function hasStock()
