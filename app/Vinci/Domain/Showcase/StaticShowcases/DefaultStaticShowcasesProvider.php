@@ -3,6 +3,12 @@
 namespace Vinci\Domain\Showcase\StaticShowcases;
 
 use Vinci\App\Website\Http\Showcase\Presenters\ShowcasePresenter;
+use Vinci\Domain\Showcase\StaticShowcases\ByPrices\AcimaDe500;
+use Vinci\Domain\Showcase\StaticShowcases\ByPrices\Ate60;
+use Vinci\Domain\Showcase\StaticShowcases\ByPrices\De100a170;
+use Vinci\Domain\Showcase\StaticShowcases\ByPrices\De170a270;
+use Vinci\Domain\Showcase\StaticShowcases\ByPrices\De270a500;
+use Vinci\Domain\Showcase\StaticShowcases\ByPrices\De60a100;
 
 class DefaultStaticShowcasesProvider implements StaticShowcasesProvider
 {
@@ -12,7 +18,13 @@ class DefaultStaticShowcasesProvider implements StaticShowcasesProvider
         RobertParker::class,
         WineSpectator::class,
         NinetyPoints::class,
-        NinetyFivePoints::class
+        NinetyFivePoints::class,
+        Ate60::class,
+        De60a100::class,
+        De100a170::class,
+        De170a270::class,
+        De270a500::class,
+        AcimaDe500::class,
     ];
 
     protected $instances = [];

@@ -63,12 +63,12 @@
 					<li class="item-main-footer">
 						<a class="link-light" href="javascript:void(0);">Por preço</a>
 						<div class="drop-footer">
-							<a class="link-drop-footer" href="/busca?preco%5B%5D=*-60">Até R$ 60</a>
-							<a class="link-drop-footer" href="/busca?preco%5B%5D=60-100">R$ 60 a R$100</a>
-							<a class="link-drop-footer" href="/busca?preco%5B%5D=100-170">R$ 100 a R$ 170</a>
-							<a class="link-drop-footer" href="/busca?preco%5B%5D=170-270">R$ 170 a R$ 270</a>
-							<a class="link-drop-footer" href="/busca?preco%5B%5D=270-500">R$ 270 a R$ 500</a>
-							<a class="link-drop-footer" href="/busca?preco%5B%5D=500-*">Acima de R$ 500</a>
+							<a class="link-drop-footer" href="/c/por-preco-ate-60">Até R$ 60</a>
+							<a class="link-drop-footer" href="/c/por-preco-de-60-a-100">R$ 60 a R$100</a>
+							<a class="link-drop-footer" href="/c/por-preco-de-100-a-170">R$ 100 a R$ 170</a>
+							<a class="link-drop-footer" href="/c/por-preco-de-170-a-270">R$ 170 a R$ 270</a>
+							<a class="link-drop-footer" href="/c/por-preco-de-270-a-500">R$ 270 a R$ 500</a>
+							<a class="link-drop-footer" href="/c/por-preco-acima-de-500">Acima de R$ 500</a>
 						</div>
 					</li>
 
