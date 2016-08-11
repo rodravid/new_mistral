@@ -153,7 +153,7 @@ class OrderController extends Controller
 
     public function getTrackingStatus()
     {
-        return html_select_array($this->trackingStatusRepository->getAll());
+        return html_select_array($this->trackingStatusRepository->getAll(), 'id', 'description');
     }
 
 }
