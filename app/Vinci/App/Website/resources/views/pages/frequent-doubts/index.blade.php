@@ -30,27 +30,33 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">1. Sobre a Vinci</span>
+					<span class="title-internal-15">1 - SOBRE A VINCI</span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
 					<p>A Vinci é uma das melhores e mais premiadas importadoras de
+
 						vinhos do país. Em poucos lugares do mundo você consegue
+
 						encontrar uma seleção de vinhos e produtores tão conceituados
+
 						e premiados como no catálogo da Vinci. Leia mais sobre a Vinci
+
 						<a class="txt-contact" href="/institucional/sobre-a-vinci">aqui.</a></p>
 				</div>
 			</div>
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">2. Todos os vinhos da Vinci estão no site ?</span>
+					<span class="title-internal-15">2 - TODOS OS VINHOS DA VINCI ESTÃO NO SITE?</span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
 					<p>
 						Inicialmente há uma seleção especial de vinhos disponíveis no
+
 						site. Posteriormente, os vinhos do catálogo normal da Vinci
+
 						também estarão disponíveis para compra através da loja virtual.
 					</p>
 				</div>
@@ -58,100 +64,161 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">3. A Vinci venderá vinhos de ponta de estoque no site?</span>
+					<span class="title-internal-15">3 - A VINCI VENDERÁ VINHOS DE PONTA DE ESTOQUE NO SITE?</span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
 					<p>
-						Sim é possível, entretanto, a ponta de estoque é uma condição especial de venda e portanto uma ação promocional, sendo então facultativa sua aparição no site. Quando promovermos uma "Ponta de Estoque" o site divulgará em destaque estes produtos em condições comerciais especialmente vantajosas. Lembrando que como a quantidade de garrafas por vinho pode ser muito limitada, para facilitar sua compra e minimizar problemas de disponibilidade, os vinhos da ponta de estoque só poderão ser adquiridos através do site. </p>
+						A ponta de estoque é uma condição especial de venda e portanto
+
+						uma ação promocional, sendo então facultativa sua aparição no
+
+						site. Quando promovermos uma &quot;Ponta de Estoque&quot; o site
+
+						divulgará em destaque estes produtos em condições comerciais
+
+						especialmente vantajosas.
+					</p>
 						<p>
-							Os produtos indicados como "Ponta de Estoque" tem como característica: 
+							Os produtos indicados como &quot;Ponta de Estoque&quot; são vendidos a
+
+							um preço super especial. Disponibilizamos quantidades muito
+
+							limitadas de diversos rótulos esgotados, safras antigas e até
+
+							mesmo alguns itens com pequenos defeitos na embalagem mas
+
+							nenhum vinho com rolha violada será vendido nestas condições.
+
+							O vinho terá seu conteúdo intacto e completamente preservado.
 						</p>
 
 						<p>
-							- Um ótimo vinho a preço super especial; <br>
-							- Alguns itens podem ter pequenos defeitos na embalagem do produto, tais como: avaria na cápsula; avaria no rótulo e / ou no contra-rótulo; <br>
-							- Nenhum vinho com rolha violada será vendido nestas condições;<br>
-							- Fique tranqüilo, o vinho terá seu conteúdo intacto e completamente preservado; 
+							A ponta de estoque costuma acontecer no início do ano mas de
+
+							tempos em tempos vêoc poderá encontrar novos lotes de vinhos
+
+							da Ponta de Estoque disponíveis em nossa loja virtual, então
+
+							esteja atento! É uma oportunidade imperdível de comprar
+
+							ótimos vinhos a preços super especiais.
 						</p>
 
 						<p>
-							De tempos em tempos, você encontrará lotes novos de Ponta de Estoque disponíveis em nossa loja virtual, então esteja atento! É uma oportunidade imperdível de comprar ótimos vinhos a preços super especiais. 
+							Atenção: Os produtos nestas condições de &quot;Ponta de Estoque&quot;,
+
+							não estarão sujeitos à devolução devido às avarias já relatadas.
 						</p>
-						<p>
-							Atenção: Os produtos nestas condições de "Ponta de Estoque", não estarão sujeitos à devolução devido às avarias já relatadas.
-						</p>
+
 					</p>
 				</div>
 			</div>
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">4. Como comprar?</span>
+					<span class="title-internal-15">4 - COMO COMPRAR?</span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
 					<p>É muito fácil comprar na loja virtual da Vinci.</p>
 					<p>
-					Ao clicar no botão “comprar”, o item é automaticamente
-					adicionado ao seu carrinho. Em detalhes do carrinho você pode
-					indicar a quantidade de garrafas desejada de cada item.
-					Caso prefira, é possível clicar em cada produto para conhecer
-					um pouco mais e verificar informações técnicas e, para comprar,
-					basta digitar a quantidade de garrafas que gostaria de adquirir
-					no quadro ao lado de cada vinho ou produto e clicar com o
-					mouse no botão &quot;comprar&quot;. Os produtos serão adicionados
-					automaticamente ao seu carrinho de compras.
+						Ao clicar no botão “comprar”, o item é automaticamente
+
+						adicionado ao seu carrinho. Em detalhes do carrinho você pode
+
+						indicar a quantidade de garrafas desejada de cada item.
+
+						Caso prefira, é possível clicar em cada produto para conhecer
+
+						um pouco mais e verificar informações técnicas e, para comprar,
+
+						basta digitar a quantidade de garrafas que gostaria de adquirir
+
+						no quadro ao lado de cada vinho ou produto e clicar com o
+
+						mouse no botão &quot;comprar&quot;. Os produtos serão adicionados
+
+						automaticamente ao seu carrinho de compras.
 					</p>
 					<p>
-					Seu carrinho de compras estará disponível por toda a navegação
-					no site, facilitando sua visualização e atualização, possibilitando
-					a inclusão ou alteração de produtos à qualquer momento.
-					Para finalizar seu pedido, apenas clique no botão &quot;detalhes do
-					carrinho&quot; e você será levado para a tela do carinho de compras.
-					Nesta tela você pode escolher itens para presente clicando
-					“embalagem para presente” que aparece logo abaixo do nome
-					de cada produto. Alguns produtos não são embaláveis para
-					presente e serão indicados quando estiverem nestas condições.
-					Nesta mesma tela você pode alterar as quantidades, remover
-					itens e até mesmo continuar comprando. Para então finalizar seu
-					pedido, é necessário colocar o CEP do local da entrega e clicar
-					no botão &quot;finalizar compra&quot;.   
+						Seu carrinho de compras estará disponível por toda a navegação
+
+						no site, facilitando sua visualização e atualização, possibilitando
+
+						a inclusão ou alteração de produtos à qualquer momento.
+
+						Para finalizar seu pedido, apenas clique no botão &quot;detalhes do
+
+						carrinho&quot; e você será levado para a tela do carinho de compras.
+
+						Nesta tela você pode escolher itens para presente clicando
+
+						“embalagem para presente” que aparece logo abaixo do nome
+
+						de cada produto. Alguns produtos não são embaláveis para
+
+						presente e serão indicados quando estiverem nestas condições.
+
+						Nesta mesma tela você pode alterar as quantidades, remover
+
+						itens e até mesmo continuar comprando. Para então finalizar seu
+
+						pedido, é necessário colocar o CEP do local da entrega e clicar
+
+						no botão &quot;finalizar compra&quot;.
 					</p>
 					<p>
-					O próximo passo será a identificação do cliente. Caso já esteja
-					cadastrado em nosso site, digite seu e-mail e senha nos campos
-					indicados e clique em “entrar”. Caso ainda não seja cadastrado
-					no site, efetue o cadastro clicando no botão &quot;cadastre-se aqui”.
-					Os cliente que efetuarem sua compra ou cadastro através do site
-					também poderão receber nossos catálogos de produto.
+						O próximo passo será a identificação do cliente. Caso já esteja
+
+						cadastrado em nosso site, digite seu e-mail e senha nos campos
+
+						indicados e clique em “entrar”. Caso ainda não seja cadastrado
+
+						no site, efetue o cadastro clicando no botão &quot;cadastre-se aqui”.
+
+						Os cliente que efetuarem sua compra ou cadastro através do site
+
+						também poderão receber nossos catálogos de produto.
 					</p>
 					<p>
-					Após entrar no cadastro é necessário confirmar ou escolher o
-					endereço de entrega e a forma de pagamento desejada e clicar
-					em “pagar”. Ao concluir estes passos, será gerado um número
-					de pedido em sua tela com os detalhes do pedido e um e-mail de
-					confirmação será enviado automaticamente para seu e-mail. Seu
-					pedido entrará em processamento, onde será confirmado o
-					estoque e o pagamento para que sua compra seja entregue. O
-					prazo de entrega será contado a partir destas confirmações.
+						Após entrar no cadastro é necessário confirmar ou escolher o
+
+						endereço de entrega e a forma de pagamento desejada e clicar
+
+						em “pagar”. Ao concluir estes passos, será gerado um número
+
+						de pedido em sua tela com os detalhes do pedido e um e-mail de
+
+						confirmação será enviado automaticamente para seu e-mail. Seu
+
+						pedido entrará em processamento, onde será confirmado o
+
+						estoque e o pagamento para que sua compra seja entregue. O
+
+						prazo de entrega será contado a partir destas confirmações.
 					</p>
 				</div>
 			</div>
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">5. Prazo de entrega  </span>
+					<span class="title-internal-15">5 - PRAZO DE ENTREGA  </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
 					<p>
-					A entrega média para a Grande São Paulo em até 2 dias úteis e
-					Rio de Janeiro Capital é em até 3 dias úteis.
-					Para outras localidades, ao clicar no produto desejado é possível
-					digitar seu CEP e verificar o prazo de entrega e até mesmo no
-					carrinhos de compras, digitando seu CEP, conseguirá saber o
-					prazo de entrega do seu pedido.
+						A entrega média para a Grande São Paulo em até 2 dias úteis e
+
+						Rio de Janeiro Capital é em até 3 dias úteis. <br>
+
+						Para outras localidades, ao clicar no produto desejado é possível
+
+						digitar seu CEP e verificar o prazo de entrega e até mesmo no
+
+						carrinhos de compras, digitando seu CEP, conseguirá saber o
+
+						prazo de entrega do seu pedido.
 					</p>
 					<p>
 						A previsão de entrega é válida após confirmação de estoque do
@@ -175,7 +242,7 @@
 
 						consultar nosso departamento de vendas para restaurantes, lojas
 
-						e hotéis por e-mail: info@vinci.com.br ou através do
+						e hotéis por e-mail: <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a> ou através do
 
 						representante local.
 					</p>
@@ -211,7 +278,7 @@
 
 						através do telefone (11) 2797-0000 ou pelo email
 
-						info@vinci.com.br e faremos o melhor possível para solucionar
+						<a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a> e faremos o melhor possível para solucionar
 
 						seu problema.
 					</p>
@@ -220,7 +287,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">6. Frete  </span>
+					<span class="title-internal-15">6 - FRETE  </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -247,33 +314,36 @@
 
 						Barueri <br>
 
-						Carapicuiba<br>
+						Carapicuiba <br>
 
-						Cotia<br>
+						Cotia <br>
 
-						Diadema<br>
+						Diadema <br>
 
-						Embu<br>
+						Embu <br>
 
-						Guarulhos<br>
+						Guarulhos <br>
 
-						Itaperecica da Serra<br>
+						Itaperecica da Serra <br>
 
-						Itapevi<br>
+						Itapevi <br>
 
-						Jandira<br>
+						Jandira <br>
 
-						Osasco<br>
+						Osasco <br>
 
-						Santana do Parnaíba<br>
+						Santana do Parnaíba <br>
 
 						Taboão da Serra
 					</p>
 
 					<p>
 						Nosso site trabalha com transportadoras cuidadosamente
+
 						selecionadas, que permitem que nossos vinhos sejam
+
 						despachados em segurança para praticamente qualquer parte do
+
 						Brasil.
 					</p>
 
@@ -312,7 +382,7 @@
 					<p>
 						Caso necessite de mais informações por favor nos escreva para
 
-						o e-mail info@vinci.com.br
+						o e-mail <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a>
 					</p>
 
 				</div>
@@ -320,7 +390,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 7. Presente: como escolher uma embalagem especial </span>
+					<span class="title-internal-15">7 - PRESENTE: COMO ESCOLHER UMA EMBALAGEM ESPECIAL</span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -345,7 +415,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">8. Posso utilizar diferentes endereços de entrega?  </span>
+					<span class="title-internal-15">8 - POSSO UTILIZAR DIFERENTES ENDEREÇOS DE ENTREGA? </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -367,7 +437,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 9. Formas de Pagamento </span>
+					<span class="title-internal-15"> 9 - FORMAS DE PAGAMENTO </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -400,7 +470,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">10. Dúvidas em relação ao meu pedido  </span>
+					<span class="title-internal-15">10 - DÚVIDAS EM RELAÇÃO AO MEU PEDIDO  </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -409,7 +479,7 @@
 
 						a sexta-feira das 9h às 18h, exceto em feriados. Em caso de
 
-						qualquer dúvida, envie um email para info@vinci.com.br, com
+						qualquer dúvida, envie um email para <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a>, com
 
 						o número e data de seu pedido, ou telefone para (11) 2797-0000
 
@@ -420,7 +490,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 11. Como posso receber o catálogo da Vinci pelo correio? </span>
+					<span class="title-internal-15"> 11 - COMO RECEBER O CATÁLOGO DA VINCI PELO CORREIO </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -446,7 +516,7 @@
 
 						cadastro através do site é necessário enviar uma solicitação
 
-						através email info@vinci.com.br para que possa receber nosso
+						através email <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a> para que possa receber nosso
 
 						catálogo por correio.
 					</p>
@@ -455,7 +525,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">12. Como posso receber a newsletter da Vinci por email?  </span>
+					<span class="title-internal-15">12 - COMO RECEBER A NEWSLETTER DA VINCI POR EMAIL  </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -472,7 +542,7 @@
 
 						queira mais receber nossas newsletter, basta enviar um e-mail
 
-						para info@vinci.com.br e solicitar o cancelamento.
+						para <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a> e solicitar o cancelamento.
 					</p>
 					<p>
 						A Vinci não envia emails não requisitados em hipótese alguma e
@@ -484,7 +554,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15">13. Quais as vantagens em me cadastrar no site?  </span>
+					<span class="title-internal-15">13 - QUAIS AS VANTAGENS EM ME CADASTRAR NO SITE?  </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -513,7 +583,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 14. Posso utilizar os textos do site? </span>
+					<span class="title-internal-15"> 14 - POSSO UTILIZAR IMAGENS E OS TEXTOS DO SITE? </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -541,7 +611,7 @@
 					<p>
 						Caso deseje usar algum destes materiais, envie um email com
 
-						sua requisição para info@vinci.com.br, com assunto
+						sua requisição para <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a>, com assunto
 
 						&quot;Marketing&quot;, com a finalidade e a mídia em que serão
 
@@ -561,7 +631,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 15. Política de privacidade e segurança </span>
+					<span class="title-internal-15"> 15 - POLÍTICA DE PRIVACIDADE E SEGURANÇA </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -608,26 +678,26 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 16. Vendas para pessoa jurídica através do site </span>
+					<span class="title-internal-15">16 - VENDAS PARA PESSOA JURÍDICA ATRAVÉS DO SITE </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
 					<p>
-					Através do site a Vinci, inicialmente, venderá apenas para
+						Através do site a Vinci, inicialmente, venderá apenas para
 
-					pessoas físicas com objetivo de consumidor final.
+						pessoas físicas com objetivo de consumidor final.
 
-					Posteriormente atenderemos pedidos de pessoas jurídicas
+						Posteriormente atenderemos pedidos de pessoas jurídicas
 
-					através do site.
+						através do site. <br>
 
-					Para ser atendido hoje por um vendedor corporativo da Vinci
+						Para ser atendido hoje por um vendedor corporativo da Vinci
 
-					em sua localidade, por favor, envie um e-mail para email para
+						em sua localidade, por favor, envie um e-mail para email para
 
-					info@vinci.com.br com assunto &quot;Corporativo&quot; ou ligue para
+						<a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a> com assunto &quot;Corporativo&quot; ou ligue para
 
-					(11) 3130-4500 ou contate o representante local.
+						(11) 3130-4500 ou contate o representante local.
 					</p>
 					<p>
 						Atenção: Os produtos vendidos através do site destinam-se
@@ -636,7 +706,7 @@
 
 						consultar nosso departamento de vendas para restaurantes, lojas
 
-						e hotéis pelo e-mail info@vinci.com.br ou através do
+						e hotéis pelo e-mail <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a> ou através do
 
 						representante local.
 					</p>
@@ -645,7 +715,7 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 17. Tenho um restaurante, loja ou empresa e gostaria de ser atendido pela Vinci </span>
+					<span class="title-internal-15"> 17 - TENHO UM RESTAURANTE, LOJA OU EMPRESA E GOSTARIA DE SER ATENDIDO PELA VINCI </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
@@ -663,7 +733,7 @@
 
 						valorizar seu negócio. Para ser atendido por um vendedor da
 
-						Vinci, envie um email para info@vinci.com.br com assunto
+						Vinci, envie um email para <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a> com assunto
 
 						&quot;Corporativo&quot;, ligue para (11) 3130-4500 ou contate o
 
@@ -675,13 +745,14 @@
 
 			<div class="item-acordion">
 				<div class="wrap-acoordion click-accordion">
-					<span class="title-internal-15"> 18. Outras dúvidas </span>
+					<span class="title-internal-15"> 18 - OUTRAS DÚVIDAS </span>
 					<span class="seta-accordion-interna arrow-down"></span>
 				</div>
 				<div class="conteudo-accordion">
+
 					<p>Caso tenha dúvidas sobre o uso do site ou sobre a Vinci, por
 
-						favor envie um email para info@vinci.com.br, ou use o
+						favor envie um email para <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a>, ou use o
 
 						formulário na seção &quot;<a href="/atendimento"><span>Fale Conosco</span></a>&quot;.</p>
 				</div>
@@ -691,20 +762,33 @@
 
 		</div>
 		<sidebar class="sidebar">
-			<p>Caso sua pergunta não esteja relacionada abaixo envie sua mensagem para o email <span class="txt-contact">info@vinci.com.br</span></p>
+			<p>
+				Tire suas dúvidas aqui! <br>
 
-			<p>Ou ligue para <span class="txt-contact">(11) 2797-0000</span>  (horário de atendimento telefônico para clientes de internet é de segunda a sexta-feira das 9h às 18h, exceto em feriados). 
+				Caso sua pergunta não esteja relacionada ao lado, envie sua mensagem para <a class="txt-contact" href="mailto:info@vinci.com.br">info@vinci.com.br</a>
+
+				Ou ligue para (11) 2797-0000. O horário de atendimento telefônico para clientes de internet é de segunda
+
+				a sexta-feira das 9h às 18h, exceto em feriados.
 			</p>
 
-			<p>Se preferir compre pelo telefone
-				<span class="txt-contact">(11) 3130-4500</span>
+			<p>Se preferir, compre pelo telefone (11) 3130-4500.</p>
+
+			<p>
+			Vinci Importadora e Exportadora de Bebidas Ltda. <br>
+
+			Escritório Administrativo: <br>
+
+			Rua Dr. Siqueira Cardoso, 227 - CEP 03163 020 - São Paulo - SP
 			</p>
-			<p>Vinci Importadora e Exportadora de Bebidas Ltda.</p>
 
-			<p><span>Endereço Administrativo</span>Rua Dr. Siqueira Cardoso, 227 - CEP 03163 020 - São Paulo - SP </p>
+			<p>
+				Vinci Pamplona: <br>
 
-			<p><span>Endereço de Vendas</span>
-				Rua Pamplona, 917 - CEP 01405-001 - Jardim Paulista - São Paulo - SP </p>
+				Rua Pamplona, 917 - CEP 01405-001 - Jardim Paulista - São Paulo - SP
+			</p>
+
+
 			</sidebar>
 
 

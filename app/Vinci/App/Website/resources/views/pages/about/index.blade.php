@@ -52,9 +52,9 @@
                 </p>
 
                 <p>
-                    Além da maravilhosa seleção de produtores exclusivos, a Vinci trata seus vinhos com o <strong>máximo
-                    respeito e carinho</strong>. Nossos vinhos são transportados em containers refrigerados e armazenados em
-                    temperatura controlada em nossas amplas e modernas instalações em São Paulo.
+                    Além da maravilhosa seleção de produtores exclusivos, a Vinci trata seus vinhos com o
+                    <strong>máximo respeito e carinho</strong>. Nossos vinhos são transportados em containers refrigerados e armazenados
+                    em temperatura controlada em nossas amplas e modernas instalações em São Paulo, Rio de Janeiro, Brasília e Salvador.
                 </p>
 
                 <p>
@@ -86,12 +86,12 @@
             <sidebar class="sidebar">
                 <p>
                     <span class="txt-contact">Vinci Pamplona</span>
-                    Rua Pamplona 917 - Jardim Paulista - São Paulo - SP (11) 3130 4500
+                    Rua Pamplona 917 - Jardim Paulista - São Paulo - SP  (11) 3130 4500
                 </p>
 
                 <p>
                     <span class="txt-contact">Horário de atendimento:</span>
-                    Segunda a sexta-feira das 10h00 às 19h00 
+                    Segunda a sexta-feira das 10h00 às 19h00  <br>
                     Sábados das 10h00 às 15h00
                 </p>
 
