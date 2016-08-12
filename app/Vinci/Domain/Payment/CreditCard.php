@@ -39,6 +39,11 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
     /**
      * @ORM\Column(type="string")
      */
+    protected $holderDocument;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $number;
 
     /**
@@ -85,6 +90,17 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
     public function setHolderName($holderName)
     {
         $this->holderName = $holderName;
+        return $this;
+    }
+
+    public function getHolderDocument()
+    {
+        return $this->holderDocument;
+    }
+
+    public function setHolderDocument($holderDocument)
+    {
+        $this->holderDocument = $holderDocument;
         return $this;
     }
 
