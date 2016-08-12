@@ -1,7 +1,7 @@
 @extends('website::layouts.emails.templates.default')
 
 <?php $color = '#de1e43'; ?>
-@section('header.title', 'Seja Bem-vindo')
+@section('header.title', 'Atualização de cadastro')
 @section('header.bg.color', $color)
 @section('footer.img.src', asset_web('images/emails/logo-footer-red.jpg'))
 
@@ -9,6 +9,13 @@
 
     @include('website::layouts.emails.templates.partials.salutation')
 
+    <tr>
+        <td style="color:#000; font-family:Arial, verdana, sans-serif; font-size: 15px;">
+            Agradecemos a atualização de seus dados no site da Vinci.<br><br>
+
+            Por favor, confira abaixo as informações que agora constam em seu cadastro:
+        </td>
+    </tr>
 
     <tr>
         <td style="padding:30px 0 20px 0px">
@@ -350,43 +357,6 @@
 
         </td>
     </tr>
-
-    {{--Agradecemos a atualização de seus dados no site da Vinci.<br/><br/>--}}
-
-    {{--Por favor, confira abaixo as informações que agora constam em seu cadastro:<br /><br />--}}
-
-    {{--<b>Dados Pessoais</b><br>--}}
-    {{--<b>Nome: </b>{{ $customer->name }}<br>--}}
-    {{--<b>CPF/CNPJ: </b>{{ $customer->document }}<br>--}}
-    {{--@if(! empty($customer->rg))--}}
-        {{--<b>RG: </b>{{ $customer->rg }}<br>--}}
-    {{--@endif--}}
-    {{--@if ($customer->isIndividual())--}}
-        {{--<b>Sexo: </b>{{ $customer->gender }}<br>--}}
-        {{--<b>Data de Nascimento: </b>{{ $customer->birthday }}<br>--}}
-    {{--@endif--}}
-    {{--<br>--}}
-
-    {{--<b>Endereço principal</b><br>--}}
-    {{--<b>Tipo: </b> {!! $customer->getMainAddress()->getType()->getTitle() !!}<br>--}}
-    {{--<b>Endereço: </b> {!! $customer->full_address_html !!}<br>--}}
-
-    {{--<b>Contatos</b><br>--}}
-    {{--@if(! empty($customer->phone))--}}
-        {{--<b>Telefone: </b>{{ $customer->phone }} <br>--}}
-    {{--@endif--}}
-
-    {{--@if(! empty($customer->cellPhone))--}}
-        {{--<b>Telefone Celular: </b>{{ $customer->cellPhone }} <br>--}}
-    {{--@endif--}}
-
-    {{--@if(! empty($customer->commercialPhone))--}}
-        {{--<b>Telefone Comercial: </b>{{ $customer->commercialPhone }} <br>--}}
-    {{--@endif--}}
-
-    {{--<b>E-mail: </b>{{ $customer->email }}<br>--}}
-
-
 
     <tr>
         <td style="font-family:Arial, verdana, sans-serif; font-size: 15px; padding-bottom: 0px;">
