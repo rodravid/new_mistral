@@ -12,4 +12,9 @@ class CreditCardPresenter extends AbstractPresenter
         return str_pad($this->getExpiryMonth(), 2, '0', STR_PAD_LEFT) . '/' . $this->getExpiryYear();
     }
 
+    public function presentMaskedNumber()
+    {
+        return $this->getMaskedNumber();
+    }
+
 }

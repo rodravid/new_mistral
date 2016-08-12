@@ -117,7 +117,7 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
 
     public function getMaskedNumber()
     {
-        return sprintf('XXXX XXXX XXXX %s', substr($this->number, -4));
+        return sprintf('XXXX XXXX XXXX %s', substr($this->getNumber(), -4));
     }
 
     public function getSecurityCode()
