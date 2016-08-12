@@ -203,4 +203,9 @@ abstract class AbstractPresenter extends BasePresenter
         return 'template1';
     }
 
+    public function getCacheKey()
+    {
+        return $this->object->getCacheKey();
+    }
+
 }
