@@ -100,7 +100,6 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
             ->join('p.region', 'r')
             ->join('p.producer', 'pr')
             ->join('v.prices', 'vp')
-            ->where('v.stock > 0')
             ->andWhere('vp.price > 0')
             ->andWhere($qb->expr()->eq('p.online', true))
             ->andWhere($qb->expr()->notIn('p.productType', [ProductType::TYPE_PACKING]));
