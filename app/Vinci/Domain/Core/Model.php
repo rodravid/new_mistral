@@ -92,4 +92,13 @@ abstract class Model implements ArrayAccess
         $em->flush();
     }
 
+    public function getCacheKey()
+    {
+        return sprintf("%s/%s-%s",
+            get_class($this),
+            $this->getId(),
+            $this->getUpdatedAt()->timestamp
+        );
+    }
+
 }

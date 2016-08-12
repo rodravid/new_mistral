@@ -166,6 +166,7 @@
                     </td>
 
                     <td width="300" style="font-size: 15px">
+                        {{ $customer->getMainAddress()->public_place }}
                         {{ $customer->getMainAddress()->address }}
                         {{ $customer->getMainAddress()->number }}
                     </td>

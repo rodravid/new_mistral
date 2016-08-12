@@ -40,7 +40,8 @@
         "aws/aws-sdk-php": "~3.0",
         "webeleven/safe-queue": "dev-master",
         "facile-it/doctrine-mysql-come-back": "^1.6",
-        "phpfluent/elastic-query-builder": "^1.0"
+        "phpfluent/elastic-query-builder": "^1.0",
+        "laracasts/matryoshka": "^0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -77,14 +78,14 @@
         "post-install-cmd": [
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan optimize",
+            "php artisan optimize --force",
             "php artisan doctrine:generate:proxies"
         ],
         "pre-update-cmd": [
             "php artisan clear-compiled"
         ],
         "post-update-cmd": [
-            "php artisan optimize",
+            "php artisan optimize --force",
             "php artisan doctrine:generate:proxies"
         ]
     },
