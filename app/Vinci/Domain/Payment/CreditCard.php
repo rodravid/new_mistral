@@ -39,6 +39,11 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
     /**
      * @ORM\Column(type="string")
      */
+    protected $holderDocument;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $number;
 
     /**
@@ -88,6 +93,17 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
         return $this;
     }
 
+    public function getHolderDocument()
+    {
+        return $this->holderDocument;
+    }
+
+    public function setHolderDocument($holderDocument)
+    {
+        $this->holderDocument = $holderDocument;
+        return $this;
+    }
+
     public function getNumber()
     {
         return $this->number;
@@ -101,7 +117,7 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
 
     public function getMaskedNumber()
     {
-        return sprintf('XXXX XXXX XXXX %s', substr($this->number, -4));
+        return sprintf('XXXX XXXX XXXX %s', substr($this->getNumber(), -4));
     }
 
     public function getSecurityCode()

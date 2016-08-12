@@ -187,6 +187,7 @@ class OrderService
 
         $card
             ->setHolderName(array_get($data, 'card.holdername'))
+            ->setHolderDocument(array_get($data, 'document'))
             ->setNumber(array_get($data, 'card.number'))
             ->setExpiryMonth(array_get($data, 'card.expiry_month'))
             ->setExpiryYear(array_get($data, 'card.expiry_year'))

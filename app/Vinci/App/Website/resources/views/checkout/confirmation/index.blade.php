@@ -139,8 +139,8 @@
                         <p class="amount-paid">{{ $order->payment->installment_text }}</p>
                         @if ($order->payment->wasMadeWithCreditCard())
                             <p class="card-used">
-                                {{ $order->payment->getCreditCard()->getHoldername() }}
-                                <span>{{ $order->payment->getCreditCard()->getMaskedNumber() }}</span>
+                                {{ $order->payment->credit_card->holdername }}
+                                <span>{{ $order->payment->credit_card->masked_number }}</span>
                             </p>
                         @else
                             <p class="card-used">
