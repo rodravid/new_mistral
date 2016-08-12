@@ -308,11 +308,11 @@ class ProductSearchService extends SearchService
     protected function getSort($order)
     {
         switch ($order) {
-            case 1: return ['_score']; break;
-            case 2: return ['price:asc']; break;
-            case 3: return ['price:desc']; break;
-            case 4: return ['title.raw:asc']; break;
-            case 5: return ['title.raw:desc']; break;
+            case 1: return ['available:desc', '_score']; break;
+            case 2: return ['available:desc', 'price:asc']; break;
+            case 3: return ['available:desc', 'price:desc']; break;
+            case 4: return ['available:desc', 'title.raw:asc']; break;
+            case 5: return ['available:desc', 'title.raw:desc']; break;
         }
 
         return ['_score'];
