@@ -21,22 +21,22 @@
                 </li>
             @endif
 
-            @foreach($result->getSelectedFilters() as $filter)
-
-                @foreach($filter->getValues() as $selectedValue)
-                    <li class="filter-search-item">
-                        <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $filter->name }}[]" data-value="{{ $selectedValue->getTitle() }}">
-                            <li>
-                                <a href="javascript:void(0);">{{ $filter->title }} - {{ $selectedValue->title }}</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">X</a>
-                            </li>
-                        </ul>
-                    </li>
+            <div id="search-selected-filters">
+                @foreach($result->getSelectedFilters() as $filter)
+                    @foreach($filter->getValues() as $selectedValue)
+                        <li class="filter-search-item">
+                            <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $filter->name }}[]" data-value="{{ $selectedValue->getTitle() }}">
+                                <li>
+                                    <a href="javascript:void(0);">{{ $filter->title }} - {{ $selectedValue->title }}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">X</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endforeach
                 @endforeach
-
-            @endforeach
+            </div>
 
         </ul>
 
