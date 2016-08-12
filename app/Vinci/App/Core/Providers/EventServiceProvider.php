@@ -28,6 +28,10 @@ class EventServiceProvider extends ServiceProvider
 
         'Vinci\Domain\Customer\Events\CustomerWasCreated' => [
             'Vinci\Domain\Customer\Events\Listeners\SendCustomerConfirmationMail'
+        ],
+
+        'Vinci\Domain\Customer\Events\CustomerWasUpdated' => [
+            'Vinci\Domain\Customer\Events\Listeners\SendCustomerAccountUpdateMail'
         ]
     ];
 
