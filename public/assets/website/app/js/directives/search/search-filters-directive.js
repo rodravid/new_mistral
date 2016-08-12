@@ -36,7 +36,7 @@ angular.module('app')
                     var value = $self.data('value');
                     var uri = getUri();
 
-                    var countKey = $self.parents('#search-selected-filters').find('[data-urlkey="' + urlKey + '"]').length;
+                    var countKey = $self.parents('.search-selected-filters').find('[data-urlkey="' + urlKey + '"]').length;
 
                     if (countKey == 1) {
                         uri.removeSearch(urlKey);

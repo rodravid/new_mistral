@@ -4,6 +4,7 @@ namespace Vinci\Domain\Search\Result;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
+use Illuminate\Support\Collection;
 use Vinci\Domain\Search\Filter\Filter;
 
 class SearchResult
@@ -136,6 +137,10 @@ class SearchResult
 
     public function getSelectedFilters()
     {
+        if ($this->selectedFilters instanceof Collection) {
+            return $this->selectedFilters;
+        }
+
         $filters = [];
 
         foreach ($this->selectedFilters as $key => $values) {
@@ -158,7 +163,7 @@ class SearchResult
             }
         }
 
-        return collect($filters);
+        return $this->selectedFilters = collect($filters);
     }
 
     public function cloneFilters()
