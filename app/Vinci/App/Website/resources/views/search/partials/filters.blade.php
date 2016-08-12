@@ -1,7 +1,5 @@
 <div class="search-column opacidade-coluna1" ng-controller="SearchFiltersController as ctrl">
 
-    <div search-filters>
-
         @if(! empty($result->getTerm()))
             <h3 class="title-filter">Palavra Buscada</h3>
         @endif
@@ -21,22 +19,22 @@
                 </li>
             @endif
 
-            @foreach($result->getSelectedFilters() as $filter)
-
-                @foreach($filter->getValues() as $selectedValue)
-                    <li class="filter-search-item">
-                        <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $filter->name }}[]" data-value="{{ $selectedValue->getTitle() }}">
-                            <li>
-                                <a href="javascript:void(0);">{{ $filter->title }} - {{ $selectedValue->title }}</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">X</a>
-                            </li>
-                        </ul>
-                    </li>
+            <div class="search-selected-filters">
+                @foreach($result->getSelectedFilters() as $filter)
+                    @foreach($filter->getValues() as $selectedValue)
+                        <li class="filter-search-item">
+                            <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $filter->name }}[]" data-value="{{ $selectedValue->getTitle() }}">
+                                <li>
+                                    <a href="javascript:void(0);">{{ $filter->title }} - {{ $selectedValue->title }}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">X</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endforeach
                 @endforeach
-
-            @endforeach
+            </div>
 
         </ul>
 
@@ -64,7 +62,5 @@
             </ul>
 
         @endforeach
-
-    </div>
 
 </div>

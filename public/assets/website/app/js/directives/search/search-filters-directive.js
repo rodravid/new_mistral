@@ -34,10 +34,15 @@ angular.module('app')
                     var $self = $(this);
                     var urlKey = $self.data('urlkey');
                     var value = $self.data('value');
-
                     var uri = getUri();
 
-                    uri.removeSearch(urlKey, value);
+                    var countKey = $self.parents('.search-selected-filters').find('[data-urlkey="' + urlKey + '"]').length;
+
+                    if (countKey == 1) {
+                        uri.removeSearch(urlKey);
+                    } else {
+                        uri.removeSearch(urlKey, value);
+                    }
 
                     $window.location.href = uri;
 

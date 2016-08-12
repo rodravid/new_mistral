@@ -4,6 +4,7 @@ namespace Vinci\App\Website\Http\Auth;
 
 use Auth;
 use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Mail\Message;
 use Request;
 use Vinci\App\Core\Http\Controllers\Auth\PasswordController as BasePasswordController;
 use Vinci\App\Website\Http\Customer\Presenters\CustomerPresenter;
@@ -62,6 +63,14 @@ class PasswordController extends BasePasswordController
         }
 
         return redirect()->back()->withErrors(['email' => trans($response)]);
+    }
+
+    protected function resetEmailBuilder()
+    {
+        return function (Message $message) {
+            $message->from(env('MAIL_FROM_ADDRESS_RESET'), env('MAIL_FROM_NAME'));
+            $message->subject($this->getEmailSubject());
+        };
     }
 
 }

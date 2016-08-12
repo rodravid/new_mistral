@@ -1,6 +1,7 @@
 <div class="row">
     @if($result->hasItems())
-        <article class="wrap-content-search @if(isset($template)) {{ $template }} @else template1 @endif">
+        <div search-filters>
+            <article class="wrap-content-search @if(isset($template)) {{ $template }} @else template1 @endif">
 
             @include('website::search.partials.filters')
 
@@ -32,22 +33,36 @@
 
                     <a class="filtro-mobile show-mobile" href="javascript:void(0);">Filtro<span>></span></a>
 
-                    <ul class="filter-search show-mobile">
-                        @foreach($result->getSelectedFilters() as $key => $filter)
-                            @foreach($filter as $selectedValue)
+                    <div class="search-selected-filters">
+                        <ul class="filter-search show-mobile">
+                            @if(! empty($result->getTerm()))
                                 <li class="filter-search-item">
-                                    <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $key }}[]" data-value="{{ $selectedValue }}">
+                                    <ul class="subitem-filter-search remove-filter" data-urlkey="termo" data-value="{{ $result->getTerm() }}">
                                         <li>
-                                            <a href="javascript:void(0);">{{ $selectedValue }}</a>
+                                            <a href="javascript:void(0);">{{ $result->getTerm() }}</a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0);">X</a>
                                         </li>
                                     </ul>
                                 </li>
+                            @endif
+                            @foreach($result->getSelectedFilters() as $filter)
+                                @foreach($filter->getValues() as $selectedValue)
+                                    <li class="filter-search-item">
+                                        <ul class="subitem-filter-search remove-filter" data-urlkey="{{ $filter->name }}[]" data-value="{{ $selectedValue->getTitle() }}">
+                                            <li>
+                                                <a href="javascript:void(0);">{{ $filter->title }} - {{ $selectedValue->title }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);">X</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endforeach
                             @endforeach
-                        @endforeach
-                    </ul>
+                        </ul>
+                    </div>
 
                     <div class="wrap-pagination">
                         <div class="container-total-products">
@@ -70,6 +85,7 @@
             </div>
 
         </article>
+        </div>
         @include('website::layouts.partials.featuredweek')
     @else
         <div style="text-align: center;">
