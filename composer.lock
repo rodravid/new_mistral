@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2de53779b8b6c34978264b320113af82",
-    "content-hash": "4e8e905f5386ecd9711b1337a8da78a5",
+    "hash": "be454ac79da85cafbad0b6295c3fdb7d",
+    "content-hash": "ee5dc57964ddf026ada58e6c916e15ae",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1877,6 +1877,51 @@
             ],
             "description": "Easy flash notifications",
             "time": "2016-07-11 20:46:02"
+        },
+        {
+            "name": "laracasts/matryoshka",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/matryoshka.git",
+                "reference": "c88c84002e7707f04bf936ec8133f99257ff30c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/matryoshka/zipball/c88c84002e7707f04bf936ec8133f99257ff30c1",
+                "reference": "c88c84002e7707f04bf936ec8133f99257ff30c1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.2"
+            },
+            "require-dev": {
+                "illuminate/cache": "^5.2",
+                "illuminate/database": "^5.2",
+                "phpunit/phpunit": "^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laracasts\\Matryoshka\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Russian Doll Caching for Laravel.",
+            "keywords": [
+                "cache",
+                "laravel"
+            ],
+            "time": "2016-02-19 19:31:09"
         },
         {
             "name": "laravel-doctrine/acl",
