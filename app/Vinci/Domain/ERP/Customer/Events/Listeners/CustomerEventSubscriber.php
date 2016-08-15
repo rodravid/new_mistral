@@ -13,18 +13,13 @@ class CustomerEventSubscriber
 
     private $customerRepository;
 
-    public function __construct(CustomerRepository $customerRepository)
-    {
-        $this->customerRepository = $customerRepository;
-    }
-
     public function onCustomerSavedOnErp(CustomerWasSavedOnErp $event)
     {
         $localCustomer = $event->getCommand()->getCustomer();
 
         $localCustomer->changeErpIntegrationStatus(IntegrationStatus::INTEGRATED);
 
-        $this->customerRepository->save($localCustomer);
+        $this->getCustomerRepository()->save($localCustomer);
 
         CustomerIntegrationLogger::success([
             'user' => $event->getCommand()->getUserActor(),
@@ -41,7 +36,7 @@ class CustomerEventSubscriber
 
         $localCustomer->changeErpIntegrationStatus(IntegrationStatus::FAILED);
 
-        $this->customerRepository->save($localCustomer);
+        $this->getCustomerRepository()->save($localCustomer);
 
         CustomerIntegrationLogger::error([
             'user' => $event->getCommand()->getUserActor(),
@@ -65,6 +60,15 @@ class CustomerEventSubscriber
             'Vinci\Domain\ERP\Customer\Events\CustomerSaveOnErpFailed',
             'Vinci\Domain\ERP\Customer\Events\Listeners\CustomerEventSubscriber@onCustomerSaveOnErpFailed'
         );
+    }
+
+    private function getCustomerRepository()
+    {
+        if ($this->customerRepository != null) {
+            return $this->customerRepository;
+        }
+
+        return $this->customerRepository = app(CustomerRepository::class);
     }
 
 }

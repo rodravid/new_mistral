@@ -21,18 +21,13 @@ class OrderEventSubscriber
 
     private $orderRepository;
 
-    public function __construct(OrderRepository $orderRepository)
-    {
-        $this->orderRepository = $orderRepository;
-    }
-
     public function onOrderCreatedOnErp(OrderWasCreatedOnErp $event)
     {
         $localOrder = $event->getCommand()->getOrder();
 
         $localOrder->changeErpIntegrationStatus(IntegrationStatus::INTEGRATED);
 
-        $this->orderRepository->save($localOrder);
+        $this->getOrderRepository()->save($localOrder);
 
         OrderIntegrationLogger::success([
             'user' => $event->getCommand()->getUserActor(),
@@ -49,7 +44,7 @@ class OrderEventSubscriber
 
         $item->changeErpIntegrationStatus(IntegrationStatus::INTEGRATED);
 
-        $this->orderRepository->save($item);
+        $this->getOrderRepository()->save($item);
 
         OrderItemIntegrationLogger::success([
             'user' => $event->getCommand()->getUserActor(),
@@ -67,7 +62,7 @@ class OrderEventSubscriber
 
         $localOrder->changeErpIntegrationStatus(IntegrationStatus::FAILED);
 
-        $this->orderRepository->save($localOrder);
+        $this->getOrderRepository()->save($localOrder);
 
         OrderIntegrationLogger::error([
             'user' => $event->getCommand()->getUserActor(),
@@ -86,7 +81,7 @@ class OrderEventSubscriber
 
         $item->changeErpIntegrationStatus(IntegrationStatus::FAILED);
 
-        $this->orderRepository->save($item);
+        $this->getOrderRepository()->save($item);
 
         OrderItemIntegrationLogger::error([
             'user' => $event->getCommand()->getUserActor(),
@@ -104,7 +99,7 @@ class OrderEventSubscriber
     {
         $address = $event->getCommand()->getAddress();
 
-        $this->orderRepository->save($address);
+        $this->getOrderRepository()->save($address);
 
         AddressIntegrationLogger::success([
             'user' => $event->getCommand()->getUserActor(),
@@ -140,7 +135,7 @@ class OrderEventSubscriber
 
         $address->changeErpIntegrationStatus(IntegrationStatus::INTEGRATED);
 
-        $this->orderRepository->save($address);
+        $this->getOrderRepository()->save($address);
 
         AddressIntegrationLogger::success([
             'user' => $event->getCommand()->getUserActor(),
@@ -159,7 +154,7 @@ class OrderEventSubscriber
 
         $address->changeErpIntegrationStatus(IntegrationStatus::FAILED);
 
-        $this->orderRepository->save($address);
+        $this->getOrderRepository()->save($address);
 
         AddressIntegrationLogger::error([
             'user' => $event->getCommand()->getUserActor(),
@@ -215,6 +210,15 @@ class OrderEventSubscriber
             'Vinci\Domain\ERP\Order\Events\ShippingAddressUpdateFailed',
             'Vinci\Domain\ERP\Order\Events\Listeners\OrderEventSubscriber@onShippingAddressUpdateFailed'
         );
+    }
+
+    private function getOrderRepository()
+    {
+        if ($this->orderRepository != null) {
+            return $this->orderRepository;
+        }
+
+        return $this->orderRepository = app(OrderRepository::class);
     }
 
 }
