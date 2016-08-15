@@ -14,7 +14,7 @@ class DoctrineHighlightRepository extends DoctrineSortableRepository implements 
     {
         $qb = $this->getBySortableGroupsQueryBuilder(['type' => $type]);
 
-        $qb->select('n', 'i', 'hi', 'i')
+        $qb->select('n', 'i', 'hi')
             ->leftJoin('n.images', 'hi')
             ->leftJoin('hi.image', 'i')
             ->andWhere($qb->expr()->lte('n.startsAt', $qb->expr()->literal(Carbon::now())))

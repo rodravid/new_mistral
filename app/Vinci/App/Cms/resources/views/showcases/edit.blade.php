@@ -21,6 +21,7 @@
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title">{{ $currentModule->getEditingText() }} #{{ $showcase->getId() }}</h3>
+                                <a href="{{ $showcase->getWebPath() }}" target="__blank" class="btn btn-info pull-right"><i class="fa fa-eye"></i> Ver vitrine no site</a>
                             </div>
 
                             {!! Form::hidden('id', $showcase->getId()) !!}
