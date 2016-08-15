@@ -53,7 +53,11 @@ class Role extends Model implements RoleContract, HasModules
     protected $modules;
 
     /**
-     * @ACL\HasPermissions
+     * @ORM\ManyToMany(targetEntity="Vinci\Domain\ACL\Permission\Permission")
+     * @ORM\JoinTable(name="permission_role",
+     *      joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="permission_id", referencedColumnName="id")}
+     *      )
      */
     public $permissions;
 
