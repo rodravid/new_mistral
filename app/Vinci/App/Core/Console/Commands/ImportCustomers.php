@@ -11,6 +11,7 @@ use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Customer\CustomerService;
 use Vinci\Domain\Product\Services\ProductManagementService;
 use GuzzleHttp\Client;
+use Vinci\Infrastructure\Services\Postmon\Facades\Postmon;
 
 class ImportCustomers extends Command
 {
@@ -238,18 +239,10 @@ class ImportCustomers extends Command
     public function getDataPostmon($cep)
     {
         try {
-            $url = "http://api.postmon.com.br/v1/cep/" . $cep;
-            $client = new Client([
-                'base_uri' => $url,
-                'timeout' => 2.0,
-            ]);
-
-            $response = $client->get($url)->getBody()->getContents();
-            return json_decode($response, true);
+            return Postmon::getAddress($cep);
         } catch (\Exception $e) {
 
         }
-
     }
 
 
