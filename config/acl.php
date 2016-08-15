@@ -21,7 +21,7 @@ return [
     |
     */
     'permissions' => [
-        'driver' => 'doctrine',
+        'driver' => 'config',
         'entity' => Vinci\Domain\ACL\Permission\Permission::class,
         'list'   => [],
     ],

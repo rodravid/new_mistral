@@ -170,6 +170,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Laracasts\Matryoshka\MatryoshkaServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Fractal\FractalServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class
