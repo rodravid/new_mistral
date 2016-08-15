@@ -347,7 +347,13 @@ class InfrastructureServiceProvider extends ServiceProvider
             'Vinci\Domain\Payment\Repositories\PaymentMethodsRepository',
             'Vinci\Domain\Payment\Repositories\PaymentInstallmentRepository',
             'Vinci\Domain\Graphic\Order\OrderGraphicsRepository',
-            'postmon'
+            'postmon',
+            'product.repository',
+            'address.repository',
+            'showcase.repository',
+            'shipping_promotion.repository',
+            'cart.repository',
+            'carrier.repository'
         ];
     }
 
