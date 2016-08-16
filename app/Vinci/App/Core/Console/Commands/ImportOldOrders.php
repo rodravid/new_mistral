@@ -334,6 +334,7 @@ class ImportOldOrders extends Command
 
                 $card
                     ->setHolderName($paymentInfo->dsCardOwner)
+                    ->setHolderDocument($paymentInfo->dsCardCic)
                     ->setNumber($paymentInfo->dsCardNumber)
                     ->setExpiryMonth(intval($paymentInfo->dsCardMonthExpires))
                     ->setExpiryYear(intval($paymentInfo->dsCardYearExpires))
