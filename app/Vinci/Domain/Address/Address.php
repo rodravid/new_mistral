@@ -254,6 +254,7 @@ abstract class Address extends Model implements Presentable
             ->setDistrict($address->getDistrict())
             ->setCity($address->getCity())
             ->setReceiver($address->getReceiver())
+            ->setLandmark($address->getLandmark())
             ->setNickname($address->getNickname());
     }
 
