@@ -136,7 +136,7 @@ class File extends Model
 
     public function getWebPath()
     {
-        return config('app.storage_web_path') . '/' . $this->getPathName();
+        return config('app.storage_web_path') . '/' . $this->getPathName() . '?' . $this->getId();
     }
 
     public function generateUniqueName()

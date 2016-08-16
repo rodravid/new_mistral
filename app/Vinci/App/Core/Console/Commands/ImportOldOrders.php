@@ -273,7 +273,7 @@ class ImportOldOrders extends Command
 
     private function getOrderItems($oldOrder)
     {
-        $oldItems = collect(DB::table('tbOrderIem')->where(['idOrder' => $oldOrder->idOrder])->get());
+        $oldItems = collect(DB::table('tbOrderItem')->where(['idOrder' => $oldOrder->idOrder])->get());
 
         if (! $oldItems->count()) {
             throw new Exception(sprintf('Order %s does not contains items.', $oldOrder->idOrder));
@@ -334,6 +334,7 @@ class ImportOldOrders extends Command
 
                 $card
                     ->setHolderName($paymentInfo->dsCardOwner)
+                    ->setHolderDocument($paymentInfo->dsCardCic)
                     ->setNumber($paymentInfo->dsCardNumber)
                     ->setExpiryMonth(intval($paymentInfo->dsCardMonthExpires))
                     ->setExpiryYear(intval($paymentInfo->dsCardYearExpires))
