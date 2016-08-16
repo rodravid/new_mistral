@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="pt-br" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Vinci, somos loucos por vinho - Vinci')</title>
