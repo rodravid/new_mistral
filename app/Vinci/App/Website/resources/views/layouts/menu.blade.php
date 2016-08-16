@@ -209,7 +209,7 @@
                         <ul class="list-sub-menu">
                             <li><a href="/c/produtor/niepoort">Niepoort</a></li>
                             <li><a href="/c/produtor/piccini">Piccini</a></li>
-                            <li><a href="/c/produtor/monte-da-ravasqueira">Monte da Ravasqueira</a></li>
+                            <li><a href="/c/produtor/caves-sao-joao">Caves São João</a></li>
                             <li><a href="/c/produtor/ogier">Ogier</a></li>
                             <li><a href="/c/produtor/cvne-cia-vinicola-del-norte-de-espana">CVNE</a></li>
                             <li><a href="/c/produtor/masseria-trajone">Masseria Trajone</a></li>
@@ -235,7 +235,7 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/tipo-de-vinho/tinto">Tintos</a></li>
+                            <li><a href="/c/tipo-de-vinho/tintos">Tintos</a></li>
                             <li><a href="/c/tipo-de-vinho/branco">Brancos</a></li>
                             <li><a href="/c/tipo-de-vinho/rosado">Rosados</a></li>
                             <li><a href="/c/tipo-de-vinho/espumante">Champagne e Espumantes</a></li>
