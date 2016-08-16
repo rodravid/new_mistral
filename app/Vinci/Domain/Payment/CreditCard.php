@@ -2,6 +2,7 @@
 
 namespace Vinci\Domain\Payment;
 
+use Illuminate\Support\Facades\Crypt;
 use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Common\Traits\Timestampable;
@@ -84,12 +85,12 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
 
     public function getHolderName()
     {
-        return $this->holderName;
+        return Crypt::decrypt($this->holderName);
     }
 
     public function setHolderName($holderName)
     {
-        $this->holderName = $holderName;
+        $this->holderName = Crypt::encrypt($holderName);
         return $this;
     }
 
@@ -106,12 +107,12 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
 
     public function getNumber()
     {
-        return $this->number;
+        return Crypt::decrypt($this->number);
     }
 
     public function setNumber($number)
     {
-        $this->number = $number;
+        $this->number = Crypt::encrypt($number);
         return $this;
     }
 
@@ -122,12 +123,12 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
 
     public function getSecurityCode()
     {
-        return $this->securityCode;
+        return Crypt::decrypt($this->securityCode);
     }
 
     public function setSecurityCode($securityCode)
     {
-        $this->securityCode = $securityCode;
+        $this->securityCode = Crypt::encrypt($securityCode);
         return $this;
     }
 
