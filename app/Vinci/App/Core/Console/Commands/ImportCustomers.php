@@ -11,6 +11,7 @@ use Vinci\App\Core\Services\Validation\Exceptions\ValidationException;
 use Vinci\Domain\Customer\CustomerService;
 use Vinci\Domain\Product\Services\ProductManagementService;
 use GuzzleHttp\Client;
+use Vinci\Infrastructure\Services\Postmon\Facades\Postmon;
 
 class ImportCustomers extends Command
 {
@@ -54,7 +55,7 @@ class ImportCustomers extends Command
 
     public function create()
     {
-        $stmt = $this->em->getConnection()->prepare('SELECT * FROM bkp_customers_vinci WHERE id != "" AND imported = 0 limit ' . $this->option('limit'));
+        $stmt = $this->em->getConnection()->prepare('SELECT * FROM bkp_customers WHERE id != "" AND imported = 0 limit ' . $this->option('limit'));
         $stmt->execute();
 
         $customers = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -88,9 +89,9 @@ class ImportCustomers extends Command
                 $data["companyContact"] = $this->normalizeValue($customer["contato_empresa"]);
                 $data["cnpj"] = $this->normalizeValue($customer["cnpj"]);
                 $data["stateRegistration"] = $this->normalizeValue($customer["inscricao"]);
-                $data["phone"] = $this->normalizeValue($customer["telefone"]);
-                $data["cellPhone"] = $this->normalizeValue($customer["celular"]);
-                $data["commercialPhone"] = $this->normalizeValue($customer["comercial"]);
+                $data["phone"] = $this->normalizePhoneNumber($customer["ddd_telefone"], $customer["telefone"]);
+                $data["cellPhone"] = $this->normalizePhoneNumber($customer["ddd_celular"], $customer["celular"]);
+                $data["commercialPhone"] = $this->normalizePhoneNumber($customer["ddd_comercial"], $customer["comercial"]);
 
                 $data["password"] = $this->normalizeValue($customer["senha"]);
                 $data["password_confirmation"] = $this->normalizeValue($customer["senha"]);
@@ -100,7 +101,7 @@ class ImportCustomers extends Command
                 $data["main_address"] = "0";
                 $data["status"] = "1";
 
-                $stmt_address = $this->em->getConnection()->prepare('select * from bkp_customers_address_vinci where customer_id = ?;');
+                $stmt_address = $this->em->getConnection()->prepare('select * from bkp_customers_addresses where customer_id = ?;');
                 $stmt_address->execute([$customer["id"]]);
                 $addresses = $stmt_address->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -125,7 +126,7 @@ class ImportCustomers extends Command
                         $data["addresses"][$key]["landmark"] = $this->normalizeValue($address["landmark"]);
                         $data["addresses"][$key]["receiver"] = $this->normalizeValue($address["receiver"]);
 
-                        $stmt_upd = $this->em->getConnection()->prepare('update bkp_customers_address_vinci set city_id="' . $postmon["cidade_info"]["codigo_ibge"] . '" where id = ' . $address["id"]);
+                        $stmt_upd = $this->em->getConnection()->prepare('update bkp_customers_addresses set city_id="' . $postmon["cidade_info"]["codigo_ibge"] . '" where id = ' . $address["id"]);
                         $stmt_upd->execute();
 
                     }
@@ -139,11 +140,11 @@ class ImportCustomers extends Command
                     $data['disable_events'] = true;
 
                     $result = $this->service->create($data);
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=1 where id = ?;');
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers set imported=1 where id = ?;');
                     $stmt->execute([$customer["id"]]);
 
                 } catch (ValidationException $e) {
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?;');
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers set imported=2 where id = ?;');
                     $stmt->execute([$customer["id"]]);
 
                     $this->line('');
@@ -165,7 +166,7 @@ class ImportCustomers extends Command
                         app()->instance(EntityManagerInterface::class, $this->em);
                     }
 
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?');
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers set imported=2 where id = ?');
                     $stmt->execute([$customer["id"]]);
                     $this->line('');
                     $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
@@ -186,7 +187,7 @@ class ImportCustomers extends Command
                         app()->instance(EntityManagerInterface::class, $this->em);
                     }
 
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?;');
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers set imported=2 where id = ?;');
                     $stmt->execute([$customer["id"]]);
                     $this->line('');
                     $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
@@ -195,7 +196,7 @@ class ImportCustomers extends Command
                     $error++;
 
                 } catch (\Exception $e) {
-                    $stmt = $this->em->getConnection()->prepare('update bkp_customers_vinci set imported=2 where id = ?;');
+                    $stmt = $this->em->getConnection()->prepare('update bkp_customers set imported=2 where id = ?;');
                     $stmt->execute([$customer["id"]]);
                     $this->line('');
                     $this->error("Erro ao adicionar o cliente [" . $customer["id"] . "]");
@@ -220,8 +221,6 @@ class ImportCustomers extends Command
 
 
     }
-    
-    
 
     public function normalizeValue($value)
     {
@@ -229,24 +228,21 @@ class ImportCustomers extends Command
             return "";
         }
 
-        return $value;
+        return trim($value);
+    }
+
+    public function normalizePhoneNumber($ddd, $phone)
+    {
+        return sprintf('%s%s', $this->normalizeValue($ddd), $this->normalizeValue($phone));
     }
 
     public function getDataPostmon($cep)
     {
         try {
-            $url = "http://api.postmon.com.br/v1/cep/" . $cep;
-            $client = new Client([
-                'base_uri' => $url,
-                'timeout' => 2.0,
-            ]);
-
-            $response = $client->get($url)->getBody()->getContents();
-            return json_decode($response, true);
+            return Postmon::getAddress($cep);
         } catch (\Exception $e) {
 
         }
-
     }
 
 
