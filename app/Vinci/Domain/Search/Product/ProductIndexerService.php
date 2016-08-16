@@ -76,7 +76,7 @@ class ProductIndexerService extends IndexingService
                 $toDelete[] = $product->getId();
             }
 
-            app('em')->flush();
+            app('em')->detach($product);
 
         }
 
@@ -171,14 +171,11 @@ class ProductIndexerService extends IndexingService
 
         $data['keywords'] = $keywords = $product->getSeoKeywords();
 
-        foreach ($this->showcaseRepository->getByProduct($product) as $showcase) {
-            $data['keywords'] .= $showcase->getKeywords();
+        foreach ($this->showcaseRepository->getByProductAsArray($product) as $showcase) {
 
-            $data['showcases'][] = [
-                'id' => $showcase->getId(),
-                'title' => $showcase->getTitle(),
-                'keywords' => $showcase->getKeywords()
-            ];
+            $data['keywords'] .= $showcase['keywords'];
+
+            $data['showcases'][] = $showcase;
 
         }
 

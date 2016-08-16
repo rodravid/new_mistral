@@ -100,6 +100,21 @@ class DoctrineShowcaseRepository extends DoctrineSortableRepository implements S
         return $qb->getQuery()->getResult();
     }
 
+    public function getByProductAsArray($product)
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        $qb
+            ->select('s.id, s.title, s.keywords')
+            ->join('s.items', 'i')
+            ->join('i.product', 'p')
+            ->where('p.id = :productId');
+
+        $qb->setParameter('productId', $product);
+
+        return $qb->getQuery()->getArrayResult();
+    }
+
     public function save($entity)
     {
         parent::save($entity);
