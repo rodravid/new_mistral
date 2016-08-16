@@ -20,7 +20,7 @@ use Vinci\App\Core\Console\Commands\MakeSlugProductType;
 use Vinci\App\Core\Console\Commands\MakeSlugRegion;
 use Vinci\App\Core\Console\Commands\RandomizeProductTemplate;
 use Vinci\App\Core\Console\Commands\UniqueIdTest;
-use Vinci\App\Website\Search\Console\Commands\IndexProducts;
+use Vinci\App\Website\Search\Console\Commands\SyncProducts;
 
 class Kernel extends ConsoleKernel
 {
@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         DoctrineTruncateTable::class,
         ImportProduct::class,
-        IndexProducts::class,
+        SyncProducts::class,
         ImportCustomers::class,
         MakeSlugCountry::class,
         MakeSlugRegion::class,
@@ -78,7 +78,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('erp:integration:products:import-stock --all')
             ->everyThirtyMinutes();
 
-        $schedule->command('search:index-products')
+        $schedule->command('search:sync')
             ->everyTenMinutes();
     }
 }
