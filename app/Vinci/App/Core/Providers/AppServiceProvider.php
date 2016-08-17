@@ -6,6 +6,7 @@ use Blade;
 use Carbon\Carbon;
 use Doctrine\DBAL\Types\Type as DBALType;
 use Illuminate\Support\ServiceProvider;
+use LaravelDoctrine\ORM\Auth\DoctrineUserProvider;
 use Validator;
 use Vinci\App\Core\Services\Presenter\Presenter;
 
@@ -14,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->extendAuthManager();
+
         $this->registerRamseyUuid();
 
         Blade::directive('isProductFavorited', function($expression) {
@@ -57,6 +60,19 @@ class AppServiceProvider extends ServiceProvider
             return new Presenter($app);
         });
 
+    }
+
+    protected function extendAuthManager()
+    {
+        $this->app->make('auth')->provider('doctrine', function ($app, $config) {
+            $entity = $config['model'];
+
+            return new DoctrineUserProvider(
+                $app['hash'],
+                $app['em'],
+                $entity
+            );
+        });
     }
 
     protected function configureLocale()

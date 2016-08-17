@@ -150,7 +150,7 @@
 
                 <div class="col-product-two">
                     <div class="show-mobile">
-                        <favorite-widget product="{{ $product->id }}"></favorite-widget>
+                        <favorite-widget product="{{ $product->id }}" favorited="@isProductFavorited($product->id)"></favorite-widget>
                         <h1 class="tit-product">{{ $product->title }}</h1>
                         @if($product->hasProducer())
                             <span class="tit-product-producer">{{ $product->producer->name }}</span>
