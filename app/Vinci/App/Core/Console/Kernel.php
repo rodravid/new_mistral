@@ -64,19 +64,19 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('erp:integration:products:import --new')
-            ->cron('10 * * * *');
-
-        $schedule->command('erp:integration:products:import --changed')
-            ->cron('15 * * * *');
-
-        $schedule->command('erp:integration:products:import --all')
-            ->cron('5 */2 * * *');
-
-        $schedule->command('erp:integration:products:import-price --all')
             ->cron('*/30 * * * *');
 
+        $schedule->command('erp:integration:products:import --changed')
+            ->cron('*/15 * * * *');
+
+        $schedule->command('erp:integration:products:import --all')
+            ->cron('00 */1 * * *');
+
+        $schedule->command('erp:integration:products:import-price --all')
+            ->cron('10 */1 * * *');
+
         $schedule->command('erp:integration:products:import-stock --all')
-            ->everyThirtyMinutes();
+            ->cron('*/25 * * * *');
 
         $schedule->command('search:sync')
             ->everyTenMinutes();
