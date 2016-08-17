@@ -98,7 +98,7 @@ class ProductSearchService extends SearchService
 
     public function search($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
-        $keyword = Str::lower($keyword);
+        //$keyword = Str::lower($keyword);
 
         $params = $this->getSearchParams($keyword, $filters, $limit, $start, $sort);
 
@@ -228,28 +228,76 @@ class ProductSearchService extends SearchService
         if (! empty($keyword)) {
 
             $params['body']['query'] = [
+
                 'bool' => [
                     'should' => [
                         ['term' => ['_id' => $keyword]],
                         ['term' => ['sku' => $keyword]],
-                        ['wildcard' => ['title' => $keyword . '*']],
-                        ['match' => ['keywords' => $keyword]],
+                        ['multi_match' => [
+                            'type' => 'most_fields',
+                            'query' => $keyword,
+                            'boost' => 4,
+                            'fields' => ['title', 'title.autocomplete'],
+                            'fuzziness' => 1
+                        ]],
+                        ['match' => ['keywords' => ['query' => $keyword, 'boost' => 3]]],
                         ['match' => ['short_description' => $keyword]],
-                        ['match' => ['country.title' => $keyword]],
-                        ['match' => ['region.title' => $keyword]],
-                        ['match' => ['producer.title' => $keyword]],
-                        ['match' => ['product_type.title' => $keyword]],
-                        ['match' => ['grapes.title' => $keyword]],
-                        ['fuzzy' =>
-                            [
-                                'title' => [
-                                    'value' => $keyword,
-                                    'fuzziness' => 1
-                                ]
-                            ]
-                        ]
+                        ['match' => ['country.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
+                        ['match' => ['region.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
+                        ['match' => ['producer.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
+                        ['multi_match' => [
+                            'type' => "most_fields",
+                            'query' => $keyword,
+                            'boost' => 3,
+                            'fuzziness' => 1,
+                            'fields' => ['product_type.title', 'product_type.title.brazilian']
+                        ]],
+                        ['match' => ['grapes.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
+//                        ['fuzzy' =>
+//                            [
+//                                'title' => [
+//                                    'value' => $keyword,
+//                                    'fuzziness' => 1,
+//                                    'boost' => 2
+//                                ]
+//                            ],
+//
+//                        ]
+//                        'bool' => [
+//                            'should' => [
+//                                ['match' => ['product_type.title' => ]]
+//                            ]
+//                        ]
                     ]
                 ]
+
+//                'multi_match' => [
+//                    'type' => "most_fields",
+//                    'query' => $keyword,
+//                    'fields' => ['product_type.title', 'product_type.title.brazilian']
+//                ]
+//                'bool' => [
+//                    'should' => [
+//                        ['term' => ['_id' => $keyword]],
+//                        ['term' => ['sku' => $keyword]],
+//                        ['wildcard' => ['title' => $keyword . '*']],
+//                        ['match' => ['keywords' => $keyword]],
+//                        ['match' => ['short_description' => $keyword]],
+//                        ['match' => ['country.title' => $keyword]],
+//                        ['match' => ['region.title' => $keyword]],
+//                        ['match' => ['producer.title' => $keyword]],
+//                        ['match' => ['product_type.title' => $keyword]],
+//                        ['match' => ['grapes.title' => $keyword]],
+//                        ['fuzzy' =>
+//                            [
+//                                'title' => [
+//                                    'value' => $keyword,
+//                                    'fuzziness' => 1
+//                                ]
+//                            ]
+//                        ]
+//                    ]
+//                ]
             ];
 
             $params['body']['suggest'] = [
