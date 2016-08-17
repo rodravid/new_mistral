@@ -40,12 +40,12 @@
                         @include('cms::layouts.partials.publication.edit.default', ['model' => $product])
                     </div>
 
-                    @if ($product->hasImage('mobile'))
+                    @if ($product->hasImage('photo'))
                         <div class="col-xs-12">
                             @include('cms::layouts.partials.image.default', [
-                            'box_title' => 'Imagem mobile',
-                            'image' => $product->getImage('mobile'),
-                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$product->getId(), $product->getImage('mobile')->getId()])
+                            'box_title' => 'Foto',
+                            'image' => $product->getImage('photo'),
+                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$product->getId(), $product->getImage('photo')->getId()])
                             ])
                         </div>
                     @endif

@@ -18,11 +18,23 @@ class DefaultProductIndex extends AbstractIndex
             'settings' => [
                 'index' => [
                     'analysis' => [
+                        'filter' => [
+                            'autocomplete_filter' => [
+                                'type' => 'edge_ngram',
+                                'min_gram' => 3,
+                                'max_gram' => 4
+                            ]
+                        ],
                         'analyzer' => [
                             'analyzer_keyword' => [
                                 'tokenizer' => 'standard',
-                                'filter' => 'lowercase'
-                            ]
+                                'filter' => ['lowercase', 'asciifolding']
+                            ],
+                            'autocomplete' => [
+                                'type' => 'custom',
+                                'tokenizer' => 'standard',
+                                'filter' => ['lowercase', 'asciifolding', 'autocomplete_filter']
+                            ],
                         ]
                     ]
                 ]
@@ -38,11 +50,19 @@ class DefaultProductIndex extends AbstractIndex
                         ],
                         'title' => [
                             'type' => 'string',
-                            'analyzer' => 'analyzer_keyword',
+                            //'analyzer' => 'analyzer_keyword',
                             'fields' => [
                                 'raw' => [
                                     'type' => 'string',
                                     'index' => 'not_analyzed'
+                                ],
+                                'lowercase' => [
+                                    'type' => 'string',
+                                    'analyzer' => 'analyzer_keyword',
+                                ],
+                                'autocomplete' => [
+                                    'type' => 'string',
+                                    'analyzer' => 'autocomplete'
                                 ]
                             ]
                         ],
@@ -128,8 +148,12 @@ class DefaultProductIndex extends AbstractIndex
                                 ],
                                 'title' => [
                                     'type' => 'string',
-                                    'analyzer' => 'analyzer_keyword',
+                                    //'analyzer' => 'brazilian',
                                     'fields' => [
+                                        'brazilian' => [
+                                            'type' => 'string',
+                                            'analyzer' => 'brazilian'
+                                        ],
                                         'raw' => [
                                             'type' => 'string',
                                             'index' => 'not_analyzed'

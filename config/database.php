@@ -91,6 +91,19 @@ return [
             'engine'    => null,
         ],
 
+        'production' => [
+            'driver'    => 'mysql',
+            'host'      => 'vinci-prod.cphccisqwbrl.sa-east-1.rds.amazonaws.com',
+            'database'  => 'vinci_prod',
+            'username'  => 'dbroot',
+            'password'  => 'OWcArigJuxGn86qq++',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+            'engine'    => null,
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),

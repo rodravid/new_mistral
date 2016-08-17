@@ -9,8 +9,8 @@ class ProductPresenter extends BaseProductPresenter
 
     public function presentImageHtml()
     {
-        if ($this->hasImage('desktop')) {
-            return '<img src="' . $this->getImage('desktop') . '" style="width: 50px;" />';
+        if ($this->hasImage('photo')) {
+            return '<img src="' . $this->getImage('photo') . '" style="width: 50px;" />';
         }
 
         return '--';
