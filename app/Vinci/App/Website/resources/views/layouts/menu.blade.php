@@ -84,21 +84,26 @@
                 <p class="your-cart ng-hide" ng-show="!ctrl.hasItems()">Não há produtos em seu carrinho.</p>
 
                 <div class="ng-hide" ng-show="ctrl.hasItems()">
-                    <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no carrinho de compras</p>
+                    <p class="your-cart">Você tem <span id="cartCount">@{{ cart.count_items }} produtos</span> no
+                        carrinho de compras</p>
                     <ul class="lista-add" id="cartItems">
                         <li ng-repeat="item in cart.items | limitTo:3">
                             <a href="@{{ item.web_path }}">
                                 <div class="product-add">
-                                    <img ng-src="@{{ item.image_url }}" width="20" height="57" class="float-left" alt="" class="info-vinho-bold">
-                                    <p class="product-name-cart">@{{ item.name }} <span ng-show="item.producer">(@{{ item.producer }})</span></p>
+                                    <img ng-src="@{{ item.image_url }}" width="20" height="57" class="float-left" alt=""
+                                         class="info-vinho-bold">
+                                    <p class="product-name-cart">@{{ item.name }} <span
+                                                ng-show="item.producer">(@{{ item.producer }})</span></p>
                                 </div>
                                 <div class="value-product">
-                                    <p class="price-wine">@{{ item.sale_price | currency }} <span>@{{ item.quantity }} un.</span></p>
+                                    <p class="price-wine">@{{ item.sale_price | currency }} <span>@{{ item.quantity }}
+                                            un.</span></p>
                                 </div>
                             </a>
                         </li>
                     </ul>
-                    <a href="{{ route('cart.index') }}" class="bt-default bt-default-blue float-right">Detalhes do carrinho <span class="arrow-link">></span></a>
+                    <a href="{{ route('cart.index') }}" class="bt-default bt-default-blue float-right">Detalhes do
+                        carrinho <span class="arrow-link">></span></a>
                 </div>
 
             </div>
@@ -126,12 +131,15 @@
                     </div>
                     <div class="division">
                         <ul class="list-sub-menu">
-                        <li><a href="/c/pais/africa-do-sul">África do Sul</a></li>
-                        <li><a href="/c/pais/brasil">Brasil</a></li>
-                        <li><a href="/c/pais/alemanha">Alemanha</a></li>
-                        <li><a href="/c/pais/uruguai">Uruguai</a></li>
-                        <li><a href="/c/pais/estados-unidos">Estados Unidos</a></li>
-                        <li><a class="all-links" href="{{ route('category.countries.list') }}">Lista de todos os países <small>></small></a></li>
+                            <li><a href="/c/pais/africa-do-sul">África do Sul</a></li>
+                            <li><a href="/c/pais/brasil">Brasil</a></li>
+                            <li><a href="/c/pais/alemanha">Alemanha</a></li>
+                            <li><a href="/c/pais/uruguai">Uruguai</a></li>
+                            <li><a href="/c/pais/estados-unidos">Estados Unidos</a></li>
+                            <li><a class="all-links" href="{{ route('category.countries.list') }}">Lista de todos os
+                                    países
+                                    <small>></small>
+                                </a></li>
                         </ul>
                     </div>
                     <div class="division">
@@ -201,7 +209,7 @@
                         <ul class="list-sub-menu">
                             <li><a href="/c/produtor/niepoort">Niepoort</a></li>
                             <li><a href="/c/produtor/piccini">Piccini</a></li>
-                            <li><a href="/c/produtor/monte-da-ravasqueira">Monte da Ravasqueira</a></li>
+                            <li><a href="/c/produtor/caves-sao-joao">Caves São João</a></li>
                             <li><a href="/c/produtor/ogier">Ogier</a></li>
                             <li><a href="/c/produtor/cvne-cia-vinicola-del-norte-de-espana">CVNE</a></li>
                             <li><a href="/c/produtor/masseria-trajone">Masseria Trajone</a></li>
@@ -227,10 +235,10 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/tipo-de-vinho/tinto">Tintos</a></li>
-                            <li><a href="/c/tipo-de-vinho/branco">Brancos</a></li>
-                            <li><a href="/c/tipo-de-vinho/rosado">Rosados</a></li>
-                            <li><a href="/c/tipo-de-vinho/espumante">Champagne e Espumantes</a></li>
+                            <li><a href="/c/tipo-de-vinho/tintos">Tintos</a></li>
+                            <li><a href="/c/tipo-de-vinho/brancos">Brancos</a></li>
+                            <li><a href="/c/tipo-de-vinho/rosados">Rosados</a></li>
+                            <li><a href="/c/tipo-de-vinho/champagne-e-espumantes">Champagne e Espumantes</a></li>
                             <li><a href="/c/tipo-de-vinho/porto">Porto</a></li>
                             <li><a href="/c/tipo-de-vinho/sobremesa">Sobremesa</a></li>
                         </ul>
@@ -252,13 +260,14 @@
 
             <li class="menu-item larger760-right template5">
                 <a class="menu-link" href="{{ route('category.grapes.list') }}">
-                   Uva
+                    Uva
                 </a>
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
                             <li><a href="{{ route('category.grape.show', ['malbec']) }}">Malbec</a></li>
-                            <li><a href="{{ route('category.grape.show', ['cabernet-sauvignon']) }}">Cabernet Sauvignon</a></li>
+                            <li><a href="{{ route('category.grape.show', ['cabernet-sauvignon']) }}">Cabernet
+                                    Sauvignon</a></li>
                             <li><a href="{{ route('category.grape.show', ['tempranillo']) }}">Tempranillo</a></li>
                             <li><a href="{{ route('category.grape.show', ['chardonnay']) }}">Chardonnay</a></li>
                             <li><a href="{{ route('category.grape.show', ['carmenere']) }}">Carmenère</a></li>
@@ -268,7 +277,8 @@
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="{{ route('category.grape.show', ['sauvignon-blanc']) }}">Sauvignon Blanc</a></li>
+                            <li><a href="{{ route('category.grape.show', ['sauvignon-blanc']) }}">Sauvignon Blanc</a>
+                            </li>
                             <li><a href="{{ route('category.grape.show', ['sangiovese']) }}">Sangiovese</a></li>
                             <li><a href="{{ route('category.grape.show', ['pinot-noir']) }}">Pinot Noir</a></li>
                             <li><a href="{{ route('category.grape.show', ['syrah-shiraz']) }}">Syrah e Shiraz</a></li>
@@ -310,7 +320,7 @@
                     <div class="division">
                         <a href="{{ route('category.show', ['vinhos-bons-e-baratos']) }}">
                             <div class="every-category">
-                                <h3>Veja todos os vinhos da categoria  bons e baratos</h3>
+                                <h3>Veja todos os vinhos da categoria bons e baratos</h3>
                                 <span>></span>
                             </div>
                         </a>
@@ -328,10 +338,14 @@
                         <ul class="list-sub-menu">
                             <li><a href="{{ route('category.show', ['por-preco-ate-60']) }}">Até R$ 60</a></li>
                             <li><a href="{{ route('category.show', ['por-preco-de-60-a-100']) }}">R$ 60 a R$100</a></li>
-                            <li><a href="{{ route('category.show', ['por-preco-de-100-a-170']) }}">R$ 100 a R$ 170</a></li>
-                            <li><a href="{{ route('category.show', ['por-preco-de-170-a-270']) }}">R$ 170 a R$ 270</a></li>
-                            <li><a href="{{ route('category.show', ['por-preco-de-270-a-500']) }}">R$ 270 a R$ 500</a></li>
-                            <li><a href="{{ route('category.show', ['por-preco-acima-de-500']) }}">Acima de R$ 500</a></li>
+                            <li><a href="{{ route('category.show', ['por-preco-de-100-a-170']) }}">R$ 100 a R$ 170</a>
+                            </li>
+                            <li><a href="{{ route('category.show', ['por-preco-de-170-a-270']) }}">R$ 170 a R$ 270</a>
+                            </li>
+                            <li><a href="{{ route('category.show', ['por-preco-de-270-a-500']) }}">R$ 270 a R$ 500</a>
+                            </li>
+                            <li><a href="{{ route('category.show', ['por-preco-acima-de-500']) }}">Acima de R$ 500</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="division">
@@ -342,7 +356,7 @@
 
                     <div class="division">
                         <div class="featured-wrap">
-                            {!! productCardMenu(783, 'Chile', 'template7') !!}
+                            {!! productCardMenu(783, 'Itália', 'template7') !!}
                         </div>
                     </div>
                 </div>
@@ -355,26 +369,26 @@
                 <div class="drop-menu">
                     <div class="division">
                         <div class="featured-wrap">
-                            {!! productCardMenu(145, 'Chile', 'template12') !!}
+                            {!! productCardMenu(145, 'Argentina', 'template12') !!}
                         </div>
                     </div>
 
-                        <div class="division">
-                            <div class="featured-wrap">
-                                {!! productCardMenu(256, 'Chile', 'template12') !!}
+                    <div class="division">
+                        <div class="featured-wrap">
+                            {!! productCardMenu(256, 'Chile', 'template12') !!}
+                        </div>
+                    </div>
+
+                    <div class="division">
+                        <a href="/c/meias-garrafas">
+                            <div class="every-category">
+                                <h3>Veja todos os vinhos
+                                    em meia garrafa</h3>
+                                <span>></span>
                             </div>
-                        </div>
-
-                        <div class="division">
-                            <a href="/c/meias-garrafas">
-                                <div class="every-category">
-                                    <h3>Veja todos os vinhos
-                                        em meia garrafa</h3>
-                                    <span>></span>
-                                </div>
-                            </a>
-                        </div>
+                        </a>
                     </div>
+                </div>
             </li>
 
             <li class="menu-item larger760-right template9">
@@ -384,26 +398,28 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                        <li><a href="/c/robert-parker">Robert Parker</a></li>
+                            <li><a href="/c/robert-parker">Robert Parker</a></li>
                             <li><a href="/c/95-mais-pontos">95+ pontos</a></li>
                             <li><a href="/c/best-buys">Best Buys</a></li>
                             <li><a href="/c/90-mais-pontos">90+ pontos</a></li>
                             <li><a href="/c/wine-spectator">Wine Spectator</a></li>
-                            <li><a class="all-links" href="/c/vinhos-pontuados">Todos os vinhos pontuados <small>></small></a></li>
+                            <li><a class="all-links" href="/c/vinhos-pontuados">Todos os vinhos pontuados
+                                    <small>></small>
+                                </a></li>
                         </ul>
                     </div>
 
-                      <div class="division">
-                            <div class="featured-wrap">
-                                {!! productCardMenu(135, 'Chile', 'template9') !!}
-                            </div>
+                    <div class="division">
+                        <div class="featured-wrap">
+                            {!! productCardMenu(135, 'Argentina', 'template9') !!}
                         </div>
+                    </div>
 
-                      <div class="division">
-                            <div class="featured-wrap">
-                                {!! productCardMenu(363, 'Chile', 'template9') !!}
-                            </div>
+                    <div class="division">
+                        <div class="featured-wrap">
+                            {!! productCardMenu(363, 'Itália', 'template9') !!}
                         </div>
+                    </div>
                 </div>
             </li>
 
