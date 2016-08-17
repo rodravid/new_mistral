@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Core\Http\Controllers\Auth;
 
+use Event;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,6 +36,10 @@ class PasswordController extends Controller
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+
+        foreach ($user->releaseEvents() as $event) {
+            Event::fire($event);
+        }
 
         Auth::guard($this->getGuard())->login($user);
     }

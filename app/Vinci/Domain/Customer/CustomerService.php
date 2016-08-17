@@ -65,7 +65,11 @@ class CustomerService
         }
 
         return $this->saveCustomer($data, function() use ($id) {
-            return $this->repository->find($id);
+            $customer = $this->repository->find($id);
+
+            $customer->raise(new CustomerWasUpdated($customer));
+
+            return $customer;
         });
     }
 
@@ -118,19 +122,20 @@ class CustomerService
 
         $this->syncAddresses($customer, $data);
 
-        $creating = empty($customer->getId());
-
         $this->repository->save($customer);
 
-        if (! isset($data['disable_events'])) {
-            if ($creating) {
-                $this->event->fire(new CustomerWasCreated($customer));
-            } else {
-                $this->event->fire(new CustomerWasUpdated($customer));
+        if ($this->shoudFireEvents($data)) {
+            foreach ($customer->releaseEvents() as $event) {
+                $this->event->fire($event);
             }
         }
 
         return $customer;
+    }
+
+    public function shoudFireEvents($data)
+    {
+        return ! isset($data['disable_events']);
     }
 
     protected function syncAddresses(Customer $customer, $data)
