@@ -60,7 +60,7 @@ class CountryController extends BaseTaxonomyController
                         'pageTitle' => 'Vinhos por país',
                         'pageDescription' => $pageDescription,
                         'template' => 'template1',
-                        'imageTitle' => 'bg-pais.jpg'
+                        'imageTitle' => 'bg-pais.png'
                     ]);
     }
 
