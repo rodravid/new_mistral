@@ -160,7 +160,7 @@
                             <li><a href="/c/regiao/mendoza">Mendoza</a></li>
                             <li><a href="/c/regiao/toscana">Toscana</a></li>
                             <li><a href="/c/regiao/bordeaux">Bordeaux</a></li>
-                            <li><a href="/c/regiao/douro-e-porto">Douro e Porto</a></li>
+                            <li><a href="/c/vitrine/douro-e-porto">Douro e Porto</a></li>
                             <li><a href="/c/regiao/alentejo">Alentejo</a></li>
                             <li><a href="/c/regiao/bairrada">Bairrada</a></li>
                         </ul>
@@ -240,7 +240,7 @@
                             <li><a href="/c/tipo-de-vinho/rosados">Rosados</a></li>
                             <li><a href="/c/tipo-de-vinho/champagne-e-espumantes">Champagne e Espumantes</a></li>
                             <li><a href="/c/tipo-de-vinho/porto">Porto</a></li>
-                            <li><a href="/c/tipo-de-vinho/sobremesa">Sobremesa</a></li>
+                            <li><a href="/c/vitrine/sobremesa">Sobremesa</a></li>
                         </ul>
                     </div>
 
