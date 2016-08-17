@@ -5,12 +5,15 @@ namespace Vinci\Domain\Customer;
 use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
+use Hash;
 use Vinci\App\Core\Services\Presenter\Presentable;
 use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\App\Website\Http\Customer\Presenters\CustomerPresenter;
 use Vinci\Domain\Auth\Authenticatable;
 use Vinci\Domain\Common\Traits\HasIntegrationStatus;
 use Vinci\Domain\Customer\Address\Address;
+use Vinci\Domain\Customer\Events\CustomerPasswordWasChanged;
+use Vinci\Domain\Customer\Events\CustomerWasCreated;
 use Vinci\Domain\Product\ProductInterface;
 use Vinci\Domain\ShoppingCart\ShoppingCartInterface;
 use Vinci\Domain\User\User;
@@ -145,6 +148,8 @@ class Customer extends User implements CustomerInterface, Presentable
         $this->addresses = new ArrayCollection;
         $this->shoppingCarts = new ArrayCollection;
         $this->favoriteProducts = new ArrayCollection;
+
+        $this->raise(new CustomerWasCreated($this));
     }
 
     public function getName()
@@ -246,7 +251,6 @@ class Customer extends User implements CustomerInterface, Presentable
         return $this;
     }
 
-
     public function getPhone()
     {
         return $this->phone;
@@ -327,6 +331,19 @@ class Customer extends User implements CustomerInterface, Presentable
     public function isCompany()
     {
         return $this->customerType == CustomerType::COMPANY;
+    }
+
+    public function setPassword($password)
+    {
+        if (! Hash::check($password, $this->password)) {
+
+            $this->password = bcrypt($password);
+
+            if (! empty($this->id)) {
+                $this->raise(new CustomerPasswordWasChanged($this));
+            }
+
+        }
     }
 
     public function getOrders()

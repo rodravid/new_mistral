@@ -18,6 +18,8 @@ use LaravelDoctrine\Extensions\SoftDeletes\SoftDeletes;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\ACL\ACLService;
 use Vinci\Domain\ACL\Role\Role;
+use Vinci\Domain\Common\AggregateRoot;
+use Vinci\Domain\Common\Event\HasEvents;
 use Vinci\Domain\Core\Model;
 use Vinci\Domain\Customer\Customer;
 use Vinci\Domain\Image\Image;
@@ -38,10 +40,11 @@ abstract class User extends Model implements
     CanResetPassword,
     HasRolesContract,
     HasPermissionsContract,
-    HasSettings
+    HasSettings,
+    AggregateRoot
 {
 
-    use Timestamps, SoftDeletes, HasRoles, HasPermissions, Authorizable;
+    use Timestamps, SoftDeletes, HasRoles, HasPermissions, Authorizable, HasEvents;
 
     /**
      * @ORM\Id
