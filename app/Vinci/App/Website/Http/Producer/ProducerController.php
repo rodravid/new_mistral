@@ -57,7 +57,7 @@ class ProducerController extends BaseTaxonomyController
                         'pageTitle' => 'Vinhos por produtor',
                         'pageDescription' => $pageDescription,
                         'template' => 'template3',
-                        'imageTitle' => 'bg-produtor.jpg'
+                        'imageTitle' => 'bg-produtor.png'
                     ]);
     }
 
