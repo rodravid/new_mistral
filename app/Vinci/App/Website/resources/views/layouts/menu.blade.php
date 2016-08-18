@@ -282,7 +282,7 @@
                             <li><a href="{{ route('category.grape.show', ['sangiovese']) }}">Sangiovese</a></li>
                             <li><a href="{{ route('category.grape.show', ['pinot-noir']) }}">Pinot Noir</a></li>
                             <li><a href="{{ route('category.grape.show', ['syrah-shiraz']) }}">Syrah e Shiraz</a></li>
-                            <li><a href="/c/tipo-de-uva/primitivo">Primitivo</a></li>
+                            <li><a href="/c/tipo-de-uva/zinfandel-primitivo">Primitivo</a></li>
                             <li><a href="/c/vitrine/cortes-de-varias-uvas">Cortes de várias uvas </a></li>
                         </ul>
                     </div>
