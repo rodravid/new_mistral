@@ -2,7 +2,6 @@
 
 namespace Vinci\App\Integration\ERP\Order\Jobs;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -23,15 +22,13 @@ class ExportOrderToErp extends Job implements ShouldQueue
         $this->orderId = $orderId;
     }
 
-    public function handle(OrderRepository $repository, OrderExporter $exporter, EntityManagerInterface $entityManager)
+    public function handle(OrderRepository $repository, OrderExporter $exporter)
     {
         try {
 
             $order = $repository->getOneById($this->orderId);
 
             $exporter->export($order);
-
-            $entityManager->clear();
 
         } catch (CustomerNotIntegratedException $e) {
 
@@ -45,6 +42,9 @@ class ExportOrderToErp extends Job implements ShouldQueue
             $this->delete();
 
             throw $e;
+
+        } finally {
+            app('em')->clear();
         }
     }
 

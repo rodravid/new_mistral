@@ -43,6 +43,9 @@ class SendOrderConfirmationMail extends Job implements ShouldQueue
             Log::error(sprintf('Erro ao enviar email de confirmacao de pedido: %s', $e->getMessage()));
 
             throw $e;
+
+        } finally {
+            app('em')->clear();
         }
     }
 

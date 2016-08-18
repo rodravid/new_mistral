@@ -2,7 +2,6 @@
 
 namespace Vinci\App\Integration\ERP\Customer\Jobs;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -22,7 +21,7 @@ class ExportCustomerToErp extends Job implements ShouldQueue
         $this->customerId = $customerId;
     }
 
-    public function handle(CustomerRepository $repository, CustomerExporter $exporter, EntityManagerInterface $entityManager)
+    public function handle(CustomerRepository $repository, CustomerExporter $exporter)
     {
         try {
 
@@ -30,14 +29,15 @@ class ExportCustomerToErp extends Job implements ShouldQueue
 
             $exporter->export($customer);
 
-            $entityManager->clear();
-
         } catch (Exception $e) {
 
             $this->attempts() < 3 ?
                 $this->release() : $this->delete();
 
             throw $e;
+
+        } finally {
+            app('em')->clear();
         }
     }
 

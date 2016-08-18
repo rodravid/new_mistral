@@ -42,6 +42,9 @@ class SendCustomerConfirmationMail extends Job implements ShouldQueue
             Log::error(sprintf('Erro ao enviar email de confirmacao de cadastro: %s', $e->getMessage()));
 
             throw $e;
+            
+        } finally {
+            app('em')->clear();
         }
     }
 
