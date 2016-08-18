@@ -235,9 +235,9 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/tipo-de-vinho/tintos">Tintos</a></li>
-                            <li><a href="/c/tipo-de-vinho/brancos">Brancos</a></li>
-                            <li><a href="/c/tipo-de-vinho/rosados">Rosados</a></li>
+                            <li><a href="/c/tipo-de-vinho/tinto">Tinto</a></li>
+                            <li><a href="/c/tipo-de-vinho/branco">Branco</a></li>
+                            <li><a href="/c/tipo-de-vinho/rosado">Rosado</a></li>
                             <li><a href="/c/tipo-de-vinho/champagne-e-espumantes">Champagne e Espumantes</a></li>
                             <li><a href="/c/tipo-de-vinho/porto">Porto</a></li>
                             <li><a href="/c/vitrine/sobremesa">Sobremesa</a></li>
