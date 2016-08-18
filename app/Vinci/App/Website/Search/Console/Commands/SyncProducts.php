@@ -45,7 +45,7 @@ class SyncProducts extends Command
 
         $this->message("Indexing products in elasticsearch...");
 
-        $response = $this->indexerService->sync();
+        $response = $this->indexerService->syncAll();
 
         $total = count($response['items']);
 

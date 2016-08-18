@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Events\Dispatcher;
 use Vinci\Domain\Image\ImageVersion;
+use Vinci\Domain\Product\Events\ProductWasUpdated;
 use Vinci\Domain\Product\Factories\Contracts\ProductFactory;
 use Vinci\Domain\Product\Product;
 use Vinci\Domain\Product\ProductVariantInterface;
@@ -65,6 +66,8 @@ class ProductManagementService
             $product = $this->repository->find($id);
 
             $this->productFactory->override($product, $data);
+
+            $product->raise(new ProductWasUpdated($product));
 
             return $product;
         });
