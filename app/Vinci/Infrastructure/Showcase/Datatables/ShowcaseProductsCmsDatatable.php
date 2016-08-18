@@ -41,11 +41,12 @@ class ShowcaseProductsCmsDatatable extends AbstractDatatables
 
         if (!empty($search['value'])) {
 
-            $qb->andWhere($qb->expr()->eq('v.sku', ':id'));
-
-            $qb->orWhere($qb->expr()->orX(
-                $qb->expr()->like('v.title', ':search')
-            ));
+            $qb->andWhere($qb->expr()->orX(
+                $qb->expr()->eq('v.sku', ':id')),
+                $qb->expr()->orX(
+                    $qb->expr()->like('v.title', ':search')
+                )
+            );
 
             $qb->setParameter('id', $search['value']);
             $qb->setParameter('search', '%' . $search['value'] . '%');
