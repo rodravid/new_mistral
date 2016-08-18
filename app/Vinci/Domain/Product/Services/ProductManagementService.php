@@ -67,7 +67,13 @@ class ProductManagementService
 
             $this->productFactory->override($product, $data);
 
-            $product->raise(new ProductWasUpdated($product));
+            $event = new ProductWasUpdated($product);
+
+            if (isset($data['user'])) {
+                $event->setRaisedByUserInteration(true);
+            }
+
+            $product->raise($event);
 
             return $product;
         });

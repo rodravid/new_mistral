@@ -2,7 +2,6 @@
 
 namespace Vinci\Domain\Product\Jobs;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -23,13 +22,11 @@ class SyncProductWithElasticsearch extends Job implements ShouldQueue
         $this->productId = $productId;
     }
 
-    public function handle(ProductIndexerService $productIndexer, EntityManagerInterface $entityManager)
+    public function handle(ProductIndexerService $productIndexer)
     {
         try {
 
             $productIndexer->syncOne($this->productId);
-
-            $entityManager->clear();
 
         } catch (Exception $e) {
 
@@ -38,7 +35,7 @@ class SyncProductWithElasticsearch extends Job implements ShouldQueue
             Log::error(sprintf('Error when indexing product #%s in elasticsearch', $this->productId));
 
         } finally {
-            $entityManager->clear();
+            app('em')->clear();
         }
     }
 }

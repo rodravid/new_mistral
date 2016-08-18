@@ -121,6 +121,8 @@ class ProductController extends Controller
 
             $data = $request->all();
 
+            $data['user'] = $this->user;
+
             $product = $this->service->update($data, $id);
 
             Flash::success("Produto {$product->getTitle()} atualizado com sucesso!");
