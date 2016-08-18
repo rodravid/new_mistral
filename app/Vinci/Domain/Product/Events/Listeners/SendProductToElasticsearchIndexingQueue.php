@@ -18,10 +18,10 @@ class SendProductToElasticsearchIndexingQueue
 
     public function handle(ProductWasUpdated $event)
     {
-        $this->dispatcher->dispatch(
-            (new SyncProductWithElasticsearch($event->product->getId()))
-                ->onQueue('vinci-elasticsearch-products')
-        );
+//        $this->dispatcher->dispatch(
+//            (new SyncProductWithElasticsearch($event->product->getId()))
+//                ->onQueue('vinci-elasticsearch-products')
+//        );
     }
 
 }
