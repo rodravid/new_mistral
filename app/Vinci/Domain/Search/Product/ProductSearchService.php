@@ -233,13 +233,8 @@ class ProductSearchService extends SearchService
                     'should' => [
                         ['term' => ['_id' => $keyword]],
                         ['term' => ['sku' => $keyword]],
-                        ['multi_match' => [
-                            'type' => 'most_fields',
-                            'query' => $keyword,
-                            'boost' => 4,
-                            'fields' => ['title', 'title.autocomplete'],
-                            'fuzziness' => 1
-                        ]],
+                        ['match' => ['title' => ['query' => $keyword, 'boost' => 4, 'fuzziness' => 1]]],
+                        ['match' => ['title.autocomplete' => ['query' => $keyword, 'boost' => 3]]],
                         ['match' => ['keywords' => ['query' => $keyword, 'boost' => 3]]],
                         ['match' => ['short_description' => $keyword]],
                         ['match' => ['country.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
@@ -356,11 +351,11 @@ class ProductSearchService extends SearchService
     protected function getSort($order)
     {
         switch ($order) {
-            case 1: return ['available:desc', '_score']; break;
-            case 2: return ['available:desc', 'price:asc']; break;
-            case 3: return ['available:desc', 'price:desc']; break;
-            case 4: return ['available:desc', 'title.raw:asc']; break;
-            case 5: return ['available:desc', 'title.raw:desc']; break;
+            case 1: return ['available:desc', 'relevance:desc', '_score']; break;
+            case 2: return ['available:desc', 'relevance:desc', 'price:asc']; break;
+            case 3: return ['available:desc', 'relevance:desc', 'price:desc']; break;
+            case 4: return ['available:desc', 'relevance:desc', 'title.raw:asc']; break;
+            case 5: return ['available:desc', 'relevance:desc', 'title.raw:desc']; break;
         }
 
         return ['_score'];

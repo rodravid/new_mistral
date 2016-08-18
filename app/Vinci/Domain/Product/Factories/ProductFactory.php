@@ -40,8 +40,7 @@ class ProductFactory implements ProductFactoryInterface
         GrapeFactory $grapeFactory,
         ScoreFactory $scoreFactory,
         AttributeFactory $attributeFactory
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
         $this->variantFactory = $variantFactory;
         $this->productArchTypeFactory = $productArchTypeFactory;
@@ -188,7 +187,8 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAt($newProduct->getStartsAt())
             ->setExpirationAt($newProduct->getExpirationAt())
             ->setOnline($newProduct->isOnline())
-            ->setPackSize($newProduct->getPackSize());
+            ->setPackSize($newProduct->getPackSize())
+            ->setSearchRelevance($newProduct->getSearchRelevance());
 
         if (array_has($data, 'stock')) {
             $product->changeStock($newProduct->getStock());

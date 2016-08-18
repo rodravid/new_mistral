@@ -137,7 +137,8 @@ class ProductIndexerService extends IndexingService
             'description' => $product->getDescription(),
             'short_description' => $product->getShortDescription(),
             'price' => $product->getSalePrice(),
-            'available' => (int)$product->isAvailable()
+            'available' => (int)$product->isAvailable(),
+            'relevance' => $product->getSearchRelevance()
         ];
 
         if ($product->hasCountry()) {

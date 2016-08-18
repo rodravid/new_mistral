@@ -132,6 +132,11 @@ class ProductVariant extends Model implements ProductVariantInterface, Presentab
     protected $packSize;
 
     /**
+     * @ORM\Column(type="integer", name="search_relevance", options={"default" = 0}, nullable=true)
+     */
+    protected $searchRelevance = 0;
+
+    /**
      * @ORM\Version
      * @ORM\Column(type="integer", options={"default" = 0})
      */
@@ -544,6 +549,17 @@ class ProductVariant extends Model implements ProductVariantInterface, Presentab
     public function setPackSize($packSize)
     {
         $this->packSize = (int) $packSize;
+        return $this;
+    }
+
+    public function getSearchRelevance()
+    {
+        return $this->searchRelevance;
+    }
+
+    public function setSearchRelevance($searchRelevance)
+    {
+        $this->searchRelevance = intval($searchRelevance);
         return $this;
     }
 }
