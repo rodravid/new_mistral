@@ -36,6 +36,10 @@ class EventServiceProvider extends ServiceProvider
 
         'Vinci\Domain\Customer\Events\CustomerPasswordWasChanged' => [
             'Vinci\Domain\Customer\Events\Listeners\ClearCustomerKeyOnPasswordChange'
+        ],
+
+        'Vinci\Domain\Product\Events\ProductWasUpdated' => [
+            'Vinci\Domain\Product\Events\Listeners\SendProductToElasticsearchIndexingQueue'
         ]
     ];
 

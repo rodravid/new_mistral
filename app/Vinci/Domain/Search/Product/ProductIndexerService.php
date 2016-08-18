@@ -5,12 +5,14 @@ namespace Vinci\Domain\Search\Product;
 use Elasticsearch\Client;
 use Exception;
 use Vinci\Domain\Product\ProductInterface;
+use Vinci\Domain\Search\Exceptions\IndexingSpecificationException;
 use Vinci\Domain\Search\Indexing\IndexingService;
 use Vinci\Domain\Search\Product\Indexing\DefaultProductIndex;
 use Vinci\Domain\Search\Product\Indexing\IndexManager;
 use Vinci\Domain\Search\Product\Indexing\Specification\ProductIndexingSpecification;
 use Vinci\Domain\Showcase\ShowcaseRepository;
 use Vinci\Domain\Showcase\StaticShowcases\StaticShowcasesProvider;
+use Vinci\Domain\Specification\AbstractSpecification;
 
 class ProductIndexerService extends IndexingService
 {
@@ -37,9 +39,34 @@ class ProductIndexerService extends IndexingService
         $this->staticShowcasesProvider = $staticShowcasesProvider;
     }
 
-    public function sync()
+    public function syncOne($product, AbstractSpecification $indexingSpecification = null)
     {
-        $indexingSpecification = new ProductIndexingSpecification;
+        try {
+
+            $product = $this->normalizeProduct($product);
+
+            $this->checkSpecification($product, $this->normalizeIndexingSpecification($indexingSpecification));
+
+            $params = [
+                'index' => 'vinci',
+                'type' => 'product',
+                'id' => $product->getId(),
+                'body' => $this->getDataForSearch($product)
+            ];
+
+            return $this->client->index($params);
+
+        } catch (Exception $e) {
+
+            $this->delete($product);
+
+            throw $e;
+        }
+    }
+
+    public function syncAll($indexingSpecification = null)
+    {
+        $indexingSpecification = $this->normalizeIndexingSpecification($indexingSpecification);
         $result = $this->productRepository->getProductsForIndexing();
         $params = [];
         $toDelete = [];
@@ -50,34 +77,25 @@ class ProductIndexerService extends IndexingService
 
             try {
 
-                if ($indexingSpecification->isSatisfiedBy($product)) {
+                $this->checkSpecification($product, $indexingSpecification);
 
-                    $data = $this->getDataForSearch($product);
+                $data = $this->getDataForSearch($product);
 
-                    $params['body'][] = [
-                        'index' => [
-                            '_index' => 'vinci',
-                            '_type' => 'product',
-                            '_id' => $product->getId()
-                        ]
-                    ];
+                $params['body'][] = [
+                    'index' => [
+                        '_index' => 'vinci',
+                        '_type' => 'product',
+                        '_id' => $product->getId()
+                    ]
+                ];
 
-                    $params['body'][] = $data;
-
-                } else {
-
-                    throw new Exception(
-                        sprintf('The product #%s can not be indexed or not is satisfied by indexing specification.', $product->getId())
-                    );
-
-                }
+                $params['body'][] = $data;
 
             } catch (Exception $e) {
                 $toDelete[] = $product->getId();
             }
 
             app('em')->detach($product);
-
         }
 
         $result = $this->client->bulk($params);
@@ -224,6 +242,33 @@ class ProductIndexerService extends IndexingService
         }
 
         return $data;
+    }
+
+    private function normalizeProduct($product)
+    {
+        if ($product instanceof ProductInterface) {
+            return $product;
+        }
+
+        return $this->productRepository->getOneById($product);
+    }
+
+    private function checkSpecification(ProductInterface $product, AbstractSpecification $specification)
+    {
+        if (! $specification->isSatisfiedBy($product)) {
+            throw new IndexingSpecificationException(
+                sprintf('The product #%s can not be indexed or not is satisfied by indexing specification.', $product->getId())
+            );
+        }
+    }
+
+    private function normalizeIndexingSpecification($indexingSpecification = null)
+    {
+        if (! empty($indexingSpecification)) {
+            return $indexingSpecification;
+        }
+
+        return new ProductIndexingSpecification;
     }
 
 }
