@@ -17,7 +17,14 @@ angular.module('app')
 
                 $item.bind('click', function() {
 
-                    cartService.addItem($scope.variantId, getQuantity()).then(function(response) {
+                    var quantity = getQuantity();
+
+                    if (quantity <= 0) {
+                        swal('Ops!', 'A quantidade mínima para efetuar a compra é de 1 unidade.', 'warning');
+                        return false;
+                    }
+
+                    cartService.addItem($scope.variantId, quantity).then(function(response) {
 
                         swal('Pronto!', response.message, 'success');
 

@@ -26,7 +26,7 @@ angular.module('app')
         self.decrementItemQuantity = function() {
             self.itemQuantity--;
             if (self.itemQuantity <= 0) {
-                self.itemQuantity = 1;
+                self.itemQuantity = 0;
             }
 
             $rootScope.itemQuantity = self.itemQuantity;
