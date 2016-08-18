@@ -465,6 +465,17 @@ class Product extends Model implements ProductInterface, Presentable
         return $this;
     }
 
+    public function getSearchRelevance()
+    {
+        return $this->getMasterVariant()->getSearchRelevance();
+    }
+
+    public function setSearchRelevance($relevance)
+    {
+        $this->getMasterVariant()->setSearchRelevance($relevance);
+        return $this;
+    }
+
     public function getPrices()
     {
         return $this->getMasterVariant()->getPrices();

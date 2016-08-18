@@ -80,6 +80,9 @@ class DefaultProductIndex extends AbstractIndex
                         'available' => [
                             'type' => 'integer'
                         ],
+                        'relevance' => [
+                            'type' => 'integer'
+                        ],
                         'bottle_size' => [
                             'type' => 'string',
                             'analyzer' => 'analyzer_keyword',
@@ -185,7 +188,7 @@ class DefaultProductIndex extends AbstractIndex
                         'suggest' => [
                             'type' => 'completion',
                             'index_analyzer' => 'simple',
-                            'search_analyzer' => 'simple',
+                            'search_analyzer' => 'autocomplete',
                             'payloads' => true,
                         ]
                     ]
