@@ -161,7 +161,7 @@
                             <li><a href="/c/regiao/toscana">Toscana</a></li>
                             <li><a href="/c/regiao/bordeaux">Bordeaux</a></li>
                             <li><a href="/c/vitrine/douro-e-porto">Douro e Porto</a></li>
-                            <li><a href="/c/regiao/alentejo">Alentejo</a></li>
+                            <li><a href="/c/regiao/valle-de-aconcagua">Valle de Aconcagua</a></li>
                             <li><a href="/c/regiao/bairrada">Bairrada</a></li>
                         </ul>
                     </div>
