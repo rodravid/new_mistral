@@ -105,7 +105,6 @@
             <div class="form-group">
                 <label for="txtCountrySlug">URL amigável</label>
                 {!! Form::text('slug', null, ['id' => 'txtCountrySlug', 'class' => 'form-control', 'placeholder' => 'URL amigável']) !!}
-                <span class="glyphicon glyphicon-link form-control-feedback"></span>
             </div>
         </div>
 
@@ -113,7 +112,6 @@
             <div class="form-group">
                 <label>Foto</label>
                 {!! Form::file('photo') !!}
-                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
             </div>
         </div>
 
