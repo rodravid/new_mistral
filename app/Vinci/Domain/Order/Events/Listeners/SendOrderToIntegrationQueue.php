@@ -2,26 +2,22 @@
 
 namespace Vinci\Domain\Order\Events\Listeners;
 
-use Illuminate\Contracts\Bus\Dispatcher;
-use Vinci\App\Integration\ERP\Order\Jobs\ExportOrderToErp;
+use Vinci\App\Integration\ERP\Order\OrderExporter;
 use Vinci\Domain\Order\Events\NewOrderWasCreated;
 
 class SendOrderToIntegrationQueue
 {
 
-    private $dispatcher;
+    private $orderExporter;
 
-    public function __construct(Dispatcher $dispatcher)
+    public function __construct(OrderExporter $orderExporter)
     {
-        $this->dispatcher = $dispatcher;
+        $this->orderExporter = $orderExporter;
     }
 
     public function handle(NewOrderWasCreated $event)
     {
-        $this->dispatcher->dispatch(
-            (new ExportOrderToErp($event->order->getId()))
-                ->onQueue('vinci-integration-orders')
-        );
+        $this->orderExporter->exportQueued($event->order, true);
     }
 
 }

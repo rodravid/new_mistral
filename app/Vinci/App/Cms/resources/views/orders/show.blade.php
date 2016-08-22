@@ -31,13 +31,28 @@
             <div class="box-body">
                 @include('cms::orders.partials.info')
 
-                @if ($loggedUser->hasPermissionTo('cms.orders.edit'))
-                    <div class="row no-print">
-                        <div class="col-xs-12">
-                            <a href="{{ route($currentModule->getEditRouteName(), $order->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                <div class="row no-print">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="btn-group" style="margin-bottom: 20px;">
+                                    @if ($loggedUser->hasPermissionTo('cms.orders.edit'))
+                                        <a href="{{ route($currentModule->getEditRouteName(), $order->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                    @endif
+
+                                    @if ($loggedUser->isSuperAdmin())
+                                        <a href="javascript:void(0);" class="btn btn-success"
+                                           data-form-link
+                                           data-confirm-title="Confirmação de envio"
+                                           data-confirm-text="Deseja realmente enviar o pedido para a fila de integração? <b>Obs:</b> O cliente também será enviado."
+                                           data-method="POST"
+                                           data-action="{{ route('cms.orders.edit#export-erp-queue', [$order->getId()]) }}"><i class="glyphicon glyphicon-export"></i> Enviar para fila de integração</a>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                @endif
+                </div>
 
             </div>
         </div>
