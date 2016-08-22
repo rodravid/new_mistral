@@ -327,6 +327,7 @@
                     swal({
                         title: confirmTitle,
                         text: confirmText,
+                        html: true,
                         type: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
