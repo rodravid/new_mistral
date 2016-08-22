@@ -161,26 +161,6 @@ class OrderController extends Controller
         return html_select_array($this->trackingStatusRepository->getAll(), 'id', 'description');
     }
 
-    public function exportToErp($orderId, Request $request)
-    {
-        $order = $this->repository->find($orderId);
-
-        try {
-
-            $this->orderExporter->export($order, $this->user->name);
-
-            Flash::success("Pedido #{$order->getNumber()} integrado com sucesso ao ERP!");
-
-            return Redirect::route('cms.orders.show', $order->getId());
-
-        } catch (Exception $e) {
-
-            Flash::error('Falha ao integrar o pedido ao ERP.');
-            return Redirect::back();
-        }
-
-    }
-
     public function exportToErpQueued($orderId, Request $request)
     {
         $order = $this->repository->find($orderId);

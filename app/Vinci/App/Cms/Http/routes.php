@@ -79,7 +79,6 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/{order}/edit', 'Order\\OrderController@edit')->name('edit');
                     $route->put('/{order}/change-status', 'Order\\OrderController@changeStatus')->name('edit#change-status');
                     $route->get('/tracking-status/load-mail-template', 'Order\\OrderController@loadMailTemplate')->name('edit#load-mail-template');
-                    $route->post('/{order}/export-erp', 'Order\\OrderController@exportToErp')->name('edit#export-erp');
                     $route->post('/{order}/export-erp-queue', 'Order\\OrderController@exportToErpQueued')->name('edit#export-erp-queue');
                 });
 
