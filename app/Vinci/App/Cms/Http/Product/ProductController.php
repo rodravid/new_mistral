@@ -93,11 +93,7 @@ class ProductController extends Controller
     {
         try {
 
-            $data = $request->all();
-            $data['image_desktop'] = $request->file('image_desktop');
-            $data['image_mobile'] = $request->file('image_mobile');
-
-            $product = $this->service->create($data);
+            $product = $this->service->create($request->all());
 
             Flash::success("Produto {$product->getTitle()} criado com sucesso!");
 
@@ -119,11 +115,7 @@ class ProductController extends Controller
     {
         try {
 
-            $data = $request->all();
-
-            $data['user'] = $this->user;
-
-            $product = $this->service->update($data, $id);
+            $product = $this->service->update(array_merge($request->all(), ['user' => $this->user]), $id);
 
             Flash::success("Produto {$product->getTitle()} atualizado com sucesso!");
 

@@ -62,6 +62,11 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
      */
     protected $expiryYear;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default" = false})
+     */
+    protected $clean = false;
+
     public function __toString()
     {
         return $this->getMaskedNumber();
@@ -151,6 +156,17 @@ class CreditCard  extends Model implements CreditCardInterface, Presentable
     public function setExpiryYear($expiryYear)
     {
         $this->expiryYear = $expiryYear;
+        return $this;
+    }
+
+    public function isClean()
+    {
+        return $this->clean;
+    }
+
+    public function setClean($clean = true)
+    {
+        $this->clean = (bool) $clean;
         return $this;
     }
 }

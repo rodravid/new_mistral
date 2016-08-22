@@ -111,16 +111,8 @@
 
         <div class="col-lg-12">
             <div class="form-group">
-                <label>Foto versão desktop</label>
-                {!! Form::file('image_desktop') !!}
-                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <label>Foto versão mobile</label>
-                {!! Form::file('image_mobile') !!}
+                <label>Foto</label>
+                {!! Form::file('photo') !!}
                 <span class="glyphicon glyphicon-picture form-control-feedback"></span>
             </div>
         </div>

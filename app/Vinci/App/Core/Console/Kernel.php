@@ -4,6 +4,7 @@ namespace Vinci\App\Core\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Vinci\App\Core\Console\Commands\ClearCreditCards;
 use Vinci\App\Core\Console\Commands\DoctrineTruncateTable;
 use Vinci\App\Core\Console\Commands\ImportCountries;
 use Vinci\App\Core\Console\Commands\ImportCustomers;
@@ -47,6 +48,7 @@ class Kernel extends ConsoleKernel
         ImportProductsTypes::class,
         ImportProductsPhotos::class,
         ImportOldOrders::class,
+        ClearCreditCards::class,
         'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsPrice',
@@ -80,5 +82,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('search:sync')
             ->everyTenMinutes();
+
+        $schedule->command('creditcards:clear')
+            ->cron('00 10 1 */3 *');
     }
 }
