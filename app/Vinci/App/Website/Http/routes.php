@@ -229,8 +229,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      * Site pages
      */
     $route->get('/paginas', 'Pages\PagesController@index');
-    $route->get('/privacidade', 'Pages\PagesController@privacy')->name('privacy.index');
-    $route->get('/duvidas-frequentes', 'Pages\PagesController@frequentDoubts')->name('frequent-doubts.index');
+    $route->get('/institucional/politica-de-privacidade', 'Pages\PagesController@privacy')->name('privacy.index');
+    $route->get('/atendimento/duvidas-frequentes', 'Pages\PagesController@frequentDoubts')->name('frequent-doubts.index');
     $route->get('/institucional/sobre-a-vinci', 'Pages\PagesController@about')->name('about.index');
     $route->get('/institucional/revendedores', 'Pages\PagesController@dealers')->name('dealers.index');
 
