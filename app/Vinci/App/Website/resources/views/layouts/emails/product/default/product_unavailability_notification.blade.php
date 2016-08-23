@@ -14,7 +14,7 @@
 
             Segue a lista de produtos indisponíveis gerada em {{ $date }}: <br /><br />
 
-            <b>Total de produtos indisponíveis:</b> {{ $total }} <br /><br /><br />
+            <b>Total de produtos indisponíveis visíveis no site:</b> {{ $total }} <br /><br /><br />
 
             <b>Produtos exibidos nas vitrines da home:</b> <br /><br />
 
@@ -52,13 +52,11 @@
                 <tr style="background-color: #888585;height: 35px;">
                     <th valign="middle" width="90" align="center" style="color:#ffffff;font-family:Arial, verdana, sans-serif; font-size:15px;">#Código</th>
                     <th valign="middle" align="left" style="color:#ffffff;font-family:Arial, verdana, sans-serif; font-size:15px;padding-left: 5px;">Título</th>
-                    <th valign="middle" width="90" align="left" style="color:#ffffff;font-family:Arial, verdana, sans-serif; font-size:15px;padding-left: 5px;">Visível Site</th>
                 </tr>
                 @foreach($productsDefault as $product)
                     <tr>
                         <td valign="middle" align="center" style="height: 35px;border: 1px solid #cccccc;color:#000000;font-family:Arial, verdana, sans-serif; font-size:15px;"><a href="{{ url('/p/vinho/' . $product['slug']) }}" target="_blank" style="color:{{ $color }} !important;">{{ $product['sku'] }}</a></td>
                         <td valign="middle" style="height: 35px;border: 1px solid #cccccc;color:#000000;font-family:Arial, verdana, sans-serif; font-size:13px;padding-left: 5px;">{{ $product['title'] }}</td>
-                        <td valign="middle" align="center" style="height: 35px;border: 1px solid #cccccc;color:#000000;font-family:Arial, verdana, sans-serif; font-size:13px;padding-left: 5px;">{{ $product['online'] ? 'Sim' : 'Não' }}</td>
                     </tr>
                 @endforeach
             </table>
