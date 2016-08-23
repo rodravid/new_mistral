@@ -115,6 +115,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
     protected $trackingStatus;
 
     /**
+     * @ORM\Column(type="boolean", options={"default" = false}, nullable=true)
+     */
+    protected $googleTag = false;
+
+    /**
      * @ORM\OneToOne(targetEntity="Vinci\Domain\Order\History\OrderHistory", mappedBy="order", cascade={"persist"})
      */
     protected $history;
@@ -467,6 +472,17 @@ class Order extends Model implements OrderInterface, AggregateRoot
     public function setErpNumber($erpNumber)
     {
         $this->erpNumber = $erpNumber;
+        return $this;
+    }
+    
+    public function getGoogleTag()
+    {
+        return $this->googleTag;
+    }
+
+    public function setGoogleTag($googleTag)
+    {
+        $this->googleTag = (bool) $googleTag;
         return $this;
     }
 

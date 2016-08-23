@@ -1,5 +1,19 @@
 @extends('website::layouts.master')
 
+@if ($googleTransactionProducts)
+
+    @section('tagmanager')
+
+        <script type="text/javascript">
+
+            var transactionProducts = {!! $googleTransactionProducts !!};
+
+        </script>
+
+    @endsection
+
+@endif
+
 @section('content')
     <div class="header-internal header-checkout-confirmation template1-bg">
         @include('website::layouts.menu')

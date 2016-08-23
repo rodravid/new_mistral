@@ -97,12 +97,12 @@ class OrderItem extends Model implements Presentable
 
     public function getPrice()
     {
-        return $this->price;
+        return (double) $this->price;
     }
 
     public function setPrice($price)
     {
-        $this->price = $price;
+        $this->price = (double) $price;
         return $this;
     }
 
