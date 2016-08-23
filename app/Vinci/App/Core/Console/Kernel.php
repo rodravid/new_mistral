@@ -20,6 +20,8 @@ use Vinci\App\Core\Console\Commands\MakeSlugProducer;
 use Vinci\App\Core\Console\Commands\MakeSlugProductType;
 use Vinci\App\Core\Console\Commands\MakeSlugRegion;
 use Vinci\App\Core\Console\Commands\RandomizeProductTemplate;
+use Vinci\App\Core\Console\Commands\SendProductUnavailabilityNotification;
+use Vinci\App\Core\Console\Commands\Test;
 use Vinci\App\Core\Console\Commands\UniqueIdTest;
 use Vinci\App\Website\Search\Console\Commands\SyncProducts;
 
@@ -49,6 +51,8 @@ class Kernel extends ConsoleKernel
         ImportProductsPhotos::class,
         ImportOldOrders::class,
         ClearCreditCards::class,
+        Test::class,
+        SendProductUnavailabilityNotification::class,
         'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsPrice',

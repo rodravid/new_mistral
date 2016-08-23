@@ -378,6 +378,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
             $route->get('order-mail-template/{namespace}/{name}/{order}', 'OrderMailTemplateController@render');
             $route->get('customer-mail-template/{namespace}/{name}/{customer}', 'CustomerMailTemplateController@render');
+            $route->get('mail-template/{namespace}/{type}/{name}', 'MailTemplateController@render');
 
         });
 
