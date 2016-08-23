@@ -91,6 +91,6 @@ class Kernel extends ConsoleKernel
             ->cron('00 */2 * * *');
 
         $schedule->command('creditcards:clear')
-            ->cron('00 10 1 */3 *');
+            ->daily();
     }
 }
