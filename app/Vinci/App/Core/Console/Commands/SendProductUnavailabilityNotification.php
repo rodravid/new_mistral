@@ -104,7 +104,7 @@ class SendProductUnavailabilityNotification extends Command
 
         $qb = $this->em->createQueryBuilder();
 
-        $qb->select('p.id, v.sku, v.title, v.slug')
+        $qb->select('p.id, v.sku, v.title, v.slug, p.online')
             ->from(Product::class, 'p')
             ->join('p.variants', 'v')
             ->where($qb->expr()->eq('v.stock', 0));
@@ -137,7 +137,7 @@ class SendProductUnavailabilityNotification extends Command
     {
         $qb = $this->em->createQueryBuilder();
 
-        $qb->select('p.id, v.sku, v.title, v.slug')
+        $qb->select('p.id, v.sku, v.title, v.slug, p.online')
             ->from(ShowcaseItem::class, 'i')
             ->join('i.showcase', 's')
             ->join('i.product', 'p')
