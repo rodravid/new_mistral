@@ -12,33 +12,38 @@
 
             Olá Felipe, <br><br>
 
-            Segue a lista de produtos sem estoque: <br /><br />
+            Segue a lista de produtos sem estoque da data 23/08/2016 às 10:35h: <br /><br />
 
             <table>
                 <tr>
                     <th>#Código</th>
                     <th>Título</th>
                     <th>URL</th>
+                    <th>Visível na home</th>
                 </tr>
                 <tr>
                     <td>12345</td>
                     <td>Cabernet Sauvgnon Reserva 2015</td>
                     <td><a href="/teste">Link do produto</a></td>
+                    <td>Sim</td>
                 </tr>
                 <tr>
                     <td>12345</td>
                     <td>Cabernet Sauvgnon Reserva 2015</td>
                     <td><a href="/teste">Link do produto</a></td>
+                    <td>Sim</td>
                 </tr>
                 <tr>
                     <td>12345</td>
                     <td>Cabernet Sauvgnon Reserva 2015</td>
                     <td><a href="/teste">Link do produto</a></td>
+                    <td>Sim</td>
                 </tr>
                 <tr>
                     <td>12345</td>
                     <td>Cabernet Sauvgnon Reserva 2015</td>
                     <td><a href="/teste">Link do produto</a></td>
+                    <td>Não</td>
                 </tr>
             </table>
 
