@@ -42,6 +42,8 @@
     })(window, document, 'script', 'dataLayer', 'GTM-WWHF7K');</script>
 <!-- End Google Tag Manager -->
 
+@yield('tagmanager')
+
 @yield('content')
 
 <div id="current-modal"></div>
