@@ -12,4 +12,15 @@ class DoctrineUserRepository extends DoctrineBaseRepository
         return $this->findOneBy(['email' => $email]);
     }
 
+    public function findByRole(array $role)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->join('a.roles', 'r')
+            ->where($qb->expr()->in('r.name', $role));
+
+        return $qb->getQuery()->getResult();
+
+    }
+
 }
