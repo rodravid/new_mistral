@@ -39,7 +39,7 @@ class ConfirmationController extends Controller
 
     private function makeGoogleTransactionProducts($order)
     {
-        if ($order->getGoogleTag() == false) {
+        if ($order->getGoogleTag() == false && app()->environment('production')) {
             $order->setGoogleTag(true);
 
             $tag = fractal()
