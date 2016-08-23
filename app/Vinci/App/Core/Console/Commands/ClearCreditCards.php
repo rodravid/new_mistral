@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Core\Console\Commands;
 
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Console\Command;
 use Vinci\Domain\Payment\CreditCard;
@@ -45,7 +46,8 @@ class ClearCreditCards extends Command
         $qb
             ->select('c')
             ->from(CreditCard::class, 'c')
-            ->where($qb->expr()->eq('c.clean', 0));
+            ->where($qb->expr()->lte('c.createdAt', $qb->expr()->literal(Carbon::now()->subMonths(3)->format('Y-m-d H:i:s'))))
+            ->andWhere($qb->expr()->eq('c.clean', 0));
 
         $iterableResult = $qb->getQuery()->iterate();
 
