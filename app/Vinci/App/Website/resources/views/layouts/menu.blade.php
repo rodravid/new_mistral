@@ -350,7 +350,7 @@
                     </div>
                     <div class="division">
                         <div class="featured-wrap">
-                            {!! productCardMenu(206, 'Chile', 'template7') !!}
+                            {!! productCardMenu(258, 'Chile', 'template7') !!}
                         </div>
                     </div>
 
@@ -417,7 +417,7 @@
 
                     <div class="division">
                         <div class="featured-wrap">
-                            {!! productCardMenu(363, 'Itália', 'template9') !!}
+                            {!! productCardMenu(3031, 'Itália', 'template9') !!}
                         </div>
                     </div>
                 </div>
