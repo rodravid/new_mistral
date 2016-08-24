@@ -2627,17 +2627,21 @@ ul.pagination{
 			width: auto;
 			max-width: 100%;
 		}
-		.slider-gift div {
-			text-align:center; 
+		.slider-gift .slick-slide {
+			text-align: center;
+			width: 30%;
+			display: inline-block;
 		}
 
 		.description-gift {
 			color:$black;
 			font-size:17px;
+			padding: 0 15px;
+			height: 54px;
 		}
 		.price-gift {
 			color:$blue;
-			font-size:17px;
+			font-size:20px;
 		}
 
 		.modal-gift {

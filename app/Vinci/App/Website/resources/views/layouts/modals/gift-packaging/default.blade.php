@@ -6,10 +6,9 @@
             <h2 class="title-modal-gift mbottom20">Selecione as embalagens</h2>
 
             <p class="txt-modal-gift mbottom20">
-                Nesta área poderá selecionar quais embalagens deseja comprar e como
-                serão as combinações dos produtos com as embalagens adquiridas.
-                Caso não queira nehuma das embalagens especiais estas serão enviadas
-                com as embalagens gratuitas.
+                Nesta área poderá selecionar quais embalagens deseja comprar e como serão as combinações
+                dos produtos com as embalagens adquiridas. Caso não queira nenhuma das embalagens especiais,
+                os produtos marcados com opção "embalar para presente" serão enviados em nossas embalagens gratuitas.
             </p>
 
             <div class="slider-gift">
