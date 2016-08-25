@@ -52,14 +52,14 @@ angular.module('app')
 
                 $scope.decrementQuantity = function() {
 
-                    showLoading();
-
                     $scope.quantity--;
 
                     if ($scope.quantity <= 0) {
                         $scope.quantity = 1;
                         return;
                     }
+
+                    showLoading();
 
                     delay(function() {
                         syncQuantity(itemId, $scope.quantity);
