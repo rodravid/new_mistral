@@ -2275,7 +2275,8 @@ ul.pagination{
 				width:100%;
 			}
 			@media #{$screen767} { 
-				display:none;
+				margin-left: 73px;
+				width: calc(100% - 122px);
 			}
 		}
 
@@ -2359,6 +2360,7 @@ ul.pagination{
 				width:100%;
 				color:#000;
 				min-height: auto;
+				height: auto;
 
 			}
 		}
