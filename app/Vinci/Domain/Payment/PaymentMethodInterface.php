@@ -5,6 +5,9 @@ namespace Vinci\Domain\Payment;
 interface PaymentMethodInterface
 {
 
+    const CREDIT_CARD = 'credit_card';
+    const BANK_DEPOSIT = 'account_deposit';
+
     public function getName();
 
     public function setName($name);

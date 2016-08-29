@@ -19,12 +19,14 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Vinci\Domain\Order\Factory\OrderItemFactory;
 use Vinci\Domain\Order\Item\ValidItemsFilter;
 use Vinci\Domain\Order\Jobs\SendOrderStatusMail;
+use Vinci\Domain\Order\Strategy\CreditCardOrderCreationStrategy;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
 use Vinci\Domain\Order\Validators\OrderValidator;
 use Vinci\Domain\Payment\CreditCard;
 use Vinci\Domain\Payment\Payment;
 use Vinci\Domain\Payment\PaymentMethod;
+use Vinci\Domain\Payment\PaymentMethodInterface;
 use Vinci\Domain\Payment\Repositories\PaymentMethodsRepository;
 use Vinci\Domain\Payment\Validators\CreditCardValidator;
 use Vinci\Domain\Shipping\Services\ShippingService;
@@ -80,6 +82,26 @@ class OrderService
 
     public function create(array $data)
     {
+        $strategy = $this->chooseCreationStrategy();
+
+        $strategy->setFinisherHandler(function(OrderInterface $order) {
+
+            $this->entityManager->transactional(function ($em) use ($order) {
+
+                $em->persist($order);
+
+                $this->dispatchOrderEvents($order);
+
+            });
+
+        });
+
+        $strategy->execute($data);
+
+
+
+
+
         $this->orderValidator->with($data)->passesOrFail();
 
         $data = $this->getPaymentMethodType($data);
@@ -289,6 +311,15 @@ class OrderService
             ]));
         }
 
+    }
+
+    private function chooseCreationStrategy(array $data)
+    {
+        if (array_get($data, 'payment.method_type') == PaymentMethodInterface::CREDIT_CARD) {
+            return app(CreditCardOrderCreationStrategy::class);
+        } elseif (array_get($data, 'payment.method_type') == PaymentMethodInterface::BANK_DEPOSIT) {
+            return app();
+        }
     }
 
 }
