@@ -3,7 +3,7 @@
 
 @if(isset($showcase))
 
-    @cache('teste-cache')
+    @cache($showcase)
 
         <section class="featured-week">
             <h4 class="title-featured-week">
