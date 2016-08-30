@@ -26,7 +26,7 @@ abstract class PipelineBasedOrderCreationStrategy implements OrderCreationStrate
 
             $pipeline = $this->makeNewPipeline();
 
-            $pipeline
+            return $pipeline
                 ->send($data)
                 ->through($this->getSteps())
                 ->then($this->getFinisherHandler());
