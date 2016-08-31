@@ -4,6 +4,7 @@ namespace Vinci\App\Integration\ERP\Order;
 
 use Exception;
 use Illuminate\Contracts\Bus\Dispatcher;
+use Illuminate\Contracts\Config\Repository;
 use Vinci\App\Integration\ERP\Customer\CustomerExporter;
 use Vinci\App\Integration\ERP\Order\Jobs\ExportOrderToErp;
 use Vinci\Domain\Common\IntegrationStatus;
@@ -27,18 +28,22 @@ class OrderExporter
 
     private $customerExporter;
 
+    private $config;
+
     const INTEGRATION_QUEUE = 'vinci-integration-orders';
 
     public function __construct(
         OrderService $orderService,
         OrderRepository $orderRepository,
         CustomerExporter $customerExporter,
-        Dispatcher $commandDispatcher
+        Dispatcher $commandDispatcher,
+        Repository $config
     ) {
         $this->orderService = $orderService;
         $this->orderRepository = $orderRepository;
         $this->commandDispatcher = $commandDispatcher;
         $this->customerExporter = $customerExporter;
+        $this->config = $config;
     }
 
     public function export(OrderInterface $localOrder)
@@ -76,7 +81,7 @@ class OrderExporter
 
         $this->commandDispatcher->dispatch(
             (new ExportOrderToErp($order->getId()))
-                ->onQueue(self::INTEGRATION_QUEUE)
+                ->onQueue($this->config->get('queue.orders-integration'))
         );
     }
 

@@ -83,4 +83,19 @@ return [
         'table'    => 'failed_jobs',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application queues
+    |--------------------------------------------------------------------------
+    |
+    | These options configure the queues names used by application
+    |
+    */
+
+    'customers-integration' => env('QUEUE_CUSTOMERS_INTEGRATION'),
+    'customers-emails' => env('QUEUE_CUSTOMERS_EMAILS'),
+    'orders-integration' => env('QUEUE_ORDERS_INTEGRATION'),
+    'orders-emails' => env('QUEUE_ORDERS_EMAILS'),
+    'products-elasticsearch' => env('QUEUE_PRODUCTS_ELASTICSEARCH')
+
 ];
