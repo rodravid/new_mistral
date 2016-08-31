@@ -48,9 +48,9 @@ class SendProductUnavailabilityNotification extends Command
     {
         list($productsHome, $productsDefault, $total) = $this->getProducts();
 
-        if ($total > 0) {
+        $receivers = $this->getReceivers();
 
-            $receivers = $this->getReceivers();
+        if ($total > 0 && $receivers->count() > 0) {
 
             $this->info(sprintf('Sending product unavailability notification mail to %s users...', $receivers->count()));
 
@@ -95,7 +95,13 @@ class SendProductUnavailabilityNotification extends Command
 
     protected function getReceivers()
     {
-        return collect($this->adminRepository->findByRole(['super-admin', 'admin']));
+        $receivers = collect($this->adminRepository->findByRole(['super-admin', 'admin']));
+
+        $receivers = $receivers->filter(function($receiver) {
+            return $receiver->wantReceiveMailNotifications();
+        });
+
+        return $receivers;
     }
 
     private function getProducts()
