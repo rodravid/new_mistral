@@ -88,7 +88,7 @@ class Kernel extends ConsoleKernel
             ->everyTenMinutes();
 
         $schedule->command('product:send-unavailability-notification')
-            ->cron('00 */2 * * *');
+            ->cron('0 6-23/2 * * *');
 
         $schedule->command('creditcards:clear')
             ->daily();

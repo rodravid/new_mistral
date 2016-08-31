@@ -31,6 +31,11 @@ class Admin extends User
     protected $office;
 
     /**
+     * @ORM\Column(type="boolean", options={"default" = false}, nullable=true)
+     */
+    protected $receiveMailNotifications = false;
+
+    /**
      * Get the e-mail address where password reset links are sent.
      *
      * @return string
@@ -49,6 +54,17 @@ class Admin extends User
     public function getOffice()
     {
         return $this->office;
+    }
+
+    public function wantReceiveMailNotifications()
+    {
+        return $this->receiveMailNotifications;
+    }
+
+    public function setReceiveMailNotifications($receiveMailNotifications)
+    {
+        $this->receiveMailNotifications = (bool) $receiveMailNotifications;
+        return $this;
     }
 
 }
