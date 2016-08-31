@@ -2,6 +2,7 @@
 
 namespace Vinci\App\Website\Http\Home;
 
+use Cache;
 use Doctrine\ORM\EntityManagerInterface;
 use Vinci\App\Website\Http\Controller;
 use Vinci\App\Website\Http\Showcase\Presenters\ShowcasePresenter;
@@ -41,8 +42,12 @@ class HomeController extends Controller
         $showcases = $this->showcaseRepository->lists('home-showcases');
 
         $showcases = $this->presenter->collection($showcases, ShowcasePresenter::class);
-        
-        return $this->view('home.index', compact('highlights', 'banners', 'showcases'));
+
+        return Cache::remember('home-page', 1, function() use ($highlights, $banners, $showcases) {
+
+            return $this->view('home.index', compact('highlights', 'banners', 'showcases'))->render();
+
+        });
     }
 
 }
