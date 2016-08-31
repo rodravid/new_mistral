@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f684eb76e634cbc510e10b08306b92f7",
-    "content-hash": "ee5dc57964ddf026ada58e6c916e15ae",
+    "hash": "6ababf286170d3f6c949d84716bbc549",
+    "content-hash": "2beb5326d2afc2a90887c4daf264bcd1",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.19.2",
+            "version": "3.19.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3cb90413129da42c9d3289d542bee0ae1049892c"
+                "reference": "1fdf5ec8743575a01d5953a84cd1d9438ce36d1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3cb90413129da42c9d3289d542bee0ae1049892c",
-                "reference": "3cb90413129da42c9d3289d542bee0ae1049892c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1fdf5ec8743575a01d5953a84cd1d9438ce36d1a",
+                "reference": "1fdf5ec8743575a01d5953a84cd1d9438ce36d1a",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-08-23 20:58:48"
+            "time": "2016-08-30 17:56:50"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1186,16 +1186,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.21",
+            "version": "v2.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "dcaab46a25e1baeb5142c3e25d5b6fd495ced504"
+                "reference": "b8188801bafc420b86908ee5229a5e92143ce514"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/dcaab46a25e1baeb5142c3e25d5b6fd495ced504",
-                "reference": "dcaab46a25e1baeb5142c3e25d5b6fd495ced504",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/b8188801bafc420b86908ee5229a5e92143ce514",
+                "reference": "b8188801bafc420b86908ee5229a5e92143ce514",
                 "shasum": ""
             },
             "require": {
@@ -1261,7 +1261,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2016-08-17 16:52:00"
+            "time": "2016-08-30 18:42:36"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2103,28 +2103,28 @@
         },
         {
             "name": "laravel-doctrine/orm",
-            "version": "1.1.13",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-doctrine/orm.git",
-                "reference": "d4c0f7c5525ad50fa4834d67e0959b47479a3073"
+                "reference": "61ef07c196e88ac938fecea419a903f38e4c78c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-doctrine/orm/zipball/d4c0f7c5525ad50fa4834d67e0959b47479a3073",
-                "reference": "d4c0f7c5525ad50fa4834d67e0959b47479a3073",
+                "url": "https://api.github.com/repos/laravel-doctrine/orm/zipball/61ef07c196e88ac938fecea419a903f38e4c78c7",
+                "reference": "61ef07c196e88ac938fecea419a903f38e4c78c7",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "2.5.*",
-                "illuminate/auth": "5.2.*",
-                "illuminate/console": "5.2.*",
-                "illuminate/container": "5.2.*",
-                "illuminate/contracts": "5.2.*",
-                "illuminate/pagination": "5.2.*",
-                "illuminate/support": "5.2.*",
-                "illuminate/validation": "5.2.*",
-                "illuminate/view": "5.2.*",
+                "illuminate/auth": "5.2.*|5.3.*",
+                "illuminate/console": "5.2.*|5.3.*",
+                "illuminate/container": "5.2.*|5.3.*",
+                "illuminate/contracts": "5.2.*|5.3.*",
+                "illuminate/pagination": "5.2.*|5.3.*",
+                "illuminate/support": "5.2.*|5.3.*",
+                "illuminate/validation": "5.2.*|5.3.*",
+                "illuminate/view": "5.2.*|5.3.*",
                 "php": ">=5.5.9",
                 "symfony/serializer": "^2.7"
             },
@@ -2170,7 +2170,7 @@
                 "laravel",
                 "orm"
             ],
-            "time": "2016-06-20 21:36:26"
+            "time": "2016-08-01 18:11:57"
         },
         {
             "name": "laravel/framework",
