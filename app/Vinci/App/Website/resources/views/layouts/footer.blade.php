@@ -5,7 +5,7 @@
 			<ul class="list-links-clients">
 				<li><a class="link-light" href="{{ route('about.index') }}">Sobre a vinci</a></li>
 				<li><a class="link-light" href="{{ route('dealers.index') }}">Revendedores</a></li>
-				<li><a class="link-light" href="{{ route('contact.index') }}">Fale conosco</a></li>
+				<li><a class="link-light" href="atendimento/">Fale conosco</a></li>
 				<li><a class="link-light" href="{{ route('frequent-doubts.index') }}">Dúvidas frequentes</a></li>
 			</ul>
 		</div>
