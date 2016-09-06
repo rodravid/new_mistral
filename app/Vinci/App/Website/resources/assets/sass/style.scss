@@ -593,7 +593,8 @@ a.bt-default {
 	vertical-align: middle;
 
 	span {
-		font: 23px $robotobold;
+		font-size: 23px;
+		font-family:$robotobold;
 		position:relative;
 		color:#6b0f45;
 	}

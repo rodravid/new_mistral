@@ -363,7 +363,7 @@
 
             <li class="menu-item larger760-right template12">
                 <a class="menu-link" href="/c/meias-garrafas/">
-                    Meias garrafas
+                   Mini e Meias garrafas
                 </a>
                 <div class="drop-menu">
                     <div class="division">
@@ -382,7 +382,7 @@
                         <a href="/c/meias-garrafas/">
                             <div class="every-category">
                                 <h3>Veja todos os vinhos
-                                    em meia garrafa</h3>
+                                    em mini e meias garrafas</h3>
                                 <span>></span>
                             </div>
                         </a>
