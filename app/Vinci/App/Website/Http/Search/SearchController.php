@@ -122,7 +122,7 @@ class SearchController extends Controller
 
     protected function getSearchUrlPath($request)
     {
-        return 'busca';
+        return '';
     }
 
     protected function getSort($request)
