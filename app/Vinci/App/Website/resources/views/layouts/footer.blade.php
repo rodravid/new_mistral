@@ -5,7 +5,7 @@
 			<ul class="list-links-clients">
 				<li><a class="link-light" href="{{ route('about.index') }}">Sobre a vinci</a></li>
 				<li><a class="link-light" href="{{ route('dealers.index') }}">Revendedores</a></li>
-				<li><a class="link-light" href="atendimento/">Fale conosco</a></li>
+				<li><a class="link-light" href="/atendimento/">Fale conosco</a></li>
 				<li><a class="link-light" href="{{ route('frequent-doubts.index') }}">Dúvidas frequentes</a></li>
 			</ul>
 		</div>
@@ -29,15 +29,15 @@
 				<ul class="links-main-footer">
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.countries.list') }}">País</a>
+						<a class="link-light" href="/c/pais/">País</a>
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.regions.list') }}">Região</a>
+						<a class="link-light" href="/c/regiao/">Região</a>
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.producers.list') }}">Produtor</a>
+						<a class="link-light" href="/c/produtor/">Produtor</a>
 					</li>
 
 				</ul>
@@ -45,15 +45,15 @@
 				<ul class="links-main-footer">
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.product-types.list') }}">Tipo de vinho</a>
+						<a class="link-light" href="/c/tipos-de-vinho/">Tipo de vinho</a>
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.grapes.list') }}">Uva</a>
+						<a class="link-light" href="/c/tipos-de-uva/">Uva</a>
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.show', ['vinhos-bons-e-baratos']) }}">Bons e baratos</a>
+						<a class="link-light" href="/c/vinhos-bons-e-baratos/">Bons e baratos</a>
 					</li>
 
 				</ul>
@@ -73,11 +73,11 @@
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.show', ['meias-garrafas']) }}">Meias garrafas</a>
+						<a class="link-light" href="/c/meias-garrafas/">Mini e Meias garrafas</a>
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="{{ route('category.show', ['vinhos-pontuados']) }}">Vinhos pontuados</a>
+						<a class="link-light" href="/c/vinhos-pontuados/">Vinhos pontuados</a>
 					</li>
 
 				</ul>
@@ -123,8 +123,7 @@
 		</p>
 
 		<ul class="copyright two-cols m-bottom20">
-			<li> 
-				
+			<li>
 				<p>
 					Copyright © 2016 Vinci Importadora e Exportadora de Bebidas Ltda. Todos os direitos reservados.
 				</p>
