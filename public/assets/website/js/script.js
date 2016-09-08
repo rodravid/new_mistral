@@ -409,35 +409,38 @@ jQuery(document).ready(function ($) {
     // });
 
 
+    //cards
+    $(function() {
+        $('.content-seal-card span').each(function() {
+            var boxCard = $(this);
+            var sealBoxCard = boxCard.text().length;
+            if(sealBoxCard >= 5) {
+                boxCard.css('font-size', '13px');
+            } else if(sealBoxCard >= 3) {
+                boxCard.css('font-size', '21px');
+            } else if(sealBoxCard >= 2) {
+                boxCard.css('font-size', '23px');
+            }
+        });
+
+    });
+
+
     //pg produto
     $(function() {
         var sealProduct = $('.content-seal-product span'),
-            sealPgProduct = sealProduct.html().length
-            ;
-        // depending on html length, update font-size
-        if(sealPgProduct > 5) {
+            sealPgProduct = sealProduct.text().length;
+
+        if(sealPgProduct >= 5) {
             sealProduct.css('font-size', '17px');
-        } else if(sealPgProduct > 3) {
+        } else if(sealPgProduct >= 3) {
             sealProduct.css('font-size', '27px');
         } else if(sealPgProduct >= 2) {
             sealProduct.css('font-size', '33px');
         }
     });
 
-    //cards
-    $(function() {
-        var boxCard = $('.content-seal-card span'),
-            sealBoxCard = boxCard.html().length
-            ;
-        // depending on html length, update font-size
-        if(sealBoxCard > 5) {
-           boxCard.css('font-size', '13px');
-        } else if(sealBoxCard > 3) {
-           boxCard.css('font-size', '21px');
-        } else if(sealBoxCard >= 2) {
-           boxCard.css('font-size', '23px');
-        }
-    });
+
 
 
 

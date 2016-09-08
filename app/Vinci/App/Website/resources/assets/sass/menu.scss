@@ -812,7 +812,7 @@
 			.drop-menu {
 				max-width: 670px;
 				width: 100%;
-				right: 7px;
+				right: 6px;
 			}
 		}
 
@@ -828,7 +828,7 @@
 				}
 			}
 		}
-		
+
 		.drop-menu{
 			padding: 12px 20px;
 			position: absolute;
@@ -860,6 +860,12 @@
 			}
 			.nav-link{
 				font-weight:400 !important;
+			}
+
+			.larger760-right {
+				.drop-menu {
+					right: 7px;
+				}
 			}
 
 /* 			.larger760-right {
