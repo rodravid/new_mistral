@@ -41,7 +41,7 @@
 			<li>
 				
 				<p>
-					<a href="javascript:void(0);">Termos de Uso e Política de Privicidade e Segurança.</a>
+					<a href="{{ route('privacy.index') }}">Termos de Uso e Política de Privicidade e Segurança.</a>
 				</p>
 			</li>
 

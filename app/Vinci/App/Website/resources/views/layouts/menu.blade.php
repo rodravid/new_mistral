@@ -33,7 +33,7 @@
     <nav class="navbar">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('contact.index') }}">
+                <a class="nav-link" href="/atendimento/">
                     Fale conosco
                 </a>
             </li>
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li class="nav-item nav-item-cadastro">
-                <a class="nav-link" href="{{ route('register.index') }}">
+                <a class="nav-link" href="/cadastro/">
                     Cadastro
                 </a>
             </li>
@@ -102,7 +102,7 @@
                             </a>
                         </li>
                     </ul>
-                    <a href="{{ route('cart.index') }}" class="bt-default bt-default-blue float-right">Detalhes do
+                    <a href="carrinho/" class="bt-default bt-default-blue float-right">Detalhes do
                         carrinho <span class="arrow-link">></span></a>
                 </div>
 
