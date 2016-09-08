@@ -81,7 +81,7 @@ class GenerateOrders extends Command
 
         $channel = $this->getChannel();
 
-        $cart = $this->generateNewShoppingCart();
+        $cart = $this->generateNewShoppingCart($customer);
 
         $data = [
             'customer' => $customer,
@@ -110,7 +110,7 @@ class GenerateOrders extends Command
         return app('em')->getReference(Channel::class, 1);
     }
 
-    protected function generateNewShoppingCart()
+    protected function generateNewShoppingCart($customer)
     {
         $cart = new ShoppingCart();
 
@@ -126,6 +126,8 @@ class GenerateOrders extends Command
 
             $cart->addItem($item);
         });
+
+        $cart->setCustomer($customer);
 
         return $cart;
     }
