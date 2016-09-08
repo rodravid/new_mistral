@@ -187,8 +187,11 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAt($newProduct->getStartsAt())
             ->setExpirationAt($newProduct->getExpirationAt())
             ->setOnline($newProduct->isOnline())
-            ->setPackSize($newProduct->getPackSize())
-            ->setSearchRelevance($newProduct->getSearchRelevance());
+            ->setPackSize($newProduct->getPackSize());
+
+        if (array_has($data, 'searchRelevance')) {
+            $product->setSearchRelevance($newProduct->getSearchRelevance());
+        }
 
         if (array_has($data, 'stock')) {
             $product->changeStock($newProduct->getStock());
