@@ -31,6 +31,9 @@ class ShippingPromotionCmsDatatable extends AbstractDatatables
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
+
+        app('em')->getFilters()->disable('soft-deleteable');
+
         $qb = $this->repository->createQueryBuilder('p')
             ->join('p.user', 'u')
             ->setFirstResult($start)
