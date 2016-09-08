@@ -59,7 +59,11 @@ angular.module('app')
 
                             var $html = $($compile(response.data)($scope));
 
-                            $html.hide().appendTo($($el).find('.container-products')).fadeIn();
+                            $html.hide().appendTo($($el).find('.container-products')).fadeIn(400, function() {
+
+                                window.adjustCardSealFont();
+
+                            });
 
                             $scope.currentPage++;
 

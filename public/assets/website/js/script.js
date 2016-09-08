@@ -408,9 +408,9 @@ jQuery(document).ready(function ($) {
     //     maxFontPixels: 5
     // });
 
+    window.adjustCardSealFont = function() {
 
-    //cards
-    $(function() {
+
         $('.content-seal-card span').each(function() {
             var boxCard = $(this);
             var sealBoxCard = boxCard.text().length;
@@ -423,8 +423,13 @@ jQuery(document).ready(function ($) {
             }
         });
 
-    });
 
+    };
+
+    //cards
+    $(function() {
+        window.adjustCardSealFont();
+    });
 
     //pg produto
     $(function() {
