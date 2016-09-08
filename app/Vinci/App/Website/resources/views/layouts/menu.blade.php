@@ -71,7 +71,7 @@
     </nav>
 
     <div ng-controller="CartWidgetController as ctrl">
-        <a href="/carrinho">
+        <a href="/carrinho/">
             <div class="cart-header sprite-icon show-mobile">
                 <div class="nav-cart-count sprite-icon" ng-bind="cart.count_items"></div>
             </div>
@@ -102,7 +102,7 @@
                             </a>
                         </li>
                     </ul>
-                    <a href="carrinho/" class="bt-default bt-default-blue float-right">Detalhes do
+                    <a href="/carrinho/" class="bt-default bt-default-blue float-right">Detalhes do
                         carrinho <span class="arrow-link">></span></a>
                 </div>
 
