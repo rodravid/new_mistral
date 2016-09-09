@@ -1,7 +1,7 @@
 @extends('website::layouts.master')
 
 @section('title', $metaTitle)
-@section('description', $metaDescription)
+@section('description', strip_tags($metaDescription))
 
 @section('content')
     <div class="header-internal {{ $template }}-bg bg-color-category" style="background: url({{ asset_web('images/' . $imageTitle) }}) no-repeat top right;">
@@ -19,7 +19,7 @@
             <h1 class="internal-subtitle-category">{{ $pageTitle }}</h1>
             <div class="container-leia-mais">
                 <p class="category-description">
-                    {{ $pageDescription }}
+                    {!! $pageDescription !!}
                 </p>
             </div>
         </div>
