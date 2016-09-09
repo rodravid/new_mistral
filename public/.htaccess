@@ -5,6 +5,14 @@
 
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^(www\.)?vinci\.com\.br$ [NC]
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    RewriteCond %{HTTP_HOST} ^(www\.)?vinci\.com\.br$ [NC]
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
     # Países
     RewriteRule ^CountryList\.aspx$ /redirect [L,R=301]
 
@@ -39,4 +47,34 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+</IfModule>
+
+
+# extensao.ico .pdf .flv
+<FilesMatch "\.(ico|pdf|flv)$">
+Header set Cache-Control "max-age=300, public"
+</FilesMatch>
+
+# extensao.jpg .jpeg .png .gif .swf
+<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+Header set Cache-Control "max-age=300, public"
+</FilesMatch>
+
+# extensao .woff
+<FilesMatch "\.(woff)$">
+Header set Cache-Control "max-age=300, public"
+</FilesMatch>
+
+# extensao.xml .txt .css .js
+<FilesMatch "\.(xml|txt|css|js)$">
+Header set Cache-Control "max-age=300, proxy-revalidate"
+</FilesMatch>
+
+# extensao.htm .html .php
+<FilesMatch "\.(html|htm|php)$">
+Header set Cache-Control "max-age=300, private, proxy-revalidate"
+</FilesMatch>
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
 </IfModule>
