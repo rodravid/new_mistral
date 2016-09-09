@@ -62,6 +62,7 @@ angular.module('app')
                             $html.hide().appendTo($($el).find('.container-products')).fadeIn(400, function() {
 
                                 window.adjustCardSealFont();
+                                window.toggleTitles();
 
                             });
 
