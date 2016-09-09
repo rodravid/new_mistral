@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Vinci\App\Core\Console\Commands\ClearCreditCards;
 use Vinci\App\Core\Console\Commands\DoctrineTruncateTable;
+use Vinci\App\Core\Console\Commands\GenerateOrders;
 use Vinci\App\Core\Console\Commands\ImportCountries;
 use Vinci\App\Core\Console\Commands\ImportCustomers;
 use Vinci\App\Core\Console\Commands\ImportOldOrders;
@@ -53,6 +54,7 @@ class Kernel extends ConsoleKernel
         ClearCreditCards::class,
         Test::class,
         SendProductUnavailabilityNotification::class,
+        GenerateOrders::class,
         'Vinci\App\Integration\ERP\Console\Commands\ImportProducts',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsStock',
         'Vinci\App\Integration\ERP\Console\Commands\ImportProductsPrice',
