@@ -184,10 +184,16 @@
             });
 
 
-            $window.scroll(function () {
+            window.toggleTitles = function() {
+
+                var lastBoxOffset = getLastFeaturedBoxOffset();
+
+                if (typeof lastBoxOffset === 'undefined') {
+                    return;
+                }
 
                 var scrollTop = $window.scrollTop();
-                var lastBoxOffsetTop = getLastFeaturedBoxOffset().top;
+                var lastBoxOffsetTop = lastBoxOffset.top;
 
 
                 if (eDesktop()) {
@@ -238,8 +244,11 @@
                     toggleTitleCategory('hide');
                 }
 
+            };
 
-            }).scroll();
+            $window.scroll(function() {
+                window.toggleTitles();
+            });
 
         })($);
 
