@@ -1,5 +1,8 @@
 @extends('website::layouts.master')
 
+@section('title', $product->title . ' | Vinci Loucos por Vinhos')
+@section('description', $product->seo()->description())
+
 @section('content')
     <div class="page-product-wrapper" ng-controller="ProductPageController as ctrl">
         <div class="header-internal {{ $product->template_css }}-bg">
