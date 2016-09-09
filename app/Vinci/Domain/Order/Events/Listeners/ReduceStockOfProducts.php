@@ -21,10 +21,10 @@ class ReduceStockOfProducts
 
         foreach ($order->getItems() as $item) {
 
-            $variant = $item->getProductVariant();
-            $quantity = $item->getQuantity();
-
-            $this->inventoryService->reduceStock($variant, $quantity);
+            $this->inventoryService->reduceStock(
+                $item->getProductVariant(),
+                $item->getQuantity()
+            );
 
         }
 
