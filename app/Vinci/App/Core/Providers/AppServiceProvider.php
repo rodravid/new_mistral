@@ -15,9 +15,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-//        if ($this->app->environment('production')) {
-//            $this->app['url']->forceSchema('https');
-//        }
+       if ($this->app->environment('production')) {
+           $this->app['url']->forceSchema('https');
+       }
 
         $this->extendAuthManager();
 

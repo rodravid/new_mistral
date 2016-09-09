@@ -13,7 +13,7 @@ container_commands:
       NR_INSTALL_SILENT: true
       NR_INSTALL_KEY: ca6cc8d942ab9e9374a01a8e038d141599a5b6e9
   02_newrelic_php2:
-    command: echo newrelic.appname="Vinci" > /etc/php-7.0.d/newrelic.ini
+    command: echo newrelic.appname="Vinci" >> /etc/php-7.0.d/newrelic.ini
   03_newrelic_php3:
     command: echo newrelic.license="ca6cc8d942ab9e9374a01a8e038d141599a5b6e9" >> /etc/php-7.0.d/newrelic.ini
   04_newrelic_server1:
