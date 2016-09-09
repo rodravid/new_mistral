@@ -5,6 +5,14 @@
 
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^(www\.)?vinci\.com\.br$ [NC]
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    RewriteCond %{HTTP_HOST} ^(www\.)?vinci\.com\.br$ [NC]
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
     # Países
     RewriteRule ^CountryList\.aspx$ /redirect [L,R=301]
 
