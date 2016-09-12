@@ -63,11 +63,6 @@ Header set Cache-Control "max-age=300, public"
 Header set Cache-Control "max-age=300, public"
 </FilesMatch>
 
-# extensao.xml .txt .css .js
-<FilesMatch "\.(xml|txt|css|js)$">
-Header set Cache-Control "max-age=300, proxy-revalidate"
-</FilesMatch>
-
 # extensao.htm .html .php
 <FilesMatch "\.(html|htm|php)$">
 Header set Cache-Control "max-age=300, private, proxy-revalidate"
