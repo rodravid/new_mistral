@@ -229,7 +229,7 @@
             </li>
 
             <li class="menu-item larger760-right template4">
-                <a class="menu-link" href="/c/tipos-de-vinho/">
+                <a class="menu-link" href="/c/tipo-de-vinho/">
                     Tipo de vinho
                 </a>
                 <div class="drop-menu">
@@ -259,7 +259,7 @@
             </li>
 
             <li class="menu-item larger760-right template5">
-                <a class="menu-link" href="/c/tipos-de-uva/">
+                <a class="menu-link" href="/c/tipo-de-uva/">
                     Uva
                 </a>
                 <div class="drop-menu">
@@ -287,7 +287,7 @@
                     </div>
 
                     <div class="division">
-                        <a href="/c/tipos-de-uva/">
+                        <a href="/c/tipo-de-uva/">
                             <div class="every-category">
                                 <h3>Veja a lista de todas as uvas</h3>
                                 <span>></span>
