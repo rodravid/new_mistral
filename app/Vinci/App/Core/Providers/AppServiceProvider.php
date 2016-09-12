@@ -15,9 +15,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-       if ($this->app->environment('production')) {
-           $this->app['url']->forceSchema('https');
-       }
+        $this->app['request']->setTrustedProxies(['127.0.0.1', $this->app['request']->server->get('REMOTE_ADDR')]);
 
         $this->extendAuthManager();
 
