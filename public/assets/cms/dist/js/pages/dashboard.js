@@ -258,3 +258,47 @@ $(function () {
     });
 
 });
+
+
+
+(function() {
+
+    new Vue({
+        el: '#queueWorkersWidget',
+        data: {
+            workers: [],
+            error: false
+        },
+        ready: function() {
+
+            var self = this;
+
+            self.listWorkers();
+
+            setInterval(function() {
+
+                self.listWorkers();
+
+            }, 3000);
+
+        },
+        methods: {
+            listWorkers: function() {
+
+                this.$http.get('/cms/queue-worker').then(function(response) {
+
+                    this.workers = response.data;
+                    this.error = false;
+
+                }, function(response) {
+
+                    this.error = true;
+
+                });
+
+            }
+        }
+    });
+
+}());
+

@@ -384,4 +384,11 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
     });
 
+    $route->group(['prefix' => 'queue-worker', 'as' => 'queue-worker.', 'namespace' => 'QueueWorker'], function() use ($route) {
+
+        $route->get('/', 'QueueWorkerController@index');
+        $route->get('/getQueueWorkerStatus', 'QueueWorkerController@getQueueWorkerStatus');
+
+    });
+
 });
