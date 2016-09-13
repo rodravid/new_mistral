@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Vinci, somos loucos por vinho - Vinci')</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset_web('images/vinci_ico.ico') }}">
-    <meta name="description"
-          content="@yield('description', 'A Vinci é uma das mais premiadas importadoras de vinhos do país, com uma seleção de vinhos e produtores mundialmente aclamados em um catálogo imperdível. Veja!')">
+    <meta name="description" content="@yield('description', 'A Vinci é uma das mais premiadas importadoras de vinhos do país, com uma seleção de vinhos e produtores mundialmente aclamados em um catálogo imperdível. Veja!')">
     @section('styles')
         <link rel="stylesheet" href="{{ asset_web('css/style.min.css') }}">
         <link rel="stylesheet" href="{{ asset_web('js/sweetalert/sweetalert.css') }}">
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
         <!--[if IE 8 ]>
@@ -25,8 +23,7 @@
 
 <!-- Google Tag Manager -->
 <noscript>
-    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WWHF7K"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WWHF7K" height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <script>(function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -63,11 +60,9 @@
         <script src="{{ asset_web('js/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/input-mask/jquery.inputmask.extensions.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/jquery.placeholder.js') }}" type="text/javascript"></script>
-        <script src="{{ asset_web('js/jquery-typeahead/dist/jquery.typeahead.min.js') }}"
-                type="text/javascript"></script>
+        <script src="{{ asset_web('js/jquery-typeahead/dist/jquery.typeahead.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/common/js/address-autocomplete.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/script.js') }}" type="text/javascript"></script>
-
         <script src="{{ asset_web('app/js/vendor/jquery.query-object.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/vendor/URI.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/app.js') }}" type="text/javascript"></script>
@@ -75,42 +70,25 @@
         <script src="{{ asset_web('app/js/services/cart.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/services/favorite.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/controllers/home/homeController.js') }}" type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/controllers/auth/modalLoginController.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/controllers/auth/modalPasswordController.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/controllers/product/productPageController.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/controllers/register/registerController.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/controllers/address/addressModalController.js') }}"
-                type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/auth/modalLoginController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/auth/modalPasswordController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/product/productPageController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/register/registerController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/address/addressModalController.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/directives/cart/cartItem.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/directives/cart/cartAddButton.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/directives/product/favoriteWidget.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('app/js/controllers/cart/cartController.js') }}" type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/controllers/search/search-filters-controller.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/directives/search/search-filters-directive.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/directives/search/search-suggestion-directive.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/showcase/directives/showcase-container-directive.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/showcase/directives/showcase-widget-directive.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/newsletter/directives/newsletter-widget-directive.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/newsletter/services/newsletter-service.js') }}"
-                type="text/javascript"></script>
-
-        <script src="{{ asset_web('app/js/shipping/directives/shippingDeadline-widget-directive.js') }}"
-                type="text/javascript"></script>
-        <script src="{{ asset_web('app/js/shipping/services/shippingDeadline-service.js') }}"
-                type="text/javascript"></script>
-
+        <script src="{{ asset_web('app/js/controllers/cart/cartWidgetController.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/controllers/search/search-filters-controller.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/directives/search/search-filters-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/directives/search/search-suggestion-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/showcase/directives/showcase-container-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/showcase/directives/showcase-widget-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/newsletter/directives/newsletter-widget-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/newsletter/services/newsletter-service.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/shipping/directives/shippingDeadline-widget-directive.js') }}" type="text/javascript"></script>
+        <script src="{{ asset_web('app/js/shipping/services/shippingDeadline-service.js') }}" type="text/javascript"></script>
         <script src="{{ asset_web('js/angular/angular-input-masks/releases/angular-input-masks-standalone.min.js') }}"></script>
 
     @else
@@ -143,6 +121,4 @@
 
 @show
 </body>
-
-
 </html>
