@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Mail;
 use Vinci\App\Integration\ERP\Product\ProductImporter;
 use Vinci\Domain\ERP\Product\ProductService;
+use Vinci\Domain\Product\Repositories\ProductRepository;
 
 class ImportProducts extends Command
 {
@@ -155,6 +156,10 @@ class ImportProducts extends Command
         if ($this->option('all')) {
             $all = $this->productService->getAllProducts();
             $this->appendToCollection($products, $all);
+
+            $localProducts = app(ProductRepository::class)->getAllProductsSku();
+
+            $this->appendToCollection($products, $localProducts);
         }
 
         if ($this->option('new')) {

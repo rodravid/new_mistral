@@ -351,4 +351,16 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function getAllProductsSku()
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('v.sku')
+            ->join('p.variants', 'v');
+
+        $result = $qb->getQuery()->getArrayResult();
+
+       return array_column($result, 'sku');
+    }
 }
