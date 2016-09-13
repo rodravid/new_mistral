@@ -59,7 +59,9 @@ Header set Cache-Control "max-age=300, public"
 
 # extensao.jpg .jpeg .png .gif .swf
 <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
-Header set Cache-Control "max-age=300, public"
+  ExpiresActive On
+  ExpiresDefault "access plus 1 days"
+  Header append Cache-Control "public"
 </FilesMatch>
 
 # extensao .woff
