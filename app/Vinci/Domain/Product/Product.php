@@ -833,7 +833,7 @@ class Product extends Model implements ProductInterface, Presentable
 
     public function setDimension(Dimension $dimension)
     {
-        $this->getMasterVariant()->getDimension($dimension);
+        $this->getMasterVariant()->setDimension($dimension);
         return $this;
     }
     
