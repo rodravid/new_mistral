@@ -44,4 +44,6 @@ interface ProductRepository
 
     public function getRandomProducts($quantity = 4);
 
+    public function getAllProductsSku();
+
 }
