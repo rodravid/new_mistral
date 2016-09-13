@@ -229,13 +229,13 @@
                                     </div>
                                 </div>
                                 <div class="box-body">
-                                    <ul class="list-group" v-if="! error">
+                                    <ul class="list-group" style="display:none;" v-show="! error">
                                         <li class="list-group-item" v-for="worker in workers">
                                                 @{{ worker.description }}
                                                 <span class="badge bg-green" style="display: none;" v-show="worker.active">Executando</span> <span class="badge bg-red" style="display: none;" v-show="! worker.active">Parado</span>
                                         </li>
                                     </ul>
-                                    <p class="text-danger" v-if="error">Erro ao carregar os dados.</p>
+                                    <p class="text-danger" style="display:none;" v-show="error">Erro ao carregar os dados.</p>
                                 </div>
                             </div>
                         @endif

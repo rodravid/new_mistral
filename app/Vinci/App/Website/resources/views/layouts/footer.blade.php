@@ -45,11 +45,11 @@
 				<ul class="links-main-footer">
 
 					<li class="item-main-footer">
-						<a class="link-light" href="/c/tipos-de-vinho/">Tipo de vinho</a>
+						<a class="link-light" href="/c/tipo-de-vinho/">Tipo de vinho</a>
 					</li>
 
 					<li class="item-main-footer">
-						<a class="link-light" href="/c/tipos-de-uva/">Uva</a>
+						<a class="link-light" href="/c/tipo-de-uva/">Uva</a>
 					</li>
 
 					<li class="item-main-footer">

@@ -45,6 +45,6 @@ class ProductType extends BaseTaxonomy
 
     public function getBaseWebUrl()
     {
-        return '/c/tipos-de-vinho/';
+        return '/c/tipo-de-vinho/';
     }
 }
