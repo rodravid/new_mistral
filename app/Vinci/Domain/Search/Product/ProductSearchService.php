@@ -98,8 +98,6 @@ class ProductSearchService extends SearchService
 
     public function search($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
-        //$keyword = Str::lower($keyword);
-
         $params = $this->getSearchParams($keyword, $filters, $limit, $start, $sort);
 
         $result = $this->client->search($params);
