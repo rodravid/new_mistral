@@ -4,11 +4,11 @@ namespace Vinci\Domain\Search;
 
 use Elasticsearch\ClientBuilder;
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Vinci\App\Website\Http\Presenters\DefaultPaginatorPresenter;
 use Vinci\Domain\Search\Filter\FilterFactory;
 use Vinci\Domain\Search\Result\SearchResult;
 use Vinci\Domain\Search\Suggester\SuggesterFactory;
+use Vinci\Infrastructure\Common\LengthAwarePaginatorCustom;
 
 class SearchService
 {
@@ -111,7 +111,7 @@ class SearchService
 
     protected function makePaginator($items, $result)
     {
-        $paginator = new LengthAwarePaginator($items, array_get($result, 'hits.total'), array_get($result, 'limit'));
+        $paginator = new LengthAwarePaginatorCustom($items, array_get($result, 'hits.total'), array_get($result, 'limit'));
 
         $paginator = new DefaultPaginatorPresenter($paginator);
 
