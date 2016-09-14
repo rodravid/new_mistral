@@ -80,14 +80,16 @@
             "php artisan clear-compiled",
             "php artisan ide-helper:generate",
             "php artisan optimize --force",
-            "php artisan doctrine:generate:proxies"
+            "php artisan doctrine:generate:proxies",
+            "php -r \"copy('storage/swiftmailer/StreamBuffer.php', 'vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php');\""
         ],
         "pre-update-cmd": [
             "php artisan clear-compiled"
         ],
         "post-update-cmd": [
             "php artisan optimize --force",
-            "php artisan doctrine:generate:proxies"
+            "php artisan doctrine:generate:proxies",
+            "php -r \"copy('storage/swiftmailer/StreamBuffer.php', 'vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/StreamBuffer.php');\""
         ]
     },
     "config": {
