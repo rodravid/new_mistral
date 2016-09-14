@@ -18,7 +18,7 @@ class ShowcasePresenter extends AbstractPresenter
             return $url;
         }
 
-        return $this->getWebPath();
+        return $this->getWebPath() . '/';
     }
 
     public function presentBannerImageUrl()

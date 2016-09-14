@@ -13,6 +13,7 @@ use Vinci\App\Core\Services\Presenter\PresentableTrait;
 use Vinci\Domain\Channel\Channel;
 use Vinci\Domain\Channel\Contracts\Channel as ChannelInterface;
 use Vinci\Domain\Common\Event\HasEvents;
+use Vinci\Domain\Common\SEO;
 use Vinci\Domain\Common\Status;
 use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Core\Model;
@@ -133,6 +134,8 @@ class Product extends Model implements ProductInterface, Presentable
     protected $priceCalculator;
 
     protected $currentPromotion;
+
+    protected $seoInstance;
 
     public function __construct()
     {
@@ -463,6 +466,15 @@ class Product extends Model implements ProductInterface, Presentable
     {
         $this->getMasterVariant()->setSeoKeywords($keywords);
         return $this;
+    }
+
+    public function seo()
+    {
+        if ($this->seoInstance) {
+            return $this->seoInstance;
+        }
+
+        return $this->seoInstance = new SEO($this);
     }
 
     public function getSearchRelevance()
@@ -821,7 +833,7 @@ class Product extends Model implements ProductInterface, Presentable
 
     public function setDimension(Dimension $dimension)
     {
-        $this->getMasterVariant()->getDimension($dimension);
+        $this->getMasterVariant()->setDimension($dimension);
         return $this;
     }
     

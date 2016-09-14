@@ -169,6 +169,7 @@ return [
         Vinci\App\Core\Services\Sanitizer\SanitizerServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Collective\Remote\RemoteServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Laracasts\Matryoshka\MatryoshkaServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
@@ -227,7 +228,8 @@ return [
         'Sanitizer' => Rees\Sanitizer\Facade::class,
         'Fractal'   => Spatie\Fractal\FractalFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
-        'Postmon'   => \Vinci\Infrastructure\Services\Postmon\Facades\Postmon::class
+        'Postmon'   => \Vinci\Infrastructure\Services\Postmon\Facades\Postmon::class,
+        'SSH'       => Collective\Remote\RemoteFacade::class
 
     ],
 

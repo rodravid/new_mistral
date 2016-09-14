@@ -105,23 +105,13 @@
             <div class="form-group">
                 <label for="txtCountrySlug">URL amigável</label>
                 {!! Form::text('slug', null, ['id' => 'txtCountrySlug', 'class' => 'form-control', 'placeholder' => 'URL amigável']) !!}
-                <span class="glyphicon glyphicon-link form-control-feedback"></span>
             </div>
         </div>
 
         <div class="col-lg-12">
             <div class="form-group">
-                <label>Foto versão desktop</label>
-                {!! Form::file('image_desktop') !!}
-                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-group">
-                <label>Foto versão mobile</label>
-                {!! Form::file('image_mobile') !!}
-                <span class="glyphicon glyphicon-picture form-control-feedback"></span>
+                <label>Foto</label>
+                {!! Form::file('photo') !!}
             </div>
         </div>
 

@@ -41,6 +41,10 @@ class TaxonomyCollection extends Collection
 
         }
 
+        usort($items, function($a, $b) {
+            return strcmp($a->getName(), $b->getName());
+        });
+
         return new LetterGroup($letter, new static($items));
     }
 

@@ -68,8 +68,8 @@
                                 <div class="colum-description-cart">
                                     <h3 class="title-card-wine">
                                         @{{ item.name }}
-                                        <span ng-show="item.producer">@{{ item.producer }}</span>
                                     </h3>
+                                    <span class="wine-card-producer" ng-show="item.producer">@{{ item.producer }}</span>
                                     <a class="link-cart gift" href="javascript:void(0);" ng-hide="item.is_gift_package">
                                         Embalagem para presente >
                                     </a>

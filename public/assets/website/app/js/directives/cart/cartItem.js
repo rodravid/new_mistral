@@ -10,7 +10,19 @@ angular.module('app')
                 var $item = $(elt);
                 var itemId = attributes.cartItem;
 
+                var $loadingContainer = $('#loading-container');
+                var $loadingImg = $('<img src="/assets/website/images/loading.gif" alt="Carregando..." class="loading_gif">');
+
+                function showLoading() {
+                    $loadingContainer.html($loadingImg);
+                }
+                function hideLoading() {
+                    $loadingContainer.html('');
+                }
+
                 $scope.removeItem = function() {
+
+                    showLoading();
 
                     cartService.removeItem(itemId).then(function() {
 
@@ -28,6 +40,8 @@ angular.module('app')
 
                 $scope.incrementQuantity = function() {
 
+                    showLoading();
+
                     $scope.quantity++;
 
                     delay(function() {
@@ -42,7 +56,10 @@ angular.module('app')
 
                     if ($scope.quantity <= 0) {
                         $scope.quantity = 1;
+                        return;
                     }
+
+                    showLoading();
 
                     delay(function() {
                         syncQuantity(itemId, $scope.quantity);

@@ -69,7 +69,7 @@
                             <span class="total-products show-desktop">{{ $result->items->range_view }} produtos</span>
                         </div>
 
-                        {{ $result->items->links() }}
+                        {!! $result->items->links() !!}
                     </div>
 
                 </header>
@@ -80,7 +80,7 @@
                     <div class="container-total-products">
                         <span class="total-products show-desktop">{{ $result->items->range_view }} produtos</span>
                     </div>
-                    {{ $result->items->links() }}
+                    {!! $result->items->links() !!}
                 </div>
             </div>
 

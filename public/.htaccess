@@ -5,6 +5,12 @@
 
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^vinci.com.br$ [or]
+    RewriteCond %{HTTP_HOST} ^vincivinhos.com.br$ [or]
+    RewriteCond %{HTTP_HOST} ^www.vincivinhos.com.br$ [or]
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteRule ^(.*)$ https://www.vinci.com.br/$1 [R=301,L]
+
     # Países
     RewriteRule ^CountryList\.aspx$ /redirect [L,R=301]
 
@@ -23,8 +29,15 @@
     RewriteRule ^(basket|newsletter|wishlistsearch|OrderCustomer|Login|searchresults)\.aspx.*$ / [L,R=301]
 
     # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Redirect if access via index.php
+    RewriteCond %{THE_REQUEST} /index\.php [NC]
+    RewriteRule ^(.*?)index\.php[^/] /$1? [L,R=301,NC,NE]
+
+    RewriteCond %{THE_REQUEST} /index\.php [NC]
+    RewriteRule ^(.*?)index\.php(?:/(.*))?$ /$1$2? [L,R=301,NC,NE]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -36,4 +49,33 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+</IfModule>
+
+
+# extensao.ico .pdf .flv
+<FilesMatch "\.(ico|pdf|flv)$">
+Header set Cache-Control "max-age=300, public"
+</FilesMatch>
+
+# extensao.jpg .jpeg .png .gif .swf
+<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+  ExpiresActive On
+  ExpiresDefault "access plus 1 days"
+  Header append Cache-Control "public"
+</FilesMatch>
+
+# extensao .woff
+<FilesMatch "\.(woff)$">
+Header set Cache-Control "max-age=300, public"
+</FilesMatch>
+
+# extensao.htm .html .php
+<FilesMatch "\.(html|htm|txt)$">
+Header set Cache-Control "max-age=300, private, proxy-revalidate"
+</FilesMatch>
+
+SetOutputFilter DEFLATE
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
 </IfModule>

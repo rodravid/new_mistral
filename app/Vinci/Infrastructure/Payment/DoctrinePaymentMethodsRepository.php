@@ -27,8 +27,6 @@ class DoctrinePaymentMethodsRepository extends DoctrineBaseRepository implements
 
         $query->setParameter('id', $id);
 
-        $paymentMethod = $query->getQuery()->getResult();
-
-        return $paymentMethod;
+        return $query->getQuery()->getOneOrNullResult();
     }
 }

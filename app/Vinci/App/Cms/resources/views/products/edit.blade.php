@@ -50,15 +50,6 @@
                         </div>
                     @endif
 
-                    @if ($product->hasImage('desktop'))
-                        <div class="col-xs-12">
-                            @include('cms::layouts.partials.image.default', [
-                            'box_title' => 'Imagem desktop',
-                            'image' => $product->getImage('desktop'),
-                            'delete_url' => route('cms.' . $currentModule->getName() . '.edit#remove-image', [$product->getId(), $product->getImage('desktop')->getId()])
-                            ])
-                        </div>
-                    @endif
                 </div>
             </div>
 

@@ -79,6 +79,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/{order}/edit', 'Order\\OrderController@edit')->name('edit');
                     $route->put('/{order}/change-status', 'Order\\OrderController@changeStatus')->name('edit#change-status');
                     $route->get('/tracking-status/load-mail-template', 'Order\\OrderController@loadMailTemplate')->name('edit#load-mail-template');
+                    $route->post('/{order}/export-erp-queue', 'Order\\OrderController@exportToErpQueued')->name('edit#export-erp-queue');
                 });
 
                 /**
@@ -377,8 +378,16 @@ $route->group(['middleware' => ['web']], function () use ($route) {
 
             $route->get('order-mail-template/{namespace}/{name}/{order}', 'OrderMailTemplateController@render');
             $route->get('customer-mail-template/{namespace}/{name}/{customer}', 'CustomerMailTemplateController@render');
+            $route->get('mail-template/{namespace}/{type}/{name}', 'MailTemplateController@render');
 
         });
+
+    });
+
+    $route->group(['prefix' => 'queue-worker', 'as' => 'queue-worker.', 'namespace' => 'QueueWorker'], function() use ($route) {
+
+        $route->get('/', 'QueueWorkerController@index');
+        $route->get('/getQueueWorkerStatus', 'QueueWorkerController@getQueueWorkerStatus');
 
     });
 

@@ -69,7 +69,7 @@ class ShowcaseController extends SearchController
         $page = $request->get('page', 1);
         $cacheKey = $this->getCacheKey([$showcase, $limit, $page]);
 
-        return Cache::tags(['showcase'])->remember($cacheKey, 1, function () use ($showcase, $limit, $page) {
+        $response = Cache::tags(['showcase'])->remember($cacheKey, 1, function () use ($showcase, $limit, $page) {
 
             $products = $this->productRepository->getProductsByShowcase($showcase, $limit, $page);
 
@@ -78,6 +78,12 @@ class ShowcaseController extends SearchController
             return View::renderEach('website::layouts.partials.product.cards.default', $products, 'product');
 
         });
+
+        if (! empty($response)) {
+            return $response;
+        }
+
+        return '';
     }
 
     protected function getCacheKey(array $keys)

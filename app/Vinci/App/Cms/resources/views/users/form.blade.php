@@ -41,6 +41,17 @@
     </div>
 
     <div class="col-lg-12">
+        <div class="form-group">
+            <div class="checkbox">
+                <input type="hidden" name="receive_mail_notifications" value="0">
+                <label for="ckbReceiveMailNotifications">
+                    <input type="checkbox" id="ckbReceiveMailNotifications" name="receive_mail_notifications" value="1" @if(old('receive_mail_notifications', isset($user) ? $user->wantReceiveMailNotifications() : false)) checked @endif>
+                    Receber notificações por e-mail?</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
         <div class="form-group has-feedback">
             <label for="txtUserPasswordConfirmation">Foto</label>
             {!! Form::file('photo', ['id' => 'txtUserPhoto']) !!}

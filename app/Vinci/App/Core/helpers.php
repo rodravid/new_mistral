@@ -10,6 +10,11 @@ function asset_cms($path, $secure = null) {
     return asset("assets/cms/{$path}", $secure);
 }
 
+function s3Url($path)
+{
+    return sprintf('%s/%s', env('STORAGE_WEB_PATH'), $path);
+}
+
 function cmsUser()
 {
     return auth('cms')->user();

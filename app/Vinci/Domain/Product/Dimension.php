@@ -59,7 +59,7 @@ class Dimension
 
     public function setWeight($weight = null)
     {
-        $this->weight = (double) $weight;
+        $this->weight = doubleval($weight);
         return $this;
     }
 

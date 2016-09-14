@@ -35,13 +35,13 @@ class HomeController extends Controller
     public function index()
     {
         $highlights = $this->highlightRepository->lists('home-main-slider');
-        
+
         $banners = $this->highlightRepository->lists('home-banners');
 
         $showcases = $this->showcaseRepository->lists('home-showcases');
 
         $showcases = $this->presenter->collection($showcases, ShowcasePresenter::class);
-        
+
         return $this->view('home.index', compact('highlights', 'banners', 'showcases'));
     }
 

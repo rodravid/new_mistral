@@ -129,11 +129,11 @@ class ProductFactory implements ProductFactoryInterface
         if (isset($data['dimension'])) {
 
             $dimension = new Dimension;
-            
-            $dimension->setWidth(array_get($data, 'width', $product->getDimension()->getWidth()));
-            $dimension->setHeight(array_get($data, 'height', $product->getDimension()->getHeight()));
-            $dimension->setWeight(array_get($data, 'weight', $product->getDimension()->getWeight()));
-            $dimension->setLength(array_get($data, 'length', $product->getDimension()->getLength()));
+
+            $dimension->setWidth(array_get($data, 'dimension.width', $product->getDimension()->getWidth()));
+            $dimension->setHeight(array_get($data, 'dimension.height', $product->getDimension()->getHeight()));
+            $dimension->setWeight(array_get($data, 'dimension.weight', $product->getDimension()->getWeight()));
+            $dimension->setLength(array_get($data, 'dimension.length', $product->getDimension()->getLength()));
 
             $product->setDimension($dimension);
         }
@@ -187,8 +187,11 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAt($newProduct->getStartsAt())
             ->setExpirationAt($newProduct->getExpirationAt())
             ->setOnline($newProduct->isOnline())
-            ->setPackSize($newProduct->getPackSize())
-            ->setSearchRelevance($newProduct->getSearchRelevance());
+            ->setPackSize($newProduct->getPackSize());
+
+        if (array_has($data, 'searchRelevance')) {
+            $product->setSearchRelevance($newProduct->getSearchRelevance());
+        }
 
         if (array_has($data, 'stock')) {
             $product->changeStock($newProduct->getStock());
@@ -224,6 +227,10 @@ class ProductFactory implements ProductFactoryInterface
 
         if (! empty(array_get($data, 'product_type_id'))) {
             $product->setProductType($newProduct->getProductType());
+        }
+        
+        if (! empty(array_get($data, 'dimension'))) {
+            $product->setDimension($newProduct->getDimension());
         }
 
         if ($product->isType(ProductArchType::TYPE_WINE)) {

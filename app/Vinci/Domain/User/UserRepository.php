@@ -13,4 +13,6 @@ interface UserRepository extends RepositoryInterface
 
     public function findByEmail($email);
 
+    public function findByRole(array $role);
+
 }

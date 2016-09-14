@@ -149,13 +149,13 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/{slug}', 'ProductType\ProductTypeController@show')->name('show');
         });
 
-        $route->get('/tipos-de-vinho', 'ProductType\ProductTypeController@index')->name('product-types.list');
+        $route->get('/tipo-de-vinho', 'ProductType\ProductTypeController@index')->name('product-types.list');
 
         $route->group(['prefix' => 'tipo-de-uva', 'as' => 'grape.'], function () use ($route) {
             $route->get('/{slug}', 'Grape\GrapeController@show')->name('show');
         });
 
-        $route->get('/tipos-de-uva', 'Grape\GrapeController@index')->name('grapes.list');
+        $route->get('/tipo-de-uva', 'Grape\GrapeController@index')->name('grapes.list');
 
         $route->group(['prefix' => 'vitrine', 'as' => 'showcase.'], function () use ($route) {
             $route->get('/{slug}', 'Showcase\ShowcaseController@show')->name('show');
@@ -229,8 +229,8 @@ $route->group(['middleware' => ['web']], function () use ($route) {
      * Site pages
      */
     $route->get('/paginas', 'Pages\PagesController@index');
-    $route->get('/privacidade', 'Pages\PagesController@privacy')->name('privacy.index');
-    $route->get('/duvidas-frequentes', 'Pages\PagesController@frequentDoubts')->name('frequent-doubts.index');
+    $route->get('/institucional/politica-de-privacidade', 'Pages\PagesController@privacy')->name('privacy.index');
+    $route->get('/atendimento/duvidas-frequentes', 'Pages\PagesController@frequentDoubts')->name('frequent-doubts.index');
     $route->get('/institucional/sobre-a-vinci', 'Pages\PagesController@about')->name('about.index');
     $route->get('/institucional/revendedores', 'Pages\PagesController@dealers')->name('dealers.index');
 

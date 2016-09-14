@@ -4,6 +4,7 @@ namespace Vinci\App\Integration\ERP\Customer;
 
 use Exception;
 use Illuminate\Bus\Dispatcher as CommandDispatcher;
+use Illuminate\Contracts\Config\Repository;
 use Vinci\App\Integration\ERP\Customer\Jobs\ExportCustomerToErp;
 use Vinci\App\Integration\Exceptions\IntegrationException;
 use Vinci\Domain\Common\IntegrationStatus;
@@ -21,14 +22,18 @@ class CustomerExporter
 
     private $commandDispatcher;
 
+    private $config;
+
     public function __construct(
         CustomerService $customerService,
         CustomerRepository $customerRepository,
-        CommandDispatcher $commandDispatcher
+        CommandDispatcher $commandDispatcher,
+        Repository $config
     ) {
         $this->customerService = $customerService;
         $this->customerRepository = $customerRepository;
         $this->commandDispatcher = $commandDispatcher;
+        $this->config = $config;
     }
 
     public function export(CustomerInterface $localCustomer, $user = 'Sistema')
@@ -55,7 +60,7 @@ class CustomerExporter
 
         $this->commandDispatcher->dispatch(
             (new ExportCustomerToErp($customer->getId()))
-                ->onQueue('vinci-integration-customers')
+                ->onQueue($this->config->get('queue.customers-integration'))
         );
     }
 

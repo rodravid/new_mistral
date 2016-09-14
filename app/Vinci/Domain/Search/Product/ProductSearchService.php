@@ -98,8 +98,6 @@ class ProductSearchService extends SearchService
 
     public function search($keyword = null, array $filters = [], $limit = 10, $start = 0, $sort = 1)
     {
-        //$keyword = Str::lower($keyword);
-
         $params = $this->getSearchParams($keyword, $filters, $limit, $start, $sort);
 
         $result = $this->client->search($params);
@@ -350,15 +348,17 @@ class ProductSearchService extends SearchService
 
     protected function getSort($order)
     {
+        $default = ['available:desc', 'relevance:desc', '_score'];
+
         switch ($order) {
-            case 1: return ['available:desc', 'relevance:desc', '_score']; break;
-            case 2: return ['available:desc', 'relevance:desc', 'price:asc']; break;
-            case 3: return ['available:desc', 'relevance:desc', 'price:desc']; break;
-            case 4: return ['available:desc', 'relevance:desc', 'title.raw:asc']; break;
-            case 5: return ['available:desc', 'relevance:desc', 'title.raw:desc']; break;
+            case 1: return $default; break;
+            case 2: return ['available:desc', 'price:asc', 'relevance:desc']; break;
+            case 3: return ['available:desc', 'price:desc', 'relevance:desc']; break;
+            case 4: return ['available:desc', 'title.raw:asc', 'relevance:desc']; break;
+            case 5: return ['available:desc', 'title.raw:desc', 'relevance:desc']; break;
         }
 
-        return ['_score'];
+        return $default;
     }
 
 }

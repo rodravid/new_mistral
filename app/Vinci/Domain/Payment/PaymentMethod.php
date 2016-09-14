@@ -114,7 +114,12 @@ class PaymentMethod extends Model implements PaymentMethodInterface, Presentable
 
     public function isCreditCard()
     {
-        return $this->description == 'credit_card';
+        return $this->description == self::CREDIT_CARD;
+    }
+
+    public function isBankDeposit()
+    {
+        return $this->description == self::BANK_DEPOSIT;
     }
 
 }

@@ -719,7 +719,6 @@
 		}
 
 		.menu {
-			width:830px;
 			@media #{$screen970}{ 
 				width:auto;
 			}
@@ -750,7 +749,7 @@
 			}
 		}
 		.menu-link{
-			padding: 10px 10px 0 10px;
+			padding: 10px 8px 0 8px;
 			text-transform: uppercase;
 			color: #fff;
 			font-size: 15px;
@@ -812,7 +811,7 @@
 			.drop-menu {
 				max-width: 670px;
 				width: 100%;
-				right: 9px;
+				right: 0px;
 			}
 		}
 
@@ -824,12 +823,10 @@
 				.drop-menu {
 					max-width: 670px;
 					width: 100%;
-					right: 9px;
+					right: 0px;
 				}
 			}
 		}
-
-
 
 		.drop-menu{
 			padding: 12px 20px;
@@ -862,6 +859,12 @@
 			}
 			.nav-link{
 				font-weight:400 !important;
+			}
+
+			.larger760-right {
+				.drop-menu {
+					right: 0px;
+				}
 			}
 
 /* 			.larger760-right {

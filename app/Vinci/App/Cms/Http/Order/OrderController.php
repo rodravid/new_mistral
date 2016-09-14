@@ -13,6 +13,7 @@ use Vinci\App\Cms\Http\Controller;
 use Vinci\App\Cms\Http\Order\Presenters\OrderPresenter;
 use Vinci\App\Core\Services\Datatables\DatatablesResponse;
 use Vinci\App\Integration\ERP\Logger\IntegrationLogger;
+use Vinci\App\Integration\ERP\Order\OrderExporter;
 use Vinci\App\Website\Http\Order\Presenter\OrderPresenter as OrderPresenterWeb;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\OrderRepository;
@@ -35,17 +36,21 @@ class OrderController extends Controller
 
     protected $datatable = 'Vinci\Infrastructure\Orders\Datatables\OrderCmsDatatable';
 
+    protected $orderExporter;
+
     public function __construct(
         EntityManagerInterface $em,
         OrderService $service,
         OrderRepository $repository,
-        OrderTrackingStatusRepository $trackingStatusRepository
+        OrderTrackingStatusRepository $trackingStatusRepository,
+        OrderExporter $orderExporter
     ) {
         parent::__construct($em);
 
         $this->service = $service;
         $this->repository = $repository;
         $this->trackingStatusRepository = $trackingStatusRepository;
+        $this->orderExporter = $orderExporter;
     }
 
     public function index()
@@ -154,6 +159,26 @@ class OrderController extends Controller
     public function getTrackingStatus()
     {
         return html_select_array($this->trackingStatusRepository->getAll(), 'id', 'description');
+    }
+
+    public function exportToErpQueued($orderId, Request $request)
+    {
+        $order = $this->repository->find($orderId);
+
+        try {
+
+            $this->orderExporter->exportQueued($order, true);
+
+            Flash::success("Pedido #{$order->getNumber()} enviado com sucesso para fila de integração!");
+
+            return Redirect::route('cms.orders.show', $order->getId());
+
+        } catch (Exception $e) {
+
+            Flash::error($e->getMessage());
+            return Redirect::back();
+        }
+
     }
 
 }
