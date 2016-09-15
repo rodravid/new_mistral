@@ -7,6 +7,9 @@ use Vinci\Domain\Common\Model\DateRange;
 
 interface OrderRepository extends RepositoryInterface
 {
+    public function getAll($perPage, $currentPage = 1);
+
+    public function getAllFilteredBy(array $filters);
 
     public function getOneById($id);
 

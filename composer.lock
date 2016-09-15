@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6b54998ea53055afe32514224cfcffd8",
+    "hash": "58219a1336088b1da536844e2c19d10a",
     "content-hash": "a64f413745f84011e8d834a40ee1fefd",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.19.6",
+            "version": "3.19.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "34060bf0db260031697b17dbb37fa1bbec92f1c4"
+                "reference": "33e8f7083fcb54fd926a8569cb81a0795e8c2633"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/34060bf0db260031697b17dbb37fa1bbec92f1c4",
-                "reference": "34060bf0db260031697b17dbb37fa1bbec92f1c4",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/33e8f7083fcb54fd926a8569cb81a0795e8c2633",
+                "reference": "33e8f7083fcb54fd926a8569cb81a0795e8c2633",
                 "shasum": ""
             },
             "require": {
@@ -85,11 +85,7 @@
                 "s3",
                 "sdk"
             ],
-<<<<<<< HEAD
-            "time": "2016-09-01 21:37:32"
-=======
-            "time": "2016-09-08 20:27:15"
->>>>>>> e7504a43904a6280961d6172958ea9ce68f77aa1
+            "time": "2016-09-13 20:35:16"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -5265,11 +5261,7 @@
         },
         {
             "name": "symfony/serializer",
-<<<<<<< HEAD
-            "version": "v2.8.10",
-=======
             "version": "v2.8.11",
->>>>>>> e7504a43904a6280961d6172958ea9ce68f77aa1
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",

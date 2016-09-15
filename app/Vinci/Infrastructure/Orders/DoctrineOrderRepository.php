@@ -12,6 +12,40 @@ use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRepository
 {
+    public function getAll($perPage, $currentPage = 1)
+    {
+        $query = $this->getBaseQueryBuilder()
+                             ->orderBy('o.createdAt', 'desc')
+                             ->getQuery();
+
+        return $this->paginateRaw($query, $perPage, $currentPage);
+    }
+
+    public function getAllFilteredBy(array $filters)
+    {
+        $dql = <<<DQL
+        SELECT o, i, c, p, s 
+        FROM Vinci\Domain\Order\Order o 
+            INNER JOIN o.items i 
+            INNER JOIN o.customer c 
+            INNER JOIN o.payments p 
+            INNER JOIN o.shipment s 
+        WHERE   (o.createdAt BETWEEN :startDate AND :endAt)
+            AND (o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword)
+            AND o.trackingStatus = :trackingStatus
+        ORDER BY o.createdAt desc
+DQL;
+
+        $query = $this->_em->createQuery($dql);
+
+        $query->setParameter('keyword', '%' . $filters['keyword'] . '%');
+        $query->setParameter('trackingStatus', $filters['orderStatus']);
+        $query->setParameter('startDate', $filters['startDate']);
+        $query->setParameter('endAt', $filters['endAt']);
+        $query->setParameter('id', $filters['keyword']);
+
+        return $this->paginateRaw($query, $filters['itemsPerPage'], $filters['currentPage']);
+    }
 
     public function getLastOrders($perPage, $currentPage = 1)
     {

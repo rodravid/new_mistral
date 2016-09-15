@@ -2,9 +2,11 @@
 
 namespace Vinci\App\Cms\Http\Order;
 
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Flash;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Redirect;
 use Response;
@@ -19,6 +21,7 @@ use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\OrderRepository;
 use Vinci\Domain\Order\OrderService;
 use Vinci\Domain\Order\OrderStatus;
+use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
 use Vinci\Domain\Payment\PaymentStatus;
 use Vinci\Infrastructure\Exceptions\MailingException;
@@ -53,9 +56,45 @@ class OrderController extends Controller
         $this->orderExporter = $orderExporter;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->view('orders.list');
+        $filters = $this->buildFiltersFrom($request);
+
+        $orders = $this->repository->getAllFilteredBy($filters);
+        $orders = $this->presenter->paginator($orders, OrderPresenter::class);
+
+        $orderStatuses = $this->trackingStatusRepository->getAll();
+        $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id');
+
+        return $this->view('orders.list', compact('orders', 'orderStatuses', 'filters'));
+    }
+
+    public function excel(Request $request)
+    {
+        $filters = $this->buildFiltersFrom($request);
+    }
+
+    private function buildFiltersFrom(Request $request)
+    {
+        $data = $request->all();
+
+        $filters['startDate'] = isset($data['startDate'])
+            ? Carbon::createFromFormat('d/m/Y 00:00', $data['startDate'])
+            : Carbon::now()
+                ->subMonth()
+                ->format('Y-m-d 00:00:00');
+
+        $filters['endAt'] = isset($data['endAt'])
+            ? Carbon::createFromFormat('d/m/Y 23:59', $data['endAt'])
+            : Carbon::now()
+                ->format('Y-m-d 23:59:59');
+
+        $filters['itemsPerPage'] = isset($data['itemsPerPage']) ? $data['itemsPerPage'] : 10;
+        $filters['currentPage'] = isset($data['currentPage']) ? $data['currentPage'] : 1;
+        $filters['orderStatus'] = isset($data['orderStatus']) ? $data['orderStatus'] : OrderTrackingStatus::STATUS_NEW;
+        $filters['keyword'] = isset($data['keyword']) ? $data['keyword'] : '';
+
+        return $filters;
     }
 
     public function show($id)
