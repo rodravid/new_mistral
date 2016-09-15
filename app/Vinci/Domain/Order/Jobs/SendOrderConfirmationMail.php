@@ -37,7 +37,7 @@ class SendOrderConfirmationMail extends Job implements ShouldQueue
                 $message
                     ->subject(sprintf('Vinci Vinhos - Confirmação de Pedido nº %s', $order->getNumber()))
                     ->to($order->getCustomer()->getEmail(), $order->getCustomer()->getName())
-                    ->bcc(env('MAIL_FROM_ADDRESS'), 'Vinci');
+                    ->bcc('pedido@vinci.com.br', 'Vinci');
             });
 
         } catch (Exception $e) {
