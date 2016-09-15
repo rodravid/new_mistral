@@ -44,7 +44,7 @@ DQL;
         $query->setParameter('endAt', $filters['endAt']);
         $query->setParameter('id', $filters['keyword']);
 
-        return $this->paginateRaw($query, $filters['itemsPerPage'], $filters['currentPage']);
+        return $this->paginate($query, $filters['itemsPerPage']);
     }
 
     public function getLastOrders($perPage, $currentPage = 1)

@@ -63,6 +63,11 @@ class OrderController extends Controller
         $orders = $this->repository->getAllFilteredBy($filters);
         $orders = $this->presenter->paginator($orders, OrderPresenter::class);
 
+        $orders->setPath('/cms/orders');
+        $filters['startDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['startDate'])->format('d/m/Y 00:00:00');
+        $filters['endAt'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['endAt'])->format('d/m/Y 23:59:59');
+        $orders->appends($filters);
+
         $orderStatuses = $this->trackingStatusRepository->getAll();
         $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id');
 
@@ -79,18 +84,17 @@ class OrderController extends Controller
         $data = $request->all();
 
         $filters['startDate'] = isset($data['startDate'])
-            ? Carbon::createFromFormat('d/m/Y 00:00', $data['startDate'])
+            ? Carbon::createFromFormat('d/m/Y H:i:s', $data['startDate'])
             : Carbon::now()
                 ->subMonth()
                 ->format('Y-m-d 00:00:00');
 
         $filters['endAt'] = isset($data['endAt'])
-            ? Carbon::createFromFormat('d/m/Y 23:59', $data['endAt'])
+            ? Carbon::createFromFormat('d/m/Y H:i:s', $data['endAt'])
             : Carbon::now()
                 ->format('Y-m-d 23:59:59');
 
-        $filters['itemsPerPage'] = isset($data['itemsPerPage']) ? $data['itemsPerPage'] : 10;
-        $filters['currentPage'] = isset($data['currentPage']) ? $data['currentPage'] : 1;
+        $filters['itemsPerPage'] = isset($data['itemsPerPage']) ? $data['itemsPerPage'] : 2;
         $filters['orderStatus'] = isset($data['orderStatus']) ? $data['orderStatus'] : OrderTrackingStatus::STATUS_NEW;
         $filters['keyword'] = isset($data['keyword']) ? $data['keyword'] : '';
 
