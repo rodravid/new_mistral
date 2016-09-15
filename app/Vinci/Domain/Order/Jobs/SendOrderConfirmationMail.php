@@ -34,10 +34,15 @@ class SendOrderConfirmationMail extends Job implements ShouldQueue
             $order = $presenter->model($order, OrderPresenter::class);
 
             $mailer->send('website::layouts.emails.order.default.created', compact('order'), function (Message $message) use ($order) {
+
                 $message
                     ->subject(sprintf('Vinci Vinhos - Confirmação de Pedido nº %s', $order->getNumber()))
-                    ->to($order->getCustomer()->getEmail(), $order->getCustomer()->getName())
-                    ->bcc('pedido@vinci.com.br', 'Vinci');
+                    ->to($order->getCustomer()->getEmail(), $order->getCustomer()->getName());
+
+                list($bccAddress, $bccName) = $this->getBccAddress();
+
+                $message->bcc($bccAddress, $bccName);
+
             });
 
         } catch (Exception $e) {
@@ -49,6 +54,12 @@ class SendOrderConfirmationMail extends Job implements ShouldQueue
         } finally {
             app('em')->clear();
         }
+    }
+
+    private function getBccAddress()
+    {
+        return app()->environment('production') ?
+            ['pedido@vinci.com.br', 'Vinci'] : ['tcavallini@webeleven.com.br', 'Thiago'];
     }
 
 }
