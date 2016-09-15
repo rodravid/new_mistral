@@ -35,7 +35,8 @@ class SendOrderStatusMail extends Job
                 $message
                     ->to($this->order->getCustomer()->getEmail(), $this->order->getCustomer()->getName())
                     ->subject($this->mailSubject)
-                    ->setBody($this->mailBody, 'text/html');
+                    ->setBody($this->mailBody, 'text/html')
+                    ->bcc('pedido@vinci.com.br', 'Vinci');
             });
 
             $dispatcher->fire(new OrderStatusMailWasSended($this->order, $this->mailSubject, $this->mailBody));

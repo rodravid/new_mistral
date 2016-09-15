@@ -3,7 +3,10 @@
 namespace Vinci\App\Core\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class Authenticate
 {
@@ -32,6 +35,10 @@ class Authenticate
     {
         if ($guard == 'cms') {
             return 'cms/login';
+        }
+
+        if (Str::contains(URL::previous(), 'carrinho')) {
+            return '/login/?r=carrinho';
         }
 
         return 'login';
