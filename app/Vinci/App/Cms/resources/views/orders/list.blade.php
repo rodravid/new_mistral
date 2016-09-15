@@ -37,11 +37,6 @@
                                     </div>
                                     <div class="col-md-12 col-lg-6">
                                         {!! Form::select('orderStatus', $orderStatuses, $filters['orderStatus'], ['class' => 'form-control', 'style' => 'margin-top: 25px;']) !!}
-                                        {{--<select name="orderStatus" id="order_status" class="form-control" style='margin-top: 25px;'>--}}
-                                            {{--@foreach ($orderStatuses as $orderStatus)--}}
-                                                {{--<option value="{{ $orderStatus->id }}">{{ $orderStatus->title }}</option>--}}
-                                            {{--@endforeach--}}
-                                        {{--</select>--}}
                                     </div>
                                 </div>
                                 <div class="row">
