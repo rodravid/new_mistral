@@ -46,22 +46,22 @@
                 <p class="title-15 mbottom10 uppercase">Vinhos por faixa de preço (R$)</p>
                 <ul class="list-button-price">
                     <li class="item-button-price">
-                        <a href="/busca?preco%5B%5D=*-60" class="bt-default-full template13">Até 60 <span class="arrow-link">></span></a>
+                        <a href="/busca/?preco%5B%5D=*-60" class="bt-default-full template13">Até 60 <span class="arrow-link">></span></a>
                     </li>
                     <li class="item-button-price">
-                        <a href="/busca?preco%5B%5D=60-100" class="bt-default-full template13">60 a 100 <span class="arrow-link">></span></a>
+                        <a href="/busca/?preco%5B%5D=60-100" class="bt-default-full template13">60 a 100 <span class="arrow-link">></span></a>
                     </li>
                     <li class="item-button-price">
-                        <a href="/busca?preco%5B%5D=100-170" class="bt-default-full template13">100 a 170 <span class="arrow-link">></span></a>
+                        <a href="/busca/?preco%5B%5D=100-170" class="bt-default-full template13">100 a 170 <span class="arrow-link">></span></a>
                     </li>
                     <li class="item-button-price">
-                        <a href="/busca?preco%5B%5D=170-270" class="bt-default-full template13">170 a 270 <span class="arrow-link">></span></a>
+                        <a href="/busca/?preco%5B%5D=170-270" class="bt-default-full template13">170 a 270 <span class="arrow-link">></span></a>
                     </li>
                     <li class="item-button-price">
-                        <a href="/busca?preco%5B%5D=270-500" class="bt-default-full template13">270 a 500 <span class="arrow-link">></span></a>
+                        <a href="/busca/?preco%5B%5D=270-500" class="bt-default-full template13">270 a 500 <span class="arrow-link">></span></a>
                     </li>
                     <li class="item-button-price">
-                    <a href="/busca?preco%5B%5D=500-*" class="bt-default-full template13">Acima de 500 <span class="arrow-link">></span></a>
+                    <a href="/busca/?preco%5B%5D=500-*" class="bt-default-full template13">Acima de 500 <span class="arrow-link">></span></a>
                     </li>
                 </ul>
             </div>
