@@ -24,19 +24,27 @@
                                     <div class="form-group col-md-12 col-lg-3">
                                         <label for="dtpDateStart">Inicio</label>
                                         <div class="input-group date" id="startDatePicker">
-                                            {!! Form::text('startDate', $filters['startDate'], ['data-date-format' => 'DD/MM/YYYY 00:00:00', 'class' => 'form-control']) !!}
+                                            {!! Form::text('startDate',
+                                                            (! empty($filters['startDate'])
+                                                                ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $filters['startDate'])->format('d/m/Y 00:00:00')
+                                                                : ''),
+                                                            ['data-date-format' => 'DD/MM/YYYY 00:00:00', 'class' => 'form-control', 'placeholder' => 'Selecione o termino do pedido']) !!}
                                             <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-lg-3">
                                         <label for="dtpDateStop">Termino</label>
                                         <div class="input-group date" id="endDatePicker">
-                                            {!! Form::text('endAt', $filters['endAt'], ['data-date-format' => 'DD/MM/YYYY 23:59:59', 'class' => 'form-control']) !!}
+                                            {!! Form::text('endAt',
+                                                            (! empty($filters['endAt'])
+                                                                ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $filters['endAt'])->format('d/m/Y 23:59:59')
+                                                                : ''),
+                                                            ['data-date-format' => 'DD/MM/YYYY 23:59:59', 'class' => 'form-control', 'placeholder' => 'Selecione o termino do pedido']) !!}
                                             <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6">
-                                        {!! Form::select('orderStatus', $orderStatuses, $filters['orderStatus'], ['class' => 'form-control', 'style' => 'margin-top: 25px;']) !!}
+                                        {!! Form::select('orderTrackingStatus', $orderStatuses, $filters['orderTrackingStatus'], ['class' => 'form-control', 'style' => 'margin-top: 25px;']) !!}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -47,7 +55,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-2 col-lg-3">
-                                        {!! Form::select('itemsPerPage', [5 => '5 pedidos por página',
+                                        {!! Form::select('itemsPerPage', [ 5 => '5 pedidos por página',
                                                                           10 => '10 pedidos por página',
                                                                           15 => '15 pedidos por página',
                                                                           20 => '20 pedidos por página',
@@ -58,7 +66,7 @@
                                     </div>
                                     <div class="form-group col-md-5 col-lg-3">
                                         <div class="btn-group">
-                                            {!! Form::button('<i class="fa fa-search"></i> Procurar', ['class' => 'btn btn-info', 'type' => 'submit']) !!}
+                                            {!! Form::button('<i class="fa fa-search"></i> Filtrar', ['class' => 'btn btn-info', 'type' => 'submit']) !!}
                                             <a href="{{ route('cms.orders.excel') }}" class="btn btn-success">
                                                 <i class="fa fa-line-chart"></i> Excel
                                             </a>

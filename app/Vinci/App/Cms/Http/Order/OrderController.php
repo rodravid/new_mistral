@@ -22,7 +22,6 @@ use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
 use Vinci\Domain\Order\OrderRepository;
 use Vinci\Domain\Order\OrderService;
 use Vinci\Domain\Order\OrderStatus;
-use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatus;
 use Vinci\Domain\Order\TrackingStatus\OrderTrackingStatusRepository;
 use Vinci\Domain\Payment\PaymentStatus;
 use Vinci\Infrastructure\Exceptions\MailingException;
@@ -65,16 +64,26 @@ class OrderController extends Controller
         $orders = $this->presenter->paginator($orders, OrderPresenter::class);
 
         $orders->setPath('/cms/orders');
-        $filters['startDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['startDate'])
-                                    ->format('d/m/Y 00:00:00');
-        $filters['endAt'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['endAt'])
-                                    ->format('d/m/Y 23:59:59');
         $orders->appends($filters);
 
         $orderStatuses = $this->trackingStatusRepository->getAll();
-        $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id');
+        $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id')->prepend('Selecione o status do pedido', 0);
 
         return $this->view('orders.list', compact('orders', 'orderStatuses', 'filters'));
+    }
+
+    private function buildFiltersFrom(Request $request)
+    {
+        $data = $request->all();
+
+        $filters['startDate'] = isset($data['startDate']) && ! empty($data['startDate']) ? Carbon::createFromFormat('d/m/Y H:i:s', $data['startDate']) : '';
+        $filters['endAt'] = isset($data['endAt']) && ! empty($data['endAt']) ? Carbon::createFromFormat('d/m/Y H:i:s', $data['endAt']) : '';
+
+        $filters['itemsPerPage'] = $this->getItemsPerPage($data);
+        $filters['orderTrackingStatus'] = $this->getStatus($data);
+        $filters['keyword'] = $this->getKeywords($data);
+
+        return $filters;
     }
 
     public function excel(Request $request)
@@ -95,26 +104,21 @@ class OrderController extends Controller
         })->download('xls');
     }
 
-    private function buildFiltersFrom(Request $request)
+    private function getItemsPerPage($filters)
     {
-        $data = $request->all();
+        $defaultQuantityOfItemsPerPage = 10;
+        return isset($filters['itemsPerPage']) ? $filters['itemsPerPage'] : $defaultQuantityOfItemsPerPage;
+    }
 
-        $filters['startDate'] = isset($data['startDate'])
-            ? Carbon::createFromFormat('d/m/Y H:i:s', $data['startDate'])
-            : Carbon::now()
-                ->subMonth()
-                ->format('Y-m-d 00:00:00');
+    private function getStatus($filters)
+    {
+        $shouldNotFilterByOrderStatus = 0;
+        return isset($filters['orderTrackingStatus']) ? $filters['orderTrackingStatus'] : $shouldNotFilterByOrderStatus;
+    }
 
-        $filters['endAt'] = isset($data['endAt'])
-            ? Carbon::createFromFormat('d/m/Y H:i:s', $data['endAt'])
-            : Carbon::now()
-                ->format('Y-m-d 23:59:59');
-
-        $filters['itemsPerPage'] = isset($data['itemsPerPage']) ? $data['itemsPerPage'] : 10;
-        $filters['orderStatus'] = isset($data['orderStatus']) ? $data['orderStatus'] : $this->trackingStatusRepository->getAll()[0]->id;
-        $filters['keyword'] = isset($data['keyword']) ? $data['keyword'] : '';
-
-        return $filters;
+    private function getKeywords($filters)
+    {
+        return isset($filters['keyword']) ? $filters['keyword'] : '';
     }
 
     public function show($id)

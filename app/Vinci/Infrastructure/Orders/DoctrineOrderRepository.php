@@ -23,32 +23,54 @@ class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRep
 
     public function getAllFilteredBy(array $filters)
     {
-        $dql = <<<DQL
-        SELECT o, i, c, p, s 
-        FROM Vinci\Domain\Order\Order o 
-            INNER JOIN o.items i 
-            INNER JOIN o.customer c 
-            INNER JOIN o.payments p 
-            INNER JOIN o.shipment s 
-        WHERE   (o.createdAt BETWEEN :startDate AND :endAt)
-            AND (o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword)
-            AND o.trackingStatus = :trackingStatus
-        ORDER BY o.createdAt desc
-DQL;
+//        $dql = <<<DQL
+//        SELECT o, i, c, p, s
+//        FROM Vinci\Domain\Order\Order o
+//            INNER JOIN o.items i
+//            INNER JOIN o.customer c
+//            INNER JOIN o.payments p
+//            INNER JOIN o.shipment s
+//        WHERE   (o.createdAt BETWEEN :startDate AND :endAt)
+//            AND (o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword)
+//            AND o.trackingStatus = :trackingStatus
+//        ORDER BY o.createdAt desc
+//DQL;
+        $queryBuilder = $this->getBaseQueryBuilder()
+            ->where('o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword');
 
-        $query = $this->_em->createQuery($dql);
+        if ($this->shouldFilterByOrderTrackingStatus($filters)) {
+            $queryBuilder->andWhere('o.trackingStatus = :trackingStatus');
 
-        $query->setParameter('keyword', '%' . $filters['keyword'] . '%');
-        $query->setParameter('trackingStatus', $filters['orderStatus']);
-        $query->setParameter('startDate', $filters['startDate']);
-        $query->setParameter('endAt', $filters['endAt']);
-        $query->setParameter('id', $filters['keyword']);
-
-        if ($this->shouldPaginate($filters['itemsPerPage'])) {
-            return $this->paginate($query, $filters['itemsPerPage']);
+            $queryBuilder->setParameter('trackingStatus', $filters['orderTrackingStatus']);
         }
 
-        return $query->getResult();
+        if ($this->shouldFilterByPeriod($filters)) {
+            $queryBuilder->andWhere('o.createdAt BETWEEN :startDate AND :endAt');
+
+            $queryBuilder->setParameter('startDate', $filters['startDate']);
+            $queryBuilder->setParameter('endAt', $filters['endAt']);
+        }
+
+        $queryBuilder->setParameter('id', $filters['keyword']);
+        $queryBuilder->setParameter('keyword', '%' . $filters['keyword'] . '%');
+
+        $queryBuilder->orderBy('o.createdAt', 'desc');
+
+        if ($this->shouldPaginate($filters['itemsPerPage'])) {
+            return $this->paginate($queryBuilder->getQuery(), $filters['itemsPerPage']);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    private function shouldFilterByOrderTrackingStatus($filters)
+    {
+        return !! $filters['orderTrackingStatus'];
+    }
+
+    private function shouldFilterByPeriod($filters)
+    {
+        return ! empty($filters['startDate']) && ! empty($filters['endAt']);
     }
 
     public function getLastOrders($perPage, $currentPage = 1)
