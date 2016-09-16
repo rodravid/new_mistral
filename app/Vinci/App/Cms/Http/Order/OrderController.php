@@ -2,10 +2,13 @@
 
 namespace Vinci\App\Cms\Http\Order;
 
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Flash;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Redirect;
 use Response;
 use View;
@@ -53,9 +56,69 @@ class OrderController extends Controller
         $this->orderExporter = $orderExporter;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->view('orders.list');
+        $filters = $this->buildFiltersFrom($request);
+
+        $orders = $this->repository->getAllFilteredBy($filters);
+        $orders = $this->presenter->paginator($orders, OrderPresenter::class);
+
+        $orders->setPath('/cms/orders');
+        $orders->appends($filters);
+
+        $orderStatuses = $this->trackingStatusRepository->getAll();
+        $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id')->prepend('Selecione o status do pedido', 0);
+
+        return $this->view('orders.list', compact('orders', 'orderStatuses', 'filters'));
+    }
+
+    private function buildFiltersFrom(Request $request)
+    {
+        $data = $request->all();
+
+        $filters['startDate'] = isset($data['startDate']) && ! empty($data['startDate']) ? Carbon::createFromFormat('d/m/Y H:i:s', $data['startDate']) : '';
+        $filters['endAt'] = isset($data['endAt']) && ! empty($data['endAt']) ? Carbon::createFromFormat('d/m/Y H:i:s', $data['endAt']) : '';
+
+        $filters['itemsPerPage'] = $this->getItemsPerPage($data);
+        $filters['orderTrackingStatus'] = $this->getStatus($data);
+        $filters['keyword'] = $this->getKeywords($data);
+
+        return $filters;
+    }
+
+    public function excel(Request $request)
+    {
+        $filters = $this->buildFiltersFrom($request);
+
+        $orders = $this->repository->getAllFilteredBy($filters);
+        $orders = $this->presenter->collection($orders, OrderPresenter::class);
+
+        $fileName = 'Relatorio de Pedidos - '. Carbon::now()->format('Y/m/d H:i:s');
+
+        Excel::create($fileName, function($excel) use ($orders) {
+
+            $excel->sheet('Pedidos', function ($sheet) use ($orders) {
+                $sheet->loadView('reports.orders.excel', compact('orders'));
+            });
+
+        })->download('xls');
+    }
+
+    private function getItemsPerPage($filters)
+    {
+        $defaultQuantityOfItemsPerPage = 10;
+        return isset($filters['itemsPerPage']) ? $filters['itemsPerPage'] : $defaultQuantityOfItemsPerPage;
+    }
+
+    private function getStatus($filters)
+    {
+        $shouldNotFilterByOrderStatus = 0;
+        return isset($filters['orderTrackingStatus']) ? $filters['orderTrackingStatus'] : $shouldNotFilterByOrderStatus;
+    }
+
+    private function getKeywords($filters)
+    {
+        return isset($filters['keyword']) ? $filters['keyword'] : '';
     }
 
     public function show($id)

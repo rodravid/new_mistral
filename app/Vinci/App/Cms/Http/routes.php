@@ -74,6 +74,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                  */
                 $route->group(['prefix' => 'orders', 'as' => 'orders.'], function () use ($route) {
                     $route->get('/', 'Order\\OrderController@index')->name('list');
+                    $route->get('/excel', 'Order\\OrderController@excel')->name('excel');
                     $route->post('datatable', 'Order\\OrderController@datatable')->name('list#datatable');
                     $route->get('/{order}', 'Order\\OrderController@show')->name('show');
                     $route->get('/{order}/edit', 'Order\\OrderController@edit')->name('edit');

@@ -12,6 +12,66 @@ use Vinci\Infrastructure\Exceptions\EntityNotFoundException;
 
 class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRepository
 {
+    public function getAll($perPage, $currentPage = 1)
+    {
+        $query = $this->getBaseQueryBuilder()
+                             ->orderBy('o.createdAt', 'desc')
+                             ->getQuery();
+
+        return $this->paginateRaw($query, $perPage, $currentPage);
+    }
+
+    public function getAllFilteredBy(array $filters)
+    {
+//        $dql = <<<DQL
+//        SELECT o, i, c, p, s
+//        FROM Vinci\Domain\Order\Order o
+//            INNER JOIN o.items i
+//            INNER JOIN o.customer c
+//            INNER JOIN o.payments p
+//            INNER JOIN o.shipment s
+//        WHERE   (o.createdAt BETWEEN :startDate AND :endAt)
+//            AND (o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword)
+//            AND o.trackingStatus = :trackingStatus
+//        ORDER BY o.createdAt desc
+//DQL;
+        $queryBuilder = $this->getBaseQueryBuilder()
+            ->where('o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword');
+
+        if ($this->shouldFilterByOrderTrackingStatus($filters)) {
+            $queryBuilder->andWhere('o.trackingStatus = :trackingStatus');
+
+            $queryBuilder->setParameter('trackingStatus', $filters['orderTrackingStatus']);
+        }
+
+        if ($this->shouldFilterByPeriod($filters)) {
+            $queryBuilder->andWhere('o.createdAt BETWEEN :startDate AND :endAt');
+
+            $queryBuilder->setParameter('startDate', $filters['startDate']);
+            $queryBuilder->setParameter('endAt', $filters['endAt']);
+        }
+
+        $queryBuilder->setParameter('id', $filters['keyword']);
+        $queryBuilder->setParameter('keyword', '%' . $filters['keyword'] . '%');
+
+        $queryBuilder->orderBy('o.createdAt', 'desc');
+
+        if ($this->shouldPaginate($filters['itemsPerPage'])) {
+            return $this->paginate($queryBuilder->getQuery(), $filters['itemsPerPage']);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    private function shouldFilterByOrderTrackingStatus($filters)
+    {
+        return !! $filters['orderTrackingStatus'];
+    }
+
+    private function shouldFilterByPeriod($filters)
+    {
+        return ! empty($filters['startDate']) && ! empty($filters['endAt']);
+    }
 
     public function getLastOrders($perPage, $currentPage = 1)
     {
@@ -195,5 +255,10 @@ DQL;
 
         return $qb->select($alias)
             ->from(OrderItem::class, $alias);
+    }
+
+    private function shouldPaginate($itemsPerPage)
+    {
+        return !! $itemsPerPage;
     }
 }
