@@ -192,7 +192,7 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix:///tmp/supervisor.sock
 
 [program:laravel_queue1]
-command=php artisan doctrine:queue:work sqs --queue="$QUEUE_CUSTOMERS_EMAILS" --tries=3 --daemon
+command=php artisan doctrine:queue:work sqs --queue=%(ENV_QUEUE_CUSTOMERS_EMAILS)s --tries=3 --daemon
 directory=/var/app/current
 stdout_logfile=/var/app/support/logs/laravel-queue1.log
 logfile_maxbytes=0
@@ -203,7 +203,7 @@ autorestart=true
 startretries=86400
 
 [program:laravel_queue2]
-command=php artisan doctrine:queue:work sqs --queue="$QUEUE_ORDERS_EMAILS" --tries=3 --daemon
+command=php artisan doctrine:queue:work sqs --queue=%(ENV_QUEUE_ORDERS_EMAILS)s --tries=3 --daemon
 directory=/var/app/current
 stdout_logfile=/var/app/support/logs/laravel-queue2.log
 logfile_maxbytes=0
@@ -214,7 +214,7 @@ autorestart=true
 startretries=86400
 
 [program:laravel_queue3]
-command=php artisan doctrine:queue:work sqs --queue="$QUEUE_CUSTOMERS_INTEGRATION","$QUEUE_ORDERS_INTEGRATION" --daemon
+command=php artisan doctrine:queue:work sqs --queue=%(ENV_QUEUE_CUSTOMERS_INTEGRATION)s,%(ENV_QUEUE_ORDERS_INTEGRATION)s --daemon
 directory=/var/app/current
 stdout_logfile=/var/app/support/logs/laravel-queue3.log
 logfile_maxbytes=0
@@ -225,7 +225,7 @@ autorestart=true
 startretries=86400
 
 [program:laravel_queue4]
-command=php artisan doctrine:queue:work sqs --queue="$QUEUE_PRODUCTS_ELASTICSEARCH" --daemon
+command=php artisan doctrine:queue:work sqs --queue=%(ENV_QUEUE_PRODUCTS_ELASTICSEARCH)s --daemon
 directory=/var/app/current
 stdout_logfile=/var/app/support/logs/laravel-queue4.log
 logfile_maxbytes=0
