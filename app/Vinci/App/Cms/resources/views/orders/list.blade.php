@@ -40,14 +40,29 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-6 col-lg-6">
-                                        {!! Form::text('keyword', $filters['keyword'], ['class' => 'form-control', 'placeholder' => 'Procure pelo ID, Número ou Cliente']) !!}
+                                    <div class="form-group col-md-5 col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                            {!! Form::text('keyword', $filters['keyword'], ['class' => 'form-control', 'placeholder' => 'Procure pelo ID, Número ou Cliente']) !!}
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-6 col-lg-6">
-                                        {!! Form::button('<i class="fa fa-search"></i> Procurar', ['class' => 'btn btn-info', 'type' => 'submit']) !!}
-                                        <a href="{{ route('cms.orders.excel') }}" class="btn btn-success">
-                                            <i class="fa fa-line-chart"></i> Excel
-                                        </a>
+                                    <div class="form-group col-md-2 col-lg-3">
+                                        {!! Form::select('itemsPerPage', [5 => '5 pedidos por página',
+                                                                          10 => '10 pedidos por página',
+                                                                          15 => '15 pedidos por página',
+                                                                          20 => '20 pedidos por página',
+                                                                          50 => '50 pedidos por página',
+                                                                          100 => '100 pedidos por página'],
+                                                          $filters['itemsPerPage'],
+                                                          ['class' => 'form-control', 'id' => 'itemsPerPage']) !!}
+                                    </div>
+                                    <div class="form-group col-md-5 col-lg-3">
+                                        <div class="btn-group">
+                                            {!! Form::button('<i class="fa fa-search"></i> Procurar', ['class' => 'btn btn-info', 'type' => 'submit']) !!}
+                                            <a href="{{ route('cms.orders.excel') }}" class="btn btn-success">
+                                                <i class="fa fa-line-chart"></i> Excel
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             {!! Form::close() !!}
@@ -107,8 +122,13 @@
 
         $(document).ready(function () {
             $(".btn.btn-success").click(function (event) {
-                var filters = $('#filters').serialize();
+                var itemsPerPage = $("#itemsPerPage").val();
+                $("#itemsPerPage").val('0');
+
+                var filters = $('#filters').serialize() + '&itemsPerPage=0';
                 window.open($(this).prop('href') + '?' + filters);
+
+                $("#itemsPerPage").val(itemsPerPage);
 
                 event.preventDefault();
             });

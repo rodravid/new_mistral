@@ -44,7 +44,11 @@ DQL;
         $query->setParameter('endAt', $filters['endAt']);
         $query->setParameter('id', $filters['keyword']);
 
-        return $this->paginate($query, $filters['itemsPerPage']);
+        if ($this->shouldPaginate($filters['itemsPerPage'])) {
+            return $this->paginate($query, $filters['itemsPerPage']);
+        }
+
+        return $query->getResult();
     }
 
     public function getLastOrders($perPage, $currentPage = 1)
@@ -229,5 +233,10 @@ DQL;
 
         return $qb->select($alias)
             ->from(OrderItem::class, $alias);
+    }
+
+    private function shouldPaginate($itemsPerPage)
+    {
+        return !! $itemsPerPage;
     }
 }

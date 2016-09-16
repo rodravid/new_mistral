@@ -8,6 +8,7 @@ use Exception;
 use Flash;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Redirect;
 use Response;
 use View;
@@ -64,8 +65,10 @@ class OrderController extends Controller
         $orders = $this->presenter->paginator($orders, OrderPresenter::class);
 
         $orders->setPath('/cms/orders');
-        $filters['startDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['startDate'])->format('d/m/Y 00:00:00');
-        $filters['endAt'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['endAt'])->format('d/m/Y 23:59:59');
+        $filters['startDate'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['startDate'])
+                                    ->format('d/m/Y 00:00:00');
+        $filters['endAt'] = Carbon::createFromFormat('Y-m-d H:i:s', $filters['endAt'])
+                                    ->format('d/m/Y 23:59:59');
         $orders->appends($filters);
 
         $orderStatuses = $this->trackingStatusRepository->getAll();
@@ -77,6 +80,19 @@ class OrderController extends Controller
     public function excel(Request $request)
     {
         $filters = $this->buildFiltersFrom($request);
+
+        $orders = $this->repository->getAllFilteredBy($filters);
+        $orders = $this->presenter->collection($orders, OrderPresenter::class);
+
+        $fileName = 'Relatorio de Pedidos - '. Carbon::now()->format('Y/m/d H:i:s');
+
+        Excel::create($fileName, function($excel) use ($orders) {
+
+            $excel->sheet('Pedidos', function ($sheet) use ($orders) {
+                $sheet->loadView('reports.orders.excel', compact('orders'));
+            });
+
+        })->download('xls');
     }
 
     private function buildFiltersFrom(Request $request)
@@ -94,8 +110,8 @@ class OrderController extends Controller
             : Carbon::now()
                 ->format('Y-m-d 23:59:59');
 
-        $filters['itemsPerPage'] = isset($data['itemsPerPage']) ? $data['itemsPerPage'] : 2;
-        $filters['orderStatus'] = isset($data['orderStatus']) ? $data['orderStatus'] : OrderTrackingStatus::STATUS_NEW;
+        $filters['itemsPerPage'] = isset($data['itemsPerPage']) ? $data['itemsPerPage'] : 10;
+        $filters['orderStatus'] = isset($data['orderStatus']) ? $data['orderStatus'] : $this->trackingStatusRepository->getAll()[0]->id;
         $filters['keyword'] = isset($data['keyword']) ? $data['keyword'] : '';
 
         return $filters;
