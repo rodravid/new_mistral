@@ -39,12 +39,6 @@
 				</li>
 
 				<li>
-					<strong class="txt-contact">INTERIOR / SP  </strong>
-					<p> FLAVIO ROBERTO   </p>
-					<strong>(19) 99603-6423 / (19) 7806-9292 </strong>
-				</li>
-
-				<li>
 					<strong class="txt-contact">CAMPINAS E REGIÃO / SP</strong>
 					<p>PEDRO CUNHA    </p>
 					<strong>(18) 98133-5552</strong>
@@ -92,13 +86,6 @@
 					<strong class="txt-contact"> RIO DE JANEIRO / RJ</strong>
 					<p> VALÉRIA CRISTIANE  </p>
 					<strong>(21) 96681-3605 / (21) 99270-1765 </strong>
-				</li>
-
-				<li>
-					<strong class="txt-contact">INTERIOR / RJ  </strong>
-					<p>  JULIO CESAR 
-					</p>
-					<strong>(21) 98660-1909 / (21) 99843-9956 </strong>
 				</li>
 
 				<li>
