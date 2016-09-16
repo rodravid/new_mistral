@@ -9,6 +9,7 @@
     RewriteCond %{HTTP_HOST} ^vincivinhos.com.br$ [or]
     RewriteCond %{HTTP_HOST} ^www.vincivinhos.com.br$ [or]
     RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteCond %{HTTP_HOST} !^www2.vinci.com.br$
     RewriteRule ^(.*)$ https://www.vinci.com.br/$1 [R=301,L]
 
     # Países
