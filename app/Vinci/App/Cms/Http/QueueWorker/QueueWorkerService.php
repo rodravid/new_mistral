@@ -7,32 +7,6 @@ use Vinci\App\Cms\Http\Controller;
 
 class QueueWorkerService extends Controller
 {
-
-    protected $availableWorkers = [
-        [
-            'name' => 'vinci-elasticsearch-products',
-            'description' => 'Fila de sincronização de produtos com elasticsearch.'
-        ],
-        [
-            'name' => 'vinci-integration-customers,vinci-integration-orders',
-            'description' => 'Fila de integração de clientes com ERP.'
-        ],
-        [
-            'name' => 'vinci-integration-customers,vinci-integration-orders',
-            'description' => 'Fila de integração de pedidos com ERP.'
-        ],
-        [
-            'name' => 'vinci-email-orders',
-            'description' => 'Fila de envio de e-mail de confirmação de pedido.'
-        ],
-        [
-            'name' => 'vinci-email-customers',
-            'description' => 'Fila de envio de e-mail de confirmação de cadastro.'
-        ]
-    ];
-
-    protected $cronUrl = 'http://cron.vinci.com.br';
-
     public function getQueueWorkersStatus()
     {
         $activeWorkers = $this->listActiveQueueWorkers();
@@ -48,16 +22,13 @@ class QueueWorkerService extends Controller
             ];
 
         });
-
     }
 
     public function getQueueWorkersStatusCron()
     {
         $http = new Client;
 
-        $url = $this->cronUrl . '/cms/queue-worker/getQueueWorkerStatus';
-
-        $response = $http->get($url, [
+        $response = $http->get($this->getCronServiceUrl(), [
             'auth' => ['webeleven', 'w11homolog']
         ]);
 
@@ -84,7 +55,33 @@ class QueueWorkerService extends Controller
 
     public function getAvailableWorkers()
     {
-        return collect($this->availableWorkers);
+        return collect([
+            [
+                'name' => env('QUEUE_PRODUCTS_ELASTICSEARCH'),
+                'description' => 'Fila de sincronização de produtos com elasticsearch.'
+            ],
+            [
+                'name' => env('QUEUE_CUSTOMERS_INTEGRATION') . ',' . env('QUEUE_ORDERS_INTEGRATION'),
+                'description' => 'Fila de integração de clientes com ERP.'
+            ],
+            [
+                'name' => env('QUEUE_CUSTOMERS_INTEGRATION') . ',' . env('QUEUE_ORDERS_INTEGRATION'),
+                'description' => 'Fila de integração de pedidos com ERP.'
+            ],
+            [
+                'name' => env('QUEUE_ORDERS_EMAILS'),
+                'description' => 'Fila de envio de e-mail de confirmação de pedido.'
+            ],
+            [
+                'name' => env('QUEUE_CUSTOMERS_EMAILS'),
+                'description' => 'Fila de envio de e-mail de confirmação de cadastro.'
+            ]
+        ]);
+    }
+
+    public function getCronServiceUrl()
+    {
+        return sprintf('%s/cms/queue-worker/getQueueWorkerStatus', env('CRON_URL'));
     }
 
 }
