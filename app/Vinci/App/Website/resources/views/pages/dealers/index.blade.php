@@ -53,7 +53,7 @@
 				<li>
 					<strong class="txt-contact">BRASÍLIA E GOIÁS </strong>
 					<p> MARLY MAIA </p>
-					<strong>(61) 3248-7311 / (61) 9304-0653 </strong>
+					<strong>(61) 3248-7311 / (61) 99304-0653 </strong>
 				</li>
 
 
