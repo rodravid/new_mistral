@@ -23,36 +23,23 @@ class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRep
 
     public function getAllFilteredBy(array $filters)
     {
-//        $dql = <<<DQL
-//        SELECT o, i, c, p, s
-//        FROM Vinci\Domain\Order\Order o
-//            INNER JOIN o.items i
-//            INNER JOIN o.customer c
-//            INNER JOIN o.payments p
-//            INNER JOIN o.shipment s
-//        WHERE   (o.createdAt BETWEEN :startDate AND :endAt)
-//            AND (o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword)
-//            AND o.trackingStatus = :trackingStatus
-//        ORDER BY o.createdAt desc
-//DQL;
         $queryBuilder = $this->getBaseQueryBuilder()
             ->where('o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword');
 
-        if ($this->shouldFilterByOrderTrackingStatus($filters)) {
-            $queryBuilder->andWhere('o.trackingStatus = :trackingStatus');
-
-            $queryBuilder->setParameter('trackingStatus', $filters['orderTrackingStatus']);
-        }
-
-        if ($this->shouldFilterByPeriod($filters)) {
-            $queryBuilder->andWhere('o.createdAt BETWEEN :startDate AND :endAt');
-
-            $queryBuilder->setParameter('startDate', $filters['startDate']);
-            $queryBuilder->setParameter('endAt', $filters['endAt']);
-        }
-
         $queryBuilder->setParameter('id', $filters['keyword']);
         $queryBuilder->setParameter('keyword', '%' . $filters['keyword'] . '%');
+
+        if ($this->shouldFilterByOrderTrackingStatus($filters)) {
+            $queryBuilder = $this->applyAndSetOrderTrackingStatus($queryBuilder, $filters['orderTrackingStatus']);
+        }
+
+        if ($this->shouldFilterByStartDate($filters)) {
+            $queryBuilder = $this->applyAndSetStartDateOfPeriod($queryBuilder, $filters['startDate']);
+        }
+
+        if ($this->shouldFilterByEndDate($filters)) {
+            $queryBuilder = $this->applyAndSetEndDateOfPeriod($queryBuilder, $filters['endAt']);
+        }
 
         $queryBuilder->orderBy('o.createdAt', 'desc');
 
@@ -68,9 +55,38 @@ class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRep
         return !! $filters['orderTrackingStatus'];
     }
 
-    private function shouldFilterByPeriod($filters)
+    private function applyAndSetOrderTrackingStatus($queryBuilder, $orderTrackingStatus)
     {
-        return ! empty($filters['startDate']) && ! empty($filters['endAt']);
+        $queryBuilder->andWhere('o.trackingStatus = :trackingStatus');
+        $queryBuilder->setParameter('trackingStatus', $orderTrackingStatus);
+
+        return $queryBuilder;
+    }
+
+    private function shouldFilterByStartDate($filters)
+    {
+        return ! empty($filters['startDate']);
+    }
+
+    private function applyAndSetStartDateOfPeriod($queryBuilder, $startDate)
+    {
+        $queryBuilder->andWhere('o.createdAt >= :startDate');
+        $queryBuilder->setParameter('startDate', $startDate);
+
+        return $queryBuilder;
+    }
+
+    private function shouldFilterByEndDate($filters)
+    {
+        return ! empty($filters['endAt']);
+    }
+
+    private function applyAndSetEndDateOfPeriod($queryBuilder, $endAt)
+    {
+        $queryBuilder->andWhere('o.createdAt <= :endAt');
+        $queryBuilder->setParameter('endAt', $endAt);
+
+        return $queryBuilder;
     }
 
     public function getLastOrders($perPage, $currentPage = 1)

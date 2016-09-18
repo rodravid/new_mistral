@@ -67,9 +67,18 @@ class OrderController extends Controller
         $orders->appends($filters);
 
         $orderStatuses = $this->trackingStatusRepository->getAll();
-        $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id')->prepend('Selecione o status do pedido', 0);
+        $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id')->prepend('Todos', 0);
 
-        return $this->view('orders.list', compact('orders', 'orderStatuses', 'filters'));
+        $optionsOfItemsPerPage = [
+            5 => '5 pedidos por página',
+            10 => '10 pedidos por página',
+            15 => '15 pedidos por página',
+            20 => '20 pedidos por página',
+            50 => '50 pedidos por página',
+            100 => '100 pedidos por página'
+        ];
+
+        return $this->view('orders.list', compact('orders', 'orderStatuses', 'filters', 'optionsOfItemsPerPage'));
     }
 
     private function buildFiltersFrom(Request $request)
@@ -221,7 +230,8 @@ class OrderController extends Controller
 
     public function getTrackingStatus()
     {
-        return html_select_array($this->trackingStatusRepository->getAll(), 'id', 'description');
+        $trackingStatuses = $this->trackingStatusRepository->getAll();
+        return html_select_array($trackingStatuses, 'id', 'description');
     }
 
     public function exportToErpQueued($orderId, Request $request)
