@@ -22,7 +22,11 @@
                             {!! Form::open(['id' => 'filters', 'route'=> 'cms.orders.list', 'method' => 'get']) !!}
                                 <div class="row">
                                     <div class="form-group col-md-12 col-lg-3">
-                                        <label for="dtpDateStart">Inicio</label>
+                                        <h4 for="dtpDateStart">
+                                            Inicio
+                                            <br>
+                                            <small>Clique no icone ao lado para selecionar o início do período</small>
+                                        </h4>
                                         <div class="input-group date" id="startDatePicker">
                                             {!! Form::text('startDate',
                                                             (! empty($filters['startDate'])
@@ -33,7 +37,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-lg-3">
-                                        <label for="dtpDateStop">Termino</label>
+                                        <h4 for="dtpDateStop">
+                                            Termino
+                                            <br>
+                                            <small>Clique no icone ao lado para selecionar o final do período</small>
+                                        </h4>
                                         <div class="input-group date" id="endDatePicker">
                                             {!! Form::text('endAt',
                                                             (! empty($filters['endAt'])
@@ -44,27 +52,25 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6">
-                                        {!! Form::select('orderTrackingStatus', $orderStatuses, $filters['orderTrackingStatus'], ['class' => 'form-control', 'style' => 'margin-top: 25px;']) !!}
+                                        <h4>
+                                            Status do pedido
+                                            <br>
+                                            <small>Selecione um status para filtrar</small>
+                                        </h4>
+                                        {!! Form::select('orderTrackingStatus', $orderStatuses, $filters['orderTrackingStatus'], ['class' => 'form-control', 'style' => 'margin-top: 30px;']) !!}
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="form-group row">
                                     <div class="form-group col-md-5 col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
                                             {!! Form::text('keyword', $filters['keyword'], ['class' => 'form-control', 'placeholder' => 'Procure pelo ID, Número ou Cliente']) !!}
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-2 col-lg-3">
-                                        {!! Form::select('itemsPerPage', [ 5 => '5 pedidos por página',
-                                                                          10 => '10 pedidos por página',
-                                                                          15 => '15 pedidos por página',
-                                                                          20 => '20 pedidos por página',
-                                                                          50 => '50 pedidos por página',
-                                                                          100 => '100 pedidos por página'],
-                                                          $filters['itemsPerPage'],
-                                                          ['class' => 'form-control', 'id' => 'itemsPerPage']) !!}
+                                    <div class="form-group col-md-4 col-lg-3">
+                                        {!! Form::select('itemsPerPage', $optionsOfItemsPerPage, $filters['itemsPerPage'], ['class' => 'form-control', 'id' => 'itemsPerPage']) !!}
                                     </div>
-                                    <div class="form-group col-md-5 col-lg-3">
+                                    <div class="form-group col-md-3 col-lg-3">
                                         <div class="btn-group">
                                             {!! Form::button('<i class="fa fa-search"></i> Filtrar', ['class' => 'btn btn-info', 'type' => 'submit']) !!}
                                             <a href="{{ route('cms.orders.excel') }}" class="btn btn-success">
