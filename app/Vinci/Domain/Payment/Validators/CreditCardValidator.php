@@ -14,7 +14,7 @@ class CreditCardValidator extends LaravelValidator
         'document' => 'required_if:payment.method_type,==,credit_card|cpf_cnpj',
         'card.expiry_month' => 'required_if:payment.method_type,==,credit_card',
         'card.expiry_year' => 'required_if:payment.method_type,==,credit_card',
-        'card.security_code' => 'required_if:payment.method_type,==,credit_card|min:3|max:4',
+        'card.security_code' => 'required_if:payment.method_type,==,credit_card|digits_between:3,4',
     ];
 
     protected $messages = [
@@ -26,6 +26,7 @@ class CreditCardValidator extends LaravelValidator
         'card.expiry_year.required_if' => 'Selecione o ano de validade do cartão.',
         'card.security_code.required_if' => 'Informe o código de segurança do cartão.',
         'card.security_code.size' => 'Código de segurança do cartão neccesita ter 3 dígitos.',
+        'card.security_code.digits_between' => 'O código de segurança deve conter no mínimo 3 dígitos.',
         'payment.installments.required_if' => 'Selecione o parcelamento.'
     ];
 }
