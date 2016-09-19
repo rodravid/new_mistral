@@ -99,22 +99,28 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($orders as $order)
+                                            @if (! $orders->isEmpty())
+                                                @foreach ($orders as $order)
+                                                    <tr>
+                                                        <td width="5%">{{ $order->id }}</td>
+                                                        <td width="8%">{{ $order->number }}</td>
+                                                        <td width="15%">{{ $order->customer->name }}</td>
+                                                        <td width="10%">{{ $order->total }}</td>
+                                                        <td width="10%">{{ $order->created_at }}</td>
+                                                        <td width="19%">{{ $order->status }}</td>
+                                                        <td width="10%">{!! $order->integration_status_html !!}</td>
+                                                        <td width="8%">
+                                                            <a href="{{ route('cms.orders.show', $order->id) }}" target="_blank" class="btn btn-info btn-sm">
+                                                                <i class="fa fa-eye"></i> Visualizar
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
                                                 <tr>
-                                                    <td width="5%">{{ $order->id }}</td>
-                                                    <td width="8%">{{ $order->number }}</td>
-                                                    <td width="15%">{{ $order->customer->name }}</td>
-                                                    <td width="10%">{{ $order->total }}</td>
-                                                    <td width="10%">{{ $order->created_at }}</td>
-                                                    <td width="19%">{{ $order->status }}</td>
-                                                    <td width="10%">{!! $order->integration_status_html !!}</td>
-                                                    <td width="8%">
-                                                        <a href="{{ route('cms.orders.show', $order->id) }}" target="_blank" class="btn btn-info btn-sm">
-                                                            <i class="fa fa-eye"></i> Visualizar
-                                                        </a>
-                                                    </td>
+                                                    <td class="text-center" colspan="8"><label>Nenhum pedido encontrado</label></td>
                                                 </tr>
-                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                     {!! $orders->links() !!}
