@@ -32,7 +32,10 @@
                                                             (! empty($filters['startDate'])
                                                                 ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $filters['startDate'])->format('d/m/Y 00:00:00')
                                                                 : ''),
-                                                            ['data-date-format' => 'DD/MM/YYYY 00:00:00', 'class' => 'form-control', 'placeholder' => 'Selecione o começo do periodo']) !!}
+                                                            ['data-date-format' => 'DD/MM/YYYY 00:00:00',
+                                                             'class' => 'form-control',
+                                                             'placeholder' => 'Selecione o começo do periodo',
+                                                             'readonly' => true]) !!}
                                             <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                                         </div>
                                     </div>
@@ -47,7 +50,10 @@
                                                             (! empty($filters['endAt'])
                                                                 ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $filters['endAt'])->format('d/m/Y 23:59:59')
                                                                 : ''),
-                                                            ['data-date-format' => 'DD/MM/YYYY 23:59:59', 'class' => 'form-control', 'placeholder' => 'Selecione o término do periodo']) !!}
+                                                            ['data-date-format' => 'DD/MM/YYYY 23:59:59',
+                                                             'class' => 'form-control',
+                                                             'placeholder' => 'Selecione o término do periodo',
+                                                             'readonly' => true]) !!}
                                             <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                                         </div>
                                     </div>
