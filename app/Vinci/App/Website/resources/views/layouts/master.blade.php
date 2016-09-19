@@ -2,14 +2,13 @@
 <html lang="pt-br" ng-app="app">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
     <title>@yield('title', 'Vinci, somos loucos por vinho - Vinci')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset_web('images/vinci_ico.ico') }}">
     <meta name="description" content="@yield('description', 'A Vinci é uma das mais premiadas importadoras de vinhos do país, com uma seleção de vinhos e produtores mundialmente aclamados em um catálogo imperdível. Veja!')">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset_web('images/vinci_ico.ico') }}">
     @section('styles')
         <link rel="stylesheet" href="{{ asset_web('css/style.min.css') }}">
-        <link rel="stylesheet" href="{{ asset_web('js/sweetalert/sweetalert.css') }}">
-        <meta name="viewport" content="width=device-width, user-scalable=no">
-        <meta name="format-detection" content="telephone=no">
         <!--[if IE 8 ]>
         <html lang="en" class="ie8"> <![endif]-->
         <!--[if IE 9 ]>
