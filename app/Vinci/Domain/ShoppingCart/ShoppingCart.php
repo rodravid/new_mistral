@@ -49,7 +49,7 @@ class ShoppingCart extends Model implements ShoppingCartInterface
 
     /**
      * @ORM\OneToMany(targetEntity="Vinci\Domain\ShoppingCart\Item\ShoppingCartItem", mappedBy="shoppingCart", cascade={"persist", "remove"}, orphanRemoval=true)
-     * @ORM\OrderBy({"id" = "desc"})
+     * @ORM\OrderBy({"id" = "asc"})
      */
     protected $items;
 
