@@ -24,7 +24,7 @@ class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRep
     public function getAllFilteredBy(array $filters)
     {
         $queryBuilder = $this->getBaseQueryBuilder()
-            ->where('o.id = :id OR o.number LIKE :keyword OR c.name LIKE :keyword');
+            ->where('o.id = :id OR o.number = :keyword OR c.name LIKE :keyword');
 
         $queryBuilder->setParameter('id', $filters['keyword']);
         $queryBuilder->setParameter('keyword', '%' . $filters['keyword'] . '%');
