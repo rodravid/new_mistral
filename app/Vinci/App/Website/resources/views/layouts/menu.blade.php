@@ -335,16 +335,12 @@
 
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="{{ route('category.show', ['por-preco-ate-60']) }}">Até R$ 60</a></li>
-                            <li><a href="{{ route('category.show', ['por-preco-de-60-a-100']) }}">R$ 60 a R$100</a></li>
-                            <li><a href="{{ route('category.show', ['por-preco-de-100-a-170']) }}">R$ 100 a R$ 170</a>
-                            </li>
-                            <li><a href="{{ route('category.show', ['por-preco-de-170-a-270']) }}">R$ 170 a R$ 270</a>
-                            </li>
-                            <li><a href="{{ route('category.show', ['por-preco-de-270-a-500']) }}">R$ 270 a R$ 500</a>
-                            </li>
-                            <li><a href="{{ route('category.show', ['por-preco-acima-de-500']) }}">Acima de R$ 500</a>
-                            </li>
+                            <li><a href="/c/vinhos-por-preco/ate-60">Até R$ 60</a></li>
+                            <li><a href="/c/vinhos-por-preco/de-60-a-100">R$ 60 a R$100</a></li>
+                            <li><a href="/c/vinhos-por-preco/de-100-a-170">R$ 100 a R$ 170</a></li>
+                            <li><a href="/c/vinhos-por-preco/de-170-a-270">R$ 170 a R$ 270</a></li>
+                            <li><a href="/c/vinhos-por-preco/de-270-a-500">R$ 270 a R$ 500</a></li>
+                            <li><a href="/c/vinhos-por-preco/acima-de-500">Acima de R$ 500</a></li>
                         </ul>
                     </div>
                     <div class="division">
@@ -397,11 +393,11 @@
                 <div class="drop-menu">
                     <div class="division">
                         <ul class="list-sub-menu">
-                            <li><a href="/c/robert-parker">Robert Parker</a></li>
-                            <li><a href="/c/95-mais-pontos">95+ pontos</a></li>
-                            <li><a href="/c/best-buys">Best Buys</a></li>
-                            <li><a href="/c/90-mais-pontos">90+ pontos</a></li>
-                            <li><a href="/c/wine-spectator">Wine Spectator</a></li>
+                            <li><a href="/c/vinhos-pontuados/robert-parker">Robert Parker</a></li>
+                            <li><a href="/c/vinhos-pontuados/95-mais-pontos">95+ pontos</a></li>
+                            <li><a href="/c/vinhos-pontuados/best-buys">Best Buys</a></li>
+                            <li><a href="/c/vinhos-pontuados/90-mais-pontos">90+ pontos</a></li>
+                            <li><a href="/c/vinhos-pontuados/wine-spectator">Wine Spectator</a></li>
                             <li><a class="all-links" href="/c/vinhos-pontuados/">Todos os vinhos pontuados
                                     <small>></small>
                                 </a></li>

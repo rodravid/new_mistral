@@ -88,7 +88,7 @@ colocar a mão em um de seus exemplares. Geralmente são excelentes vinhos de fa
 
     protected $keywords = '60, 60 reais, ate 60';
 
-    protected $slug = 'por-preco-ate-60';
+    protected $slug = 'vinhos-por-preco-ate-60';
 
     public $parent_breadcrumb;
 

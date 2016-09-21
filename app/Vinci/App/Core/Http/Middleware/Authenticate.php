@@ -38,9 +38,9 @@ class Authenticate
         }
 
         if (Str::contains(URL::previous(), 'carrinho')) {
-            return '/login/?r=carrinho';
+            return '/login\/?r=carrinho';
         }
 
-        return 'login';
+        return '/login/';
     }
 }

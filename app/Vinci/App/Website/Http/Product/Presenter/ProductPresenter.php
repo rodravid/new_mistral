@@ -23,7 +23,7 @@ class ProductPresenter extends BaseProductPresenter
     public function presentShortnedDescription()
     {
         $text = !empty($this->getShortDescription()) ? $this->getShortDescription() : strip_tags($this->getDescription());
-        return $this->limitTo($text, 85);
+        return $this->limitTo($text, 90);
     }
 
     public function presentShortDescription()

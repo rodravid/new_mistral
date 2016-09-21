@@ -16,7 +16,7 @@ class RobertParker extends StaticShowcase
 
     protected $keywords = 'robert, parker';
 
-    protected $slug = 'robert-parker';
+    protected $slug = 'vinhos-pontuados-robert-parker';
 
     public $parent_breadcrumb;
 
