@@ -5,6 +5,7 @@ namespace Vinci\Domain\Order\Jobs;
 use Exception;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Mail\Message;
 use Log;
 use Vinci\App\Core\Jobs\Job;
 use Vinci\Domain\Order\Events\OrderStatusMailWasSended;
@@ -31,12 +32,12 @@ class SendOrderStatusMail extends Job
     {
         try {
 
-            $mailer->send([], [], function ($message) {
+            $mailer->send([], [], function (Message $message) {
                 $message
                     ->to($this->order->getCustomer()->getEmail(), $this->order->getCustomer()->getName())
+                    ->bcc('pedido@vinci.com.br', 'Vinci')
                     ->subject($this->mailSubject)
-                    ->setBody($this->mailBody, 'text/html')
-                    ->bcc('pedido@vinci.com.br', 'Vinci');
+                    ->setBody($this->mailBody, 'text/html');
             });
 
             $dispatcher->fire(new OrderStatusMailWasSended($this->order, $this->mailSubject, $this->mailBody));
