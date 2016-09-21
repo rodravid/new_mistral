@@ -16,7 +16,7 @@ class De170a270 extends StaticShowcase
 
     protected $keywords = 'de 170, a 270';
 
-    protected $slug = 'por-preco-de-170-a-270';
+    protected $slug = 'vinhos-por-preco-de-170-a-270';
 
     public $parent_breadcrumb;
 

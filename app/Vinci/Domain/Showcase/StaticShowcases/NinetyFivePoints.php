@@ -15,7 +15,7 @@ class NinetyFivePoints extends StaticShowcase
 
     protected $keywords = '95, pontos, pontuados';
 
-    protected $slug = '95-mais-pontos';
+    protected $slug = 'vinhos-pontuados-95-mais-pontos';
 
     public $parent_breadcrumb;
 

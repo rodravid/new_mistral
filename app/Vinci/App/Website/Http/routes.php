@@ -161,7 +161,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
             $route->get('/{slug}', 'Showcase\ShowcaseController@show')->name('show');
         });
 
-        $route->get('/{slug}', 'Showcase\ShowcaseController@show')->name('show');
+        $route->get('/{slug}/{complement?}', 'Showcase\ShowcaseController@show')->name('show');
 
     });
 

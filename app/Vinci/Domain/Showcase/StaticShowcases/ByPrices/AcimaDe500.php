@@ -16,7 +16,7 @@ class AcimaDe500 extends StaticShowcase
 
     protected $keywords = 'acima de 500, acima 500, 500';
 
-    protected $slug = 'por-preco-acima-de-500';
+    protected $slug = 'vinhos-por-preco-acima-de-500';
 
     public $parent_breadcrumb;
 

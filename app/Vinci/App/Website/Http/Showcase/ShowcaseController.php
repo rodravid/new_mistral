@@ -37,8 +37,12 @@ class ShowcaseController extends SearchController
         $this->staticShowcasesProvider = $staticShowcasesProvider;
     }
 
-    public function show($slug, Request $request)
+    public function show($slug, $complement = null)
     {
+        $slug = $this->parseSlug($slug, $complement);
+
+        $request = app('request');
+
         $showcase = $this->getShowcase($slug);
 
         $filters = [
@@ -94,6 +98,15 @@ class ShowcaseController extends SearchController
     protected function getSearchUrlPath($request)
     {
         return $request->get('slug');
+    }
+
+    private function parseSlug($slug, $complement)
+    {
+        if (! empty($complement)) {
+            return sprintf('%s-%s', $slug, $complement);
+        }
+
+        return $slug;
     }
 
 }
