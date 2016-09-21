@@ -24,7 +24,14 @@
 			<p class="info-content-site">
 				Proibida a reprodução total ou parcial desautorizada. Beba com responsabilidade. A venda de bebidas alcoólicas é proibida para menores de 18 anos. Dirigir sob a influência de álcool configura delito, passível de sanção penal. As imagens são meramente ilustrativas. No caso dos vinhos safrados, a safra mostrada no rótulo da imagem pode não corresponder ao ano de fabricação do vinho, que está especificado corretamente em "características" do produto. Para outros produtos e acessórios, algumas imagens são compostas com outros elementos para ilustrar sua utilidade.
 			</p>
-			<a class="sprite-icon logo-footer" href="/" title="Vinci Loucos por vinho"></a>
+			<ul class="two-cols logo-seal mtop20">
+				<li>
+					<a class="sprite-icon logo-footer" href="{{ route('index') }}" title="Vinci Loucos por vinho"></a>
+				</li>
+				<li>
+					<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=DOBokIXEwwsOZSPWYexGWiftbujJYSZJAk7noiKJyiCZAX11brcZBi2cR8fY"></script></span>
+				</li>
+			</ul>
 		</div>
 		
 		<p>
