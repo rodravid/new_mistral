@@ -33,10 +33,11 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                 $route->group(['prefix' => 'logs', 'as' => 'logs.'], function () use ($route) {
                     $route->get('/{type}/{id}/show', 'Integration\\Logs\\IntegrationLogsController@show')->name('show');
                 });
+
+                $route->put('/{entity}/{id}/setAsIntegrated', 'Integration\\IntegrationController@setAsIntegrated')->name('setAsIntegrated');
             });
 
             $route->group(['middleware' => ['acl']], function() use ($route) {
-
 
                 /**
                  * Products

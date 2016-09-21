@@ -49,6 +49,15 @@
             </div>
         </div>
 
+        @if(isset($showcase))
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="txtRedirectUrl">Link da vitrine</label>
+                    <a href="{{ $showcase->getWebPath() }}" target="_blank">{{ config('app.url') . $showcase->getWebPath() }}</a>
+                </div>
+            </div>
+        @endif
+
         <div class="col-lg-12">
             <div class="form-group">
                 <label for="txtKeywords">Palavras chave</label>
