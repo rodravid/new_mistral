@@ -3,6 +3,7 @@
 namespace Vinci\App\Core\Exceptions;
 
 use Exception;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -55,7 +56,11 @@ class Handler extends ExceptionHandler
 
     protected function renderHttpException(HttpException $e)
     {
-        return redirect(sprintf('/erros/%s?r=/%s/', $e->getStatusCode(), app('request')->path()));
+        if (! Request::is('cms*')) {
+            return redirect(sprintf('/erros/%s?r=/%s/', $e->getStatusCode(), app('request')->path()));
+        }
+
+        return parent::renderHttpException($e);
     }
 
 }
