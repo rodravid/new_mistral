@@ -44,6 +44,14 @@
     </div>
 
     <div class="box-footer">
+        @if($model->hasProperty('erpIntegrationStatus') && ! $model->wasIntegrated())
+            <a href="javascript:void(0);" class="btn btn-info btn-block"
+               data-form-link
+               data-confirm-title="Confirmação de alteração"
+               data-confirm-text="Deseja realmente alterar o status de integração?"
+               data-method="PUT"
+               data-action="{{ route('cms.integration.setAsIntegrated', ['entity' => get_class($model),'id' => $model->id]) }}"><i class="fa fa-check"></i> Definir como integrado</a>
+        @endif
         <button type="submit" class="btn btn-success btn-block" name="status" value="1"><i class="fa fa-check"></i> Salvar e publicar</button>
         @if($model->hasProperty('status') && ! isset($hideDraft))
             <button type="submit" class="btn btn-primary btn-block" name="status" value="0"><i class="fa fa-edit"></i> Salvar como rascunho</button>

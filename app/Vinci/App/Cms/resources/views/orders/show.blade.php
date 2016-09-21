@@ -39,7 +39,14 @@
                                     @if ($loggedUser->hasPermissionTo('cms.orders.edit'))
                                         <a href="{{ route($currentModule->getEditRouteName(), $order->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
                                     @endif
-
+                                    @if($order->hasProperty('erpIntegrationStatus') && ! $order->wasIntegrated())
+                                        <a href="javascript:void(0);" class="btn btn-info"
+                                           data-form-link
+                                           data-confirm-title="Confirmação de alteração"
+                                           data-confirm-text="Deseja realmente alterar o status de integração?"
+                                           data-method="PUT"
+                                           data-action="{{ route('cms.integration.setAsIntegrated', ['entity' => get_class($order->getObject()),'id' => $order->id]) }}"><i class="fa fa-check"></i> Definir como integrado</a>
+                                    @endif
                                     @if ($loggedUser->isSuperAdmin())
                                         <a href="javascript:void(0);" class="btn btn-success"
                                            data-form-link
