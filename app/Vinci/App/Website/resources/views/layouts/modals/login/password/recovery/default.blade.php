@@ -14,7 +14,7 @@
     </div>
     <div class="footer-modal">
         <div class="center-content-bt">
-            <a href="/cadastro">
+            <a href="/cadastro/">
                 <span class="txt-register">Se você ainda não possui <br> conta, cadastre-se aqui</span>
                 <span class="bt-arrow">></span>
             </a>

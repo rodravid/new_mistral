@@ -63,12 +63,12 @@
 					<li class="item-main-footer">
 						<a class="link-light" href="javascript:void(0);">Por preço</a>
 						<div class="drop-footer">
-							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-ate-60']) }}">Até R$ 60</a>
-							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-60-a-100']) }}">R$ 60 a R$100</a>
-							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-100-a-170']) }}">R$ 100 a R$ 170</a>
-							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-170-a-270']) }}">R$ 170 a R$ 270</a>
-							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-de-270-a-500']) }}">R$ 270 a R$ 500</a>
-							<a class="link-drop-footer" href="{{ route('category.show', ['por-preco-acima-de-500']) }}">Acima de R$ 500</a>
+							<a class="link-drop-footer" href="/c/vinhos-por-preco/ate-60">Até R$ 60</a>
+							<a class="link-drop-footer" href="/c/vinhos-por-preco/de-60-a-100">R$ 60 a R$100</a>
+							<a class="link-drop-footer" href="/c/vinhos-por-preco/de-100-a-170">R$ 100 a R$ 170</a>
+							<a class="link-drop-footer" href="/c/vinhos-por-preco/de-170-a-270">R$ 170 a R$ 270</a>
+							<a class="link-drop-footer" href="/c/vinhos-por-preco/de-270-a-500">R$ 270 a R$ 500</a>
+							<a class="link-drop-footer" href="/c/vinhos-por-preco/acima-de-500">Acima de R$ 500</a>
 						</div>
 					</li>
 
@@ -115,7 +115,16 @@
 			<p class="info-content-site">
 				Proibida a reprodução total ou parcial desautorizada. Beba com responsabilidade. A venda de bebidas alcoólicas é proibida para menores de 18 anos. Dirigir sob a influência de álcool configura delito, passível de sanção penal. As imagens são meramente ilustrativas. No caso dos vinhos safrados, a safra mostrada no rótulo da imagem pode não corresponder ao ano de fabricação do vinho, que está especificado corretamente em "características" do produto. Para outros produtos e acessórios, algumas imagens são compostas com outros elementos para ilustrar sua utilidade.
 			</p>
-			<a class="sprite-icon logo-footer" href="{{ route('index') }}" title="Vinci Loucos por vinho"></a>
+
+			<ul class="two-cols logo-seal mtop20">
+				<li>
+					<a class="sprite-icon logo-footer" href="{{ route('index') }}" title="Vinci Loucos por vinho"></a>
+				</li>
+				<li>
+					<span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=DOBokIXEwwsOZSPWYexGWiftbujJYSZJAk7noiKJyiCZAX11brcZBi2cR8fY"></script></span>
+				</li>
+			</ul>
+
 		</div>
 		
 		<p>

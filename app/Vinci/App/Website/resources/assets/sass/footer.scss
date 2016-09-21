@@ -410,3 +410,22 @@ input::-moz-placeholder {
 	color: #000;  
 	font: 15px;
 }
+
+#siteseal{
+	float: right;
+	margin:10px 0 0 0;
+	@media #{$screen767}{
+		float:left;
+	}
+}
+@media #{$screen767}{
+	.logo-seal.mtop20 {
+		margin-top: 0;
+	}
+}
+
+.two-cols.logo-seal li {
+	@media #{$screen767}{
+		width: 100%;
+	}
+}

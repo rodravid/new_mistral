@@ -16,7 +16,7 @@ class WineSpectator extends StaticShowcase
 
     protected $keywords = 'wine, spectator';
 
-    protected $slug = 'wine-spectator';
+    protected $slug = 'vinhos-pontuados-wine-spectator';
 
     public $parent_breadcrumb;
 
