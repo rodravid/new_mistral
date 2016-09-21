@@ -52,4 +52,10 @@ class Handler extends ExceptionHandler
 
         return parent::render($request, $e);
     }
+
+    protected function renderHttpException(HttpException $e)
+    {
+        return redirect(sprintf('/erros/%s?r=/%s/', $e->getStatusCode(), app('request')->path()));
+    }
+
 }

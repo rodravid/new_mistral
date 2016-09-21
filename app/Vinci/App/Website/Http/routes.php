@@ -3,6 +3,7 @@
 $route->group(['middleware' => ['web']], function () use ($route) {
 
     $route->get('/redirect', 'RedirectController@redirectWithStatus301');
+    $route->get('/erros/{code}', 'ErrorsController@render');
     $route->get('/teste', 'TestController@index');
 
     $route->group(['middleware' => ['auth:website']], function () use ($route) {
