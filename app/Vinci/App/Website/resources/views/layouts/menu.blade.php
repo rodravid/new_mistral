@@ -328,7 +328,7 @@
             </li>
 
             <li class="menu-item larger760-right template7">
-                <a class="menu-link" href="{{ route('category.show', ['por-preco-ate-60']) }}">
+                <a class="menu-link" href="/c/vinhos-por-preco/ate-60">
                     Por preço
                 </a>
                 <div class="drop-menu">
