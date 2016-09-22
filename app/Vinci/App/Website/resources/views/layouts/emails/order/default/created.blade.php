@@ -41,7 +41,7 @@
                         {{ $item->quantity_units }}
                     </td>
                     <td width="120" align="right" style="font-size:18px;font-family:Arial, verdana, sans-serif;">
-                        <b>{{ $item->price }}</b>
+                        <b>{{ $item->total }}</b>
                     </td>
                 </tr>
             </table>
