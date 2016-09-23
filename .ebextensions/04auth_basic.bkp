@@ -5,21 +5,10 @@ files:
     group: root
     content: |
       <Directory /var/www/html/public>
-        # set an environtment variable "noauth" if production URL
-        SetEnvIf HTTP_HOST ^hml.vinci.com.br noauth=1
-
-        # the auth block
         AuthType Basic
-        AuthName "Please login"
+        AuthName VinciHomolog
         AuthUserFile /tmp/.htpasswd
         Require valid-user
-
-        # here is where we allow/deny
-        Order Deny,Allow
-        Satisfy any
-        Deny from all
-        Require valid-user
-        Allow from env=noauth
       </Directory>
 
   "/home/ec2-user/setup.sh":
