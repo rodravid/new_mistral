@@ -50,6 +50,22 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+    # set an environtment variable "noauth" if production URL
+    SetEnvIf HOST ^www.vinci.com.br noauth=1
+
+    # the auth block
+    AuthType Basic
+    AuthName "Please login"
+    AuthUserFile /tmp/.htpasswd
+    Require valid-user
+		
+    # here is where we allow/deny
+    Order Deny,Allow
+    Satisfy any
+    Deny from all
+    Require valid-user
+    Allow from env=noauth
+
 </IfModule>
 
 
