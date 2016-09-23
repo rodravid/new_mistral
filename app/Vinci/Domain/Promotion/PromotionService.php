@@ -199,9 +199,9 @@ class PromotionService
         ];
     }
 
-    protected function canBeAdded(ProductInterface $product, PromotionInterface $promotion)
+    protected function canBeAdded($product, PromotionInterface $promotion)
     {
-        return ! in_array($product->getProductType()->getId(), $this->getNotAllowedProductTypes());
+        return $product && ! in_array($product->getProductType()->getId(), $this->getNotAllowedProductTypes());
     }
 
     protected function saveSealImage(PromotionInterface $promotion, $image)
