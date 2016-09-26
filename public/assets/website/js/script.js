@@ -432,10 +432,10 @@ jQuery(document).ready(function ($) {
     });
 
     //pg produto
-    $(function() {
-        var sealProduct = $('.content-seal-product span'),
-            sealPgProduct = sealProduct.text().length;
 
+    $('.content-seal-product span').each(function() {
+        var sealProduct = $(this);
+        var sealPgProduct = sealProduct.text().length;
         if(sealPgProduct >= 5) {
             sealProduct.css('font-size', '17px');
         } else if(sealPgProduct >= 3) {
