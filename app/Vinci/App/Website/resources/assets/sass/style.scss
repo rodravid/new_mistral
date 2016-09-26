@@ -2430,10 +2430,16 @@ ul.pagination{
 			}
 		}
 
+		.container-cep-price {
+			display: inline-block;
+			width: 100%;
+		}
+
 
 		.valor-total-carrinho{
 			width: 310px;
 			text-transform:uppercase;
+
 
 			li{
 				width: 100%;
