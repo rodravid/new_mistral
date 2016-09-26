@@ -24,7 +24,7 @@ class Authenticate
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest($this->getLoginRedirect($guard));
+                return redirect()->to($this->getLoginRedirect($guard));
             }
         }
 
@@ -38,9 +38,9 @@ class Authenticate
         }
 
         if (Str::contains(URL::previous(), 'carrinho')) {
-            return '/login\/?r=carrinho';
+            return route('login') .'/?r=carrinho';
         }
 
-        return '/login/';
+        return route('login') . '/';
     }
 }
