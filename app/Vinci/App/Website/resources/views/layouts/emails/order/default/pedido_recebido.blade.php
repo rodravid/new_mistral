@@ -162,15 +162,18 @@
             <td style="border-bottom:1px solid #bbcad1; padding: 15px 0;">
                 <table cellpadding="0" cellspacing="0" border="0">
                     <tr>
-                        <td width="250" style="font-size:18px;font-family:Arial, verdana, sans-serif; text-transform: uppercase" align="left">
-                            {{ $item->product->title }}
+                        <td width="240" style="font-size:18px;font-family:Arial, verdana, sans-serif; text-transform: uppercase" align="left">
+                            {{ $item->product->title }} #{{ $item->product->sku }}
                         </td>
                         {{--<font style="font-size: 15px;">kaiken</font>--}}
                         <td width="150" style="font-size:15px;font-family:Arial, verdana, sans-serif;" align="center">
                             {{ $item->quantity_units }}
                         </td>
+                        <td width="10" style="font-size:11px;font-family:Arial, verdana, sans-serif;" align="center">
+                            X
+                        </td>
                         <td width="120" align="right" style="font-size:18px;font-family:Arial, verdana, sans-serif;">
-                            <b>{{ $item->total }}</b>
+                            <b>{{ $item->price }}</b>
                         </td>
                     </tr>
                 </table>
