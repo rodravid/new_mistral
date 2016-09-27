@@ -481,7 +481,7 @@ a.bt-default {
 	text-align:left;
 	margin-bottom:20px;
 	position:relative;
-	height: 340px;
+	height: 355px;
 
 	@media #{$screen767} { 
 		height: auto;
@@ -510,10 +510,11 @@ a.bt-default {
 	font:14px $robotolight;
 	margin:5px 0 0 0;
 	line-height: 13px;
-	min-height:40px;
+	height:42px;
+	overflow: hidden;
 	word-break: break-word;
 	@media #{$screen767} {
-		min-height:auto;
+		height:auto;
 	}
 }
 .info-details-wine {
@@ -573,6 +574,10 @@ a.bt-default {
 			color:#6b0f45 !important;
 		}
 	}
+
+	.wine-card-producer {
+		height: auto;
+	}
 }
 
 .wrap-seal-card {
@@ -625,6 +630,10 @@ a.bt-default {
 		font:15px $robotolight;
 		display:block;
 		color:$black;
+		height:40px;
+	@media #{$screen767} {
+		height: auto;
+	}
 }
 
 .wine-price { font:27px $robotobold; }
@@ -992,6 +1001,10 @@ a.bt-default {
 		min-height:auto;
 	}
 
+	.wine-card-producer {
+		height: auto;
+	}
+
 	.favorite {
 		right: -30px;
 		top: 0px;
@@ -1007,7 +1020,7 @@ a.bt-default {
 
 	.wine-intro {
 		margin-bottom:10px;
-		min-height:auto;
+		height:auto;
 	}
 
 
@@ -2363,7 +2376,9 @@ ul.pagination{
 				color:#000;
 				min-height: auto;
 				height: auto;
-
+			}
+			.wine-card-producer {
+				height: auto;
 			}
 		}
 
