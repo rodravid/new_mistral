@@ -51,7 +51,7 @@
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # set an environtment variable "noauth" if production URL
-    SetEnvIf HOST ^(www.vinci.com.br|vinci.com.br|vincivinhos.com.br|www.vincivinhos.com.br) noauth=1
+    SetEnvIf HOST ^(www.vinci.com.br|vinci.com.br|vincivinhos.com.br|www.vincivinhos.com.br|vinci.localhost.com) noauth=1
 
     # the auth block
     AuthType Basic

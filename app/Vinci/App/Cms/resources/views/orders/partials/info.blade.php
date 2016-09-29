@@ -8,7 +8,12 @@
                 <strong>{{ $order->customer->name }}</strong>
             @endif
             Telefone: {{ $order->customer->phone }}<br>
-            Email: {{ $order->customer->email }}
+            Email: {{ $order->customer->email }}<br>
+            @if ($order->customer->isIndividual())
+                CPF: {{ $order->customer->cpf }}
+            @else
+                CNPJ: {{ $order->customer->cnpj }}
+            @endif
         </address>
     </div>
     <div class="col-sm-3 invoice-col">
@@ -18,6 +23,9 @@
         </address>
     </div>
     <div class="col-sm-3 invoice-col">
+        <strong>Destinatário: </strong>
+            {{ $order->shippingAddress->receiver }}
+        <br>
         <strong>Endereço de entrega</strong>
         <address>
             {!! $order->shippingAddress->address_html !!}
@@ -62,6 +70,14 @@
 </div>
 
 <div class="row">
+    <div class="col-xs-12 row">
+        <div class="col-xs-6">
+            <p class="lead">Transportadora</p>
+            <p class="text-muted well well-sm no-shadow">
+                {{ $order->shipment->carrier->getTitle() }}
+            </p>
+        </div>
+    </div>
     <div class="col-xs-6">
         <p class="lead">Forma de pagamento:</p>
         <p class="lead">{{ $order->payment->method->code }}</p>
