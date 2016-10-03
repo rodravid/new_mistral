@@ -14,18 +14,16 @@
                 <div class="row">
 
                     <div class="col-xs-12">
-                        <div class="form-group has-feedback">
+                        <div class="form-group">
                             <label for="txtUserName">Nome</label>
                             {!! Form::text('name', null, ['id' => 'txtUserName', 'class' => 'form-control', 'placeholder' => 'Digite o nome']) !!}
-                            <span class="fa fa-pencil form-control-feedback"></span>
                         </div>
                     </div>
 
                     <div class="col-xs-12">
-                        <div class="form-group has-feedback">
+                        <div class="form-group">
                             <label for="txtUserEmail">E-mail</label>
                             {!! Form::text('email', null, ['id' => 'txtUserEmail', 'class' => 'form-control', 'placeholder' => 'Digite o e-mail']) !!}
-                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
                     </div>
 
