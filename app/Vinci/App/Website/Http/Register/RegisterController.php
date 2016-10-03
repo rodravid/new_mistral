@@ -51,6 +51,8 @@ class RegisterController extends Controller
 
             $data = $request->all();
 
+            $data['addresses'][0]['receiver'] = $data['name'];
+
             $customer = $this->customerService->create($data);
 
             Auth::login($customer);
