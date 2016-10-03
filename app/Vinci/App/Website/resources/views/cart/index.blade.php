@@ -98,6 +98,7 @@
                         </div>
                     </article>
 
+                    <div class="container-cep-price">
                     <ul class="valor-total-carrinho float-right">
                         <li>
                             <article class="wrap-compra-dados-venda">
@@ -137,6 +138,7 @@
                             </article>
                         </li>
                     </ul>
+                    </div>
 
                     <div class="wrap-content-bt">
                         <div class="box-two-links">

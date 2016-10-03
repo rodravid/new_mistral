@@ -127,7 +127,11 @@
                                 </select>
                             </div>
                         </li>
-
+                        <li>
+                            <label for="txtLandmark" class="label-input">Nome do Destinatário</label>
+                            <input type="text" name="addresses[{{ $address->getId() }}][receiver]" placeholder="Destinatário" id="txtReceiver" class="input-register full"
+                                   value="{{ old('addresses.' . $address->getId() . '.receiver', ($address->getId() > 0 ? $address->getReceiver() : null)) }}">
+                        </li>
                         <li>
                             <label for="txtLandmark" class="label-input">Referência para entrega</label>
                             <input type="text" name="addresses[{{ $address->getId() }}][landmark]" placeholder="Referência para entrega" id="txtLandmark" class="input-register full"
@@ -177,7 +181,7 @@
 
                                     window.location.reload();
 
-                                }, 1000);
+                                }, 1500);
 
                             });
 
