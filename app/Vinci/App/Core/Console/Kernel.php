@@ -72,25 +72,32 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('erp:integration:products:import --new')
-            ->cron('*/30 * * * *');
+            ->cron('*/30 * * * *')
+            ->withoutOverlapping();
 
         $schedule->command('erp:integration:products:import --changed')
-            ->cron('*/15 * * * *');
+            ->cron('*/15 * * * *')
+            ->withoutOverlapping();
 
         $schedule->command('erp:integration:products:import --all')
-            ->cron('00 */1 * * *');
+            ->cron('00 */1 * * *')
+            ->withoutOverlapping();
 
         $schedule->command('erp:integration:products:import-price --all')
-            ->cron('10 */1 * * *');
+            ->cron('10 */1 * * *')
+            ->withoutOverlapping();
 
         $schedule->command('erp:integration:products:import-stock --all')
-            ->cron('*/25 * * * *');
+            ->cron('*/25 * * * *')
+            ->withoutOverlapping();
 
         $schedule->command('search:sync')
-            ->everyTenMinutes();
+            ->everyTenMinutes()
+            ->withoutOverlapping();
 
         $schedule->command('product:send-unavailability-notification')
-            ->cron('0 6-23/2 * * *');
+            ->cron('0 6-23/2 * * *')
+            ->withoutOverlapping();
 
         $schedule->command('creditcards:clear')
             ->daily();

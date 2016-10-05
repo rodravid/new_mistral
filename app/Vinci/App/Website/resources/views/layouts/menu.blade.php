@@ -1,6 +1,6 @@
 <header class="header-main @if(auth('website')->check()) logged-in-user @endif">
     <div class="row relative">
-        <input type="checkbox" id="control-nav"/>
+
         <label for="control-nav" class="control-nav"></label>
         <label for="control-nav" class="control-nav-close"></label>
 
