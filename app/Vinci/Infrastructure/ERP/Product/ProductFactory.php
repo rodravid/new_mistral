@@ -31,6 +31,7 @@ class ProductFactory implements ProductFactoryInterface
         $data["expirationAt"] = null;
         $data["status"] = Status::ACTIVE;
         $data["online"] = $xmlObject->LISTADO_NO_SITE == 'SIM' ? true : false;
+        $data['enabled_for_promotions'] = true;
         $data["slug"] = null;
 
         /**
