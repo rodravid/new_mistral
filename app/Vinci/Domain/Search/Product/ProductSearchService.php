@@ -229,23 +229,23 @@ class ProductSearchService extends SearchService
 
                 'bool' => [
                     'should' => [
-                        ['term' => ['_id' => $keyword]],
+                        //['term' => ['_id' => $keyword]],
                         ['term' => ['sku' => $keyword]],
-                        ['match' => ['title' => ['query' => $keyword, 'boost' => 4, 'fuzziness' => 1]]],
-                        ['match' => ['title.autocomplete' => ['query' => $keyword, 'boost' => 3]]],
-                        ['match' => ['keywords' => ['query' => $keyword, 'boost' => 3]]],
-                        ['match' => ['short_description' => $keyword]],
+                        ['match' => ['title' => ['query' => $keyword, 'boost' => 5, 'fuzziness' => 1]]],
+                        ['match' => ['title.autocomplete' => ['query' => $keyword, 'boost' => 4]]],
+                        ['match' => ['keywords' => ['query' => $keyword, 'boost' => 4]]],
+                       // ['match' => ['short_description' => $keyword]],
                         ['match' => ['country.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
                         ['match' => ['region.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
                         ['match' => ['producer.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
                         ['multi_match' => [
                             'type' => "most_fields",
                             'query' => $keyword,
-                            'boost' => 3,
+                            'boost' => 2,
                             'fuzziness' => 1,
                             'fields' => ['product_type.title', 'product_type.title.brazilian']
                         ]],
-                        ['match' => ['grapes.title' => ['query' => $keyword, 'boost' => 2, 'fuzziness' => 1]]],
+                        ['match' => ['grapes.title' => ['query' => $keyword, 'boost' => 3, 'fuzziness' => 1]]],
 //                        ['fuzzy' =>
 //                            [
 //                                'title' => [
@@ -298,6 +298,7 @@ class ProductSearchService extends SearchService
                     'text' => $keyword,
                     'completion' => [
                         'field' => 'suggest',
+                        'size' => 5,
                         'fuzzy' => [
                             'fuzziness' => 1
                         ]
@@ -348,17 +349,31 @@ class ProductSearchService extends SearchService
 
     protected function getSort($order)
     {
-        $default = ['available:desc', 'relevance:desc', '_score'];
+
+        $default = ['available:desc', '_score'];
 
         switch ($order) {
             case 1: return $default; break;
-            case 2: return ['available:desc', 'price:asc', 'relevance:desc']; break;
-            case 3: return ['available:desc', 'price:desc', 'relevance:desc']; break;
-            case 4: return ['available:desc', 'title.raw:asc', 'relevance:desc']; break;
-            case 5: return ['available:desc', 'title.raw:desc', 'relevance:desc']; break;
+            case 2: return ['available:desc', 'price:asc']; break;
+            case 3: return ['available:desc', 'price:desc']; break;
+            case 4: return ['available:desc', 'title.raw:asc']; break;
+            case 5: return ['available:desc', 'title.raw:desc']; break;
         }
 
         return $default;
+
+
+//        $default = ['available:desc', 'relevance:desc', '_score'];
+//
+//        switch ($order) {
+//            case 1: return $default; break;
+//            case 2: return ['available:desc', 'price:asc', 'relevance:desc']; break;
+//            case 3: return ['available:desc', 'price:desc', 'relevance:desc']; break;
+//            case 4: return ['available:desc', 'title.raw:asc', 'relevance:desc']; break;
+//            case 5: return ['available:desc', 'title.raw:desc', 'relevance:desc']; break;
+//        }
+//
+//        return $default;
     }
 
 }

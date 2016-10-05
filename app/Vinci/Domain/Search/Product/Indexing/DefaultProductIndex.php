@@ -187,8 +187,8 @@ class DefaultProductIndex extends AbstractIndex
                         ],
                         'suggest' => [
                             'type' => 'completion',
-                            'index_analyzer' => 'simple',
-                            'search_analyzer' => 'autocomplete',
+                            'analyzer' => 'simple',
+                            'search_analyzer' => 'simple',
                             'payloads' => true,
                         ]
                     ]
