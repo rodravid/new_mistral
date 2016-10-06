@@ -363,4 +363,18 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
 
        return array_column($result, 'sku');
     }
+
+    public function getProductsIdsFromSkus(array $skus)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p.id')
+            ->join('p.variants', 'v')
+            ->where($qb->expr()->in('v.sku', $skus));
+
+        $result = $qb->getQuery()->getArrayResult();
+
+        return array_column($result, 'id');
+    }
+
 }

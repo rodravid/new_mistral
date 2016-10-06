@@ -46,4 +46,6 @@ interface ProductRepository
 
     public function getAllProductsSku();
 
+    public function getProductsIdsFromSkus(array $skus);
+
 }
