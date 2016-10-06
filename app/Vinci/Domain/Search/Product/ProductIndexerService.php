@@ -226,6 +226,7 @@ class ProductIndexerService extends IndexingService
         $data['suggest'] = [
             'input' => $suggestInput,
             'output' => $product->getTitle(),
+            'weight' => intval($product->getSearchRelevance()),
             'payload' => [
                 'productId' => $product->getId(),
                 'url' => $product->getWebPath(),
