@@ -5,6 +5,7 @@ namespace Vinci\Domain\Dollar;
 use Doctrine\ORM\Mapping as ORM;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use Vinci\Domain\Common\Relationships\HasOneAdminUser;
+use Vinci\Domain\Common\Traits\Schedulable;
 use Vinci\Domain\Core\Model;
 
 /**
@@ -13,7 +14,7 @@ use Vinci\Domain\Core\Model;
  */
 class Dollar extends Model
 {
-    use HasOneAdminUser, Timestamps;
+    use HasOneAdminUser, Timestamps, Schedulable;
 
     /**
      * @ORM\Id

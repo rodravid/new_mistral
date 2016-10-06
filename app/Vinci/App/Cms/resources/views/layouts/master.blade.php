@@ -374,19 +374,19 @@
                     if (publishingDate <= currentDate) {
                         $('#startText').html('Publicar <strong>imediatamente</strong>');
                     } else {
-                        $('#startText').html('Publicar em <strong>' + startDate.format('DD/MM/YYYY HH:mm') + '</strong>');
+                        $('#startText').html('Publicar em <strong>' + startDate.format('DD/MM/YYYY HH:mm:ss') + '</strong>');
                     }
                 }
 
                 function setExpirationAtText() {
                     var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
                     var endDate = moment(finishingDate);
-                    $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
+                    $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm:ss') + '</strong>');
                 }
 
                 $('#txtStartsAtPicker').datetimepicker({
                     language: 'pt-BR',
-                    format: 'DD/MM/YYYY HH:mm',
+                    format: 'DD/MM/YYYY HH:mm:ss',
                     pick12HourFormat: false
                 }).bind('dp.change', function () {
                     setStartsAtText();
@@ -396,25 +396,32 @@
 
                 $('#txtExpirationAtPicker').datetimepicker({
                     language: 'pt-BR',
-                    format: 'DD/MM/YYYY HH:mm',
+                    format: 'DD/MM/YYYY HH:mm:ss',
                     pick12HourFormat: false
                 }).bind('dp.change', function () {
                     setExpirationAtText();
                 });
 
                 (function () {
-                    var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
 
-                    if ($('#txtExpirationAtPicker').data('has-expiration')) {
-                        var endDate = moment(finishingDate);
-                        $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
-                    } else {
-                        $('#endText').html('<strong>Nunca expira!</strong>');
+                    if ($('#txtExpirationAtPicker').length > 0) {
+                        var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
+
+                        if ($('#txtExpirationAtPicker').data('has-expiration')) {
+                            var endDate = moment(finishingDate);
+                            $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm:ss') + '</strong>');
+                        } else {
+                            $('#endText').html('<strong>Nunca expira!</strong>');
+                        }
                     }
+
                 }());
 
                 $('#txtStartsAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
-                $('#txtExpirationAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
+
+                if ($('#txtExpirationAtPicker').length > 0) {
+                    $('#txtExpirationAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
+                }
 
                 $('.publishing-action').click(function () {
                     var fields = $(this).siblings('.publishing-fields');

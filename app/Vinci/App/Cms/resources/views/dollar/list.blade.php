@@ -6,6 +6,7 @@
         <th><i class="fa fa-file-text-o"></i> Descrição</th>
         <th><i class="fa fa-money"></i> Valor</th>
         <th><i class="fa fa-user"></i> Usuário</th>
+        <th><i class="fa fa-calendar"></i> Início em</th>
         <th><i class="fa fa-calendar"></i> Definido em</th>
     </tr>
 @endsection
@@ -30,7 +31,7 @@
                 order: [[ 0, "desc" ]],
                 columnDefs: [
                     {className: 'hcenter vcenter', width: '20px', targets: 0 },
-                    {className: 'vcenter', targets: [3,4] }
+                    {className: 'vcenter', targets: [3,4,5] }
                 ]
             });
 
