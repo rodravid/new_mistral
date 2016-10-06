@@ -219,9 +219,9 @@ class ProductIndexerService extends IndexingService
 
         $suggestInput = explode(' ', $input);
 
-        $suggestInput = array_unique(array_filter($suggestInput, function($key){
+        $suggestInput = array_values(array_unique(array_filter($suggestInput, function($key){
             return ! empty($key);
-        }));
+        })));
 
         $data['suggest'] = [
             'input' => $suggestInput,
