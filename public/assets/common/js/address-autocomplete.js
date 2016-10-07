@@ -1,11 +1,22 @@
 (function($) {
 
+    function setOptions(select, options) {
+        select.html(options).trigger('change');
+    }
+
+    function getCitiesByState(state, callback)
+    {
+        $.get('/api/ibge/cities/' + state, function(cities) {
+            callback(cities);
+        });
+    }
+
     $.each($('select[data-state]'), function(i, select) {
 
         var $selectState = $(select);
         var $selectCity = $($selectState.data('target'));
 
-        $selectState.bind('change', function() {
+        $selectState.bind('change', function(e) {
 
             var $self = $(this);
             var state = $self.val();
@@ -35,18 +46,9 @@
 
             });
 
+            e.preventDefault();
+
         }).change();
-
-        function setOptions(select, options) {
-            select.html(options).trigger('change');
-        }
-
-        function getCitiesByState(state, callback)
-        {
-            $.get('/api/ibge/cities/' + state, function(cities) {
-                callback(cities);
-            });
-        }
 
     });
 
@@ -117,4 +119,4 @@
         });
     }
 
-})($);
+})(jQuery);
