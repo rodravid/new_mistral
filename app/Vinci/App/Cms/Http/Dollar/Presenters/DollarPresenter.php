@@ -2,7 +2,6 @@
 
 namespace Vinci\App\Cms\Http\Dollar\Presenters;
 
-use Carbon\Carbon;
 use Vinci\App\Core\Services\Presenter\AbstractPresenter;
 use Vinci\Domain\Dollar\DollarProvider;
 
