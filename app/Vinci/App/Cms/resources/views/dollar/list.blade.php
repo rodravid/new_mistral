@@ -30,7 +30,7 @@
                 },
                 pageLength: 25,
                 searchDelay: 600,
-                order: [[ 0, "desc" ]],
+                order: [[ 4, "desc" ]],
                 columnDefs: [
                     {className: 'hcenter vcenter', width: '20px', targets: 0 },
                     {className: 'vcenter', targets: [3,4,5,6] }
