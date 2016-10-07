@@ -78,7 +78,13 @@ class OrderController extends Controller
             100 => '100 pedidos por página'
         ];
 
-        return $this->view('orders.list', compact('orders', 'orderStatuses', 'filters', 'optionsOfItemsPerPage'));
+        $printStatuses = [
+            2 => "Todos",
+            0 => "Não impressos",
+            1 => "Impressos"
+        ];
+
+        return $this->view('orders.list', compact('orders', 'orderStatuses', 'filters', 'optionsOfItemsPerPage', 'printStatuses'));
     }
 
     private function buildFiltersFrom(Request $request)
@@ -88,6 +94,7 @@ class OrderController extends Controller
         $filters['startDate'] = isset($data['startDate']) && ! empty($data['startDate']) ? Carbon::createFromFormat('d/m/Y H:i:s', $data['startDate']) : '';
         $filters['endAt'] = isset($data['endAt']) && ! empty($data['endAt']) ? Carbon::createFromFormat('d/m/Y H:i:s', $data['endAt']) : '';
 
+        $filters['printStatus'] = isset($data['printFilter']) ? $data['printFilter'] : 2;
         $filters['itemsPerPage'] = $this->getItemsPerPage($data);
         $filters['orderTrackingStatus'] = $this->getStatus($data);
         $filters['keyword'] = $this->getKeywords($data);
@@ -252,6 +259,15 @@ class OrderController extends Controller
             return Redirect::back();
         }
 
+    }
+
+    public function setAsPrinted($order_id)
+    {
+        $order = $this->repository->getOneById($order_id);
+
+        $order->setPrinted(1);
+
+        $order->save();
     }
 
 }

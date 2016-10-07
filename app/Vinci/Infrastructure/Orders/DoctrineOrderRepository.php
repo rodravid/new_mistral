@@ -41,6 +41,10 @@ class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRep
             $queryBuilder = $this->applyAndSetEndDateOfPeriod($queryBuilder, $filters['endAt']);
         }
 
+        if ($this->shouldFilterByPrintStatus($filters)) {
+            $queryBuilder = $this->applyAndSetPrintStatusFilter($queryBuilder, $filters['printStatus']);
+        }
+
         $queryBuilder->orderBy('o.createdAt', 'desc');
 
         if ($this->shouldPaginate($filters['itemsPerPage'])) {
@@ -85,6 +89,19 @@ class DoctrineOrderRepository extends DoctrineBaseRepository implements OrderRep
     {
         $queryBuilder->andWhere('o.createdAt <= :endAt');
         $queryBuilder->setParameter('endAt', $endAt);
+
+        return $queryBuilder;
+    }
+
+    private function shouldFilterByPrintStatus($filters)
+    {
+        return $filters['printStatus'] != 2;
+    }
+
+    private function applyAndSetPrintStatusFilter($queryBuilder, $printStatus)
+    {
+        $queryBuilder->andWhere('o.printed = :printStatus');
+        $queryBuilder->setParameter('printStatus', $printStatus);
 
         return $queryBuilder;
     }

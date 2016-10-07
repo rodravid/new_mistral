@@ -23,7 +23,7 @@
                                 <small><b>Número no ERP:</b> {!! $order->erp_number !!}</small>
                             @endif
                             <small class="pull-right">Data: {{ $order->creation_date }}</small>
-                            <small class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;" onClick="window.print()"> <i class="fa fa-print"></i> Imprimir</small>
+                            <small id="print" class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;"> <i class="fa fa-print"></i> Imprimir</small>
                         </h2>
                     </div>
                 </div>
@@ -86,4 +86,17 @@
         </div>
     </section>
 
+@endsection
+
+@section ('scripts')
+    @parent
+    <script>
+        $("#print").click(function () {
+            window.print();
+            $.ajax({
+                url: '{{ route('cms.orders.printed', ['order' => $order->id]) }}',
+                type: 'POST'
+            });
+        });
+    </script>
 @endsection
