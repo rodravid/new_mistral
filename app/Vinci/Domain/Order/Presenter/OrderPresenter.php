@@ -32,4 +32,14 @@ class OrderPresenter extends AbstractPresenter
         return $this->getErpNumber();
     }
 
+    public function presentPrintStatus()
+    {
+        if ($this->getPrinted()) {
+            return '<span class="badge bg-green">Sim</span>';
+        }
+
+        return '<span class="badge bg-grey">Não</span>';
+
+    }
+
 }

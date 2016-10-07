@@ -123,6 +123,10 @@ class Order extends Model implements OrderInterface, AggregateRoot
      * @ORM\OneToOne(targetEntity="Vinci\Domain\Order\History\OrderHistory", mappedBy="order", cascade={"persist"})
      */
     protected $history;
+    /**
+     * @ORM\Column(type="integer", options={"default" = 0}, nullable=true)
+     */
+    protected $printed = 0;
 
     public function __construct()
     {
@@ -229,6 +233,18 @@ class Order extends Model implements OrderInterface, AggregateRoot
         foreach ($items as $item) {
             $this->addItem($item);
         }
+
+        return $this;
+    }
+
+    public function getPrinted()
+    {
+        return $this->printed;
+    }
+
+    public function setPrinted($status)
+    {
+        $this->printed  = $status;
 
         return $this;
     }

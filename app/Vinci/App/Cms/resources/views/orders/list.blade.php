@@ -67,16 +67,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="form-group col-md-5 col-lg-6">
+                                    <div class="form-group col-md-12 col-lg-4">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
                                             {!! Form::text('keyword', $filters['keyword'], ['class' => 'form-control', 'placeholder' => 'Procure pelo ID, Número ou Cliente']) !!}
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-4 col-lg-3">
+                                    <div class="form-group col-md-12 col-lg-2">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-print"></i>
+                                            </span>
+                                            {!! Form::select('printFilter', $printStatuses, $filters['printStatus'], ['class' => 'form-control', 'id' => 'printFilter']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 col-lg-3">
                                         {!! Form::select('itemsPerPage', $optionsOfItemsPerPage, $filters['itemsPerPage'], ['class' => 'form-control', 'id' => 'itemsPerPage']) !!}
                                     </div>
-                                    <div class="form-group col-md-3 col-lg-3">
+                                    <div class="form-group col-md-12 col-lg-3">
                                         <div class="btn-group">
                                             {!! Form::button('<i class="fa fa-search"></i> Filtrar', ['class' => 'btn btn-info', 'type' => 'submit']) !!}
                                             <a href="{{ route('cms.orders.excel') }}" class="btn btn-success">
@@ -100,6 +108,7 @@
                                             <th><i class="fa fa-money"></i> Valor</th>
                                             <th><i class="fa fa-calendar"></i> Criado em</th>
                                             <th><i class="fa fa-edit"></i> Status</th>
+                                            <th><i class="fa fa-print"></i> Impresso</th>
                                             <th><i class="fa fa-edit"></i> Status da integração</th>
                                             <th>Ações</th>
                                         </tr>
@@ -108,12 +117,13 @@
                                             @if (! $orders->isEmpty())
                                                 @foreach ($orders as $order)
                                                     <tr>
-                                                        <td width="5%">{{ $order->id }}</td>
+                                                        <td width="3%">{{ $order->id }}</td>
                                                         <td width="8%">{{ $order->number }}</td>
                                                         <td width="15%">{{ $order->customer->name }}</td>
-                                                        <td width="10%">{{ $order->total }}</td>
+                                                        <td width="8%">{{ $order->total }}</td>
                                                         <td width="10%">{{ $order->created_at }}</td>
-                                                        <td width="19%">{{ $order->status }}</td>
+                                                        <td width="15%">{{ $order->status }}</td>
+                                                        <td width="8%" class="text-center">{!! $order->print_status !!}</td>
                                                         <td width="10%">{!! $order->integration_status_html !!}</td>
                                                         <td width="8%">
                                                             <a href="{{ route('cms.orders.show', $order->id) }}" target="_blank" class="btn btn-info btn-sm">
