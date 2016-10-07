@@ -87,7 +87,7 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     @if(isset($currentDollar))
-                        <li class="hidden-xs"><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar->amount }}</b></span></a></li>
+                        <li class="hidden-xs"><a href="{{ route('cms.dollar.list') }}"><span><i class="fa fa-money"></i> Dólar: <b>{{ $currentDollar }}</b></span></a></li>
                     @endif
                     @if(isset($currentDeadline))
                         <li class="hidden-xs"><a href="{{ route('cms.deadline.list') }}"><span><i class="fa fa-calendar-check-o"></i> Entrega: <b>{{ $currentDeadline->days_written }}</b></span></a></li>
@@ -403,18 +403,25 @@
                 });
 
                 (function () {
-                    var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
 
-                    if ($('#txtExpirationAtPicker').data('has-expiration')) {
-                        var endDate = moment(finishingDate);
-                        $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
-                    } else {
-                        $('#endText').html('<strong>Nunca expira!</strong>');
+                    if ($('#txtExpirationAtPicker').length > 0) {
+                        var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
+
+                        if ($('#txtExpirationAtPicker').data('has-expiration')) {
+                            var endDate = moment(finishingDate);
+                            $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
+                        } else {
+                            $('#endText').html('<strong>Nunca expira!</strong>');
+                        }
                     }
+
                 }());
 
                 $('#txtStartsAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
-                $('#txtExpirationAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
+
+                if ($('#txtExpirationAtPicker').length > 0) {
+
+                }
 
                 $('.publishing-action').click(function () {
                     var fields = $(this).siblings('.publishing-fields');

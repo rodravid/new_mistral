@@ -446,7 +446,15 @@ jQuery(document).ready(function ($) {
     });
 
 
-
+//script menu
+    $(".control-nav").click(function(event) {
+        $(".menu-main").addClass('menu-open');
+        $(".control-nav-close").addClass('menu-open-bg');
+    });
+    $(".control-nav-close").click(function(event) {
+        $(".menu-main").removeClass('menu-open');
+        $(".control-nav-close").removeClass('menu-open-bg');
+    });
 
 
 });

@@ -159,12 +159,14 @@ class PromotionService
 
     protected function filterProductsIdsFromSheet($sheet)
     {
-        $data = collect(array_column($sheet->toArray(), 0));
-        return $data->filter(function($product) {
-            return ! empty($product) && intval($product) > 0;
-        })->map(function($product) {
-            return intval($product);
-        })->toArray();
+        $skus = collect(array_column($sheet->toArray(), 0))
+            ->filter(function($product) {
+                return ! empty($product) && intval($product) > 0;
+            })->map(function($product) {
+                return intval($product);
+            })->toArray();
+
+        return $this->productRepository->getProductsIdsFromSkus($skus);
     }
 
     public function removeItem($promotionId, $item)

@@ -8,7 +8,7 @@ class HighlightValidator extends LaravelValidator
 {
 
     protected $rules = [
-        'title' => 'required',
+        //'title' => 'required',
         'startsAt' => 'required|date_format:d/m/Y H:i',
         'expirationAt' => 'date_format:d/m/Y H:i',
         'position' => 'integer'

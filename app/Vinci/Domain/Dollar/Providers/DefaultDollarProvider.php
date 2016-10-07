@@ -19,10 +19,15 @@ class DefaultDollarProvider implements DollarProvider
 
     public function getCurrentDollarAmount()
     {
+       return $this->getCurrentDollar()->getAmount();
+    }
+
+    public function getCurrentDollar()
+    {
         if ($this->dollar) {
             return $this->dollar;
         }
 
-        return $this->dollar = $this->repository->getLast()->getAmount();
+        return $this->dollar = $this->repository->getLastValid();
     }
 }

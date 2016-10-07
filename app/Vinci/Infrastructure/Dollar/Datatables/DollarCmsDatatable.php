@@ -24,7 +24,8 @@ class DollarCmsDatatable extends AbstractDatatables
         1 => 'o.description',
         2 => 'o.amount',
         3 => 'u.name',
-        4 => 'o.createdAt',
+        4 => 'o.startsAt',
+        6 => 'o.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
@@ -56,14 +57,16 @@ class DollarCmsDatatable extends AbstractDatatables
 
     public function parseSingleResult($dollar)
     {
-        $presenter = new DollarPresenter($dollar);
+        $dollar = new DollarPresenter($dollar);
 
         return [
-            $presenter->id,
-            $presenter->description,
-            $presenter->amount,
-            $presenter->user_name,
-            $presenter->created_at
+            $dollar->id,
+            $dollar->description,
+            $dollar->amount,
+            $dollar->user_name,
+            $dollar->starts_at,
+            $dollar->schedule_status_html,
+            $dollar->created_at
         ];
     }
 

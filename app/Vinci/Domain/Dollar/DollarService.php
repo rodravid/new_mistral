@@ -21,7 +21,16 @@ class DollarService
         $this->validator->with($attributes)->passesOrFail();
 
         return $this->saveDollar($attributes, function($data) {
-            return Dollar::make($data);
+
+            $dollar = Dollar::make();
+
+            $dollar->setStartsAtFromFormat($data['startsAt']);
+
+            unset($data['startsAt']);
+
+            $dollar->fill($data);
+
+            return $dollar;
         });
     }
 

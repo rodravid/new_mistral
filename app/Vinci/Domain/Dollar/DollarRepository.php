@@ -11,4 +11,6 @@ interface DollarRepository
 
     public function getLast();
 
+    public function getLastValid();
+
 }

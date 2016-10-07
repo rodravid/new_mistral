@@ -213,12 +213,20 @@ class ProductIndexerService extends IndexingService
 
         }
 
-        $suggestInput = explode(' ', $product->getTitle());
-        $suggestInput = array_merge($suggestInput, explode(',', $keywords));
+        $input = $product->getTitle() . ' ' . $product->getProducer()->getName();
+
+        $input = preg_replace('/[0-9\-ml()]/', '', $input);
+
+        $suggestInput = explode(' ', $input);
+
+        $suggestInput = array_values(array_unique(array_filter($suggestInput, function($key){
+            return ! empty($key);
+        })));
 
         $data['suggest'] = [
             'input' => $suggestInput,
             'output' => $product->getTitle(),
+            'weight' => intval($product->getSearchRelevance()),
             'payload' => [
                 'productId' => $product->getId(),
                 'url' => $product->getWebPath(),

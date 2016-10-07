@@ -120,7 +120,6 @@ class CustomerService
                 ->setStateRegistration($data['stateRegistration']);
         }
 
-        $data['addresses'][0]['receiver'] = $customer->getName();
         $this->syncAddresses($customer, $data);
 
         $this->repository->save($customer);
