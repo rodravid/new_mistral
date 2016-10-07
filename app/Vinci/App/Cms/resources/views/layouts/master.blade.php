@@ -374,19 +374,19 @@
                     if (publishingDate <= currentDate) {
                         $('#startText').html('Publicar <strong>imediatamente</strong>');
                     } else {
-                        $('#startText').html('Publicar em <strong>' + startDate.format('DD/MM/YYYY HH:mm:ss') + '</strong>');
+                        $('#startText').html('Publicar em <strong>' + startDate.format('DD/MM/YYYY HH:mm') + '</strong>');
                     }
                 }
 
                 function setExpirationAtText() {
                     var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
                     var endDate = moment(finishingDate);
-                    $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm:ss') + '</strong>');
+                    $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
                 }
 
                 $('#txtStartsAtPicker').datetimepicker({
                     language: 'pt-BR',
-                    format: 'DD/MM/YYYY HH:mm:ss',
+                    format: 'DD/MM/YYYY HH:mm',
                     pick12HourFormat: false
                 }).bind('dp.change', function () {
                     setStartsAtText();
@@ -396,7 +396,7 @@
 
                 $('#txtExpirationAtPicker').datetimepicker({
                     language: 'pt-BR',
-                    format: 'DD/MM/YYYY HH:mm:ss',
+                    format: 'DD/MM/YYYY HH:mm',
                     pick12HourFormat: false
                 }).bind('dp.change', function () {
                     setExpirationAtText();
@@ -409,7 +409,7 @@
 
                         if ($('#txtExpirationAtPicker').data('has-expiration')) {
                             var endDate = moment(finishingDate);
-                            $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm:ss') + '</strong>');
+                            $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
                         } else {
                             $('#endText').html('<strong>Nunca expira!</strong>');
                         }
@@ -420,7 +420,7 @@
                 $('#txtStartsAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
 
                 if ($('#txtExpirationAtPicker').length > 0) {
-                    $('#txtExpirationAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
+
                 }
 
                 $('.publishing-action').click(function () {
