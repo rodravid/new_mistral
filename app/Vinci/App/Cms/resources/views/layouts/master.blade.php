@@ -403,18 +403,25 @@
                 });
 
                 (function () {
-                    var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
 
-                    if ($('#txtExpirationAtPicker').data('has-expiration')) {
-                        var endDate = moment(finishingDate);
-                        $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
-                    } else {
-                        $('#endText').html('<strong>Nunca expira!</strong>');
+                    if ($('#txtExpirationAtPicker').length > 0) {
+                        var finishingDate = $('#txtExpirationAtPicker').data("DateTimePicker").getDate();
+
+                        if ($('#txtExpirationAtPicker').data('has-expiration')) {
+                            var endDate = moment(finishingDate);
+                            $('#endText').html('Publicado até <strong>' + endDate.format('DD/MM/YYYY HH:mm') + '</strong>');
+                        } else {
+                            $('#endText').html('<strong>Nunca expira!</strong>');
+                        }
                     }
+
                 }());
 
                 $('#txtStartsAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
-                $('#txtExpirationAtPicker').data("DateTimePicker").setMinDate(moment().startOf('day'));
+
+                if ($('#txtExpirationAtPicker').length > 0) {
+
+                }
 
                 $('.publishing-action').click(function () {
                     var fields = $(this).siblings('.publishing-fields');
