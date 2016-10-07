@@ -7,10 +7,10 @@ elixir(function(mix) {
     ], 'public/assets/website/css/style.min.css');
 
     mix.scripts([
+        'js/jquery-1.9.1.min.js',
         'js/angular/angular.min.js',
         'js/angular/angular-locale_pt-br.js',
         'js/angular/angular-counter.min.js',
-        'js/jquery-1.9.1.min.js',
         'js/slick.js',
         'js/jquery.responsiveTabs.min.js',
         'js/sweetalert/sweetalert.min.js',
