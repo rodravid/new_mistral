@@ -64,7 +64,7 @@ class OrderController extends Controller
         $orders = $this->presenter->paginator($orders, OrderPresenter::class);
 
         $orders->setPath('/cms/orders');
-        $orders->appends($filters);
+        $orders->appends($request->all());
 
         $orderStatuses = $this->trackingStatusRepository->getAll();
         $orderStatuses = Collection::make($orderStatuses)->pluck('title', 'id')->prepend('Todos', 0);
