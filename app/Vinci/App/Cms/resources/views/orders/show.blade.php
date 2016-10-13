@@ -91,11 +91,13 @@
 @section ('scripts')
     @parent
     <script>
-        $("#print").click(function () {
-            window.print();
-            $.ajax({
-                url: '{{ route('cms.orders.printed', ['order' => $order->id]) }}',
-                type: 'POST'
+        $(document).ready(function () {
+            $("#print").on('click', function () {
+                window.print();
+                $.ajax({
+                    url: '{{ route('cms.orders.printed', ['order' => $order->id]) }}',
+                    type: 'POST'
+                });
             });
         });
     </script>
