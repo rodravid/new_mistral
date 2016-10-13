@@ -19,6 +19,7 @@ use Vinci\App\Integration\ERP\Logger\IntegrationLogger;
 use Vinci\App\Integration\ERP\Order\OrderExporter;
 use Vinci\App\Website\Http\Order\Presenter\OrderPresenter as OrderPresenterWeb;
 use Vinci\Domain\Order\Commands\ChangeOrderStatusCommand;
+use Vinci\Domain\Order\Order;
 use Vinci\Domain\Order\OrderRepository;
 use Vinci\Domain\Order\OrderService;
 use Vinci\Domain\Order\OrderStatus;
@@ -263,10 +264,8 @@ class OrderController extends Controller
 
     public function setAsPrinted($order_id)
     {
-        $order = $this->repository->getOneById($order_id);
-
+        $order = $this->entityManager->getReference(Order::class, $order_id);
         $order->setPrinted(1);
-
         $order->save();
     }
 
