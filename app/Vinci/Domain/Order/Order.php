@@ -244,7 +244,7 @@ class Order extends Model implements OrderInterface, AggregateRoot
 
     public function setPrinted($status)
     {
-        $this->printed  = $status;
+        $this->printed = intval($status);
 
         return $this;
     }
