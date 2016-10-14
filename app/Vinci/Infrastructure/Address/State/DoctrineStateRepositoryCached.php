@@ -40,4 +40,24 @@ class DoctrineStateRepositoryCached implements StateRepository
 
         return 'state-repository-' . trim($key) . trim($data);
     }
+
+    public function syncState($state)
+    {
+        $this->stateRepository->syncState($state);
+    }
+
+    public function syncStates($states, $detach = false)
+    {
+        return $this->stateRepository->syncStates($states, $detach);
+    }
+
+    public function create($id)
+    {
+        return $this->stateRepository->create($id);
+    }
+
+    public function update($state)
+    {
+        return $this->stateRepository->update($state);
+    }
 }
