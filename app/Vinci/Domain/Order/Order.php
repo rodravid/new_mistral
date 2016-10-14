@@ -249,6 +249,11 @@ class Order extends Model implements OrderInterface, AggregateRoot
         return $this;
     }
 
+    public function wasPrinted()
+    {
+        return !! $this->printed;
+    }
+
     public function addItem(OrderItem $item)
     {
         if (! $this->hasItem($item)) {
