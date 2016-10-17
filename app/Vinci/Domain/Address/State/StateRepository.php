@@ -7,6 +7,8 @@ interface StateRepository extends \Vinci\App\Integration\ERP\State\StateReposito
 
     public function find($id);
 
+    public function getAllStateIDs();
+
     public function getByCountry($country);
 
 }

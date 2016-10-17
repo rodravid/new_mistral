@@ -25,6 +25,13 @@ class DoctrineStateRepository extends DoctrineBaseRepository implements StateRep
         return $query->getOneOrNullResult();
     }
 
+    public function getAllStateIDs()
+    {
+        $query = $this->_em->createQuery('SELECT s.id FROM Vinci\Domain\Address\State\State s');
+
+        return array_column($query->getArrayResult(), 'id');
+    }
+
     public function syncState($state)
     {
         if ($localState = $this->getByIdThroughSQL($state['ibge_code'])) {
@@ -58,7 +65,7 @@ class DoctrineStateRepository extends DoctrineBaseRepository implements StateRep
         return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 
-    public function update($state)
+    public function update(array $state)
     {
 
         $sql = "UPDATE ibge_states 
@@ -74,7 +81,6 @@ class DoctrineStateRepository extends DoctrineBaseRepository implements StateRep
 
         $stmt->execute([
             'id' => $state['ibge_code'],
-//            'country_id' => $state['country_id'],
             'uf' => $state['uf'],
             'name' => $state['name'],
             'updated_at' => Carbon::now()
@@ -82,7 +88,7 @@ class DoctrineStateRepository extends DoctrineBaseRepository implements StateRep
 
     }
 
-    public function create($state)
+    public function create(array $state)
     {
         $sql = "INSERT INTO ibge_states
                   (country_id,

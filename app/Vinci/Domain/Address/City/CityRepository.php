@@ -2,7 +2,7 @@
 
 namespace Vinci\Domain\Address\City;
 
-interface CityRepository
+interface CityRepository extends \Vinci\App\Integration\ERP\City\CityRepository
 {
 
     public function find($id);

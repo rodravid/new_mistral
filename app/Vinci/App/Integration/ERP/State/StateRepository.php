@@ -4,12 +4,10 @@ namespace Vinci\App\Integration\ERP\State;
 interface StateRepository
 {
 
-    public function syncState($states);
-
     public function syncStates($states, $detach = false);
 
-    public function create($state);
+    public function create(array $state);
 
-    public function update($state);
+    public function update(array $state);
 
 }

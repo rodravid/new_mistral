@@ -32,6 +32,11 @@ class DoctrineStateRepositoryCached implements StateRepository
         });
     }
 
+    public function getAllStateIDs()
+    {
+        return $this->stateRepository->getAllStateIDs();
+    }
+
     protected function getCacheKey($key, $data)
     {
         if (is_object($data)) {
@@ -51,13 +56,13 @@ class DoctrineStateRepositoryCached implements StateRepository
         return $this->stateRepository->syncStates($states, $detach);
     }
 
-    public function create($id)
+    public function create(array $data)
     {
-        return $this->stateRepository->create($id);
+        return $this->stateRepository->create($data);
     }
 
-    public function update($state)
+    public function update(array $data)
     {
-        return $this->stateRepository->update($state);
+        return $this->stateRepository->update($data);
     }
 }

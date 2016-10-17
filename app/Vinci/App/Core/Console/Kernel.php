@@ -61,7 +61,8 @@ class Kernel extends ConsoleKernel
         'Vinci\App\Integration\ERP\Console\Commands\ExportCustomers',
         'Vinci\App\Integration\ERP\Console\Commands\ExportOrders',
         'Vinci\App\Integration\ERP\Console\Commands\ExportOrdersItems',
-        'Vinci\App\Integration\ERP\Console\Commands\SyncStatesOfCountry'
+        'Vinci\App\Integration\ERP\Console\Commands\SyncStatesOfCountry',
+        'Vinci\App\Integration\ERP\Console\Commands\SyncCities'
     ];
 
     /**
@@ -102,5 +103,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('creditcards:clear')
             ->daily();
+
+        $schedule->command('erp:integration:sync-cities --all')
+            ->weekly()
+            ->withoutOverlapping();
     }
 }

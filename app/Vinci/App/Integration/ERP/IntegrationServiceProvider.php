@@ -3,6 +3,11 @@
 namespace Vinci\App\Integration\ERP;
 
 use Illuminate\Support\ServiceProvider;
+use Vinci\App\Integration\ERP\City\CityRepository;
+use Vinci\App\Integration\ERP\City\CityService;
+use Vinci\App\Integration\ERP\City\ErpCityApi;
+use Vinci\App\Integration\ERP\City\CityApi;
+use Vinci\App\Integration\ERP\Console\Commands\SyncCities;
 use Vinci\App\Integration\ERP\State\DoctrineStateRepository;
 use Vinci\App\Integration\ERP\State\ErpStateApi;
 use Vinci\App\Integration\ERP\State\StateApi;
@@ -53,6 +58,24 @@ class IntegrationServiceProvider extends ServiceProvider
             ->needs(StateRepository::class)
             ->give(function () {
                 return $this->app->make(\Vinci\Domain\Address\State\StateRepository::class);
+            });
+
+        $this->app->singleton(CityApi::class, function () {
+            return $this->app->make(ErpCityApi::class);
+        });
+
+        $this->app
+            ->when(SyncCities::class)
+            ->needs(StateRepository::class)
+            ->give(function () {
+                return $this->app->make(\Vinci\Domain\Address\State\StateRepository::class);
+            });
+
+        $this->app
+            ->when(CityService::class)
+            ->needs(CityRepository::class)
+            ->give(function () {
+                return $this->app->make(\Vinci\Domain\Address\City\CityRepository::class);
             });
     }
 
