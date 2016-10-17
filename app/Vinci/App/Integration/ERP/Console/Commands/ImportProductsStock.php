@@ -1,5 +1,4 @@
 <?php
-
 namespace Vinci\App\Integration\ERP\Console\Commands;
 
 use Exception;

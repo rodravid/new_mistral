@@ -37,4 +37,18 @@ class DoctrineCityRepositoryCached implements CityRepository
         return 'city-repository' . trim($key);
     }
 
+    public function exists($id)
+    {
+        return $this->cityRepository->exists($id);
+    }
+
+    public function createCity(array $data)
+    {
+        return $this->cityRepository->createCity($data);
+    }
+
+    public function updateCity(array $data)
+    {
+        $this->cityRepository->updateCity($data);
+    }
 }

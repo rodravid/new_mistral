@@ -83,7 +83,7 @@ $route->group(['middleware' => ['web']], function () use ($route) {
                     $route->get('/tracking-status/load-mail-template', 'Order\\OrderController@loadMailTemplate')->name('edit#load-mail-template');
                     $route->post('/{order}/export-erp-queue', 'Order\\OrderController@exportToErpQueued')->name('edit#export-erp-queue');
 
-                    $route->post('/{order}/set-as-printed', 'Order\\OrderController@setAsPrinted')->name('printed');
+                    $route->get('/{order}/set-as-printed', 'Order\\OrderController@setAsPrinted')->name('printed');
                 });
 
                 /**

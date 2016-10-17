@@ -267,6 +267,9 @@ class OrderController extends Controller
         $order = $this->entityManager->getReference(Order::class, $order_id);
         $order->setPrinted(1);
         $order->save();
+
+        Flash::success("Pedido #{$order->getNumber()} definido como impresso!");
+        return Redirect::back();
     }
 
 }
