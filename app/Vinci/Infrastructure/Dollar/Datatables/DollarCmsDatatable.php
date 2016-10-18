@@ -20,19 +20,20 @@ class DollarCmsDatatable extends AbstractDatatables
     }
 
     protected $sortMapping = [
-        0 => 'o.id',
-        1 => 'o.description',
-        2 => 'o.amount',
+        0 => 'd.id',
+        1 => 'd.description',
+        2 => 'd.amount',
         3 => 'u.name',
-        4 => 'o.startsAt',
-        6 => 'o.createdAt',
+        4 => 'd.startsAt',
+        6 => 'd.createdAt',
     ];
 
     public function getResultPaginator($perPage, $start, array $order = null, array $search = null)
     {
-        $qb = $this->repository->createQueryBuilder('o')
-            ->select('o', 'u')
-            ->join('o.user', 'u')
+        app('em')->getFilters()->disable('soft-deleteable');
+
+        $qb = $this->repository->createQueryBuilder('d')
+            ->join('d.user', 'u')
             ->setFirstResult($start)
             ->setMaxResults($perPage);
 
