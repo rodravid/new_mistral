@@ -41,7 +41,7 @@
 				<li>
 					<strong class="txt-contact">CAMPINAS E REGIÃO / SP</strong>
 					<p>PEDRO CUNHA    </p>
-					<strong>(18) 98133-5552</strong>
+					<strong>(19) 99920-3004</strong>
 				</li>
 
 				<li>

@@ -24,6 +24,13 @@
                             @endif
                             <small class="pull-right">Data: {{ $order->creation_date }}</small>
                             <small id="print" class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;"> <i class="fa fa-print"></i> Imprimir</small>
+                            @if (! $order->wasPrinted())
+                                <small id="print" class="pull-right bt-print" style="margin-right: 10px; cursor: pointer;">
+                                    <a href="{{ route('cms.orders.printed', ['order' => $order->id]) }}">
+                                        <i class="fa fa-check"></i> Definir como impresso
+                                    </a>
+                                </small>
+                            @endif
                         </h2>
                     </div>
                 </div>
@@ -91,11 +98,9 @@
 @section ('scripts')
     @parent
     <script>
-        $("#print").click(function () {
-            window.print();
-            $.ajax({
-                url: '{{ route('cms.orders.printed', ['order' => $order->id]) }}',
-                type: 'POST'
+        $(document).ready(function () {
+            $("#print").on('click', function () {
+                window.print();
             });
         });
     </script>

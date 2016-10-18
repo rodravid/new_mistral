@@ -27,6 +27,14 @@ return [
             'create_order' => env('ERP_WSDL_CREATE_ORDER'),
             'create_order_item' => env('ERP_WSDL_CREATE_ORDER_ITEM'),
             'get_order_status' => env('ERP_WSDL_GET_ORDER_STATUS'),
+        ],
+
+        'states' => [
+            'get_states' => env('ERP_WSDL_GET_STATES')
+        ],
+
+        'cities' => [
+            'get_cities' => env('ERP_WSDL_GET_CITIES')
         ]
 
     ]

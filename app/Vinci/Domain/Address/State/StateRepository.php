@@ -2,10 +2,12 @@
 
 namespace Vinci\Domain\Address\State;
 
-interface StateRepository
+interface StateRepository extends \Vinci\App\Integration\ERP\State\StateRepository
 {
 
     public function find($id);
+
+    public function getAllStateIDs();
 
     public function getByCountry($country);
 
