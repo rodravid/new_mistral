@@ -48,7 +48,6 @@ class AddressService
     public function update(array $data, $customerId, $addressId)
     {
         $this->sanitize($data['addresses']);
-
         $this->validate($data);
 
         return $this->saveAddress($data, $customerId, function ($addressData) use ($addressId) {
@@ -62,6 +61,22 @@ class AddressService
         });
     }
 
+    public function sanitize(array &$addresses)
+    {
+        $sanitized = [];
+
+        foreach ($addresses as &$address) {
+            $sanitized[] = $this->sanitizeAddress($address);
+        }
+
+        return $sanitized;
+    }
+
+    public function validate(array $data)
+    {
+        return $this->addressValidator->with($data)->passesOrFail();
+    }
+
     protected function saveAddress($data, $customerId, Closure $method)
     {
         $address = $method(array_first($data['addresses']));
@@ -73,7 +88,7 @@ class AddressService
         $this->entityManager->persist($address);
         $this->entityManager->flush();
 
-        if (! $customer->getAddresses()->count()) {
+        if ($customer->getAddresses()->count() == 1) {
             $address->setMainAddress(true);
         }
 
@@ -81,22 +96,6 @@ class AddressService
         $this->entityManager->flush();
 
         return $address;
-    }
-
-    public function validate(array $data)
-    {
-        return $this->addressValidator->with($data)->passesOrFail();
-    }
-
-    public function sanitize(array &$addresses)
-    {
-        $sanitized = [];
-
-        foreach ($addresses as &$address) {
-            $sanitized[] = $this->sanitizeAddress($address);
-        }
-
-        return $sanitized;
     }
 
     public function hydrateCustomerAddresses(Customer $customer, $addresses, $mainAddressId)
