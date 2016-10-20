@@ -137,6 +137,16 @@ class Product extends Model implements ProductInterface, Presentable
 
     protected $seoInstance;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $redirect_url;
+
+    /**
+     * @ORM\Column(type="integer", options={"default" = 302})
+     */
+    protected $redirect_type = 302;
+
     public function __construct()
     {
         $this->variants = new ArrayCollection;
@@ -867,6 +877,33 @@ class Product extends Model implements ProductInterface, Presentable
     public function changeStock($stock)
     {
         return $this->getMasterVariant()->changeStock($stock);
+    }
+
+    public function getRedirectUrl()
+    {
+        return $this->redirect_url;
+    }
+
+    public function setRedirectUrl($redirect_url)
+    {
+        $this->redirect_url = $redirect_url;
+        return $this;
+    }
+
+    public function getRedirectType()
+    {
+        return $this->redirect_type;
+    }
+
+    public function setRedirectType($redirect_type)
+    {
+        $this->redirect_type = $redirect_type;
+        return $this;
+    }
+
+    public function hasRedirect()
+    {
+        return !! $this->redirect_url;
     }
 
     public function releaseEvents()

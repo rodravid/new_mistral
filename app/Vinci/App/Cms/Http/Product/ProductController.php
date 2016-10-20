@@ -114,7 +114,6 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         try {
-
             $product = $this->service->update(array_merge($request->all(), ['user' => $this->user]), $id);
 
             Flash::success("Produto {$product->getTitle()} atualizado com sucesso!");

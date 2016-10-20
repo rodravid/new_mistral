@@ -70,6 +70,10 @@ class ProductController extends Controller
             3 => 'template1',
         ];
 
+        if ($product->hasRedirect()) {
+            return Redirect::to($product->getRedirectUrl(), $product->getRedirectType());
+        }
+
         return $this->view('product.index', compact('product', 'productsRecommended', 'templates'));
     }
 

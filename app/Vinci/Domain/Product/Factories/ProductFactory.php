@@ -65,7 +65,9 @@ class ProductFactory implements ProductFactoryInterface
             ->setStatus($data['status'])
             ->setStartsAtFromFormat($data['startsAt'])
             ->setExpirationAtFromFormat($data['expirationAt'])
-            ->setEnabledForPromotions(array_get($data, 'enabled_for_promotions'));
+            ->setEnabledForPromotions(array_get($data, 'enabled_for_promotions'))
+            ->setRedirectUrl($data['redirect_url'])
+            ->setRedirectType($data['redirect_type']);
 
         $this->includeCountry($product, $data);
         $this->includeRegion($product, $data);
@@ -187,7 +189,9 @@ class ProductFactory implements ProductFactoryInterface
             ->setStartsAt($newProduct->getStartsAt())
             ->setExpirationAt($newProduct->getExpirationAt())
             ->setOnline($newProduct->isOnline())
-            ->setPackSize($newProduct->getPackSize());
+            ->setPackSize($newProduct->getPackSize())
+            ->setRedirectUrl($newProduct->getRedirectUrl())
+            ->setRedirectType($newProduct->getRedirectType());
 
         if (array_has($data, 'searchRelevance')) {
             $product->setSearchRelevance($newProduct->getSearchRelevance());
