@@ -323,6 +323,19 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         return $qb->getQuery()->getResult();
     }
 
+    public function getAvailableProductsNotInTypes(array $types)
+    {
+        $qb = $this->getBaseQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.productType', 'pt')
+            ->where($qb->expr()->notIn('pt.id', $types));
+
+        $this->applyDefaultConditions($qb);
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function getRandomProducts($quantity = 4)
     {
         $qb = $this->getBaseQueryBuilder('p');
