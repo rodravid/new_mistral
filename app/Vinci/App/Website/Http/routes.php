@@ -245,4 +245,5 @@ $route->group(['middleware' => ['web']], function () use ($route) {
     $route->post('password/email', 'Auth\PasswordController@sendResetLinkEmail')->name('password.email');
     $route->post('password/reset', 'Auth\PasswordController@reset')->name('password.reset');
 
+    $route->get('google-shopping', 'GoogleShopping\\GoogleShoppingController@index');
 });

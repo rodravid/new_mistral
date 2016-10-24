@@ -8,6 +8,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/Webeleven/SafeQueue"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Webeleven/google-shopping-feed"
         }
     ],
     "require": {
@@ -42,7 +46,8 @@
         "webeleven/safe-queue": "dev-master",
         "facile-it/doctrine-mysql-come-back": "^1.6",
         "phpfluent/elastic-query-builder": "^1.0",
-        "laracasts/matryoshka": "^0.1.0"
+        "laracasts/matryoshka": "^0.1.0",
+        "webeleven/google-shopping-feed": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

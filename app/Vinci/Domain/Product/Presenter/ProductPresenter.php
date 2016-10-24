@@ -47,4 +47,9 @@ class ProductPresenter extends AbstractPresenter
         return asset_web('images/no_photo.png');
     }
 
+    public function presentFullWebPath()
+    {
+        return env('APP_URL') . $this->getWebPath();
+    }
+
 }

@@ -96,19 +96,6 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $qb = $this->createQueryBuilder('p');
 
         return $qb->getQuery()->iterate();
-
-//        $qb = $this->createQueryBuilder('p');
-//
-//        $qb->join('p.variants', 'v')
-//            ->join('p.country', 'c')
-//            ->join('p.region', 'r')
-//            ->join('p.producer', 'pr')
-//            ->join('v.prices', 'vp')
-//            ->andWhere('vp.price > 0')
-//            ->andWhere($qb->expr()->eq('p.online', true))
-//            ->andWhere($qb->expr()->notIn('p.productType', [ProductType::TYPE_PACKING]));
-//
-//        return $qb->getQuery()->getResult();
     }
 
     public function getBaseQueryBuilder()
@@ -317,6 +304,19 @@ class DoctrineProductRepository extends DoctrineBaseRepository implements Produc
         $qb->select('p')
             ->join('p.productType', 'pt')
             ->where($qb->expr()->in('pt.id', $types));
+
+        $this->applyDefaultConditions($qb);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getAvailableProductsNotInTypes(array $types)
+    {
+        $qb = $this->getBaseQueryBuilder('p');
+
+        $qb->select('p')
+            ->join('p.productType', 'pt')
+            ->where($qb->expr()->notIn('pt.id', $types));
 
         $this->applyDefaultConditions($qb);
 
