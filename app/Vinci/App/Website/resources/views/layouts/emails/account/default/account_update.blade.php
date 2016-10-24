@@ -110,6 +110,7 @@
         </tr>
     @endif
 
+    @if($customer->getMainAddress())
     <tr>
         <td style="padding:40px 0 22px 0">
             <b style="color:{{ $color }}; font-family:Arial, verdana, sans-serif; font-size: 18px;">Endereço</b>
@@ -264,6 +265,7 @@
             </table>
         </td>
     </tr>
+    @endif
 
     <tr>
         <td style="padding:40px 0 12px 0">
