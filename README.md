@@ -1,2 +1,2 @@
-# Vinci vinhos
+# Mistral
 E-commerce de vinhos
